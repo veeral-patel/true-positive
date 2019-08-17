@@ -1,7 +1,6 @@
 import React from "react";
-import { Table } from "antd";
+import { Table, Tag } from "antd";
 import ICase from "../../ts/interfaces/ICase";
-import { ColumnProps } from "antd/es/table";
 
 const { Column } = Table;
 
@@ -21,6 +20,20 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
           title="Assigned To"
           dataIndex="assignedTo.username"
           key="assigned_to"
+        />
+        <Column
+          title="Tags"
+          dataIndex="tags"
+          key="tags"
+          render={tags => (
+            <span>
+              {tags.map((tag: string) => (
+                <Tag color="blue" key={tag}>
+                  {tag}
+                </Tag>
+              ))}
+            </span>
+          )}
         />
       </Table>
     </div>

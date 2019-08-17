@@ -18,6 +18,7 @@ const GET_CASES = gql`
       assignedTo {
         username
       }
+      tags
     }
   }
 `;
