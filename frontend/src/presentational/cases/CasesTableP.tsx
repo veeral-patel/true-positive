@@ -52,6 +52,9 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         render={(priorityName: string) => (
           <PriorityTagP priorityName={priorityName} />
         )}
+        sorter={(a: ICase, b: ICase) =>
+          a.priority.name.localeCompare(b.priority.name)
+        }
       />
       <Column
         title="Assigned To"
