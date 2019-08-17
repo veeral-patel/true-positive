@@ -50,7 +50,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         dataIndex="assignedTo.username"
         key="assigned_to"
       />
-      <Column title="Created At" dataIndex="createdAt" key="created_at" />
+      <Column title="Created At (UTC)" dataIndex="createdAt" key="created_at" />
       <Column
         title="Created By"
         dataIndex="createdBy.username"

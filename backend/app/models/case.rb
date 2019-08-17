@@ -16,4 +16,8 @@ class Case < ApplicationRecord
   def to_s
     self.name
   end
+
+  def formatted_created_at
+      self.created_at.strftime("%m/%d/%y %H:%M")
+  end
 end
