@@ -3,7 +3,7 @@ import { Menu } from "antd";
 import { navigate } from "@reach/router";
 
 const TopMenu: React.FC = () => (
-  <Menu theme="dark" mode="horizontal">
+  <Menu theme="dark" mode="horizontal" selectedKeys={[]}>
     <Menu.Item onClick={() => navigate("/cases")}>Cases</Menu.Item>
   </Menu>
 );
