@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <div>
       <TopMenu />
-      <Router>
+      <Router style={{ margin: "3%", marginTop: "2%" }}>
         <AllCasesPage path="/" />
         <AllCasesPage path="/cases" />
         <Page404 default />
