@@ -1,13 +1,13 @@
 import React from "react";
 import { Table } from "antd";
-import IPerson from "../../ts/interfaces/IPerson";
+import ICase from "../../ts/interfaces/ICase";
 import { ColumnProps } from "antd/es/table";
 
 interface ICasesTableProps {
-  dataSource: IPerson[];
+  dataSource: ICase[];
 }
 
-const columns: ColumnProps<IPerson>[] = [
+const columns: ColumnProps<ICase>[] = [
   {
     title: "Name",
     dataIndex: "name",
