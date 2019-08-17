@@ -41,6 +41,9 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         dataIndex="status.name"
         key="status"
         render={(statusName: string) => <StatusTagP statusName={statusName} />}
+        sorter={(a: ICase, b: ICase) =>
+          a.status.name.localeCompare(b.status.name)
+        }
       />
       <Column
         title="Priority"
