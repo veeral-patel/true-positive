@@ -5,6 +5,7 @@ module Types
         # required fields
         field :id, ID, null: false
         field :name, String, null: false
+        field :created_at, String, null: false
         field :created_by, Types::UserType, null: false
         field :status, Types::StatusType, null: false
         field :priority, Types::PriorityType, null: false
