@@ -24,7 +24,12 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
       rowSelection={rowSelection}
       rowKey={record => record.id.toString()}
     >
-      <Column title="Name" dataIndex="name" key="name" />
+      <Column
+        title="Name"
+        dataIndex="name"
+        key="name"
+        sorter={(a: ICase, b: ICase) => a.name.localeCompare(b.name)}
+      />
       <Column
         title="Tags"
         dataIndex="tags"
