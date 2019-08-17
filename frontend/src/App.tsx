@@ -1,5 +1,5 @@
 import React from "react";
-import AllCasesPage from "./pages/AllCasesPage";
+import AllCasesPage from "./pages/cases/AllCasesPage";
 
 const App: React.FC = () => {
   return <AllCasesPage />;
