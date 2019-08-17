@@ -8,7 +8,8 @@ import ListOfTagsP from "../shared/tags/ListOfTagsP";
 const { Column } = Table;
 
 interface ICasesTableProps {
-  dataSource: ICase[]; // list of case objects
+  // list of case objects
+  dataSource: ICase[];
 }
 
 const rowSelection = {
@@ -49,6 +50,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         dataIndex="assignedTo.username"
         key="assigned_to"
       />
+      <Column title="Created At" dataIndex="createdAt" key="created_at" />
       <Column
         title="Created By"
         dataIndex="createdBy.username"
