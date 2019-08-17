@@ -23,7 +23,7 @@ const columns = [
   }
 ];
 
-const CasesTable: React.FC<ICasesTableProps> = props => {
+const CasesTableP: React.FC<ICasesTableProps> = props => {
   const { dataSource } = props;
   return (
     <div>
@@ -32,4 +32,4 @@ const CasesTable: React.FC<ICasesTableProps> = props => {
   );
 };
 
-export default CasesTable;
+export default CasesTableP;
