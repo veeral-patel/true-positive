@@ -1,6 +1,6 @@
-import React from "react";
-import { Menu } from "antd";
 import { navigate } from "@reach/router";
+import { Menu } from "antd";
+import React from "react";
 
 const TopMenu: React.FC = () => (
   <Menu theme="dark" mode="horizontal" selectedKeys={[]}>

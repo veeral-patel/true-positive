@@ -1,8 +1,8 @@
-import React from "react";
-import Page404 from "pages/shared/Page404";
 import { Router } from "@reach/router";
-import TopMenu from "presentational/shared/top_menu/TopMenu";
 import AllCasesPage from "pages/cases/AllCasesPage";
+import Page404 from "pages/shared/Page404";
+import TopMenu from "presentational/shared/top_menu/TopMenu";
+import React from "react";
 
 const App: React.FC = () => {
   return (

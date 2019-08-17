@@ -1,9 +1,9 @@
-import React from "react";
 import { Table } from "antd";
-import ICase from "ts/interfaces/ICase";
+import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
-import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
+import React from "react";
+import ICase from "ts/interfaces/ICase";
 import compareUsers from "utils/compareUsers";
 
 const { Column } = Table;

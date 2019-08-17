@@ -1,8 +1,8 @@
-import React from "react";
-import CasesTableP from "presentational/cases/CasesTableP";
-import { useQuery } from "react-apollo-hooks";
-import gql from "graphql-tag";
 import { Table } from "antd";
+import gql from "graphql-tag";
+import CasesTableP from "presentational/cases/CasesTableP";
+import React from "react";
+import { useQuery } from "react-apollo-hooks";
 
 const GET_CASES = gql`
   query {
