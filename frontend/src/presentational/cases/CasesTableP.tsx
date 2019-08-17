@@ -24,6 +24,20 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
     >
       <Column title="Name" dataIndex="name" key="name" />
       <Column
+        title="Tags"
+        dataIndex="tags"
+        key="tags"
+        render={tags => (
+          <span>
+            {tags.map((tag: string) => (
+              <Tag color="blue" key={tag}>
+                {tag}
+              </Tag>
+            ))}
+          </span>
+        )}
+      />
+      <Column
         title="Status"
         dataIndex="status.name"
         key="status"
@@ -43,18 +57,9 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         key="assigned_to"
       />
       <Column
-        title="Tags"
-        dataIndex="tags"
-        key="tags"
-        render={tags => (
-          <span>
-            {tags.map((tag: string) => (
-              <Tag color="blue" key={tag}>
-                {tag}
-              </Tag>
-            ))}
-          </span>
-        )}
+        title="Created By"
+        dataIndex="createdBy.username"
+        key="created_by"
       />
     </Table>
   );
