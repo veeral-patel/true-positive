@@ -11,13 +11,7 @@ interface ICasesTableProps {
 }
 
 const rowSelection = {
-  onChange: (selectedRowKeys: string[] | number[], selectedRows: ICase[]) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  }
+  onChange: (selectedRowKeys: string[] | number[], selectedRows: ICase[]) => {}
 };
 
 const CasesTableP: React.FC<ICasesTableProps> = props => {
