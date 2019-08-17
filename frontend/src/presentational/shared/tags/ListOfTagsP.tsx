@@ -1,5 +1,5 @@
 import React from "react";
-import { Tag, List } from "antd";
+import { Tag } from "antd";
 
 interface IListOfTagsProps {
   tags: string[];

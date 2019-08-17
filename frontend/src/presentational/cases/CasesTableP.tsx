@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Tag } from "antd";
+import { Table } from "antd";
 import ICase from "../../ts/interfaces/ICase";
 import PriorityTagP from "../shared/tags/PriorityTagP";
 import StatusTagP from "../shared/tags/StatusTagP";
