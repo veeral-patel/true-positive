@@ -1,5 +1,5 @@
 import React from "react";
-import CasesTable from "../../container/cases/CasesTable";
+import CasesTable from "container/cases/CasesTable";
 import { RouteComponentProps } from "@reach/router";
 import { PageHeader, Button } from "antd";
 

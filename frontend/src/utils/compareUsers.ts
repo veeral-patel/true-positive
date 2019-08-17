@@ -1,4 +1,4 @@
-import IUser from "../ts/interfaces/IUser";
+import IUser from "ts/interfaces/IUser";
 
 function compareUsers(u1: IUser | null, u2: IUser | null): number {
   // sort unassigned cases before assigned cases

@@ -1,6 +1,6 @@
-import IStatus from "./IStatus";
-import IPriority from "./IPriority";
-import IUser from "./IUser";
+import IStatus from "ts/interfaces/IStatus";
+import IPriority from "ts/interfaces/IPriority";
+import IUser from "ts/interfaces/IUser";
 
 interface ICase {
   id: number;

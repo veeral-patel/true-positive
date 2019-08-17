@@ -1,5 +1,5 @@
 import React from "react";
-import CasesTableP from "../../presentational/cases/CasesTableP";
+import CasesTableP from "presentational/cases/CasesTableP";
 import { useQuery } from "react-apollo-hooks";
 import gql from "graphql-tag";
 import { Table } from "antd";
