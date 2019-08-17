@@ -1,8 +1,9 @@
 import React from "react";
 import { Table } from "antd";
+import IPerson from "../../ts/interfaces/IPerson";
 
 interface ICasesTableProps {
-  dataSource: any;
+  dataSource: IPerson[];
 }
 
 const columns = [
