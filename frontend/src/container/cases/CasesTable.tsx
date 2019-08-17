@@ -7,6 +7,7 @@ import { Table } from "antd";
 const GET_CASES = gql`
   query {
     cases {
+      id
       name
       priority {
         name

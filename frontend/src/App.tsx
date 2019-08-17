@@ -3,7 +3,7 @@ import CasesTable from "./container/cases/CasesTable";
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div style={{ margin: "3%" }}>
       <CasesTable />
     </div>
   );

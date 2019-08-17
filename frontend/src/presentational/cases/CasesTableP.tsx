@@ -9,6 +9,11 @@ interface ICasesTableProps {
 
 const columns: ColumnProps<ICase>[] = [
   {
+    title: "ID",
+    dataIndex: "id",
+    key: "id"
+  },
+  {
     title: "Name",
     dataIndex: "name",
     key: "name"
@@ -34,7 +39,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
   const { dataSource } = props;
   return (
     <div>
-      <Table columns={columns} dataSource={dataSource} />
+      <Table columns={columns} dataSource={dataSource} rowKey="name" />
     </div>
   );
 };
