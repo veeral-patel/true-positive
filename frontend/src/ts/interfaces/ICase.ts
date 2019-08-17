@@ -1,4 +1,5 @@
 interface ICase {
+  id: number;
   name: string;
 }
 

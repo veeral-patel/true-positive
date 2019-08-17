@@ -1,9 +1,8 @@
 import React from "react";
-import { Table, Tag, Row } from "antd";
+import { Table, Tag } from "antd";
 import ICase from "../../ts/interfaces/ICase";
 import PriorityTagP from "../shared/tags/PriorityTagP";
 import StatusTagP from "../shared/tags/StatusTagP";
-import { TableRowSelection } from "antd/lib/table";
 
 const { Column } = Table;
 
@@ -24,7 +23,11 @@ const rowSelection = {
 const CasesTableP: React.FC<ICasesTableProps> = props => {
   const { dataSource } = props;
   return (
-    <Table dataSource={dataSource} rowSelection={rowSelection}>
+    <Table
+      dataSource={dataSource}
+      rowSelection={rowSelection}
+      rowKey={record => record.id.toString()}
+    >
       <Column title="Name" dataIndex="name" key="name" />
       <Column
         title="Status"
