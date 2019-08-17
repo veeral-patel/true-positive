@@ -12,6 +12,21 @@ const columns: ColumnProps<ICase>[] = [
     title: "Name",
     dataIndex: "name",
     key: "name"
+  },
+  {
+    title: "Status",
+    dataIndex: "status.name",
+    key: "status"
+  },
+  {
+    title: "Priority",
+    dataIndex: "priority.name",
+    key: "priority"
+  },
+  {
+    title: "Assigned To",
+    dataIndex: "assignedTo.username",
+    key: "assigned_to"
   }
 ];
 
