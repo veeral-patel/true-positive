@@ -4,7 +4,7 @@ import ICase from "../../ts/interfaces/ICase";
 import { ColumnProps } from "antd/es/table";
 
 interface ICasesTableProps {
-  dataSource: ICase[];
+  dataSource: ICase[]; // list of case objects
 }
 
 const columns: ColumnProps<ICase>[] = [
