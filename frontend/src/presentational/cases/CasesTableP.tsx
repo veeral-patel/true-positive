@@ -1,6 +1,8 @@
 import React from "react";
 import { Table, Tag } from "antd";
 import ICase from "../../ts/interfaces/ICase";
+import PriorityTagP from "../shared/PriorityTagP";
+import StatusTagP from "../shared/StatusTagP";
 
 const { Column } = Table;
 
@@ -14,8 +16,22 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
     <div>
       <Table dataSource={dataSource}>
         <Column title="Name" dataIndex="name" key="name" />
-        <Column title="Status" dataIndex="status.name" key="status" />
-        <Column title="Priority" dataIndex="priority.name" key="priority" />
+        <Column
+          title="Status"
+          dataIndex="status.name"
+          key="status"
+          render={(statusName: string) => (
+            <StatusTagP statusName={statusName} />
+          )}
+        />
+        <Column
+          title="Priority"
+          dataIndex="priority.name"
+          key="priority"
+          render={(priorityName: string) => (
+            <PriorityTagP priorityName={priorityName} />
+          )}
+        />
         <Column
           title="Assigned To"
           dataIndex="assignedTo.username"
