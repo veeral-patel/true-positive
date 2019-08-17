@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CasesTableP from "../../presentational/cases/CasesTableP";
+import { useQuery } from "react-apollo-hooks";
+import gql from "graphql-tag";
 
 const dataSource = [
   {
@@ -16,10 +18,19 @@ const dataSource = [
   }
 ];
 
+const GET_CASES = gql`
+  query {
+    cases {
+      id
+      name
+    }
+  }
+`;
+
 const CasesTable: React.SFC = () => {
-  useEffect(() => {
-    document.title = `You clicked 3 times`;
-  });
+  const { data, error, loading } = useQuery(GET_CASES);
+  console.log(data);
+
   return <CasesTableP dataSource={dataSource} />;
 };
 
