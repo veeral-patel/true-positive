@@ -21,6 +21,9 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
       dataSource={dataSource}
       rowSelection={rowSelection}
       rowKey={record => record.id.toString()}
+      expandedRowRender={record => (
+        <p style={{ margin: 0 }}>{record.description}</p>
+      )}
     >
       <Column title="Name" dataIndex="name" key="name" />
       <Column
