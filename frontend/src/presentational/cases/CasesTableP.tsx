@@ -3,6 +3,7 @@ import { Table, Tag } from "antd";
 import ICase from "../../ts/interfaces/ICase";
 import PriorityTagP from "../shared/tags/PriorityTagP";
 import StatusTagP from "../shared/tags/StatusTagP";
+import ListOfTagsP from "../shared/tags/ListOfTagsP";
 
 const { Column } = Table;
 
@@ -21,24 +22,13 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
       dataSource={dataSource}
       rowSelection={rowSelection}
       rowKey={record => record.id.toString()}
-      expandedRowRender={record => (
-        <p style={{ margin: 0 }}>{record.description}</p>
-      )}
     >
       <Column title="Name" dataIndex="name" key="name" />
       <Column
         title="Tags"
         dataIndex="tags"
         key="tags"
-        render={tags => (
-          <span>
-            {tags.map((tag: string) => (
-              <Tag color="blue" key={tag}>
-                {tag}
-              </Tag>
-            ))}
-          </span>
-        )}
+        render={tags => <ListOfTagsP tags={tags} />}
       />
       <Column
         title="Status"
