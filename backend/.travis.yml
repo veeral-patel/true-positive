@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - 2.5.1
+before_install:
+  - gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
+script:
+  - bundle install
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rake spec
+cache: bundler
+services:
+  - postgresql
