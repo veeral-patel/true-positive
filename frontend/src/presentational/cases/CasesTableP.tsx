@@ -1,8 +1,8 @@
 import React from "react";
 import { Table, Tag } from "antd";
 import ICase from "../../ts/interfaces/ICase";
-import PriorityTagP from "../shared/PriorityTagP";
-import StatusTagP from "../shared/StatusTagP";
+import PriorityTagP from "../shared/tags/PriorityTagP";
+import StatusTagP from "../shared/tags/StatusTagP";
 
 const { Column } = Table;
 
