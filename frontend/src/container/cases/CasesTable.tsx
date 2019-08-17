@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CasesTableP from "../../presentational/cases/CasesTableP";
 
 const dataSource = [
@@ -17,6 +17,9 @@ const dataSource = [
 ];
 
 const CasesTable: React.SFC = () => {
+  useEffect(() => {
+    document.title = `You clicked 3 times`;
+  });
   return <CasesTableP dataSource={dataSource} />;
 };
 
