@@ -1,5 +1,5 @@
-import IStatus from "ts/interfaces/IStatus";
 import IPriority from "ts/interfaces/IPriority";
+import IStatus from "ts/interfaces/IStatus";
 import IUser from "ts/interfaces/IUser";
 
 interface ICase {
