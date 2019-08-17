@@ -80,13 +80,13 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
           compareUsers(a.assignedTo, b.assignedTo)
         }
       />
-      <Column title="Created At (UTC)" dataIndex="createdAt" key="created_at" />
       <Column
         title="Created By"
         dataIndex="createdBy.username"
         key="created_by"
         sorter={(a: ICase, b: ICase) => compareUsers(a.createdBy, b.createdBy)}
       />
+      <Column title="Created At (UTC)" dataIndex="createdAt" key="created_at" />
     </Table>
   );
 };
