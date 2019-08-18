@@ -40,7 +40,6 @@ const GET_CASES = gql`
           name
         }
         tags
-        invalidfield
       }
     }
   }
