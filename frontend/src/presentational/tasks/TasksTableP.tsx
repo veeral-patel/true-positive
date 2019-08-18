@@ -24,6 +24,7 @@ const TasksTableP: React.FC<ITasksTableProps> = props => {
       dataSource={tasks}
       rowSelection={rowSelection}
       rowKey={record => record.id.toString()}
+      pagination={{ hideOnSinglePage: true }}
     >
       <Column
         title="Name"
