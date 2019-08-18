@@ -1,4 +1,4 @@
-import { Table } from "antd";
+import { notification, Table } from "antd";
 import gql from "graphql-tag";
 import CasesTableP from "presentational/cases/CasesTableP";
 import React from "react";
@@ -40,6 +40,7 @@ const GET_CASES = gql`
           name
         }
         tags
+        invalidfield
       }
     }
   }
@@ -52,8 +53,20 @@ const CasesTable: React.FC = () => {
     return <Table loading={true} />;
   }
 
-  if (error || data === undefined) {
-    return <h3>Error</h3>;
+  if (error) {
+    notification.error({
+      message: "An error occurred while fetching cases",
+      description: error.message
+    });
+    return <CasesTableP dataSource={[]} />;
+  }
+
+  if (data === undefined) {
+    notification.error({
+      message: "An error occurred while fetching cases",
+      description: "data is undefined"
+    });
+    return <CasesTableP dataSource={[]} />;
   }
 
   return <CasesTableP dataSource={data.cases} />;
