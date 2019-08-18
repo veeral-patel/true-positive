@@ -5,7 +5,7 @@ interface IPriorityTagProps {
   priorityName: string;
 }
 
-const PriorityTagP: React.SFC<IPriorityTagProps> = ({ priorityName }) => {
+const PriorityTagP: React.FC<IPriorityTagProps> = ({ priorityName }) => {
   if (priorityName === "High") {
     return <Tag color="red">{priorityName}</Tag>;
   } else if (priorityName === "Medium") {

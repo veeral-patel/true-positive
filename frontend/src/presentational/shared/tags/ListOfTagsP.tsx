@@ -5,7 +5,7 @@ interface IListOfTagsProps {
   tags: string[];
 }
 
-const ListOfTagsP: React.SFC<IListOfTagsProps> = ({ tags }) => (
+const ListOfTagsP: React.FC<IListOfTagsProps> = ({ tags }) => (
   <span>
     {tags.map((tag: string) => (
       <Tag color="blue" key={tag}>

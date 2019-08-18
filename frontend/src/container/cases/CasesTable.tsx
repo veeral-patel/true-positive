@@ -32,7 +32,7 @@ const GET_CASES = gql`
   }
 `;
 
-const CasesTable: React.SFC = () => {
+const CasesTable: React.FC = () => {
   const { data, error, loading } = useQuery<ICasesData>(GET_CASES);
 
   if (loading) {

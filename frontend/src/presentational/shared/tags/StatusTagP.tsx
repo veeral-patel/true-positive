@@ -5,7 +5,7 @@ interface IStatusTagProps {
   statusName: string;
 }
 
-const StatusTagP: React.SFC<IStatusTagProps> = ({ statusName }) => {
+const StatusTagP: React.FC<IStatusTagProps> = ({ statusName }) => {
   if (statusName === "Open") {
     return <Tag color="red">{statusName}</Tag>;
   } else if (statusName === "In Progress") {
