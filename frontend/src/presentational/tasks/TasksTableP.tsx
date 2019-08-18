@@ -13,16 +13,11 @@ interface ITasksTableProps {
   tasks: ITask[];
 }
 
-const rowSelection = {
-  onChange: (selectedRowKeys: string[] | number[], selectedRows: ITask[]) => {}
-};
-
 const TasksTableP: React.FC<ITasksTableProps> = props => {
   const { tasks } = props;
   return (
     <Table
       dataSource={tasks}
-      rowSelection={rowSelection}
       rowKey={record => record.id.toString()}
       pagination={{ hideOnSinglePage: true }}
     >
