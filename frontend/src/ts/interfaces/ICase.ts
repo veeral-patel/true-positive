@@ -7,6 +7,7 @@ interface ICase {
   id: number;
   name: string;
   createdAt: string;
+  formattedCreatedAt: string;
   description: string;
   status: IStatus;
   priority: IPriority;

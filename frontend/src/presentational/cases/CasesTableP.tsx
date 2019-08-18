@@ -77,8 +77,8 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
       />
       <Column
         title="Created At (UTC)"
-        dataIndex="createdAt"
-        key="created_at"
+        dataIndex="formattedCreatedAt"
+        key="formatted_created_at"
         sorter={(a: ICase, b: ICase) => a.createdAt.localeCompare(b.createdAt)}
       />
     </Table>
