@@ -29,6 +29,16 @@ const GET_CASES = gql`
         username
       }
       tags
+      tasks {
+        name
+        status {
+          name
+        }
+        priority {
+          name
+        }
+        tags
+      }
     }
   }
 `;

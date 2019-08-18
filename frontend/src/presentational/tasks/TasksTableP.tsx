@@ -1,39 +1,34 @@
 import { Table } from "antd";
-import ExpandedRowP from "presentational/cases/ExpandedRowP";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
-import ICase from "ts/interfaces/ICase";
-import compareUsers from "utils/compareUsers";
+import ITask from "ts/interfaces/ITask";
 
 const { Column } = Table;
 
-interface ICasesTableProps {
+interface ITasksTableProps {
   // list of case objects
-  dataSource: ICase[];
+  tasks: ITask[];
 }
 
 const rowSelection = {
-  onChange: (selectedRowKeys: string[] | number[], selectedRows: ICase[]) => {}
+  onChange: (selectedRowKeys: string[] | number[], selectedRows: ITask[]) => {}
 };
 
-const CasesTableP: React.FC<ICasesTableProps> = props => {
-  const { dataSource } = props;
+const TasksTableP: React.FC<ITasksTableProps> = props => {
+  const { tasks } = props;
   return (
     <Table
-      dataSource={dataSource}
+      dataSource={tasks}
       rowSelection={rowSelection}
       rowKey={record => record.id.toString()}
-      expandedRowRender={record => (
-        <ExpandedRowP description={record.description} tasks={record.tasks} />
-      )}
     >
       <Column
         title="Name"
         dataIndex="name"
         key="name"
-        sorter={(a: ICase, b: ICase) => a.name.localeCompare(b.name)}
+        sorter={(a: ITask, b: ITask) => a.name.localeCompare(b.name)}
       />
       <Column
         title="Tags"
@@ -46,7 +41,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         dataIndex="status.name"
         key="status"
         render={(statusName: string) => <StatusTagP statusName={statusName} />}
-        sorter={(a: ICase, b: ICase) =>
+        sorter={(a: ITask, b: ITask) =>
           a.status.name.localeCompare(b.status.name)
         }
       />
@@ -57,27 +52,12 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         render={(priorityName: string) => (
           <PriorityTagP priorityName={priorityName} />
         )}
-        sorter={(a: ICase, b: ICase) =>
+        sorter={(a: ITask, b: ITask) =>
           a.priority.name.localeCompare(b.priority.name)
         }
       />
-      <Column
-        title="Assigned To"
-        dataIndex="assignedTo.username"
-        key="assigned_to"
-        sorter={(a: ICase, b: ICase) =>
-          compareUsers(a.assignedTo, b.assignedTo)
-        }
-      />
-      <Column
-        title="Created By"
-        dataIndex="createdBy.username"
-        key="created_by"
-        sorter={(a: ICase, b: ICase) => compareUsers(a.createdBy, b.createdBy)}
-      />
-      <Column title="Created At (UTC)" dataIndex="createdAt" key="created_at" />
     </Table>
   );
 };
 
-export default CasesTableP;
+export default TasksTableP;
