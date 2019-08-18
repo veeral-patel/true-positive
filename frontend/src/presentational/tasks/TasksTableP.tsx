@@ -4,6 +4,7 @@ import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
+import compareUsers from "utils/compareUsers";
 
 const { Column } = Table;
 
@@ -54,6 +55,14 @@ const TasksTableP: React.FC<ITasksTableProps> = props => {
         )}
         sorter={(a: ITask, b: ITask) =>
           a.priority.name.localeCompare(b.priority.name)
+        }
+      />
+      <Column
+        title="Assigned To"
+        dataIndex="assignedTo.username"
+        key="assigned_to"
+        sorter={(a: ITask, b: ITask) =>
+          compareUsers(a.assignedTo, b.assignedTo)
         }
       />
     </Table>
