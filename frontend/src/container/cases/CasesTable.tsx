@@ -30,6 +30,7 @@ const GET_CASES = gql`
       }
       tags
       tasks {
+        id
         name
         status {
           name
