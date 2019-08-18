@@ -11,9 +11,10 @@ interface IExpandedRowProps {
 }
 
 const ExpandedRow: React.FC<IExpandedRowProps> = ({ description, tasks }) => (
-  <div style={{ marginTop: "40px", marginBottom: "80px", width: "75%" }}>
-    <Paragraph style={{ margin: "0px" }}>{description}</Paragraph>
-    <br />
+  <div style={{ marginTop: "20px", marginBottom: "80px", width: "75%" }}>
+    <Paragraph style={{ margin: "0px", marginBottom: "40px" }}>
+      {description}
+    </Paragraph>
     <div>
       {tasks.length === 0 ? (
         <span />
