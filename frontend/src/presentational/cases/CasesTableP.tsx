@@ -5,9 +5,9 @@ import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 import compareUsers from "utils/compareUsers";
+import ExpandedRow from "./ExpandedRow";
 
 const { Paragraph } = Typography;
-
 const { Column } = Table;
 
 interface ICasesTableProps {
@@ -27,7 +27,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
       rowSelection={rowSelection}
       rowKey={record => record.id.toString()}
       expandedRowRender={record => (
-        <Paragraph style={{ margin: 0 }}>{record.description}</Paragraph>
+        <ExpandedRow description={record.description} />
       )}
     >
       <Column
