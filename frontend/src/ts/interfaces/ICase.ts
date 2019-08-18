@@ -6,6 +6,7 @@ import IUser from "ts/interfaces/IUser";
 interface ICase {
   id: number;
   name: string;
+  createdAt: string;
   description: string;
   status: IStatus;
   priority: IPriority;
