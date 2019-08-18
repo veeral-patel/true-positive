@@ -15,6 +15,7 @@ const GET_CASES = gql`
       id
       name
       description
+      createdAt
       priority {
         name
       }
