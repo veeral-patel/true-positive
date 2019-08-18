@@ -1,4 +1,4 @@
-import { Table, Typography } from "antd";
+import { Table } from "antd";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
@@ -7,7 +7,6 @@ import ICase from "ts/interfaces/ICase";
 import compareUsers from "utils/compareUsers";
 import ExpandedRow from "./ExpandedRow";
 
-const { Paragraph } = Typography;
 const { Column } = Table;
 
 interface ICasesTableProps {

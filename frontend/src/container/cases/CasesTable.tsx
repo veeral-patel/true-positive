@@ -40,7 +40,7 @@ const CasesTable: React.FC = () => {
     return <Table loading={true} />;
   }
 
-  if (error || data == undefined) {
+  if (error || data === undefined) {
     return <h3>Error</h3>;
   }
 
