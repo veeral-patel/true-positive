@@ -1,10 +1,12 @@
-import { Table } from "antd";
+import { Table, Typography } from "antd";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 import compareUsers from "utils/compareUsers";
+
+const { Paragraph } = Typography;
 
 const { Column } = Table;
 
@@ -25,7 +27,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
       rowSelection={rowSelection}
       rowKey={record => record.id.toString()}
       expandedRowRender={record => (
-        <p style={{ margin: 0 }}>{record.description}</p>
+        <Paragraph style={{ margin: 0 }}>{record.description}</Paragraph>
       )}
     >
       <Column
