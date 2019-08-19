@@ -37,10 +37,11 @@ class CaseStore {
 
   @computed
   get filteredCases() {
-    // fix me
-    return this.cases.filter(function(thecase: ICase) {
-      return true;
-    });
+    return this.cases.filter(
+      (thecase: ICase) =>
+        thecase.name.toLowerCase().indexOf(this.filterValue.toLowerCase()) !==
+        -1
+    );
   }
 
   @action.bound
