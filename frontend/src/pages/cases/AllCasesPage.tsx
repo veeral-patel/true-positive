@@ -1,7 +1,9 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, PageHeader } from "antd";
+import { Button, Icon, Input, PageHeader, Typography } from "antd";
 import CasesTable from "container/cases/CasesTable";
 import React from "react";
+
+const { Paragraph } = Typography;
 
 const AllCasesPage: React.FC<RouteComponentProps> = () => (
   <div>
@@ -11,6 +13,9 @@ const AllCasesPage: React.FC<RouteComponentProps> = () => (
       style={{ paddingLeft: 0 }}
       extra={[<Button type="primary">Create Case</Button>]}
     />
+    <div style={{ marginBottom: "30px", width: "40%" }}>
+      <Input placeholder="Filter cases" prefix={<Icon type="search" />} />
+    </div>
     <CasesTable />
   </div>
 );
