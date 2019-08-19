@@ -1,7 +1,7 @@
 import { notification } from "antd";
 import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
-import { action, observable, runInAction } from "mobx";
+import { action, computed, observable, runInAction } from "mobx";
 import GET_CASES from "queries/getCases";
 import ICase from "ts/interfaces/ICase";
 
@@ -33,6 +33,14 @@ class CaseStore {
         runInAction(() => (this.cases = []));
       })
       .finally(() => runInAction(() => (this.casesAreLoading = false)));
+  }
+
+  @computed
+  get filteredCases() {
+    // fix me
+    return this.cases.filter(function(thecase: ICase) {
+      return true;
+    });
   }
 
   @action.bound
