@@ -1,15 +1,15 @@
 import "antd/dist/antd.css";
 import App from "App";
+import { Provider } from "mobx-react";
 import React from "react";
-import { ApolloProvider } from "react-apollo-hooks";
 import ReactDOM from "react-dom";
-import client from "./createApolloClient";
+import store from "store";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <Provider caseStore={store.caseStore}>
     <App />
-  </ApolloProvider>,
+  </Provider>,
   document.getElementById("root")
 );
 
