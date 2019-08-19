@@ -1,75 +1,20 @@
-import { notification, Table } from "antd";
-import gql from "graphql-tag";
-import CasesTableP from "presentational/cases/CasesTableP";
+import { inject, observer } from "mobx-react";
 import React from "react";
-import { useQuery } from "react-apollo-hooks";
-import ICase from "ts/interfaces/ICase";
+import CaseStore from "stores/CaseStore";
 
-interface ICasesData {
-  cases: ICase[];
+interface ICasesTableProps {
+  caseStore?: CaseStore;
 }
 
-const GET_CASES = gql`
-  query {
-    cases {
-      id
-      name
-      description
-      createdAt
-      formattedCreatedAt
-      priority {
-        name
-      }
-      status {
-        name
-      }
-      createdBy {
-        username
-      }
-      assignedTo {
-        username
-      }
-      tags
-      tasks {
-        id
-        name
-        description
-        status {
-          name
+export default inject("caseStore")(
+  observer(
+    class CasesTable extends React.Component<ICasesTableProps> {
+      render() {
+        if (this.props.caseStore) {
+          this.props.caseStore.loadCases();
         }
-        priority {
-          name
-        }
-        tags
+        return <h3>Loading cases now!</h3>;
       }
     }
-  }
-`;
-
-const CasesTable: React.FC = () => {
-  const { data, error, loading } = useQuery<ICasesData>(GET_CASES);
-
-  if (loading) {
-    return <Table loading={true} />;
-  }
-
-  if (error) {
-    notification.error({
-      message: "An error occurred while fetching cases",
-      description: error.message
-    });
-    return <CasesTableP dataSource={[]} />;
-  }
-
-  if (data === undefined) {
-    notification.error({
-      message: "An error occurred while fetching cases",
-      description: "data is undefined"
-    });
-    return <CasesTableP dataSource={[]} />;
-  }
-
-  return <CasesTableP dataSource={data.cases} />;
-};
-
-export default CasesTable;
+  )
+);
