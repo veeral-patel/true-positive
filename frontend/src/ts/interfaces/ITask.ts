@@ -4,6 +4,7 @@ import IStatus from "./IStatus";
 
 interface ITask {
   id: number;
+  description: string;
   name: string;
   status: IStatus;
   priority: IPriority;

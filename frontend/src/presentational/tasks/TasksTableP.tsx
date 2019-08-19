@@ -28,6 +28,14 @@ const TasksTableP: React.FC<ITasksTableProps> = props => {
         sorter={(a: ITask, b: ITask) => a.name.localeCompare(b.name)}
       />
       <Column
+        title="Description"
+        dataIndex="description"
+        key="description"
+        sorter={(a: ITask, b: ITask) =>
+          a.description.localeCompare(b.description)
+        }
+      />
+      <Column
         title="Tags"
         dataIndex="tags"
         key="tags"
