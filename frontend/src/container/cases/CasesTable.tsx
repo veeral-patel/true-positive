@@ -33,7 +33,7 @@ export default inject("caseStore")(
         else
           return (
             <CasesTableP
-              dataSource={caseStore!.cases}
+              dataSource={caseStore!.filteredCases}
               rowSelection={rowSelection}
             />
           );
