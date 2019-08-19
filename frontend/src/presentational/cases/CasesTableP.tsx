@@ -1,4 +1,5 @@
 import { Table } from "antd";
+import { TableRowSelection } from "antd/lib/table";
 import ExpandedRowP from "presentational/cases/ExpandedRowP";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
@@ -12,14 +13,11 @@ const { Column } = Table;
 interface ICasesTableProps {
   // list of case objects
   dataSource: ICase[];
+  rowSelection: TableRowSelection<ICase>;
 }
 
-const rowSelection = {
-  onChange: (selectedRowKeys: string[] | number[], selectedRows: ICase[]) => {}
-};
-
 const CasesTableP: React.FC<ICasesTableProps> = props => {
-  const { dataSource } = props;
+  const { dataSource, rowSelection } = props;
   return (
     <Table
       dataSource={dataSource}

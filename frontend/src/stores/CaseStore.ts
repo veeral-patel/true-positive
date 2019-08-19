@@ -12,6 +12,7 @@ interface ICaseData {
 class CaseStore {
   @observable cases: ICase[] = [];
   @observable casesAreLoading: boolean = false;
+  @observable selectedCases: ICase[] = [];
 
   @action.bound
   loadCases() {
@@ -31,6 +32,11 @@ class CaseStore {
         runInAction(() => (this.cases = []));
       })
       .finally(() => runInAction(() => (this.casesAreLoading = false)));
+  }
+
+  @action.bound
+  setSelectedCases(selectedCases: ICase[]) {
+    this.selectedCases = selectedCases;
   }
 }
 
