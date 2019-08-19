@@ -13,6 +13,7 @@ class CaseStore {
   @observable cases: ICase[] = [];
   @observable casesAreLoading: boolean = false;
   @observable selectedCases: ICase[] = [];
+  @observable filterValue: string = "";
 
   @action.bound
   loadCases() {
@@ -37,6 +38,11 @@ class CaseStore {
   @action.bound
   setSelectedCases(selectedCases: ICase[]) {
     this.selectedCases = selectedCases;
+  }
+
+  @action.bound
+  setFilterValue(filterValue: string) {
+    this.filterValue = filterValue;
   }
 }
 
