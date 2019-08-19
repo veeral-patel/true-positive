@@ -1,14 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "App";
 import "antd/dist/antd.css";
-import * as serviceWorker from "./serviceWorker";
+import App from "App";
+import React from "react";
 import { ApolloProvider } from "react-apollo-hooks";
-import ApolloClient from "apollo-boost";
-
-const client = new ApolloClient({
-  uri: `${process.env.REACT_APP_API_ENDPOINT}/graphql`
-});
+import ReactDOM from "react-dom";
+import client from "./createApolloClient";
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <ApolloProvider client={client}>
