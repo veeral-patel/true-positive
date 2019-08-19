@@ -12,7 +12,14 @@ export default inject("caseStore")(
     class FilterInput extends React.Component<IFilterInputProps> {
       render() {
         const { caseStore } = this.props;
-        return <FilterInputP value={caseStore!.filterValue} />;
+        return (
+          <FilterInputP
+            value={caseStore!.filterValue}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              caseStore!.setFilterValue(e.currentTarget.value)
+            }
+          />
+        );
       }
     }
   )

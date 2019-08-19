@@ -3,13 +3,15 @@ import React from "react";
 
 interface IFilterInputProps {
   value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FilterInputP: React.FC<IFilterInputProps> = ({ value }) => (
+const FilterInputP: React.FC<IFilterInputProps> = ({ value, onChange }) => (
   <Input
     value={value}
     placeholder="Filter cases"
     prefix={<Icon type="search" />}
+    onChange={onChange}
   />
 );
 
