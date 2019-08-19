@@ -5,7 +5,7 @@ const caseStore = new CaseStore();
 
 // only let me mutate state within actions
 configure({
-  enforceActions: true
+  enforceActions: "always"
 });
 
 export default {

@@ -3,7 +3,7 @@ import App from "App";
 import { Provider } from "mobx-react";
 import React from "react";
 import ReactDOM from "react-dom";
-import store from "store";
+import store from "stores";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
