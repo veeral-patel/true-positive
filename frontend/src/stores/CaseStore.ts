@@ -1,5 +1,5 @@
 import { notification } from "antd";
-import { ApolloQueryResult } from "apollo-boost";
+import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, observable } from "mobx";
 import GET_CASES from "queries/getCases";
@@ -24,12 +24,13 @@ class CaseStore {
         (response: ApolloQueryResult<ICaseData>) =>
           (this.cases = response.data.cases)
       )
-      .catch(error =>
+      .catch((error: ApolloError) => {
         this.showErrorNotification(
           "An error occurred while fetching cases",
           error.message
-        )
-      )
+        );
+        this.cases = [];
+      })
       .finally(() => (this.casesAreLoading = false));
   }
 
