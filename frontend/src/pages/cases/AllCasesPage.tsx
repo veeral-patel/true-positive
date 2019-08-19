@@ -1,9 +1,7 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Icon, Input, PageHeader, Typography } from "antd";
+import { Button, Icon, Input, PageHeader } from "antd";
 import CasesTable from "container/cases/CasesTable";
 import React from "react";
-
-const { Paragraph } = Typography;
 
 const AllCasesPage: React.FC<RouteComponentProps> = () => (
   <div>
