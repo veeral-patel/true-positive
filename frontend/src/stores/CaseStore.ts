@@ -39,6 +39,11 @@ class CaseStore {
   get filteredCases() {
     const _this = this;
     return this.cases.filter(function(thecase: ICase) {
+      const assignedToMatches = thecase.assignedTo
+        ? thecase.assignedTo.username
+            .toLowerCase()
+            .indexOf(_this.filterValue.toLowerCase()) !== -1
+        : false;
       return (
         thecase.name.toLowerCase().indexOf(_this.filterValue.toLowerCase()) !==
           -1 ||
@@ -50,7 +55,8 @@ class CaseStore {
           .indexOf(_this.filterValue.toLowerCase()) !== -1 ||
         thecase.createdBy.username
           .toLowerCase()
-          .indexOf(_this.filterValue.toLowerCase()) !== -1
+          .indexOf(_this.filterValue.toLowerCase()) !== -1 ||
+        assignedToMatches
       );
     });
   }
