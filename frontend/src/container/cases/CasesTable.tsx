@@ -1,3 +1,4 @@
+import { Table } from "antd";
 import { inject, observer } from "mobx-react";
 import CasesTableP from "presentational/cases/CasesTableP";
 import React from "react";
@@ -18,7 +19,8 @@ export default inject("caseStore")(
 
       render() {
         if (this.props.caseStore) {
-          if (this.props.caseStore.casesAreLoading) return <h3>Loading...</h3>;
+          if (this.props.caseStore.casesAreLoading)
+            return <Table loading={true} />;
           else return <CasesTableP dataSource={this.props.caseStore.cases} />;
         }
         return <h3>An error occurred.</h3>;
