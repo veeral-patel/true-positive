@@ -37,11 +37,22 @@ class CaseStore {
 
   @computed
   get filteredCases() {
-    return this.cases.filter(
-      (thecase: ICase) =>
-        thecase.name.toLowerCase().indexOf(this.filterValue.toLowerCase()) !==
-        -1
-    );
+    const _this = this;
+    return this.cases.filter(function(thecase: ICase) {
+      return (
+        thecase.name.toLowerCase().indexOf(_this.filterValue.toLowerCase()) !==
+          -1 ||
+        thecase.status.name
+          .toLowerCase()
+          .indexOf(_this.filterValue.toLowerCase()) !== -1 ||
+        thecase.priority.name
+          .toLowerCase()
+          .indexOf(_this.filterValue.toLowerCase()) !== -1 ||
+        thecase.createdBy.username
+          .toLowerCase()
+          .indexOf(_this.filterValue.toLowerCase()) !== -1
+      );
+    });
   }
 
   @action.bound
