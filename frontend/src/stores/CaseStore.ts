@@ -25,20 +25,13 @@ class CaseStore {
           (this.cases = response.data.cases)
       )
       .catch((error: ApolloError) => {
-        this.showErrorNotification(
-          "An error occurred while fetching cases",
-          error.message
-        );
+        notification.error({
+          message: "An error occurred while fetching cases",
+          description: error.message
+        });
         this.cases = [];
       })
       .finally(() => (this.casesAreLoading = false));
-  }
-
-  showErrorNotification(message: string, description: string) {
-    notification.error({
-      message,
-      description
-    });
   }
 }
 
