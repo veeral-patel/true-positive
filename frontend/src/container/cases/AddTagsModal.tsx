@@ -31,7 +31,8 @@ export default inject("uiStore", "caseStore")(
             />
             <br />
             <Paragraph>
-              Simply type in the tags you'd like to add to the selected case(s).
+              Simply type in the tags you'd like to add to all of the selected
+              case(s).
             </Paragraph>
             <Select
               mode="tags"
