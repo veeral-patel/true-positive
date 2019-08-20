@@ -4,6 +4,7 @@ import ActionsDropdownP from "presentational/cases/ActionsDropdownP";
 import React from "react";
 import CaseStore from "stores/CaseStore";
 import UIStore from "stores/UIStore";
+import { ADD_TAGS } from 'utils/constants';
 
 interface IActionsDropdownProps {
   caseStore?: CaseStore;
@@ -25,7 +26,7 @@ export default inject("caseStore", "uiStore")(
 
       handleMenuClick(click: ClickParam) {
         const { uiStore } = this.props;
-        if (click.key === "add_tags") {
+        if (click.key === ADD_TAGS) {
           uiStore!.openAddTagsToCaseModal();
         }
       }
