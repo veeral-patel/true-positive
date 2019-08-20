@@ -61,6 +61,10 @@ class CaseStore {
     });
   }
 
+  @computed get numberOfSelectedCases() {
+    return this.selectedCases.length;
+  }
+
   @action.bound
   setSelectedCases(selectedCases: ICase[]) {
     this.selectedCases = selectedCases;

@@ -1,22 +1,9 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Dropdown, Icon, Menu, PageHeader } from "antd";
+import { Button, PageHeader } from "antd";
+import ActionsDropdown from "container/cases/ActionsDropdown";
 import CasesTable from "container/cases/CasesTable";
 import FilterInput from "container/cases/FilterInput";
 import React from "react";
-
-const menu = (
-  <Menu>
-    <Menu.Item key="add_tags">Add Tags</Menu.Item>
-    <Menu.Item key="remove_tags">Remove Tags</Menu.Item>
-    <Menu.Divider />
-    <Menu.Item key="change_status">Change Status</Menu.Item>
-    <Menu.Item key="change_priority">Change Priority</Menu.Item>
-    <Menu.Divider />
-    <Menu.Item key="add_comment">Add Comment</Menu.Item>
-    <Menu.Item key="merge">Merge</Menu.Item>
-    <Menu.Item key="assign">Assign</Menu.Item>
-  </Menu>
-);
 
 const AllCasesPage: React.FC<RouteComponentProps> = () => (
   <div>
@@ -32,11 +19,7 @@ const AllCasesPage: React.FC<RouteComponentProps> = () => (
       <FilterInput />
     </span>
     <span style={{ float: "right", paddingRight: "24px" }}>
-      <Dropdown overlay={menu}>
-        <Button>
-          Actions <Icon type="down" />
-        </Button>
-      </Dropdown>
+      <ActionsDropdown />
     </span>
     <CasesTable />
   </div>
