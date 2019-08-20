@@ -85,6 +85,11 @@ class CaseStore {
   addTagsToSelectedCases() {
     message.success(`Added tags to ${this!.numberOfSelectedCases} cases`);
   }
+
+  @action.bound
+  removeTagsFromSelectedCases() {
+    message.success(`Removed tags from ${this!.numberOfSelectedCases} cases`);
+  }
 }
 
 export default CaseStore;

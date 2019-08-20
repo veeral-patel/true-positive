@@ -20,7 +20,7 @@ export default inject("uiStore", "caseStore")(
           <Modal
             title={`Remove Tags from ${caseStore!.numberOfSelectedCases} Cases`}
             visible={uiStore!.openModal === "REMOVE_TAGS_FROM_CASE_MODAL"}
-            onOk={() => uiStore!.closeModal()}
+            onOk={this.handleRemoveTags.bind(this)}
             onCancel={() => uiStore!.closeModal()}
             okText="Remove Tags"
           >
@@ -41,6 +41,12 @@ export default inject("uiStore", "caseStore")(
             />
           </Modal>
         );
+      }
+
+      handleRemoveTags() {
+        const { uiStore, caseStore } = this.props;
+        caseStore!.removeTagsFromSelectedCases();
+        uiStore!.closeModal();
       }
     }
   )
