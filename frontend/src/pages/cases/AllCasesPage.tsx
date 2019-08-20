@@ -19,7 +19,7 @@ export default inject("caseStore")(
         return (
           <div>
             <PageHeader
-              title={<h2>Cases</h2>}
+              title={<h2>Cases ({caseStore!.numberOfCases})</h2>}
               backIcon={false}
               style={{ paddingLeft: 0 }}
               extra={[<Button type="primary">Create Case</Button>]}

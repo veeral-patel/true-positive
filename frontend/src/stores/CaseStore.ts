@@ -61,8 +61,14 @@ class CaseStore {
     });
   }
 
-  @computed get numberOfSelectedCases() {
+  @computed
+  get numberOfSelectedCases() {
     return this.selectedCases.length;
+  }
+
+  @computed
+  get numberOfCases() {
+    return this.cases.length;
   }
 
   @action.bound
