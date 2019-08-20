@@ -1,15 +1,18 @@
 import { Button, Dropdown, Icon, Menu } from "antd";
+import { ClickParam } from "antd/lib/menu";
 import React from "react";
 
 interface IActionsDropdownProps {
   numberOfSelectedCases: number;
+  handleMenuClick: (click: ClickParam) => void;
 }
 
 const ActionsDropdownP: React.FC<IActionsDropdownProps> = ({
-  numberOfSelectedCases
+  numberOfSelectedCases,
+  handleMenuClick
 }) => {
   const menu = (
-    <Menu>
+    <Menu onClick={handleMenuClick}>
       <Menu.Item key="selected_summary" disabled>
         {numberOfSelectedCases} case(s) selected
       </Menu.Item>
