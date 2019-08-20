@@ -3,13 +3,13 @@ import ActionsDropdownP from "presentational/cases/ActionsDropdownP";
 import React from "react";
 import CaseStore from "stores/CaseStore";
 
-interface IFilterInputProps {
+interface IActionsDropdownProps {
   caseStore?: CaseStore;
 }
 
 export default inject("caseStore")(
   observer(
-    class FilterInput extends React.Component<IFilterInputProps> {
+    class ActionsDropdown extends React.Component<IActionsDropdownProps> {
       render() {
         const { caseStore } = this.props;
         return (
