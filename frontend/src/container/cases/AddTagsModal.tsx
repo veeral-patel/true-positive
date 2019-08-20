@@ -1,4 +1,4 @@
-import { Alert, message, Modal, Select, Typography } from "antd";
+import { Alert, Modal, Select, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import CaseStore from "stores/CaseStore";
@@ -44,12 +44,9 @@ export default inject("uiStore", "caseStore")(
       }
 
       handleAddTags() {
-        // To do: move this code to our store
         const { uiStore, caseStore } = this.props;
+        caseStore!.addTagsToSelectedCases();
         uiStore!.closeModal();
-        message.success(
-          `Added tags to ${caseStore!.numberOfSelectedCases} cases`
-        );
       }
     }
   )

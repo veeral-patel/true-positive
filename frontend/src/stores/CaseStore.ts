@@ -1,4 +1,4 @@
-import { notification } from "antd";
+import { message, notification } from "antd";
 import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, computed, observable, runInAction } from "mobx";
@@ -79,6 +79,11 @@ class CaseStore {
   @action.bound
   setFilterValue(filterValue: string) {
     this.filterValue = filterValue;
+  }
+
+  @action.bound
+  addTagsToSelectedCases() {
+    message.success(`Added tags to ${this!.numberOfSelectedCases} cases`);
   }
 }
 
