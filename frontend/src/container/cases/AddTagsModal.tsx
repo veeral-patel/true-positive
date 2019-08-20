@@ -43,6 +43,7 @@ export default inject("uiStore", "caseStore")(
       }
 
       handleAddTags() {
+        // To do: move this code to our store
         const { uiStore, caseStore } = this.props;
         uiStore!.closeModal();
         message.success(

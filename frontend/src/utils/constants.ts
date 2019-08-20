@@ -1,3 +1,4 @@
-const ADD_TAGS = "add_tags";
+const ADD_TAGS = "ADD_TAGS";
+const REMOVE_TAGS = "REMOVE_TAGS";
 
-export { ADD_TAGS };
+export { ADD_TAGS, REMOVE_TAGS };

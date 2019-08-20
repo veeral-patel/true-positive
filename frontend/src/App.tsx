@@ -1,5 +1,6 @@
 import { Router } from "@reach/router";
 import AddTagsModal from "container/cases/AddTagsModal";
+import RemoveTagsModal from "container/cases/RemoveTagsModal";
 import TopMenu from "container/shared/top_menu/TopMenu";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import Page404 from "pages/shared/Page404";
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <Page404 default />
       </Router>
       <AddTagsModal />
+      <RemoveTagsModal />
     </div>
   );
 };
