@@ -18,6 +18,9 @@ export default inject("uiStore", "caseStore")(
           <Modal
             title={`Remove Tags from ${caseStore!.numberOfSelectedCases} Cases`}
             visible={uiStore!.openModal === "REMOVE_TAGS_FROM_CASE_MODAL"}
+            onOk={() => uiStore!.closeModal()}
+            onCancel={() => uiStore!.closeModal()}
+            okText="Remove Tags"
           />
         );
       }
