@@ -1,4 +1,4 @@
-import { Alert, Modal, Select, Typography } from "antd";
+import { Alert, message, Modal, Select, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import CaseStore from "stores/CaseStore";
@@ -18,15 +18,17 @@ export default inject("uiStore", "caseStore")(
         const { uiStore, caseStore } = this.props;
         return (
           <Modal
-            title={
-              "Add Tags to " + caseStore!.numberOfSelectedCases + " Case(s)"
-            }
+            title={`Add Tags to ${caseStore!.numberOfSelectedCases} Cases`}
             visible={uiStore!.openModal === "ADD_TAGS_TO_CASE_MODAL"}
-            onOk={() => uiStore!.closeModal()}
+            onOk={this.handleAddTags.bind(this)}
             onCancel={() => uiStore!.closeModal()}
             okText="Add Tags"
           >
-            <Alert message="If a selected case already has a tag that you enter, the tag won't be added again to the case." type="info" showIcon />
+            <Alert
+              message="If a selected case already has a tag that you enter, the tag won't be added again to the case."
+              type="info"
+              showIcon
+            />
             <br />
             <Paragraph>
               Simply type in the tags you'd like to add to the selected case(s).
@@ -37,6 +39,14 @@ export default inject("uiStore", "caseStore")(
               placeholder="Enter tags"
             />
           </Modal>
+        );
+      }
+
+      handleAddTags() {
+        const { uiStore, caseStore } = this.props;
+        uiStore!.closeModal();
+        message.success(
+          `Added tags to ${caseStore!.numberOfSelectedCases} cases`
         );
       }
     }
