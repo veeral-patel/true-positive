@@ -1,7 +1,9 @@
 import { configure } from "mobx";
 import CaseStore from "stores/CaseStore";
+import UIStore from "./UIStore";
 
 const caseStore = new CaseStore();
+const uiStore = new UIStore();
 
 // only let me mutate state within actions
 configure({
@@ -9,5 +11,6 @@ configure({
 });
 
 export default {
-  caseStore
+  caseStore,
+  uiStore
 };
