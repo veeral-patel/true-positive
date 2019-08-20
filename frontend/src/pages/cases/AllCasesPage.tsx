@@ -8,9 +8,12 @@ const menu = (
   <Menu>
     <Menu.Item key="add_tags">Add Tags</Menu.Item>
     <Menu.Item key="remove_tags">Remove Tags</Menu.Item>
-    <Menu.Item key="add_comment">Add Comment</Menu.Item>
+    <Menu.Divider />
     <Menu.Item key="change_status">Change Status</Menu.Item>
     <Menu.Item key="change_priority">Change Priority</Menu.Item>
+    <Menu.Divider />
+    <Menu.Item key="add_comment">Add Comment</Menu.Item>
+    <Menu.Item key="merge">Merge</Menu.Item>
     <Menu.Item key="assign">Assign</Menu.Item>
   </Menu>
 );
