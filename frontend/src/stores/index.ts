@@ -1,6 +1,6 @@
 import { configure } from "mobx";
 import CaseStore from "stores/CaseStore";
-import UIStore from "./UIStore";
+import UIStore from "stores/UIStore";
 
 const caseStore = new CaseStore();
 const uiStore = new UIStore();
