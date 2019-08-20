@@ -14,9 +14,13 @@ export default inject("uiStore")(
         const { uiStore } = this.props;
         return (
           <Modal
-            title="Hello"
+            title="Add Tags"
             visible={uiStore!.openModal === "ADD_TAGS_TO_CASE_MODAL"}
-          />
+            onOk={() => uiStore!.closeModal()}
+            onCancel={() => uiStore!.closeModal()}
+          >
+            <p>Some contents here</p>
+          </Modal>
         );
       }
     }

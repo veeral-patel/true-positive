@@ -7,6 +7,12 @@ class UIStore {
   openAddTagsToCaseModal() {
     this.openModal = "ADD_TAGS_TO_CASE_MODAL";
   }
+
+  @action.bound
+  closeModal() {
+    // close whatever modal is open
+    this.openModal = null;
+  }
 }
 
 export default UIStore;
