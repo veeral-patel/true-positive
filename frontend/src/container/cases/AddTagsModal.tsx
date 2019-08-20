@@ -11,7 +11,13 @@ export default inject("uiStore")(
   observer(
     class AddTagsModal extends React.Component<IAddTagsModalProps> {
       render() {
-        return <Modal title="Hello" visible={true} />;
+        const { uiStore } = this.props;
+        return (
+          <Modal
+            title="Hello"
+            visible={uiStore!.openModal === "ADD_TAGS_MODAL"}
+          />
+        );
       }
     }
   )
