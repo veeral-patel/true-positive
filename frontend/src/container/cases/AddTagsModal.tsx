@@ -15,7 +15,7 @@ export default inject("uiStore")(
         return (
           <Modal
             title="Hello"
-            visible={uiStore!.openModal === "ADD_TAGS_MODAL"}
+            visible={uiStore!.openModal === "ADD_TAGS_TO_CASE_MODAL"}
           />
         );
       }
