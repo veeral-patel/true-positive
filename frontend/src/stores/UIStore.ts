@@ -1,11 +1,19 @@
 import { action, observable } from "mobx";
 
 class UIStore {
-  @observable openModal: null | "ADD_TAGS_TO_CASE_MODAL" = null;
+  @observable openModal:
+    | null
+    | "ADD_TAGS_TO_CASE_MODAL"
+    | "REMOVE_TAGS_TO_CASE_MODAL" = null;
 
   @action.bound
   openAddTagsToCaseModal() {
     this.openModal = "ADD_TAGS_TO_CASE_MODAL";
+  }
+
+  @action.bound
+  openRemoveTagsFromCaseModal() {
+    this.openModal = "REMOVE_TAGS_TO_CASE_MODAL";
   }
 
   @action.bound
