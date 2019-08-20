@@ -11,7 +11,7 @@ const ActionsDropdownP: React.FC<IActionsDropdownProps> = ({
   const menu = (
     <Menu>
       <Menu.Item key="selected_summary" disabled>
-        {numberOfSelectedCases} cases selected
+        {numberOfSelectedCases} case(s) selected
       </Menu.Item>
       <Menu.Item key="add_tags">Add Tags</Menu.Item>
       <Menu.Item key="remove_tags">Remove Tags</Menu.Item>
