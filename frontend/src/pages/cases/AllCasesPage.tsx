@@ -6,23 +6,32 @@ import FilterInput from "container/cases/FilterInput";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import CaseStore from "stores/CaseStore";
+import UIStore from "stores/UIStore";
 
 interface IAllCasesPageProps extends RouteComponentProps {
   caseStore?: CaseStore;
+  uiStore?: UIStore;
 }
 
-export default inject("caseStore")(
+export default inject("caseStore", "uiStore")(
   observer(
     class AllCasesPage extends React.Component<IAllCasesPageProps> {
       render() {
-        const { caseStore } = this.props;
+        const { caseStore, uiStore } = this.props;
         return (
           <div>
             <PageHeader
               title={<h2>Cases ({caseStore!.numberOfCases})</h2>}
               backIcon={false}
               style={{ paddingLeft: 0 }}
-              extra={[<Button type="primary">Create Case</Button>]}
+              extra={[
+                <Button
+                  type="primary"
+                  onClick={() => uiStore!.openCreateCaseModal()}
+                >
+                  Create Case
+                </Button>
+              ]}
             />
             <span
               style={{

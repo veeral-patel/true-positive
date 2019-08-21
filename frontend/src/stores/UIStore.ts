@@ -4,7 +4,8 @@ class UIStore {
   @observable openModal:
     | null
     | "ADD_TAGS_TO_CASE_MODAL"
-    | "REMOVE_TAGS_FROM_CASE_MODAL" = null;
+    | "REMOVE_TAGS_FROM_CASE_MODAL"
+    | "CREATE_CASE_MODAL" = null;
 
   @action.bound
   openAddTagsToCaseModal() {
@@ -14,6 +15,11 @@ class UIStore {
   @action.bound
   openRemoveTagsFromCaseModal() {
     this.openModal = "REMOVE_TAGS_FROM_CASE_MODAL";
+  }
+
+  @action.bound
+  openCreateCaseModal() {
+    this.openModal = "CREATE_CASE_MODAL";
   }
 
   @action.bound

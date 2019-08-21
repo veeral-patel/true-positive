@@ -15,6 +15,7 @@ export default inject("uiStore")(
         const { uiStore } = this.props;
         return (
           <Modal
+            visible={uiStore!.openModal === "CREATE_CASE_MODAL"}
             title="Create a Case"
             onOk={() => uiStore!.closeModal()}
             onCancel={() => uiStore!.closeModal()}
