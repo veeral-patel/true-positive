@@ -25,6 +25,7 @@ const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
   const statusOptions = statuses.map(status => (
     <Option key={status.id}>{status.name}</Option>
   ));
+
   const priorityOptions = priorities.map(priority => (
     <Option key={priority.id}>{priority.name}</Option>
   ));
@@ -39,7 +40,10 @@ const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
     >
       <Form colon={false}>
         <Form.Item label="Name" required>
-          <Input placeholder="Found Ryuk" />
+          <Input
+            placeholder="Found Ryuk"
+            ref={input => input && input.focus()}
+          />
         </Form.Item>
         <Form.Item label="Status" required>
           <AutoComplete
