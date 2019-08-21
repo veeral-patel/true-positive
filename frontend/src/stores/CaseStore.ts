@@ -83,12 +83,12 @@ class CaseStore {
 
   @action.bound
   addTagsToSelectedCases() {
-    message.success(`Added tags to ${this!.numberOfSelectedCases} cases`);
+    message.success(`Added tags to ${this!.numberOfSelectedCases} case(s)`);
   }
 
   @action.bound
   removeTagsFromSelectedCases() {
-    message.success(`Removed tags from ${this!.numberOfSelectedCases} cases`);
+    message.success(`Removed tags from ${this!.numberOfSelectedCases} case(s)`);
   }
 }
 
