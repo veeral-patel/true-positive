@@ -37,6 +37,7 @@ const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
       onCancel={handleCancel}
       okText="Create Case"
       style={{ padding: "0px" }}
+      destroyOnClose={true}
     >
       <Form colon={false}>
         <Form.Item label="Name" required>
