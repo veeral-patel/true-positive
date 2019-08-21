@@ -1,17 +1,10 @@
-import { Form, Input, Radio } from "antd";
+import { Form, Input } from "antd";
 import React from "react";
 
 const CreateCaseForm: React.FC = () => (
-  <Form>
-    <Form.Item label="Form Layout">
-      <Radio.Group defaultValue="horizontal">
-        <Radio.Button value="horizontal">Horizontal</Radio.Button>
-        <Radio.Button value="vertical">Vertical</Radio.Button>
-        <Radio.Button value="inline">Inline</Radio.Button>
-      </Radio.Group>
-    </Form.Item>
-    <Form.Item label="Field A">
-      <Input placeholder="input placeholder" />
+  <Form colon={false}>
+    <Form.Item label="Name" required>
+      <Input placeholder="Name" autoFocus />
     </Form.Item>
     <Form.Item label="Field B">
       <Input placeholder="input placeholder" />
