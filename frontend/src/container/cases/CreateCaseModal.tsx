@@ -1,8 +1,7 @@
-import { Modal } from "antd";
 import { inject, observer } from "mobx-react";
+import CreateCaseModalP from "presentational/cases/CreateCaseModalP";
 import React from "react";
 import UIStore from "stores/UIStore";
-import CreateCaseForm from "../../presentational/cases/CreateCaseForm";
 
 interface ICreateCaseModalProps {
   uiStore?: UIStore;
@@ -14,16 +13,11 @@ export default inject("uiStore")(
       render() {
         const { uiStore } = this.props;
         return (
-          <Modal
+          <CreateCaseModalP
             visible={uiStore!.openModal === "CREATE_CASE_MODAL"}
-            title="Create a Case"
-            onOk={() => uiStore!.closeModal()}
-            onCancel={() => uiStore!.closeModal()}
-            okText="Create Case"
-            style={{ padding: "0px" }}
-          >
-            <CreateCaseForm />
-          </Modal>
+            handleOk={() => uiStore!.closeModal()}
+            handleCancel={() => uiStore!.closeModal()}
+          />
         );
       }
     }

@@ -1,4 +1,5 @@
 import { notification } from "antd";
+import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import GET_STATUSES from "queries/getStatuses";
