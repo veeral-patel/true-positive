@@ -1,5 +1,5 @@
 interface IStatus {
-  id: string;
+  id: number;
   name: string;
 }
 

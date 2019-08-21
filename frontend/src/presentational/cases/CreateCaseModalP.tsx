@@ -2,6 +2,7 @@ import { AutoComplete, Form, Icon, Input, Modal, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import "presentational/cases/CreateCaseModalP.css";
 import React from "react";
+import IPriority from "ts/interfaces/IPriority";
 import IStatus from "ts/interfaces/IStatus";
 
 const { Option } = Select;
@@ -11,16 +12,21 @@ interface ICreateCaseModalProps {
   handleOk: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   handleCancel: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   statuses: IStatus[];
+  priorities: IPriority[];
 }
 
 const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
   visible,
   handleOk,
   handleCancel,
-  statuses
+  statuses,
+  priorities
 }) => {
   const statusOptions = statuses.map(status => (
     <Option key={status.id}>{status.name}</Option>
+  ));
+  const priorityOptions = priorities.map(priority => (
+    <Option key={priority.id}>{priority.name}</Option>
   ));
   return (
     <Modal
@@ -44,15 +50,12 @@ const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
           </AutoComplete>
         </Form.Item>
         <Form.Item label="Priority" required>
-          <Select
-            showSearch
+          <AutoComplete
+            dataSource={priorityOptions}
             placeholder="Choose a priority"
-            optionFilterProp="children"
           >
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="tom">Tom</Option>
-          </Select>
+            <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
+          </AutoComplete>
         </Form.Item>
         <Form.Item label="Tags">
           <Select

@@ -11,6 +11,7 @@ ReactDOM.render(
     caseStore={store.caseStore}
     uiStore={store.uiStore}
     statusStore={store.statusStore}
+    priorityStore={store.priorityStore}
   >
     <App />
   </Provider>,
