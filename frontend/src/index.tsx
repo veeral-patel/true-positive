@@ -7,7 +7,11 @@ import store from "stores";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <Provider caseStore={store.caseStore} uiStore={store.uiStore}>
+  <Provider
+    caseStore={store.caseStore}
+    uiStore={store.uiStore}
+    statusStore={store.statusStore}
+  >
     <App />
   </Provider>,
   document.getElementById("root")
