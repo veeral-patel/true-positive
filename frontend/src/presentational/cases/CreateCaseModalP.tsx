@@ -1,4 +1,4 @@
-import { AutoComplete, Form, Input, Modal, Select } from "antd";
+import { AutoComplete, Form, Icon, Input, Modal, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import "presentational/cases/CreateCaseModalP.css";
 import React from "react";
@@ -39,7 +39,9 @@ const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
           <AutoComplete
             dataSource={statusOptions}
             placeholder="Choose a status"
-          />
+          >
+            <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
+          </AutoComplete>
         </Form.Item>
         <Form.Item label="Priority" required>
           <Select
