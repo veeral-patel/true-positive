@@ -1,5 +1,6 @@
 import { Form, Input, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
+import "presentational/cases/CreateCaseForm.css";
 import React from "react";
 
 const { Option } = Select;
@@ -7,7 +8,7 @@ const { Option } = Select;
 const CreateCaseForm: React.FC = () => (
   <Form colon={false}>
     <Form.Item label="Name" required>
-      <Input placeholder="Found Ryuk" autoFocus />
+      <Input placeholder="Found Ryuk" />
     </Form.Item>
     <Form.Item label="Status" required>
       <Select

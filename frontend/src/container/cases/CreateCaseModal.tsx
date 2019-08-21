@@ -20,6 +20,7 @@ export default inject("uiStore")(
             onOk={() => uiStore!.closeModal()}
             onCancel={() => uiStore!.closeModal()}
             okText="Create Case"
+            style={{ padding: "0px" }}
           >
             <CreateCaseForm />
           </Modal>
