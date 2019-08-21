@@ -1,4 +1,4 @@
-import { Form, Input, Modal, Select } from "antd";
+import { AutoComplete, Form, Input, Modal, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import "presentational/cases/CreateCaseModalP.css";
 import React from "react";
@@ -19,7 +19,7 @@ const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
   handleCancel,
   statuses
 }) => {
-  const options = statuses.map(status => (
+  const statusOptions = statuses.map(status => (
     <Option key={status.id}>{status.name}</Option>
   ));
   return (
@@ -36,13 +36,10 @@ const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
           <Input placeholder="Found Ryuk" />
         </Form.Item>
         <Form.Item label="Status" required>
-          <Select
-            showSearch
+          <AutoComplete
+            dataSource={statusOptions}
             placeholder="Choose a status"
-            optionFilterProp="children"
-          >
-            {options}
-          </Select>
+          />
         </Form.Item>
         <Form.Item label="Priority" required>
           <Select
