@@ -1,4 +1,4 @@
-import { Button, Form, Input, Radio } from "antd";
+import { Form, Input, Radio } from "antd";
 import React from "react";
 
 const CreateCaseForm: React.FC = () => (
@@ -15,9 +15,6 @@ const CreateCaseForm: React.FC = () => (
     </Form.Item>
     <Form.Item label="Field B">
       <Input placeholder="input placeholder" />
-    </Form.Item>
-    <Form.Item>
-      <Button type="primary">Submit</Button>
     </Form.Item>
   </Form>
 );

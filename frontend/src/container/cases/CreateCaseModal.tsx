@@ -14,7 +14,12 @@ export default inject("uiStore")(
       render() {
         const { uiStore } = this.props;
         return (
-          <Modal title="Create a Case" visible={true}>
+          <Modal
+            title="Create a Case"
+            onOk={() => uiStore!.closeModal()}
+            onCancel={() => uiStore!.closeModal()}
+            okText="Create Case"
+          >
             <CreateCaseForm />
           </Modal>
         );
