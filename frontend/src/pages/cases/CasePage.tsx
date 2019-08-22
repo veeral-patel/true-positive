@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import CaseSider from "presentational/cases/CaseSiderP";
+import CaseSider from "container/cases/CaseSider";
 import React from "react";
 
 interface ICasePageProps extends RouteComponentProps {}

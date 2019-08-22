@@ -7,6 +7,13 @@ class UIStore {
     | "REMOVE_TAGS_FROM_CASE_MODAL"
     | "CREATE_CASE_MODAL" = null;
 
+  @observable caseSiderIsCollapsed = false;
+
+  @action.bound
+  toggleCaseSider() {
+    this.caseSiderIsCollapsed = !this.caseSiderIsCollapsed;
+  }
+
   @action.bound
   openAddTagsToCaseModal() {
     this.openModal = "ADD_TAGS_TO_CASE_MODAL";

@@ -1,15 +1,25 @@
 import { Breadcrumb, Icon, Layout, Menu } from "antd";
+import { CollapseType } from "antd/lib/layout/Sider";
 import React from "react";
 
 const { Content, Sider } = Layout;
 
-const CaseSiderP = () => (
+interface ICaseSiderProps {
+  collapsed: boolean;
+  handleCollapse: (collapsed: boolean, type: CollapseType) => void;
+}
+
+const CaseSiderP: React.FC<ICaseSiderProps> = ({
+  collapsed,
+  handleCollapse
+}) => (
   <Layout>
     <Sider
       width={200}
       style={{ background: "#fff" }}
       collapsible
-      collapsed={false}
+      collapsed={collapsed}
+      onCollapse={handleCollapse}
       theme="light"
     >
       <Menu
