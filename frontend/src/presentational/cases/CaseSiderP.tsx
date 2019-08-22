@@ -17,6 +17,18 @@ const CaseSiderP = () => (
             Info
           </span>
         </Menu.Item>
+        <Menu.Item key="indicators">
+          <span>
+            <Icon type="exclamation-circle" />
+            Indicators
+          </span>
+        </Menu.Item>
+        <Menu.Item key="tree">
+          <span>
+            <Icon type="apartment" />
+            Tree
+          </span>
+        </Menu.Item>
         <Menu.Item key="members">
           <span>
             <Icon type="user" />
