@@ -1,7 +1,8 @@
-import { RouteComponentProps } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 import { Breadcrumb, Layout } from "antd";
 import CaseSider from "container/cases/CaseSider";
 import React from "react";
+import { paths } from "utils/constants";
 
 const { Content } = Layout;
 
@@ -12,9 +13,11 @@ const CasePage: React.FC<ICasePageProps> = () => (
     <CaseSider />
     <Layout style={{ padding: "0 24px 24px" }}>
       <Breadcrumb style={{ margin: "16px 0" }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a onClick={() => navigate(paths.CASES_PATH)}>Cases</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>Case Name</Breadcrumb.Item>
+        <Breadcrumb.Item>Tab Name</Breadcrumb.Item>
       </Breadcrumb>
       <Content
         style={{

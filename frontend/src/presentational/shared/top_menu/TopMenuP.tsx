@@ -9,7 +9,7 @@ interface ITopMenuProps {
 
 const TopMenuP: React.FC<ITopMenuProps> = ({ numberOfCases }) => (
   <Menu theme="dark" mode="horizontal" selectedKeys={[]}>
-    <Menu.Item onClick={() => navigate(paths.ALL_CASES_PATH)}>Cases</Menu.Item>
+    <Menu.Item onClick={() => navigate(paths.CASES_PATH)}>Cases</Menu.Item>
   </Menu>
 );
 

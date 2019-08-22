@@ -29,7 +29,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         <ExpandedRowP description={theCase.description} tasks={theCase.tasks} />
       )}
       onRowClick={(clickedCase, index, event) =>
-        navigate(`${paths.ALL_CASES_PATH}/${clickedCase.id}`)
+        navigate(`${paths.CASES_PATH}/${clickedCase.id}`)
       }
     >
       <Column
