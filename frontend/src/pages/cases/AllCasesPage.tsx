@@ -21,7 +21,7 @@ export default inject("caseStore", "uiStore")(
         return (
           <div>
             <PageHeader
-              title={<h2>Cases ({caseStore!.numberOfCases})</h2>}
+              title={<h2>Cases</h2>}
               backIcon={false}
               style={{ paddingLeft: 0 }}
               extra={[

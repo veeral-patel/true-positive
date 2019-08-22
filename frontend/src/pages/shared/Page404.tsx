@@ -1,6 +1,7 @@
+import { navigate, RouteComponentProps } from "@reach/router";
+import { Button, Result } from "antd";
 import React from "react";
-import { Result, Button } from "antd";
-import { RouteComponentProps, navigate } from "@reach/router";
+import { paths } from "utils/constants";
 
 const Page404: React.FC<RouteComponentProps> = () => (
   <Result
@@ -8,7 +9,7 @@ const Page404: React.FC<RouteComponentProps> = () => (
     title="404"
     subTitle="Sorry, the page you visited does not exist."
     extra={
-      <Button type="primary" onClick={() => navigate("/")}>
+      <Button type="primary" onClick={() => navigate(paths.ROOT_PATH)}>
         Back Home
       </Button>
     }
