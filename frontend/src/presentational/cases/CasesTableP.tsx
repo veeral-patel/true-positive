@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import { Table } from "antd";
 import { TableRowSelection } from "antd/lib/table";
 import ExpandedRowP from "presentational/cases/ExpandedRowP";
@@ -7,6 +8,7 @@ import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 import compareUsers from "utils/compareUsers";
+import { paths } from "utils/constants";
 
 const { Column } = Table;
 
@@ -22,10 +24,13 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
     <Table
       dataSource={dataSource}
       rowSelection={rowSelection}
-      rowKey={record => record.id.toString()}
-      expandedRowRender={record => (
-        <ExpandedRowP description={record.description} tasks={record.tasks} />
+      rowKey={theCase => theCase.id.toString()}
+      expandedRowRender={theCase => (
+        <ExpandedRowP description={theCase.description} tasks={theCase.tasks} />
       )}
+      onRowClick={(clickedCase, index, event) =>
+        navigate(`${paths.ALL_CASES_PATH}/${clickedCase.id}`)
+      }
     >
       <Column
         title="Name"
