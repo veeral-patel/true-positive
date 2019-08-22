@@ -15,7 +15,7 @@ export default inject("uiStore")(
         const { uiStore } = this.props;
         return (
           <CaseSiderP
-            collapsed={uiStore!.caseSiderIsCollapsed}
+            collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
             handleCollapse={(collapsed: boolean, type: CollapseType) =>
               uiStore!.toggleCaseSider()
             }

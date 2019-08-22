@@ -7,26 +7,25 @@ class UIStore {
     | "REMOVE_TAGS_FROM_CASE_MODAL"
     | "CREATE_CASE_MODAL" = null;
 
-  @observable caseSiderIsCollapsed = false;
+  @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
 
   constructor() {
-    const value = localStorage.getItem("caseSiderIsCollapsed");
+    const value = localStorage.getItem("caseSiderStatus");
     if (value) {
-      if (value == "true") {
-        runInAction(() => (this.caseSiderIsCollapsed = true));
-      } else if (value === "false") {
-        runInAction(() => (this.caseSiderIsCollapsed = false));
-      }
+      if (value === "COLLAPSED")
+        runInAction(() => (this.caseSiderStatus = "COLLAPSED"));
+      else if (value === "OPEN")
+        runInAction(() => (this.caseSiderStatus = "OPEN"));
     }
   }
 
   @action.bound
   toggleCaseSider() {
-    this.caseSiderIsCollapsed = !this.caseSiderIsCollapsed;
-    localStorage.setItem(
-      "caseSiderIsCollapsed",
-      this.caseSiderIsCollapsed.toString()
-    );
+    if (this.caseSiderStatus === "COLLAPSED")
+      runInAction(() => (this.caseSiderStatus = "OPEN"));
+    else if (this.caseSiderStatus === "OPEN")
+      runInAction(() => (this.caseSiderStatus = "COLLAPSED"));
+    localStorage.setItem("caseSiderStatus", this.caseSiderStatus);
   }
 
   @action.bound
