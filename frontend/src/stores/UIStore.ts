@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { action, observable, runInAction } from "mobx";
 
 class UIStore {
   @observable openModal:
@@ -9,9 +9,24 @@ class UIStore {
 
   @observable caseSiderIsCollapsed = false;
 
+  constructor() {
+    const value = localStorage.getItem("caseSiderIsCollapsed");
+    if (value) {
+      if (value == "true") {
+        runInAction(() => (this.caseSiderIsCollapsed = true));
+      } else if (value === "false") {
+        runInAction(() => (this.caseSiderIsCollapsed = false));
+      }
+    }
+  }
+
   @action.bound
   toggleCaseSider() {
     this.caseSiderIsCollapsed = !this.caseSiderIsCollapsed;
+    localStorage.setItem(
+      "caseSiderIsCollapsed",
+      this.caseSiderIsCollapsed.toString()
+    );
   }
 
   @action.bound
