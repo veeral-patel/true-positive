@@ -31,6 +31,10 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
           <Icon type="info-circle" />
           <span>Info</span>
         </Menu.Item>
+        <Menu.Item key="tasks">
+          <Icon type="check-square" />
+          <span>Tasks</span>
+        </Menu.Item>
         <Menu.Item key="indicators">
           <Icon type="security-scan" />
           <span>Indicators</span>
