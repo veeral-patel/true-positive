@@ -5,35 +5,33 @@ const { Content, Sider } = Layout;
 
 const CaseSiderP = () => (
   <Layout>
-    <Sider width={200} style={{ background: "#fff" }}>
+    <Sider
+      width={200}
+      style={{ background: "#fff" }}
+      collapsible
+      collapsed={false}
+      theme="light"
+    >
       <Menu
         mode="inline"
         defaultSelectedKeys={["info"]}
         style={{ height: "100%", borderRight: 0 }}
       >
         <Menu.Item key="info">
-          <span>
-            <Icon type="info-circle" />
-            Info
-          </span>
+          <Icon type="info-circle" />
+          <span>Info</span>
         </Menu.Item>
         <Menu.Item key="indicators">
-          <span>
-            <Icon type="exclamation-circle" />
-            Indicators
-          </span>
+          <Icon type="security-scan" />
+          <span>Indicators</span>
         </Menu.Item>
         <Menu.Item key="tree">
-          <span>
-            <Icon type="apartment" />
-            Tree
-          </span>
+          <Icon type="apartment" />
+          <span>Tree</span>
         </Menu.Item>
         <Menu.Item key="members">
-          <span>
-            <Icon type="user" />
-            Members
-          </span>
+          <Icon type="user" />
+          <span>Members</span>
         </Menu.Item>
       </Menu>
     </Sider>
