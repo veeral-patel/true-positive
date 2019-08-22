@@ -1,11 +1,12 @@
 import { RouteComponentProps } from "@reach/router";
+import CaseSider from "presentational/cases/CaseSiderP";
 import React from "react";
 
 interface ICasePageProps extends RouteComponentProps {}
 
 const CasePage: React.FC<ICasePageProps> = () => (
   <div>
-    <h3>Hello</h3>
+    <CaseSider />
   </div>
 );
 
