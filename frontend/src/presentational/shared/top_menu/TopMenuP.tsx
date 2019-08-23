@@ -3,11 +3,7 @@ import { Menu } from "antd";
 import React from "react";
 import { paths } from "utils/constants";
 
-interface ITopMenuProps {
-  numberOfCases?: number;
-}
-
-const TopMenuP: React.FC<ITopMenuProps> = ({ numberOfCases }) => (
+const TopMenuP: React.FC = () => (
   <Menu theme="dark" mode="horizontal" selectedKeys={[]}>
     <Menu.Item onClick={() => navigate(paths.CASES_PATH)}>Cases</Menu.Item>
   </Menu>
