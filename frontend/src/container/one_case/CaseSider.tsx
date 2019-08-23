@@ -1,6 +1,6 @@
 import { CollapseType } from "antd/lib/layout/Sider";
 import { inject, observer } from "mobx-react";
-import CaseSiderP from "presentational/cases/CaseSiderP";
+import CaseSiderP from "presentational/one_case/CaseSiderP";
 import React from "react";
 import UIStore from "stores/UIStore";
 

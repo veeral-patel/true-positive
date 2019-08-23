@@ -1,5 +1,5 @@
 import { inject, observer } from "mobx-react";
-import CreateCaseModalP from "presentational/cases/CreateCaseModalP";
+import CreateCaseModalP from "presentational/all_cases/CreateCaseModalP";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";

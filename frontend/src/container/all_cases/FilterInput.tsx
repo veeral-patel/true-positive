@@ -1,5 +1,5 @@
 import { inject, observer } from "mobx-react";
-import FilterInputP from "presentational/cases/FilterInputP";
+import FilterInputP from "presentational/all_cases/FilterInputP";
 import React from "react";
 import CaseStore from "stores/AllCasesStore";
 

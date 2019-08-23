@@ -1,7 +1,7 @@
 import { navigate } from "@reach/router";
 import { Table } from "antd";
 import { TableRowSelection } from "antd/lib/table";
-import ExpandedRowP from "presentational/cases/ExpandedRowP";
+import ExpandedRowP from "presentational/all_cases/ExpandedRowP";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";

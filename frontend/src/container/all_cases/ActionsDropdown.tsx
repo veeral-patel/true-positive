@@ -1,6 +1,6 @@
 import { ClickParam } from "antd/lib/menu";
 import { inject, observer } from "mobx-react";
-import ActionsDropdownP from "presentational/cases/ActionsDropdownP";
+import ActionsDropdownP from "presentational/all_cases/ActionsDropdownP";
 import React from "react";
 import CaseStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
