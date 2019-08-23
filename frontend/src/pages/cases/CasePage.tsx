@@ -1,7 +1,10 @@
 import { RouteComponentProps, Router } from "@reach/router";
 import { Layout } from "antd";
 import CaseSider from "container/one_case/CaseSider";
+import Indicators from "container/one_case/Indicators";
 import Info from "container/one_case/Info";
+import Members from "container/one_case/Members";
+import Tasks from "container/one_case/Tasks";
 import React from "react";
 
 interface ICasePageProps extends RouteComponentProps {}
@@ -13,6 +16,9 @@ const CasePage: React.FC<ICasePageProps> = () => (
       <Router>
         <Info path="/" />
         <Info path="/info" />
+        <Members path="/members" />
+        <Indicators path="/indicators" />
+        <Tasks path="/tasks" />
       </Router>
     </Layout>
   </Layout>
