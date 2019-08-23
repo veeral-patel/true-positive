@@ -15,7 +15,7 @@ const Tasks: React.FC<RouteComponentProps> = () => (
         minHeight: 280
       }}
     >
-      Tasks
+      <h2>Tasks</h2>
     </Content>
   </div>
 );

@@ -15,7 +15,7 @@ const Indicators: React.FC<RouteComponentProps> = () => (
         minHeight: 280
       }}
     >
-      Indicators
+      <h2>Indicators</h2>
     </Content>
   </div>
 );

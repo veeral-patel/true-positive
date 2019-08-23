@@ -16,7 +16,7 @@ const Info: React.FC<RouteComponentProps> = () => (
         minHeight: 280
       }}
     >
-      Info
+      <h2>Info</h2>
     </Content>
   </div>
 );

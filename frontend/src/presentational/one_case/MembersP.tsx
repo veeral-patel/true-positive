@@ -15,7 +15,7 @@ const Members: React.FC<RouteComponentProps> = () => (
         minHeight: 280
       }}
     >
-      Members
+      <h2>Members</h2>
     </Content>
   </div>
 );
