@@ -1,8 +1,8 @@
 import { RouteComponentProps } from "@reach/router";
 import { Button, PageHeader } from "antd";
-import ActionsDropdown from "container/cases/ActionsDropdown";
-import CasesTable from "container/cases/CasesTable";
-import FilterInput from "container/cases/FilterInput";
+import ActionsDropdown from "container/all_cases/ActionsDropdown";
+import CasesTable from "container/all_cases/CasesTable";
+import FilterInput from "container/all_cases/FilterInput";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import CaseStore from "stores/AllCasesStore";

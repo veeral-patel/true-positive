@@ -1,6 +1,6 @@
 import { navigate, RouteComponentProps } from "@reach/router";
 import { Breadcrumb, Layout } from "antd";
-import CaseSider from "container/cases/CaseSider";
+import CaseSider from "container/one_case/CaseSider";
 import React from "react";
 import { paths } from "utils/constants";
 
