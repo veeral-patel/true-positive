@@ -4,6 +4,7 @@ import client from "createApolloClient";
 import { action, computed, observable, runInAction } from "mobx";
 import GET_CASES from "queries/getCases";
 import ICase from "ts/interfaces/ICase";
+import matchesFilter from "utils/filterCases";
 
 interface ICaseData {
   cases: ICase[];
@@ -38,27 +39,9 @@ class CaseStore {
   @computed
   get filteredCases() {
     const _this = this;
-    return this.cases.filter(function(thecase: ICase) {
-      const assignedToMatches = thecase.assignedTo
-        ? thecase.assignedTo.username
-            .toLowerCase()
-            .indexOf(_this.filterValue.toLowerCase()) !== -1
-        : false;
-      return (
-        thecase.name.toLowerCase().indexOf(_this.filterValue.toLowerCase()) !==
-          -1 ||
-        thecase.status.name
-          .toLowerCase()
-          .indexOf(_this.filterValue.toLowerCase()) !== -1 ||
-        thecase.priority.name
-          .toLowerCase()
-          .indexOf(_this.filterValue.toLowerCase()) !== -1 ||
-        thecase.createdBy.username
-          .toLowerCase()
-          .indexOf(_this.filterValue.toLowerCase()) !== -1 ||
-        assignedToMatches
-      );
-    });
+    return this.cases.filter((thecase: ICase) =>
+      matchesFilter(_this.filterValue, thecase)
+    );
   }
 
   @computed
