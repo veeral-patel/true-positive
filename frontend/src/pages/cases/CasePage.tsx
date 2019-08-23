@@ -5,6 +5,7 @@ import IndicatorsP from "presentational/one_case/IndicatorsP";
 import InfoP from "presentational/one_case/InfoP";
 import MembersP from "presentational/one_case/MembersP";
 import TasksP from "presentational/one_case/TasksP";
+import TreeP from "presentational/one_case/TreeP";
 import React from "react";
 
 interface ICasePageProps extends RouteComponentProps {}
@@ -16,6 +17,7 @@ const CasePage: React.FC<ICasePageProps> = () => (
       <Router>
         <InfoP path="/" />
         <InfoP path="/info" />
+        <TreeP path="/tree" />
         <MembersP path="/members" />
         <IndicatorsP path="/indicators" />
         <TasksP path="/tasks" />
