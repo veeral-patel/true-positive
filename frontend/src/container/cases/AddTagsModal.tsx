@@ -8,17 +8,17 @@ const { Paragraph } = Typography;
 
 interface IAddTagsModalProps {
   uiStore?: UIStore;
-  caseStore?: CaseStore;
+  allCasesStore?: CaseStore;
 }
 
-export default inject("uiStore", "caseStore")(
+export default inject("uiStore", "allCasesStore")(
   observer(
     class AddTagsModal extends React.Component<IAddTagsModalProps> {
       render() {
-        const { uiStore, caseStore } = this.props;
+        const { uiStore, allCasesStore } = this.props;
         return (
           <Modal
-            title={`Add Tags to ${caseStore!.numberOfSelectedCases} Cases`}
+            title={`Add Tags to ${allCasesStore!.numberOfSelectedCases} Cases`}
             visible={uiStore!.openModal === "ADD_TAGS_TO_CASE_MODAL"}
             onOk={this.handleAddTags.bind(this)}
             onCancel={() => uiStore!.closeModal()}
@@ -44,8 +44,8 @@ export default inject("uiStore", "caseStore")(
       }
 
       handleAddTags() {
-        const { uiStore, caseStore } = this.props;
-        caseStore!.addTagsToSelectedCases();
+        const { uiStore, allCasesStore } = this.props;
+        allCasesStore!.addTagsToSelectedCases();
         uiStore!.closeModal();
       }
     }

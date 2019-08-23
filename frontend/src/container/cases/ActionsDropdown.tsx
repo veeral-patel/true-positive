@@ -7,18 +7,18 @@ import UIStore from "stores/UIStore";
 import { ADD_TAGS, REMOVE_TAGS } from "utils/constants";
 
 interface IActionsDropdownProps {
-  caseStore?: CaseStore;
+  allCasesStore?: CaseStore;
   uiStore?: UIStore;
 }
 
-export default inject("caseStore", "uiStore")(
+export default inject("allCasesStore", "uiStore")(
   observer(
     class ActionsDropdown extends React.Component<IActionsDropdownProps> {
       render() {
-        const { caseStore } = this.props;
+        const { allCasesStore } = this.props;
         return (
           <ActionsDropdownP
-            numberOfSelectedCases={caseStore!.numberOfSelectedCases}
+            numberOfSelectedCases={allCasesStore!.numberOfSelectedCases}
             handleMenuClick={this.handleMenuClick.bind(this)}
           />
         );

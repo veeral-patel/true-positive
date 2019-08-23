@@ -6,34 +6,34 @@ import CaseStore from "stores/CaseStore";
 import ICase from "ts/interfaces/ICase";
 
 interface ICasesTableProps {
-  caseStore?: CaseStore;
+  allCasesStore?: CaseStore;
 }
 
-export default inject("caseStore")(
+export default inject("allCasesStore")(
   observer(
     class CasesTable extends React.Component<ICasesTableProps> {
       componentDidMount() {
-        const { caseStore } = this.props;
-        caseStore!.loadCases();
+        const { allCasesStore } = this.props;
+        allCasesStore!.loadCases();
       }
 
       render() {
-        const { caseStore } = this.props;
+        const { allCasesStore } = this.props;
         const rowSelection = {
           onChange: (
             selectedRowwKeys: string[] | number[],
             selectedRows: ICase[]
           ) => {
-            caseStore!.setSelectedCases(selectedRows);
+            allCasesStore!.setSelectedCases(selectedRows);
           },
-          selectedRows: caseStore!.selectedCases
+          selectedRows: allCasesStore!.selectedCases
         };
 
-        if (caseStore!.casesAreLoading) return <Table loading={true} />;
+        if (allCasesStore!.casesAreLoading) return <Table loading={true} />;
         else
           return (
             <CasesTableP
-              dataSource={caseStore!.filteredCases}
+              dataSource={allCasesStore!.filteredCases}
               rowSelection={rowSelection}
             />
           );

@@ -4,20 +4,20 @@ import React from "react";
 import CaseStore from "stores/CaseStore";
 
 interface IFilterInputProps {
-  caseStore?: CaseStore;
+  allCasesStore?: CaseStore;
 }
 
-export default inject("caseStore")(
+export default inject("allCasesStore")(
   observer(
     class FilterInput extends React.Component<IFilterInputProps> {
       componentDidMount() {
-        const { caseStore } = this.props;
-        caseStore!.loadCases();
+        const { allCasesStore } = this.props;
+        allCasesStore!.loadCases();
       }
 
       render() {
-        const { caseStore } = this.props;
-        return <TopMenuP numberOfCases={caseStore!.numberOfCases} />;
+        const { allCasesStore } = this.props;
+        return <TopMenuP numberOfCases={allCasesStore!.numberOfCases} />;
       }
     }
   )

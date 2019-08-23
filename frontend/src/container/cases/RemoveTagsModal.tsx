@@ -8,17 +8,19 @@ const { Paragraph } = Typography;
 
 interface IRemoveTagsModalProps {
   uiStore?: UIStore;
-  caseStore?: CaseStore;
+  allCasesStore?: CaseStore;
 }
 
-export default inject("uiStore", "caseStore")(
+export default inject("uiStore", "allCasesStore")(
   observer(
     class RemoveTagsModal extends React.Component<IRemoveTagsModalProps> {
       render() {
-        const { uiStore, caseStore } = this.props;
+        const { uiStore, allCasesStore } = this.props;
         return (
           <Modal
-            title={`Remove Tags from ${caseStore!.numberOfSelectedCases} Cases`}
+            title={`Remove Tags from ${
+              allCasesStore!.numberOfSelectedCases
+            } Cases`}
             visible={uiStore!.openModal === "REMOVE_TAGS_FROM_CASE_MODAL"}
             onOk={this.handleRemoveTags.bind(this)}
             onCancel={() => uiStore!.closeModal()}
@@ -44,8 +46,8 @@ export default inject("uiStore", "caseStore")(
       }
 
       handleRemoveTags() {
-        const { uiStore, caseStore } = this.props;
-        caseStore!.removeTagsFromSelectedCases();
+        const { uiStore, allCasesStore } = this.props;
+        allCasesStore!.removeTagsFromSelectedCases();
         uiStore!.closeModal();
       }
     }

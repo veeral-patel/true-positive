@@ -4,7 +4,7 @@ import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
 
-const caseStore = new CaseStore();
+const allCasesStore = new CaseStore();
 const uiStore = new UIStore();
 const statusStore = new StatusStore();
 const priorityStore = new PriorityStore();
@@ -15,7 +15,7 @@ configure({
 });
 
 export default {
-  caseStore,
+  allCasesStore,
   uiStore,
   statusStore,
   priorityStore

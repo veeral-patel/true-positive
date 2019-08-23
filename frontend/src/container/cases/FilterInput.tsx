@@ -4,19 +4,19 @@ import React from "react";
 import CaseStore from "stores/CaseStore";
 
 interface IFilterInputProps {
-  caseStore?: CaseStore;
+  allCasesStore?: CaseStore;
 }
 
-export default inject("caseStore")(
+export default inject("allCasesStore")(
   observer(
     class FilterInput extends React.Component<IFilterInputProps> {
       render() {
-        const { caseStore } = this.props;
+        const { allCasesStore } = this.props;
         return (
           <FilterInputP
-            value={caseStore!.filterValue}
+            value={allCasesStore!.filterValue}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              caseStore!.setFilterValue(e.currentTarget.value)
+              allCasesStore!.setFilterValue(e.currentTarget.value)
             }
           />
         );

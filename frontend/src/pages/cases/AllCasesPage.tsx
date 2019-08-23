@@ -9,15 +9,15 @@ import CaseStore from "stores/CaseStore";
 import UIStore from "stores/UIStore";
 
 interface IAllCasesPageProps extends RouteComponentProps {
-  caseStore?: CaseStore;
+  allCasesStore?: CaseStore;
   uiStore?: UIStore;
 }
 
-export default inject("caseStore", "uiStore")(
+export default inject("allCasesStore", "uiStore")(
   observer(
     class AllCasesPage extends React.Component<IAllCasesPageProps> {
       render() {
-        const { caseStore, uiStore } = this.props;
+        const { allCasesStore, uiStore } = this.props;
         return (
           <div>
             <PageHeader
@@ -42,7 +42,7 @@ export default inject("caseStore", "uiStore")(
             >
               <FilterInput />
             </span>
-            {caseStore!.numberOfSelectedCases === 0 ? (
+            {allCasesStore!.numberOfSelectedCases === 0 ? (
               <span />
             ) : (
               <span style={{ float: "right", paddingRight: "24px" }}>
