@@ -36,13 +36,7 @@ class CaseStore {
       .finally(() => runInAction(() => (this.casesAreLoading = false)));
   }
 
-  @computed
-  get filteredCases() {
-    const _this = this;
-    return this.cases.filter((thecase: ICase) =>
-      matchesFilter(_this.filterValue, thecase)
-    );
-  }
+  // --------- computed properties -----------
 
   @computed
   get numberOfSelectedCases() {
@@ -54,15 +48,29 @@ class CaseStore {
     return this.cases.length;
   }
 
-  @action.bound
-  setSelectedCases(selectedCases: ICase[]) {
-    this.selectedCases = selectedCases;
+  // ----- filtering logic ---------
+
+  @computed
+  get filteredCases() {
+    const _this = this;
+    return this.cases.filter((thecase: ICase) =>
+      matchesFilter(_this.filterValue, thecase)
+    );
   }
 
   @action.bound
   setFilterValue(filterValue: string) {
     this.filterValue = filterValue;
   }
+
+  // ------- selection logic ----------
+
+  @action.bound
+  setSelectedCases(selectedCases: ICase[]) {
+    this.selectedCases = selectedCases;
+  }
+
+  // -------- bulk operations ----------
 
   @action.bound
   addTagsToSelectedCases() {
