@@ -5,7 +5,7 @@ import CasesTable from "container/cases/CasesTable";
 import FilterInput from "container/cases/FilterInput";
 import { inject, observer } from "mobx-react";
 import React from "react";
-import CaseStore from "stores/CaseStore";
+import CaseStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
 
 interface IAllCasesPageProps extends RouteComponentProps {

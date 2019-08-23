@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import FilterInputP from "presentational/cases/FilterInputP";
 import React from "react";
-import CaseStore from "stores/CaseStore";
+import CaseStore from "stores/AllCasesStore";
 
 interface IFilterInputProps {
   allCasesStore?: CaseStore;

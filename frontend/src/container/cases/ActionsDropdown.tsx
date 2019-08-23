@@ -2,7 +2,7 @@ import { ClickParam } from "antd/lib/menu";
 import { inject, observer } from "mobx-react";
 import ActionsDropdownP from "presentational/cases/ActionsDropdownP";
 import React from "react";
-import CaseStore from "stores/CaseStore";
+import CaseStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
 import { ADD_TAGS, REMOVE_TAGS } from "utils/constants";
 

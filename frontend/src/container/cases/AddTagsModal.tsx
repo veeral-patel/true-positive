@@ -1,7 +1,7 @@
 import { Alert, Modal, Select, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
-import CaseStore from "stores/CaseStore";
+import CaseStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
 
 const { Paragraph } = Typography;

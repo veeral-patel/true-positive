@@ -2,7 +2,7 @@ import { Table } from "antd";
 import { inject, observer } from "mobx-react";
 import CasesTableP from "presentational/cases/CasesTableP";
 import React from "react";
-import CaseStore from "stores/CaseStore";
+import CaseStore from "stores/AllCasesStore";
 import ICase from "ts/interfaces/ICase";
 
 interface ICasesTableProps {

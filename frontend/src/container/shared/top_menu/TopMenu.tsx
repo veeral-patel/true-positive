@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import TopMenuP from "presentational/shared/top_menu/TopMenuP";
 import React from "react";
-import CaseStore from "stores/CaseStore";
+import CaseStore from "stores/AllCasesStore";
 
 interface IFilterInputProps {
   allCasesStore?: CaseStore;
