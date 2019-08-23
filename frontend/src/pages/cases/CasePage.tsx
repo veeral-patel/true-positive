@@ -1,6 +1,7 @@
 import { RouteComponentProps, Router } from "@reach/router";
 import { Layout } from "antd";
 import CaseSider from "container/one_case/CaseSider";
+import Page404 from "pages/shared/Page404";
 import IndicatorsP from "presentational/one_case/IndicatorsP";
 import InfoP from "presentational/one_case/InfoP";
 import MembersP from "presentational/one_case/MembersP";
@@ -21,6 +22,7 @@ const CasePage: React.FC<ICasePageProps> = () => (
         <MembersP path="/members" />
         <IndicatorsP path="/indicators" />
         <TasksP path="/tasks" />
+        <Page404 default />
       </Router>
     </Layout>
   </Layout>
