@@ -15,7 +15,7 @@ const App: React.FC = () => {
       <Router style={{ margin: "3%", marginTop: "2%" }}>
         <AllCasesPage path="/" />
         <AllCasesPage path="/cases" />
-        <CasePage path="/cases/:id" />
+        <CasePage path="/cases/:id/*" />
         <Page404 default />
       </Router>
       <AddTagsModal />
