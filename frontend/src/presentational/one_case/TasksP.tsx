@@ -1,18 +1,12 @@
-import { navigate, RouteComponentProps } from "@reach/router";
-import { Breadcrumb, Layout } from "antd";
+import { RouteComponentProps } from "@reach/router";
+import { Layout } from "antd";
 import React from "react";
-import { paths } from "utils/constants";
+import OneCaseBreadcrumb from "./OneCaseBreadcrumb";
 const { Content } = Layout;
 
 const Tasks: React.FC<RouteComponentProps> = () => (
   <div>
-    <Breadcrumb style={{ margin: "16px 0" }}>
-      <Breadcrumb.Item>
-        <a onClick={() => navigate(paths.CASES_PATH)}>Cases</a>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>Case Name</Breadcrumb.Item>
-      <Breadcrumb.Item>Tasks</Breadcrumb.Item>
-    </Breadcrumb>
+    <OneCaseBreadcrumb caseName="Case Name" tabName="Tasks" />
     <Content
       style={{
         background: "#fff",
