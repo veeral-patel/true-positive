@@ -3,13 +3,13 @@ import TopMenuP from "presentational/shared/top_menu/TopMenuP";
 import React from "react";
 import CaseStore from "stores/AllCasesStore";
 
-interface IFilterInputProps {
+interface ITopMenuProps {
   allCasesStore?: CaseStore;
 }
 
 export default inject("allCasesStore")(
   observer(
-    class FilterInput extends React.Component<IFilterInputProps> {
+    class TopMenuProps extends React.Component<IFilterInputProps> {
       componentDidMount() {
         const { allCasesStore } = this.props;
         allCasesStore!.loadCases();
