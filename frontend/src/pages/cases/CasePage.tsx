@@ -1,5 +1,5 @@
 import { RouteComponentProps, Router } from "@reach/router";
-import { Layout } from "antd";
+import { Layout, notification } from "antd";
 import CaseSider from "container/one_case/CaseSider";
 import { inject, observer } from "mobx-react";
 import Page404 from "pages/shared/Page404";
@@ -19,7 +19,14 @@ interface ICasePageProps extends RouteComponentProps {
 class CasePage extends React.Component<ICasePageProps> {
   componentDidMount() {
     const { activeCaseStore, caseId } = this.props;
-    if (caseId) activeCaseStore!.setActiveCaseId(caseId);
+    if (caseId) {
+      activeCaseStore!.setActiveCaseId(caseId);
+    } else {
+      notification.error({
+        message: "Unable to extract caseId from the URL",
+        description: "Check if you're on a valid URL"
+      });
+    }
   }
 
   render() {
