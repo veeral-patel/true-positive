@@ -1,0 +1,30 @@
+import { Modal } from "antd";
+import { inject, observer } from "mobx-react";
+import React from "react";
+import CaseStore from "stores/AllCasesStore";
+import UIStore from "stores/UIStore";
+
+interface ChangeStatusModalProps {
+  uiStore?: UIStore;
+  allCasesStore?: CaseStore;
+}
+
+export default inject("uiStore", "allCasesStore")(
+  observer(
+    class ChangeStatusModal extends React.Component<ChangeStatusModalProps> {
+      render() {
+        const { uiStore, allCasesStore } = this.props;
+        return (
+          <Modal
+            title={`Change the Statuses of ${
+              allCasesStore!.numberOfSelectedCases
+            } Cases`}
+            visible={uiStore!.openModal === "CHANGE_STATUS_MODAL"}
+            onCancel={() => uiStore!.closeModal()}
+            okText="Change Statuses"
+          />
+        );
+      }
+    }
+  )
+);

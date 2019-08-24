@@ -1,5 +1,6 @@
 import { Router } from "@reach/router";
 import AddTagsModal from "container/all_cases/AddTagsModal";
+import ChangeStatusModal from "container/all_cases/ChangeStatusModal";
 import CreateCaseModal from "container/all_cases/CreateCaseModal";
 import RemoveTagsModal from "container/all_cases/RemoveTagsModal";
 import AllCasesPage from "pages/cases/AllCasesPage";
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       <AddTagsModal />
       <RemoveTagsModal />
       <CreateCaseModal />
+      <ChangeStatusModal />
     </div>
   );
 };
