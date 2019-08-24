@@ -9,9 +9,11 @@ import TasksP from "presentational/one_case/TasksP";
 import TreeP from "presentational/one_case/TreeP";
 import React from "react";
 
-interface ICasePageProps extends RouteComponentProps {}
+interface ICasePageProps extends RouteComponentProps {
+  caseId?: number;
+}
 
-const CasePage: React.FC<ICasePageProps> = () => (
+const CasePage: React.FC<ICasePageProps> = ({ caseId }) => (
   <Layout>
     <CaseSider />
     <Layout style={{ padding: "0 24px 24px" }}>
