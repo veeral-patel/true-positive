@@ -6,8 +6,8 @@ class UIStore {
     | "ADD_TAGS_TO_CASE_MODAL"
     | "REMOVE_TAGS_FROM_CASE_MODAL"
     | "CREATE_CASE_MODAL"
-    | "CHANGE_STATUS_MODAL"
-    | "CHANGE_PRIORITY_MODAL"
+    | "CHANGE_CASE_STATUS_MODAL"
+    | "CHANGE_CASE_PRIORITY_MODAL"
     | "ADD_COMMENT_TO_CASE" = null;
 
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
@@ -48,12 +48,12 @@ class UIStore {
 
   @action.bound
   openChangeCaseStatusModal() {
-    this.openModal = "CHANGE_STATUS_MODAL";
+    this.openModal = "CHANGE_CASE_STATUS_MODAL";
   }
 
   @action.bound
   openChangeCasePriorityModal() {
-    this.openModal = "CHANGE_PRIORITY_MODAL";
+    this.openModal = "CHANGE_CASE_PRIORITY_MODAL";
   }
 
   @action.bound
