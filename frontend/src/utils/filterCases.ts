@@ -58,7 +58,9 @@ function matchesFilter(filterValue: string, thecase: ICase) {
   // Split our filter string into words
   const filterWords = filterValue.split(" ");
 
-  // For a case to match, all of the filter words must match
+  // For a case to match, all of the filter words must either:
+  // (1) match one of the case's attributes or
+  // (2) match one of the case's tags
   for (const word of filterWords) {
     if (!anAttributeMatches(word, thecase) && !aTagMatches(word, thecase))
       return false;
