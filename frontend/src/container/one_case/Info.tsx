@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { notification, Result, Spin } from "antd";
+import { Result, Spin } from "antd";
 import { inject, observer } from "mobx-react";
 import InfoP from "presentational/one_case/InfoP";
 import React from "react";
@@ -19,11 +19,7 @@ export default inject("activeCaseStore")(
           const activeCase = activeCaseStore!.activeCase;
           if (activeCase) return <InfoP caseName={activeCase.name} />;
           else {
-            notification.error({
-              message: "Error in displaying case",
-              description: "activeCase is null"
-            });
-            return <Result status="error" />;
+            return <Result status="error" title="Could not fetch case" subTitle="Please ensure that the case exists and that your Internet connection is working." />;
           }
         }
       }
