@@ -39,7 +39,7 @@ export default inject("allCasesStore", "uiStore")(
         } else if (click.key === CHANGE_STATUS) {
           uiStore!.openChangeCaseStatusModal();
         } else if (click.key === CHANGE_PRIORITY) {
-          uiStore!.openChangePriorityModal();
+          uiStore!.openChangeCasePriorityModal();
         } else if (click.key === ADD_COMMENT_TO_CASE) {
           uiStore!.openAddCommentToCaseModal();
         }

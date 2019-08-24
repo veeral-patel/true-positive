@@ -52,7 +52,7 @@ class UIStore {
   }
 
   @action.bound
-  openChangePriorityModal() {
+  openChangeCasePriorityModal() {
     this.openModal = "CHANGE_PRIORITY_MODAL";
   }
 
