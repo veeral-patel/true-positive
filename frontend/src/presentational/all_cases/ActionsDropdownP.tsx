@@ -2,6 +2,7 @@ import { Button, Dropdown, Icon, Menu } from "antd";
 import { ClickParam } from "antd/lib/menu";
 import React from "react";
 import {
+  ADD_COMMENT_TO_CASE,
   ADD_TAGS,
   CHANGE_PRIORITY,
   CHANGE_STATUS,
@@ -28,7 +29,7 @@ const ActionsDropdownP: React.FC<IActionsDropdownProps> = ({
       <Menu.Item key={CHANGE_STATUS}>Change Status</Menu.Item>
       <Menu.Item key={CHANGE_PRIORITY}>Change Priority</Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="ADD_COMMENT">Add Comment</Menu.Item>
+      <Menu.Item key={ADD_COMMENT_TO_CASE}>Add Comment</Menu.Item>
       <Menu.Item key="MERGE">Merge</Menu.Item>
       <Menu.Item key="ASSIGN">Assign</Menu.Item>
     </Menu>

@@ -5,6 +5,7 @@ import React from "react";
 import CaseStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
 import {
+  ADD_COMMENT_TO_CASE,
   ADD_TAGS,
   CHANGE_PRIORITY,
   CHANGE_STATUS,
@@ -39,6 +40,8 @@ export default inject("allCasesStore", "uiStore")(
           uiStore!.openChangeCaseStatusModal();
         } else if (click.key === CHANGE_PRIORITY) {
           uiStore!.openChangePriorityModal();
+        } else if (click.key === ADD_COMMENT_TO_CASE) {
+          uiStore!.openAddCommentToCaseModal();
         }
       }
     }

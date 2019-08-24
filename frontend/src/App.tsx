@@ -1,4 +1,5 @@
 import { Router } from "@reach/router";
+import AddCommentToCaseModal from "container/all_cases/AddCommentToCaseModal";
 import AddTagsModal from "container/all_cases/AddTagsModal";
 import ChangePriorityModal from "container/all_cases/ChangePriorityModal";
 import ChangeStatusModal from "container/all_cases/ChangeStatusModal";
@@ -25,6 +26,7 @@ const App: React.FC = () => {
       <CreateCaseModal />
       <ChangeStatusModal />
       <ChangePriorityModal />
+      <AddCommentToCaseModal />
     </div>
   );
 };
