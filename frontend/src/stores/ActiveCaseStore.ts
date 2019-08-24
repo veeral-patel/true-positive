@@ -45,7 +45,7 @@ class ActiveCaseStore {
           description: error.message
         });
       })
-      .finally(() => runInAction(() => (this.activeCaseIsLoading = true)));
+      .finally(() => runInAction(() => (this.activeCaseIsLoading = false)));
   }
 
   @action.bound
