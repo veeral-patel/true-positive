@@ -32,6 +32,14 @@ function createdByMatches(filterWord: string, theCase: ICase) {
   );
 }
 
+function createdAtMatches(filterWord: string, theCase: ICase) {
+  return (
+    theCase.formattedCreatedAt
+      .toLowerCase()
+      .indexOf(filterWord.toLowerCase()) !== -1
+  );
+}
+
 // Returns true iff any of the case's attributes below (but not tags) contain filterWord.
 // filterWord shouldn't have any spaces.
 function anAttributeMatches(filterWord: string, theCase: ICase) {
@@ -40,7 +48,8 @@ function anAttributeMatches(filterWord: string, theCase: ICase) {
     statusMatches(filterWord, theCase) ||
     priorityMatches(filterWord, theCase) ||
     createdByMatches(filterWord, theCase) ||
-    assignedToMatches(filterWord, theCase)
+    assignedToMatches(filterWord, theCase) ||
+    createdAtMatches(filterWord, theCase)
   );
 }
 
