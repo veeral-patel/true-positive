@@ -9,6 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 ReactDOM.render(
   <Provider
     allCasesStore={store.allCasesStore}
+    activeCaseStore={store.activeCaseStore}
     uiStore={store.uiStore}
     statusStore={store.statusStore}
     priorityStore={store.priorityStore}
