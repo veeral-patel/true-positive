@@ -22,7 +22,7 @@ const CasePage: React.FC<ICasePageProps> = () => (
         <MembersP path="/members" />
         <IndicatorsP path="/indicators" />
         <TasksP path="/tasks" />
-        <Page404 default />
+        <Page404 default showBackButton={false} />
       </Router>
     </Layout>
   </Layout>
