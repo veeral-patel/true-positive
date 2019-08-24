@@ -18,7 +18,7 @@ export default inject("uiStore", "allCasesStore")(
           <Modal
             title={`Change the Statuses of ${
               allCasesStore!.numberOfSelectedCases
-            } Cases`}
+            } Case(s)`}
             visible={uiStore!.openModal === "CHANGE_CASE_STATUS_MODAL"}
             onCancel={() => uiStore!.closeModal()}
             okText="Change Statuses"

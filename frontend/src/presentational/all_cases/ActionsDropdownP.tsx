@@ -6,6 +6,7 @@ import {
   ADD_TAGS,
   CHANGE_PRIORITY,
   CHANGE_STATUS,
+  MERGE_CASES_MODAL,
   REMOVE_TAGS
 } from "utils/constants";
 
@@ -30,7 +31,7 @@ const ActionsDropdownP: React.FC<IActionsDropdownProps> = ({
       <Menu.Item key={CHANGE_PRIORITY}>Change Priority</Menu.Item>
       <Menu.Divider />
       <Menu.Item key={ADD_COMMENT_TO_CASE}>Add Comment</Menu.Item>
-      <Menu.Item key="MERGE">Merge</Menu.Item>
+      <Menu.Item key={MERGE_CASES_MODAL}>Merge</Menu.Item>
       <Menu.Item key="ASSIGN">Assign</Menu.Item>
     </Menu>
   );

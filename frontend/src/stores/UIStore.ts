@@ -8,11 +8,13 @@ class UIStore {
     | "CREATE_CASE_MODAL"
     | "CHANGE_CASE_STATUS_MODAL"
     | "CHANGE_CASE_PRIORITY_MODAL"
-    | "ADD_COMMENT_TO_CASE" = null;
+    | "ADD_COMMENT_TO_CASE"
+    | "MERGE_CASES_MODAL" = null;
 
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
 
   constructor() {
+    // read caseSiderStatus from localStorage, if it's there
     const value = localStorage.getItem("caseSiderStatus");
     if (value) {
       if (value === "COLLAPSED")
@@ -28,6 +30,8 @@ class UIStore {
       runInAction(() => (this.caseSiderStatus = "OPEN"));
     else if (this.caseSiderStatus === "OPEN")
       runInAction(() => (this.caseSiderStatus = "COLLAPSED"));
+
+    // persist to localStorage
     localStorage.setItem("caseSiderStatus", this.caseSiderStatus);
   }
 
@@ -59,6 +63,11 @@ class UIStore {
   @action.bound
   openAddCommentToCaseModal() {
     this.openModal = "ADD_COMMENT_TO_CASE";
+  }
+
+  @action.bound
+  openMergeCasesModal() {
+    this.openModal = "MERGE_CASES_MODAL";
   }
 
   @action.bound

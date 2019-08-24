@@ -4,26 +4,24 @@ import React from "react";
 import CaseStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
 
-interface AddCommentToCaseModalProps {
+interface MergeCasesModalProps {
   uiStore?: UIStore;
   allCasesStore?: CaseStore;
 }
 
 export default inject("uiStore", "allCasesStore")(
   observer(
-    class AddCommentToCaseModal extends React.Component<
-      AddCommentToCaseModalProps
-    > {
+    class MergeCasesModal extends React.Component<MergeCasesModalProps> {
       render() {
         const { uiStore, allCasesStore } = this.props;
         return (
           <Modal
-            title={`Add a Comment to ${
+            title={`Merge ${
               allCasesStore!.numberOfSelectedCases
-            } Case(s)`}
-            visible={uiStore!.openModal === "ADD_COMMENT_TO_CASE"}
+            } Case(s) into Another Case`}
+            visible={uiStore!.openModal === "MERGE_CASES_MODAL"}
             onCancel={() => uiStore!.closeModal()}
-            okText="Add Comment"
+            okText="Merge"
           />
         );
       }

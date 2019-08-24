@@ -9,6 +9,7 @@ import {
   ADD_TAGS,
   CHANGE_PRIORITY,
   CHANGE_STATUS,
+  MERGE_CASES_MODAL,
   REMOVE_TAGS
 } from "utils/constants";
 
@@ -42,6 +43,8 @@ export default inject("allCasesStore", "uiStore")(
           uiStore!.openChangeCasePriorityModal();
         } else if (click.key === ADD_COMMENT_TO_CASE) {
           uiStore!.openAddCommentToCaseModal();
+        } else if (click.key === MERGE_CASES_MODAL) {
+          uiStore!.openMergeCasesModal();
         }
       }
     }

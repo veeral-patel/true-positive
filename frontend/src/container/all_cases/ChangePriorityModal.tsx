@@ -20,7 +20,7 @@ export default inject("uiStore", "allCasesStore")(
           <Modal
             title={`Change the Priorities of ${
               allCasesStore!.numberOfSelectedCases
-            } Cases`}
+            } Case(s)`}
             visible={uiStore!.openModal === "CHANGE_CASE_PRIORITY_MODAL"}
             onCancel={() => uiStore!.closeModal()}
             okText="Change Priorities"
