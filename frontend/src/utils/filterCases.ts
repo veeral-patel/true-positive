@@ -33,15 +33,28 @@ function createdByMatches(filterValue: string, thecase: ICase) {
   );
 }
 
+// Returns true if any of the case's attributes contain WORD.
+// WORD should not have any spaces.
+function aRowMatches(word: string, thecase: ICase) {
+  return (
+    nameMatches(word, thecase) ||
+    statusMatches(word, thecase) ||
+    priorityMatches(word, thecase) ||
+    createdByMatches(word, thecase) ||
+    assignedToMatches(word, thecase)
+  );
+}
+
 // Returns true iff the case matches the given filter value
 function matchesFilter(filterValue: string, thecase: ICase) {
-  return (
-    nameMatches(filterValue, thecase) ||
-    statusMatches(filterValue, thecase) ||
-    priorityMatches(filterValue, thecase) ||
-    createdByMatches(filterValue, thecase) ||
-    assignedToMatches(filterValue, thecase)
-  );
+  // Split our filter string into words
+  const filterWords = filterValue.split(" ");
+
+  // For a case to match, all of the filter words must match
+  for (const word of filterWords) {
+    if (!aRowMatches(word, thecase)) return false;
+  }
+  return true;
 }
 
 export default matchesFilter;
