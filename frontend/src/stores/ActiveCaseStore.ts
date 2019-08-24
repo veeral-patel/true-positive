@@ -4,7 +4,7 @@ class ActiveCaseStore {
   @observable activeCaseId: number | null = null;
 
   @action.bound
-  setActiveCaseId(activeCaseId: number) {
+  setActiveCaseId(activeCaseId: number | null) {
     this.activeCaseId = activeCaseId;
   }
 }

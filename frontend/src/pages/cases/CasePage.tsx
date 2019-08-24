@@ -29,6 +29,13 @@ class CasePage extends React.Component<ICasePageProps> {
     }
   }
 
+  componentWillUnmount() {
+    const { activeCaseStore, caseId } = this.props;
+    if (caseId) {
+      activeCaseStore!.setActiveCaseId(null);
+    }
+  }
+
   render() {
     return (
       <Layout>
