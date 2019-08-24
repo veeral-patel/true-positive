@@ -7,6 +7,7 @@ import UIStore from "stores/UIStore";
 import {
   ADD_COMMENT_TO_CASE,
   ADD_TAGS,
+  ASSIGN_CASES_MODAL,
   CHANGE_PRIORITY,
   CHANGE_STATUS,
   MERGE_CASES_MODAL,
@@ -45,6 +46,8 @@ export default inject("allCasesStore", "uiStore")(
           uiStore!.openAddCommentToCaseModal();
         } else if (click.key === MERGE_CASES_MODAL) {
           uiStore!.openMergeCasesModal();
+        } else if (click.key === ASSIGN_CASES_MODAL) {
+          uiStore!.openAssignCasesModal();
         }
       }
     }

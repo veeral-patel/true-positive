@@ -9,7 +9,8 @@ class UIStore {
     | "CHANGE_CASE_STATUS_MODAL"
     | "CHANGE_CASE_PRIORITY_MODAL"
     | "ADD_COMMENT_TO_CASE"
-    | "MERGE_CASES_MODAL" = null;
+    | "MERGE_CASES_MODAL"
+    | "ASSIGN_CASES_MODAL" = null;
 
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
 
@@ -68,6 +69,11 @@ class UIStore {
   @action.bound
   openMergeCasesModal() {
     this.openModal = "MERGE_CASES_MODAL";
+  }
+
+  @action.bound
+  openAssignCasesModal() {
+    this.openModal = "ASSIGN_CASES_MODAL";
   }
 
   @action.bound

@@ -4,6 +4,7 @@ import React from "react";
 import {
   ADD_COMMENT_TO_CASE,
   ADD_TAGS,
+  ASSIGN_CASES_MODAL,
   CHANGE_PRIORITY,
   CHANGE_STATUS,
   MERGE_CASES_MODAL,
@@ -32,7 +33,7 @@ const ActionsDropdownP: React.FC<IActionsDropdownProps> = ({
       <Menu.Divider />
       <Menu.Item key={ADD_COMMENT_TO_CASE}>Add Comment</Menu.Item>
       <Menu.Item key={MERGE_CASES_MODAL}>Merge</Menu.Item>
-      <Menu.Item key="ASSIGN">Assign</Menu.Item>
+      <Menu.Item key={ASSIGN_CASES_MODAL}>Assign</Menu.Item>
     </Menu>
   );
   return (
