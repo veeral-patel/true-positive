@@ -45,7 +45,7 @@ export default inject("allCasesStore", "uiStore")(
             {allCasesStore!.numberOfSelectedCases === 0 ? (
               <span />
             ) : (
-              <span style={{ float: "right", paddingRight: "24px" }}>
+              <span style={{ paddingLeft: "18px" }}>
                 <ActionsDropdown />
               </span>
             )}
