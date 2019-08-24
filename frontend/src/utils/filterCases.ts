@@ -1,60 +1,59 @@
 import ICase from "ts/interfaces/ICase";
 
-function nameMatches(filterValue: string, thecase: ICase) {
-  return thecase.name.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1;
+function nameMatches(filterWord: string, theCase: ICase) {
+  return theCase.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1;
 }
 
-function statusMatches(filterValue: string, thecase: ICase) {
+function statusMatches(filterWord: string, theCase: ICase) {
   return (
-    thecase.status.name.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+    theCase.status.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1
   );
 }
 
-function priorityMatches(filterValue: string, thecase: ICase) {
+function priorityMatches(filterWord: string, theCase: ICase) {
   return (
-    thecase.priority.name.toLowerCase().indexOf(filterValue.toLowerCase()) !==
-    -1
+    theCase.priority.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1
   );
 }
 
-function assignedToMatches(filterValue: string, thecase: ICase) {
-  return thecase.assignedTo
-    ? thecase.assignedTo.username
+function assignedToMatches(filterWord: string, theCase: ICase) {
+  return theCase.assignedTo
+    ? theCase.assignedTo.username
         .toLowerCase()
-        .indexOf(filterValue.toLowerCase()) !== -1
+        .indexOf(filterWord.toLowerCase()) !== -1
     : false;
 }
 
-function createdByMatches(filterValue: string, thecase: ICase) {
+function createdByMatches(filterWord: string, theCase: ICase) {
   return (
-    thecase.createdBy.username
+    theCase.createdBy.username
       .toLowerCase()
-      .indexOf(filterValue.toLowerCase()) !== -1
+      .indexOf(filterWord.toLowerCase()) !== -1
   );
 }
 
-// Returns true iff any of the case's attributes below (but not tags) contain WORD.
-// WORD shouldn't have any spaces.
-function anAttributeMatches(word: string, thecase: ICase) {
+// Returns true iff any of the case's attributes below (but not tags) contain filterWord.
+// filterWord shouldn't have any spaces.
+function anAttributeMatches(filterWord: string, theCase: ICase) {
   return (
-    nameMatches(word, thecase) ||
-    statusMatches(word, thecase) ||
-    priorityMatches(word, thecase) ||
-    createdByMatches(word, thecase) ||
-    assignedToMatches(word, thecase)
+    nameMatches(filterWord, theCase) ||
+    statusMatches(filterWord, theCase) ||
+    priorityMatches(filterWord, theCase) ||
+    createdByMatches(filterWord, theCase) ||
+    assignedToMatches(filterWord, theCase)
   );
 }
 
-// Returns TRUE iff any of the case's tags contain WORD. WORD shouldn't have spaces.
-function aTagMatches(word: string, thecase: ICase) {
-  for (const tag of thecase.tags) {
-    if (tag.indexOf(word) !== -1) return true;
+// Returns TRUE iff any of the case's tags contain filterWord. filterWord shouldn't have spaces.
+function aTagMatches(filterWord: string, theCase: ICase) {
+  for (const tag of theCase.tags) {
+    if (tag.indexOf(filterWord) !== -1) return true;
   }
   return false;
 }
 
 // Returns true iff the case matches the given filter value
-function matchesFilter(filterValue: string, thecase: ICase) {
+function matchesFilter(filterValue: string, theCase: ICase) {
   // Split our filter string into words
   const filterWords = filterValue.split(" ");
 
@@ -62,7 +61,7 @@ function matchesFilter(filterValue: string, thecase: ICase) {
   // (1) match one of the case's attributes or
   // (2) match one of the case's tags
   for (const word of filterWords) {
-    if (!anAttributeMatches(word, thecase) && !aTagMatches(word, thecase))
+    if (!anAttributeMatches(word, theCase) && !aTagMatches(word, theCase))
       return false;
   }
   return true;
