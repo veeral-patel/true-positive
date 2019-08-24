@@ -19,7 +19,7 @@ const ActionsDropdownP: React.FC<IActionsDropdownProps> = ({
 }) => {
   const menu = (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key="selected_summary" disabled>
+      <Menu.Item key="SELECTED_SUMMARY" disabled>
         {numberOfSelectedCases} case(s) selected
       </Menu.Item>
       <Menu.Item key={ADD_TAGS}>Add Tags</Menu.Item>
@@ -28,9 +28,9 @@ const ActionsDropdownP: React.FC<IActionsDropdownProps> = ({
       <Menu.Item key={CHANGE_STATUS}>Change Status</Menu.Item>
       <Menu.Item key={CHANGE_PRIORITY}>Change Priority</Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="add_comment">Add Comment</Menu.Item>
-      <Menu.Item key="merge">Merge</Menu.Item>
-      <Menu.Item key="assign">Assign</Menu.Item>
+      <Menu.Item key="ADD_COMMENT">Add Comment</Menu.Item>
+      <Menu.Item key="MERGE">Merge</Menu.Item>
+      <Menu.Item key="ASSIGN">Assign</Menu.Item>
     </Menu>
   );
   return (
