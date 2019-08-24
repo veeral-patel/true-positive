@@ -18,7 +18,9 @@ export default inject("uiStore", "allCasesStore")(
         const { uiStore, allCasesStore } = this.props;
         return (
           <Modal
-            title={`Add Tags to ${allCasesStore!.numberOfSelectedCases} Case(s)`}
+            title={`Add Tags to ${
+              allCasesStore!.numberOfSelectedCases
+            } Case(s)`}
             visible={uiStore!.openModal === "ADD_TAGS_TO_CASE_MODAL"}
             onOk={this.handleAddTags.bind(this)}
             onCancel={() => uiStore!.closeModal()}
