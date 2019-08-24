@@ -1,11 +1,10 @@
-import { RouteComponentProps } from "@reach/router";
 import { Layout } from "antd";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import React from "react";
 
 const { Content } = Layout;
 
-const Info: React.FC<RouteComponentProps> = () => (
+const Info: React.FC = () => (
   <div>
     <OneCaseBreadcrumb caseName="Case Name" tabName="Info" />
     <Content

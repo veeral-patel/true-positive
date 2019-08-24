@@ -1,10 +1,10 @@
 import { RouteComponentProps, Router } from "@reach/router";
 import { Layout, notification } from "antd";
 import CaseSider from "container/one_case/CaseSider";
+import Info from "container/one_case/Info";
 import { inject, observer } from "mobx-react";
 import Page404 from "pages/shared/Page404";
 import IndicatorsP from "presentational/one_case/IndicatorsP";
-import InfoP from "presentational/one_case/InfoP";
 import MembersP from "presentational/one_case/MembersP";
 import TasksP from "presentational/one_case/TasksP";
 import TreeP from "presentational/one_case/TreeP";
@@ -42,8 +42,8 @@ class CasePage extends React.Component<ICasePageProps> {
         <CaseSider />
         <Layout style={{ padding: "0 24px 24px" }}>
           <Router>
-            <InfoP path="/" />
-            <InfoP path="/info" />
+            <Info path="/" />
+            <Info path="/info" />
             <TreeP path="/tree" />
             <MembersP path="/members" />
             <IndicatorsP path="/indicators" />
