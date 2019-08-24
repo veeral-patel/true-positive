@@ -33,9 +33,9 @@ function createdByMatches(filterValue: string, thecase: ICase) {
   );
 }
 
-// Returns true if any of the case's attributes contain WORD.
-// WORD should not have any spaces.
-function aRowMatches(word: string, thecase: ICase) {
+// Returns true iff any of the case's attributes below (but not tags) contain WORD.
+// WORD shouldn't have any spaces.
+function anAttributeMatches(word: string, thecase: ICase) {
   return (
     nameMatches(word, thecase) ||
     statusMatches(word, thecase) ||
@@ -45,6 +45,14 @@ function aRowMatches(word: string, thecase: ICase) {
   );
 }
 
+// Returns TRUE iff any of the case's tags contain WORD. WORD shouldn't have spaces.
+function aTagMatches(word: string, thecase: ICase) {
+  for (const tag of thecase.tags) {
+    if (tag.indexOf(word) !== -1) return true;
+  }
+  return false;
+}
+
 // Returns true iff the case matches the given filter value
 function matchesFilter(filterValue: string, thecase: ICase) {
   // Split our filter string into words
@@ -52,7 +60,8 @@ function matchesFilter(filterValue: string, thecase: ICase) {
 
   // For a case to match, all of the filter words must match
   for (const word of filterWords) {
-    if (!aRowMatches(word, thecase)) return false;
+    if (!anAttributeMatches(word, thecase) && !aTagMatches(word, thecase))
+      return false;
   }
   return true;
 }
