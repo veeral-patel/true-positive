@@ -5,6 +5,34 @@ const GET_ONE_CASE = gql`
     case(id: $id) {
       id
       name
+      description
+      createdAt
+      formattedCreatedAt
+      priority {
+        name
+      }
+      status {
+        name
+      }
+      createdBy {
+        username
+      }
+      assignedTo {
+        username
+      }
+      tags
+      tasks {
+        id
+        name
+        description
+        status {
+          name
+        }
+        priority {
+          name
+        }
+        tags
+      }
     }
   }
 `;

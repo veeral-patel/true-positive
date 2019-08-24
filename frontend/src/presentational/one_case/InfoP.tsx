@@ -4,9 +4,13 @@ import React from "react";
 
 const { Content } = Layout;
 
-const Info: React.FC = () => (
+interface InfoProps {
+  caseName: string;
+}
+
+const Info: React.FC<InfoProps> = ({ caseName }) => (
   <div>
-    <OneCaseBreadcrumb caseName="Case Name" tabName="Info" />
+    <OneCaseBreadcrumb caseName={caseName} tabName="Info" />
     <Content
       style={{
         background: "#fff",
