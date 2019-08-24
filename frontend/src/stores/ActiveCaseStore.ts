@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
-class OneCaseStore {
+class ActiveCaseStore {
   @observable activeCaseId: number | null = null;
 }
 
-export default OneCaseStore;
+export default ActiveCaseStore;
