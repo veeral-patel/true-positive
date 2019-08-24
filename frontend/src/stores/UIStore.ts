@@ -45,6 +45,11 @@ class UIStore {
   }
 
   @action.bound
+  openChangeCaseStatusModal() {
+    this.openModal = "CHANGE_STATUS_MODAL";
+  }
+
+  @action.bound
   closeModal() {
     // close whatever modal is open
     this.openModal = null;

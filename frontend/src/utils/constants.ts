@@ -5,5 +5,6 @@ const paths = {
 
 const ADD_TAGS = "ADD_TAGS";
 const REMOVE_TAGS = "REMOVE_TAGS";
+const CHANGE_STATUS = "CHANGE_STATUS";
 
-export { paths, ADD_TAGS, REMOVE_TAGS };
+export { paths, ADD_TAGS, REMOVE_TAGS, CHANGE_STATUS };

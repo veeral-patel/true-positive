@@ -4,7 +4,7 @@ import ActionsDropdownP from "presentational/all_cases/ActionsDropdownP";
 import React from "react";
 import CaseStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
-import { ADD_TAGS, REMOVE_TAGS } from "utils/constants";
+import { ADD_TAGS, CHANGE_STATUS, REMOVE_TAGS } from "utils/constants";
 
 interface IActionsDropdownProps {
   allCasesStore?: CaseStore;
@@ -30,6 +30,8 @@ export default inject("allCasesStore", "uiStore")(
           uiStore!.openAddTagsToCaseModal();
         } else if (click.key === REMOVE_TAGS) {
           uiStore!.openRemoveTagsFromCaseModal();
+        } else if (click.key === CHANGE_STATUS) {
+          uiStore!.openChangeCaseStatusModal();
         }
       }
     }
