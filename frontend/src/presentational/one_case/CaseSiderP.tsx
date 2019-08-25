@@ -1,8 +1,9 @@
-import { Icon, Layout, Menu } from "antd";
+import { Icon, Layout, Menu, Typography } from "antd";
 import { CollapseType } from "antd/lib/layout/Sider";
 import React from "react";
 
 const { Sider } = Layout;
+const { Text } = Typography;
 
 interface ICaseSiderProps {
   collapsed: boolean;
@@ -21,6 +22,11 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
     onCollapse={handleCollapse}
     theme="light"
   >
+    <div style={{ marginBottom: "10px" }}>
+      <Text type="secondary" style={{ textTransform: "uppercase" }}>
+        Case Name
+      </Text>
+    </div>
     <Menu
       mode="inline"
       defaultSelectedKeys={["info"]}
