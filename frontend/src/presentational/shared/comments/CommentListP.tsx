@@ -1,6 +1,6 @@
 import { Comment, List } from "antd";
 import React from "react";
-import IComment from 'ts/interfaces/IComment';
+import IComment from "ts/interfaces/IComment";
 
 interface CommentListProps {
   comments: IComment[];
@@ -16,7 +16,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => (
         <Comment
           content={comment.comment}
           author={comment.createdBy.username}
-          datetime={comment.createdAt}
+          datetime={comment.formattedCreatedAt}
         />
       </li>
     )}

@@ -6,5 +6,6 @@ module Types
         field :comment, String, null: false
         field :created_by, Types::UserType, null: false
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false
+        field :formatted_created_at, String, null: false
     end
 end

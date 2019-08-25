@@ -5,4 +5,8 @@ class Comment < ApplicationRecord
     validates :comment, presence: true
     validates :created_by, presence: true
     validates :commentable, presence: true
+
+    def formatted_created_at
+        self.created_at.strftime("%m/%d/%y %H:%M")
+    end
 end

@@ -35,6 +35,7 @@ const GET_ONE_CASE = gql`
       }
       comments {
         comment
+        formattedCreatedAt
         createdAt
         createdBy {
           username

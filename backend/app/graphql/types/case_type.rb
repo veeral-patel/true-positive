@@ -18,8 +18,4 @@ module Types
         field :tags, [String], null: false
         field :tasks, [Types::TaskType], null: false
     end
-
-    def formatted_created_at
-        created_at.strftime('mm/dd/yy HH:MM')
-    end
 end
