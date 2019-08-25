@@ -8,11 +8,13 @@ const { Text } = Typography;
 interface ICaseSiderProps {
   collapsed: boolean;
   handleCollapse: (collapsed: boolean, type: CollapseType) => void;
+  caseName: string;
 }
 
 const CaseSiderP: React.FC<ICaseSiderProps> = ({
   collapsed,
-  handleCollapse
+  handleCollapse,
+  caseName
 }) => (
   <Sider
     width={200}
@@ -24,7 +26,7 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
   >
     <div style={{ marginBottom: "10px" }}>
       <Text type="secondary" style={{ textTransform: "uppercase" }}>
-        Case Name
+        {caseName}
       </Text>
     </div>
     <Menu
