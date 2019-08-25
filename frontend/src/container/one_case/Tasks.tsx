@@ -1,5 +1,4 @@
 import { RouteComponentProps } from "@reach/router";
-import { Result, Spin } from "antd";
 import { inject, observer } from "mobx-react";
 import TasksP from "presentational/one_case/TasksP";
 import React from "react";
@@ -14,20 +13,11 @@ export default inject("activeCaseStore")(
     class Task extends React.Component<TaskProps> {
       render() {
         const { activeCaseStore } = this.props;
-        if (activeCaseStore!.activeCaseIsLoading) return <Spin />;
-        else {
-          const activeCase = activeCaseStore!.activeCase;
-          if (activeCase) return <TasksP caseName={activeCase.name} />;
-          else {
-            return (
-              <Result
-                status="error"
-                title="Could not fetch case"
-                subTitle="Please ensure that the case exists and that your Internet connection is working."
-              />
-            );
-          }
-        }
+        const activeCase = activeCaseStore!.activeCase;
+
+        // should always render, since we're catching errors and showing
+        // our spinner above this, as a HOC
+        if (activeCase) return <TasksP caseName={activeCase.name} />;
       }
     }
   )

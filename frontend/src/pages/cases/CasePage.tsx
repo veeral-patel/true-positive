@@ -1,6 +1,7 @@
 import { RouteComponentProps, Router } from "@reach/router";
 import { Layout, notification } from "antd";
 import CaseSider from "container/one_case/CaseSider";
+import HandleErrorAndLoading from "container/one_case/HandleErrorAndLoading";
 import Info from "container/one_case/Info";
 import Tasks from "container/one_case/Tasks";
 import { inject, observer } from "mobx-react";
@@ -41,15 +42,17 @@ class CasePage extends React.Component<ICasePageProps> {
       <Layout>
         <CaseSider />
         <Layout style={{ padding: "0 24px 24px" }}>
-          <Router>
-            <Info path="/" />
-            <Info path="/info" />
-            <TreeP path="/tree" />
-            <MembersP path="/members" />
-            <IndicatorsP path="/indicators" />
-            <Tasks path="/tasks" />
-            <Page404 default showBackButton={false} />
-          </Router>
+          <HandleErrorAndLoading>
+            <Router>
+              <Info path="/" />
+              <Info path="/info" />
+              <TreeP path="/tree" />
+              <MembersP path="/members" />
+              <IndicatorsP path="/indicators" />
+              <Tasks path="/tasks" />
+              <Page404 default showBackButton={false} />
+            </Router>
+          </HandleErrorAndLoading>
         </Layout>
       </Layout>
     );
