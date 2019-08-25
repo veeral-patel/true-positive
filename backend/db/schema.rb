@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_061051) do
+ActiveRecord::Schema.define(version: 2019_08_25_194829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 2019_08_14_061051) do
     t.index ["created_by_id"], name: "index_cases_on_created_by_id"
     t.index ["priority_id"], name: "index_cases_on_priority_id"
     t.index ["status_id"], name: "index_cases_on_status_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "created_by_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["created_by_id"], name: "index_comments_on_created_by_id"
   end
 
   create_table "priorities", force: :cascade do |t|
@@ -90,12 +101,14 @@ ActiveRecord::Schema.define(version: 2019_08_14_061051) do
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "cases", "priorities"
   add_foreign_key "cases", "statuses"
   add_foreign_key "cases", "users", column: "assigned_to_id"
   add_foreign_key "cases", "users", column: "created_by_id"
+  add_foreign_key "comments", "users", column: "created_by_id"
   add_foreign_key "tasks", "cases"
   add_foreign_key "tasks", "priorities"
   add_foreign_key "tasks", "statuses"
