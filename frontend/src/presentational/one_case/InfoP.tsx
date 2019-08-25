@@ -62,7 +62,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         <Row>
           <Col span={16}>
             <Divider orientation="left">Description</Divider>
-            <ReactQuill />
+            <ReactQuill value={activeCase.description} />
           </Col>
         </Row>
       </section>
