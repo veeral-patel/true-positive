@@ -1,4 +1,5 @@
 import { Col, Divider, Layout, Row } from "antd";
+import "presentational/one_case/InfoP.css";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
