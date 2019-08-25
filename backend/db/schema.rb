@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_194829) do
+ActiveRecord::Schema.define(version: 2019_08_25_234525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,11 @@ ActiveRecord::Schema.define(version: 2019_08_25_194829) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.bigint "assigned_to_id"
+    t.datetime "merged_at"
+    t.bigint "merged_into_id"
     t.index ["assigned_to_id"], name: "index_cases_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_cases_on_created_by_id"
+    t.index ["merged_into_id"], name: "index_cases_on_merged_into_id"
     t.index ["priority_id"], name: "index_cases_on_priority_id"
     t.index ["status_id"], name: "index_cases_on_status_id"
   end
@@ -104,6 +107,7 @@ ActiveRecord::Schema.define(version: 2019_08_25_194829) do
     t.string "password_digest"
   end
 
+  add_foreign_key "cases", "cases", column: "merged_into_id"
   add_foreign_key "cases", "priorities"
   add_foreign_key "cases", "statuses"
   add_foreign_key "cases", "users", column: "assigned_to_id"
