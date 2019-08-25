@@ -6,9 +6,9 @@ import Indicators from "container/one_case/Indicators";
 import Info from "container/one_case/Info";
 import Members from "container/one_case/Members";
 import Tasks from "container/one_case/Tasks";
+import Tree from "container/one_case/Tree";
 import { inject, observer } from "mobx-react";
 import Page404 from "pages/shared/Page404";
-import TreeP from "presentational/one_case/TreeP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 
@@ -46,7 +46,7 @@ class CasePage extends React.Component<ICasePageProps> {
             <Router>
               <Info path="/" />
               <Info path="/info" />
-              <TreeP path="/tree" />
+              <Tree path="/tree" />
               <Members path="/members" />
               <Indicators path="/indicators" />
               <Tasks path="/tasks" />

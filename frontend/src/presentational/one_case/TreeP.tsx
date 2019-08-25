@@ -4,9 +4,13 @@ import React from "react";
 import OneCaseBreadcrumb from "./OneCaseBreadcrumb";
 const { Content } = Layout;
 
-const Tree: React.FC<RouteComponentProps> = () => (
+interface TreeProps extends RouteComponentProps {
+  caseName: string;
+}
+
+const Tree: React.FC<TreeProps> = ({ caseName }) => (
   <div>
-    <OneCaseBreadcrumb caseName="Case Name" tabName="Tree" />
+    <OneCaseBreadcrumb caseName={caseName} tabName="Tree" />
     <Content
       style={{
         background: "#fff",
