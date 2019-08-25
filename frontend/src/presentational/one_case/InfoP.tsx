@@ -1,4 +1,4 @@
-import { Layout } from "antd";
+import { Divider, Layout } from "antd";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
@@ -23,12 +23,10 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
       }}
     >
       <h2>Info</h2>
-      <h4>Details</h4>
+      <Divider orientation="left">Details</Divider>
       <section style={{ lineHeight: 3.0 }}>
         Status: <StatusTagP statusName={activeCase.status.name} />
-        <br />
         Priority: <PriorityTagP priorityName={activeCase.priority.name} />
-        <br />
         Created:{" "}
         {`${activeCase.formattedCreatedAt} by ${activeCase.createdBy.username}`}
       </section>
