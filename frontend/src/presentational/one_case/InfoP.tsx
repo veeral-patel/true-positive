@@ -1,11 +1,10 @@
 import { Col, Divider, Layout, Row } from "antd";
-import "presentational/one_case/InfoP.css";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
+import DescriptionP from "presentational/shared/description/DescriptionP";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
-import ReactQuill from "react-quill";
 import ICase from "ts/interfaces/ICase";
 
 const { Content } = Layout;
@@ -63,7 +62,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         <Row>
           <Col span={16}>
             <Divider orientation="left">Description</Divider>
-            <ReactQuill value={activeCase.description} />
+            <DescriptionP description={activeCase.description} />
           </Col>
         </Row>
       </section>
