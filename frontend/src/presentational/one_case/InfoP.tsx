@@ -1,4 +1,4 @@
-import { Col, Divider, Layout, Row } from "antd";
+import { Col, Divider, Layout, Row, Typography } from "antd";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import CommentList from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
@@ -9,6 +9,7 @@ import React from "react";
 import ICase from "ts/interfaces/ICase";
 
 const { Content } = Layout;
+const { Text } = Typography;
 
 interface InfoProps {
   activeCase: ICase;
@@ -90,7 +91,9 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         marginLeft: 24
       }}
     >
-      <h3>Activity</h3>
+      <Text type="secondary" style={{ textTransform: "uppercase" }}>
+        Activity
+      </Text>
     </Content>
   </div>
 );
