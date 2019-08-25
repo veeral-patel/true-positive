@@ -33,6 +33,13 @@ const GET_ONE_CASE = gql`
         }
         tags
       }
+      comments {
+        comment
+        createdAt
+        createdBy {
+          username
+        }
+      }
     }
   }
 `;
