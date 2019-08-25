@@ -1,4 +1,4 @@
-import { Col, Divider, Layout, Row, Typography } from "antd";
+import { Col, Divider, Empty, Layout, Row, Typography } from "antd";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import CommentList from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
@@ -87,13 +87,18 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         float: "right",
         backgroundColor: "#fff",
         padding: 24,
-        minHeight: 280,
+        minHeight: 700,
         marginLeft: 24
       }}
     >
       <Text type="secondary" style={{ textTransform: "uppercase" }}>
         Activity
       </Text>
+      <br />
+      <br />
+      <br />
+      <br />
+      <Empty />
     </Content>
   </div>
 );
