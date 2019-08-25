@@ -42,7 +42,11 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         title="Tags"
         dataIndex="tags"
         key="tags"
-        render={tags => <ListOfTagsP tags={tags} />}
+        render={tags => (
+          <div style={{ lineHeight: 2.0 }}>
+            <ListOfTagsP tags={tags} />
+          </div>
+        )}
       />
       <Column
         title="Status"
