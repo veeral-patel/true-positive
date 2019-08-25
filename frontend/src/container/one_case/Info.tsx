@@ -17,7 +17,7 @@ export default inject("activeCaseStore")(
 
         // should always render, since we're catching errors and showing
         // our spinner above this, as a HOC
-        if (activeCase) return <InfoP caseName={activeCase.name} />;
+        if (activeCase) return <InfoP activeCase={activeCase} />;
       }
     }
   )
