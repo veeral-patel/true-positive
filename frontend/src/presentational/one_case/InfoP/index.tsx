@@ -54,7 +54,6 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         style={{
           backgroundColor: "#fff",
           padding: 24,
-          minHeight: 700,
           marginLeft: 24,
           flex: 1
         }}
