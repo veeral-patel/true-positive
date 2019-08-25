@@ -10,6 +10,7 @@ class Case < ApplicationRecord
   belongs_to :priority
 
   has_many :tasks
+  has_many :comments, as: :commentable
 
   acts_as_taggable_on :tags
 
