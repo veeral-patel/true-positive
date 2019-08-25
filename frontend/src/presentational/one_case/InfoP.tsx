@@ -1,5 +1,6 @@
-import { Col, Comment, Divider, Layout, List, Row } from "antd";
+import { Col, Divider, Layout, Row } from "antd";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
+import CommentList from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
@@ -72,20 +73,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
             <Divider orientation="left">
               Comments ({activeCase.comments.length})
             </Divider>
-            <List
-              className="comment-list"
-              itemLayout="horizontal"
-              dataSource={activeCase.comments}
-              renderItem={comment => (
-                <li>
-                  <Comment
-                    content={comment.comment}
-                    author={comment.createdBy.username}
-                    datetime={comment.createdAt}
-                  />
-                </li>
-              )}
-            />
+            <CommentList comments={activeCase.comments} />
           </Col>
         </Row>
       </section>
