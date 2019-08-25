@@ -4,4 +4,5 @@ class Comment < ApplicationRecord
 
     validates :comment, presence: true
     validates :created_by, presence: true
+    validates :commentable, presence: true
 end
