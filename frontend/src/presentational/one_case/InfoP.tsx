@@ -4,6 +4,7 @@ import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
+import ReactQuill from "react-quill";
 import ICase from "ts/interfaces/ICase";
 
 const { Content } = Layout;
@@ -55,6 +56,14 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         <Row>
           <Col span={4}>Tags:</Col>
           <Col span={12}>{<ListOfTagsP tags={activeCase.tags} />}</Col>
+        </Row>
+      </section>
+      <section>
+        <Row>
+          <Col span={16}>
+            <Divider orientation="left">Description</Divider>
+            <ReactQuill />
+          </Col>
         </Row>
       </section>
     </Content>
