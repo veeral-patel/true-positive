@@ -4,9 +4,13 @@ import React from "react";
 import OneCaseBreadcrumb from "./OneCaseBreadcrumb";
 const { Content } = Layout;
 
-const Tasks: React.FC<RouteComponentProps> = () => (
+interface TasksProps extends RouteComponentProps {
+  caseName: string;
+}
+
+const TasksP: React.FC<TasksProps> = ({ caseName }) => (
   <div>
-    <OneCaseBreadcrumb caseName="Case Name" tabName="Tasks" />
+    <OneCaseBreadcrumb caseName={caseName} tabName="Tasks" />
     <Content
       style={{
         background: "#fff",
@@ -20,4 +24,4 @@ const Tasks: React.FC<RouteComponentProps> = () => (
   </div>
 );
 
-export default Tasks;
+export default TasksP;

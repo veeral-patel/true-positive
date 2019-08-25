@@ -2,11 +2,11 @@ import { RouteComponentProps, Router } from "@reach/router";
 import { Layout, notification } from "antd";
 import CaseSider from "container/one_case/CaseSider";
 import Info from "container/one_case/Info";
+import Tasks from "container/one_case/Tasks";
 import { inject, observer } from "mobx-react";
 import Page404 from "pages/shared/Page404";
 import IndicatorsP from "presentational/one_case/IndicatorsP";
 import MembersP from "presentational/one_case/MembersP";
-import TasksP from "presentational/one_case/TasksP";
 import TreeP from "presentational/one_case/TreeP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -47,7 +47,7 @@ class CasePage extends React.Component<ICasePageProps> {
             <TreeP path="/tree" />
             <MembersP path="/members" />
             <IndicatorsP path="/indicators" />
-            <TasksP path="/tasks" />
+            <Tasks path="/tasks" />
             <Page404 default showBackButton={false} />
           </Router>
         </Layout>
