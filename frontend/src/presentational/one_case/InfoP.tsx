@@ -25,10 +25,18 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
       <h2>Info</h2>
       <Divider orientation="left">Details</Divider>
       <section style={{ lineHeight: 3.0 }}>
-        Status: <StatusTagP statusName={activeCase.status.name} />
-        Priority: <PriorityTagP priorityName={activeCase.priority.name} />
-        Created:{" "}
-        {`${activeCase.formattedCreatedAt} by ${activeCase.createdBy.username}`}
+        <div>
+          Status: <StatusTagP statusName={activeCase.status.name} />
+        </div>
+        <div>
+          Priority: <PriorityTagP priorityName={activeCase.priority.name} />
+        </div>
+        <div>
+          Created:{" "}
+          {`${activeCase.formattedCreatedAt} by ${
+            activeCase.createdBy.username
+          }`}
+        </div>
       </section>
     </Content>
   </div>
