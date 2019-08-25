@@ -24,11 +24,15 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
     onCollapse={handleCollapse}
     theme="light"
   >
-    <div style={{ marginBottom: "10px" }}>
-      <Text type="secondary" style={{ textTransform: "uppercase" }}>
-        {caseName}
-      </Text>
-    </div>
+    {collapsed ? (
+      <span />
+    ) : (
+      <div style={{ marginBottom: "10px" }}>
+        <Text type="secondary" style={{ textTransform: "uppercase" }}>
+          {caseName}
+        </Text>
+      </div>
+    )}
     <Menu
       mode="inline"
       defaultSelectedKeys={["info"]}
