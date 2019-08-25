@@ -21,7 +21,7 @@ class Case < ApplicationRecord
 
   def is_merged
     # Whether or not this case has been merged into another case
-    not self.merged_at.nil?
+    not self.merged_at.nil? || self.merged_into.nil?
   end
 
   def formatted_created_at
