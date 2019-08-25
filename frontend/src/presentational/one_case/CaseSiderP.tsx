@@ -28,7 +28,7 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
       <span />
     ) : (
       <div style={{ marginBottom: "10px" }}>
-        <Text editable type="secondary" style={{ textTransform: "uppercase" }}>
+        <Text type="secondary" style={{ textTransform: "uppercase" }}>
           {caseName}
         </Text>
       </div>
