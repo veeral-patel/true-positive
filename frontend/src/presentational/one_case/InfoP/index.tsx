@@ -7,6 +7,7 @@ import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
+import DetailsP from "presentational/one_case/InfoP/DetailsP";
 
 const { Content } = Layout;
 const { Text } = Typography;
@@ -29,39 +30,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         }}
       >
         <h2>Info</h2>
-        <section style={{ lineHeight: 3 }}>
-          <Row>
-            <Col span={24}>
-              <Divider orientation="left">Details</Divider>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={4}>Status:</Col>
-            <Col span={8}>
-              <StatusTagP statusName={activeCase.status.name} />
-            </Col>
-            <Col span={4}>Created:</Col>
-            <Col span={8}>
-              {`${activeCase.formattedCreatedAt} by ${
-                activeCase.createdBy.username
-              }`}
-            </Col>
-          </Row>
-          <Row>
-            <Col span={4}>Priority:</Col>
-            <Col span={8}>
-              <PriorityTagP priorityName={activeCase.priority.name} />
-            </Col>
-            <Col span={4}>Assigned To:</Col>
-            <Col span={8}>
-              {activeCase.assignedTo ? activeCase.assignedTo.username : "N/A"}
-            </Col>
-          </Row>
-          <Row>
-            <Col span={4}>Tags:</Col>
-            <Col span={8}>{<ListOfTagsP tags={activeCase.tags} />}</Col>
-          </Row>
-        </section>
+        <DetailsP activeCase={activeCase} />
         <section>
           <Row>
             <Col span={24}>
