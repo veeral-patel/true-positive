@@ -1,12 +1,15 @@
-import { RouteComponentProps } from "@reach/router";
 import { Layout } from "antd";
 import React from "react";
 import OneCaseBreadcrumb from "./OneCaseBreadcrumb";
 const { Content } = Layout;
 
-const Indicators: React.FC<RouteComponentProps> = () => (
+interface IndicatorsProps {
+  caseName: string;
+}
+
+const IndicatorsP: React.FC<IndicatorsProps> = ({ caseName }) => (
   <div>
-    <OneCaseBreadcrumb caseName="Case Name" tabName="Indicators" />
+    <OneCaseBreadcrumb caseName={caseName} tabName="Indicators" />
     <Content
       style={{
         background: "#fff",
@@ -20,4 +23,4 @@ const Indicators: React.FC<RouteComponentProps> = () => (
   </div>
 );
 
-export default Indicators;
+export default IndicatorsP;

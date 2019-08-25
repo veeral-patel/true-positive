@@ -1,10 +1,9 @@
-import { RouteComponentProps } from "@reach/router";
 import { Layout } from "antd";
 import React from "react";
 import OneCaseBreadcrumb from "./OneCaseBreadcrumb";
 const { Content } = Layout;
 
-interface TasksProps extends RouteComponentProps {
+interface TasksProps {
   caseName: string;
 }
 
