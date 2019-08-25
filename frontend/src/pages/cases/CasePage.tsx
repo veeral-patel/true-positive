@@ -4,10 +4,10 @@ import CaseSider from "container/one_case/CaseSider";
 import HandleErrorAndLoading from "container/one_case/HandleErrorAndLoading";
 import Indicators from "container/one_case/Indicators";
 import Info from "container/one_case/Info";
+import Members from "container/one_case/Members";
 import Tasks from "container/one_case/Tasks";
 import { inject, observer } from "mobx-react";
 import Page404 from "pages/shared/Page404";
-import MembersP from "presentational/one_case/MembersP";
 import TreeP from "presentational/one_case/TreeP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -47,7 +47,7 @@ class CasePage extends React.Component<ICasePageProps> {
               <Info path="/" />
               <Info path="/info" />
               <TreeP path="/tree" />
-              <MembersP path="/members" />
+              <Members path="/members" />
               <Indicators path="/indicators" />
               <Tasks path="/tasks" />
               <Page404 default showBackButton={false} />
