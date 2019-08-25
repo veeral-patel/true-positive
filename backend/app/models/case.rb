@@ -19,9 +19,21 @@ class Case < ApplicationRecord
     self.name
   end
 
+  def merge_case_into(parent_case)
+    # Merge this case into PARENT_CASE
+    self.merged_into = parent_case
+    self.merged_at = Time.now
+    self.save
+  end
+
   def is_merged
     # Whether or not this case has been merged into another case
     not self.merged_at.nil? || self.merged_into.nil?
+  end
+
+  def merged_cases
+    # Lists the other cases that have been merged into this one
+    Case.where(merged_into: self)
   end
 
   def formatted_created_at
