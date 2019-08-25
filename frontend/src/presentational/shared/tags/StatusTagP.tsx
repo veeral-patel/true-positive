@@ -9,9 +9,9 @@ const StatusTagP: React.FC<IStatusTagProps> = ({ statusName }) => {
   if (statusName === "Open") {
     return <Tag color="red">{statusName}</Tag>;
   } else if (statusName === "In Progress") {
-    return <Tag color="volcano">{statusName}</Tag>;
+    return <Tag color="orange">{statusName}</Tag>;
   } else if (statusName === "Closed") {
-    return <Tag color="gold">{statusName}</Tag>;
+    return <Tag color="green">{statusName}</Tag>;
   } else {
     return <Tag>{statusName}</Tag>;
   }
