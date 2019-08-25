@@ -1,4 +1,4 @@
-import { Divider, Layout } from "antd";
+import { Col, Divider, Layout, Row } from "antd";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
@@ -24,25 +24,40 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
       }}
     >
       <h2>Info</h2>
-      <Divider orientation="left">Details</Divider>
-      <section style={{ lineHeight: 3.0 }}>
-        <div>
-          Status: <StatusTagP statusName={activeCase.status.name} />
-        </div>
-        <div>
-          Priority: <PriorityTagP priorityName={activeCase.priority.name} />
-        </div>
-        <div>
-          Created:{" "}
-          {`${activeCase.formattedCreatedAt} by ${
-            activeCase.createdBy.username
-          }`}
-        </div>
-        <div>
-          Assigned To:{" "}
-          {activeCase.assignedTo ? activeCase.assignedTo.username : "N/A"}
-        </div>
-        <div>Tags: {<ListOfTagsP tags={activeCase.tags} />}</div>
+      <section style={{ lineHeight: 3 }}>
+        <Row>
+          <Divider orientation="left">Details</Divider>
+        </Row>
+        <Row>
+          <Col span={4}>Status:</Col>
+          <Col span={4}>
+            <StatusTagP statusName={activeCase.status.name} />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={4}>Priority:</Col>
+          <Col span={4}>
+            <PriorityTagP priorityName={activeCase.priority.name} />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={4}>Created:</Col>
+          <Col span={4}>
+            {`${activeCase.formattedCreatedAt} by ${
+              activeCase.createdBy.username
+            }`}
+          </Col>
+        </Row>
+        <Row>
+          <Col span={4}>Assigned To:</Col>
+          <Col span={4}>
+            {activeCase.assignedTo ? activeCase.assignedTo.username : "N/A"}
+          </Col>
+        </Row>
+        <Row>
+          <Col span={4}>Tags:</Col>
+          <Col span={8}>{<ListOfTagsP tags={activeCase.tags} />}</Col>
+        </Row>
       </section>
     </Content>
   </div>
