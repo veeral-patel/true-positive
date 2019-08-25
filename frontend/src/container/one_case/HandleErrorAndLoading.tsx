@@ -12,7 +12,18 @@ const HandleErrorAndLoading: React.FC<HandleErrorAndLoadingProps> = ({
   activeCaseStore
 }) => {
   if (activeCaseStore!.activeCaseIsLoading) {
-    return <Spin />;
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: "20px",
+          padding: "30px 50px",
+          margin: "20px 0"
+        }}
+      >
+        <Spin size="large" />
+      </div>
+    );
   } else if (!activeCaseStore!.activeCase) {
     return (
       <Result
