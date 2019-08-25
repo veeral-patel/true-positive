@@ -22,23 +22,25 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         background: "#fff",
         padding: 24,
         margin: 0,
-        minHeight: 280
+        minHeight: 280,
+        width: "70%",
+        float: "left"
       }}
     >
       <h2>Info</h2>
       <section style={{ lineHeight: 3 }}>
         <Row>
-          <Col span={16}>
+          <Col span={24}>
             <Divider orientation="left">Details</Divider>
           </Col>
         </Row>
         <Row>
           <Col span={4}>Status:</Col>
-          <Col span={4}>
+          <Col span={8}>
             <StatusTagP statusName={activeCase.status.name} />
           </Col>
           <Col span={4}>Created:</Col>
-          <Col span={4}>
+          <Col span={8}>
             {`${activeCase.formattedCreatedAt} by ${
               activeCase.createdBy.username
             }`}
@@ -46,22 +48,22 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         </Row>
         <Row>
           <Col span={4}>Priority:</Col>
-          <Col span={4}>
+          <Col span={8}>
             <PriorityTagP priorityName={activeCase.priority.name} />
           </Col>
           <Col span={4}>Assigned To:</Col>
-          <Col span={4}>
+          <Col span={8}>
             {activeCase.assignedTo ? activeCase.assignedTo.username : "N/A"}
           </Col>
         </Row>
         <Row>
           <Col span={4}>Tags:</Col>
-          <Col span={12}>{<ListOfTagsP tags={activeCase.tags} />}</Col>
+          <Col span={20}>{<ListOfTagsP tags={activeCase.tags} />}</Col>
         </Row>
       </section>
       <section>
         <Row>
-          <Col span={16}>
+          <Col span={24}>
             <Divider orientation="left">Description</Divider>
             <DescriptionP description={activeCase.description} />
           </Col>
@@ -69,7 +71,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
       </section>
       <section>
         <Row>
-          <Col span={16}>
+          <Col span={24}>
             <Divider orientation="left">
               Comments ({activeCase.comments.length})
             </Divider>
@@ -77,6 +79,18 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
           </Col>
         </Row>
       </section>
+    </Content>
+    <Content
+      style={{
+        width: "28%",
+        float: "right",
+        backgroundColor: "#fff",
+        padding: 24,
+        minHeight: 280,
+        marginLeft: 24
+      }}
+    >
+      <h3>Activity</h3>
     </Content>
   </div>
 );
