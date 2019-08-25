@@ -7,7 +7,7 @@ import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
-import DetailsP from "presentational/one_case/InfoP/DetailsP";
+import DetailsSectionP from "presentational/one_case/InfoP/DetailsSectionP";
 
 const { Content } = Layout;
 const { Text } = Typography;
@@ -30,7 +30,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         }}
       >
         <h2>Info</h2>
-        <DetailsP activeCase={activeCase} />
+        <DetailsSectionP activeCase={activeCase} />
         <section>
           <Row>
             <Col span={24}>
