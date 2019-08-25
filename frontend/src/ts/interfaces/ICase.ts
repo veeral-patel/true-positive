@@ -14,7 +14,7 @@ interface ICase {
   createdBy: IUser;
   assignedTo: IUser | null;
   tasks: ITask[];
-  tags: String[];
+  tags: string[];
 }
 
 export default ICase;

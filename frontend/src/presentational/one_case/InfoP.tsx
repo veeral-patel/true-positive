@@ -1,5 +1,6 @@
 import { Divider, Layout } from "antd";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
+import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
@@ -37,6 +38,11 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
             activeCase.createdBy.username
           }`}
         </div>
+        <div>
+          Assigned To:{" "}
+          {activeCase.assignedTo ? activeCase.assignedTo.username : "N/A"}
+        </div>
+        <div>Tags: {<ListOfTagsP tags={activeCase.tags} />}</div>
       </section>
     </Content>
   </div>
