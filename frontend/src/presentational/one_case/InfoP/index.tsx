@@ -1,13 +1,11 @@
 import { Col, Divider, Empty, Layout, Row, Typography } from "antd";
+import DetailsSectionP from "presentational/one_case/InfoP/DetailsSectionP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import CommentList from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
-import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
-import PriorityTagP from "presentational/shared/tags/PriorityTagP";
-import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
-import DetailsSectionP from "presentational/one_case/InfoP/DetailsSectionP";
+import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
 const { Text } = Typography;
@@ -45,7 +43,9 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
               <Divider orientation="left">
                 Comments ({activeCase.comments.length})
               </Divider>
-              <CommentList comments={activeCase.comments} />
+              <CommentList
+                comments={sortCommentsByCreatedAt(activeCase.comments)}
+              />
             </Col>
           </Row>
         </section>
