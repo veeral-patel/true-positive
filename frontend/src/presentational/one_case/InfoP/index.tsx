@@ -1,26 +1,26 @@
 import {
+  Avatar,
   Button,
   Col,
+  Comment,
   Divider,
   Empty,
-  Form,
-  Input,
   Layout,
   Row,
   Typography
 } from "antd";
+import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsSectionP from "presentational/one_case/InfoP/DetailsSectionP";
+import ListofMergedCasesP from "presentational/one_case/ListofMergedCasesP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import CommentList from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
-import ListofMergedCasesP from "../ListofMergedCasesP";
 
 const { Content } = Layout;
 const { Text } = Typography;
-const { TextArea } = Input;
 
 interface InfoProps {
   activeCase: ICase;
@@ -68,24 +68,21 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
                 />
               )}
               <div style={{ width: "70%" }}>
-                <Form.Item>
-                  <TextArea
-                    placeholder="Leave a comment"
-                    rows={3}
-                    style={{ padding: "2%" }}
-                  />
-                </Form.Item>
-                <Form.Item style={{ float: "right" }}>
-                  <Button type="primary">Add Comment</Button>
-                </Form.Item>
+                <Comment
+                  content={<AddCommentFormP />}
+                  avatar={
+                    <Avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                      alt="Han Solo"
+                    />
+                  }
+                />
               </div>
             </Col>
           </Row>
         </section>
 
-        {activeCase.mergedCases.length === 0 ? (
-          <span />
-        ) : (
+        {activeCase.mergedCases.length > 0 && (
           <section>
             <Divider orientation="left">
               Merged Cases ({activeCase.mergedCases.length})

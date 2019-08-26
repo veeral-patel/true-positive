@@ -1,4 +1,4 @@
-import { Comment, List } from "antd";
+import { Avatar, Comment, List } from "antd";
 import React from "react";
 import IComment from "ts/interfaces/IComment";
 
@@ -17,6 +17,12 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => (
           content={comment.comment}
           author={comment.createdBy.username}
           datetime={comment.formattedCreatedAt}
+          avatar={
+            <Avatar
+              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              alt="Han Solo"
+            />
+          }
         />
       </li>
     )}
