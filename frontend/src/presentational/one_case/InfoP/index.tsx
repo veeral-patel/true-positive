@@ -1,4 +1,4 @@
-import { Col, Divider, Empty, Layout, Row, Typography } from "antd";
+import { Button, Col, Divider, Empty, Layout, Row, Typography } from "antd";
 import DetailsSectionP from "presentational/one_case/InfoP/DetailsSectionP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import CommentList from "presentational/shared/comments/CommentListP";
@@ -29,7 +29,13 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         }}
       >
         <h2>Info</h2>
+
+        <section style={{ marginBottom: "10px", marginTop: "10px" }}>
+          <Button icon="pull-request">Merge</Button>
+        </section>
+
         <DetailsSectionP activeCase={activeCase} />
+
         <section>
           <Row>
             <Col span={24}>
@@ -38,6 +44,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
             </Col>
           </Row>
         </section>
+
         <section>
           <Row>
             <Col span={24}>
@@ -50,6 +57,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
             </Col>
           </Row>
         </section>
+
         {activeCase.mergedCases.length === 0 ? (
           <span />
         ) : (
