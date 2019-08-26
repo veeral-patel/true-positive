@@ -98,7 +98,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         <Text type="secondary" style={{ textTransform: "uppercase" }}>
           Activity
         </Text>
-        <Empty />
+        <Empty description="No Activity" />
       </Content>
     </section>
   </section>
