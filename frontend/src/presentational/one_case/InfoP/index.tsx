@@ -49,6 +49,19 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
             </Col>
           </Row>
         </section>
+        {activeCase.mergedCases.length === 0 ? (
+          <span />
+        ) : (
+          <section>
+            <Divider orientation="left">
+              Merged Cases ({activeCase.mergedCases.length})
+            </Divider>
+            <Text>
+              {activeCase.mergedCases.length} case(s) have been merged into this
+              case.
+            </Text>
+          </section>
+        )}
       </Content>
       <Content
         style={{

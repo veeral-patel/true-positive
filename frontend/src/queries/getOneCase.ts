@@ -9,6 +9,9 @@ const GET_ONE_CASE = gql`
       mergedInto {
         name
       }
+      mergedCases {
+        name
+      }
       mergedAt
       description
       createdAt

@@ -20,6 +20,7 @@ interface ICase {
   isMerged: boolean;
   mergedInto: ICase | null;
   mergedAt: string;
+  mergedCases: ICase[];
 }
 
 export default ICase;
