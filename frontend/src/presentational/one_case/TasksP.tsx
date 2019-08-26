@@ -1,6 +1,5 @@
 import { Layout } from "antd";
 import React from "react";
-import OneCaseBreadcrumb from "./OneCaseBreadcrumb";
 const { Content } = Layout;
 
 interface TasksProps {
@@ -9,7 +8,6 @@ interface TasksProps {
 
 const TasksP: React.FC<TasksProps> = ({ caseName }) => (
   <div>
-    <OneCaseBreadcrumb caseName={caseName} tabName="Tasks" />
     <Content
       style={{
         background: "#fff",

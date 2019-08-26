@@ -1,9 +1,9 @@
-import { navigate } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 import { Breadcrumb } from "antd";
 import React from "react";
 import { paths } from "utils/constants";
 
-interface IOneCaseBreadcrumbProps {
+interface IOneCaseBreadcrumbProps extends RouteComponentProps {
   caseName: string;
   tabName: "Info" | "Indicators" | "Members" | "Tasks" | "Tree";
 }
