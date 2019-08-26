@@ -25,7 +25,7 @@ export default inject("activeCaseStore")(
           const formattedTime = formatISO8601(activeCase.mergedAt);
           return (
             <Alert
-              message={`This case was merged into ${activeCase.mergedInto.name} at ${formattedTime} UTC.`}
+              message={`This case was merged into "${activeCase.mergedInto.name}" at ${formattedTime} UTC.`}
               type="info"
               showIcon
             />
