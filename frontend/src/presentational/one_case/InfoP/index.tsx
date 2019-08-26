@@ -70,12 +70,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
               <div style={{ width: "70%" }}>
                 <Comment
                   content={<AddCommentFormP />}
-                  avatar={
-                    <Avatar
-                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                      alt="Han Solo"
-                    />
-                  }
+                  avatar={<Avatar icon="user" />}
                 />
               </div>
             </Col>
