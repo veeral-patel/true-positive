@@ -6,6 +6,7 @@ import Indicators from "container/one_case/Indicators";
 import Info from "container/one_case/Info";
 import Members from "container/one_case/Members";
 import Tasks from "container/one_case/Tasks";
+import ThisCaseHasBeenMergedAlert from "container/one_case/ThisCaseHasBeenMergedAlert";
 import Tree from "container/one_case/Tree";
 import { inject, observer } from "mobx-react";
 import Page404 from "pages/shared/Page404";
@@ -43,6 +44,9 @@ class CasePage extends React.Component<ICasePageProps> {
         <CaseSider />
         <Layout style={{ padding: "0 24px 24px" }}>
           <HandleErrorAndLoading>
+            <div style={{ marginTop: "20px", marginBottom: "20px" }}>
+              <ThisCaseHasBeenMergedAlert />
+            </div>
             <Router>
               <Info path="/" />
               <Info path="/info" />
