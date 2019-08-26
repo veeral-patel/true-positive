@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Button,
   Col,
   Comment,
   Divider,
@@ -40,10 +39,6 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         }}
       >
         <h2>Info</h2>
-
-        <section style={{ marginBottom: "10px", marginTop: "10px" }}>
-          <Button icon="pull-request">Merge</Button>
-        </section>
 
         <DetailsSectionP activeCase={activeCase} />
 
