@@ -17,7 +17,13 @@ export default inject("activeCaseStore")(
 
         // should always be true
         if (activeCase) {
-          return <Alert message="Placeholder" type="info" showIcon />;
+          if (activeCase.isMerged) {
+            return (
+              <Alert message="This case has been merged" type="info" showIcon />
+            );
+          } else {
+            return null;
+          }
         }
       }
     }

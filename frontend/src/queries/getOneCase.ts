@@ -5,6 +5,7 @@ const GET_ONE_CASE = gql`
     case(id: $id) {
       id
       name
+      isMerged
       description
       createdAt
       formattedCreatedAt

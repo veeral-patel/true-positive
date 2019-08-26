@@ -17,6 +17,7 @@ interface ICase {
   tasks: ITask[];
   tags: string[];
   comments: IComment[];
+  isMerged: boolean;
 }
 
 export default ICase;
