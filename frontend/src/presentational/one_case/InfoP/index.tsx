@@ -62,7 +62,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
               <Divider orientation="left">
                 Comments ({activeCase.comments.length})
               </Divider>
-              {activeCase.comments.length === 0 && (
+              {activeCase.comments.length > 0 && (
                 <CommentList
                   comments={sortCommentsByCreatedAt(activeCase.comments)}
                 />

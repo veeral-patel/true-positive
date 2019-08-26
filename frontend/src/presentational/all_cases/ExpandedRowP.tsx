@@ -16,9 +16,7 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ description, tasks }) => (
       {description}
     </Paragraph>
     <div>
-      {tasks.length === 0 ? (
-        <span />
-      ) : (
+      {tasks.length > 0 && (
         <div>
           <h3>Tasks ({tasks.length})</h3>
           <TasksTableP tasks={tasks} />
