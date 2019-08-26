@@ -1,4 +1,14 @@
-import { Button, Col, Divider, Empty, Layout, Row, Typography } from "antd";
+import {
+  Button,
+  Col,
+  Divider,
+  Empty,
+  Form,
+  Input,
+  Layout,
+  Row,
+  Typography
+} from "antd";
 import DetailsSectionP from "presentational/one_case/InfoP/DetailsSectionP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import CommentList from "presentational/shared/comments/CommentListP";
@@ -10,6 +20,7 @@ import ListofMergedCasesP from "../ListofMergedCasesP";
 
 const { Content } = Layout;
 const { Text } = Typography;
+const { TextArea } = Input;
 
 interface InfoProps {
   activeCase: ICase;
@@ -51,9 +62,23 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
               <Divider orientation="left">
                 Comments ({activeCase.comments.length})
               </Divider>
-              <CommentList
-                comments={sortCommentsByCreatedAt(activeCase.comments)}
-              />
+              {activeCase.comments.length === 0 && (
+                <CommentList
+                  comments={sortCommentsByCreatedAt(activeCase.comments)}
+                />
+              )}
+              <div style={{ width: "70%" }}>
+                <Form.Item>
+                  <TextArea
+                    placeholder="Leave a comment"
+                    rows={3}
+                    style={{ padding: "2%" }}
+                  />
+                </Form.Item>
+                <Form.Item style={{ float: "right" }}>
+                  <Button type="primary">Add Comment</Button>
+                </Form.Item>
+              </div>
             </Col>
           </Row>
         </section>
