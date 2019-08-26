@@ -72,6 +72,16 @@ export default inject("activeCaseStore")(
                       />
                       <OneCaseBreadcrumb
                         caseName={activeCaseStore!.activeCase.name}
+                        tabName="Members"
+                        path="/members"
+                      />
+                      <OneCaseBreadcrumb
+                        caseName={activeCaseStore!.activeCase.name}
+                        tabName="Indicators"
+                        path="/indicators"
+                      />
+                      <OneCaseBreadcrumb
+                        caseName={activeCaseStore!.activeCase.name}
                         tabName="Tasks"
                         path="/tasks"
                       />

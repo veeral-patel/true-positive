@@ -17,7 +17,7 @@ export default inject("activeCaseStore")(
 
         // should always render, since we're catching errors and showing
         // our spinner above this component, as a HOC
-        if (activeCase) return <MembersP caseName={activeCase.name} />;
+        if (activeCase) return <MembersP />;
       }
     }
   )
