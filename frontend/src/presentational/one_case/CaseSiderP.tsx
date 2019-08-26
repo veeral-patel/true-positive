@@ -24,9 +24,7 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
     onCollapse={handleCollapse}
     theme="light"
   >
-    {collapsed ? (
-      <span />
-    ) : (
+    {!collapsed && (
       <div style={{ marginBottom: "10px" }}>
         <Text type="secondary" style={{ textTransform: "uppercase" }}>
           {caseName}
