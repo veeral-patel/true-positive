@@ -1,5 +1,4 @@
 import { AutoComplete, Form, Icon, Input, Modal, Select } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import "presentational/all_cases/CreateCaseModalP.css";
 import React from "react";
 import IPriority from "ts/interfaces/IPriority";
@@ -68,9 +67,6 @@ const CreateCaseModalP: React.FC<ICreateCaseModalProps> = ({
             placeholder="Enter tags"
             tokenSeparators={[","]}
           />
-        </Form.Item>
-        <Form.Item label="Description">
-          <TextArea placeholder="Enter description here" rows={5} />
         </Form.Item>
       </Form>
     </Modal>
