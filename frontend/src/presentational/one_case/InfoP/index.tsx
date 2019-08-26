@@ -27,9 +27,9 @@ interface InfoProps {
 }
 
 const Info: React.FC<InfoProps> = ({ activeCase }) => (
-  <div>
+  <section>
     <OneCaseBreadcrumb caseName={activeCase.name} tabName="Info" />
-    <div style={{ display: "flex" }}>
+    <section style={{ display: "flex" }}>
       <Content
         style={{
           background: "#fff",
@@ -91,7 +91,9 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
               {activeCase.mergedCases.length} case(s) have been merged into this
               case.
             </Text>
-            <ListofMergedCasesP mergedCases={activeCase.mergedCases} />
+            <div style={{ marginTop: "15px" }}>
+              <ListofMergedCasesP mergedCases={activeCase.mergedCases} />
+            </div>
           </section>
         )}
       </Content>
@@ -108,8 +110,8 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         </Text>
         <Empty />
       </Content>
-    </div>
-  </div>
+    </section>
+  </section>
 );
 
 export default Info;
