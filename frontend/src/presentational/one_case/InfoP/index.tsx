@@ -6,6 +6,7 @@ import DescriptionP from "presentational/shared/description/DescriptionP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
+import ListofMergedCasesP from "../ListofMergedCasesP";
 
 const { Content } = Layout;
 const { Text } = Typography;
@@ -60,6 +61,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
               {activeCase.mergedCases.length} case(s) have been merged into this
               case.
             </Text>
+            <ListofMergedCasesP mergedCases={activeCase.mergedCases} />
           </section>
         )}
       </Content>
