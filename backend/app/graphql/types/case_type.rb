@@ -11,11 +11,15 @@ module Types
         field :status, Types::StatusType, null: false
         field :priority, Types::PriorityType, null: false
         field :comments, [Types::CommentType], null: false
+        field :tasks, [Types::TaskType], null: false
+        field :tags, [String], null: false
+        field :merged_cases, [Types::CaseType], null: false
+        field :is_merged, Boolean, null: false
 
         # possibly null
         field :description, String, null: true
         field :assigned_to, Types::UserType, null: true
-        field :tags, [String], null: false
-        field :tasks, [Types::TaskType], null: false
+        field :merged_at, GraphQL::Types::ISO8601DateTime, null: true
+        field :merged_into, Types::CaseType, null: true
     end
 end
