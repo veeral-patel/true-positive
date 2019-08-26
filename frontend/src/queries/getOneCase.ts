@@ -6,6 +6,10 @@ const GET_ONE_CASE = gql`
       id
       name
       isMerged
+      mergedInto {
+        name
+      }
+      mergedAt
       description
       createdAt
       formattedCreatedAt

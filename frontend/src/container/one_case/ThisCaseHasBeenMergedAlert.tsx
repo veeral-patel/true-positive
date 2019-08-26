@@ -15,9 +15,18 @@ export default inject("activeCaseStore")(
         const { activeCaseStore } = this.props;
         const activeCase = activeCaseStore!.activeCase;
 
-        if (activeCase && activeCase.isMerged)
+        if (
+          activeCase &&
+          activeCase.isMerged &&
+          activeCase.mergedInto &&
+          activeCase.mergedAt
+        )
           return (
-            <Alert message="This case has been merged" type="info" showIcon />
+            <Alert
+              message={`This case was merged into ${activeCase.mergedInto.name} at ${activeCase.mergedAt}`}
+              type="info"
+              showIcon
+            />
           );
         return null;
       }

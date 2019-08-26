@@ -18,6 +18,8 @@ interface ICase {
   tags: string[];
   comments: IComment[];
   isMerged: boolean;
+  mergedInto: ICase | null;
+  mergedAt: string;
 }
 
 export default ICase;
