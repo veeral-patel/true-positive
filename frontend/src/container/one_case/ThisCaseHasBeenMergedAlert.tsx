@@ -3,6 +3,7 @@ import { Alert } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import formatISO8601 from "utils/formatISO8601";
 
 interface AlertProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -20,14 +21,16 @@ export default inject("activeCaseStore")(
           activeCase.isMerged &&
           activeCase.mergedInto &&
           activeCase.mergedAt
-        )
+        ) {
+          const formattedTime = formatISO8601(activeCase.mergedAt);
           return (
             <Alert
-              message={`This case was merged into ${activeCase.mergedInto.name} at ${activeCase.mergedAt}`}
+              message={`This case was merged into ${activeCase.mergedInto.name} at ${formattedTime} UTC.`}
               type="info"
               showIcon
             />
           );
+        }
         return null;
       }
     }
