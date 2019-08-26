@@ -23,7 +23,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeCase }) => (
       </Col>
       <Col span={4}>Created:</Col>
       <Col span={8}>
-        {`${activeCase.formattedCreatedAt} by ${activeCase.createdBy.username}`}
+        {`${activeCase.formattedCreatedAt} UTC by ${activeCase.createdBy.username}`}
       </Col>
     </Row>
     <Row>
