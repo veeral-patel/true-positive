@@ -20,7 +20,11 @@ class Case < ApplicationRecord
   end
 
   def merge_case_into(parent_case)
-    # Merge this case into PARENT_CASE
+    # Merge this case into PARENT_CASE (which can't be this case).
+    if self.id == parent_case.id
+      raise ArgumentError, "Cannot merge a case into itself."
+    end
+
     self.merged_into = parent_case
     self.merged_at = Time.now
     self.save
