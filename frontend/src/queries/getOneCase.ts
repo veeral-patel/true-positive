@@ -11,6 +11,7 @@ const GET_ONE_CASE = gql`
         name
       }
       mergedCases {
+        id
         name
         description
       }

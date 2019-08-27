@@ -1,6 +1,7 @@
 import { List } from "antd";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
+import { getPathToACase } from "utils/pathHelpers";
 
 interface ListofMergedCasesProps {
   mergedCases: ICase[];
@@ -12,11 +13,11 @@ const ListofMergedCasesP: React.FC<ListofMergedCasesProps> = ({
   <List
     itemLayout="horizontal"
     dataSource={mergedCases}
-    renderItem={theCase => (
+    renderItem={childCase => (
       <List.Item>
         <List.Item.Meta
-          title={theCase.name}
-          description={theCase.description}
+          title={<a href={getPathToACase(childCase.id)}>{childCase.name}</a>}
+          description={childCase.description}
         />
       </List.Item>
     )}
