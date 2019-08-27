@@ -1,9 +1,12 @@
 import { RouteComponentProps } from "@reach/router";
-import { Alert } from "antd";
+import { Alert, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import formatISO8601 from "utils/formatISO8601";
+import { getPathToACase } from "utils/pathHelpers";
+
+const { Text } = Typography;
 
 interface AlertProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -23,13 +26,16 @@ export default inject("activeCaseStore")(
           activeCase.mergedAt
         ) {
           const formattedTime = formatISO8601(activeCase.mergedAt);
-          return (
-            <Alert
-              message={`This case was merged into "${activeCase.mergedInto.name}" at ${formattedTime} UTC.`}
-              type="info"
-              showIcon
-            />
+          const message = (
+            <Text>
+              This case was merged into{" "}
+              <a href={getPathToACase(activeCase.mergedInto.id)}>
+                {activeCase.mergedInto.name}
+              </a>{" "}
+              at {formattedTime} UTC.
+            </Text>
           );
+          return <Alert message={message} type="info" showIcon />;
         }
         return null;
       }
