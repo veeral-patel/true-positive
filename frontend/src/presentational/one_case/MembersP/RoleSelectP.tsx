@@ -3,10 +3,14 @@ import React from "react";
 
 const { Option } = Select;
 
-const RoleSelectP: React.FC = () => (
-  <Select style={{ width: "120px" }}>
-    <Option value="can_view">Can View</Option>
-    <Option value="can_edit">Can Edit</Option>
+interface RoleSelectProps {
+  role: "CAN_VIEW" | "CAN_EDIT";
+}
+
+const RoleSelectP: React.FC<RoleSelectProps> = ({ role }) => (
+  <Select<"CAN_VIEW" | "CAN_EDIT"> value={role} style={{ width: "120px" }}>
+    <Option value="CAN_VIEW">Can View</Option>
+    <Option value="CAN_EDIT">Can Edit</Option>
   </Select>
 );
 

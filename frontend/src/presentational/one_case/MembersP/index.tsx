@@ -25,7 +25,8 @@ const MembersP: React.FC<MembersProps> = ({ members }) => (
       renderItem={member => (
         <MemberItemP
           username={member.user.username}
-          email={member.user.username}
+          email={member.user.email}
+          role={member.role}
         />
       )}
     />

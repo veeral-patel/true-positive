@@ -16,6 +16,7 @@ const GET_ONE_CASE = gql`
         description
       }
       caseMembers {
+        role
         user {
           username
           email

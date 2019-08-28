@@ -5,9 +5,10 @@ import React from "react";
 interface MemberItemProps {
   username: string;
   email: string;
+  role: "CAN_VIEW" | "CAN_EDIT";
 }
 
-const MemberItemP: React.FC<MemberItemProps> = ({ username, email }) => (
+const MemberItemP: React.FC<MemberItemProps> = ({ username, email, role }) => (
   <List.Item>
     <List.Item.Meta
       avatar={<Avatar icon="user" />}
@@ -16,9 +17,9 @@ const MemberItemP: React.FC<MemberItemProps> = ({ username, email }) => (
     />
     <div>
       <div style={{ marginRight: "30px", display: "inline-block" }}>
-        <RoleSelectP />
+        <RoleSelectP role={role} />
       </div>
-      <Icon type="cross" />
+      <Icon type="close" />
     </div>
   </List.Item>
 );
