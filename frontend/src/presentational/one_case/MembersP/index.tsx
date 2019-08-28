@@ -1,12 +1,12 @@
 import { Layout, List } from "antd";
 import MemberItemP from "presentational/one_case/MembersP/MemberItemP";
 import React from "react";
-import IUser from "ts/interfaces/IUser";
+import IMember from "ts/interfaces/IMember";
 
 const { Content } = Layout;
 
 interface MembersProps {
-  members: IUser[];
+  members: IMember[];
 }
 
 const MembersP: React.FC<MembersProps> = ({ members }) => (
@@ -19,11 +19,14 @@ const MembersP: React.FC<MembersProps> = ({ members }) => (
     }}
   >
     <h2>Members ({members.length})</h2>
-    <List<IUser>
+    <List<IMember>
       itemLayout="horizontal"
       dataSource={members}
       renderItem={member => (
-        <MemberItemP username={member.username} email={member.email} />
+        <MemberItemP
+          username={member.user.username}
+          email={member.user.username}
+        />
       )}
     />
   </Content>

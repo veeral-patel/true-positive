@@ -3,6 +3,7 @@ import IStatus from "ts/interfaces/IStatus";
 import ITask from "ts/interfaces/ITask";
 import IUser from "ts/interfaces/IUser";
 import IComment from "./IComment";
+import IMember from "./IMember";
 
 interface ICase {
   id: number;
@@ -21,7 +22,7 @@ interface ICase {
   mergedInto: ICase | null;
   mergedAt: string;
   mergedCases: ICase[];
-  members: IUser[];
+  caseMembers: IMember[];
 }
 
 export default ICase;
