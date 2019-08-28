@@ -1,5 +1,5 @@
-import { Avatar, Icon, Layout, List } from "antd";
-import RoleSelectP from "presentational/one_case/MembersP/RoleSelectP";
+import { Layout, List } from "antd";
+import MemberItemP from "presentational/one_case/MembersP/MemberItemP";
 import React from "react";
 
 const { Content } = Layout;
@@ -30,21 +30,7 @@ const Members: React.FC<MembersProps> = () => (
     <List
       itemLayout="horizontal"
       dataSource={data}
-      renderItem={member => (
-        <List.Item>
-          <List.Item.Meta
-            avatar={<Avatar icon="user" />}
-            title={member.username}
-            description={member.email}
-          />
-          <div>
-            <div style={{ marginRight: "30px", display: "inline-block" }}>
-              <RoleSelectP />
-            </div>
-            <Icon type="cross" />
-          </div>
-        </List.Item>
-      )}
+      renderItem={member => <MemberItemP username={member.username} />}
     />
   </Content>
 );
