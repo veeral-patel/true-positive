@@ -1,8 +1,8 @@
-import { Avatar, Icon, Layout, List, Select } from "antd";
+import { Avatar, Icon, Layout, List } from "antd";
+import RoleSelectP from "presentational/one_case/MembersP/RoleSelectP";
 import React from "react";
 
 const { Content } = Layout;
-const { Option } = Select;
 
 interface MembersProps {}
 
@@ -16,17 +16,6 @@ const data = [
     email: "john@example.org"
   }
 ];
-
-const RoleSelect = () => (
-  <Select defaultValue="lucy" style={{ width: 120 }}>
-    <Option value="jack">Jack</Option>
-    <Option value="lucy">Lucy</Option>
-    <Option value="disabled" disabled>
-      Disabled
-    </Option>
-    <Option value="Yiminghe">yiminghe</Option>
-  </Select>
-);
 
 const Members: React.FC<MembersProps> = () => (
   <Content
@@ -44,15 +33,13 @@ const Members: React.FC<MembersProps> = () => (
       renderItem={member => (
         <List.Item>
           <List.Item.Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
+            avatar={<Avatar icon="user" />}
             title={member.username}
             description={member.email}
           />
           <div>
             <div style={{ marginRight: "30px", display: "inline-block" }}>
-              <RoleSelect />
+              <RoleSelectP />
             </div>
             <Icon type="cross" />
           </div>
