@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     validates :username, presence: true, uniqueness: true
+    has_many :case_members
+    has_many :accessible_cases, :through => :case_members
 
     def to_s
         self.username

@@ -13,6 +13,9 @@ class Case < ApplicationRecord
   has_many :tasks
   has_many :comments, as: :commentable
 
+  has_many :case_members
+  has_many :members, :through => :case_members
+
   acts_as_taggable_on :tags
 
   def to_s
