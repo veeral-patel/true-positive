@@ -18,7 +18,7 @@ class Case < ApplicationRecord
   acts_as_taggable_on :tags
 
   def add_member(user, role)
-    CaseMember.create(case: self, member: user, role: role)
+    CaseMember.create(case: self, user: user, role: role)
   end
 
   def to_s
