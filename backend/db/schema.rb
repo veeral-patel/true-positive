@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_234525) do
+ActiveRecord::Schema.define(version: 2019_08_28_034148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "case_members", force: :cascade do |t|
+    t.bigint "case_id"
+    t.bigint "user_id"
+    t.integer "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_case_members_on_case_id"
+    t.index ["user_id"], name: "index_case_members_on_user_id"
+  end
 
   create_table "cases", force: :cascade do |t|
     t.string "name"
@@ -107,6 +117,8 @@ ActiveRecord::Schema.define(version: 2019_08_25_234525) do
     t.string "password_digest"
   end
 
+  add_foreign_key "case_members", "cases"
+  add_foreign_key "case_members", "users"
   add_foreign_key "cases", "cases", column: "merged_into_id"
   add_foreign_key "cases", "priorities"
   add_foreign_key "cases", "statuses"
