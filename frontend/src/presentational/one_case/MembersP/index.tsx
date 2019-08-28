@@ -1,7 +1,7 @@
-import { Layout, List } from "antd";
-import MemberItemP from "presentational/one_case/MembersP/MemberItemP";
+import { Layout } from "antd";
 import React from "react";
 import IMember from "ts/interfaces/IMember";
+import MemberListP from "./MemberListP";
 
 const { Content } = Layout;
 
@@ -19,17 +19,7 @@ const MembersP: React.FC<MembersProps> = ({ members }) => (
     }}
   >
     <h2>Members ({members.length})</h2>
-    <List<IMember>
-      itemLayout="horizontal"
-      dataSource={members}
-      renderItem={member => (
-        <MemberItemP
-          username={member.user.username}
-          email={member.user.email}
-          role={member.role}
-        />
-      )}
-    />
+    <MemberListP members={members} />
   </Content>
 );
 
