@@ -18,7 +18,7 @@ const MembersP: React.FC<MembersProps> = ({ members }) => (
       minHeight: 280
     }}
   >
-    <h2>Members</h2>
+    <h2>Members ({members.length})</h2>
     <List<IUser>
       itemLayout="horizontal"
       dataSource={members}
