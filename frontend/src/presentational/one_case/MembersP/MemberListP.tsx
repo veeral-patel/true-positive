@@ -1,14 +1,14 @@
 import { List } from "antd";
 import MemberItemP from "presentational/one_case/MembersP/MemberItemP";
 import React from "react";
-import IMember from "ts/interfaces/IMember";
+import ICaseMember from "ts/interfaces/ICaseMember";
 
 interface MemberListProps {
-  members: IMember[];
+  members: ICaseMember[];
 }
 
 const MemberListP: React.FC<MemberListProps> = ({ members }) => (
-  <List<IMember>
+  <List<ICaseMember>
     itemLayout="horizontal"
     dataSource={members}
     renderItem={member => (

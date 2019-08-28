@@ -1,12 +1,12 @@
 import { Layout } from "antd";
 import React from "react";
-import IMember from "ts/interfaces/IMember";
+import ICaseMember from "ts/interfaces/ICaseMember";
 import MemberListP from "./MemberListP";
 
 const { Content } = Layout;
 
 interface MembersProps {
-  members: IMember[];
+  members: ICaseMember[];
 }
 
 const MembersP: React.FC<MembersProps> = ({ members }) => (

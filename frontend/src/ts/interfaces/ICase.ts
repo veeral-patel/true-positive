@@ -2,8 +2,8 @@ import IPriority from "ts/interfaces/IPriority";
 import IStatus from "ts/interfaces/IStatus";
 import ITask from "ts/interfaces/ITask";
 import IUser from "ts/interfaces/IUser";
+import ICaseMember from "./ICaseMember";
 import IComment from "./IComment";
-import IMember from "./IMember";
 
 interface ICase {
   id: number;
@@ -22,7 +22,7 @@ interface ICase {
   mergedInto: ICase | null;
   mergedAt: string;
   mergedCases: ICase[];
-  caseMembers: IMember[];
+  caseMembers: ICaseMember[];
 }
 
 export default ICase;

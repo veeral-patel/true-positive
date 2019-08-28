@@ -1,9 +1,9 @@
 import IUser from "./IUser";
 
-interface IMember {
+interface ICaseMember {
   id: number;
   role: "CAN_VIEW" | "CAN_EDIT";
   user: IUser;
 }
 
-export default IMember;
+export default ICaseMember;
