@@ -5,7 +5,7 @@ import { paths } from "utils/constants";
 
 interface IOneCaseBreadcrumbProps extends RouteComponentProps {
   caseName: string;
-  tabName: "Info" | "Indicators" | "Members" | "Tasks" | "Tree";
+  tabName: "Info" | "Observables" | "Members" | "Tasks" | "Tree";
 }
 
 const OneCaseBreadcrumb: React.FC<IOneCaseBreadcrumbProps> = ({

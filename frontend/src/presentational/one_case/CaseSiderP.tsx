@@ -44,9 +44,9 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
         <Icon type="check-square" />
         <span>Tasks</span>
       </Menu.Item>
-      <Menu.Item key="indicators">
+      <Menu.Item key="observables">
         <Icon type="security-scan" />
-        <span>Indicators</span>
+        <span>Observables</span>
       </Menu.Item>
       <Menu.Item key="tree">
         <Icon type="apartment" />

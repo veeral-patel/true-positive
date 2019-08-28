@@ -2,9 +2,9 @@ import { Layout } from "antd";
 import React from "react";
 const { Content } = Layout;
 
-interface IndicatorsProps {}
+interface ObservablesProps {}
 
-const IndicatorsP: React.FC<IndicatorsProps> = () => (
+const ObservablesP: React.FC<ObservablesProps> = () => (
   <Content
     style={{
       background: "#fff",
@@ -13,8 +13,8 @@ const IndicatorsP: React.FC<IndicatorsProps> = () => (
       minHeight: 280
     }}
   >
-    <h2>Indicators</h2>
+    <h2>Observables</h2>
   </Content>
 );
 
-export default IndicatorsP;
+export default ObservablesP;
