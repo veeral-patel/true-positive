@@ -1,5 +1,5 @@
 module Types
-    class MemberType < Types::BaseObject
+    class CaseMemberType < Types::BaseObject
         description "Represents a member of a case"
 
         field :id, ID, null: false

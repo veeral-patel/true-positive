@@ -15,7 +15,7 @@ module Types
         field :tags, [String], null: false
         field :merged_cases, [Types::CaseType], null: false
         field :is_merged, Boolean, null: false
-        field :case_members, [Types::MemberType], null: false
+        field :case_members, [Types::CaseMemberType], null: false
 
         # possibly null
         field :description, String, null: true
