@@ -17,7 +17,7 @@ const data = [
   }
 ];
 
-const Members: React.FC<MembersProps> = () => (
+const MembersP: React.FC<MembersProps> = () => (
   <Content
     style={{
       background: "#fff",
@@ -35,4 +35,4 @@ const Members: React.FC<MembersProps> = () => (
   </Content>
 );
 
-export default Members;
+export default MembersP;
