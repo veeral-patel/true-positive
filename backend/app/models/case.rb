@@ -14,9 +14,12 @@ class Case < ApplicationRecord
   has_many :comments, as: :commentable
 
   has_many :case_members
-  has_many :members, :through => :case_members
 
   acts_as_taggable_on :tags
+
+  def add_member(user, role)
+    CaseMember.create(case: self, member: user, role: role)
+  end
 
   def to_s
     self.name
