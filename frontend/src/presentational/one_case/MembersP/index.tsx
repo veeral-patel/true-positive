@@ -22,7 +22,9 @@ const MembersP: React.FC<MembersProps> = ({ members }) => (
     <List<IUser>
       itemLayout="horizontal"
       dataSource={members}
-      renderItem={member => <MemberItemP username={member.username} />}
+      renderItem={member => (
+        <MemberItemP username={member.username} email={member.email} />
+      )}
     />
   </Content>
 );

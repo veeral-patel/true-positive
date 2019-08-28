@@ -17,6 +17,7 @@ const GET_ONE_CASE = gql`
       }
       members {
         username
+        email
       }
       mergedAt
       description
