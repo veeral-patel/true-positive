@@ -21,6 +21,7 @@ interface ICase {
   mergedInto: ICase | null;
   mergedAt: string;
   mergedCases: ICase[];
+  members: IUser[];
 }
 
 export default ICase;

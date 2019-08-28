@@ -1,23 +1,15 @@
 import { Layout, List } from "antd";
 import MemberItemP from "presentational/one_case/MembersP/MemberItemP";
 import React from "react";
+import IUser from "ts/interfaces/IUser";
 
 const { Content } = Layout;
 
-interface MembersProps {}
+interface MembersProps {
+  members: IUser[];
+}
 
-const data = [
-  {
-    username: "rob",
-    email: "rob@example.org"
-  },
-  {
-    username: "john",
-    email: "john@example.org"
-  }
-];
-
-const MembersP: React.FC<MembersProps> = () => (
+const MembersP: React.FC<MembersProps> = ({ members }) => (
   <Content
     style={{
       background: "#fff",
@@ -27,9 +19,9 @@ const MembersP: React.FC<MembersProps> = () => (
     }}
   >
     <h2>Members</h2>
-    <List
+    <List<IUser>
       itemLayout="horizontal"
-      dataSource={data}
+      dataSource={members}
       renderItem={member => <MemberItemP username={member.username} />}
     />
   </Content>

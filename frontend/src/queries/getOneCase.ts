@@ -15,6 +15,9 @@ const GET_ONE_CASE = gql`
         name
         description
       }
+      members {
+        username
+      }
       mergedAt
       description
       createdAt
