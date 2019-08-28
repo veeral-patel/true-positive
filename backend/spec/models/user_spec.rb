@@ -13,14 +13,14 @@ RSpec.describe User, type: :model do
     end
 
     it 'create an user with only required attributes' do
-        user = User.new(username: "lamemonkey")
+        user = User.new(username: "lamemonkey", email: "lamemonkey@gmail.com")
         expect do
             user.save
         end.to change { User.count }.by(1)
     end
 
     it 'create an user with all attributes' do
-        user = User.new(username: "lamemonkey")
+        user = User.new(username: "lamemonkey", email: "lamemonkey@gmail.com")
         expect(user).to be_valid
         expect do
             user.save

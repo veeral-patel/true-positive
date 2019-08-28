@@ -9,8 +9,8 @@ module Types
             low_priority =Priority.create(name: "Low", description: "It's not worth it")
             Priority.create(name: "High", description: "Get started now!")
 
-            lame_user = User.create(username: "lame_user")
-            cool_user = User.create(username: "cool_user")
+            lame_user = User.create(username: "lame_user", email: "lame_user@gmail.com")
+            cool_user = User.create(username: "cool_user", email: "cool_user@gmail.com")
 
             the_case = Case.create(
                 name: "An case",
