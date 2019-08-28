@@ -2,9 +2,9 @@ import { RouteComponentProps, Router } from "@reach/router";
 import { Layout, notification } from "antd";
 import CaseSider from "container/one_case/CaseSider";
 import HandleErrorAndLoading from "container/one_case/HandleErrorAndLoading";
-import Indicators from "container/one_case/Indicators";
 import Info from "container/one_case/Info";
 import Members from "container/one_case/Members";
+import Observables from "container/one_case/Observables";
 import Tasks from "container/one_case/Tasks";
 import ThisCaseHasBeenMergedAlert from "container/one_case/ThisCaseHasBeenMergedAlert";
 import Tree from "container/one_case/Tree";
@@ -77,8 +77,8 @@ export default inject("activeCaseStore")(
                       />
                       <OneCaseBreadcrumb
                         caseName={activeCaseStore!.activeCase.name}
-                        tabName="Indicators"
-                        path="/indicators"
+                        tabName="Observables"
+                        path="/observables"
                       />
                       <OneCaseBreadcrumb
                         caseName={activeCaseStore!.activeCase.name}
@@ -95,7 +95,7 @@ export default inject("activeCaseStore")(
                       <Info path="/info" />
                       <Tree path="/tree" />
                       <Members path="/members" />
-                      <Indicators path="/indicators" />
+                      <Observables path="/observables" />
                       <Tasks path="/tasks" />
                       <Page404 default showBackButton={false} />
                     </Router>
