@@ -1,4 +1,5 @@
 import { Tag } from "antd";
+import "presentational/shared/tags/ListOfTagsP.css";
 import React from "react";
 
 interface IListOfTagsProps {
