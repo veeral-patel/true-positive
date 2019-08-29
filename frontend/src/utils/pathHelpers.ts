@@ -4,4 +4,8 @@ function getPathToACase(caseId: number) {
   return `${paths.CASES_PATH}/${caseId}`;
 }
 
-export { getPathToACase };
+function getPathToATask(caseId: number, taskId: number) {
+  return `${paths.CASES_PATH}/${caseId}/tasks/${taskId}`;
+}
+
+export { getPathToACase, getPathToATask };

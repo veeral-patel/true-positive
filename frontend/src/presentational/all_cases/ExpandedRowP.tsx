@@ -19,7 +19,10 @@ const ExpandedRow: React.FC<IExpandedRowProps> = ({ description, tasks }) => (
       {tasks.length > 0 && (
         <div>
           <h3>Tasks ({tasks.length})</h3>
-          <TasksTableP tasks={tasks} />
+          <TasksTableP
+            tasks={tasks}
+            handleRowClick={(clickedTask, index, event) => void 0}
+          />
         </div>
       )}
     </div>

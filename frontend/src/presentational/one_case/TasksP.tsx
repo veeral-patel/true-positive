@@ -1,15 +1,18 @@
+import { navigate } from "@reach/router";
 import { Icon, Input, Layout } from "antd";
 import TasksTableP from "presentational/tasks/TasksTableP";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
+import { getPathToATask } from "utils/pathHelpers";
 const { Content } = Layout;
 
 interface TasksProps {
+  caseId: number;
   caseName: string;
   tasks: ITask[];
 }
 
-const TasksP: React.FC<TasksProps> = ({ caseName, tasks }) => (
+const TasksP: React.FC<TasksProps> = ({ caseId, caseName, tasks }) => (
   <div>
     <Content
       style={{
@@ -23,7 +26,13 @@ const TasksP: React.FC<TasksProps> = ({ caseName, tasks }) => (
       <div style={{ marginTop: "30px", marginBottom: "30px" }}>
         <Input placeholder="Filter tasks" prefix={<Icon type="search" />} />
       </div>
-      <TasksTableP tasks={tasks} includeDescription={false} />
+      <TasksTableP
+        tasks={tasks}
+        includeDescription={false}
+        handleRowClick={(clickedTask, index, event) =>
+          navigate(getPathToATask(caseId, clickedTask.id))
+        }
+      />
     </Content>
   </div>
 );

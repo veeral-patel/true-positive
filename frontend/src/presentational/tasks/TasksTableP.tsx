@@ -12,11 +12,13 @@ interface ITasksTableProps {
   // list of case objects
   tasks: ITask[];
   includeDescription?: boolean;
+  handleRowClick: (clickedTask: ITask, index: number, event: Event) => void;
 }
 
 const TasksTableP: React.FC<ITasksTableProps> = ({
   tasks,
-  includeDescription
+  includeDescription,
+  handleRowClick
 }) => {
   let includeDescriptionInTable: boolean = true;
   if (includeDescription !== undefined) {
@@ -27,6 +29,7 @@ const TasksTableP: React.FC<ITasksTableProps> = ({
       dataSource={tasks}
       rowKey={record => record.id.toString()}
       pagination={{ hideOnSinglePage: true }}
+      onRowClick={handleRowClick}
     >
       <Column
         title="Name"
