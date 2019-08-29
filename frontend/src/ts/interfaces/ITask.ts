@@ -4,12 +4,12 @@ import IStatus from "./IStatus";
 
 interface ITask {
   id: number;
-  description: string;
   name: string;
   status: IStatus;
   priority: IPriority;
   createdBy: IUser;
   assignedTo: IUser | null;
+  description: string;
 }
 
 export default ITask;
