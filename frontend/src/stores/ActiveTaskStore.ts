@@ -1,7 +1,7 @@
 import { notification } from "antd";
 import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
-import { action, observable, runInAction } from "mobx";
+import { action, autorun, observable, runInAction } from "mobx";
 import GET_ONE_TASK from "stores/ActiveTaskStore";
 import ITask from "ts/interfaces/ITask";
 
@@ -15,14 +15,16 @@ class ActiveTaskStore {
   @observable activeTaskIsLoading: boolean = false;
 
   constructor() {
-    if (this.activeTaskId === null) {
-      runInAction(() => {
-        this.activeTask = null;
-        this.activeTaskIsLoading = false;
-      });
-    } else {
-      this.loadActiveTask();
-    }
+    autorun(() => {
+      if (this.activeTaskId === null) {
+        runInAction(() => {
+          this.activeTask = null;
+          this.activeTaskIsLoading = false;
+        });
+      } else {
+        this.loadActiveTask();
+      }
+    });
   }
 
   @action.bound
