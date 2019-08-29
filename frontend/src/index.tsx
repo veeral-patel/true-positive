@@ -11,6 +11,7 @@ ReactDOM.render(
   <Provider
     allCasesStore={store.allCasesStore}
     activeCaseStore={store.activeCaseStore}
+    activeTaskStore={store.activeTaskStore}
     uiStore={store.uiStore}
     statusStore={store.statusStore}
     priorityStore={store.priorityStore}
