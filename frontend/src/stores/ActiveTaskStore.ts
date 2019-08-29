@@ -2,7 +2,7 @@ import { notification } from "antd";
 import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
-import GET_ONE_TASK from "stores/ActiveTaskStore";
+import GET_ONE_TASK from "queries/getOneTask";
 import ITask from "ts/interfaces/ITask";
 
 interface ITaskDatum {
