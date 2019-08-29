@@ -25,6 +25,13 @@ export default inject("activeTaskStore")(
         }
       }
 
+      componentWillUnmount() {
+        const { activeTaskStore, taskId } = this.props;
+        if (taskId) {
+          activeTaskStore!.setActiveTaskId(null);
+        }
+      }
+
       render() {
         return <OneTaskP />;
       }

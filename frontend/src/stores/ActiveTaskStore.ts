@@ -45,7 +45,7 @@ class ActiveTaskStore {
   }
 
   @action.bound
-  setActiveTaskId(activeTaskId: number) {
+  setActiveTaskId(activeTaskId: number | null) {
     this.activeTaskId = activeTaskId;
   }
 }
