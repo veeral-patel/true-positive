@@ -98,7 +98,7 @@ export default inject("activeCaseStore")(
                       <Members path="/members" />
                       <Observables path="/observables" />
                       <Tasks path="/tasks" />
-                      <OneTask path="/tasks/:id" />
+                      <OneTask path="/tasks/:taskId" />
                       <Page404 default showBackButton={false} />
                     </Router>
                   </div>
