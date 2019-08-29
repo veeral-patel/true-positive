@@ -21,7 +21,7 @@ export default inject("allCasesStore")(
         const { allCasesStore } = this.props;
         const rowSelection = {
           onChange: (
-            selectedRowwKeys: string[] | number[],
+            selectedRowKeys: string[] | number[],
             selectedRows: ICase[]
           ) => {
             allCasesStore!.setSelectedCases(selectedRows);
