@@ -3,6 +3,8 @@ import React from "react";
 
 const { Content } = Layout;
 
+interface OneTaskProps {}
+
 const OneTaskP: React.FC<OneTaskProps> = () => (
   <Content
     style={{
