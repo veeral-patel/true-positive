@@ -11,10 +11,17 @@ const { Column } = Table;
 interface ITasksTableProps {
   // list of case objects
   tasks: ITask[];
+  includeDescription?: boolean;
 }
 
-const TasksTableP: React.FC<ITasksTableProps> = props => {
-  const { tasks } = props;
+const TasksTableP: React.FC<ITasksTableProps> = ({
+  tasks,
+  includeDescription
+}) => {
+  let includeDescriptionInTable: boolean = true;
+  if (includeDescription !== undefined) {
+    includeDescriptionInTable = includeDescription;
+  }
   return (
     <Table
       dataSource={tasks}
@@ -27,14 +34,16 @@ const TasksTableP: React.FC<ITasksTableProps> = props => {
         key="name"
         sorter={(a: ITask, b: ITask) => a.name.localeCompare(b.name)}
       />
-      <Column
-        title="Description"
-        dataIndex="description"
-        key="description"
-        sorter={(a: ITask, b: ITask) =>
-          a.description.localeCompare(b.description)
-        }
-      />
+      {includeDescriptionInTable && (
+        <Column
+          title="Description"
+          dataIndex="description"
+          key="description"
+          sorter={(a: ITask, b: ITask) =>
+            a.description.localeCompare(b.description)
+          }
+        />
+      )}
       <Column
         title="Tags"
         dataIndex="tags"

@@ -1,12 +1,15 @@
-import { Layout } from "antd";
+import { Icon, Input, Layout } from "antd";
+import TasksTableP from "presentational/tasks/TasksTableP";
 import React from "react";
+import ITask from "ts/interfaces/ITask";
 const { Content } = Layout;
 
 interface TasksProps {
   caseName: string;
+  tasks: ITask[];
 }
 
-const TasksP: React.FC<TasksProps> = ({ caseName }) => (
+const TasksP: React.FC<TasksProps> = ({ caseName, tasks }) => (
   <div>
     <Content
       style={{
@@ -16,7 +19,11 @@ const TasksP: React.FC<TasksProps> = ({ caseName }) => (
         minHeight: 280
       }}
     >
-      <h2>Tasks</h2>
+      <h2>Tasks ({tasks.length})</h2>
+      <div style={{ marginTop: "15px", marginBottom: "15px" }}>
+        <Input placeholder="Filter tasks" prefix={<Icon type="search" />} />
+      </div>
+      <TasksTableP tasks={tasks} includeDescription={false} />
     </Content>
   </div>
 );

@@ -17,7 +17,8 @@ export default inject("activeCaseStore")(
 
         // should always render, since we're catching errors and showing
         // our spinner above this, as a HOC
-        if (activeCase) return <TasksP caseName={activeCase.name} />;
+        if (activeCase)
+          return <TasksP caseName={activeCase.name} tasks={activeCase.tasks} />;
       }
     }
   )
