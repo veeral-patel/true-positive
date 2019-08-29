@@ -14,7 +14,7 @@ const OneTaskP: React.FC<OneTaskProps> = () => (
       height: "100%"
     }}
   >
-    Hi
+    Information about this task will go here.
   </Content>
 );
 
