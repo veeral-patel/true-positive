@@ -20,7 +20,7 @@ const TasksP: React.FC<TasksProps> = ({ caseName, tasks }) => (
       }}
     >
       <h2>Tasks ({tasks.length})</h2>
-      <div style={{ marginTop: "15px", marginBottom: "15px" }}>
+      <div style={{ marginTop: "30px", marginBottom: "30px" }}>
         <Input placeholder="Filter tasks" prefix={<Icon type="search" />} />
       </div>
       <TasksTableP tasks={tasks} includeDescription={false} />
