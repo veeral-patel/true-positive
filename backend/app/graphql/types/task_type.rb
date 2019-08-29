@@ -10,7 +10,7 @@ module Types
         field :priority, Types::PriorityType, null: false
         field :case, Types::CaseType, null: false
 
-        # optional fieldsj
+        # optional fields
         field :description, String, null: true
         field :assigned_to, Types::UserType, null: true
         field :tags, [String], null: false
