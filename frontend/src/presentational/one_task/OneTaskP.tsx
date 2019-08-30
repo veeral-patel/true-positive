@@ -1,14 +1,18 @@
-import { Layout } from "antd";
+import { navigate } from "@reach/router";
+import { Layout, PageHeader } from "antd";
 import React from "react";
+import ICase from "ts/interfaces/ICase";
 import ITask from "ts/interfaces/ITask";
+import { getPathToCaseTasks } from "utils/pathHelpers";
 
 const { Content } = Layout;
 
 interface OneTaskProps {
+  activeCase: ICase;
   activeTask: ITask;
 }
 
-const OneTaskP: React.FC<OneTaskProps> = ({ activeTask }) => (
+const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
   <Content
     style={{
       backgroundColor: "#fff",
@@ -17,7 +21,10 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeTask }) => (
       height: "100%"
     }}
   >
-    Name: {activeTask.name}
+    <PageHeader
+      onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
+      title={activeTask.name}
+    />
   </Content>
 );
 

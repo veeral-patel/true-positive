@@ -46,6 +46,7 @@ export default inject("activeCaseStore")(
         }
 
         const activeTask = matchingTasks.pop();
+
         if (!activeTask) {
           notification.error({
             message: "Could not load the task",
@@ -59,7 +60,9 @@ export default inject("activeCaseStore")(
           );
         }
 
-        return <OneTaskP activeTask={activeTask} />;
+        if (activeTask && activeCase) {
+          return <OneTaskP activeTask={activeTask} activeCase={activeCase} />;
+        }
       }
     }
   )
