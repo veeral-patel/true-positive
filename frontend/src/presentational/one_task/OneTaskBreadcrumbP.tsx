@@ -1,6 +1,5 @@
 import { navigate } from "@reach/router";
 import { Breadcrumb } from "antd";
-import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import React from "react";
 import { paths } from "utils/constants";
 import { getPathToACase, getPathToCaseTasks } from "utils/pathHelpers";
@@ -8,11 +7,13 @@ import { getPathToACase, getPathToCaseTasks } from "utils/pathHelpers";
 interface OneTaskBreadcrumbProps {
   caseName: string;
   caseId: number;
+  taskName: string;
 }
 
 const OneTaskBreadcrumbP: React.FC<OneTaskBreadcrumbProps> = ({
   caseName,
-  caseId
+  caseId,
+  taskName
 }) => (
   <Breadcrumb style={{ margin: "16px 0" }}>
     <Breadcrumb.Item>
@@ -21,9 +22,10 @@ const OneTaskBreadcrumbP: React.FC<OneTaskBreadcrumbProps> = ({
     <Breadcrumb.Item>
       <a onClick={() => navigate(getPathToACase(caseId))}>{caseName}</a>
     </Breadcrumb.Item>
-    <BreadcrumbItem>
+    <Breadcrumb.Item>
       <a onClick={() => navigate(getPathToCaseTasks(caseId))}>Tasks</a>
-    </BreadcrumbItem>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>{taskName}</Breadcrumb.Item>
   </Breadcrumb>
 );
 

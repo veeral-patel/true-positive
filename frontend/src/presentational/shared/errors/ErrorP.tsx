@@ -13,7 +13,6 @@ const ErrorP: React.FC<ErrorProps> = ({ title, subtitle }) => (
     style={{
       backgroundColor: "#fff",
       padding: 24,
-      marginLeft: 24,
       height: "100%"
     }}
   >

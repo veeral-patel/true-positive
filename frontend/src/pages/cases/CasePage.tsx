@@ -58,31 +58,37 @@ export default inject("activeCaseStore")(
                   {activeCaseStore!.activeCase !== null && (
                     <Router>
                       <OneCaseBreadcrumb
+                        caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
                         tabName="Info"
                         path="/"
                       />
                       <OneCaseBreadcrumb
+                        caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
                         tabName="Info"
                         path="/info"
                       />
                       <OneCaseBreadcrumb
+                        caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
                         tabName="Tree"
                         path="/tree"
                       />
                       <OneCaseBreadcrumb
+                        caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
                         tabName="Members"
                         path="/members"
                       />
                       <OneCaseBreadcrumb
+                        caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
                         tabName="Observables"
                         path="/observables"
                       />
                       <OneCaseBreadcrumb
+                        caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
                         tabName="Tasks"
                         path="/tasks"
