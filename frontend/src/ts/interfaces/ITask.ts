@@ -5,6 +5,8 @@ import IStatus from "./IStatus";
 interface ITask {
   id: number;
   name: string;
+  createdAt: string;
+  tags: string[];
   status: IStatus;
   priority: IPriority;
   createdBy: IUser;
