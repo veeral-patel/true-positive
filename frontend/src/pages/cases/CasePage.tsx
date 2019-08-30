@@ -12,6 +12,7 @@ import OneTask from "container/one_task/OneTask";
 import { inject, observer } from "mobx-react";
 import ActivityPaneP from "presentational/one_case/ActivityPaneP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
+import OneTaskBreadcrumb from "presentational/one_task/OneTaskBreadcrumb";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -85,6 +86,11 @@ export default inject("activeCaseStore")(
                         caseName={activeCaseStore!.activeCase.name}
                         tabName="Tasks"
                         path="/tasks"
+                      />
+                      <OneTaskBreadcrumb
+                        caseName={activeCaseStore!.activeCase.name}
+                        caseId={activeCaseStore!.activeCase.id}
+                        path="/tasks/:taskId"
                       />
                     </Router>
                   )}

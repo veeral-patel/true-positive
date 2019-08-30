@@ -19,7 +19,6 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
     style={{
       backgroundColor: "#fff",
       padding: 24,
-      marginLeft: 24,
       height: "100%"
     }}
   >
