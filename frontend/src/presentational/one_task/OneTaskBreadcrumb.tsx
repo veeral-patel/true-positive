@@ -3,7 +3,7 @@ import { Breadcrumb } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import React from "react";
 import { paths } from "utils/constants";
-import { getPathToCaseTasks } from "utils/pathHelpers";
+import { getPathToACase, getPathToCaseTasks } from "utils/pathHelpers";
 
 interface OneTaskBreadcrumbProps extends RouteComponentProps {
   caseName: string;
@@ -18,7 +18,9 @@ const OneTaskBreadcrumb: React.FC<OneTaskBreadcrumbProps> = ({
     <Breadcrumb.Item>
       <a onClick={() => navigate(paths.CASES_PATH)}>Cases</a>
     </Breadcrumb.Item>
-    <Breadcrumb.Item>{caseName}</Breadcrumb.Item>
+    <Breadcrumb.Item>
+      <a onClick={() => navigate(getPathToACase(caseId))}>{caseName}</a>
+    </Breadcrumb.Item>
     <BreadcrumbItem>
       <a onClick={() => navigate(getPathToCaseTasks(caseId))}>Tasks</a>
     </BreadcrumbItem>
