@@ -4,14 +4,12 @@ import AllCasesStore from "stores/AllCasesStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
-import ActiveTaskStore from "./ActiveTaskStore";
 
 const allCasesStore = new AllCasesStore();
 const uiStore = new UIStore();
 const statusStore = new StatusStore();
 const priorityStore = new PriorityStore();
 const activeCaseStore = new ActiveCaseStore();
-const activeTaskStore = new ActiveTaskStore();
 
 // only let me mutate state within actions
 configure({
@@ -23,6 +21,5 @@ export default {
   uiStore,
   statusStore,
   priorityStore,
-  activeCaseStore,
-  activeTaskStore
+  activeCaseStore
 };

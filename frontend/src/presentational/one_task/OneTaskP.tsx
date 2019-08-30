@@ -1,11 +1,14 @@
 import { Layout } from "antd";
 import React from "react";
+import ITask from "ts/interfaces/ITask";
 
 const { Content } = Layout;
 
-interface OneTaskProps {}
+interface OneTaskProps {
+  activeTask: ITask;
+}
 
-const OneTaskP: React.FC<OneTaskProps> = () => (
+const OneTaskP: React.FC<OneTaskProps> = ({ activeTask }) => (
   <Content
     style={{
       backgroundColor: "#fff",
@@ -14,7 +17,7 @@ const OneTaskP: React.FC<OneTaskProps> = () => (
       height: "100%"
     }}
   >
-    Information about this task will go here.
+    Name: {activeTask.name}
   </Content>
 );
 
