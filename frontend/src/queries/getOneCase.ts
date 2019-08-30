@@ -53,6 +53,14 @@ const GET_ONE_CASE = gql`
         priority {
           name
         }
+        comments {
+          comment
+          formattedCreatedAt
+          createdAt
+          createdBy {
+            username
+          }
+        }
         tags
       }
       comments {

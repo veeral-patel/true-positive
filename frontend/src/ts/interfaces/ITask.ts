@@ -1,4 +1,5 @@
 import IUser from "ts/interfaces/IUser";
+import IComment from "./IComment";
 import IPriority from "./IPriority";
 import IStatus from "./IStatus";
 
@@ -12,6 +13,7 @@ interface ITask {
   createdBy: IUser;
   assignedTo: IUser | null;
   description: string;
+  comments: IComment[];
 }
 
 export default ITask;
