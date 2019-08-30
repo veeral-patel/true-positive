@@ -9,10 +9,10 @@ import Tasks from "container/one_case/Tasks";
 import ThisCaseHasBeenMergedAlert from "container/one_case/ThisCaseHasBeenMergedAlert";
 import Tree from "container/one_case/Tree";
 import OneTask from "container/one_task/OneTask";
+import OneTaskBreadcrumb from "container/one_task/OneTaskBreadcrumb";
 import { inject, observer } from "mobx-react";
 import ActivityPaneP from "presentational/one_case/ActivityPaneP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
-import OneTaskBreadcrumb from "presentational/one_task/OneTaskBreadcrumb";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -87,11 +87,7 @@ export default inject("activeCaseStore")(
                         tabName="Tasks"
                         path="/tasks"
                       />
-                      <OneTaskBreadcrumb
-                        caseName={activeCaseStore!.activeCase.name}
-                        caseId={activeCaseStore!.activeCase.id}
-                        path="/tasks/:taskId"
-                      />
+                      <OneTaskBreadcrumb path="/tasks/:taskId" />
                     </Router>
                   )}
                 </div>

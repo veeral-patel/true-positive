@@ -1,16 +1,16 @@
-import { navigate, RouteComponentProps } from "@reach/router";
+import { navigate } from "@reach/router";
 import { Breadcrumb } from "antd";
 import BreadcrumbItem from "antd/lib/breadcrumb/BreadcrumbItem";
 import React from "react";
 import { paths } from "utils/constants";
 import { getPathToACase, getPathToCaseTasks } from "utils/pathHelpers";
 
-interface OneTaskBreadcrumbProps extends RouteComponentProps {
+interface OneTaskBreadcrumbProps {
   caseName: string;
   caseId: number;
 }
 
-const OneTaskBreadcrumb: React.FC<OneTaskBreadcrumbProps> = ({
+const OneTaskBreadcrumbP: React.FC<OneTaskBreadcrumbProps> = ({
   caseName,
   caseId
 }) => (
@@ -27,4 +27,4 @@ const OneTaskBreadcrumb: React.FC<OneTaskBreadcrumbProps> = ({
   </Breadcrumb>
 );
 
-export default OneTaskBreadcrumb;
+export default OneTaskBreadcrumbP;
