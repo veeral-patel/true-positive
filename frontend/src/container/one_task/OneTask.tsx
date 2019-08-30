@@ -2,9 +2,9 @@ import { RouteComponentProps } from "@reach/router";
 import { notification } from "antd";
 import { inject, observer } from "mobx-react";
 import OneTaskP from "presentational/one_task/OneTaskP";
-import ErrorP from "presentational/shared/errors/ErrorP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import ErrorP from "presentational/shared/errors/ErrorP";
 
 interface OneTaskProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -17,8 +17,6 @@ export default inject("activeCaseStore")(
       render() {
         const { activeCaseStore, taskId } = this.props;
 
-        // should always be defined, because we're handling the null
-        // and loading cases above, with a HOC.
         const activeCase = activeCaseStore!.activeCase;
 
         if (!taskId) {
@@ -26,43 +24,23 @@ export default inject("activeCaseStore")(
             message: "Could not extract this task's ID from the URL",
             description: "Ensure you're on a valid URL"
           });
+          return <ErrorP title="Could not extract this task's ID from the URL" subtitle="Ensure you're on a valid URL" />
         }
 
-        // find the active case's tasks that match our taskId from our route
-        const matchingTasks = activeCase!.tasks.filter(
-          task => task.id === taskId
-        );
-        if (matchingTasks.length === 0) {
-          notification.error({
-            message: `Could not find a task with ID ${taskId}`,
-            description: "Ensure you're on a valid URL"
-          });
-          return (
-            <ErrorP
-              title={`Could not find a task with ID ${taskId}`}
-              subtitle="Ensure you're on a valid URL"
-            />
-          );
-        }
-
-        const activeTask = matchingTasks.pop();
+        const activeTask = activeCaseStore!.getTask(taskId);
 
         if (!activeTask) {
-          notification.error({
-            message: "Could not load the task",
-            description: "Task is undefined"
-          });
-          return (
-            <ErrorP
-              title="Could not load the task"
-              subtitle="Task is undefined"
-            />
-          );
+            notification.error({
+                message: "Could not load task",
+                description: "Ensure that a task with this ID exists"
+            }) 
+            return <ErrorP title="Could not load task" subtitle="Ensure that a task with this ID exists" />
         }
 
-        if (activeTask && activeCase) {
+        // should always render, because we handle error/loading state
+        // above, in a HOC
+        if (activeCase)
           return <OneTaskP activeTask={activeTask} activeCase={activeCase} />;
-        }
       }
     }
   )

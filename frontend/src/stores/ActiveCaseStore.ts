@@ -4,6 +4,7 @@ import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import GET_ONE_CASE from "queries/getOneCase";
 import ICase from "ts/interfaces/ICase";
+import ITask from "ts/interfaces/ITask";
 
 interface ICaseDatum {
   case: ICase;
@@ -51,6 +52,26 @@ class ActiveCaseStore {
   @action.bound
   setActiveCaseId(activeCaseId: number | null) {
     this.activeCaseId = activeCaseId;
+  }
+
+  @action.bound
+  getTask(taskId: number): ITask | null {
+    if (!this.activeCase) return null;
+
+    // filter tasks by ID (exactly one task should match)
+    const matchingTasks = this.activeCase.tasks.filter(
+      task => task.id === taskId
+    );
+
+    // if no tasks match, return null
+    if (matchingTasks.length === 0) return null;
+
+    const activeTask = matchingTasks.pop();
+
+    // if the matching task is undefined for whatever reason, return null.
+    // otherwise, return the matching task
+    if (!activeTask) return null;
+    return activeTask;
   }
 }
 
