@@ -22,9 +22,9 @@ export default inject("activeCaseStore")(
         if (!taskId) {
           notification.error({
             message: "Could not extract this task's ID from the URL",
-            description: "Ensure you're on a valid URL"
+            description: "Ensure you're at a valid URL"
           });
-          return <ErrorP title="Could not extract this task's ID from the URL" subtitle="Ensure you're on a valid URL" />
+          return <ErrorP title="Could not extract this task's ID from the URL" subtitle="Ensure you're at a valid URL" />
         }
 
         const activeTask = activeCaseStore!.getTask(taskId);

@@ -32,7 +32,7 @@ export default inject("activeCaseStore")(
         } else {
           notification.error({
             message: "Unable to extract the case's ID from the URL",
-            description: "Ensure you're on a valid URL"
+            description: "Ensure you're at a valid URL"
           });
         }
       }
