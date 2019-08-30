@@ -42,6 +42,10 @@ const GET_ONE_CASE = gql`
       tasks {
         id
         name
+        createdBy {
+          username
+        }
+        createdAt
         description
         status {
           name
