@@ -10,9 +10,9 @@ import ThisCaseHasBeenMergedAlert from "container/one_case/ThisCaseHasBeenMerged
 import Tree from "container/one_case/Tree";
 import OneTask from "container/one_task/OneTask";
 import { inject, observer } from "mobx-react";
-import Page404 from "pages/shared/Page404";
 import ActivityPaneP from "presentational/one_case/ActivityPaneP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
+import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 

@@ -9,7 +9,7 @@ interface Page404Props extends RouteComponentProps {
   showBackButton?: boolean;
 }
 
-const Page404: React.FC<Page404Props> = ({ showBackButton }) => {
+const Error404P: React.FC<Page404Props> = ({ showBackButton }) => {
   const showBackButtonReal =
     showBackButton !== undefined ? showBackButton : true;
   return (
@@ -39,4 +39,4 @@ const Page404: React.FC<Page404Props> = ({ showBackButton }) => {
   );
 };
 
-export default Page404;
+export default Error404P;

@@ -9,7 +9,7 @@ import MergeCasesModal from "container/all_cases/MergeCasesModal";
 import RemoveTagsModal from "container/all_cases/RemoveTagsModal";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
-import Page404 from "pages/shared/Page404";
+import Page404 from "presentational/shared/errors/Error404P";
 import TopMenuP from "presentational/shared/top_menu/TopMenuP";
 import React from "react";
 
