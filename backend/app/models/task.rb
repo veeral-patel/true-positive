@@ -11,6 +11,8 @@ class Task < ApplicationRecord
   belongs_to :priority
   belongs_to :case
 
+  has_many :comments, as: :commentable
+
   acts_as_taggable_on :tags
 
   def to_s
