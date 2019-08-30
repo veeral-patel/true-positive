@@ -4,6 +4,7 @@ import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
+import formatISO8601 from "utils/formatISO8601";
 
 interface DetailsProps {
   activeTask: ITask;
@@ -23,7 +24,9 @@ const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
       </Col>
       <Col span={4}>Created:</Col>
       <Col span={8}>
-        {`${activeTask.createdAt} UTC by ${activeTask.createdBy.username}`}
+        {`${formatISO8601(activeTask.createdAt)} UTC by ${
+          activeTask.createdBy.username
+        }`}
       </Col>
     </Row>
     <Row>
