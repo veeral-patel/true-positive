@@ -6,7 +6,7 @@ interface CommentListProps {
   comments: IComment[];
 }
 
-const CommentList: React.FC<CommentListProps> = ({ comments }) => (
+const CommentListP: React.FC<CommentListProps> = ({ comments }) => (
   <List
     className="comment-list"
     itemLayout="horizontal"
@@ -24,4 +24,4 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => (
   />
 );
 
-export default CommentList;
+export default CommentListP;

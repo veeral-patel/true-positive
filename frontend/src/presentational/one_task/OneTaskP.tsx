@@ -2,8 +2,9 @@ import { navigate } from "@reach/router";
 import { Avatar, Comment, Divider, Layout, PageHeader } from "antd";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
-import CommentList from "presentational/shared/comments/CommentListP";
+import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
+import IndicatorListP from "presentational/shared/indicators/IndicatorListP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 import ITask from "ts/interfaces/ITask";
@@ -42,7 +43,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
         Comments ({activeTask.comments.length})
       </Divider>
       {activeTask.comments.length > 0 && (
-        <CommentList comments={sortCommentsByCreatedAt(activeTask.comments)} />
+        <CommentListP comments={sortCommentsByCreatedAt(activeTask.comments)} />
       )}
       <div style={{ width: "70%" }}>
         <Comment
@@ -56,6 +57,9 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
       <Divider orientation="left">
         Indicators ({activeTask.indicators.length})
       </Divider>
+      <div style={{ width: "70%" }}>
+        <IndicatorListP indicators={activeTask.indicators} />
+      </div>
     </section>
   </Content>
 );
