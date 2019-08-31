@@ -1,6 +1,7 @@
 const paths = {
   ROOT_PATH: "/",
-  CASES_PATH: "/cases"
+  CASES_PATH: "/cases",
+  ADMIN_PATH: "/admin"
 };
 
 const ADD_TAGS = "ADD_TAGS";

@@ -3,7 +3,7 @@ import React from "react";
 
 class AdminPage extends React.Component<RouteComponentProps> {
   render() {
-    return <h3>Admin</h3>;
+    return <h2>Admin</h2>;
   }
 }
 
