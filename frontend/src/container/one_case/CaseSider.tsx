@@ -19,45 +19,36 @@ export default inject("uiStore", "activeCaseStore")(
         const isLoading = activeCaseStore!.activeCaseIsLoading;
         const activeCase = activeCaseStore!.activeCase;
 
+        let caseName: string;
+        let numberOfMembers: number | null;
+        let numberOfTasks: number | null;
+
         if (isLoading) {
-          return (
-            <CaseSiderP
-              caseName="Loading"
-              numberOfMembers={null}
-              numberOfTasks={null}
-              collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
-              handleCollapse={(collapsed: boolean, type: CollapseType) =>
-                uiStore!.toggleCaseSider()
-              }
-            />
-          );
+          caseName = "Loading";
+          numberOfMembers = null;
+          numberOfTasks = null;
         } else {
           if (activeCase) {
-            return (
-              <CaseSiderP
-                caseName={activeCase.name}
-                numberOfMembers={activeCase.caseMembers.length}
-                numberOfTasks={activeCase.tasks.length}
-                collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
-                handleCollapse={(collapsed: boolean, type: CollapseType) =>
-                  uiStore!.toggleCaseSider()
-                }
-              />
-            );
+            caseName = activeCase.name;
+            numberOfMembers = activeCase.caseMembers.length;
+            numberOfTasks = activeCase.tasks.length;
           } else {
-            return (
-              <CaseSiderP
-                caseName="Error"
-                numberOfMembers={null}
-                numberOfTasks={null}
-                collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
-                handleCollapse={(collapsed: boolean, type: CollapseType) =>
-                  uiStore!.toggleCaseSider()
-                }
-              />
-            );
+            caseName = "Error";
+            numberOfMembers = null;
+            numberOfTasks = null;
           }
         }
+        return (
+          <CaseSiderP
+            caseName={caseName}
+            numberOfMembers={numberOfMembers}
+            numberOfTasks={numberOfTasks}
+            collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
+            handleCollapse={(collapsed: boolean, type: CollapseType) =>
+              uiStore!.toggleCaseSider()
+            }
+          />
+        );
       }
     }
   )
