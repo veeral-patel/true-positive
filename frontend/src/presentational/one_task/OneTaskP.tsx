@@ -51,6 +51,12 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
         />
       </div>
     </section>
+
+    <section>
+      <Divider orientation="left">
+        Indicators ({activeTask.indicators.length})
+      </Divider>
+    </section>
   </Content>
 );
 

@@ -61,6 +61,9 @@ const GET_ONE_CASE = gql`
             username
           }
         }
+        indicators {
+          name
+        }
         tags
       }
       comments {
