@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import { Avatar, Col, Comment, Divider, Layout, PageHeader, Row } from "antd";
+import { Avatar, Comment, Divider, Layout, PageHeader } from "antd";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
 import CommentList from "presentational/shared/comments/CommentListP";
@@ -33,33 +33,23 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
     <DetailsP activeTask={activeTask} />
 
     <section>
-      <Row>
-        <Col span={24}>
-          <Divider orientation="left">Description</Divider>
-          <DescriptionP description={activeTask.description} />
-        </Col>
-      </Row>
+      <Divider orientation="left">Description</Divider>
+      <DescriptionP description={activeTask.description} />
     </section>
 
     <section>
-      <Row>
-        <Col span={24}>
-          <Divider orientation="left">
-            Comments ({activeTask.comments.length})
-          </Divider>
-          {activeTask.comments.length > 0 && (
-            <CommentList
-              comments={sortCommentsByCreatedAt(activeTask.comments)}
-            />
-          )}
-          <div style={{ width: "70%" }}>
-            <Comment
-              content={<AddCommentFormP />}
-              avatar={<Avatar icon="user" />}
-            />
-          </div>
-        </Col>
-      </Row>
+      <Divider orientation="left">
+        Comments ({activeTask.comments.length})
+      </Divider>
+      {activeTask.comments.length > 0 && (
+        <CommentList comments={sortCommentsByCreatedAt(activeTask.comments)} />
+      )}
+      <div style={{ width: "70%" }}>
+        <Comment
+          content={<AddCommentFormP />}
+          avatar={<Avatar icon="user" />}
+        />
+      </div>
     </section>
   </Content>
 );
