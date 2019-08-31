@@ -14,6 +14,14 @@ class UIStore {
 
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
 
+  @observable indicatorDrawer: {
+    status: "COLLAPSED" | "OPEN";
+    indicatorId: number | null;
+  } = {
+    status: "COLLAPSED",
+    indicatorId: null
+  };
+
   constructor() {
     // read caseSiderStatus from localStorage, if it's there
     const value = localStorage.getItem("caseSiderStatus");
