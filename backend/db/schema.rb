@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2019_08_31_173359) do
     t.text "description"
     t.bigint "created_by_id"
     t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_indicators_on_created_by_id"
     t.index ["task_id"], name: "index_indicators_on_task_id"
   end
