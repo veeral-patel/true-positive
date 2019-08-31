@@ -1,4 +1,4 @@
-import { Tabs, Typography } from "antd";
+import { Icon, Input, Tabs, Typography } from "antd";
 import ListofStatuses from "container/admin/ListofStatuses";
 import React from "react";
 
@@ -20,7 +20,16 @@ const AdminTabsP: React.FC = () => {
               You might add a "In Review" or a "Blocked" status, for example.
             </Paragraph>
           </Text>
-          <ListofStatuses />
+          <div style={{ marginTop: "20px" }}>
+            <div style={{ marginBottom: "10px" }}>
+              <Input
+                placeholder="Enter the name of a status to create"
+                prefix={<Icon type="plus" />}
+                suffix={<Icon type="arrow-right" />}
+              />
+            </div>
+            <ListofStatuses />
+          </div>
         </div>
       </TabPane>
       <TabPane tab="Customize Priorities" key="priorities">

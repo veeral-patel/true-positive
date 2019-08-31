@@ -12,7 +12,7 @@ class AdminPage extends React.Component<RouteComponentProps> {
         <div style={{ marginBottom: "25px" }}>
           <h2>Admin</h2>
         </div>
-        <div style={{ width: "70%" }}>
+        <div style={{ width: "50%" }}>
           <AdminTabsP />
         </div>
       </div>

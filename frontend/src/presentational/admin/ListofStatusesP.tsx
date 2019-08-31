@@ -12,7 +12,9 @@ const ListofStatusesP: React.FC<IListofStatusesProps> = ({ statuses }) => {
       itemLayout="horizontal"
       dataSource={statuses}
       renderItem={status => (
-        <List.Item>
+        <List.Item
+          actions={[<a>Rename</a>, <a style={{ color: "red" }}>Remove</a>]}
+        >
           <List.Item.Meta title={status.name} />
         </List.Item>
       )}
