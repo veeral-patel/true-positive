@@ -1,5 +1,6 @@
 import { RouteComponentProps } from "@reach/router";
 import { Tabs } from "antd";
+import AdminTabsP from "presentational/admin/AdminTabsP";
 import React from "react";
 
 const { TabPane } = Tabs;
@@ -13,10 +14,7 @@ class AdminPage extends React.Component<RouteComponentProps> {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
-            <Tabs tabPosition="left">
-              <TabPane tab="Customize Statuses" key="statuses"></TabPane>
-              <TabPane tab="Customize Priorities" key="priorities"></TabPane>
-            </Tabs>
+            <AdminTabsP />
           </div>
           <div style={{ flex: 5 }}>Content</div>
         </div>
