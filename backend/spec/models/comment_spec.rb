@@ -12,7 +12,6 @@ RSpec.describe Comment, type: :model do
         a_comment = Comment.new(
             comment: Faker::Quotes::Shakespeare.hamlet_quote,
             created_by: create(:user),
-             # later, add observable, task, etc too
             commentable: create(:case)
         )
         expect(a_comment).to be_valid
