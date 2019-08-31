@@ -15,20 +15,49 @@ export default inject("uiStore", "activeCaseStore")(
     class CaseSider extends React.Component<ICaseSiderProps> {
       render() {
         const { uiStore, activeCaseStore } = this.props;
-        let caseName: string;
 
-        if (activeCaseStore!.activeCaseIsLoading) caseName = "Loading...";
-        else if (activeCaseStore!.activeCase === null) caseName = "Error";
-        else caseName = activeCaseStore!.activeCase.name;
-        return (
-          <CaseSiderP
-            caseName={caseName}
-            collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
-            handleCollapse={(collapsed: boolean, type: CollapseType) =>
-              uiStore!.toggleCaseSider()
-            }
-          />
-        );
+        const isLoading = activeCaseStore!.activeCaseIsLoading;
+        const activeCase = activeCaseStore!.activeCase;
+
+        if (isLoading) {
+          return (
+            <CaseSiderP
+              caseName="Loading"
+              numberOfMembers={null}
+              numberOfTasks={null}
+              collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
+              handleCollapse={(collapsed: boolean, type: CollapseType) =>
+                uiStore!.toggleCaseSider()
+              }
+            />
+          );
+        } else {
+          if (activeCase) {
+            return (
+              <CaseSiderP
+                caseName={activeCase.name}
+                numberOfMembers={activeCase.caseMembers.length}
+                numberOfTasks={activeCase.tasks.length}
+                collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
+                handleCollapse={(collapsed: boolean, type: CollapseType) =>
+                  uiStore!.toggleCaseSider()
+                }
+              />
+            );
+          } else {
+            return (
+              <CaseSiderP
+                caseName="Error"
+                numberOfMembers={null}
+                numberOfTasks={null}
+                collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
+                handleCollapse={(collapsed: boolean, type: CollapseType) =>
+                  uiStore!.toggleCaseSider()
+                }
+              />
+            );
+          }
+        }
       }
     }
   )

@@ -9,12 +9,16 @@ interface ICaseSiderProps {
   collapsed: boolean;
   handleCollapse: (collapsed: boolean, type: CollapseType) => void;
   caseName: string;
+  numberOfTasks: number | null;
+  numberOfMembers: number | null;
 }
 
 const CaseSiderP: React.FC<ICaseSiderProps> = ({
   collapsed,
   handleCollapse,
-  caseName
+  caseName,
+  numberOfTasks,
+  numberOfMembers
 }) => (
   <Sider
     width={200}
@@ -42,7 +46,7 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
       </Menu.Item>
       <Menu.Item key="tasks">
         <Icon type="check-square" />
-        <span>Tasks</span>
+        <span>Tasks {numberOfTasks && <span>({numberOfTasks})</span>}</span>
       </Menu.Item>
       <Menu.Item key="observables">
         <Icon type="security-scan" />
@@ -54,7 +58,9 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
       </Menu.Item>
       <Menu.Item key="members">
         <Icon type="user" />
-        <span>Members</span>
+        <span>
+          Members {numberOfMembers && <span>({numberOfMembers})</span>}
+        </span>
       </Menu.Item>
     </Menu>
   </Sider>
