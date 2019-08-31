@@ -46,7 +46,10 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
       </Menu.Item>
       <Menu.Item key="tasks">
         <Icon type="check-square" />
-        <span>Tasks {numberOfTasks && <span>({numberOfTasks})</span>}</span>
+        <span>
+          Tasks{" "}
+          {numberOfTasks !== null ? <span>({numberOfTasks})</span> : <span />}
+        </span>
       </Menu.Item>
       <Menu.Item key="observables">
         <Icon type="security-scan" />
@@ -59,7 +62,12 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
       <Menu.Item key="members">
         <Icon type="user" />
         <span>
-          Members {numberOfMembers && <span>({numberOfMembers})</span>}
+          Members{" "}
+          {numberOfMembers !== null ? (
+            <span>({numberOfMembers})</span>
+          ) : (
+            <span />
+          )}
         </span>
       </Menu.Item>
     </Menu>
