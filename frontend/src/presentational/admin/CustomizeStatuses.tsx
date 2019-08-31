@@ -1,8 +1,7 @@
-import { Icon, Input, Tabs, Typography } from "antd";
+import { Icon, Input, Typography } from "antd";
 import ListofStatuses from "container/admin/ListofStatuses";
 import React from "react";
 
-const { TabPane } = Tabs;
 const { Paragraph, Text } = Typography;
 
 const HelperText = () => (
