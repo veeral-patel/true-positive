@@ -1,6 +1,6 @@
 import { RouteComponentProps } from "@reach/router";
 import { inject, observer } from "mobx-react";
-import ObservablesP from "presentational/one_case/ObservablesP";
+import IndicatorsP from "presentational/one_case/IndicatorsP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 
@@ -16,7 +16,7 @@ export default inject("activeCaseStore")(
         const activeCase = activeCaseStore!.activeCase;
 
         // should always render, since we're catching errors and showing spinner above this component
-        if (activeCase) return <ObservablesP />;
+        if (activeCase) return <IndicatorsP />;
       }
     }
   )
