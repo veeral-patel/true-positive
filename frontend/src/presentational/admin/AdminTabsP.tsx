@@ -23,7 +23,7 @@ const AdminTabsP: React.FC = () => {
           <div style={{ marginTop: "20px" }}>
             <div style={{ marginBottom: "10px" }}>
               <Input
-                placeholder="Enter the name of a status to create"
+                placeholder="Enter the name of a status to create it"
                 prefix={<Icon type="plus" />}
                 suffix={<Icon type="arrow-right" />}
               />
