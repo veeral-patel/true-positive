@@ -7,6 +7,7 @@ import ChangeStatusModal from "container/all_cases/ChangeStatusModal";
 import CreateCaseModal from "container/all_cases/CreateCaseModal";
 import MergeCasesModal from "container/all_cases/MergeCasesModal";
 import RemoveTagsModal from "container/all_cases/RemoveTagsModal";
+import AdminPage from "pages/admin/AdminPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
 import Page404 from "presentational/shared/errors/Error404P";
@@ -20,6 +21,7 @@ const App: React.FC = () => {
       <Router style={{ margin: "3%", marginTop: "2%" }}>
         <AllCasesPage path="/" />
         <AllCasesPage path="/cases" />
+        <AdminPage path="/admin" />
         <CasePage path="/cases/:caseId/*" />
         <Page404 default />
       </Router>
