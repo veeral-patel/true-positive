@@ -11,6 +11,7 @@ module Types
         field :priority, Types::PriorityType, null: false
         field :case, Types::CaseType, null: false
         field :comments, [Types::CommentType], null: false
+        field :indicators, [Types::IndicatorType], null: false
 
         # optional fields
         field :description, String, null: true
