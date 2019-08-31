@@ -1,4 +1,5 @@
 import { Tabs, Typography } from "antd";
+import ListofPriorities from "container/admin/ListofPriorities";
 import CustomizeStatuses from "presentational/admin/CustomizeStatuses";
 import React from "react";
 
@@ -12,16 +13,19 @@ const AdminTabsP: React.FC = () => {
         <CustomizeStatuses />
       </TabPane>
       <TabPane tab="Customize Priorities" key="priorities">
-        <Text>
-          <h4>Customize Priorities</h4>
-          <Paragraph>
-            You can customize the default list of priorities to fit your
-            workflow.
-          </Paragraph>
-          <Paragraph>
-            You could choose a P0/P1/P2 scheme, for example.
-          </Paragraph>
-        </Text>
+        <div>
+          <Text>
+            <h4>Customize Priorities</h4>
+            <Paragraph>
+              You can customize the default list of priorities to fit your
+              workflow.
+            </Paragraph>
+            <Paragraph>
+              You could choose a P0/P1/P2 scheme, for example.
+            </Paragraph>
+          </Text>
+          <ListofPriorities />
+        </div>
       </TabPane>
     </Tabs>
   );
