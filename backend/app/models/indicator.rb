@@ -1,4 +1,4 @@
-class Case < ApplicationRecord
+class Indicator < ApplicationRecord
     validates :name, presence: true
     validates :created_by, presence: true
     validates :task, presence: true
