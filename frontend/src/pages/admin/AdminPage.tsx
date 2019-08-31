@@ -8,7 +8,9 @@ class AdminPage extends React.Component<RouteComponentProps> {
   render() {
     return (
       <div>
-        <h2>Admin</h2>
+        <div style={{ marginBottom: "25px" }}>
+          <h2>Admin</h2>
+        </div>
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
             <Tabs tabPosition="left">
