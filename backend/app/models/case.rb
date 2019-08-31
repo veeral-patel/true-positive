@@ -12,6 +12,7 @@ class Case < ApplicationRecord
 
   has_many :tasks
   has_many :comments, as: :commentable
+  has_many :indicators, :through => :tasks
 
   has_many :case_members
 

@@ -12,6 +12,7 @@ class Task < ApplicationRecord
   belongs_to :case
 
   has_many :comments, as: :commentable
+  has_many :indicators
 
   acts_as_taggable_on :tags
 
