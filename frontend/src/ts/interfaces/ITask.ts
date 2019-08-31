@@ -1,7 +1,8 @@
+import IComment from "ts/interfaces/IComment";
+import IPriority from "ts/interfaces/IPriority";
+import IStatus from "ts/interfaces/IStatus";
 import IUser from "ts/interfaces/IUser";
-import IComment from "./IComment";
-import IPriority from "./IPriority";
-import IStatus from "./IStatus";
+import IIndicator from "./IIndicator";
 
 interface ITask {
   id: number;
@@ -14,6 +15,7 @@ interface ITask {
   assignedTo: IUser | null;
   description: string;
   comments: IComment[];
+  indicators: IIndicator[];
 }
 
 export default ITask;
