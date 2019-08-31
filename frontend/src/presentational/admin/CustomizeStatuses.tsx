@@ -10,9 +10,6 @@ const HelperText = () => (
     <Paragraph>
       You can customize the default list of statuses to fit your workflow.
     </Paragraph>
-    <Paragraph>
-      You might add a "In Review" or a "Blocked" status, for example.
-    </Paragraph>
   </Text>
 );
 
@@ -20,7 +17,7 @@ const CustomizeStatuses: React.FC = () => (
   <div>
     <HelperText />
     <div style={{ marginTop: "20px" }}>
-      <div>
+      <div style={{ marginBottom: "20px" }}>
         <Input
           placeholder="Enter the name of a status to create it"
           prefix={<Icon type="plus" />}
