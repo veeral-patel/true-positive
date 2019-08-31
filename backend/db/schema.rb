@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(version: 2019_08_31_173359) do
     t.index ["created_by_id"], name: "index_comments_on_created_by_id"
   end
 
-  create_table "observables", force: :cascade do |t|
+  create_table "indicators", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.bigint "created_by_id"
     t.bigint "task_id"
-    t.index ["created_by_id"], name: "index_observables_on_created_by_id"
-    t.index ["task_id"], name: "index_observables_on_task_id"
+    t.index ["created_by_id"], name: "index_indicators_on_created_by_id"
+    t.index ["task_id"], name: "index_indicators_on_task_id"
   end
 
   create_table "priorities", force: :cascade do |t|
@@ -135,8 +135,8 @@ ActiveRecord::Schema.define(version: 2019_08_31_173359) do
   add_foreign_key "cases", "users", column: "assigned_to_id"
   add_foreign_key "cases", "users", column: "created_by_id"
   add_foreign_key "comments", "users", column: "created_by_id"
-  add_foreign_key "observables", "tasks"
-  add_foreign_key "observables", "users", column: "created_by_id"
+  add_foreign_key "indicators", "tasks"
+  add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "tasks", "cases"
   add_foreign_key "tasks", "priorities"
   add_foreign_key "tasks", "statuses"
