@@ -51,9 +51,9 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
           {numberOfTasks !== null ? <span>({numberOfTasks})</span> : <span />}
         </span>
       </Menu.Item>
-      <Menu.Item key="observables">
+      <Menu.Item key="indicators">
         <Icon type="security-scan" />
-        <span>Observables</span>
+        <span>Indicators</span>
       </Menu.Item>
       <Menu.Item key="tree">
         <Icon type="apartment" />

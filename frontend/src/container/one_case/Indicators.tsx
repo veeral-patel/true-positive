@@ -4,13 +4,13 @@ import IndicatorsP from "presentational/one_case/IndicatorsP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 
-interface ObservablesProps extends RouteComponentProps {
+interface IndicatorsProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
 }
 
 export default inject("activeCaseStore")(
   observer(
-    class Observables extends React.Component<ObservablesProps> {
+    class Indicators extends React.Component<IndicatorsProps> {
       render() {
         const { activeCaseStore } = this.props;
         const activeCase = activeCaseStore!.activeCase;

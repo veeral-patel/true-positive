@@ -84,8 +84,8 @@ export default inject("activeCaseStore")(
                       <OneCaseBreadcrumb
                         caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
-                        tabName="Observables"
-                        path="/observables"
+                        tabName="Indicators"
+                        path="/indicators"
                       />
                       <OneCaseBreadcrumb
                         caseId={activeCaseStore!.activeCase.id}
@@ -104,7 +104,7 @@ export default inject("activeCaseStore")(
                       <Info path="/info" />
                       <Tree path="/tree" />
                       <Members path="/members" />
-                      <Indicators path="/observables" />
+                      <Indicators path="/indicators" />
                       <Tasks path="/tasks" />
                       <OneTask path="/tasks/:taskId" />
                       <Page404 default showBackButton={false} />
