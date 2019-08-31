@@ -7,6 +7,7 @@ import ChangeStatusModal from "container/all_cases/ChangeStatusModal";
 import CreateCaseModal from "container/all_cases/CreateCaseModal";
 import MergeCasesModal from "container/all_cases/MergeCasesModal";
 import RemoveTagsModal from "container/all_cases/RemoveTagsModal";
+import IndicatorDrawer from "container/drawer/IndicatorDrawer";
 import AdminPage from "pages/admin/AdminPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
@@ -33,6 +34,7 @@ const App: React.FC = () => {
       <AddCommentToCaseModal />
       <MergeCasesModal />
       <AssignCasesModal />
+      <IndicatorDrawer />
     </div>
   );
 };

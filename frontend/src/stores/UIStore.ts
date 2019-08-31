@@ -15,7 +15,7 @@ class UIStore {
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
 
   @observable indicatorDrawer: {
-    status: "COLLAPSED" | "OPEN";
+    status: "OPEN" | "COLLAPSED";
     indicatorId: number | null;
   } = {
     status: "COLLAPSED",
