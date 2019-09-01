@@ -8,17 +8,17 @@ import CreateCaseModal from "container/all_cases/CreateCaseModal";
 import MergeCasesModal from "container/all_cases/MergeCasesModal";
 import RemoveTagsModal from "container/all_cases/RemoveTagsModal";
 import IndicatorDrawer from "container/drawer/IndicatorDrawer";
+import TopMenu from "container/top_menu/TopMenu";
 import AdminPage from "pages/admin/AdminPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
 import Page404 from "presentational/shared/errors/Error404P";
-import TopMenuP from "presentational/shared/top_menu/TopMenuP";
 import React from "react";
 
 const App: React.FC = () => {
   return (
     <div>
-      <TopMenuP />
+      <TopMenu />
       <Router style={{ margin: "3%", marginTop: "2%" }}>
         <AllCasesPage path="/" />
         <AllCasesPage path="/cases" />
