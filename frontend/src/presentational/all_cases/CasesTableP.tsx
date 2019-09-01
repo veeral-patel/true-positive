@@ -9,7 +9,12 @@ import React from "react";
 import ICase from "ts/interfaces/ICase";
 import compareUsers from "utils/compareUsers";
 import { paths } from "utils/constants";
-import { priorityMatches, statusMatches } from "utils/filterCases";
+import {
+  assignedToMatches,
+  createdByMatches,
+  priorityMatches,
+  statusMatches
+} from "utils/filterCases";
 
 const { Column } = Table;
 
@@ -89,6 +94,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
           compareUsers(a.assignedTo, b.assignedTo)
         }
         filters={userFilters}
+        onFilter={(filterWord, record) => assignedToMatches(filterWord, record)}
       />
       <Column
         title="Created By"
@@ -96,6 +102,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         key="created_by"
         sorter={(a: ICase, b: ICase) => compareUsers(a.createdBy, b.createdBy)}
         filters={userFilters}
+        onFilter={(filterWord, record) => createdByMatches(filterWord, record)}
       />
       <Column
         title="Created At (UTC)"
