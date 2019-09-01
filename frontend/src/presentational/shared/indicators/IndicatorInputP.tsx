@@ -59,7 +59,7 @@ class IndicatorInputP extends React.Component<
 
     return (
       <Input
-        placeholder="Enter an IP, file hash, domain, or URL to add it"
+        placeholder="Enter an IP, file hash, domain, email, MAC address, or URL to add it"
         value={inputValue}
         prefix={<Icon type="plus" />}
         suffix={suffix}
