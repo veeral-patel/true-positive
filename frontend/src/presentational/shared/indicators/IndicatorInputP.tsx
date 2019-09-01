@@ -5,6 +5,7 @@ interface IndicatorInputProps {}
 
 interface IndicatorInputState {
   status: "READY" | "LOADING";
+  inputValue: string;
 }
 
 class IndicatorInputP extends React.Component<
@@ -14,12 +15,13 @@ class IndicatorInputP extends React.Component<
   constructor(props: IndicatorInputProps) {
     super(props);
     this.state = {
-      status: "READY"
+      status: "READY",
+      inputValue: ""
     };
   }
 
   render() {
-    const { status } = this.state;
+    const { status, inputValue } = this.state;
 
     let suffix;
     if (status === "READY") suffix = <Icon type="arrow-right" />;
@@ -28,8 +30,12 @@ class IndicatorInputP extends React.Component<
     return (
       <Input
         placeholder="Enter an IP, file hash, domain, or URL to add it"
+        value={inputValue}
         prefix={<Icon type="plus" />}
         suffix={suffix}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          this.setState({ inputValue: e.currentTarget.value })
+        }
       />
     );
   }
