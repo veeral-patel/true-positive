@@ -1,5 +1,13 @@
 import { navigate } from "@reach/router";
-import { Icon, Avatar, Comment, Divider, Input, Layout, PageHeader } from "antd";
+import {
+  Avatar,
+  Comment,
+  Divider,
+  Icon,
+  Input,
+  Layout,
+  PageHeader
+} from "antd";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
 import CommentListP from "presentational/shared/comments/CommentListP";
@@ -59,7 +67,11 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
       </Divider>
       <div style={{ width: "70%" }}>
         <div style={{ marginBottom: "25px" }}>
-          <Input placeholder="Enter an IP, file hash, domain, or URL to add it" prefix={<Icon type="plus" />} suffix={<Icon type="arrow-right" />} />
+          <Input
+            placeholder="Enter an IP, file hash, domain, or URL to add it"
+            prefix={<Icon type="plus" />}
+            suffix={<Icon type="arrow-right" />}
+          />
         </div>
         <div>
           <IndicatorListP indicators={activeTask.indicators} />
