@@ -63,5 +63,24 @@ module Types
       def case(id:)
         find_case_or_throw_execution_error(case_id: id)
       end
+
+      # --------------- Users --------------------
+      field :users, [Types::UserType], null: false do
+        description "List all users."
+      end
+
+      def users
+        User.all
+      end
+
+      field :user, Types::UserType, null: false do
+        description "Retrieve an user"
+
+        argument :id, ID, required: true
+      end
+
+      def user(id:)
+        find_user_or_throw_execution_error(user_id: id)
+      end
   end
 end
