@@ -1,3 +1,5 @@
+import { tldRegexString } from "utils/tlds";
+
 function check(s: string, regex: RegExp): boolean {
   if (s.match(regex)) {
     return true;
@@ -40,6 +42,22 @@ function isMacAddress(s: string): boolean {
   return check(s, macAddressRegex);
 }
 
+const domainRegex = new RegExp(
+  `([A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.(${tldRegexString})\\b)`,
+  "ig"
+);
+function isDomain(s: string): boolean {
+  return check(s, domainRegex);
+}
+
+const emailRegex = new RegExp(
+  `[A-Za-z0-9_.]+@([A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.(${tldRegexString})\\b)`,
+  "ig"
+);
+function isEmail(s: string): boolean {
+  return check(s, emailRegex);
+}
+
 export function matchIndicator(
   indicator: string
 ):
@@ -50,7 +68,9 @@ export function matchIndicator(
   | "IPv4"
   | "IPv6"
   | "URL"
-  | "MAC_ADDRESS" {
+  | "MAC_ADDRESS"
+  | "EMAIL"
+  | "DOMAIN" {
   if (isMD5(indicator)) return "MD5";
   if (isSHA1(indicator)) return "SHA1";
   if (isSHA256(indicator)) return "SHA256";
@@ -58,5 +78,7 @@ export function matchIndicator(
   if (isIPv6(indicator)) return "IPv6";
   if (isURL(indicator)) return "URL";
   if (isMacAddress(indicator)) return "MAC_ADDRESS";
+  if (isEmail(indicator)) return "EMAIL";
+  if (isDomain(indicator)) return "DOMAIN";
   return "OTHER";
 }

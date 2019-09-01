@@ -15,6 +15,8 @@ interface IndicatorInputState {
     | "IPv6"
     | "URL"
     | "MAC_ADDRESS"
+    | "EMAIL"
+    | "DOMAIN"
     | "OTHER";
   inputValue: string;
 }
