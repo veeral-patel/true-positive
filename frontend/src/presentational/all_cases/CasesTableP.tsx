@@ -17,10 +17,11 @@ interface ICasesTableProps {
   dataSource: ICase[];
   rowSelection: TableRowSelection<ICase>;
   statusFilters: ColumnFilterItem[];
+  priorityFilters: ColumnFilterItem[];
 }
 
 const CasesTableP: React.FC<ICasesTableProps> = props => {
-  const { dataSource, rowSelection, statusFilters } = props;
+  const { dataSource, rowSelection, statusFilters, priorityFilters } = props;
   return (
     <Table
       dataSource={dataSource}
@@ -69,6 +70,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         sorter={(a: ICase, b: ICase) =>
           a.priority.name.localeCompare(b.priority.name)
         }
+        filters={priorityFilters}
       />
       <Column
         title="Assigned To"
