@@ -5,7 +5,16 @@ import { matchIndicator } from "utils/matchIndicator";
 interface IndicatorInputProps {}
 
 interface IndicatorInputState {
-  status: "EMPTY" | "LOADING" | "MD5" | "SHA1" | "SHA256" | "OTHER";
+  status:
+    | "EMPTY"
+    | "LOADING"
+    | "MD5"
+    | "SHA1"
+    | "SHA256"
+    | "IPv4"
+    | "IPv6"
+    | "URL"
+    | "OTHER";
   inputValue: string;
 }
 
