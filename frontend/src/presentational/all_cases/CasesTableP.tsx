@@ -11,6 +11,7 @@ import compareUsers from "utils/compareUsers";
 import { paths } from "utils/constants";
 import {
   assignedToMatches,
+  aTagMatches,
   createdByMatches,
   priorityMatches,
   statusMatches
@@ -24,6 +25,7 @@ interface ICasesTableProps {
   statusFilters: ColumnFilterItem[];
   priorityFilters: ColumnFilterItem[];
   userFilters: ColumnFilterItem[];
+  tagFilters: ColumnFilterItem[];
 }
 
 const CasesTableP: React.FC<ICasesTableProps> = props => {
@@ -32,7 +34,8 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
     rowSelection,
     statusFilters,
     priorityFilters,
-    userFilters
+    userFilters,
+    tagFilters
   } = props;
   return (
     <Table
@@ -61,6 +64,10 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
             <ListOfTagsP tags={tags} />
           </div>
         )}
+        filters={tagFilters}
+        onFilter={(filterWord: string, record: ICase) =>
+          aTagMatches(filterWord, record)
+        }
       />
       <Column
         title="Status"

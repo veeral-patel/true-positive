@@ -14,7 +14,7 @@ class TagStore {
   @observable tagsAreLoading: boolean = false;
 
   @action.bound
-  loadTages() {
+  loadTags() {
     this.tagsAreLoading = true;
     client
       .query<ITagData>({

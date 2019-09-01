@@ -6,6 +6,7 @@ import React from "react";
 import CaseStore from "stores/AllCasesStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
+import TagStore from "stores/TagStore";
 import UserStore from "stores/UserStore";
 import ICase from "ts/interfaces/ICase";
 
@@ -14,13 +15,15 @@ interface ICasesTableProps {
   statusStore?: StatusStore;
   priorityStore?: PriorityStore;
   userStore?: UserStore;
+  tagStore?: TagStore;
 }
 
 export default inject(
   "allCasesStore",
   "statusStore",
   "priorityStore",
-  "userStore"
+  "userStore",
+  "tagStore"
 )(
   observer(
     class CasesTable extends React.Component<ICasesTableProps> {
@@ -29,12 +32,14 @@ export default inject(
           allCasesStore,
           statusStore,
           priorityStore,
-          userStore
+          userStore,
+          tagStore
         } = this.props;
         allCasesStore!.loadCases();
         statusStore!.loadStatuses();
         priorityStore!.loadPriorities();
         userStore!.loadUsers();
+        tagStore!.loadTags();
       }
 
       render() {
@@ -42,7 +47,8 @@ export default inject(
           allCasesStore,
           statusStore,
           priorityStore,
-          userStore
+          userStore,
+          tagStore
         } = this.props;
         const rowSelection = {
           onChange: (
@@ -58,7 +64,8 @@ export default inject(
           allCasesStore!.casesAreLoading ||
           statusStore!.statusesAreLoading ||
           priorityStore!.prioritiesAreLoading ||
-          userStore!.usersAreLoading
+          userStore!.usersAreLoading ||
+          tagStore!.tagsAreLoading
         ) {
           return <Table loading={true} />;
         }
@@ -95,6 +102,17 @@ export default inject(
           }));
         }
 
+        // populate tag filter options
+        const tags = tagStore!.tags;
+        let tagFilters: ColumnFilterItem[] = [];
+
+        if (tags) {
+          tagFilters = tags.map(tag => ({
+            text: tag.name,
+            value: tag.name
+          }));
+        }
+
         return (
           <CasesTableP
             dataSource={allCasesStore!.filteredCases}
@@ -102,6 +120,7 @@ export default inject(
             statusFilters={statusFilters}
             priorityFilters={priorityFilters}
             userFilters={userFilters}
+            tagFilters={tagFilters}
           />
         );
       }
