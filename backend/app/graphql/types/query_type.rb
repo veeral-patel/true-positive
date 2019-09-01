@@ -82,5 +82,14 @@ module Types
       def user(id:)
         find_user_or_throw_execution_error(user_id: id)
       end
+
+      # --------------- Tags -----------------------
+      field :tags, [Types::TagType], null: false do
+        description "List all existing tags."
+      end
+
+      def tags
+        ActsAsTaggableOn::Tag.all
+      end
   end
 end
