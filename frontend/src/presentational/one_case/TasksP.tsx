@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import { Icon, Input, Layout } from "antd";
+import { Button, Icon, Input, Layout } from "antd";
 import TasksTableP from "presentational/tasks/TasksTableP";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
@@ -22,7 +22,17 @@ const TasksP: React.FC<TasksProps> = ({ caseId, caseName, tasks }) => (
         minHeight: 280
       }}
     >
-      <h2>Tasks ({tasks.length})</h2>
+      <div>
+        <span style={{ display: "inline-block" }}>
+          <h2>Tasks ({tasks.length})</h2>
+        </span>
+        <span style={{ float: "right" }}>
+          <Button type="primary" icon="plus">
+            Create Task
+          </Button>
+        </span>
+      </div>
+
       <div style={{ marginTop: "30px", marginBottom: "30px" }}>
         <Input placeholder="Filter tasks" prefix={<Icon type="search" />} />
       </div>

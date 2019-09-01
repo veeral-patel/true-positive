@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, PageHeader } from "antd";
+import { Button } from "antd";
 import ActionsDropdown from "container/all_cases/ActionsDropdown";
 import CasesTable from "container/all_cases/CasesTable";
 import FilterInput from "container/all_cases/FilterInput";
@@ -20,19 +20,20 @@ export default inject("allCasesStore", "uiStore")(
         const { allCasesStore, uiStore } = this.props;
         return (
           <div>
-            <PageHeader
-              title={<h2>Cases</h2>}
-              backIcon={false}
-              style={{ paddingLeft: 0 }}
-              extra={[
+            <div>
+              <span style={{ display: "inline-block" }}>
+                <h2>Cases</h2>
+              </span>
+              <span style={{ float: "right" }}>
                 <Button
                   type="primary"
+                  icon="plus"
                   onClick={() => uiStore!.openCreateCaseModal()}
                 >
                   Create Case
                 </Button>
-              ]}
-            />
+              </span>
+            </div>
             <span
               style={{
                 marginBottom: "30px",
