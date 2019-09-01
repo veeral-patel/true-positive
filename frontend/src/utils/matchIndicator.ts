@@ -35,14 +35,28 @@ function isURL(s: string): boolean {
   return check(s, urlRegex);
 }
 
+const macAddressRegex = /\b(?:[A-Fa-f0-9]{2}([-:]))(?:[A-Fa-f0-9]{2}\1){4}[A-Fa-f0-9]{2}\b/gi;
+function isMacAddress(s: string): boolean {
+  return check(s, macAddressRegex);
+}
+
 export function matchIndicator(
   indicator: string
-): "MD5" | "SHA1" | "SHA256" | "OTHER" | "IPv4" | "IPv6" | "URL" {
+):
+  | "MD5"
+  | "SHA1"
+  | "SHA256"
+  | "OTHER"
+  | "IPv4"
+  | "IPv6"
+  | "URL"
+  | "MAC_ADDRESS" {
   if (isMD5(indicator)) return "MD5";
   if (isSHA1(indicator)) return "SHA1";
   if (isSHA256(indicator)) return "SHA256";
   if (isIPv4(indicator)) return "IPv4";
   if (isIPv6(indicator)) return "IPv6";
   if (isURL(indicator)) return "URL";
+  if (isMacAddress(indicator)) return "MAC_ADDRESS";
   return "OTHER";
 }
