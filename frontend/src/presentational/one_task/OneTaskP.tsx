@@ -58,7 +58,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
       <Divider orientation="left">
         Indicators ({activeTask.indicators.length})
       </Divider>
-      <div style={{ width: "70%" }}>
+      <div style={{ width: "90%" }}>
         <div style={{ marginBottom: "25px" }}>
           <IndicatorInputP />
         </div>

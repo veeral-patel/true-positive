@@ -17,6 +17,7 @@ interface IndicatorInputState {
     | "MAC_ADDRESS"
     | "EMAIL"
     | "DOMAIN"
+    | "SSDEEP"
     | "OTHER";
   inputValue: string;
 }

@@ -58,6 +58,11 @@ function isEmail(s: string): boolean {
   return check(s, emailRegex);
 }
 
+const ssdeepRegex = /\b\d{1,}:[A-Za-z0-9/+]{3,}:[A-Za-z0-9/+]{3,}/gi;
+function isSSDEEP(s: string): boolean {
+  return check(s, ssdeepRegex);
+}
+
 export function matchIndicator(
   indicator: string
 ):
@@ -70,7 +75,8 @@ export function matchIndicator(
   | "URL"
   | "MAC_ADDRESS"
   | "EMAIL"
-  | "DOMAIN" {
+  | "DOMAIN"
+  | "SSDEEP" {
   if (isMD5(indicator)) return "MD5";
   if (isSHA1(indicator)) return "SHA1";
   if (isSHA256(indicator)) return "SHA256";
@@ -80,5 +86,6 @@ export function matchIndicator(
   if (isMacAddress(indicator)) return "MAC_ADDRESS";
   if (isEmail(indicator)) return "EMAIL";
   if (isDomain(indicator)) return "DOMAIN";
+  if (isSSDEEP(indicator)) return "SSDEEP";
   return "OTHER";
 }
