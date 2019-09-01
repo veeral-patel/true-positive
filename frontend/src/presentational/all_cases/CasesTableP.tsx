@@ -14,15 +14,21 @@ import { priorityMatches, statusMatches } from "utils/filterCases";
 const { Column } = Table;
 
 interface ICasesTableProps {
-  // list of case objects
   dataSource: ICase[];
   rowSelection: TableRowSelection<ICase>;
   statusFilters: ColumnFilterItem[];
   priorityFilters: ColumnFilterItem[];
+  userFilters: ColumnFilterItem[];
 }
 
 const CasesTableP: React.FC<ICasesTableProps> = props => {
-  const { dataSource, rowSelection, statusFilters, priorityFilters } = props;
+  const {
+    dataSource,
+    rowSelection,
+    statusFilters,
+    priorityFilters,
+    userFilters
+  } = props;
   return (
     <Table
       dataSource={dataSource}
@@ -82,12 +88,14 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         sorter={(a: ICase, b: ICase) =>
           compareUsers(a.assignedTo, b.assignedTo)
         }
+        filters={userFilters}
       />
       <Column
         title="Created By"
         dataIndex="createdBy.username"
         key="created_by"
         sorter={(a: ICase, b: ICase) => compareUsers(a.createdBy, b.createdBy)}
+        filters={userFilters}
       />
       <Column
         title="Created At (UTC)"

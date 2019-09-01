@@ -14,6 +14,7 @@ ReactDOM.render(
     uiStore={store.uiStore}
     statusStore={store.statusStore}
     priorityStore={store.priorityStore}
+    userStore={store.userStore}
   >
     <App />
   </Provider>,
