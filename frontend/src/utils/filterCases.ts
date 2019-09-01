@@ -77,3 +77,4 @@ function matchesFilter(filterValue: string, theCase: ICase) {
 }
 
 export default matchesFilter;
+export { statusMatches, priorityMatches };

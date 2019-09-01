@@ -9,6 +9,7 @@ import React from "react";
 import ICase from "ts/interfaces/ICase";
 import compareUsers from "utils/compareUsers";
 import { paths } from "utils/constants";
+import { priorityMatches, statusMatches } from "utils/filterCases";
 
 const { Column } = Table;
 
@@ -59,6 +60,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
           a.status.name.localeCompare(b.status.name)
         }
         filters={statusFilters}
+        onFilter={(filterWord, record) => statusMatches(filterWord, record)}
       />
       <Column
         title="Priority"
@@ -71,6 +73,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
           a.priority.name.localeCompare(b.priority.name)
         }
         filters={priorityFilters}
+        onFilter={(filterWord, record) => priorityMatches(filterWord, record)}
       />
       <Column
         title="Assigned To"
