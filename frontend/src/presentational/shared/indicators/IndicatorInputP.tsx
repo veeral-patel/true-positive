@@ -1,10 +1,11 @@
 import { Icon, Input } from "antd";
 import React from "react";
+import { matchIndicator } from "utils/matchIndicator";
 
 interface IndicatorInputProps {}
 
 interface IndicatorInputState {
-  status: "READY" | "LOADING";
+  status: "EMPTY" | "LOADING" | "MD5" | "SHA1" | "SHA256" | "OTHER";
   inputValue: string;
 }
 
@@ -15,17 +16,33 @@ class IndicatorInputP extends React.Component<
   constructor(props: IndicatorInputProps) {
     super(props);
     this.state = {
-      status: "READY",
+      status: "EMPTY",
       inputValue: ""
     };
+  }
+
+  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    // update our input value
+    const newValue = event.currentTarget.value;
+    this.setState({ inputValue: newValue });
+
+    // if we've entered some input, set the status to the indicator type
+    if (newValue) {
+      const matchedType = matchIndicator(newValue);
+      this.setState({ status: matchedType });
+    } else {
+      // otherwise, if the input is empty, set the status to empty
+      this.setState({ status: "EMPTY" });
+    }
   }
 
   render() {
     const { status, inputValue } = this.state;
 
     let suffix;
-    if (status === "READY") suffix = <Icon type="arrow-right" />;
+    if (status === "EMPTY") suffix = <Icon type="arrow-right" />;
     else if (status === "LOADING") suffix = <Icon type="loading" />;
+    else suffix = status;
 
     return (
       <Input
@@ -33,9 +50,7 @@ class IndicatorInputP extends React.Component<
         value={inputValue}
         prefix={<Icon type="plus" />}
         suffix={suffix}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          this.setState({ inputValue: e.currentTarget.value })
-        }
+        onChange={this.handleChange.bind(this)}
       />
     );
   }
