@@ -1,6 +1,6 @@
 import { navigate } from "@reach/router";
 import { Table } from "antd";
-import { TableRowSelection } from "antd/lib/table";
+import { ColumnFilterItem, TableRowSelection } from "antd/lib/table";
 import ExpandedRowP from "presentational/all_cases/ExpandedRowP";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
@@ -16,10 +16,11 @@ interface ICasesTableProps {
   // list of case objects
   dataSource: ICase[];
   rowSelection: TableRowSelection<ICase>;
+  statusFilters: ColumnFilterItem[];
 }
 
 const CasesTableP: React.FC<ICasesTableProps> = props => {
-  const { dataSource, rowSelection } = props;
+  const { dataSource, rowSelection, statusFilters } = props;
   return (
     <Table
       dataSource={dataSource}
@@ -56,6 +57,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         sorter={(a: ICase, b: ICase) =>
           a.status.name.localeCompare(b.status.name)
         }
+        filters={statusFilters}
       />
       <Column
         title="Priority"
