@@ -62,7 +62,7 @@ export default inject("allCasesStore", "statusStore", "priorityStore")(
             priorityFilters = priorities.map(priority => ({
               text: priority.name,
               value: priority.name
-            }))
+            }));
           }
 
           return (
