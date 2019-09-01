@@ -1,17 +1,10 @@
 import { navigate } from "@reach/router";
-import {
-  Avatar,
-  Comment,
-  Divider,
-  Icon,
-  Input,
-  Layout,
-  PageHeader
-} from "antd";
+import { Avatar, Comment, Divider, Layout, PageHeader } from "antd";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
+import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import IndicatorListP from "presentational/shared/indicators/IndicatorListP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
@@ -67,11 +60,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
       </Divider>
       <div style={{ width: "70%" }}>
         <div style={{ marginBottom: "25px" }}>
-          <Input
-            placeholder="Enter an IP, file hash, domain, or URL to add it"
-            prefix={<Icon type="plus" />}
-            suffix={<Icon type="arrow-right" />}
-          />
+          <IndicatorInputP />
         </div>
         <div>
           <IndicatorListP indicators={activeTask.indicators} />
