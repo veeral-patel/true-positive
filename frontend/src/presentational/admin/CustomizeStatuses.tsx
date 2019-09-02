@@ -42,6 +42,13 @@ export default inject("statusStore")(
         const { statusStore } = this.props;
         const { inputValue } = this.state;
 
+        const statusIsBeingCreated = statusStore!.statusIsBeingCreated;
+        const suffix = statusIsBeingCreated ? (
+          <Icon type="loading" />
+        ) : (
+          <Icon type="arrow-right" />
+        );
+
         return (
           <div>
             <HelperText />
@@ -49,7 +56,7 @@ export default inject("statusStore")(
               <Input
                 placeholder="Enter the name of a status to create it"
                 prefix={<Icon type="plus" />}
-                suffix={<Icon type="arrow-right" />}
+                suffix={suffix}
                 value={inputValue}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                   this.setState({ inputValue: event.currentTarget.value })
