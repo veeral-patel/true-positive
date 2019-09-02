@@ -32,7 +32,7 @@ const ListItemP: React.FC<ListItemProps> = ({
     actions={[<NumberOfComments count={numberOfComments} />]}
     onClick={() => openIndicatorDrawer(indicator.id)}
   >
-    <div style={{ width: "90%" }} className="indicator_name">
+    <div style={{ width: "90%", overflow: "hidden", textOverflow: "ellipsis" }}>
       {indicator.name}
     </div>
   </List.Item>
