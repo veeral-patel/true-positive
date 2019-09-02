@@ -67,6 +67,10 @@ const GET_ONE_CASE = gql`
         indicators {
           id
           name
+          createdAt
+          createdBy {
+            username
+          }
           description
           comments {
             comment
