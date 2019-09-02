@@ -9,5 +9,6 @@ module Types
         field :created_by, Types::UserType, null: false
         field :comments, [Types::CommentType], null: false
         field :tags, [Types::TagType], null: false
+        field :task, Types::TaskType, null: false
     end
 end
