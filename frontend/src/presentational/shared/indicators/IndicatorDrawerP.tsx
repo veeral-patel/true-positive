@@ -1,10 +1,12 @@
-import { Avatar, Comment, Divider, Drawer } from "antd";
+import { Avatar, Comment, Divider, Drawer, Typography } from "antd";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
 import DetailsSectionP from "presentational/shared/indicators/DetailsSectionP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
+
+const { Text, Title } = Typography;
 
 interface IndicatorDrawerProps {
   activeIndicator: IIndicator;
@@ -19,7 +21,9 @@ const IndicatorDrawerP: React.FC<IndicatorDrawerProps> = ({
 }) => (
   <Drawer visible={visible} onClose={handleClose} width={700}>
     <div>
-      <h3>{activeIndicator.name}</h3>
+      <Title level={4} editable>
+        {activeIndicator.name}
+      </Title>
       <DetailsSectionP activeIndicator={activeIndicator} />
 
       <Divider orientation="left">Description</Divider>
