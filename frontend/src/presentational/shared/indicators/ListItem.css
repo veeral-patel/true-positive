@@ -3,5 +3,6 @@
 }
 
 .indicator_list_item {
-  overflow-x: scroll;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
