@@ -7,6 +7,7 @@ import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
+import ITag from "ts/interfaces/ITag";
 import compareUsers from "utils/compareUsers";
 import { paths } from "utils/constants";
 import {
@@ -59,7 +60,7 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         title="Tags"
         dataIndex="tags"
         key="tags"
-        render={tags => (
+        render={(tags: ITag[]) => (
           <div style={{ lineHeight: 2.0 }}>
             <ListOfTagsP tags={tags} />
           </div>

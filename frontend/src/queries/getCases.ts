@@ -20,7 +20,10 @@ const GET_CASES = gql`
       assignedTo {
         username
       }
-      tags
+      tags {
+        id
+        name
+      }
       tasks {
         id
         name
@@ -31,7 +34,10 @@ const GET_CASES = gql`
         priority {
           name
         }
-        tags
+        tags {
+          id
+          name
+        }
       }
     }
   }

@@ -38,7 +38,10 @@ const GET_ONE_CASE = gql`
       assignedTo {
         username
       }
-      tags
+      tags {
+        id
+        name
+      }
       tasks {
         id
         name
@@ -67,7 +70,10 @@ const GET_ONE_CASE = gql`
             comment
           }
         }
-        tags
+        tags {
+          id
+          name
+        }
       }
       comments {
         comment

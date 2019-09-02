@@ -56,7 +56,7 @@ function anAttributeMatches(filterWord: string, theCase: ICase) {
 // Returns TRUE iff any of the case's tags contain filterWord. filterWord shouldn't have spaces.
 function aTagMatches(filterWord: string, theCase: ICase) {
   for (const tag of theCase.tags) {
-    if (tag.indexOf(filterWord) !== -1) return true;
+    if (tag.name.indexOf(filterWord) !== -1) return true;
   }
   return false;
 }

@@ -1,6 +1,7 @@
 import IComment from "ts/interfaces/IComment";
 import IPriority from "ts/interfaces/IPriority";
 import IStatus from "ts/interfaces/IStatus";
+import ITag from "ts/interfaces/ITag";
 import IUser from "ts/interfaces/IUser";
 import IIndicator from "./IIndicator";
 
@@ -8,7 +9,7 @@ interface ITask {
   id: number;
   name: string;
   createdAt: string;
-  tags: string[];
+  tags: ITag[];
   status: IStatus;
   priority: IPriority;
   createdBy: IUser;
