@@ -1,4 +1,5 @@
 import { Divider, Drawer } from "antd";
+import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
 import React from "react";
@@ -18,14 +19,15 @@ const IndicatorDrawerP: React.FC<IndicatorDrawerProps> = ({
   <Drawer visible={visible} onClose={handleClose} width={700}>
     <div>
       <h3>{activeIndicator.name}</h3>
-
       <Divider orientation="left">Description</Divider>
       <DescriptionP description={activeIndicator.description} />
-
       <Divider orientation="left">
         Comments ({activeIndicator.comments.length})
       </Divider>
-      <CommentListP comments={activeIndicator.comments} />
+      {activeIndicator.comments.length > 0 && (
+        <CommentListP comments={activeIndicator.comments} />
+      )}
+      <AddCommentFormP />
     </div>
   </Drawer>
 );
