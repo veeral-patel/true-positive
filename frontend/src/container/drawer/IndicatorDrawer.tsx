@@ -23,7 +23,7 @@ export default inject("uiStore", "activeCaseStore")(
           if (!taskId || !indicatorId) {
             notification.error({
               message: "Cannot fetch indicator",
-              description: "Either the task id or the indicator id is null"
+              description: "Either the task ID or the indicator ID is null"
             });
 
             return null;
@@ -34,7 +34,20 @@ export default inject("uiStore", "activeCaseStore")(
             indicatorId
           );
 
-          return <Drawer visible={true} />;
+          if (!activeIndicator) {
+            notification.error({
+              message: "Cannot fetch indicator",
+              description: "Ensure the indicator exists"
+            });
+
+            return null;
+          }
+
+          return (
+            <Drawer visible={true}>
+              <h2>{activeIndicator.name}</h2>
+            </Drawer>
+          );
         }
         return null;
       }
