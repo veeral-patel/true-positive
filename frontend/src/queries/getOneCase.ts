@@ -70,6 +70,10 @@ const GET_ONE_CASE = gql`
           description
           comments {
             comment
+            createdAt
+            createdBy {
+              username
+            }
           }
         }
         tags {
