@@ -5,6 +5,7 @@ import IStatus from "ts/interfaces/IStatus";
 import ITag from "ts/interfaces/ITag";
 import ITask from "ts/interfaces/ITask";
 import IUser from "ts/interfaces/IUser";
+import IIndicator from "./IIndicator";
 
 interface ICase {
   id: number;
@@ -24,6 +25,7 @@ interface ICase {
   mergedAt: string;
   mergedCases: ICase[];
   caseMembers: ICaseMember[];
+  indicators: IIndicator[];
 }
 
 export default ICase;

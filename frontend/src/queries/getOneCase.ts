@@ -42,6 +42,18 @@ const GET_ONE_CASE = gql`
         id
         name
       }
+      indicators {
+        id
+        name
+        createdAt
+        description
+        tags {
+          name
+        }
+        createdBy {
+          username
+        }
+      }
       tasks {
         id
         name

@@ -16,7 +16,8 @@ export default inject("activeCaseStore")(
         const activeCase = activeCaseStore!.activeCase;
 
         // should always render, since we're catching errors and showing spinner above this component
-        if (activeCase) return <IndicatorsP />;
+        if (activeCase)
+          return <IndicatorsP indicators={activeCase.indicators} />;
       }
     }
   )
