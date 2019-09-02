@@ -16,9 +16,11 @@ class UIStore {
 
   @observable indicatorDrawer: {
     status: "OPEN" | "COLLAPSED";
+    taskId: number | null;
     indicatorId: number | null;
   } = {
     status: "COLLAPSED",
+    taskId: null,
     indicatorId: null
   };
 
@@ -31,6 +33,15 @@ class UIStore {
       else if (value === "OPEN")
         runInAction(() => (this.caseSiderStatus = "OPEN"));
     }
+  }
+
+  @action.bound
+  openIndicatorDrawer(taskId: number, indicatorId: number) {
+    this.indicatorDrawer = {
+      status: "OPEN",
+      taskId,
+      indicatorId
+    };
   }
 
   @action.bound

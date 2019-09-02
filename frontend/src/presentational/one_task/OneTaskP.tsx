@@ -63,7 +63,10 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
           <IndicatorInputP />
         </div>
         <div>
-          <IndicatorList indicators={activeTask.indicators} />
+          <IndicatorList
+            indicators={activeTask.indicators}
+            activeTask={activeTask}
+          />
         </div>
       </div>
     </section>

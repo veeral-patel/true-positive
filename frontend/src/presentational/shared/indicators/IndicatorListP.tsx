@@ -15,9 +15,13 @@ const NumberOfComments: React.FC<NumberofCommentsProps> = ({ count }) => (
 
 interface IndicatorListProps {
   indicators: IIndicator[];
+  openIndicatorDrawer: (indicatorId: number) => void;
 }
 
-const IndicatorListP: React.FC<IndicatorListProps> = ({ indicators }) => (
+const IndicatorListP: React.FC<IndicatorListProps> = ({
+  indicators,
+  openIndicatorDrawer
+}) => (
   <List
     itemLayout="horizontal"
     dataSource={indicators}
@@ -25,6 +29,7 @@ const IndicatorListP: React.FC<IndicatorListProps> = ({ indicators }) => (
     renderItem={indicator => (
       <List.Item
         actions={[<NumberOfComments count={indicator.comments.length} />]}
+        onClick={() => openIndicatorDrawer(indicator.id)}
       >
         {indicator.name}
       </List.Item>
