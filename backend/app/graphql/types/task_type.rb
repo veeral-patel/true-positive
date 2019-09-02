@@ -12,10 +12,10 @@ module Types
         field :case, Types::CaseType, null: false
         field :comments, [Types::CommentType], null: false
         field :indicators, [Types::IndicatorType], null: false
+        field :tags, [Types::TagType], null: false
 
         # optional fields
         field :description, String, null: true
         field :assigned_to, Types::UserType, null: true
-        field :tags, [String], null: false
     end
 end

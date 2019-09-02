@@ -12,7 +12,7 @@ module Types
         field :priority, Types::PriorityType, null: false
         field :comments, [Types::CommentType], null: false
         field :tasks, [Types::TaskType], null: false
-        field :tags, [String], null: false
+        field :tags, [Types::TagType], null: false
         field :merged_cases, [Types::CaseType], null: false
         field :is_merged, Boolean, null: false
         field :case_members, [Types::CaseMemberType], null: false
