@@ -1,4 +1,4 @@
-import { Divider, Drawer } from "antd";
+import { Avatar, Comment, Divider, Drawer } from "antd";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
@@ -28,7 +28,10 @@ const IndicatorDrawerP: React.FC<IndicatorDrawerProps> = ({
         {activeIndicator.comments.length > 0 && (
           <CommentListP comments={activeIndicator.comments} />
         )}
-        <AddCommentFormP />
+        <Comment
+          content={<AddCommentFormP />}
+          avatar={<Avatar icon="user" />}
+        />
       </div>
     </div>
   </Drawer>
