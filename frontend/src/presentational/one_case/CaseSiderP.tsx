@@ -49,19 +49,14 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
       <Menu.Item key="tasks">
         <Icon type="check-square" />
         <span>
-          Tasks{" "}
-          {numberOfTasks !== null ? <span>({numberOfTasks})</span> : <span />}
+          Tasks {numberOfTasks !== null && <span>({numberOfTasks})</span>}
         </span>
       </Menu.Item>
       <Menu.Item key="indicators">
         <Icon type="security-scan" />
         <span>
           Indicators{" "}
-          {numberOfIndicators !== null ? (
-            <span>({numberOfIndicators})</span>
-          ) : (
-            <span />
-          )}
+          {numberOfIndicators !== null && <span>({numberOfIndicators})</span>}
         </span>
       </Menu.Item>
       <Menu.Item key="tree">
@@ -71,12 +66,7 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
       <Menu.Item key="members">
         <Icon type="user" />
         <span>
-          Members{" "}
-          {numberOfMembers !== null ? (
-            <span>({numberOfMembers})</span>
-          ) : (
-            <span />
-          )}
+          Members {numberOfMembers !== null && <span>({numberOfMembers})</span>}
         </span>
       </Menu.Item>
     </Menu>
