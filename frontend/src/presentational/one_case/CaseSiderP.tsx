@@ -11,6 +11,7 @@ interface ICaseSiderProps {
   caseName: string;
   numberOfTasks: number | null;
   numberOfMembers: number | null;
+  numberOfIndicators: number | null;
 }
 
 const CaseSiderP: React.FC<ICaseSiderProps> = ({
@@ -18,7 +19,8 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
   handleCollapse,
   caseName,
   numberOfTasks,
-  numberOfMembers
+  numberOfMembers,
+  numberOfIndicators
 }) => (
   <Sider
     width={200}
@@ -53,7 +55,14 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
       </Menu.Item>
       <Menu.Item key="indicators">
         <Icon type="security-scan" />
-        <span>Indicators</span>
+        <span>
+          Indicators{" "}
+          {numberOfIndicators !== null ? (
+            <span>({numberOfIndicators})</span>
+          ) : (
+            <span />
+          )}
+        </span>
       </Menu.Item>
       <Menu.Item key="tree">
         <Icon type="apartment" />

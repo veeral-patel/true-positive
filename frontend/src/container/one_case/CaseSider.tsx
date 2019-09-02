@@ -22,20 +22,24 @@ export default inject("uiStore", "activeCaseStore")(
         let caseName: string;
         let numberOfMembers: number | null;
         let numberOfTasks: number | null;
+        let numberOfIndicators: number | null;
 
         if (isLoading) {
           caseName = "Loading";
           numberOfMembers = null;
           numberOfTasks = null;
+          numberOfIndicators = null;
         } else {
           if (activeCase) {
             caseName = activeCase.name;
             numberOfMembers = activeCase.caseMembers.length;
             numberOfTasks = activeCase.tasks.length;
+            numberOfIndicators = activeCase.indicators.length;
           } else {
             caseName = "Error";
             numberOfMembers = null;
             numberOfTasks = null;
+            numberOfIndicators = null;
           }
         }
         return (
@@ -43,6 +47,7 @@ export default inject("uiStore", "activeCaseStore")(
             caseName={caseName}
             numberOfMembers={numberOfMembers}
             numberOfTasks={numberOfTasks}
+            numberOfIndicators={numberOfIndicators}
             collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
             handleCollapse={(collapsed: boolean, type: CollapseType) =>
               uiStore!.toggleCaseSider()
