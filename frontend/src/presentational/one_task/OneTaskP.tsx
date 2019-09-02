@@ -59,10 +59,17 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
         Indicators ({activeTask.indicators.length})
       </Divider>
       <div style={{ width: "90%" }}>
-        <div style={{ marginBottom: "25px" }}>
-          <IndicatorInputP />
+        <div style={{ marginBottom: "16px", float: "right" }}>
+          <a>Bulk Import</a>
+          <Divider type="vertical" />
+          <a>Add YARA Rule</a>
+          <Divider type="vertical" />
+          <a>Add Snort Rule</a>
         </div>
         <div>
+          <IndicatorInputP />
+        </div>
+        <div style={{ marginTop: "10px" }}>
           <IndicatorList
             indicators={activeTask.indicators}
             activeTask={activeTask}
