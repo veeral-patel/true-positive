@@ -16,6 +16,7 @@ module Types
         field :merged_cases, [Types::CaseType], null: false
         field :is_merged, Boolean, null: false
         field :case_members, [Types::CaseMemberType], null: false
+        field :indicators, [Types::IndicatorType], null: false
 
         # possibly null
         field :description, String, null: true
