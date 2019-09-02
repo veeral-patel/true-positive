@@ -17,41 +17,41 @@ export default inject("uiStore", "activeCaseStore")(
         const { uiStore, activeCaseStore } = this.props;
         const drawerIsOpen = uiStore!.indicatorDrawer.status === "OPEN";
 
-        if (drawerIsOpen) {
-          const taskId = uiStore!.indicatorDrawer.taskId;
-          const indicatorId = uiStore!.indicatorDrawer.indicatorId;
+        if (!drawerIsOpen) return null;
 
-          if (!taskId || !indicatorId) {
-            notification.error({
-              message: "Cannot fetch indicator",
-              description: "Either the task ID or the indicator ID is null"
-            });
+        const taskId = uiStore!.indicatorDrawer.taskId;
+        const indicatorId = uiStore!.indicatorDrawer.indicatorId;
 
-            return null;
-          }
+        if (!taskId || !indicatorId) {
+          notification.error({
+            message: "Cannot fetch indicator",
+            description: "Either the task ID or the indicator ID is null"
+          });
 
-          const activeIndicator = activeCaseStore!.getIndicator(
-            taskId,
-            indicatorId
-          );
-
-          if (!activeIndicator) {
-            notification.error({
-              message: "Cannot fetch indicator",
-              description: "Try refreshing the page"
-            });
-
-            return null;
-          }
-
-          return (
-            <IndicatorDrawerP
-              visible={true}
-              activeIndicator={activeIndicator}
-            />
-          );
+          return null;
         }
-        return null;
+
+        const activeIndicator = activeCaseStore!.getIndicator(
+          taskId,
+          indicatorId
+        );
+
+        if (!activeIndicator) {
+          notification.error({
+            message: "Cannot fetch indicator",
+            description: "Try refreshing the page"
+          });
+
+          return null;
+        }
+
+        return (
+          <IndicatorDrawerP
+            visible={drawerIsOpen}
+            activeIndicator={activeIndicator}
+            handleClose={() => uiStore!.closeIndicatorDrawer()}
+          />
+        );
       }
     }
   )

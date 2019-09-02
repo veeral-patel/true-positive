@@ -45,6 +45,15 @@ class UIStore {
   }
 
   @action.bound
+  closeIndicatorDrawer() {
+    this.indicatorDrawer = {
+      status: "COLLAPSED",
+      taskId: null,
+      indicatorId: null
+    };
+  }
+
+  @action.bound
   toggleCaseSider() {
     if (this.caseSiderStatus === "COLLAPSED")
       runInAction(() => (this.caseSiderStatus = "OPEN"));
