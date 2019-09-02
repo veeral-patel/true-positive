@@ -1,4 +1,4 @@
-import { List } from "antd";
+import { Spin } from "antd";
 import { inject, observer } from "mobx-react";
 import ListofStatusesP from "presentational/admin/ListofStatusesP";
 import React from "react";
@@ -21,10 +21,11 @@ export default inject("statusStore")(
         const isLoading = statusStore!.statusesAreLoading;
 
         if (isLoading) {
-          return <List loading={true} />;
+          return <Spin />;
         }
 
         const statuses = statusStore!.statuses;
+
         return <ListofStatusesP statuses={statuses} />;
       }
     }

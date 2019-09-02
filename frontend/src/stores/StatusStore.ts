@@ -26,9 +26,11 @@ class StatusStore {
       .query<IStatusData>({
         query: GET_STATUSES
       })
-      .then((response: ApolloQueryResult<IStatusData>) =>
-        runInAction(() => (this.statuses = response.data.statuses))
-      )
+      .then((response: ApolloQueryResult<IStatusData>) => {
+        runInAction(() => {
+          this.statuses = response.data.statuses;
+        });
+      })
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while fetching statuses",
@@ -52,7 +54,6 @@ class StatusStore {
         mutation: CREATE_A_STATUS
       })
       .then((response: ApolloQueryResult<IStatusDatum>) => {
-        runInAction(() => this.loadStatuses());
         message.success(`Created status '${name}'`);
       })
       .catch((error: ApolloError) => {
@@ -61,7 +62,12 @@ class StatusStore {
           description: error.message
         });
       })
-      .finally(() => runInAction(() => (this.statusIsBeingCreated = false)));
+      .finally(() =>
+        runInAction(() => {
+          this.statusIsBeingCreated = false;
+          this.loadStatuses();
+        })
+      );
   }
 }
 
