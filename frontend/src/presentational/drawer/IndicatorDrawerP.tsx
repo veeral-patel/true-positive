@@ -24,10 +24,12 @@ const IndicatorDrawerP: React.FC<IndicatorDrawerProps> = ({
       <Divider orientation="left">
         Comments ({activeIndicator.comments.length})
       </Divider>
-      {activeIndicator.comments.length > 0 && (
-        <CommentListP comments={activeIndicator.comments} />
-      )}
-      <AddCommentFormP />
+      <div style={{ width: "85%" }}>
+        {activeIndicator.comments.length > 0 && (
+          <CommentListP comments={activeIndicator.comments} />
+        )}
+        <AddCommentFormP />
+      </div>
     </div>
   </Drawer>
 );
