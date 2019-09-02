@@ -37,7 +37,7 @@ export default inject("uiStore", "activeCaseStore")(
           if (!activeIndicator) {
             notification.error({
               message: "Cannot fetch indicator",
-              description: "Ensure the indicator exists"
+              description: "Try refreshing the page"
             });
 
             return null;
