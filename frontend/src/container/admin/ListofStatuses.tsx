@@ -26,7 +26,12 @@ export default inject("statusStore")(
 
         const statuses = statusStore!.statuses;
 
-        return <ListofStatusesP statuses={statuses} />;
+        return (
+          <ListofStatusesP
+            statuses={statuses}
+            deleteStatus={statusStore!.deleteStatus}
+          />
+        );
       }
     }
   )

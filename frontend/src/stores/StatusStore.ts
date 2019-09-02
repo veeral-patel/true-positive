@@ -3,6 +3,7 @@ import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import CREATE_A_STATUS from "mutations/createStatus";
+import DELETE_A_STATUS from "mutations/deleteStatus";
 import GET_STATUSES from "queries/getStatuses";
 import IStatus from "ts/interfaces/IStatus";
 
@@ -65,6 +66,33 @@ class StatusStore {
       .finally(() =>
         runInAction(() => {
           this.statusIsBeingCreated = false;
+          this.loadStatuses();
+        })
+      );
+  }
+
+  @action.bound
+  deleteStatus(id: number) {
+    client
+      .mutate<IStatusDatum>({
+        variables: {
+          input: {
+            id: id
+          }
+        },
+        mutation: DELETE_A_STATUS
+      })
+      .then((response: ApolloQueryResult<IStatusDatum>) => {
+        message.success("Deleted status");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while deleting the status",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
           this.loadStatuses();
         })
       );
