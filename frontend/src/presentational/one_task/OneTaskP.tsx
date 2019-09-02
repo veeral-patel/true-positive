@@ -60,11 +60,11 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
       </Divider>
       <div style={{ width: "90%" }}>
         <div style={{ marginBottom: "16px", float: "right" }}>
-          <a>Bulk Import</a>
+          <a>Import from File</a>
           <Divider type="vertical" />
-          <a>Add YARA Rule</a>
+          <a>Add YARA Rule(s)</a>
           <Divider type="vertical" />
-          <a>Add Snort Rule</a>
+          <a>Add Snort Rule(s)</a>
         </div>
         <div>
           <IndicatorInputP />
