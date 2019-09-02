@@ -2,7 +2,7 @@
   background-color: #e6f7ff;
 }
 
-.indicator_list_item {
+.indicator_name {
   overflow: hidden;
   text-overflow: ellipsis;
 }
