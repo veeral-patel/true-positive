@@ -1,11 +1,11 @@
 import { navigate } from "@reach/router";
 import { Avatar, Comment, Divider, Layout, PageHeader } from "antd";
+import IndicatorList from "container/indicators/IndicatorList";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
 import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
-import IndicatorListP from "presentational/shared/indicators/IndicatorListP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 import ITask from "ts/interfaces/ITask";
@@ -63,7 +63,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
           <IndicatorInputP />
         </div>
         <div>
-          <IndicatorListP indicators={activeTask.indicators} />
+          <IndicatorList indicators={activeTask.indicators} />
         </div>
       </div>
     </section>
