@@ -19,6 +19,7 @@ export default inject("uiStore", "activeCaseStore")(
 
         if (!drawerIsOpen) return null;
 
+        // error if the task id or indicator id are null
         const taskId = uiStore!.indicatorDrawer.taskId;
         const indicatorId = uiStore!.indicatorDrawer.indicatorId;
 
@@ -36,6 +37,7 @@ export default inject("uiStore", "activeCaseStore")(
           indicatorId
         );
 
+        // error if we couldn't retrieve the active indicator from the store
         if (!activeIndicator) {
           notification.error({
             message: "Cannot fetch indicator",
@@ -45,6 +47,7 @@ export default inject("uiStore", "activeCaseStore")(
           return null;
         }
 
+        // render the drawer
         return (
           <IndicatorDrawerP
             visible={drawerIsOpen}
