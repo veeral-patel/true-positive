@@ -1,5 +1,6 @@
-import { Drawer, notification } from "antd";
+import { notification } from "antd";
 import { inject, observer } from "mobx-react";
+import IndicatorDrawerP from "presentational/drawer/IndicatorDrawerP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
@@ -44,9 +45,10 @@ export default inject("uiStore", "activeCaseStore")(
           }
 
           return (
-            <Drawer visible={true}>
-              <h2>{activeIndicator.name}</h2>
-            </Drawer>
+            <IndicatorDrawerP
+              visible={true}
+              activeIndicator={activeIndicator}
+            />
           );
         }
         return null;
