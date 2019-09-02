@@ -32,7 +32,7 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
   >
     {!collapsed && (
       <div style={{ marginBottom: "10px" }}>
-        <Text type="secondary" style={{ textTransform: "uppercase" }}>
+        <Text type="secondary" style={{ textTransform: "uppercase" }} editable>
           {caseName}
         </Text>
       </div>

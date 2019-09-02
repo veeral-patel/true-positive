@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import { Avatar, Comment, Divider, Layout, PageHeader } from "antd";
+import { Avatar, Comment, Divider, Layout, PageHeader, Typography } from "antd";
 import IndicatorList from "container/shared/indicators/IndicatorList";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
@@ -13,6 +13,7 @@ import { getPathToCaseTasks } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
+const { Text } = Typography;
 
 interface OneTaskProps {
   activeCase: ICase;
@@ -29,7 +30,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
   >
     <PageHeader
       onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
-      title={activeTask.name}
+      title={<Text editable>{activeTask.name}</Text>}
     />
 
     <DetailsP activeTask={activeTask} />
