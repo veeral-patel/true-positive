@@ -1,6 +1,10 @@
-import { List, Popconfirm } from "antd";
+import { List, Popconfirm, Typography } from "antd";
 import React from "react";
 import IStatus from "ts/interfaces/IStatus";
+
+const { Text } = Typography;
+
+// ---------
 
 interface DeleteStatusButtonProps {
   status: IStatus;
@@ -39,11 +43,10 @@ const ListofStatusesP: React.FC<IListofStatusesProps> = ({
       renderItem={status => (
         <List.Item
           actions={[
-            <a>Rename</a>,
             <DeleteStatusButton status={status} deleteStatus={deleteStatus} />
           ]}
         >
-          <List.Item.Meta title={status.name} />
+          <List.Item.Meta title={<Text editable>{status.name}</Text>} />
         </List.Item>
       )}
     />
