@@ -18,6 +18,7 @@ interface IndicatorInputState {
     | "EMAIL"
     | "DOMAIN"
     | "SSDEEP"
+    | "CVE"
     | "OTHER";
   inputValue: string;
 }

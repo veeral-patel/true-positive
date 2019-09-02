@@ -63,20 +63,26 @@ function isSSDEEP(s: string): boolean {
   return check(s, ssdeepRegex);
 }
 
+const cveRegex = /(CVE-(19|20)\d{2}-\d{4,7})/gi;
+function isCVE(s: string): boolean {
+  return check(s, cveRegex);
+}
+
 export function matchIndicator(
   indicator: string
 ):
   | "MD5"
   | "SHA1"
   | "SHA256"
-  | "OTHER"
   | "IPv4"
   | "IPv6"
   | "URL"
   | "MAC_ADDRESS"
   | "EMAIL"
   | "DOMAIN"
-  | "SSDEEP" {
+  | "SSDEEP"
+  | "CVE"
+  | "OTHER" {
   if (isMD5(indicator)) return "MD5";
   if (isSHA1(indicator)) return "SHA1";
   if (isSHA256(indicator)) return "SHA256";
@@ -87,5 +93,6 @@ export function matchIndicator(
   if (isEmail(indicator)) return "EMAIL";
   if (isDomain(indicator)) return "DOMAIN";
   if (isSSDEEP(indicator)) return "SSDEEP";
+  if (isCVE(indicator)) return "CVE";
   return "OTHER";
 }
