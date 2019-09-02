@@ -4,7 +4,6 @@ import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
 import ITag from "ts/interfaces/ITag";
-import compareUsers from "utils/compareUsers";
 const { Content } = Layout;
 
 interface IndicatorsProps {
@@ -41,14 +40,6 @@ const IndicatorsP: React.FC<IndicatorsProps> = ({ indicators }) => (
             <ListOfTagsP tags={tags} />
           </div>
         )}
-      />
-      <Column
-        title="Created By"
-        dataIndex="createdBy.username"
-        key="created_by"
-        sorter={(a: IIndicator, b: IIndicator) =>
-          compareUsers(a.createdBy, b.createdBy)
-        }
       />
     </Table>
   </Content>
