@@ -14,7 +14,9 @@ export default inject("uiStore", "activeCaseStore")(
     class IndicatorDrawer extends React.Component<IndicatorDrawerProps> {
       render() {
         const { uiStore, activeCaseStore } = this.props;
-        if (uiStore!.indicatorDrawer.status === "OPEN") {
+        const drawerIsOpen = uiStore!.indicatorDrawer.status === "OPEN";
+
+        if (drawerIsOpen) {
           const taskId = uiStore!.indicatorDrawer.taskId;
           const indicatorId = uiStore!.indicatorDrawer.indicatorId;
 
