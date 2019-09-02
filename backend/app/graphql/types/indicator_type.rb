@@ -8,5 +8,6 @@ module Types
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false
         field :created_by, Types::UserType, null: false
         field :comments, [Types::CommentType], null: false
+        field :tags, [Types::TagType], null: false
     end
 end

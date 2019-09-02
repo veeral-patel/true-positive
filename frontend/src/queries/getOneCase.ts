@@ -68,10 +68,13 @@ const GET_ONE_CASE = gql`
           id
           name
           createdAt
+          description
+          tags {
+            name
+          }
           createdBy {
             username
           }
-          description
           comments {
             comment
             createdAt
