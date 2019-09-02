@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import IndicatorTableP from "presentational/shared/indicators/IndicatorTableP";
+import IndicatorTable from "container/indicators/IndicatorTable";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
 const { Content } = Layout;
@@ -18,7 +18,7 @@ const IndicatorsP: React.FC<IndicatorsProps> = ({ indicators }) => (
     }}
   >
     <h2>Indicators</h2>
-    <IndicatorTableP indicators={indicators} />
+    <IndicatorTable indicators={indicators} />
   </Content>
 );
 
