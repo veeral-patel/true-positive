@@ -61,7 +61,10 @@ export default inject("statusStore")(
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                   this.setState({ inputValue: event.currentTarget.value })
                 }
-                onPressEnter={() => statusStore!.createStatus(inputValue)}
+                onPressEnter={() => {
+                  statusStore!.createStatus(inputValue);
+                  this.setState({ inputValue: "" });
+                }}
               />
             </div>
             <ListofStatuses />

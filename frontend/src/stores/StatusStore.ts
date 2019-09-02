@@ -52,7 +52,7 @@ class StatusStore {
         mutation: CREATE_A_STATUS
       })
       .then((response: ApolloQueryResult<IStatusDatum>) => {
-        runInAction(() => this.loadStatuses);
+        runInAction(() => this.loadStatuses());
         message.success(`Created status '${name}'`);
       })
       .catch((error: ApolloError) => {
