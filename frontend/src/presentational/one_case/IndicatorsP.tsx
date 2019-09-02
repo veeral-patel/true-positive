@@ -1,7 +1,9 @@
 import { Layout, Table } from "antd";
 import Column from "antd/lib/table/Column";
+import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
+import ITag from "ts/interfaces/ITag";
 import compareUsers from "utils/compareUsers";
 const { Content } = Layout;
 
@@ -29,6 +31,16 @@ const IndicatorsP: React.FC<IndicatorsProps> = ({ indicators }) => (
         dataIndex="name"
         key="name"
         sorter={(a: IIndicator, b: IIndicator) => a.name.localeCompare(b.name)}
+      />
+      <Column
+        title="Tags"
+        dataIndex="tags"
+        key="tags"
+        render={(tags: ITag[]) => (
+          <div style={{ lineHeight: 2.0 }}>
+            <ListOfTagsP tags={tags} />
+          </div>
+        )}
       />
       <Column
         title="Created By"
