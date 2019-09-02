@@ -1,3 +1,7 @@
 .indicator_list_item:hover {
   background-color: #e6f7ff;
 }
+
+.indicator_list_item {
+  overflow-x: scroll;
+}
