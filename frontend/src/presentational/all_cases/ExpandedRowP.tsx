@@ -1,5 +1,5 @@
 import { Typography } from "antd";
-import TasksTableP from "presentational/tasks/TasksTableP";
+import TasksTableP from "presentational/shared/tasks/TasksTableP";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
 

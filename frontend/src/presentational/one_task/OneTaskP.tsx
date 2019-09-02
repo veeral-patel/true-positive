@@ -1,6 +1,6 @@
 import { navigate } from "@reach/router";
 import { Avatar, Comment, Divider, Layout, PageHeader } from "antd";
-import IndicatorList from "container/indicators/IndicatorList";
+import IndicatorList from "container/shared/indicators/IndicatorList";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
 import CommentListP from "presentational/shared/comments/CommentListP";

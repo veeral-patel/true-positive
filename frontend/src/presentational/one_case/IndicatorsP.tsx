@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import IndicatorTable from "container/indicators/IndicatorTable";
+import IndicatorTable from "container/shared/indicators/IndicatorTable";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
 const { Content } = Layout;

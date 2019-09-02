@@ -1,6 +1,6 @@
 import { notification } from "antd";
 import { inject, observer } from "mobx-react";
-import IndicatorDrawerP from "presentational/drawer/IndicatorDrawerP";
+import IndicatorDrawerP from "presentational/shared/indicators/IndicatorDrawerP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";

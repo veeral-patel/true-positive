@@ -1,6 +1,6 @@
 import { navigate } from "@reach/router";
 import { Button, Icon, Input, Layout } from "antd";
-import TasksTableP from "presentational/tasks/TasksTableP";
+import TasksTableP from "presentational/shared/tasks/TasksTableP";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
 import { getPathToATask } from "utils/pathHelpers";
