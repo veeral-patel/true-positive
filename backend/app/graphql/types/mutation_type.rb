@@ -6,6 +6,9 @@ module Types
       field :create_case, mutation: Mutations::CreateCase
       field :rename_case, mutation: Mutations::RenameCase
 
+      # comment --------
+      field :delete_comment, mutation: Mutations::DeleteComment
+
       # status ----------
       field :create_status, mutation: Mutations::CreateStatus
       field :delete_status, mutation: Mutations::DeleteStatus

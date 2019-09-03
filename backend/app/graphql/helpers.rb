@@ -29,3 +29,11 @@ def find_case_or_throw_execution_error(case_id:)
         raise GraphQL::ExecutionError, "Could not find a case with id #{case_id}."
     end
 end
+
+def find_comment_or_throw_execution_error(comment_id:)
+    begin
+        Comment.find(comment_id)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find a comment with id #{comment_id}."
+    end
+end
