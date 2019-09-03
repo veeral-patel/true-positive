@@ -97,7 +97,7 @@ class PriorityStore {
       );
   }
 
-  @action.bound renameStatus(id: number, newName: string) {
+  @action.bound renamePriority(id: number, newName: string) {
     client
       .mutate<IPriorityDatum>({
         variables: {
