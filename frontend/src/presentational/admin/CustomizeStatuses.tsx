@@ -31,12 +31,9 @@ export default inject("statusStore")(
       CustomizeStatusesProps,
       CustomizeStatusesState
     > {
-      constructor(props: CustomizeStatusesProps) {
-        super(props);
-        this.state = {
-          inputValue: ""
-        };
-      }
+      state = {
+        inputValue: ""
+      };
 
       render() {
         const { statusStore } = this.props;
