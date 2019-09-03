@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
 
 const RENAME_A_STATUS = gql`
-  mutation renameStatus($input: RenameStatusPriority!) {
+  mutation renameStatus($input: RenameStatusInput!) {
     renameStatus(input: $input) {
-      priority {
+      status {
         name
       }
     }
