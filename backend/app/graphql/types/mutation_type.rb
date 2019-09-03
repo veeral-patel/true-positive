@@ -7,6 +7,7 @@ module Types
       # status ----------
       field :create_status, mutation: Mutations::CreateStatus
       field :delete_status, mutation: Mutations::DeleteStatus
+      field :rename_status, mutation: Mutations::RenameStatus
 
       # priority --------
       field :create_priority, mutation: Mutations::CreatePriority
