@@ -99,7 +99,8 @@ class StatusStore {
       );
   }
 
-  @action.bound renameStatus(id: number, newName: string) {
+  @action.bound
+  renameStatus(id: number, newName: string) {
     client
       .mutate<IStatusDatum>({
         variables: {
