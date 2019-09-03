@@ -83,7 +83,7 @@ class StatusStore {
         mutation: DELETE_A_STATUS
       })
       .then((response: ApolloQueryResult<IStatusDatum>) => {
-        message.success("Deleted status");
+        message.success("Deleted the status");
       })
       .catch((error: ApolloError) => {
         notification.error({

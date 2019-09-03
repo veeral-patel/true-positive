@@ -25,7 +25,12 @@ export default inject("priorityStore")(
         }
 
         const priorities = priorityStore!.priorities;
-        return <ListofPrioritiesP priorities={priorities} />;
+        return (
+          <ListofPrioritiesP
+            priorities={priorities}
+            deletePriority={priorityStore!.deletePriority}
+          />
+        );
       }
     }
   )

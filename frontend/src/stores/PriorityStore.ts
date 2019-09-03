@@ -3,6 +3,7 @@ import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import CREATE_A_PRIORITY from "mutations/createPriority";
+import DELETE_A_PRIORITY from "mutations/deletePriority";
 import GET_PRIORITIES from "queries/getPriorities";
 import IPriority from "ts/interfaces/IPriority";
 
@@ -63,6 +64,33 @@ class PriorityStore {
       .finally(() =>
         runInAction(() => {
           this.priorityIsBeingCreated = false;
+          this.loadPriorities();
+        })
+      );
+  }
+
+  @action.bound
+  deletePriority(id: number) {
+    client
+      .mutate<IPriorityDatum>({
+        variables: {
+          input: {
+            id: id
+          }
+        },
+        mutation: DELETE_A_PRIORITY
+      })
+      .then((response: ApolloQueryResult<IPriorityDatum>) => {
+        message.success("Deleted the priority");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while deleting the priority",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
           this.loadPriorities();
         })
       );
