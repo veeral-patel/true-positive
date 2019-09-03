@@ -56,7 +56,7 @@ export default inject("priorityStore")(
                   prefix={<Icon type="plus" />}
                   suffix={suffix}
                   value={inputValue}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange={event =>
                     this.setState({ inputValue: event.currentTarget.value })
                   }
                   onPressEnter={() => {
