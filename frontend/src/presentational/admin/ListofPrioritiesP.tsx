@@ -1,10 +1,7 @@
-import { List, Popconfirm, Typography } from "antd";
+import { List, Popconfirm } from "antd";
+import PriorityItem from "container/admin/PriorityItem";
 import React from "react";
 import IPriority from "ts/interfaces/IPriority";
-
-const { Text } = Typography;
-
-// ------------
 
 interface DeletePriorityButtonProps {
   priority: IPriority;
@@ -41,15 +38,8 @@ const ListofPrioritiesP: React.FC<IListofPrioritiesProps> = ({
       itemLayout="horizontal"
       dataSource={priorities}
       renderItem={priority => (
-        <List.Item
-          actions={[
-            <DeletePriorityButton
-              priority={priority}
-              deletePriority={deletePriority}
-            />
-          ]}
-        >
-          <List.Item.Meta title={<Text editable>{priority.name}</Text>} />
+        <List.Item>
+          <PriorityItem priority={priority} />
         </List.Item>
       )}
     />

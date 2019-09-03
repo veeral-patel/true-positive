@@ -1,8 +1,6 @@
-import { Popconfirm, Typography } from "antd";
+import { Popconfirm } from "antd";
 import React from "react";
 import IPriority from "ts/interfaces/IPriority";
-
-const { Text } = Typography;
 
 interface DeletePriorityButtonProps {
   priority: IPriority;
