@@ -4,6 +4,7 @@ import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import CREATE_A_PRIORITY from "mutations/createPriority";
 import DELETE_A_PRIORITY from "mutations/deletePriority";
+import RENAME_A_PRIORITY from "mutations/renamePriority";
 import GET_PRIORITIES from "queries/getPriorities";
 import IPriority from "ts/interfaces/IPriority";
 
@@ -86,6 +87,33 @@ class PriorityStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while deleting the priority",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadPriorities();
+        })
+      );
+  }
+
+  @action.bound renameStatus(id: number, newName: string) {
+    client
+      .mutate<IPriorityDatum>({
+        variables: {
+          input: {
+            id: id,
+            name: newName
+          }
+        },
+        mutation: RENAME_A_PRIORITY
+      })
+      .then((response: ApolloQueryResult<IPriorityDatum>) => {
+        message.success("Renamed the priority");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while renaming the priority",
           description: error.message
         });
       })
