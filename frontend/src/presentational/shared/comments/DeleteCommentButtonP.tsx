@@ -11,11 +11,9 @@ const DeleteCommentButtonP: React.FC<DeleteCommentProps> = ({
   <Button
     type="link"
     icon="delete"
-    style={{ color: "red", margin: 0, padding: 0 }}
+    style={{ margin: 0, padding: 0 }}
     onClick={handleClick}
-  >
-    Delete
-  </Button>
+  ></Button>
 );
 
 export default DeleteCommentButtonP;
