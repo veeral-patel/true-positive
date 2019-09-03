@@ -1,9 +1,7 @@
-import { Icon, List, Typography } from "antd";
+import { Icon, List } from "antd";
 import "presentational/shared/indicators/ListItem.css";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
-
-const { Text } = Typography;
 
 interface NumberofCommentsProps {
   count: number;

@@ -1,9 +1,6 @@
 import { RouteComponentProps } from "@reach/router";
-import { Tabs } from "antd";
 import AdminTabsP from "presentational/admin/AdminTabsP";
 import React from "react";
-
-const { TabPane } = Tabs;
 
 class AdminPage extends React.Component<RouteComponentProps> {
   render() {

@@ -1,4 +1,4 @@
-import { Layout, Table } from "antd";
+import { Table } from "antd";
 import Column from "antd/lib/table/Column";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
@@ -6,7 +6,6 @@ import React from "react";
 import UIStore from "stores/UIStore";
 import IIndicator from "ts/interfaces/IIndicator";
 import ITag from "ts/interfaces/ITag";
-const { Content } = Layout;
 
 interface IndicatorTableProps {
   indicators: IIndicator[];

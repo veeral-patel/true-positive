@@ -6,7 +6,7 @@ import DetailsSectionP from "presentational/shared/indicators/DetailsSectionP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
 
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
 interface IndicatorDrawerProps {
   activeIndicator: IIndicator;
