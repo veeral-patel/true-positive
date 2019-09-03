@@ -4,6 +4,7 @@ import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import RENAME_A_CASE from "mutations/renameCase";
 import GET_ONE_CASE from "queries/getOneCase";
+import DELETE_A_COMMENT from "stores/ActiveCaseStore";
 import ICase from "ts/interfaces/ICase";
 import IIndicator from "ts/interfaces/IIndicator";
 import ITask from "ts/interfaces/ITask";
@@ -124,6 +125,33 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while renaming the case",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  deleteComment(commentId: number) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            id: commentId
+          }
+        },
+        mutation: DELETE_A_COMMENT
+      })
+      .then(response => {
+        message.success("Deleted the comment");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while deleting the comment",
           description: error.message
         });
       })
