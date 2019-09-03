@@ -4,6 +4,7 @@ import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import CREATE_A_STATUS from "mutations/createStatus";
 import DELETE_A_STATUS from "mutations/deleteStatus";
+import RENAME_A_STATUS from "mutations/renameStatus";
 import GET_STATUSES from "queries/getStatuses";
 import IStatus from "ts/interfaces/IStatus";
 
@@ -88,6 +89,33 @@ class StatusStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while deleting the status",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadStatuses();
+        })
+      );
+  }
+
+  @action.bound renameStatus(id: number, newName: string) {
+    client
+      .mutate<IStatusDatum>({
+        variables: {
+          input: {
+            id: id,
+            name: newName
+          }
+        },
+        mutation: RENAME_A_STATUS
+      })
+      .then((response: ApolloQueryResult<IStatusDatum>) => {
+        message.success("Renamed the status");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while renaming the status",
           description: error.message
         });
       })

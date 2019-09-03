@@ -1,62 +1,18 @@
-import { List, Popconfirm, Typography } from "antd";
+import { List } from "antd";
+import StatusItem from "container/admin/StatusItem";
 import React from "react";
 import IStatus from "ts/interfaces/IStatus";
 
-const { Text } = Typography;
-
-// ---------
-
-interface DeleteStatusButtonProps {
-  status: IStatus;
-  deleteStatus: (id: number) => void;
-}
-
-const DeleteStatusButton: React.FC<DeleteStatusButtonProps> = ({
-  status,
-  deleteStatus
-}) => (
-  <Popconfirm
-    title="Delete this status?"
-    okText="Yes, Delete"
-    onConfirm={() => deleteStatus(status.id)}
-    cancelText="No"
-  >
-    <a style={{ color: "red" }}>Delete</a>
-  </Popconfirm>
-);
-
-// -------
-
 interface IListofStatusesProps {
   statuses: IStatus[];
-  deleteStatus: (id: number) => void;
-  handleItemChange: (newValue: string) => void;
 }
 
-const ListofStatusesP: React.FC<IListofStatusesProps> = ({
-  statuses,
-  deleteStatus,
-  handleItemChange
-}) => {
+const ListofStatusesP: React.FC<IListofStatusesProps> = ({ statuses }) => {
   return (
     <List<IStatus>
       itemLayout="horizontal"
       dataSource={statuses}
-      renderItem={status => (
-        <List.Item
-          actions={[
-            <DeleteStatusButton status={status} deleteStatus={deleteStatus} />
-          ]}
-        >
-          <List.Item.Meta
-            title={
-              <Text editable={{ onChange: handleItemChange }}>
-                {status.name}
-              </Text>
-            }
-          />
-        </List.Item>
-      )}
+      renderItem={status => <StatusItem status={status} />}
     />
   );
 };
