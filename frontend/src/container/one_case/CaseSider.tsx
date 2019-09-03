@@ -52,6 +52,7 @@ export default inject("uiStore", "activeCaseStore")(
             handleCollapse={(collapsed: boolean, type: CollapseType) =>
               uiStore!.toggleCaseSider()
             }
+            renameActiveCase={activeCaseStore!.renameActiveCase}
           />
         );
       }

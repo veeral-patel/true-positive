@@ -12,6 +12,7 @@ interface ICaseSiderProps {
   numberOfTasks: number | null;
   numberOfMembers: number | null;
   numberOfIndicators: number | null;
+  renameActiveCase: (newText: string) => void;
 }
 
 const CaseSiderP: React.FC<ICaseSiderProps> = ({
@@ -20,7 +21,8 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
   caseName,
   numberOfTasks,
   numberOfMembers,
-  numberOfIndicators
+  numberOfIndicators,
+  renameActiveCase
 }) => (
   <Sider
     width={200}
@@ -32,7 +34,13 @@ const CaseSiderP: React.FC<ICaseSiderProps> = ({
   >
     {!collapsed && (
       <div style={{ marginBottom: "10px" }}>
-        <Text type="secondary" style={{ textTransform: "uppercase" }} editable>
+        <Text
+          type="secondary"
+          style={{ textTransform: "uppercase" }}
+          editable={{
+            onChange: (newText: string) => renameActiveCase(newText)
+          }}
+        >
           {caseName}
         </Text>
       </div>
