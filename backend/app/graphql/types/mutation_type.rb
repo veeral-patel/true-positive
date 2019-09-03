@@ -11,5 +11,6 @@ module Types
       # priority --------
       field :create_priority, mutation: Mutations::CreatePriority
       field :delete_priority, mutation: Mutations::DeletePriority
+      field :rename_priority, mutation: Mutations::RenamePriority
   end
 end
