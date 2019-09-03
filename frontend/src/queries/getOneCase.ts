@@ -71,6 +71,7 @@ const GET_ONE_CASE = gql`
           name
         }
         comments {
+          id
           comment
           formattedCreatedAt
           createdAt
@@ -90,6 +91,7 @@ const GET_ONE_CASE = gql`
             username
           }
           comments {
+            id
             comment
             createdAt
             createdBy {
@@ -103,6 +105,7 @@ const GET_ONE_CASE = gql`
         }
       }
       comments {
+        id
         comment
         formattedCreatedAt
         createdAt
