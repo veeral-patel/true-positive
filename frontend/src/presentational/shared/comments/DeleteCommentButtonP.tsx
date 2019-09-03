@@ -1,19 +1,21 @@
-import { Button } from "antd";
+import { Button, Popconfirm } from "antd";
 import React from "react";
 
 interface DeleteCommentProps {
-  handleClick: (event: React.MouseEvent) => void;
+  deleteComment: () => void;
 }
 
 const DeleteCommentButtonP: React.FC<DeleteCommentProps> = ({
-  handleClick
+  deleteComment
 }) => (
-  <Button
-    type="link"
-    icon="delete"
-    style={{ margin: 0, padding: 0 }}
-    onClick={handleClick}
-  ></Button>
+  <Popconfirm
+    title="Delete this comment?"
+    okText="Yes, Delete"
+    onConfirm={() => deleteComment()}
+    cancelText="No"
+  >
+    <Button type="link" icon="delete" style={{ margin: 0, padding: 0 }} />
+  </Popconfirm>
 );
 
 export default DeleteCommentButtonP;

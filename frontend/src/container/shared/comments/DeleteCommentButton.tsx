@@ -18,7 +18,7 @@ export default inject("activeCaseStore")(
         const { activeCaseStore, comment } = this.props;
         return (
           <DeleteCommentButtonP
-            handleClick={event => activeCaseStore!.deleteComment(comment.id)}
+            deleteComment={() => activeCaseStore!.deleteComment(comment.id)}
           />
         );
       }
