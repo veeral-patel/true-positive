@@ -30,6 +30,7 @@ export default inject("statusStore")(
           <ListofStatusesP
             statuses={statuses}
             deleteStatus={statusStore!.deleteStatus}
+            handleItemChange={newValue => alert(newValue)}
           />
         );
       }

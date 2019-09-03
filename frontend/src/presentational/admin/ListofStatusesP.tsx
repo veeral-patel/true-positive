@@ -30,11 +30,13 @@ const DeleteStatusButton: React.FC<DeleteStatusButtonProps> = ({
 interface IListofStatusesProps {
   statuses: IStatus[];
   deleteStatus: (id: number) => void;
+  handleItemChange: (newValue: string) => void;
 }
 
 const ListofStatusesP: React.FC<IListofStatusesProps> = ({
   statuses,
-  deleteStatus
+  deleteStatus,
+  handleItemChange
 }) => {
   return (
     <List<IStatus>
@@ -46,7 +48,13 @@ const ListofStatusesP: React.FC<IListofStatusesProps> = ({
             <DeleteStatusButton status={status} deleteStatus={deleteStatus} />
           ]}
         >
-          <List.Item.Meta title={<Text editable>{status.name}</Text>} />
+          <List.Item.Meta
+            title={
+              <Text editable={{ onChange: handleItemChange }}>
+                {status.name}
+              </Text>
+            }
+          />
         </List.Item>
       )}
     />
