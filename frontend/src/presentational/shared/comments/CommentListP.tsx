@@ -1,4 +1,4 @@
-import { Avatar, Comment, Icon, List } from "antd";
+import { Avatar, Button, Comment, List } from "antd";
 import React from "react";
 import IComment from "ts/interfaces/IComment";
 import formatISO8601 from "utils/formatISO8601";
@@ -20,9 +20,11 @@ const CommentListP: React.FC<CommentListProps> = ({ comments }) => (
           datetime={`${formatISO8601(comment.createdAt)} UTC`}
           avatar={<Avatar icon="user" />}
           actions={[
-            <a>
-              <Icon type="delete" />
-            </a>
+            <Button
+              type="link"
+              style={{ color: "red", padding: 0, margin: 0 }}
+              icon="delete"
+            />
           ]}
         />
       </li>
