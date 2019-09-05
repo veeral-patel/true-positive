@@ -2,6 +2,8 @@
 
 This is the next version of [INCIDENTS](https://github.com/veeral-patel/incidents).
 
+It's composed of a Rails-powered GraphQL API and a React frontend.
+
 ## To run
 
 Frontend:
