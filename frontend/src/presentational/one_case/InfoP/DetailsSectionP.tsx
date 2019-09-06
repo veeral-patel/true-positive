@@ -1,4 +1,4 @@
-import { Col, Divider, Row } from "antd";
+import { Col, Divider, Row, Tag } from "antd";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
@@ -33,7 +33,9 @@ const DetailsP: React.FC<DetailsProps> = ({ activeCase }) => (
       </Col>
       <Col span={4}>Assigned To:</Col>
       <Col span={8}>
-        {activeCase.assignedTo ? activeCase.assignedTo.username : "N/A"}
+        <Tag>
+          {activeCase.assignedTo ? activeCase.assignedTo.username : "N/A"}
+        </Tag>
       </Col>
     </Row>
     <Row>
