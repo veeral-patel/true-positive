@@ -4,6 +4,7 @@ import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import IPriority from "ts/interfaces/IPriority";
+import { priorityMatches } from "utils/filterCases";
 
 interface ListAndFilterPrioritiesProps {
   priorityStore?: PriorityStore;
@@ -47,11 +48,8 @@ export default inject("priorityStore")(
             ) : (
               <div style={{ maxHeight: "20vh", overflow: "scroll" }}>
                 <List<IPriority>
-                  dataSource={priorities.filter(
-                    priority =>
-                      priority.name
-                        .toLowerCase()
-                        .indexOf(filterValue.toLowerCase()) !== -1
+                  dataSource={priorities.filter(priority =>
+                    priorityMatches(filterValue, priority)
                   )}
                   renderItem={priority => (
                     <List.Item
