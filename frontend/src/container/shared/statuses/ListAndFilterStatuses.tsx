@@ -34,7 +34,7 @@ export default inject("statusStore")(
                   renderItem={status => (
                     <List.Item
                       className="hoverable_item"
-                      style={{ padding: "3%" }}
+                      style={{ padding: "5%" }}
                     >
                       {status.name}
                     </List.Item>
