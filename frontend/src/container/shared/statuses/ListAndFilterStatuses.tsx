@@ -1,5 +1,6 @@
 import { Input, List, Spin } from "antd";
 import { inject, observer } from "mobx-react";
+import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import StatusStore from "stores/StatusStore";
 import IStatus from "ts/interfaces/IStatus";
@@ -30,7 +31,14 @@ export default inject("statusStore")(
               <div style={{ maxHeight: "20vh", overflow: "scroll" }}>
                 <List<IStatus>
                   dataSource={statuses}
-                  renderItem={status => <List.Item>{status.name}</List.Item>}
+                  renderItem={status => (
+                    <List.Item
+                      className="hoverable_item"
+                      style={{ padding: "3%" }}
+                    >
+                      {status.name}
+                    </List.Item>
+                  )}
                 />
               </div>
             )}
