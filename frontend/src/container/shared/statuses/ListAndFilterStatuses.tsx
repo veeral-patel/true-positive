@@ -27,7 +27,7 @@ export default inject("statusStore")(
             {statusesAreLoading ? (
               <Spin />
             ) : (
-              <div style={{ height: "20vh", overflow: "scroll" }}>
+              <div style={{ maxHeight: "20vh", overflow: "scroll" }}>
                 <List<IStatus>
                   dataSource={statuses}
                   renderItem={status => <List.Item>{status.name}</List.Item>}
