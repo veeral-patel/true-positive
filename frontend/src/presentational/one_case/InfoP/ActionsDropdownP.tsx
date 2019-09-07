@@ -1,21 +1,36 @@
 import { Button, Dropdown, Icon, Menu } from "antd";
+import { ClickParam } from "antd/lib/menu";
 import React from "react";
 import { DELETE_CASE } from "utils/constants";
 
-const menu = (
-  <Menu>
-    <Menu.Item key={DELETE_CASE} style={{ color: "red" }}>
-      Delete Case
-    </Menu.Item>
-  </Menu>
-);
+// ----
 
-const ActionsDropdownP: React.FC = () => (
-  <Dropdown overlay={menu}>
-    <Button>
-      Actions <Icon type="down" />
-    </Button>
-  </Dropdown>
-);
+interface ActionsDropdownProps {
+  handleMenuClick: (click: ClickParam) => void;
+}
+
+const ActionsDropdownP: React.FC<ActionsDropdownProps> = ({
+  handleMenuClick
+}) => {
+  const menu = (
+    <Menu>
+      <Menu.Item
+        key={DELETE_CASE}
+        style={{ color: "red" }}
+        onClick={handleMenuClick}
+      >
+        Delete Case
+      </Menu.Item>
+    </Menu>
+  );
+
+  return (
+    <Dropdown overlay={menu}>
+      <Button>
+        Actions <Icon type="down" />
+      </Button>
+    </Dropdown>
+  );
+};
 
 export default ActionsDropdownP;

@@ -24,18 +24,22 @@ export default inject("activeCaseStore")(
       }
 
       handleMenuClick(click: ClickParam) {
-        const { activeCaseStore, taskId, caseId } = this.props;
         if (click.key === DELETE_TASK) {
-          Modal.confirm({
-            title: "Delete task?",
-            content: "Are you sure you want to delete this task?",
-            onOk() {
-              activeCaseStore!.deleteTask(taskId);
-              navigate(getPathToCaseTasks(caseId));
-            },
-            onCancel() {}
-          });
+          this.deleteTask();
         }
+      }
+
+      deleteTask() {
+        const { activeCaseStore, taskId, caseId } = this.props;
+        Modal.confirm({
+          title: "Delete task?",
+          content: "Are you sure you want to delete this task?",
+          onOk() {
+            activeCaseStore!.deleteTask(taskId);
+            navigate(getPathToCaseTasks(caseId));
+          },
+          onCancel() {}
+        });
       }
     }
   )
