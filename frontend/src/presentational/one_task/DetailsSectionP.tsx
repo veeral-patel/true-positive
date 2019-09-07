@@ -1,7 +1,7 @@
 import { Col, Divider, Row, Tag } from "antd";
+import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
+import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
-import PriorityTagP from "presentational/shared/tags/PriorityTagP";
-import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
 import formatISO8601 from "utils/formatISO8601";
@@ -20,7 +20,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
     <Row>
       <Col span={4}>Status:</Col>
       <Col span={8}>
-        <StatusTagP statusName={activeTask.status.name} />
+        <EditableStatusTag statusName={activeTask.status.name} />
       </Col>
       <Col span={4}>Created:</Col>
       <Col span={8}>
@@ -32,7 +32,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
     <Row>
       <Col span={4}>Priority:</Col>
       <Col span={8}>
-        <PriorityTagP priorityName={activeTask.priority.name} />
+        <EditablePriorityTag priorityName={activeTask.priority.name} />
       </Col>
       <Col span={4}>Assigned To:</Col>
       <Col span={8}>
