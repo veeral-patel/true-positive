@@ -40,7 +40,6 @@ export default inject("uiStore", "allCasesStore")(
               mode="tags"
               style={{ width: "100%" }}
               placeholder="Enter tags"
-              autoFocus
             />
           </Modal>
         );
