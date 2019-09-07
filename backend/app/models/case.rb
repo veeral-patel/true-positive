@@ -29,7 +29,8 @@ class Case < ApplicationRecord
   def merge_case_into(parent_case)
     # Merge this case into PARENT_CASE (which can't be this case).
     if self.id == parent_case.id
-      raise ArgumentError, "Cannot merge a case into itself."
+      self.errors.add(:base, "Cannot merge a case into itself")
+      return
     end
 
     self.merged_into = parent_case
