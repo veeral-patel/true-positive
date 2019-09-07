@@ -10,6 +10,7 @@ class UIStore {
     | "CHANGE_CASE_PRIORITY_MODAL"
     | "ADD_COMMENT_TO_CASE"
     | "MERGE_CASES_MODAL"
+    | "MERGE_ONE_CASE_MODAL"
     | "ASSIGN_CASES_MODAL" = null;
 
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
