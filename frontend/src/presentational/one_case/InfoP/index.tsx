@@ -1,4 +1,5 @@
 import { Avatar, Col, Comment, Divider, Layout, Row, Typography } from "antd";
+import ActionsDropdown from "container/all_cases/ActionsDropdown";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsSectionP from "presentational/one_case/InfoP/DetailsSectionP";
 import ListofMergedCasesP from "presentational/one_case/ListofMergedCasesP";
@@ -24,7 +25,14 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
       minHeight: 280
     }}
   >
-    <h2>Info</h2>
+    <section>
+      <div style={{ display: "inline-block" }}>
+        <h2>Info</h2>
+      </div>
+      <div style={{ display: "inline-block", float: "right" }}>
+        <ActionsDropdown />
+      </div>
+    </section>
 
     <DetailsSectionP activeCase={activeCase} />
 
