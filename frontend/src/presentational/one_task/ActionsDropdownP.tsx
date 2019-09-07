@@ -2,7 +2,7 @@ import { Button, Dropdown, Icon, Menu } from "antd";
 import React from "react";
 import { DELETE_TASK } from "utils/constants";
 
-const ActionsDropdown: React.FC = () => {
+const ActionsDropdownP: React.FC = () => {
   const menu = (
     <Menu>
       <Menu.Item key={DELETE_TASK} style={{ color: "red" }}>
@@ -20,4 +20,4 @@ const ActionsDropdown: React.FC = () => {
   );
 };
 
-export default ActionsDropdown;
+export default ActionsDropdownP;
