@@ -1,5 +1,6 @@
 import { navigate } from "@reach/router";
 import { Avatar, Comment, Divider, Layout, PageHeader, Typography } from "antd";
+import ActionsDropdown from "container/one_task/ActionsDropdown";
 import IndicatorList from "container/shared/indicators/IndicatorList";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
@@ -31,6 +32,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
     <PageHeader
       onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
       title={<Text editable>{activeTask.name}</Text>}
+      extra={<ActionsDropdown />}
     />
 
     <DetailsP activeTask={activeTask} />
