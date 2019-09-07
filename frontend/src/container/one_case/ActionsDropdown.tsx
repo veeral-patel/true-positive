@@ -1,10 +1,11 @@
+import { navigate } from "@reach/router";
 import { Modal } from "antd";
 import { ClickParam } from "antd/lib/menu";
 import { inject, observer } from "mobx-react";
 import ActionsDropdownP from "presentational/one_case/InfoP/ActionsDropdownP";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
-import { DELETE_CASE } from "utils/constants";
+import { DELETE_CASE, paths } from "utils/constants";
 
 interface ActionsDropdownProps {
   allCasesStore?: AllCasesStore;
@@ -34,6 +35,7 @@ export default inject("allCasesStore")(
             "Are you sure you want to delete this case? This will delete all of its indicators and tasks, too.",
           onOk() {
             allCasesStore!.deleteCase(caseId);
+            navigate(paths.CASES_PATH);
           },
           onCancel() {}
         });
