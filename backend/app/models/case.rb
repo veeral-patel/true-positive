@@ -10,11 +10,11 @@ class Case < ApplicationRecord
   belongs_to :status
   belongs_to :priority
 
-  has_many :tasks
-  has_many :comments, as: :commentable
-  has_many :indicators
+  has_many :tasks, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :indicators, dependent: :destroy
 
-  has_many :case_members
+  has_many :case_members, dependent: :destroy
 
   acts_as_taggable_on :tags
 
