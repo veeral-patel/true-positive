@@ -1,4 +1,5 @@
 import { navigate } from "@reach/router";
+import { Modal } from "antd";
 import { ClickParam } from "antd/lib/menu";
 import { inject, observer } from "mobx-react";
 import ActionsDropdownP from "presentational/one_task/ActionsDropdownP";
@@ -25,8 +26,15 @@ export default inject("activeCaseStore")(
       handleMenuClick(click: ClickParam) {
         const { activeCaseStore, taskId, caseId } = this.props;
         if (click.key === DELETE_TASK) {
-          activeCaseStore!.deleteTask(taskId);
-          navigate(getPathToCaseTasks(caseId));
+          Modal.confirm({
+            title: "Delete task?",
+            content: "Are you sure you want to delete this task?",
+            onOk() {
+              activeCaseStore!.deleteTask(taskId);
+              navigate(getPathToCaseTasks(caseId));
+            },
+            onCancel() {}
+          });
         }
       }
     }
