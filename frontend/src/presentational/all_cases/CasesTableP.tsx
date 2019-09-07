@@ -83,7 +83,9 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
           a.status.name.localeCompare(b.status.name)
         }
         filters={statusFilters}
-        onFilter={(filterWord, record) => statusMatches(filterWord, record)}
+        onFilter={(filterWord, record) =>
+          statusMatches(filterWord, record.status)
+        }
       />
       <Column
         title="Priority"
@@ -96,7 +98,9 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
           a.priority.name.localeCompare(b.priority.name)
         }
         filters={priorityFilters}
-        onFilter={(filterWord, record) => priorityMatches(filterWord, record)}
+        onFilter={(filterWord, record) =>
+          priorityMatches(filterWord, record.priority)
+        }
       />
       <Column
         title="Assigned To"
@@ -106,7 +110,9 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
           compareUsers(a.assignedTo, b.assignedTo)
         }
         filters={userFilters}
-        onFilter={(filterWord, record) => assignedToMatches(filterWord, record)}
+        onFilter={(filterWord, record) =>
+          assignedToMatches(filterWord, record.assignedTo)
+        }
       />
       <Column
         title="Created By"
@@ -114,7 +120,9 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
         key="created_by"
         sorter={(a: ICase, b: ICase) => compareUsers(a.createdBy, b.createdBy)}
         filters={userFilters}
-        onFilter={(filterWord, record) => createdByMatches(filterWord, record)}
+        onFilter={(filterWord, record) =>
+          createdByMatches(filterWord, record.createdBy)
+        }
       />
       <Column
         title="Created At (UTC)"

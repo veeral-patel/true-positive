@@ -1,34 +1,29 @@
 import ICase from "ts/interfaces/ICase";
+import IPriority from "ts/interfaces/IPriority";
+import IStatus from "ts/interfaces/IStatus";
+import IUser from "ts/interfaces/IUser";
 
 function nameMatches(filterWord: string, theCase: ICase) {
   return theCase.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1;
 }
 
-function statusMatches(filterWord: string, theCase: ICase) {
-  return (
-    theCase.status.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1
-  );
+function statusMatches(filterWord: string, status: IStatus) {
+  return status.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1;
 }
 
-function priorityMatches(filterWord: string, theCase: ICase) {
-  return (
-    theCase.priority.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1
-  );
+function priorityMatches(filterWord: string, priority: IPriority) {
+  return priority.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1;
 }
 
-function assignedToMatches(filterWord: string, theCase: ICase) {
-  return theCase.assignedTo
-    ? theCase.assignedTo.username
-        .toLowerCase()
-        .indexOf(filterWord.toLowerCase()) !== -1
+function assignedToMatches(filterWord: string, assignedTo: IUser | null) {
+  return assignedTo
+    ? assignedTo.username.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1
     : false;
 }
 
-function createdByMatches(filterWord: string, theCase: ICase) {
+function createdByMatches(filterWord: string, createdBy: IUser) {
   return (
-    theCase.createdBy.username
-      .toLowerCase()
-      .indexOf(filterWord.toLowerCase()) !== -1
+    createdBy.username.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1
   );
 }
 
@@ -45,10 +40,10 @@ function createdAtMatches(filterWord: string, theCase: ICase) {
 function anAttributeMatches(filterWord: string, theCase: ICase) {
   return (
     nameMatches(filterWord, theCase) ||
-    statusMatches(filterWord, theCase) ||
-    priorityMatches(filterWord, theCase) ||
-    createdByMatches(filterWord, theCase) ||
-    assignedToMatches(filterWord, theCase) ||
+    statusMatches(filterWord, theCase.status) ||
+    priorityMatches(filterWord, theCase.priority) ||
+    createdByMatches(filterWord, theCase.createdBy) ||
+    assignedToMatches(filterWord, theCase.assignedTo) ||
     createdAtMatches(filterWord, theCase)
   );
 }
