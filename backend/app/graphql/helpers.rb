@@ -37,3 +37,11 @@ def find_comment_or_throw_execution_error(comment_id:)
         raise GraphQL::ExecutionError, "Could not find a comment with id #{comment_id}."
     end
 end
+
+def find_task_or_throw_execution_error(task_id:)
+    begin
+        Task.find(task_id)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find a task with id #{task_id}."
+    end
+end
