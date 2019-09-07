@@ -4,12 +4,17 @@ import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import RENAME_A_CASE from "mutations/renameCase";
+import RENAME_A_TASK from "mutations/renameTask";
 import GET_ONE_CASE from "queries/getOneCase";
 import ICase from "ts/interfaces/ICase";
 import ITask from "ts/interfaces/ITask";
 
 interface ICaseDatum {
   case: ICase;
+}
+
+interface ITaskDatum {
+  task: ITask;
 }
 
 class ActiveCaseStore {
@@ -137,6 +142,28 @@ class ActiveCaseStore {
           this.loadActiveCase();
         })
       );
+  }
+
+  renameTask(taskId: number, newName: string) {
+    client
+      .mutate<ITaskDatum>({
+        variables: {
+          input: {
+            id: taskId,
+            name: newName
+          }
+        },
+        mutation: RENAME_A_TASK
+      })
+      .then((response: ApolloQueryResult<ITaskDatum>) => {
+        message.success("Renamed the task");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while renaming the task",
+          description: error.message
+        });
+      });
   }
 }
 

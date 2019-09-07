@@ -17,9 +17,14 @@ const { Text } = Typography;
 interface OneTaskProps {
   activeCase: ICase;
   activeTask: ITask;
+  renameTask: (taskId: number, newName: string) => void;
 }
 
-const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
+const OneTaskP: React.FC<OneTaskProps> = ({
+  activeCase,
+  activeTask,
+  renameTask
+}) => (
   <Content
     style={{
       backgroundColor: "#fff",
@@ -29,7 +34,15 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
   >
     <PageHeader
       onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
-      title={<Text editable>{activeTask.name}</Text>}
+      title={
+        <Text
+          editable={{
+            onChange: (newText: string) => renameTask(activeTask.id, newText)
+          }}
+        >
+          {activeTask.name}
+        </Text>
+      }
       extra={<ActionsDropdownP />}
     />
 

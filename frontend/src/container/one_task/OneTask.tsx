@@ -50,7 +50,13 @@ export default inject("activeCaseStore")(
         // should always render, because we handle error/loading state
         // above, in a HOC
         if (activeCase)
-          return <OneTaskP activeTask={activeTask} activeCase={activeCase} />;
+          return (
+            <OneTaskP
+              activeTask={activeTask}
+              activeCase={activeCase}
+              renameTask={activeCaseStore!.renameTask}
+            />
+          );
       }
     }
   )

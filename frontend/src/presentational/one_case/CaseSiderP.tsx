@@ -12,7 +12,7 @@ interface ICaseSiderProps {
   numberOfTasks: number | null;
   numberOfMembers: number | null;
   numberOfIndicators: number | null;
-  renameActiveCase: (newText: string) => void;
+  renameActiveCase: (newName: string) => void;
 }
 
 const CaseSiderP: React.FC<ICaseSiderProps> = ({
