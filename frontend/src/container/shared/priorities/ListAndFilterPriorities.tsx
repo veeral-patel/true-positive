@@ -34,7 +34,7 @@ export default inject("priorityStore")(
                   renderItem={priority => (
                     <List.Item
                       className="hoverable_item"
-                      style={{ padding: "5%" }}
+                      style={{ padding: "3%" }}
                     >
                       {priority.name}
                     </List.Item>
