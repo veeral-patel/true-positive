@@ -6,6 +6,7 @@ module Types
       field :create_case, mutation: Mutations::CreateCase
       field :rename_case, mutation: Mutations::RenameCase
       field :delete_case, mutation: Mutations::DeleteCase
+      field :merge_case, mutation: Mutations::MergeCase
 
       # tasks
       field :rename_task, mutation: Mutations::RenameTask
