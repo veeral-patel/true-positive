@@ -8,6 +8,7 @@ module Types
 
       # tasks
       field :rename_task, mutation: Mutations::RenameTask
+      field :delete_task, mutation: Mutations::DeleteTask
 
       # comment --------
       field :delete_comment, mutation: Mutations::DeleteComment
