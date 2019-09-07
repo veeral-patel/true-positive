@@ -43,7 +43,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({
           {activeTask.name}
         </Text>
       }
-      extra={<ActionsDropdown />}
+      extra={<ActionsDropdown taskId={activeTask.id} />}
     />
 
     <DetailsP activeTask={activeTask} />
