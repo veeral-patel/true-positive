@@ -2,6 +2,7 @@ import { message, notification } from "antd";
 import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, computed, observable, runInAction } from "mobx";
+import DELETE_A_CASE from "mutations/deleteCase";
 import GET_CASES from "queries/getCases";
 import ICase from "ts/interfaces/ICase";
 import matchesFilter from "utils/filterCases";
@@ -34,6 +35,31 @@ class CaseStore {
         runInAction(() => (this.cases = []));
       })
       .finally(() => runInAction(() => (this.casesAreLoading = false)));
+  }
+
+  @action.bound
+  deleteCase(caseId: number) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            id: caseId
+          }
+        },
+        mutation: DELETE_A_CASE
+      })
+      .then(response => message.success("Deleted the case"))
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while deleting the case",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadCases();
+        })
+      );
   }
 
   // --------- computed properties -----------
