@@ -1,6 +1,6 @@
 import { Col, Divider, Row, Tag } from "antd";
-import EditablePriorityTag from "container/shared/priorities/EditablePriorityTag";
-import EditableStatusTag from "container/shared/statuses/EditableStatusTag";
+import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
+import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
