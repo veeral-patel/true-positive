@@ -44,7 +44,11 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
       rowSelection={rowSelection}
       rowKey={theCase => theCase.id.toString()}
       expandedRowRender={theCase => (
-        <ExpandedRowP description={theCase.description} tasks={theCase.tasks} />
+        <ExpandedRowP
+          caseId={theCase.id}
+          description={theCase.description}
+          tasks={theCase.tasks}
+        />
       )}
       onRowClick={(clickedCase, index, event) =>
         navigate(`${paths.CASES_PATH}/${clickedCase.id}`)
