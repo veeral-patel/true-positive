@@ -15,16 +15,6 @@ class UIStore {
 
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
 
-  @observable indicatorDrawer: {
-    status: "OPEN" | "COLLAPSED";
-    taskId: number | null;
-    indicatorId: number | null;
-  } = {
-    status: "COLLAPSED",
-    taskId: null,
-    indicatorId: null
-  };
-
   constructor() {
     // read caseSiderStatus from localStorage, if it's there
     const value = localStorage.getItem("caseSiderStatus");
@@ -37,24 +27,6 @@ class UIStore {
   }
 
   @action.bound
-  openIndicatorDrawer(taskId: number, indicatorId: number) {
-    this.indicatorDrawer = {
-      status: "OPEN",
-      taskId,
-      indicatorId
-    };
-  }
-
-  @action.bound
-  closeIndicatorDrawer() {
-    this.indicatorDrawer = {
-      status: "COLLAPSED",
-      taskId: null,
-      indicatorId: null
-    };
-  }
-
-  @action.bound
   toggleCaseSider() {
     if (this.caseSiderStatus === "COLLAPSED")
       runInAction(() => (this.caseSiderStatus = "OPEN"));
@@ -63,6 +35,11 @@ class UIStore {
 
     // persist to localStorage
     localStorage.setItem("caseSiderStatus", this.caseSiderStatus);
+  }
+
+  @action.bound
+  openMergeOneCaseModal() {
+    this.openModal = "MERGE_ONE_CASE_MODAL";
   }
 
   @action.bound
