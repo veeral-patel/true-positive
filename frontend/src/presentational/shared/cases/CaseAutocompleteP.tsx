@@ -14,7 +14,11 @@ const CaseAutocompleteP: React.FC<CaseAutocompleteProps> = ({ cases }) => {
 
   return (
     <AutoComplete dataSource={options} style={{ width: "100%" }}>
-      <Input prefix={<Icon type="search" />} placeholder="Filter cases" />
+      <Input
+        prefix={<Icon type="search" />}
+        suffix={<Icon type="arrow-right" />}
+        placeholder="Filter cases"
+      />
     </AutoComplete>
   );
 };
