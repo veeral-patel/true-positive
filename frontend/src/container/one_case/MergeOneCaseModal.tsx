@@ -27,9 +27,8 @@ export default inject("uiStore")(
               message="Merging this case will simply mark this case as merged. It will
               not modify this case, its indicators, or its tasks at all."
             />
-            <div style={{ marginTop: "8px" }}>
-              <Paragraph>Choose a case to merge this case into:</Paragraph>
-            </div>
+            <br />
+            <Paragraph>Choose a case to merge this case into:</Paragraph>
           </Modal>
         );
       }
