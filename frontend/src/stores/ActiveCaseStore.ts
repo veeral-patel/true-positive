@@ -144,6 +144,7 @@ class ActiveCaseStore {
       );
   }
 
+  @action.bound
   renameTask(taskId: number, newName: string) {
     client
       .mutate<ITaskDatum>({
@@ -163,7 +164,12 @@ class ActiveCaseStore {
           message: "An error occurred while renaming the task",
           description: error.message
         });
-      });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
   }
 }
 
