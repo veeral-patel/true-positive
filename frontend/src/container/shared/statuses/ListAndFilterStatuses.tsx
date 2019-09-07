@@ -4,20 +4,31 @@ import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import StatusStore from "stores/StatusStore";
 import IStatus from "ts/interfaces/IStatus";
+import { statusMatches } from "utils/filterCases";
 
 interface ListAndFilterStatusesProps {
   statusStore?: StatusStore;
 }
 
+interface ListAndFilterStatusesState {
+  filterValue: string;
+}
+
 export default inject("statusStore")(
   observer(
     class ListAndFilterStatuses extends React.Component<
-      ListAndFilterStatusesProps
+      ListAndFilterStatusesProps,
+      ListAndFilterStatusesState
     > {
+      state = {
+        filterValue: ""
+      };
+
       render() {
         const { statusStore } = this.props;
         const statusesAreLoading = statusStore!.statusesAreLoading;
         const statuses = statusStore!.statuses;
+        const { filterValue } = this.state;
 
         return (
           <div>
@@ -25,6 +36,10 @@ export default inject("statusStore")(
               <Input
                 placeholder="Filter statuses"
                 prefix={<Icon type="search" />}
+                value={filterValue}
+                onChange={event =>
+                  this.setState({ filterValue: event.currentTarget.value })
+                }
               />
             </div>
 
@@ -33,7 +48,9 @@ export default inject("statusStore")(
             ) : (
               <div style={{ maxHeight: "20vh", overflow: "scroll" }}>
                 <List<IStatus>
-                  dataSource={statuses}
+                  dataSource={statuses.filter(status =>
+                    statusMatches(filterValue, status)
+                  )}
                   renderItem={status => (
                     <List.Item
                       className="hoverable_item"
