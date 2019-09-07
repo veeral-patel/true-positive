@@ -30,7 +30,7 @@ const Info: React.FC<InfoProps> = ({ activeCase }) => (
         <h2>Info</h2>
       </div>
       <div style={{ display: "inline-block", float: "right" }}>
-        <ActionsDropdown />
+        <ActionsDropdown caseId={activeCase.id} />
       </div>
     </section>
 
