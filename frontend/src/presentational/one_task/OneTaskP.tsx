@@ -1,12 +1,10 @@
 import { navigate } from "@reach/router";
 import { Avatar, Comment, Divider, Layout, PageHeader, Typography } from "antd";
-import IndicatorList from "container/shared/indicators/IndicatorList";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import ActionsDropdownP from "presentational/one_task/ActionsDropdownP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
-import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 import ITask from "ts/interfaces/ITask";
@@ -54,30 +52,6 @@ const OneTaskP: React.FC<OneTaskProps> = ({ activeCase, activeTask }) => (
           content={<AddCommentFormP />}
           avatar={<Avatar icon="user" />}
         />
-      </div>
-    </section>
-
-    <section>
-      <Divider orientation="left">
-        Indicators ({activeTask.indicators.length})
-      </Divider>
-      <div style={{ width: "90%" }}>
-        <div style={{ marginBottom: "16px", float: "right" }}>
-          <a>Import from File</a>
-          <Divider type="vertical" />
-          <a>Add YARA Rule(s)</a>
-          <Divider type="vertical" />
-          <a>Add Snort Rule(s)</a>
-        </div>
-        <div>
-          <IndicatorInputP />
-        </div>
-        <div style={{ marginTop: "10px" }}>
-          <IndicatorList
-            indicators={activeTask.indicators}
-            activeTask={activeTask}
-          />
-        </div>
       </div>
     </section>
   </Content>

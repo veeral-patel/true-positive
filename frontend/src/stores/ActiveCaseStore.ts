@@ -6,7 +6,6 @@ import DELETE_A_COMMENT from "mutations/deleteComment";
 import RENAME_A_CASE from "mutations/renameCase";
 import GET_ONE_CASE from "queries/getOneCase";
 import ICase from "ts/interfaces/ICase";
-import IIndicator from "ts/interfaces/IIndicator";
 import ITask from "ts/interfaces/ITask";
 
 interface ICaseDatum {
@@ -75,28 +74,6 @@ class ActiveCaseStore {
     // otherwise, return the matching task
     if (!activeTask) return null;
     return activeTask;
-  }
-
-  @action.bound
-  getIndicator(taskId: number, indicatorId: number): IIndicator | null {
-    if (!this.activeCase) return null;
-
-    const activeTask = this.getTask(taskId);
-
-    if (!activeTask) return null;
-
-    const matchingIndicators = activeTask.indicators.filter(
-      indicator => indicator.id === indicatorId
-    );
-
-    // if no indicators match, return null
-    if (matchingIndicators.length === 0) return null;
-
-    const activeIndicator = matchingIndicators.pop();
-
-    // if the matching indicator is undefined for whatever reason, return null
-    if (!activeIndicator) return null;
-    return activeIndicator;
   }
 
   @action.bound
