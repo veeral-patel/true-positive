@@ -1,5 +1,5 @@
-import { AutoComplete, Icon, Input } from "antd";
 import { inject, observer } from "mobx-react";
+import CaseAutocompleteP from "presentational/shared/cases/CaseAutocompleteP";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 
@@ -10,12 +10,14 @@ interface CaseAutocompleteProps {
 export default inject("allCasesStore")(
   observer(
     class CaseAutocomplete extends React.Component<CaseAutocompleteProps> {
+      componentDidMount() {
+        const { allCasesStore } = this.props;
+        allCasesStore!.loadCases();
+      }
+
       render() {
-        return (
-          <AutoComplete dataSource={[]} style={{ width: "100%" }}>
-            <Input prefix={<Icon type="search" />} placeholder="Filter cases" />
-          </AutoComplete>
-        );
+        const { allCasesStore } = this.props;
+        return <CaseAutocompleteP cases={allCasesStore!.cases} />;
       }
     }
   )
