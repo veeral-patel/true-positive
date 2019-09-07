@@ -10,6 +10,7 @@ const ActionsDropdown: React.FC = () => {
       </Menu.Item>
     </Menu>
   );
+
   return (
     <Dropdown overlay={menu}>
       <Button>
