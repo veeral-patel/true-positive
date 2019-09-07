@@ -1,4 +1,4 @@
-import { Input, List, Spin } from "antd";
+import { Icon, Input, List, Spin } from "antd";
 import { inject, observer } from "mobx-react";
 import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
@@ -22,7 +22,10 @@ export default inject("statusStore")(
         return (
           <div>
             <div style={{ marginBottom: "10px" }}>
-              <Input placeholder="Filter statuses" />
+              <Input
+                placeholder="Filter statuses"
+                prefix={<Icon type="search" />}
+              />
             </div>
 
             {statusesAreLoading ? (

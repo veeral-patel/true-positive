@@ -1,4 +1,4 @@
-import { Input, List, Spin } from "antd";
+import { Icon, Input, List, Spin } from "antd";
 import { inject, observer } from "mobx-react";
 import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
@@ -22,7 +22,10 @@ export default inject("priorityStore")(
         return (
           <div>
             <div style={{ marginBottom: "10px" }}>
-              <Input placeholder="Filter priorities" />
+              <Input
+                placeholder="Filter priorities"
+                prefix={<Icon type="search" />}
+              />
             </div>
 
             {prioritiesAreLoading ? (
