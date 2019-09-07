@@ -1,7 +1,7 @@
 import { Col, Divider, Row, Tag } from "antd";
+import EditableStatusTag from "container/shared/statuses/EditableStatusTag";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
-import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 
@@ -19,7 +19,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeCase }) => (
     <Row>
       <Col span={4}>Status:</Col>
       <Col span={8}>
-        <StatusTagP statusName={activeCase.status.name} />
+        <EditableStatusTag statusName={activeCase.status.name} />
       </Col>
       <Col span={4}>Created:</Col>
       <Col span={8}>
