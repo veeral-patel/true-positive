@@ -1,7 +1,7 @@
 import { navigate } from "@reach/router";
 import { Avatar, Comment, Divider, Layout, PageHeader, Typography } from "antd";
+import ActionsDropdown from "container/one_task/ActionsDropdown";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
-import ActionsDropdownP from "presentational/one_task/ActionsDropdownP";
 import DetailsP from "presentational/one_task/DetailsSectionP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
@@ -43,7 +43,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({
           {activeTask.name}
         </Text>
       }
-      extra={<ActionsDropdownP />}
+      extra={<ActionsDropdown />}
     />
 
     <DetailsP activeTask={activeTask} />

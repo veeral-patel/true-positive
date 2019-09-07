@@ -3,6 +3,7 @@ import { ApolloError, ApolloQueryResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import DELETE_A_COMMENT from "mutations/deleteComment";
+import DELETE_A_TASK from "mutations/deleteTask";
 import RENAME_A_CASE from "mutations/renameCase";
 import RENAME_A_TASK from "mutations/renameTask";
 import GET_ONE_CASE from "queries/getOneCase";
@@ -134,6 +135,33 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while deleting the comment",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  deleteTask(taskId: number) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            id: taskId
+          }
+        },
+        mutation: DELETE_A_TASK
+      })
+      .then(response => {
+        message.success("Deleted the task");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while deleting the task",
           description: error.message
         });
       })
