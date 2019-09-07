@@ -1,4 +1,5 @@
 import { Alert, Modal, Typography } from "antd";
+import CaseAutocomplete from "container/shared/cases/CaseAutocomplete";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import UIStore from "stores/UIStore";
@@ -29,6 +30,7 @@ export default inject("uiStore")(
             />
             <br />
             <Paragraph>Choose a case to merge this case into:</Paragraph>
+            <CaseAutocomplete />
           </Modal>
         );
       }
