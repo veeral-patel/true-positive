@@ -58,11 +58,11 @@ ActiveRecord::Schema.define(version: 2019_08_31_173359) do
     t.string "name"
     t.text "description"
     t.bigint "created_by_id"
-    t.bigint "task_id"
+    t.bigint "case_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_indicators_on_case_id"
     t.index ["created_by_id"], name: "index_indicators_on_created_by_id"
-    t.index ["task_id"], name: "index_indicators_on_task_id"
   end
 
   create_table "priorities", force: :cascade do |t|
@@ -125,7 +125,6 @@ ActiveRecord::Schema.define(version: 2019_08_31_173359) do
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
     t.string "email"
   end
 
@@ -137,7 +136,7 @@ ActiveRecord::Schema.define(version: 2019_08_31_173359) do
   add_foreign_key "cases", "users", column: "assigned_to_id"
   add_foreign_key "cases", "users", column: "created_by_id"
   add_foreign_key "comments", "users", column: "created_by_id"
-  add_foreign_key "indicators", "tasks"
+  add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "tasks", "cases"
   add_foreign_key "tasks", "priorities"

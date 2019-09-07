@@ -51,10 +51,6 @@ const GET_ONE_CASE = gql`
         createdBy {
           username
         }
-        task {
-          id
-          name
-        }
       }
       tasks {
         id
@@ -77,26 +73,6 @@ const GET_ONE_CASE = gql`
           createdAt
           createdBy {
             username
-          }
-        }
-        indicators {
-          id
-          name
-          createdAt
-          description
-          tags {
-            name
-          }
-          createdBy {
-            username
-          }
-          comments {
-            id
-            comment
-            createdAt
-            createdBy {
-              username
-            }
           }
         }
         tags {
