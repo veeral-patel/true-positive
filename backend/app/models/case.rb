@@ -1,3 +1,5 @@
+require 'ancestry'
+
 class Case < ApplicationRecord
   has_ancestry
 

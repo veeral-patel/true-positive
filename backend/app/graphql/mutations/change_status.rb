@@ -24,6 +24,17 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
             else
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
+        elsif type === "TASK"
+            the_task = find_task_or_throw_execution_error(task_id: object_id)
+            the_task.status = new_status
+
+            if the_task.save
+                {
+                    "id": object_id
+                }
+            else
+                raise GraphQL::ExecutionError, the_task.errors.full_messages.join(" | ")
+            end
         end
     end
 end
