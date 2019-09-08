@@ -16,6 +16,9 @@ class Case < ApplicationRecord
 
   has_many :case_members, dependent: :destroy
 
+  # before destroying this case, destroy all the cases merged into it.
+  before_destroy :destroy_merged_cases
+
   acts_as_taggable_on :tags
 
   def add_member(user, role)
@@ -51,4 +54,9 @@ class Case < ApplicationRecord
   def formatted_created_at
       self.created_at.strftime("%m/%d/%y %H:%M")
   end
+
+  private
+    def destroy_merged_cases
+      self.merged_cases.each { |the_case| the_case.destroy } 
+    end
 end
