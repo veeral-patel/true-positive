@@ -8,6 +8,7 @@ const { Option } = Select;
 interface UserSelectProps {
   userStore?: UserStore;
   selectMultiple?: boolean;
+  placeholder: string;
 }
 
 export default inject("userStore")(
@@ -19,7 +20,7 @@ export default inject("userStore")(
       }
 
       render() {
-        const { userStore, selectMultiple } = this.props;
+        const { userStore, selectMultiple, placeholder } = this.props;
 
         if (userStore!.usersAreLoading) return <Spin />;
 
@@ -31,7 +32,7 @@ export default inject("userStore")(
           <Select
             showSearch
             mode={selectMultiple === true ? "multiple" : "default"}
-            placeholder="Choose a user"
+            placeholder={placeholder}
             style={{ minWidth: "200px", width: "85%" }}
           >
             {options}

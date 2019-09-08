@@ -1,4 +1,4 @@
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import Text from "antd/lib/typography/Text";
 import UserSelect from "container/shared/users/UserSelect";
 import React from "react";
@@ -24,7 +24,12 @@ const MembersP: React.FC<MembersProps> = ({ members }) => (
     <div style={{ marginTop: "15px", marginBottom: "15px" }}>
       <Text>Only members of a case are authorized to view it.</Text>
     </div>
-    <UserSelect selectMultiple={true} />
+    <div style={{ marginTop: "15px", marginBottom: "15px" }}>
+      <UserSelect selectMultiple={true} placeholder="Add users to this case" />
+      <span style={{ marginLeft: "5px" }}>
+        <Button type="primary">Add Users</Button>
+      </span>
+    </div>
     <MemberListP members={members} />
   </Content>
 );

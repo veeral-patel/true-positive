@@ -10,7 +10,10 @@ interface EditableAssigneeTagProps {
 
 const EditableAssigneeTag: React.FC<EditableAssigneeTagProps> = ({ user }) => (
   // need to add the {" "} below, or else the popover doesn't appear.
-  <Popover title="Change Assignee" content={<UserSelect />}>
+  <Popover
+    title="Change Assignee"
+    content={<UserSelect placeholder="Choose a user" />}
+  >
     <UserTagP user={user} />{" "}
   </Popover>
 );
