@@ -44,6 +44,8 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (6.0.0)
       activerecord (~> 5.0)
+    ancestry (3.0.7)
+      activerecord (>= 3.2.0)
     arel (9.0.0)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
@@ -200,6 +202,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 6.0)
+  ancestry
   bootsnap (>= 1.1.0)
   byebug
   factory_bot_rails

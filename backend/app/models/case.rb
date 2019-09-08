@@ -1,4 +1,6 @@
 class Case < ApplicationRecord
+  has_ancestry
+
   validates :name, presence: true
   validates :status, presence: true
   validates :priority, presence: true
@@ -15,9 +17,6 @@ class Case < ApplicationRecord
   has_many :indicators, dependent: :destroy
 
   has_many :case_members, dependent: :destroy
-
-  # before destroying this case, destroy all the cases merged into it.
-  before_destroy :destroy_merged_cases
 
   acts_as_taggable_on :tags
 
