@@ -8,8 +8,11 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
     # type of the object we're updating (either case or task)
     argument :type, Types::HasStatusEnum, required: true
 
-    # the ID of the updated case or task
-    field :id, ID, null: false
+    # the updated case. null if you're not updating a case.
+    field :case, Types::CaseType, null: true
+
+    # the updated task. null if you're not updating a task.
+    field :task, Types::TaskType, null: true
 
     def resolve(object_id:, status_id:, type:)
         # find the new status
@@ -24,7 +27,7 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
             # save it
             if the_case.save
                 {
-                    "id": object_id
+                    "case": the_case
                 }
             else
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
@@ -37,7 +40,7 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
             # save it
             if the_task.save
                 {
-                    "id": object_id
+                    "task": the_task
                 }
             else
                 raise GraphQL::ExecutionError, the_task.errors.full_messages.join(" | ")
