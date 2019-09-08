@@ -1,5 +1,5 @@
 import { Popover } from "antd";
-import ListAndFilterStatuses from "container/shared/statuses/ListAndFilterStatuses";
+import StatusSelect from "container/shared/statuses/StatusSelect";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 
@@ -11,7 +11,7 @@ const EditableStatusTag: React.FC<EditableStatusTagProps> = ({
   statusName
 }) => (
   // need to add the {" "} below, or else the popover doesn't appear.
-  <Popover title="Change Status" content={<ListAndFilterStatuses />}>
+  <Popover title="Change Status" content={<StatusSelect />}>
     <StatusTagP statusName={statusName} />{" "}
   </Popover>
 );
