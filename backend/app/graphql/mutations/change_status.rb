@@ -12,11 +12,16 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
     field :id, ID, null: false
 
     def resolve(object_id:, status_id:, type:)
+        # find the new status
         new_status =  find_status_or_throw_execution_error(status_id: status_id)
+
+        # changing the status of a case
         if type === "CASE"
+            # find and update the case
             the_case = find_case_or_throw_execution_error(case_id: object_id)
             the_case.status = new_status
 
+            # save it
             if the_case.save
                 {
                     "id": object_id
@@ -24,10 +29,12 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
             else
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
-        elsif type === "TASK"
+        elsif type === "TASK" # changing the status of a task
+            # find and update the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
             the_task.status = new_status
 
+            # save it
             if the_task.save
                 {
                     "id": object_id
