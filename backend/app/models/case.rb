@@ -8,7 +8,6 @@ class Case < ApplicationRecord
 
   belongs_to :created_by, :class_name => 'User'
   belongs_to :assigned_to, :class_name => 'User', optional: true
-  belongs_to :merged_into, :class_name => 'Case', optional: true
   belongs_to :status
   belongs_to :priority
 
@@ -29,25 +28,23 @@ class Case < ApplicationRecord
   end
 
   def merge_case_into(parent_case)
-    # Merge this case into PARENT_CASE (which can't be this case).
-    if self.id == parent_case.id
-      self.errors.add(:base, "Cannot merge a case into itself")
-      return
-    end
-
-    self.merged_into = parent_case
-    self.merged_at = Time.now
+    self.parent = parent_case
     self.save
   end
 
   def is_merged
     # Whether or not this case has been merged into another case
-    not self.merged_at.nil? || self.merged_into.nil?
+    not self.parent.nil?
   end
 
   def merged_cases
     # Lists the other cases that have been merged into this one
-    Case.where(merged_into: self)
+    self.children
+  end
+
+  def merged_into
+    # The case this case has been merged into
+    self.parent
   end
 
   def formatted_created_at

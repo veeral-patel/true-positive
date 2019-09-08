@@ -22,7 +22,6 @@ interface ICase {
   comments: IComment[];
   isMerged: boolean;
   mergedInto: ICase | null;
-  mergedAt: string;
   mergedCases: ICase[];
   caseMembers: ICaseMember[];
   indicators: IIndicator[];

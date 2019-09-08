@@ -22,7 +22,6 @@ const GET_ONE_CASE = gql`
           email
         }
       }
-      mergedAt
       description
       createdAt
       formattedCreatedAt

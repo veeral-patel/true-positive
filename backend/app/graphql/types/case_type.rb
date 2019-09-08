@@ -21,7 +21,6 @@ module Types
         # possibly null
         field :description, String, null: true
         field :assigned_to, Types::UserType, null: true
-        field :merged_at, GraphQL::Types::ISO8601DateTime, null: true
         field :merged_into, Types::CaseType, null: true
     end
 end

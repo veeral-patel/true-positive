@@ -34,13 +34,10 @@ ActiveRecord::Schema.define(version: 2019_09_08_024043) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.bigint "assigned_to_id"
-    t.datetime "merged_at"
-    t.bigint "merged_into_id"
     t.string "ancestry"
     t.index ["ancestry"], name: "index_cases_on_ancestry"
     t.index ["assigned_to_id"], name: "index_cases_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_cases_on_created_by_id"
-    t.index ["merged_into_id"], name: "index_cases_on_merged_into_id"
     t.index ["priority_id"], name: "index_cases_on_priority_id"
     t.index ["status_id"], name: "index_cases_on_status_id"
   end
@@ -132,7 +129,6 @@ ActiveRecord::Schema.define(version: 2019_09_08_024043) do
 
   add_foreign_key "case_members", "cases"
   add_foreign_key "case_members", "users"
-  add_foreign_key "cases", "cases", column: "merged_into_id"
   add_foreign_key "cases", "priorities"
   add_foreign_key "cases", "statuses"
   add_foreign_key "cases", "users", column: "assigned_to_id"
