@@ -12,6 +12,11 @@ interface StatusSelectProps {
 export default inject("statusStore")(
   observer(
     class StatusSelect extends React.Component<StatusSelectProps> {
+      componentDidMount() {
+        const { statusStore } = this.props;
+        statusStore!.loadStatuses();
+      }
+
       render() {
         const { statusStore } = this.props;
 

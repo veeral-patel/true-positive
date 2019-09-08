@@ -1,5 +1,5 @@
 import { Popover } from "antd";
-import ListAndFilterPriorities from "container/shared/priorities/ListAndFilterPriorities";
+import PrioritySelect from "container/shared/priorities/PrioritySelect";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import React from "react";
 
@@ -11,7 +11,7 @@ const EditablePriorityTag: React.FC<EditablePriorityTagProps> = ({
   priorityName
 }) => (
   // need to add the {" "} below, or else the popover doesn't appear.
-  <Popover title="Change Priority" content={<ListAndFilterPriorities />}>
+  <Popover title="Change Priority" content={<PrioritySelect />}>
     <PriorityTagP priorityName={priorityName} />{" "}
   </Popover>
 );
