@@ -16,6 +16,7 @@ export default inject("allCasesStore")(
       }
 
       render() {
+        // One day, handle the case where the cases are loading.
         const { allCasesStore } = this.props;
         return <CaseAutocompleteP cases={allCasesStore!.cases} />;
       }
