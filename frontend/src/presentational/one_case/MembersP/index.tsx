@@ -1,5 +1,6 @@
 import { Layout } from "antd";
 import Text from "antd/lib/typography/Text";
+import UserSelect from "container/shared/users/UserSelect";
 import React from "react";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import MemberListP from "./MemberListP";
@@ -23,6 +24,7 @@ const MembersP: React.FC<MembersProps> = ({ members }) => (
     <div style={{ marginTop: "15px", marginBottom: "15px" }}>
       <Text>Only members of a case are authorized to view it.</Text>
     </div>
+    <UserSelect selectMultiple={true} />
     <MemberListP members={members} />
   </Content>
 );
