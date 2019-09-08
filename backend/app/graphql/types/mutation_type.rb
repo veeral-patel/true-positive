@@ -8,9 +8,12 @@ module Types
       field :delete_case, mutation: Mutations::DeleteCase
       field :merge_case, mutation: Mutations::MergeCase
 
-      # tasks
+      # task -------
       field :rename_task, mutation: Mutations::RenameTask
       field :delete_task, mutation: Mutations::DeleteTask
+
+      # case or task --------
+      field :change_status, mutation: Mutations::ChangeStatus
 
       # comment --------
       field :delete_comment, mutation: Mutations::DeleteComment
