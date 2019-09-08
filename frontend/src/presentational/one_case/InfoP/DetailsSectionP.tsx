@@ -1,8 +1,8 @@
 import { Col, Divider, Row } from "antd";
+import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
 import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
-import UserTagP from "presentational/shared/tags/UserTagP";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 
@@ -34,7 +34,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeCase }) => (
       </Col>
       <Col span={4}>Assigned To:</Col>
       <Col span={8}>
-        <UserTagP user={activeCase.assignedTo} />
+        <EditableAssigneeTag user={activeCase.assignedTo} />
       </Col>
     </Row>
     <Row>
