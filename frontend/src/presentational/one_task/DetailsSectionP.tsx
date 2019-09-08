@@ -1,8 +1,8 @@
-import { Col, Divider, Row, Tag } from "antd";
+import { Col, Divider, Row } from "antd";
+import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
 import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
-import UserTagP from "presentational/shared/tags/UserTagP";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
 import formatISO8601 from "utils/formatISO8601";
@@ -37,9 +37,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
       </Col>
       <Col span={4}>Assigned To:</Col>
       <Col span={8}>
-        <Tag>
-          <UserTagP user={activeTask.assignedTo} />
-        </Tag>
+        <EditableAssigneeTag user={activeTask.assignedTo} />
       </Col>
     </Row>
     <Row>
