@@ -6,7 +6,7 @@ module Types
             open_status = Status.create(name: "Open", description: "Work on me!")
             Status.create(name: "Closed", description: "Don't bother!")
 
-            low_priority =Priority.create(name: "Low", description: "It's not worth it")
+            low_priority = Priority.create(name: "Low", description: "It's not worth it")
             Priority.create(name: "High", description: "Get started now!")
 
             lame_user = User.create(username: "lame_user", email: "lame_user@gmail.com")
@@ -117,7 +117,10 @@ module Types
                         "priority" => {
                             "name" => "Low"
                         },
-                        "tags" => ["tag2", "tag1"]
+                        "tags" => [
+                            { "name" => "tag2", },
+                            { "name" => "tag1", }
+                        ],
                     }
                 }
             })
@@ -158,7 +161,10 @@ module Types
                             "assignedTo" => {
                                 "username" => "cool_user"
                             },
-                            "tags" => ["tag2", "tag1"],
+                            "tags" => [
+                                { "name" => "tag2", },
+                                { "name" => "tag1", }
+                            ],
                             "tasks" => [{
                                 "name" => "A task"
                             }]
@@ -211,7 +217,9 @@ module Types
                         tasks {
                             name
                         }
-                        tags
+                        tags {
+                            name
+                        }
                     }
                 }
             GQL
@@ -280,7 +288,9 @@ module Types
                         priority {
                             name
                         }
-                        tags
+                        tags {
+                            name
+                        }
                     }
                 }
             GQL
