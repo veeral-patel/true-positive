@@ -1,5 +1,5 @@
 import { message, notification } from "antd";
-import { ApolloError, ApolloQueryResult } from "apollo-boost";
+import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import CREATE_A_STATUS from "mutations/createStatus";
@@ -28,9 +28,9 @@ class StatusStore {
       .query<IStatusData>({
         query: GET_STATUSES
       })
-      .then((response: ApolloQueryResult<IStatusData>) => {
+      .then((response: FetchResult<IStatusData>) => {
         runInAction(() => {
-          this.statuses = response.data.statuses;
+          if (response.data) this.statuses = response.data.statuses;
         });
       })
       .catch((error: ApolloError) => {
@@ -55,7 +55,7 @@ class StatusStore {
         },
         mutation: CREATE_A_STATUS
       })
-      .then((response: ApolloQueryResult<IStatusDatum>) => {
+      .then((response: FetchResult<IStatusDatum>) => {
         message.success(`Created status '${name}'`);
       })
       .catch((error: ApolloError) => {
@@ -83,7 +83,7 @@ class StatusStore {
         },
         mutation: DELETE_A_STATUS
       })
-      .then((response: ApolloQueryResult<IStatusDatum>) => {
+      .then((response: FetchResult<IStatusDatum>) => {
         message.success("Deleted the status");
       })
       .catch((error: ApolloError) => {
@@ -111,7 +111,7 @@ class StatusStore {
         },
         mutation: RENAME_A_STATUS
       })
-      .then((response: ApolloQueryResult<IStatusDatum>) => {
+      .then((response: FetchResult<IStatusDatum>) => {
         message.success("Renamed the status");
       })
       .catch((error: ApolloError) => {

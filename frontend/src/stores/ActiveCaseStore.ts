@@ -1,5 +1,5 @@
 import { message, notification } from "antd";
-import { ApolloError, ApolloQueryResult } from "apollo-boost";
+import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import DELETE_A_COMMENT from "mutations/deleteComment";
@@ -45,8 +45,10 @@ class ActiveCaseStore {
         query: GET_ONE_CASE,
         variables: { id: this.activeCaseId }
       })
-      .then((response: ApolloQueryResult<ICaseDatum>) => {
-        runInAction(() => (this.activeCase = response.data.case));
+      .then((response: FetchResult<ICaseDatum>) => {
+        runInAction(() => {
+          if (response.data) this.activeCase = response.data.case;
+        });
       })
       .catch((error: ApolloError) => {
         notification.error({
@@ -102,7 +104,7 @@ class ActiveCaseStore {
         },
         mutation: RENAME_A_CASE
       })
-      .then((response: ApolloQueryResult<ICaseDatum>) => {
+      .then((response: FetchResult<ICaseDatum>) => {
         message.success("Renamed the case");
       })
       .catch((error: ApolloError) => {
@@ -184,7 +186,7 @@ class ActiveCaseStore {
         },
         mutation: RENAME_A_TASK
       })
-      .then((response: ApolloQueryResult<ITaskDatum>) => {
+      .then((response: FetchResult<ITaskDatum>) => {
         message.success("Renamed the task");
       })
       .catch((error: ApolloError) => {

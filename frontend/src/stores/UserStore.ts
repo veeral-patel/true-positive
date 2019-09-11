@@ -1,5 +1,5 @@
 import { notification } from "antd";
-import { ApolloError, ApolloQueryResult } from "apollo-boost";
+import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import GET_USERS from "queries/getUsers";
@@ -20,8 +20,10 @@ class UserStore {
       .query<IUserData>({
         query: GET_USERS
       })
-      .then((response: ApolloQueryResult<IUserData>) => {
-        runInAction(() => (this.users = response.data.users));
+      .then((response: FetchResult<IUserData>) => {
+        runInAction(() => {
+          if (response.data) this.users = response.data.users;
+        });
       })
       .catch((error: ApolloError) => {
         notification.error({

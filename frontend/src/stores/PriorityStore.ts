@@ -1,5 +1,5 @@
 import { message, notification } from "antd";
-import { ApolloError, ApolloQueryResult } from "apollo-boost";
+import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import CREATE_A_PRIORITY from "mutations/createPriority";
@@ -28,9 +28,11 @@ class PriorityStore {
       .query<IPriorityData>({
         query: GET_PRIORITIES
       })
-      .then((response: ApolloQueryResult<IPriorityData>) =>
-        runInAction(() => (this.priorities = response.data.priorities))
-      )
+      .then((response: FetchResult<IPriorityData>) => {
+        runInAction(() => {
+          if (response.data) this.priorities = response.data.priorities;
+        });
+      })
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while fetching priorities",
@@ -53,7 +55,7 @@ class PriorityStore {
         },
         mutation: CREATE_A_PRIORITY
       })
-      .then((response: ApolloQueryResult<IPriorityDatum>) => {
+      .then((response: FetchResult<IPriorityDatum>) => {
         message.success(`Created priority '${name}'`);
       })
       .catch((error: ApolloError) => {
@@ -81,7 +83,7 @@ class PriorityStore {
         },
         mutation: DELETE_A_PRIORITY
       })
-      .then((response: ApolloQueryResult<IPriorityDatum>) => {
+      .then((response: FetchResult<IPriorityDatum>) => {
         message.success("Deleted the priority");
       })
       .catch((error: ApolloError) => {
@@ -108,7 +110,7 @@ class PriorityStore {
         },
         mutation: RENAME_A_PRIORITY
       })
-      .then((response: ApolloQueryResult<IPriorityDatum>) => {
+      .then((response: FetchResult<IPriorityDatum>) => {
         message.success("Renamed the priority");
       })
       .catch((error: ApolloError) => {

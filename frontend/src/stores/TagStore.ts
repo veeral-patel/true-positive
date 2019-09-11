@@ -1,5 +1,5 @@
 import { notification } from "antd";
-import { ApolloError, ApolloQueryResult } from "apollo-boost";
+import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, observable, runInAction } from "mobx";
 import GET_TAGS from "queries/getTags";
@@ -20,9 +20,11 @@ class TagStore {
       .query<ITagData>({
         query: GET_TAGS
       })
-      .then((response: ApolloQueryResult<ITagData>) =>
-        runInAction(() => (this.tags = response.data.tags))
-      )
+      .then((response: FetchResult<ITagData>) => {
+        runInAction(() => {
+          if (response.data) this.tags = response.data.tags;
+        });
+      })
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while fetching tags",
