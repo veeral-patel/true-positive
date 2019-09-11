@@ -1,5 +1,5 @@
 import { message, notification } from "antd";
-import { ApolloError, ApolloQueryResult } from "apollo-boost";
+import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, computed, observable, runInAction } from "mobx";
 import DELETE_A_CASE from "mutations/deleteCase";
@@ -24,9 +24,11 @@ class CaseStore {
       .query<ICaseData>({
         query: GET_CASES
       })
-      .then((response: ApolloQueryResult<ICaseData>) =>
-        runInAction(() => (this.cases = response.data.cases))
-      )
+      .then((response: FetchResult<ICaseData>) => {
+        runInAction(() => {
+          if (response.data) this.cases = response.data.cases;
+        });
+      })
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while fetching cases",
