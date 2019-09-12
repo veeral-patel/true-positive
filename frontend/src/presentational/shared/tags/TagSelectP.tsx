@@ -5,15 +5,17 @@ import ITag from "ts/interfaces/ITag";
 const { Option } = Select;
 
 interface TagSelectProps {
-  tags: ITag[];
+  existingTags: ITag[];
 }
 
-const TagSelectP: React.FC<TagSelectProps> = ({ tags }) => {
-  const options = tags.map(tag => <Option key={tag.id}>{tag.name}</Option>);
+const TagSelectP: React.FC<TagSelectProps> = ({ existingTags }) => {
   return (
-    <Select mode="tags" placeholder="Select tags" style={{ minWidth: "200px" }}>
-      {options}
-    </Select>
+    <Select
+      mode="tags"
+      placeholder="Select tags"
+      defaultValue={existingTags.map(tag => tag.name)}
+      style={{ minWidth: "200px" }}
+    />
   );
 };
 

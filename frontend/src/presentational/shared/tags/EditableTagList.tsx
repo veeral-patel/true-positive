@@ -5,12 +5,15 @@ import ITag from "ts/interfaces/ITag";
 import TagSelectP from "./TagSelectP";
 
 interface EditableTagListProps {
-  tags: ITag[];
+  existingTags: ITag[];
 }
 
-const EditableTagList: React.FC<EditableTagListProps> = ({ tags }) => (
-  <Popover title="Edit Tags" content={<TagSelectP tags={tags} />}>
-    <ListOfTagsP tags={tags} />{" "}
+const EditableTagList: React.FC<EditableTagListProps> = ({ existingTags }) => (
+  <Popover
+    title="Edit Tags"
+    content={<TagSelectP existingTags={existingTags} />}
+  >
+    <ListOfTagsP tags={existingTags} />{" "}
   </Popover>
 );
 

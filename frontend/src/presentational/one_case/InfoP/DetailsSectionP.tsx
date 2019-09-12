@@ -39,7 +39,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeCase }) => (
     </Row>
     <Row>
       <Col span={4}>Tags:</Col>
-      <Col span={8}>{<EditableTagList tags={activeCase.tags} />}</Col>
+      <Col span={8}>{<EditableTagList existingTags={activeCase.tags} />}</Col>
     </Row>
   </section>
 );
