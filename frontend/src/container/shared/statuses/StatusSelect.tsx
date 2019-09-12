@@ -1,41 +1,33 @@
 import { Select, Spin } from "antd";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
+import { useQuery } from "models";
 import React from "react";
-import StatusStore from "stores/StatusStore";
 
 const { Option } = Select;
 
-interface StatusSelectProps {
-  statusStore?: StatusStore;
-}
+const StatusSelect = observer(() => {
+  // fetch the list of statuses
+  const { data, loading, error } = useQuery(store => store.queryStatuses());
 
-export default inject("statusStore")(
-  observer(
-    class StatusSelect extends React.Component<StatusSelectProps> {
-      componentDidMount() {
-        const { statusStore } = this.props;
-        statusStore!.loadStatuses();
-      }
+  // handle loading and error statuses
+  if (loading) return <Spin />;
+  if (error || !data) return <p>Couldn't load statuses</p>;
 
-      render() {
-        const { statusStore } = this.props;
+  // generate a list of options
+  const options = data.statuses.map(status => (
+    <Option key={status.id}>{status.name}</Option>
+  ));
 
-        if (statusStore!.statusesAreLoading) return <Spin />;
+  // render our component
+  return (
+    <Select
+      showSearch
+      placeholder="Choose a status"
+      style={{ minWidth: "200px" }}
+    >
+      {options}
+    </Select>
+  );
+});
 
-        const options = statusStore!.statuses.map(status => (
-          <Option key={status.id}>{status.name}</Option>
-        ));
-
-        return (
-          <Select
-            showSearch
-            placeholder="Choose a status"
-            style={{ minWidth: "200px" }}
-          >
-            {options}
-          </Select>
-        );
-      }
-    }
-  )
-);
+export default StatusSelect;
