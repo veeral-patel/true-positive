@@ -1,4 +1,4 @@
-import { Select, Spin } from "antd";
+import { Empty, Select, Spin } from "antd";
 import { observer } from "mobx-react";
 import { useQuery } from "models";
 import React from "react";
@@ -11,7 +11,7 @@ const StatusSelect = observer(() => {
 
   // handle loading and error statuses
   if (loading) return <Spin />;
-  if (error || !data) return <p>Couldn't load statuses</p>;
+  if (error || !data) return <Empty />;
 
   // generate a list of options
   const options = data.statuses.map(status => (
