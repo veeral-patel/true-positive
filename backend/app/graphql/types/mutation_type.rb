@@ -16,6 +16,9 @@ module Types
       # case or task --------
       field :change_status, mutation: Mutations::ChangeStatus
 
+      # case, task, or indicator
+      field :change_description, mutation: Mutations::ChangeDescription
+
       # comment --------
       field :delete_comment, mutation: Mutations::DeleteComment
 

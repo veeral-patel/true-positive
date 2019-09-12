@@ -5,7 +5,7 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
     # the ID of the new status
     argument :status_id, ID, required: true
 
-    # type of the object we're updating (either case or task)
+    # type of the object we're updating (either CASE or TASK)
     argument :type, Types::HasStatusEnum, required: true
 
     # the updated case. null if you're not updating a case.

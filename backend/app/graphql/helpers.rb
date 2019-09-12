@@ -45,3 +45,11 @@ def find_task_or_throw_execution_error(task_id:)
         raise GraphQL::ExecutionError, "Could not find a task with id #{task_id}."
     end
 end
+
+def find_indicator_or_throw_execution_error(indicator_id:)
+    begin
+        Indicator.find(indicator_id)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find a indicator with id #{indicator_id}."
+    end
+end
