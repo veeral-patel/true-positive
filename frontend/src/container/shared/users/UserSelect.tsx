@@ -1,44 +1,33 @@
-import { Select, Spin } from "antd";
-import { inject, observer } from "mobx-react";
+import { Empty, Select, Spin } from "antd";
+import { observer } from "mobx-react";
+import { useQuery } from "models";
 import React from "react";
-import UserStore from "stores/UserStore";
 
 const { Option } = Select;
 
-interface UserSelectProps {
-  userStore?: UserStore;
-  selectMultiple?: boolean;
-  placeholder: string;
-}
+const UserSelect = observer(() => {
+  // fetch the list of users
+  const { data, loading, error } = useQuery(store => store.queryUsers());
 
-export default inject("userStore")(
-  observer(
-    class UserSelect extends React.Component<UserSelectProps> {
-      componentDidMount() {
-        const { userStore } = this.props;
-        userStore!.loadUsers();
-      }
+  // handle loading and error statuses
+  if (loading) return <Spin />;
+  if (error || !data) return <Empty />;
 
-      render() {
-        const { userStore, selectMultiple, placeholder } = this.props;
+  // generate a list of options
+  const options = data.users.map(user => (
+    <Option key={user.id}>{user.username}</Option>
+  ));
 
-        if (userStore!.usersAreLoading) return <Spin />;
+  // render our component
+  return (
+    <Select
+      showSearch
+      placeholder="Choose a user"
+      style={{ minWidth: "200px" }}
+    >
+      {options}
+    </Select>
+  );
+});
 
-        const options = userStore!.users.map(user => (
-          <Option key={user.username}>{user.username}</Option>
-        ));
-
-        return (
-          <Select
-            showSearch
-            mode={selectMultiple === true ? "multiple" : "default"}
-            placeholder={placeholder}
-            style={{ minWidth: "200px", width: "85%" }}
-          >
-            {options}
-          </Select>
-        );
-      }
-    }
-  )
-);
+export default UserSelect;
