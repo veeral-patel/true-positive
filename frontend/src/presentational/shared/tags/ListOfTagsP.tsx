@@ -1,4 +1,5 @@
 import { Tag } from "antd";
+// sets bottom margin for tags
 import "presentational/shared/tags/ListOfTagsP.css";
 import React from "react";
 import ITag from "ts/interfaces/ITag";

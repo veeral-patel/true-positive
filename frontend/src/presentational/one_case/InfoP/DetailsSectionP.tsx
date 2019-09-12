@@ -2,7 +2,7 @@ import { Col, Divider, Row } from "antd";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
 import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
-import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
+import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ICase from "ts/interfaces/ICase";
 
@@ -39,7 +39,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeCase }) => (
     </Row>
     <Row>
       <Col span={4}>Tags:</Col>
-      <Col span={8}>{<ListOfTagsP tags={activeCase.tags} />}</Col>
+      <Col span={8}>{<EditableTagList tags={activeCase.tags} />}</Col>
     </Row>
   </section>
 );
