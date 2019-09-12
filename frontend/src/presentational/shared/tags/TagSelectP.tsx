@@ -2,8 +2,6 @@ import { Select } from "antd";
 import React from "react";
 import ITag from "ts/interfaces/ITag";
 
-const { Option } = Select;
-
 interface TagSelectProps {
   existingTags: ITag[];
 }
