@@ -5,7 +5,11 @@ import React from "react";
 
 const { Option } = Select;
 
-const StatusSelect = observer(() => {
+interface IStatusSelectProps {
+  handleSelect: (statusId: any) => void;
+}
+
+const StatusSelect: React.FC<IStatusSelectProps> = observer(props => {
   // fetch the list of statuses
   const { data, loading, error } = useQuery(store => store.queryStatuses());
 
@@ -24,6 +28,7 @@ const StatusSelect = observer(() => {
       showSearch
       placeholder="Choose a status"
       style={{ minWidth: "200px" }}
+      onSelect={statusId => props.handleSelect(statusId)}
     >
       {options}
     </Select>

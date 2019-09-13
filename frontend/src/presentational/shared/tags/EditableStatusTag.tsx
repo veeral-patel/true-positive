@@ -5,13 +5,18 @@ import React from "react";
 
 interface EditableStatusTagProps {
   statusName: string;
+  handleSelect: (statusId: number) => void;
 }
 
 const EditableStatusTag: React.FC<EditableStatusTagProps> = ({
-  statusName
+  statusName,
+  handleSelect
 }) => (
   // need to add the {" "} below, or else the popover doesn't appear.
-  <Popover title="Change Status" content={<StatusSelect />}>
+  <Popover
+    title="Change Status"
+    content={<StatusSelect handleSelect={handleSelect} />}
+  >
     <StatusTagP statusName={statusName} />{" "}
   </Popover>
 );

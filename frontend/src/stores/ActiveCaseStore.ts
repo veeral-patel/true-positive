@@ -2,6 +2,7 @@ import { message, notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
+import CHANGE_STATUS from "mutations/changeStatus";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
 import RENAME_A_CASE from "mutations/renameCase";
@@ -192,6 +193,43 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while renaming the task",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  changeCaseStatus(statusId: number) {
+    if (!this.activeCase) {
+      notification.error({
+        message: "Could not rename case",
+        description: "No case is active"
+      });
+      return null;
+    }
+
+    client
+      .mutate<ICaseDatum>({
+        variables: {
+          input: {
+            objectId: this.activeCase.id,
+            statusId: statusId,
+            type: "CASE"
+          }
+        },
+        mutation: CHANGE_STATUS
+      })
+      .then((response: FetchResult<ICaseDatum>) => {
+        message.success("Changed the status");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while changing the case's status",
           description: error.message
         });
       })

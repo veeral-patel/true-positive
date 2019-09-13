@@ -21,7 +21,10 @@ const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
     <Row>
       <Col span={4}>Status:</Col>
       <Col span={8}>
-        <EditableStatusTag statusName={activeTask.status.name} />
+        <EditableStatusTag
+          statusName={activeTask.status.name}
+          handleSelect={() => void 0}
+        />
       </Col>
       <Col span={4}>Created:</Col>
       <Col span={8}>

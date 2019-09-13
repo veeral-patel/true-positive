@@ -1,7 +1,7 @@
 import { Avatar, Col, Comment, Divider, Layout, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
+import DetailsSectionP from "container/one_case/Info/DetailsSection";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
-import DetailsSectionP from "presentational/one_case/InfoP/DetailsSectionP";
 import ListofMergedCasesP from "presentational/one_case/ListofMergedCasesP";
 import CommentList from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
