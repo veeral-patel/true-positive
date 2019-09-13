@@ -1,7 +1,6 @@
 import { navigate } from "@reach/router";
 import { Table } from "antd";
 import { ColumnFilterItem, TableRowSelection } from "antd/lib/table";
-import ExpandedRowP from "presentational/all_cases/ExpandedRowP";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
@@ -41,15 +40,15 @@ const CasesTableP: React.FC<ICasesTableProps> = props => {
   return (
     <Table
       dataSource={dataSource}
-      rowSelection={rowSelection}
+      // rowSelection={rowSelection}
       rowKey={theCase => theCase.id.toString()}
-      expandedRowRender={theCase => (
-        <ExpandedRowP
-          caseId={theCase.id}
-          description={theCase.description}
-          tasks={theCase.tasks}
-        />
-      )}
+      // expandedRowRender={theCase => (
+      //   <ExpandedRowP
+      //     caseId={theCase.id}
+      //     description={theCase.description}
+      //     tasks={theCase.tasks}
+      //   />
+      // )}
       onRowClick={(clickedCase, index, event) =>
         navigate(`${paths.CASES_PATH}/${clickedCase.id}`)
       }
