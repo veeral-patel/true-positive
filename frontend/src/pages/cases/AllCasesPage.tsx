@@ -1,6 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
 import { Button } from "antd";
-import ActionsDropdown from "container/all_cases/ActionsDropdown";
 import CasesTable from "container/all_cases/CasesTable";
 import FilterInput from "container/all_cases/FilterInput";
 import { inject, observer } from "mobx-react";
@@ -43,13 +42,13 @@ export default inject("allCasesStore", "uiStore")(
             >
               <FilterInput />
             </span>
-            {allCasesStore!.numberOfSelectedCases === 0 ? (
+            {/* {allCasesStore!.numberOfSelectedCases === 0 ? (
               <span />
             ) : (
               <span style={{ paddingLeft: "18px" }}>
                 <ActionsDropdown />
               </span>
-            )}
+            )} */}
             <CasesTable />
           </div>
         );
