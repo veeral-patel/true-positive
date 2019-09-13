@@ -44,7 +44,12 @@ export default inject("activeCaseStore")(
             <Row>
               <Col span={4}>Priority:</Col>
               <Col span={8}>
-                <EditablePriorityTag priorityName={activeCase.priority.name} />
+                <EditablePriorityTag
+                  priorityName={activeCase.priority.name}
+                  handleSelect={priorityId =>
+                    activeCaseStore!.changeCasePriority(priorityId)
+                  }
+                />
               </Col>
               <Col span={4}>Assigned To:</Col>
               <Col span={8}>

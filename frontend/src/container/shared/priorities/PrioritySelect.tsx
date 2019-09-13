@@ -5,7 +5,11 @@ import React from "react";
 
 const { Option } = Select;
 
-const PrioritySelect = observer(() => {
+interface PrioritySelectProps {
+  handleSelect: (priorityId: any) => void;
+}
+
+const PrioritySelect: React.FC<PrioritySelectProps> = observer(props => {
   // fetch the list of priorities
   const { data, loading, error } = useQuery(store => store.queryPriorities());
 
@@ -24,6 +28,7 @@ const PrioritySelect = observer(() => {
       showSearch
       placeholder="Choose a priority"
       style={{ minWidth: "200px" }}
+      onSelect={priorityId => props.handleSelect(priorityId)}
     >
       {options}
     </Select>

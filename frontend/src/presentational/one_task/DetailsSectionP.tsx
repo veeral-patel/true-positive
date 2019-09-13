@@ -36,7 +36,10 @@ const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
     <Row>
       <Col span={4}>Priority:</Col>
       <Col span={8}>
-        <EditablePriorityTag priorityName={activeTask.priority.name} />
+        <EditablePriorityTag
+          priorityName={activeTask.priority.name}
+          handleSelect={() => void 0}
+        />
       </Col>
       <Col span={4}>Assigned To:</Col>
       <Col span={8}>
