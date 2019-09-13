@@ -2,6 +2,7 @@ import { message, notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
+import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_STATUS from "mutations/changeStatus";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
@@ -230,6 +231,43 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while changing the case's status",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  changeCasePriority(priorityId: number) {
+    if (!this.activeCase) {
+      notification.error({
+        message: "Could not rename case",
+        description: "No case is active"
+      });
+      return null;
+    }
+
+    client
+      .mutate<ICaseDatum>({
+        variables: {
+          input: {
+            objectId: this.activeCase.id,
+            priorityId: priorityId,
+            type: "CASE"
+          }
+        },
+        mutation: CHANGE_PRIORITY
+      })
+      .then((response: FetchResult<ICaseDatum>) => {
+        message.success("Changed the priority");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while changing the case's priority",
           description: error.message
         });
       })
