@@ -2,7 +2,7 @@ module Types
     class CaseMemberType < Types::BaseObject
         description "Represents a member of a case"
 
-        field :role, Types::RoleEnum, null: false do
+        field :role, Types::CaseRoleEnum, null: false do
             description "The user's permission level."
         end
 

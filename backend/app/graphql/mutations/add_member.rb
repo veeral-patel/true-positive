@@ -8,7 +8,7 @@ class Mutations::AddMember < Mutations::BaseMutation
     argument :user_id, ID, required: true
 
     # role we want the user to have
-    argument :role, Types::RoleEnum, required: true
+    argument :role, Types::CaseRoleEnum, required: true
 
     # the updated case
     field :case, Types::CaseType, null: true
