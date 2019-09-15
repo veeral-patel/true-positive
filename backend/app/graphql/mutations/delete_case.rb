@@ -1,10 +1,13 @@
 class Mutations::DeleteCase < Mutations::BaseMutation
     description "Deletes a case, its tasks, its indicators, and any cases merged into it."
 
-    argument :id, ID, required: true
+    argument :id, ID, required: true do
+        description "The ID of the case to delete."
+    end
 
-    # ID of the deleted case
-    field :id, ID, null: false
+    field :id, ID, null: false do
+        description "The ID of the case that was just deleted."
+    end
 
     def resolve(id:)
         theCase = find_case_or_throw_execution_error(case_id: id)
