@@ -1,20 +1,25 @@
 class Mutations::ChangeStatus < Mutations::BaseMutation
     description "Change the status of a case or task."
 
-    # the ID of the case or task whose status we're changing
-    argument :object_id, ID, required: true
+    argument :object_id, ID, required: true do
+        description "The ID of the case or task whose status we're updating."
+    end
 
-    # the ID of the new status
-    argument :status_id, ID, required: true
+    argument :status_id, ID, required: true do
+        description "The ID of the new status."
+    end
 
-    # type of the object we're updating (either CASE or TASK)
-    argument :type, Types::HasStatusEnum, required: true
+    argument :type, Types::HasStatusEnum, required: true do
+        description "Whether we're updating a case or a task."
+    end
 
-    # the updated case. null if you're not updating a case.
-    field :case, Types::CaseType, null: true
+    field :case, Types::CaseType, null: true do
+        description "The updated case. Is null if you're not updating a case."
+    end
 
-    # the updated task. null if you're not updating a task.
-    field :task, Types::TaskType, null: true
+    field :task, Types::TaskType, null: true do
+        description "The updated task. Is null if you're not updating a task."
+    end
 
     def resolve(object_id:, status_id:, type:)
         # find the new status
