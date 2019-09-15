@@ -1,4 +1,6 @@
 class Mutations::DeleteComment < Mutations::BaseMutation
+    description "Deletes a comment on a case, task, or indicator."
+
     argument :id, ID, required: true
 
     # ID of the deleted comment

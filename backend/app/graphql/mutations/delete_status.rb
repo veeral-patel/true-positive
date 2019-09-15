@@ -1,4 +1,6 @@
 class Mutations::DeleteStatus < Mutations::BaseMutation
+    description "Deletes a status. You cannot delete a status if any cases or tasks have that status."
+
     argument :id, ID, required: true
 
     # ID of the deleted status 
