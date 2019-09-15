@@ -3,9 +3,15 @@ module Types
         description "Represents an investigation."
 
         # never null
-        field :id, ID, null: false
-        field :name, String, null: false
-        field :created_at, GraphQL::Types::ISO8601DateTime, null: false
+        field :id, ID, null: false do
+            description "A unique integer identifying this case."
+        end
+        field :name, String, null: false do
+            description "The case's name."
+        end
+        field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
+            description "When the case was created (in ISO8601 format)"
+        end
         field :formatted_created_at, String, null: false
         field :created_by, Types::UserType, null: false
         field :status, Types::StatusType, null: false
