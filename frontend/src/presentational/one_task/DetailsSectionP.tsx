@@ -43,7 +43,10 @@ const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
       </Col>
       <Col span={4}>Assigned To:</Col>
       <Col span={8}>
-        <EditableAssigneeTag user={activeTask.assignedTo} />
+        <EditableAssigneeTag
+          user={activeTask.assignedTo}
+          handleSelect={userId => void 0}
+        />
       </Col>
     </Row>
     <Row>

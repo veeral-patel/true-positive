@@ -5,7 +5,11 @@ import React from "react";
 
 const { Option } = Select;
 
-const AssignUserSelect = observer(() => {
+interface AssignUserSelectProps {
+  handleSelect: (userId: any) => void;
+}
+
+const AssignUserSelect: React.FC<AssignUserSelectProps> = observer(props => {
   // fetch the list of users
   const { data, loading, error } = useQuery(store => store.queryUsers());
 
@@ -24,6 +28,7 @@ const AssignUserSelect = observer(() => {
       showSearch
       placeholder="Choose a user"
       style={{ minWidth: "200px" }}
+      onSelect={userId => props.handleSelect(userId)}
     >
       {options}
     </Select>

@@ -53,7 +53,10 @@ export default inject("activeCaseStore")(
               </Col>
               <Col span={4}>Assigned To:</Col>
               <Col span={8}>
-                <EditableAssigneeTag user={activeCase.assignedTo} />
+                <EditableAssigneeTag
+                  user={activeCase.assignedTo}
+                  handleSelect={userId => console.log(userId)}
+                />
               </Col>
             </Row>
             <Row>

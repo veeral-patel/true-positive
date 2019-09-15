@@ -6,11 +6,18 @@ import IUser from "ts/interfaces/IUser";
 
 interface EditableAssigneeTagProps {
   user: IUser | null;
+  handleSelect: (userId: number) => void;
 }
 
-const EditableAssigneeTag: React.FC<EditableAssigneeTagProps> = ({ user }) => (
+const EditableAssigneeTag: React.FC<EditableAssigneeTagProps> = ({
+  user,
+  handleSelect
+}) => (
   // need to add the {" "} below, or else the popover doesn't appear.
-  <Popover title="Change Assignee" content={<AssignUserSelect />}>
+  <Popover
+    title="Change Assignee"
+    content={<AssignUserSelect handleSelect={handleSelect} />}
+  >
     <UserTagP user={user} />{" "}
   </Popover>
 );
