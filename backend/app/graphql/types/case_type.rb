@@ -8,15 +8,15 @@ module Types
         end
 
         field :name, String, null: false do
-            description "The case's name."
+            description "This case's name."
         end
 
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
-            description "When the case was created (in ISO8601 format)."
+            description "When this case was created (in ISO8601 format)."
         end
 
         field :formatted_created_at, String, null: false do
-            description "When the case was created (formatted nicely)."
+            description "When this case was created (formatted nicely)."
         end
 
         field :created_by, Types::UserType, null: false do
@@ -60,8 +60,16 @@ module Types
         end
 
         # possibly null
-        field :description, String, null: true
-        field :assigned_to, Types::UserType, null: true
-        field :merged_into, Types::CaseType, null: true
+        field :description, String, null: true do
+            description "This case's description."
+        end
+
+        field :assigned_to, Types::UserType, null: true do
+            description "The user this case was assigned to (if any)."
+        end
+
+        field :merged_into, Types::CaseType, null: true do
+            description "The case that this case has been merged into (if any)."
+        end
     end
 end
