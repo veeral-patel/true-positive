@@ -1,11 +1,16 @@
 class Mutations::RenameCase < Mutations::BaseMutation
     description "Changes the name of a case."
 
-    argument :id, ID, required: true
-    argument :name, String, required: true # new case name
+    argument :id, ID, required: true do
+        description "The ID of the case to rename."
+    end
+    argument :name, String, required: true do
+        description "The new case name."
+    end
 
-    # updated case
-    field :case, Types::CaseType, null: false
+    field :case, Types::CaseType, null: false do
+        description "The updated case."
+    end
 
     def resolve(id:, name:)
         # find and update the case

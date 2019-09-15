@@ -1,11 +1,16 @@
 class Mutations::RenameTask < Mutations::BaseMutation
     description "Changes the name of a task."
 
-    argument :id, ID, required: true
-    argument :name, String, required: true # new task name
+    argument :id, ID, required: true do
+        description "The name of the task to rename."
+    end
+    argument :name, String, required: true do
+        description "The new task name."
+    end
 
-    # updated task
-    field :task, Types::TaskType, null: false
+    field :task, Types::TaskType, null: false do
+        description "The updated task."
+    end
 
     def resolve(id:, name:)
         # find and update the task
