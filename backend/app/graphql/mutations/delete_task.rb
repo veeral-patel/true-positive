@@ -1,4 +1,6 @@
 class Mutations::DeleteTask < Mutations::BaseMutation
+    description "Delete a task."
+
     argument :id, ID, required: true
 
     # ID of the deleted task
