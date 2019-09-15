@@ -1,10 +1,17 @@
 class Mutations::CreateStatus < Mutations::BaseMutation
     description "Add a status. Any case or task can now be given this status."
 
-    argument :name, String, required: true
-    argument :description, String, required: false
+    argument :name, String, required: true do
+        description "The name of the status to create (such as 'Open')."
+    end
 
-    field :status, Types::StatusType, null: false
+    argument :description, String, required: false do
+        description "Some optional text describing this status."
+    end
+
+    field :status, Types::StatusType, null: false do
+        description "The newly created status."
+    end
 
     def resolve(name:, description: nil)
         status = Status.new(name: name, description: description)
