@@ -1,4 +1,6 @@
 class Mutations::ChangePriority < Mutations::BaseMutation
+    description "Change the priority of a case or task."
+
     # the ID of the case or task whose priority we're changing
     argument :object_id, ID, required: true
 

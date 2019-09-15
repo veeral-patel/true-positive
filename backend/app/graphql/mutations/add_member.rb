@@ -1,4 +1,6 @@
 class Mutations::AddMember < Mutations::BaseMutation
+    description "Make a user a member of a case. Only a case's members can access or change it."
+
     # ID of the case we're adding a member to
     argument :case_id, ID, required: true
 

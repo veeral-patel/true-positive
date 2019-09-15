@@ -1,4 +1,6 @@
 class Mutations::CreatePriority < Mutations::BaseMutation
+    description "Add a priority. Any case or task can now be given this priority."
+
     argument :name, String, required: true
     argument :description, String, required: false
 

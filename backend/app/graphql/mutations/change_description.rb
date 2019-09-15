@@ -1,4 +1,6 @@
 class Mutations::ChangeDescription < Mutations::BaseMutation
+    description "Update the description of a case, task, or indicator."
+
     # the ID of the case, task, or indicator we're changing
     argument :object_id, ID, required: true
 

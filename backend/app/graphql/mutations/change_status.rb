@@ -1,4 +1,6 @@
 class Mutations::ChangeStatus < Mutations::BaseMutation
+    description "Change the status of a case or task."
+
     # the ID of the case or task whose status we're changing
     argument :object_id, ID, required: true
 
