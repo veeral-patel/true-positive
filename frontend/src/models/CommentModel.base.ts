@@ -13,16 +13,21 @@ import { RootStoreType } from "./index"
  * CommentBase
  * auto generated base class for the model CommentModel.
  *
- * Represents a comment on a case, task, or another object.
+ * Represents a comment on a case, task, indicator, or another object.
  */
 export const CommentModelBase = MSTGQLObject
   .named('Comment')
   .props({
     __typename: types.optional(types.literal("Comment"), "Comment"),
+    /** The comment itself. */
     comment: types.maybeNull(types.string),
+    /** When this comment was created (in ISO8601) */
     createdAt: types.maybeNull(types.frozen()),
+    /** The user who wrote this comment. */
     createdBy: types.maybeNull(MSTGQLRef(types.late(() => UserModel))),
+    /** When this comment was created (nicely formatted) */
     formattedCreatedAt: types.maybeNull(types.string),
+    /** An unique integer identifying this comment. */
     id: types.identifier,
   })
   .views(self => ({

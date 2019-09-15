@@ -21,6 +21,7 @@ export const RenameStatusPayloadModelBase = MSTGQLObject
     __typename: types.optional(types.literal("RenameStatusPayload"), "RenameStatusPayload"),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),
+    /** The updated status. */
     status: types.maybeNull(MSTGQLRef(types.late(() => StatusModel))),
   })
   .views(self => ({

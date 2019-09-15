@@ -7,17 +7,17 @@ import { types } from "mobx-state-tree"
  * Typescript enum
  */
 
-export enum HasStatusEnum {
+export enum HasPriorityEnum {
   CASE="CASE",
 TASK="TASK"
 }
 
 /**
-* HasStatusEnum
+* HasPriorityEnum
  *
- * Lists the types of objects that have a status.
+ * Lists the types of objects that have a priority.
 */
-export const HasStatusEnumEnum = types.enumeration("HasStatusEnum", [
+export const HasPriorityEnumEnum = types.enumeration("HasPriorityEnum", [
         "CASE",
   "TASK",
       ])

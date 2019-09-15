@@ -27,21 +27,32 @@ import { UserModelSelector } from "./UserModel.base";
 export const TaskModelBase = MSTGQLObject.named("Task")
   .props({
     __typename: types.optional(types.literal("Task"), "Task"),
+    /** The user this task was assigned to (if any). */
     assignedTo: types.maybeNull(MSTGQLRef(types.late(() => UserModel))),
+    /** The case this task is in. */
     case: types.maybeNull(
       MSTGQLRef(types.late((): IAnyModelType => CaseModel))
     ),
+    /** The comments on this task. */
     comments: types.optional(
       types.array(MSTGQLRef(types.late(() => CommentModel))),
       []
     ),
+    /** When this task was created (in ISO8601 format). */
     createdAt: types.maybeNull(types.frozen()),
+    /** The user who created this task. */
     createdBy: types.maybeNull(MSTGQLRef(types.late(() => UserModel))),
+    /** This task's description. */
     description: types.maybeNull(types.string),
+    /** A unique integer identifying this task. */
     id: types.identifier,
+    /** This task's name. */
     name: types.maybeNull(types.string),
+    /** This task's priority. */
     priority: types.maybeNull(MSTGQLRef(types.late(() => PriorityModel))),
+    /** This task's status. */
     status: types.maybeNull(MSTGQLRef(types.late(() => StatusModel))),
+    /** This task's tags. */
     tags: types.optional(types.array(MSTGQLRef(types.late(() => TagModel))), [])
   })
   .views(self => ({

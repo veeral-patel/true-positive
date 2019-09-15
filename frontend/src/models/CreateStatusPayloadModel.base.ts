@@ -21,6 +21,7 @@ export const CreateStatusPayloadModelBase = MSTGQLObject
     __typename: types.optional(types.literal("CreateStatusPayload"), "CreateStatusPayload"),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),
+    /** The newly created status. */
     status: types.maybeNull(MSTGQLRef(types.late(() => StatusModel))),
   })
   .views(self => ({

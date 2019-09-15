@@ -23,12 +23,19 @@ export const IndicatorModelBase = MSTGQLObject
   .named('Indicator')
   .props({
     __typename: types.optional(types.literal("Indicator"), "Indicator"),
+    /** The comments on this indicator. */
     comments: types.optional(types.array(MSTGQLRef(types.late(() => CommentModel))), []),
+    /** When this indicator was created (in ISO8601 format). */
     createdAt: types.maybeNull(types.frozen()),
+    /** The user who created this indicator. */
     createdBy: types.maybeNull(MSTGQLRef(types.late(() => UserModel))),
+    /** This indicator's description. */
     description: types.maybeNull(types.string),
+    /** An unique integer identifying this indicator. */
     id: types.identifier,
+    /** The file hash, IP address, domain name, etc. this indicator describes. */
     name: types.maybeNull(types.string),
+    /** This indicator's tags. */
     tags: types.optional(types.array(MSTGQLRef(types.late(() => TagModel))), []),
   })
   .views(self => ({

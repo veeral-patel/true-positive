@@ -17,7 +17,9 @@ export const TagModelBase = MSTGQLObject
   .named('Tag')
   .props({
     __typename: types.optional(types.literal("Tag"), "Tag"),
+    /** An unique integer identifying this tag. */
     id: types.identifier,
+    /** The tag (such as 'phishing'). */
     name: types.maybeNull(types.string),
   })
   .views(self => ({

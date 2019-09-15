@@ -17,8 +17,11 @@ export const StatusModelBase = MSTGQLObject
   .named('Status')
   .props({
     __typename: types.optional(types.literal("Status"), "Status"),
+    /** Some optional text describing this status. */
     description: types.maybeNull(types.string),
+    /** An unique integer identifying this status. */
     id: types.identifier,
+    /** This status's name (such as 'Open'). */
     name: types.maybeNull(types.string),
   })
   .views(self => ({

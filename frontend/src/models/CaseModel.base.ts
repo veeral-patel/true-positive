@@ -34,22 +34,39 @@ export const CaseModelBase = MSTGQLObject
   .named('Case')
   .props({
     __typename: types.optional(types.literal("Case"), "Case"),
+    /** The user this case was assigned to (if any). */
     assignedTo: types.maybeNull(MSTGQLRef(types.late(() => UserModel))),
-    caseMembers: types.optional(types.array(MSTGQLRef(types.late(() => CaseMemberModel))), []),
+    /** This case's members. Only the users who are members of this case can access or change it. */
+    caseMembers: types.optional(types.array(types.late(() => CaseMemberModel)), []),
+    /** The comments on this case. Does not include comments on this case's tasks or indicators. */
     comments: types.optional(types.array(MSTGQLRef(types.late(() => CommentModel))), []),
+    /** When this case was created (in ISO8601 format). */
     createdAt: types.maybeNull(types.frozen()),
+    /** The user who created this case. */
     createdBy: types.maybeNull(MSTGQLRef(types.late(() => UserModel))),
+    /** This case's description. */
     description: types.maybeNull(types.string),
+    /** When this case was created (formatted nicely). */
     formattedCreatedAt: types.maybeNull(types.string),
+    /** A unique integer identifying this case. */
     id: types.identifier,
+    /** This case's indicators. */
     indicators: types.optional(types.array(MSTGQLRef(types.late(() => IndicatorModel))), []),
+    /** Whether this case has been merged into another case. */
     isMerged: types.maybeNull(types.boolean),
+    /** The list of cases that've been merged into this case. */
     mergedCases: types.optional(types.array(MSTGQLRef(types.late((): any => CaseModel))), []),
+    /** The case that this case has been merged into (if any). */
     mergedInto: types.maybeNull(MSTGQLRef(types.late((): any => CaseModel))),
+    /** This case's name. */
     name: types.maybeNull(types.string),
+    /** This case's priority. */
     priority: types.maybeNull(MSTGQLRef(types.late(() => PriorityModel))),
+    /** This case's status. */
     status: types.maybeNull(MSTGQLRef(types.late(() => StatusModel))),
+    /** This case's tags. */
     tags: types.optional(types.array(MSTGQLRef(types.late(() => TagModel))), []),
+    /** This case's tasks. */
     tasks: types.optional(types.array(MSTGQLRef(types.late(() => TaskModel))), []),
   })
   .views(self => ({

@@ -21,6 +21,7 @@ export const CreatePriorityPayloadModelBase = MSTGQLObject
     __typename: types.optional(types.literal("CreatePriorityPayload"), "CreatePriorityPayload"),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),
+    /** The newly created priority. */
     priority: types.maybeNull(MSTGQLRef(types.late(() => PriorityModel))),
   })
   .views(self => ({

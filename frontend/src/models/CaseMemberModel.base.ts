@@ -4,6 +4,7 @@
 
 import { types } from "mobx-state-tree"
 import { MSTGQLObject, MSTGQLRef, QueryBuilder } from "mst-gql"
+import { CaseRoleEnumEnum } from "./CaseRoleEnumEnum"
 import { UserModel } from "./UserModel"
 import { UserModelSelector } from "./UserModel.base"
 import { RootStoreType } from "./index"
@@ -19,8 +20,9 @@ export const CaseMemberModelBase = MSTGQLObject
   .named('CaseMember')
   .props({
     __typename: types.optional(types.literal("CaseMember"), "CaseMember"),
-    id: types.identifier,
-    role: types.maybeNull(types.string),
+    /** The user's permission level. */
+    role: types.maybeNull(CaseRoleEnumEnum),
+    /** The user itself. */
     user: types.maybeNull(MSTGQLRef(types.late(() => UserModel))),
   })
   .views(self => ({
@@ -30,7 +32,6 @@ export const CaseMemberModelBase = MSTGQLObject
   }))
 
 export class CaseMemberModelSelector extends QueryBuilder {
-  get id() { return this.__attr(`id`) }
   get role() { return this.__attr(`role`) }
   user(builder?: string | UserModelSelector | ((selector: UserModelSelector) => UserModelSelector)) { return this.__child(`user`, UserModelSelector, builder) }
 }

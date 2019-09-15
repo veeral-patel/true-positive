@@ -21,6 +21,7 @@ export const RenamePriorityPayloadModelBase = MSTGQLObject
     __typename: types.optional(types.literal("RenamePriorityPayload"), "RenamePriorityPayload"),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),
+    /** The updated priority. */
     priority: types.maybeNull(MSTGQLRef(types.late(() => PriorityModel))),
   })
   .views(self => ({

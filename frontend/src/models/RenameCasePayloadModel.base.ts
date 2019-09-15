@@ -19,6 +19,7 @@ export const RenameCasePayloadModelBase = MSTGQLObject
   .named('RenameCasePayload')
   .props({
     __typename: types.optional(types.literal("RenameCasePayload"), "RenameCasePayload"),
+    /** The updated case. */
     case: types.maybeNull(MSTGQLRef(types.late(() => CaseModel))),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),

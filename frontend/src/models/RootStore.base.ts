@@ -24,6 +24,12 @@ import { TaskModel, TaskModelType } from "./TaskModel"
 import { taskModelPrimitives, TaskModelSelector } from "./TaskModel.base"
 import { AddMemberPayloadModel, AddMemberPayloadModelType } from "./AddMemberPayloadModel"
 import { addMemberPayloadModelPrimitives, AddMemberPayloadModelSelector } from "./AddMemberPayloadModel.base"
+import { AssignCasePayloadModel, AssignCasePayloadModelType } from "./AssignCasePayloadModel"
+import { assignCasePayloadModelPrimitives, AssignCasePayloadModelSelector } from "./AssignCasePayloadModel.base"
+import { ChangeDescriptionPayloadModel, ChangeDescriptionPayloadModelType } from "./ChangeDescriptionPayloadModel"
+import { changeDescriptionPayloadModelPrimitives, ChangeDescriptionPayloadModelSelector } from "./ChangeDescriptionPayloadModel.base"
+import { ChangePriorityPayloadModel, ChangePriorityPayloadModelType } from "./ChangePriorityPayloadModel"
+import { changePriorityPayloadModelPrimitives, ChangePriorityPayloadModelSelector } from "./ChangePriorityPayloadModel.base"
 import { ChangeStatusPayloadModel, ChangeStatusPayloadModelType } from "./ChangeStatusPayloadModel"
 import { changeStatusPayloadModelPrimitives, ChangeStatusPayloadModelSelector } from "./ChangeStatusPayloadModel.base"
 import { CreateCasePayloadModel, CreateCasePayloadModelType } from "./CreateCasePayloadModel"
@@ -53,13 +59,32 @@ import { renameStatusPayloadModelPrimitives, RenameStatusPayloadModelSelector } 
 import { RenameTaskPayloadModel, RenameTaskPayloadModelType } from "./RenameTaskPayloadModel"
 import { renameTaskPayloadModelPrimitives, RenameTaskPayloadModelSelector } from "./RenameTaskPayloadModel.base"
 
-import { RoleEnum } from "./RoleEnumEnum"
+import { CaseRoleEnum } from "./CaseRoleEnumEnum"
+import { HasDescriptionEnum } from "./HasDescriptionEnumEnum"
+import { HasPriorityEnum } from "./HasPriorityEnumEnum"
 import { HasStatusEnum } from "./HasStatusEnumEnum"
 
 export type AddMemberInput = {
   caseId: string
   userId: string
-  role: RoleEnum
+  role: CaseRoleEnum
+  clientMutationId: string | undefined
+}
+export type AssignCaseInput = {
+  caseId: string
+  userId: string
+  clientMutationId: string | undefined
+}
+export type ChangeDescriptionInput = {
+  objectId: string
+  description: string
+  type: HasDescriptionEnum
+  clientMutationId: string | undefined
+}
+export type ChangePriorityInput = {
+  objectId: string
+  priorityId: string
+  type: HasPriorityEnum
   clientMutationId: string | undefined
 }
 export type ChangeStatusInput = {
@@ -138,11 +163,10 @@ export type RenameTaskInput = {
 */
 export const RootStoreBase = MSTGQLStore
   .named("RootStore")
-  .extend(configureStoreMixin([['Case', () => CaseModel], ['User', () => UserModel], ['CaseMember', () => CaseMemberModel], ['Comment', () => CommentModel], ['Indicator', () => IndicatorModel], ['Tag', () => TagModel], ['Priority', () => PriorityModel], ['Status', () => StatusModel], ['Task', () => TaskModel], ['AddMemberPayload', () => AddMemberPayloadModel], ['ChangeStatusPayload', () => ChangeStatusPayloadModel], ['CreateCasePayload', () => CreateCasePayloadModel], ['CreatePriorityPayload', () => CreatePriorityPayloadModel], ['CreateStatusPayload', () => CreateStatusPayloadModel], ['DeleteCasePayload', () => DeleteCasePayloadModel], ['DeleteCommentPayload', () => DeleteCommentPayloadModel], ['DeletePriorityPayload', () => DeletePriorityPayloadModel], ['DeleteStatusPayload', () => DeleteStatusPayloadModel], ['DeleteTaskPayload', () => DeleteTaskPayloadModel], ['MergeCasePayload', () => MergeCasePayloadModel], ['RenameCasePayload', () => RenameCasePayloadModel], ['RenamePriorityPayload', () => RenamePriorityPayloadModel], ['RenameStatusPayload', () => RenameStatusPayloadModel], ['RenameTaskPayload', () => RenameTaskPayloadModel]], ['Case', 'User', 'CaseMember', 'Comment', 'Indicator', 'Tag', 'Priority', 'Status', 'Task', 'DeleteCasePayload', 'DeleteCommentPayload', 'DeletePriorityPayload', 'DeleteStatusPayload', 'DeleteTaskPayload']))
+  .extend(configureStoreMixin([['Case', () => CaseModel], ['User', () => UserModel], ['CaseMember', () => CaseMemberModel], ['Comment', () => CommentModel], ['Indicator', () => IndicatorModel], ['Tag', () => TagModel], ['Priority', () => PriorityModel], ['Status', () => StatusModel], ['Task', () => TaskModel], ['AddMemberPayload', () => AddMemberPayloadModel], ['AssignCasePayload', () => AssignCasePayloadModel], ['ChangeDescriptionPayload', () => ChangeDescriptionPayloadModel], ['ChangePriorityPayload', () => ChangePriorityPayloadModel], ['ChangeStatusPayload', () => ChangeStatusPayloadModel], ['CreateCasePayload', () => CreateCasePayloadModel], ['CreatePriorityPayload', () => CreatePriorityPayloadModel], ['CreateStatusPayload', () => CreateStatusPayloadModel], ['DeleteCasePayload', () => DeleteCasePayloadModel], ['DeleteCommentPayload', () => DeleteCommentPayloadModel], ['DeletePriorityPayload', () => DeletePriorityPayloadModel], ['DeleteStatusPayload', () => DeleteStatusPayloadModel], ['DeleteTaskPayload', () => DeleteTaskPayloadModel], ['MergeCasePayload', () => MergeCasePayloadModel], ['RenameCasePayload', () => RenameCasePayloadModel], ['RenamePriorityPayload', () => RenamePriorityPayloadModel], ['RenameStatusPayload', () => RenameStatusPayloadModel], ['RenameTaskPayload', () => RenameTaskPayloadModel]], ['Case', 'User', 'Comment', 'Indicator', 'Tag', 'Priority', 'Status', 'Task', 'DeleteCasePayload', 'DeleteCommentPayload', 'DeletePriorityPayload', 'DeleteStatusPayload', 'DeleteTaskPayload']))
   .props({
     cases: types.optional(types.map(types.late(() => CaseModel)), {}),
     users: types.optional(types.map(types.late(() => UserModel)), {}),
-    casemembers: types.optional(types.map(types.late(() => CaseMemberModel)), {}),
     comments: types.optional(types.map(types.late(() => CommentModel)), {}),
     indicators: types.optional(types.map(types.late(() => IndicatorModel)), {}),
     tags: types.optional(types.map(types.late(() => TagModel)), {}),
@@ -156,7 +180,7 @@ export const RootStoreBase = MSTGQLStore
     deletetaskpayloads: types.optional(types.map(types.late(() => DeleteTaskPayloadModel)), {})
   })
   .actions(self => ({
-    // Retrieve a case.
+    // Retrieve a case by its ID.
     queryCase(variables: { id: string }, resultSelector: string | ((qb: CaseModelSelector) => CaseModelSelector) = caseModelPrimitives.toString(), options: QueryOptions = {}) {
       return self.query<{ case: CaseModelType}>(`query case($id: ID!) { case(id: $id) {
         ${typeof resultSelector === "function" ? resultSelector(new CaseModelSelector()).toString() : resultSelector}
@@ -174,13 +198,13 @@ export const RootStoreBase = MSTGQLStore
         ${typeof resultSelector === "function" ? resultSelector(new PriorityModelSelector()).toString() : resultSelector}
       } }`, variables, options)
     },
-    // Retrieve a priority.
+    // Retrieve a priority by its ID.
     queryPriority(variables: { id: string }, resultSelector: string | ((qb: PriorityModelSelector) => PriorityModelSelector) = priorityModelPrimitives.toString(), options: QueryOptions = {}) {
       return self.query<{ priority: PriorityModelType}>(`query priority($id: ID!) { priority(id: $id) {
         ${typeof resultSelector === "function" ? resultSelector(new PriorityModelSelector()).toString() : resultSelector}
       } }`, variables, options)
     },
-    // Retrieve a status.
+    // Retrieve a status by its ID.
     queryStatus(variables: { id: string }, resultSelector: string | ((qb: StatusModelSelector) => StatusModelSelector) = statusModelPrimitives.toString(), options: QueryOptions = {}) {
       return self.query<{ status: StatusModelType}>(`query status($id: ID!) { status(id: $id) {
         ${typeof resultSelector === "function" ? resultSelector(new StatusModelSelector()).toString() : resultSelector}
@@ -198,7 +222,7 @@ export const RootStoreBase = MSTGQLStore
         ${typeof resultSelector === "function" ? resultSelector(new TagModelSelector()).toString() : resultSelector}
       } }`, variables, options)
     },
-    // Retrieve an user
+    // Retrieve an user by the user's ID.
     queryUser(variables: { id: string }, resultSelector: string | ((qb: UserModelSelector) => UserModelSelector) = userModelPrimitives.toString(), options: QueryOptions = {}) {
       return self.query<{ user: UserModelType}>(`query user($id: ID!) { user(id: $id) {
         ${typeof resultSelector === "function" ? resultSelector(new UserModelSelector()).toString() : resultSelector}
@@ -210,11 +234,31 @@ export const RootStoreBase = MSTGQLStore
         ${typeof resultSelector === "function" ? resultSelector(new UserModelSelector()).toString() : resultSelector}
       } }`, variables, options)
     },
+    // Make a user a member of a case. Only a case's members can access or change it.
     mutateAddMember(variables: { input: AddMemberInput }, resultSelector: string | ((qb: AddMemberPayloadModelSelector) => AddMemberPayloadModelSelector) = addMemberPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ addMember: AddMemberPayloadModelType}>(`mutation addMember($input: AddMemberInput!) { addMember(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new AddMemberPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Assign a case to an user.
+    mutateAssignCase(variables: { input: AssignCaseInput }, resultSelector: string | ((qb: AssignCasePayloadModelSelector) => AssignCasePayloadModelSelector) = assignCasePayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
+      return self.mutate<{ assignCase: AssignCasePayloadModelType}>(`mutation assignCase($input: AssignCaseInput!) { assignCase(input: $input) {
+        ${typeof resultSelector === "function" ? resultSelector(new AssignCasePayloadModelSelector()).toString() : resultSelector}
+      } }`, variables, optimisticUpdate)
+    },
+    // Update the description of a case, task, or indicator.
+    mutateChangeDescription(variables: { input: ChangeDescriptionInput }, resultSelector: string | ((qb: ChangeDescriptionPayloadModelSelector) => ChangeDescriptionPayloadModelSelector) = changeDescriptionPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
+      return self.mutate<{ changeDescription: ChangeDescriptionPayloadModelType}>(`mutation changeDescription($input: ChangeDescriptionInput!) { changeDescription(input: $input) {
+        ${typeof resultSelector === "function" ? resultSelector(new ChangeDescriptionPayloadModelSelector()).toString() : resultSelector}
+      } }`, variables, optimisticUpdate)
+    },
+    // Update the priority of a case or task.
+    mutateChangePriority(variables: { input: ChangePriorityInput }, resultSelector: string | ((qb: ChangePriorityPayloadModelSelector) => ChangePriorityPayloadModelSelector) = changePriorityPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
+      return self.mutate<{ changePriority: ChangePriorityPayloadModelType}>(`mutation changePriority($input: ChangePriorityInput!) { changePriority(input: $input) {
+        ${typeof resultSelector === "function" ? resultSelector(new ChangePriorityPayloadModelSelector()).toString() : resultSelector}
+      } }`, variables, optimisticUpdate)
+    },
+    // Change the status of a case or task.
     mutateChangeStatus(variables: { input: ChangeStatusInput }, resultSelector: string | ((qb: ChangeStatusPayloadModelSelector) => ChangeStatusPayloadModelSelector) = changeStatusPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ changeStatus: ChangeStatusPayloadModelType}>(`mutation changeStatus($input: ChangeStatusInput!) { changeStatus(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new ChangeStatusPayloadModelSelector()).toString() : resultSelector}
@@ -226,61 +270,73 @@ export const RootStoreBase = MSTGQLStore
         ${typeof resultSelector === "function" ? resultSelector(new CreateCasePayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Add a priority. Any case or task can now be given this priority.
     mutateCreatePriority(variables: { input: CreatePriorityInput }, resultSelector: string | ((qb: CreatePriorityPayloadModelSelector) => CreatePriorityPayloadModelSelector) = createPriorityPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ createPriority: CreatePriorityPayloadModelType}>(`mutation createPriority($input: CreatePriorityInput!) { createPriority(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new CreatePriorityPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Add a status. Any case or task can now be given this status.
     mutateCreateStatus(variables: { input: CreateStatusInput }, resultSelector: string | ((qb: CreateStatusPayloadModelSelector) => CreateStatusPayloadModelSelector) = createStatusPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ createStatus: CreateStatusPayloadModelType}>(`mutation createStatus($input: CreateStatusInput!) { createStatus(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new CreateStatusPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Deletes a case, its tasks, its indicators, and any cases merged into it.
     mutateDeleteCase(variables: { input: DeleteCaseInput }, resultSelector: string | ((qb: DeleteCasePayloadModelSelector) => DeleteCasePayloadModelSelector) = deleteCasePayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ deleteCase: DeleteCasePayloadModelType}>(`mutation deleteCase($input: DeleteCaseInput!) { deleteCase(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new DeleteCasePayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Deletes a comment on a case, task, or indicator.
     mutateDeleteComment(variables: { input: DeleteCommentInput }, resultSelector: string | ((qb: DeleteCommentPayloadModelSelector) => DeleteCommentPayloadModelSelector) = deleteCommentPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ deleteComment: DeleteCommentPayloadModelType}>(`mutation deleteComment($input: DeleteCommentInput!) { deleteComment(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new DeleteCommentPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Deletes a priority. You cannot delete a priority if any cases or tasks have that priority.
     mutateDeletePriority(variables: { input: DeletePriorityInput }, resultSelector: string | ((qb: DeletePriorityPayloadModelSelector) => DeletePriorityPayloadModelSelector) = deletePriorityPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ deletePriority: DeletePriorityPayloadModelType}>(`mutation deletePriority($input: DeletePriorityInput!) { deletePriority(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new DeletePriorityPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Deletes a status. You cannot delete a status if any cases or tasks have that status.
     mutateDeleteStatus(variables: { input: DeleteStatusInput }, resultSelector: string | ((qb: DeleteStatusPayloadModelSelector) => DeleteStatusPayloadModelSelector) = deleteStatusPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ deleteStatus: DeleteStatusPayloadModelType}>(`mutation deleteStatus($input: DeleteStatusInput!) { deleteStatus(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new DeleteStatusPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Delete a task.
     mutateDeleteTask(variables: { input: DeleteTaskInput }, resultSelector: string | ((qb: DeleteTaskPayloadModelSelector) => DeleteTaskPayloadModelSelector) = deleteTaskPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ deleteTask: DeleteTaskPayloadModelType}>(`mutation deleteTask($input: DeleteTaskInput!) { deleteTask(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new DeleteTaskPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Merges a case into another case. Merging a case simply marks it as merged; it doesn't modify the case, its indicators, or its tasks at all.
     mutateMergeCase(variables: { input: MergeCaseInput }, resultSelector: string | ((qb: MergeCasePayloadModelSelector) => MergeCasePayloadModelSelector) = mergeCasePayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ mergeCase: MergeCasePayloadModelType}>(`mutation mergeCase($input: MergeCaseInput!) { mergeCase(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new MergeCasePayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Changes the name of a case.
     mutateRenameCase(variables: { input: RenameCaseInput }, resultSelector: string | ((qb: RenameCasePayloadModelSelector) => RenameCasePayloadModelSelector) = renameCasePayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ renameCase: RenameCasePayloadModelType}>(`mutation renameCase($input: RenameCaseInput!) { renameCase(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new RenameCasePayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Changes the name of a priority.
     mutateRenamePriority(variables: { input: RenamePriorityInput }, resultSelector: string | ((qb: RenamePriorityPayloadModelSelector) => RenamePriorityPayloadModelSelector) = renamePriorityPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ renamePriority: RenamePriorityPayloadModelType}>(`mutation renamePriority($input: RenamePriorityInput!) { renamePriority(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new RenamePriorityPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Changes the name of a status.
     mutateRenameStatus(variables: { input: RenameStatusInput }, resultSelector: string | ((qb: RenameStatusPayloadModelSelector) => RenameStatusPayloadModelSelector) = renameStatusPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ renameStatus: RenameStatusPayloadModelType}>(`mutation renameStatus($input: RenameStatusInput!) { renameStatus(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new RenameStatusPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
+    // Changes the name of a task.
     mutateRenameTask(variables: { input: RenameTaskInput }, resultSelector: string | ((qb: RenameTaskPayloadModelSelector) => RenameTaskPayloadModelSelector) = renameTaskPayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
       return self.mutate<{ renameTask: RenameTaskPayloadModelType}>(`mutation renameTask($input: RenameTaskInput!) { renameTask(input: $input) {
         ${typeof resultSelector === "function" ? resultSelector(new RenameTaskPayloadModelSelector()).toString() : resultSelector}

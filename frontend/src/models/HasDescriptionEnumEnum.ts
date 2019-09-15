@@ -7,17 +7,19 @@ import { types } from "mobx-state-tree"
  * Typescript enum
  */
 
-export enum HasStatusEnum {
+export enum HasDescriptionEnum {
   CASE="CASE",
-TASK="TASK"
+TASK="TASK",
+INDICATOR="INDICATOR"
 }
 
 /**
-* HasStatusEnum
+* HasDescriptionEnum
  *
- * Lists the types of objects that have a status.
+ * Lists the types of objects that have a description.
 */
-export const HasStatusEnumEnum = types.enumeration("HasStatusEnum", [
+export const HasDescriptionEnumEnum = types.enumeration("HasDescriptionEnum", [
         "CASE",
   "TASK",
+  "INDICATOR",
       ])

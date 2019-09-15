@@ -19,6 +19,7 @@ export const DeleteCommentPayloadModelBase = MSTGQLObject
     __typename: types.optional(types.literal("DeleteCommentPayload"), "DeleteCommentPayload"),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),
+    /** The ID of the comment that was deleted. */
     id: types.identifier,
   })
   .views(self => ({

@@ -17,8 +17,11 @@ export const PriorityModelBase = MSTGQLObject
   .named('Priority')
   .props({
     __typename: types.optional(types.literal("Priority"), "Priority"),
+    /** Some optional text describing this priority. */
     description: types.maybeNull(types.string),
+    /** An unique integer identifying this priority. */
     id: types.identifier,
+    /** This priority's name (such as 'Critical'). */
     name: types.maybeNull(types.string),
   })
   .views(self => ({

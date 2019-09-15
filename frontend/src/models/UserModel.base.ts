@@ -17,8 +17,11 @@ export const UserModelBase = MSTGQLObject
   .named('User')
   .props({
     __typename: types.optional(types.literal("User"), "User"),
+    /** The user's email address. */
     email: types.maybeNull(types.string),
+    /** An unique integer identifying this user. */
     id: types.identifier,
+    /** The user's username. */
     username: types.maybeNull(types.string),
   })
   .views(self => ({

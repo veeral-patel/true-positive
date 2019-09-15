@@ -19,6 +19,7 @@ export const CreateCasePayloadModelBase = MSTGQLObject
   .named('CreateCasePayload')
   .props({
     __typename: types.optional(types.literal("CreateCasePayload"), "CreateCasePayload"),
+    /** The newly created case. */
     case: types.maybeNull(MSTGQLRef(types.late(() => CaseModel))),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),

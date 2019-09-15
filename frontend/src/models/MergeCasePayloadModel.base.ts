@@ -19,9 +19,11 @@ export const MergeCasePayloadModelBase = MSTGQLObject
   .named('MergeCasePayload')
   .props({
     __typename: types.optional(types.literal("MergeCasePayload"), "MergeCasePayload"),
+    /** The case we just merged. */
     childCase: types.maybeNull(MSTGQLRef(types.late(() => CaseModel))),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),
+    /** The case we merged it into. */
     parentCase: types.maybeNull(MSTGQLRef(types.late(() => CaseModel))),
   })
   .views(self => ({

@@ -19,6 +19,7 @@ export const DeleteTaskPayloadModelBase = MSTGQLObject
     __typename: types.optional(types.literal("DeleteTaskPayload"), "DeleteTaskPayload"),
     /** A unique identifier for the client performing the mutation. */
     clientMutationId: types.maybeNull(types.string),
+    /** The ID of the task that was just deleted. */
     id: types.identifier,
   })
   .views(self => ({
