@@ -1,4 +1,6 @@
 class Mutations::RenameCase < Mutations::BaseMutation
+    description "Changes the name of a case."
+
     argument :id, ID, required: true
     argument :name, String, required: true # new case name
 

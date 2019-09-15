@@ -1,4 +1,6 @@
 class Mutations::RenameStatus < Mutations::BaseMutation
+    description "Changes the name of a status."
+    
     argument :id, ID, required: true
     argument :name, String, required: true # new status name
 

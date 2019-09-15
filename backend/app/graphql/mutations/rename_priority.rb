@@ -1,4 +1,6 @@
 class Mutations::RenamePriority < Mutations::BaseMutation
+    description "Changes the name of a priority."
+
     argument :id, ID, required: true
     argument :name, String, required: true # new priority name
 

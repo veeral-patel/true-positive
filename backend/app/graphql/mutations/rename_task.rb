@@ -1,4 +1,6 @@
 class Mutations::RenameTask < Mutations::BaseMutation
+    description "Changes the name of a task."
+
     argument :id, ID, required: true
     argument :name, String, required: true # new task name
 
