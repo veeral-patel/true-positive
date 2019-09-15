@@ -61,7 +61,9 @@ module Types
       field :case, Types::CaseType, null: false do
         description "Retrieve a case by its ID."
 
-        argument :id, ID, required: true
+        argument :id, ID, required: true do
+          description "The ID of the case to retrieve."
+        end
       end
 
       def case(id:)
@@ -80,7 +82,9 @@ module Types
       field :user, Types::UserType, null: false do
         description "Retrieve an user by the user's ID."
 
-        argument :id, ID, required: true
+        argument :id, ID, required: true do
+          description "The ID (not the username) of the user to retrieve."
+        end
       end
 
       def user(id:)
