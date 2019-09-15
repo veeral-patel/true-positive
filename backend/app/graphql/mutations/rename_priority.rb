@@ -1,11 +1,17 @@
 class Mutations::RenamePriority < Mutations::BaseMutation
     description "Changes the name of a priority."
 
-    argument :id, ID, required: true
-    argument :name, String, required: true # new priority name
+    argument :id, ID, required: true do
+        description "The ID of the priority to rename."
+    end
 
-    # updated priority
-    field :priority, Types::PriorityType, null: false
+    argument :name, String, required: true do
+        description "The new priority name."
+    end
+
+    field :priority, Types::PriorityType, null: false do
+        description "The updated priority."
+    end
 
     def resolve(id:, name:)
         # find and update the priority
