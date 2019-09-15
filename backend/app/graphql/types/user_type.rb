@@ -7,7 +7,7 @@ module Types
         end
 
         field :username, String, null: false do
-            description "The user's unique username."
+            description "The user's username."
         end
 
         field :email, String, null: false do
