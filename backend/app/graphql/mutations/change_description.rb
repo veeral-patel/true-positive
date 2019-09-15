@@ -1,23 +1,30 @@
 class Mutations::ChangeDescription < Mutations::BaseMutation
     description "Update the description of a case, task, or indicator."
 
-    # the ID of the case, task, or indicator we're changing
-    argument :object_id, ID, required: true
+    argument :object_id, ID, required: true do
+        description "The ID of the case, task, or indicator that we're updating."
+    end
 
-    # the new description
-    argument :description, String, required: true
+    argument :description, String, required: true do
+        description "The new description."
+    end
 
-    # type of the object we're updating (CASE, TASK, or INDICATOR)
-    argument :type, Types::HasDescriptionEnum, required: true
+    argument :type, Types::HasDescriptionEnum, required: true do
+        description "Whether we're updating a case, task, or indicator."
+    end
 
     # the updated case. null if you're not updating a case.
-    field :case, Types::CaseType, null: true
+    field :case, Types::CaseType, null: true do
+        description "The updated case. Is null if you're not updating a case."
+    end
 
-    # the updated task. null if you're not updating a task.
-    field :task, Types::TaskType, null: true
+    field :task, Types::TaskType, null: true do
+        description "The updated task. Is null if you're not updating a task."
+    end
 
-    # the updated indicator. null if you're not updating a indicator.
-    field :indicator, Types::IndicatorType, null: true
+    field :indicator, Types::IndicatorType, null: true do
+        description "The updated indicator. Is null if you're not updating a indicator."
+    end
 
     def resolve(object_id:, description:, type:)
         if type === "CASE"
