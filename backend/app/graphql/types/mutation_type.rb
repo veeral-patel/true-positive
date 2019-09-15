@@ -1,6 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
-      description "Mutations are used for creating, updating, or deleting data."
+      description "Use mutations to create, update, and delete."
 
       # case ------------
       field :create_case, mutation: Mutations::CreateCase

@@ -2,7 +2,7 @@ require_relative '../helpers'
 
 module Types
   class QueryType < Types::BaseObject
-      description "Queries are used for retrieving data."
+      description "Use queries to fetch data."
 
       # ---------- Statuses -------------------
 
@@ -15,7 +15,7 @@ module Types
       end
 
       field :status, Types::StatusType, null: false do
-          description "Retrieve a status."
+          description "Retrieve a status by its ID."
 
           argument :id, ID, required: true
       end
@@ -35,7 +35,7 @@ module Types
       end
 
       field :priority, Types::PriorityType, null: false do
-        description "Retrieve a priority."
+        description "Retrieve a priority by its ID."
 
         argument :id, ID, required: true
       end
@@ -55,7 +55,7 @@ module Types
       end
 
       field :case, Types::CaseType, null: false do
-        description "Retrieve a case."
+        description "Retrieve a case by its ID."
 
         argument :id, ID, required: true
       end
@@ -74,7 +74,7 @@ module Types
       end
 
       field :user, Types::UserType, null: false do
-        description "Retrieve an user"
+        description "Retrieve an user by the user's ID."
 
         argument :id, ID, required: true
       end
