@@ -1,17 +1,21 @@
 class Mutations::AddMember < Mutations::BaseMutation
     description "Make a user a member of a case. Only a case's members can access or change it."
 
-    # ID of the case we're adding a member to
-    argument :case_id, ID, required: true
+    argument :case_id, ID, required: true do
+        description "The ID of the case we're adding a member to"
+    end
 
-    # ID of the user we're adding to the case
-    argument :user_id, ID, required: true
+    argument :user_id, ID, required: true do
+        description "The ID (not the username) of the user we're adding to the case."
+    end
 
-    # role we want the user to have
-    argument :role, Types::CaseRoleEnum, required: true
+    argument :role, Types::CaseRoleEnum, required: true do
+        description "The level of permissions we want the user to have in the case."
+    end
 
-    # the updated case
-    field :case, Types::CaseType, null: true
+    field :case, Types::CaseType, null: true do
+        description "The updated case."
+    end
 
     def resolve(case_id:, user_id:, role:)
         # find the case and user in question
