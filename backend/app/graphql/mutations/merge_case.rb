@@ -1,17 +1,23 @@
 class Mutations::MergeCase < Mutations::BaseMutation
     description "Merges a case into another case. Merging a case simply marks it as merged; it doesn't modify the case, its indicators, or its tasks at all."
 
-    # id of the case we are merging
-    argument :child_case_id, ID, required: true
+    argument :child_case_id, ID, required: true do
+        description "The ID of the case to merge."
+    end
 
     # id of the case we're merging it into
-    argument :parent_case_id, ID, required: true
+    argument :parent_case_id, ID, required: true do
+        description "The ID of the case we're merging it into."
+    end
 
     # the case we just merged
-    field :child_case, Types::CaseType, null: false
+    field :child_case, Types::CaseType, null: false do
+        description "The case we just merged."
+    end
 
-    # the case we merged it into
-    field :parent_case, Types::CaseType, null: false
+    field :parent_case, Types::CaseType, null: false do
+        description "The case we merged it into."
+    end
 
     def resolve(child_case_id:, parent_case_id:)
         # find our intended child case and the parent case
