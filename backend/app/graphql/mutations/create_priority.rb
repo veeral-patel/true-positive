@@ -1,10 +1,17 @@
 class Mutations::CreatePriority < Mutations::BaseMutation
     description "Add a priority. Any case or task can now be given this priority."
 
-    argument :name, String, required: true
-    argument :description, String, required: false
+    argument :name, String, required: true do
+        description "The name of the priority to create (such as 'Critical')."
+    end
 
-    field :priority, Types::PriorityType, null: false
+    argument :description, String, required: false do
+        description "Some optional information describing this priority."
+    end
+
+    field :priority, Types::PriorityType, null: false do
+        description "The newly created priority."
+    end
 
     def resolve(name:, description: nil)
         priority = Priority.new(name: name, description: description)

@@ -6,7 +6,7 @@ class Mutations::CreateStatus < Mutations::BaseMutation
     end
 
     argument :description, String, required: false do
-        description "Some optional text describing this status."
+        description "Some optional information describing this status."
     end
 
     field :status, Types::StatusType, null: false do
