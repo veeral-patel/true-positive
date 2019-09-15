@@ -17,7 +17,9 @@ module Types
       field :status, Types::StatusType, null: false do
           description "Retrieve a status by its ID."
 
-          argument :id, ID, required: true
+          argument :id, ID, required: true do
+            description "The ID of the status to retrieve."
+          end
       end
 
       def status(id:)
@@ -37,7 +39,9 @@ module Types
       field :priority, Types::PriorityType, null: false do
         description "Retrieve a priority by its ID."
 
-        argument :id, ID, required: true
+        argument :id, ID, required: true do
+          description "The ID of the priority to retrieve."
+        end
       end
 
       def priority(id:)
