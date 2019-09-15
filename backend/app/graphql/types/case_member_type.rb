@@ -3,7 +3,7 @@ module Types
         description "Represents a member of a case"
 
         field :role, Types::RoleEnum, null: false do
-            description "The user's permission level"
+            description "The user's permission level."
         end
 
         field :user, Types::UserType, null: false do
