@@ -1,4 +1,6 @@
 class Mutations::MergeCase < Mutations::BaseMutation
+    description "Merges a case into another case. Merging a case simply marks it as merged; it doesn't modify the case, its indicators, or its tasks at all."
+
     # id of the case we are merging
     argument :child_case_id, ID, required: true
 
