@@ -8,12 +8,15 @@ module Types
         end
 
         field :name, String, null: false do
+            description "This task's name."
         end
 
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
+            description "When this task was created (in ISO8601 format)."
         end
 
         field :created_by, Types::UserType, null: false do
+            description "The user who created this task."
         end
 
         field :status, Types::StatusType, null: false do
@@ -25,9 +28,11 @@ module Types
         end
 
         field :case, Types::CaseType, null: false do
+            description "The case this task is in."
         end
 
         field :comments, [Types::CommentType], null: false do
+            description "The comments on this task."
         end
 
         field :tags, [Types::TagType], null: false do
