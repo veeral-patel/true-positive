@@ -6,15 +6,26 @@ module Types
         field :id, ID, null: false do
             description "A unique integer identifying this case."
         end
+
         field :name, String, null: false do
             description "The case's name."
         end
+
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
             description "When the case was created (in ISO8601 format)."
         end
-        field :formatted_created_at, String, null: false
-        field :created_by, Types::UserType, null: false
-        field :status, Types::StatusType, null: false
+
+        field :formatted_created_at, String, null: false do
+            description "When the case was created (formatted nicely)."
+        end
+
+        field :created_by, Types::UserType, null: false do
+          description "The user who created this case."  
+        end
+
+        field :status, Types::StatusType, null: false do
+            description "This case's status."
+        end
 
         field :priority, Types::PriorityType, null: false do
             description "This case's priority."
