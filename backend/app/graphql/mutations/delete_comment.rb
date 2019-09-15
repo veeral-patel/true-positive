@@ -1,10 +1,13 @@
 class Mutations::DeleteComment < Mutations::BaseMutation
     description "Deletes a comment on a case, task, or indicator."
 
-    argument :id, ID, required: true
+    argument :id, ID, required: true do
+        description "The ID of the comment to delete."
+    end
 
-    # ID of the deleted comment
-    field :id, ID, null: false
+    field :id, ID, null: false do
+        description "The ID of the comment that was deleted."
+    end
 
     def resolve(id:)
         comment = find_comment_or_throw_execution_error(comment_id: id)
