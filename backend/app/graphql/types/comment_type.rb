@@ -1,6 +1,6 @@
 module Types
     class CommentType < Types::BaseObject
-        description "Represents a comment on a case, task, or another object."
+        description "Represents a comment on a case, task, indicator, or another object."
 
         field :id, ID, null: false
         field :comment, String, null: false
