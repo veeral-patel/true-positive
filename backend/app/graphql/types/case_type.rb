@@ -10,19 +10,43 @@ module Types
             description "The case's name."
         end
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
-            description "When the case was created (in ISO8601 format)"
+            description "When the case was created (in ISO8601 format)."
         end
         field :formatted_created_at, String, null: false
         field :created_by, Types::UserType, null: false
         field :status, Types::StatusType, null: false
-        field :priority, Types::PriorityType, null: false
-        field :comments, [Types::CommentType], null: false
-        field :tasks, [Types::TaskType], null: false
-        field :tags, [Types::TagType], null: false
-        field :merged_cases, [Types::CaseType], null: false
-        field :is_merged, Boolean, null: false
-        field :case_members, [Types::CaseMemberType], null: false
-        field :indicators, [Types::IndicatorType], null: false
+
+        field :priority, Types::PriorityType, null: false do
+            description "This case's priority."
+        end
+
+        field :comments, [Types::CommentType], null: false do
+            description "The comments on this case. Does not include comments on this case's tasks or indicators."
+        end
+
+        field :tasks, [Types::TaskType], null: false do
+            description "This case's tasks."
+        end
+
+        field :tags, [Types::TagType], null: false do
+            description "This case's tags."
+        end
+
+        field :merged_cases, [Types::CaseType], null: false do
+            description "The list of cases that've been merged into this case."
+        end
+
+        field :is_merged, Boolean, null: false do
+            description "Whether this case has been merged into another case."
+        end
+
+        field :case_members, [Types::CaseMemberType], null: false do
+            description "This case's members. Only the users who are members of this case can access or change it."
+        end
+
+        field :indicators, [Types::IndicatorType], null: false do
+            description "This case's indicators."
+        end
 
         # possibly null
         field :description, String, null: true
