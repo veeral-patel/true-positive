@@ -5,7 +5,7 @@ import React from "react";
 
 const { Option } = Select;
 
-const UserSelect = observer(() => {
+const AssignUserSelect = observer(() => {
   // fetch the list of users
   const { data, loading, error } = useQuery(store => store.queryUsers());
 
@@ -30,4 +30,4 @@ const UserSelect = observer(() => {
   );
 });
 
-export default UserSelect;
+export default AssignUserSelect;
