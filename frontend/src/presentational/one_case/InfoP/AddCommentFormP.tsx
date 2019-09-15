@@ -13,7 +13,7 @@ const AddCommentFormP: React.FC = () => (
       />
     </Form.Item>
     <Form.Item style={{ float: "right" }}>
-      <Button type="primary">Add Comment</Button>
+      <Button>Add Comment</Button>
     </Form.Item>
   </div>
 );
