@@ -1,10 +1,13 @@
 class Mutations::DeleteTask < Mutations::BaseMutation
     description "Delete a task."
 
-    argument :id, ID, required: true
+    argument :id, ID, required: true do
+        description "The ID of the task to delete."
+    end
 
-    # ID of the deleted task
-    field :id, ID, null: false
+    field :id, ID, null: false do
+        description "The ID of the task that was just deleted."
+    end
 
     def resolve(id:)
         task = find_task_or_throw_execution_error(task_id: id)

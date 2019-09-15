@@ -1,10 +1,13 @@
 class Mutations::DeletePriority < Mutations::BaseMutation
     description "Deletes a priority. You cannot delete a priority if any cases or tasks have that priority."
 
-    argument :id, ID, required: true
+    argument :id, ID, required: true do
+        description "The ID of the priority to delete."
+    end
 
-    # ID of the deleted priority 
-    field :id, ID, null: false
+    field :id, ID, null: false do
+        description "The ID of the priority that was just deleted."
+    end
 
     def resolve(id:)
         priority = find_priority_or_throw_execution_error(priority_id: id)
