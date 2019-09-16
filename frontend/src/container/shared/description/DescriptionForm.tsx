@@ -4,10 +4,26 @@ import React from "react";
 import ReactQuill from "react-quill";
 
 interface DescriptionProps {
+  // the initial value in the textarea
+  initialDescription: string;
+}
+
+interface DescriptionState {
+  // the current value in the textarea (after any changes)
   description: string;
 }
 
-class DescriptionForm extends React.Component<DescriptionProps> {
+class DescriptionForm extends React.Component<
+  DescriptionProps,
+  DescriptionState
+> {
+  constructor(props: DescriptionProps) {
+    super(props);
+    this.state = {
+      description: props.initialDescription
+    };
+  }
+
   render() {
     const modules = {
       toolbar: [
@@ -18,7 +34,7 @@ class DescriptionForm extends React.Component<DescriptionProps> {
       ]
     };
 
-    const { description } = this.props;
+    const { description } = this.state;
 
     return (
       <div>
