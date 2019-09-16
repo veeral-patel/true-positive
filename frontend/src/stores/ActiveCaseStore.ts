@@ -2,9 +2,9 @@ import { message, notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
-import ASSIGN_CASE from "mutations/assignCase";
 import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_STATUS from "mutations/changeStatus";
+import CHANGE_ASSIGNEE from "mutations/change_assignee";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
 import RENAME_A_CASE from "mutations/renameCase";
@@ -285,11 +285,12 @@ class ActiveCaseStore {
       .mutate<ICaseDatum>({
         variables: {
           input: {
-            caseId: this.activeCaseId,
-            userId
+            objectId: this.activeCaseId,
+            userId: userId,
+            type: "CASE"
           }
         },
-        mutation: ASSIGN_CASE
+        mutation: CHANGE_ASSIGNEE
       })
       .then((response: FetchResult<ICaseDatum>) => {
         message.success("Assigned the case");
