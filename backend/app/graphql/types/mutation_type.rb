@@ -7,7 +7,6 @@ module Types
       field :rename_case, mutation: Mutations::RenameCase
       field :delete_case, mutation: Mutations::DeleteCase
       field :merge_case, mutation: Mutations::MergeCase
-      field :assign_case, mutation: Mutations::AssignCase
       field :add_member, mutation: Mutations::AddMember
 
       # task -------
@@ -17,6 +16,7 @@ module Types
       # case or task --------
       field :change_status, mutation: Mutations::ChangeStatus
       field :change_priority, mutation: Mutations::ChangePriority
+      field :change_assignee, mutation: Mutations::ChangeAssignee
 
       # case, task, or indicator
       field :change_description, mutation: Mutations::ChangeDescription
