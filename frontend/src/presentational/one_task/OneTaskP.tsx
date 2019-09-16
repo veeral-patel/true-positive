@@ -36,6 +36,7 @@ const OneTaskP: React.FC<OneTaskProps> = ({
       onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
       title={
         <Text
+          style={{ fontSize: 18, paddingTop: "5px" }}
           editable={{
             onChange: (newText: string) => renameTask(activeTask.id, newText)
           }}
