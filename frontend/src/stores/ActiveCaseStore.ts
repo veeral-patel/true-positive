@@ -335,6 +335,35 @@ class ActiveCaseStore {
         })
       );
   }
+
+  @action.bound
+  changeTaskPriority(taskId: number, priorityId: number) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            objectId: taskId,
+            priorityId,
+            type: "TASK"
+          }
+        },
+        mutation: CHANGE_PRIORITY
+      })
+      .then((response: FetchResult) => {
+        message.success("Changed the priority");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while changing the task's priority",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
 }
 
 export default ActiveCaseStore;

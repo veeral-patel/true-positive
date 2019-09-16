@@ -19,13 +19,15 @@ interface OneTaskProps {
   activeTask: ITask;
   renameTask: (taskId: number, newName: string) => void;
   changeTaskStatus: (taskId: number, statusId: number) => void;
+  changeTaskPriority: (taskId: number, priorityId: number) => void;
 }
 
 const OneTaskP: React.FC<OneTaskProps> = ({
   activeCase,
   activeTask,
   renameTask,
-  changeTaskStatus
+  changeTaskStatus,
+  changeTaskPriority
 }) => (
   <Content
     style={{
@@ -49,7 +51,11 @@ const OneTaskP: React.FC<OneTaskProps> = ({
       extra={<ActionsDropdown taskId={activeTask.id} caseId={activeCase.id} />}
     />
 
-    <DetailsP activeTask={activeTask} changeTaskStatus={changeTaskStatus} />
+    <DetailsP
+      activeTask={activeTask}
+      changeTaskStatus={changeTaskStatus}
+      changeTaskPriority={changeTaskPriority}
+    />
 
     <section>
       <Divider orientation="left">Description</Divider>

@@ -56,6 +56,7 @@ export default inject("activeCaseStore")(
               activeCase={activeCase}
               renameTask={activeCaseStore!.renameTask}
               changeTaskStatus={activeCaseStore!.changeTaskStatus}
+              changeTaskPriority={activeCaseStore!.changeTaskPriority}
             />
           );
       }
