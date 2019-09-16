@@ -10,7 +10,7 @@ interface DescriptionProps {
 
 interface DescriptionState {
   // the current value in the textarea (after any changes)
-  description: string;
+  currentDescription: string;
 }
 
 class DescriptionForm extends React.Component<
@@ -20,7 +20,7 @@ class DescriptionForm extends React.Component<
   constructor(props: DescriptionProps) {
     super(props);
     this.state = {
-      description: props.initialDescription
+      currentDescription: props.initialDescription
     };
   }
 
@@ -34,11 +34,17 @@ class DescriptionForm extends React.Component<
       ]
     };
 
-    const { description } = this.state;
+    const { currentDescription } = this.state;
 
     return (
       <div>
-        <ReactQuill value={description} modules={modules} />
+        <ReactQuill
+          value={currentDescription}
+          modules={modules}
+          onChange={newDescription =>
+            this.setState({ currentDescription: newDescription })
+          }
+        />
         <Button style={{ marginTop: "15px", float: "right" }}>
           Update Description
         </Button>
