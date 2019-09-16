@@ -2,9 +2,10 @@ import { message, notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
+import CHANGE_ASSIGNEE from "mutations/changeAssignee";
+import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_STATUS from "mutations/changeStatus";
-import CHANGE_ASSIGNEE from "mutations/change_assignee";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
 import RENAME_A_CASE from "mutations/renameCase";
@@ -327,6 +328,35 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while assigning the task",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  changeDescription(objectId: number, newDescription: string, type: string) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            objectId,
+            type,
+            description: newDescription
+          }
+        },
+        mutation: CHANGE_DESCRIPTION
+      })
+      .then((response: FetchResult) => {
+        message.success("Updated the description");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "Couldn't update the description",
           description: error.message
         });
       })
