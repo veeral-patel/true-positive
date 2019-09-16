@@ -27,9 +27,7 @@ const TasksP: React.FC<TasksProps> = ({ caseId, caseName, tasks }) => (
           <h2>Tasks ({tasks.length})</h2>
         </span>
         <span style={{ float: "right" }}>
-          <Button type="primary" icon="plus">
-            Create Task
-          </Button>
+          <Button icon="plus">Create Task</Button>
         </span>
       </div>
 
