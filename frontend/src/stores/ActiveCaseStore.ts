@@ -310,7 +310,7 @@ class ActiveCaseStore {
   @action.bound
   changeTaskStatus(taskId: number, statusId: number) {
     client
-      .mutate<ITaskDatum>({
+      .mutate({
         variables: {
           input: {
             objectId: taskId,
@@ -320,7 +320,7 @@ class ActiveCaseStore {
         },
         mutation: CHANGE_STATUS
       })
-      .then((response: FetchResult<ITaskDatum>) => {
+      .then((response: FetchResult) => {
         message.success("Changed the status");
       })
       .catch((error: ApolloError) => {
