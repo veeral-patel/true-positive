@@ -1,4 +1,4 @@
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
 const { Content } = Layout;
@@ -16,7 +16,14 @@ const IndicatorsP: React.FC<IndicatorsProps> = ({ indicators }) => (
       minHeight: 280
     }}
   >
-    <h2>Indicators</h2>
+    <div>
+      <span style={{ display: "inline-block" }}>
+        <h2>Indicators ({indicators.length})</h2>
+      </span>
+      <span style={{ float: "right" }}>
+        <Button icon="plus">Create Indicator</Button>
+      </span>
+    </div>{" "}
   </Content>
 );
 
