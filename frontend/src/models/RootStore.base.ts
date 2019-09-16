@@ -24,8 +24,8 @@ import { TaskModel, TaskModelType } from "./TaskModel"
 import { taskModelPrimitives, TaskModelSelector } from "./TaskModel.base"
 import { AddMemberPayloadModel, AddMemberPayloadModelType } from "./AddMemberPayloadModel"
 import { addMemberPayloadModelPrimitives, AddMemberPayloadModelSelector } from "./AddMemberPayloadModel.base"
-import { AssignCasePayloadModel, AssignCasePayloadModelType } from "./AssignCasePayloadModel"
-import { assignCasePayloadModelPrimitives, AssignCasePayloadModelSelector } from "./AssignCasePayloadModel.base"
+import { ChangeAssigneePayloadModel, ChangeAssigneePayloadModelType } from "./ChangeAssigneePayloadModel"
+import { changeAssigneePayloadModelPrimitives, ChangeAssigneePayloadModelSelector } from "./ChangeAssigneePayloadModel.base"
 import { ChangeDescriptionPayloadModel, ChangeDescriptionPayloadModelType } from "./ChangeDescriptionPayloadModel"
 import { changeDescriptionPayloadModelPrimitives, ChangeDescriptionPayloadModelSelector } from "./ChangeDescriptionPayloadModel.base"
 import { ChangePriorityPayloadModel, ChangePriorityPayloadModelType } from "./ChangePriorityPayloadModel"
@@ -60,6 +60,7 @@ import { RenameTaskPayloadModel, RenameTaskPayloadModelType } from "./RenameTask
 import { renameTaskPayloadModelPrimitives, RenameTaskPayloadModelSelector } from "./RenameTaskPayloadModel.base"
 
 import { CaseRoleEnum } from "./CaseRoleEnumEnum"
+import { IsAssignableEnum } from "./IsAssignableEnumEnum"
 import { HasDescriptionEnum } from "./HasDescriptionEnumEnum"
 import { HasPriorityEnum } from "./HasPriorityEnumEnum"
 import { HasStatusEnum } from "./HasStatusEnumEnum"
@@ -70,9 +71,10 @@ export type AddMemberInput = {
   role: CaseRoleEnum
   clientMutationId: string | undefined
 }
-export type AssignCaseInput = {
-  caseId: string
+export type ChangeAssigneeInput = {
+  objectId: string
   userId: string
+  type: IsAssignableEnum
   clientMutationId: string | undefined
 }
 export type ChangeDescriptionInput = {
@@ -163,7 +165,7 @@ export type RenameTaskInput = {
 */
 export const RootStoreBase = MSTGQLStore
   .named("RootStore")
-  .extend(configureStoreMixin([['Case', () => CaseModel], ['User', () => UserModel], ['CaseMember', () => CaseMemberModel], ['Comment', () => CommentModel], ['Indicator', () => IndicatorModel], ['Tag', () => TagModel], ['Priority', () => PriorityModel], ['Status', () => StatusModel], ['Task', () => TaskModel], ['AddMemberPayload', () => AddMemberPayloadModel], ['AssignCasePayload', () => AssignCasePayloadModel], ['ChangeDescriptionPayload', () => ChangeDescriptionPayloadModel], ['ChangePriorityPayload', () => ChangePriorityPayloadModel], ['ChangeStatusPayload', () => ChangeStatusPayloadModel], ['CreateCasePayload', () => CreateCasePayloadModel], ['CreatePriorityPayload', () => CreatePriorityPayloadModel], ['CreateStatusPayload', () => CreateStatusPayloadModel], ['DeleteCasePayload', () => DeleteCasePayloadModel], ['DeleteCommentPayload', () => DeleteCommentPayloadModel], ['DeletePriorityPayload', () => DeletePriorityPayloadModel], ['DeleteStatusPayload', () => DeleteStatusPayloadModel], ['DeleteTaskPayload', () => DeleteTaskPayloadModel], ['MergeCasePayload', () => MergeCasePayloadModel], ['RenameCasePayload', () => RenameCasePayloadModel], ['RenamePriorityPayload', () => RenamePriorityPayloadModel], ['RenameStatusPayload', () => RenameStatusPayloadModel], ['RenameTaskPayload', () => RenameTaskPayloadModel]], ['Case', 'User', 'Comment', 'Indicator', 'Tag', 'Priority', 'Status', 'Task', 'DeleteCasePayload', 'DeleteCommentPayload', 'DeletePriorityPayload', 'DeleteStatusPayload', 'DeleteTaskPayload']))
+  .extend(configureStoreMixin([['Case', () => CaseModel], ['User', () => UserModel], ['CaseMember', () => CaseMemberModel], ['Comment', () => CommentModel], ['Indicator', () => IndicatorModel], ['Tag', () => TagModel], ['Priority', () => PriorityModel], ['Status', () => StatusModel], ['Task', () => TaskModel], ['AddMemberPayload', () => AddMemberPayloadModel], ['ChangeAssigneePayload', () => ChangeAssigneePayloadModel], ['ChangeDescriptionPayload', () => ChangeDescriptionPayloadModel], ['ChangePriorityPayload', () => ChangePriorityPayloadModel], ['ChangeStatusPayload', () => ChangeStatusPayloadModel], ['CreateCasePayload', () => CreateCasePayloadModel], ['CreatePriorityPayload', () => CreatePriorityPayloadModel], ['CreateStatusPayload', () => CreateStatusPayloadModel], ['DeleteCasePayload', () => DeleteCasePayloadModel], ['DeleteCommentPayload', () => DeleteCommentPayloadModel], ['DeletePriorityPayload', () => DeletePriorityPayloadModel], ['DeleteStatusPayload', () => DeleteStatusPayloadModel], ['DeleteTaskPayload', () => DeleteTaskPayloadModel], ['MergeCasePayload', () => MergeCasePayloadModel], ['RenameCasePayload', () => RenameCasePayloadModel], ['RenamePriorityPayload', () => RenamePriorityPayloadModel], ['RenameStatusPayload', () => RenameStatusPayloadModel], ['RenameTaskPayload', () => RenameTaskPayloadModel]], ['Case', 'User', 'Comment', 'Indicator', 'Tag', 'Priority', 'Status', 'Task', 'DeleteCasePayload', 'DeleteCommentPayload', 'DeletePriorityPayload', 'DeleteStatusPayload', 'DeleteTaskPayload']))
   .props({
     cases: types.optional(types.map(types.late(() => CaseModel)), {}),
     users: types.optional(types.map(types.late(() => UserModel)), {}),
@@ -240,10 +242,10 @@ export const RootStoreBase = MSTGQLStore
         ${typeof resultSelector === "function" ? resultSelector(new AddMemberPayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
-    // Assign a case to an user.
-    mutateAssignCase(variables: { input: AssignCaseInput }, resultSelector: string | ((qb: AssignCasePayloadModelSelector) => AssignCasePayloadModelSelector) = assignCasePayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
-      return self.mutate<{ assignCase: AssignCasePayloadModelType}>(`mutation assignCase($input: AssignCaseInput!) { assignCase(input: $input) {
-        ${typeof resultSelector === "function" ? resultSelector(new AssignCasePayloadModelSelector()).toString() : resultSelector}
+    // Assign a case or a task to an user.
+    mutateChangeAssignee(variables: { input: ChangeAssigneeInput }, resultSelector: string | ((qb: ChangeAssigneePayloadModelSelector) => ChangeAssigneePayloadModelSelector) = changeAssigneePayloadModelPrimitives.toString(), optimisticUpdate?: () => void) {
+      return self.mutate<{ changeAssignee: ChangeAssigneePayloadModelType}>(`mutation changeAssignee($input: ChangeAssigneeInput!) { changeAssignee(input: $input) {
+        ${typeof resultSelector === "function" ? resultSelector(new ChangeAssigneePayloadModelSelector()).toString() : resultSelector}
       } }`, variables, optimisticUpdate)
     },
     // Update the description of a case, task, or indicator.
