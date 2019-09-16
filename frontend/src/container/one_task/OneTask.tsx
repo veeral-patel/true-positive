@@ -55,6 +55,7 @@ export default inject("activeCaseStore")(
               activeTask={activeTask}
               activeCase={activeCase}
               renameTask={activeCaseStore!.renameTask}
+              changeTaskStatus={activeCaseStore!.changeTaskStatus}
             />
           );
       }

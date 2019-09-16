@@ -9,9 +9,10 @@ import formatISO8601 from "utils/formatISO8601";
 
 interface DetailsProps {
   activeTask: ITask;
+  changeTaskStatus: (taskId: number, statusId: number) => void;
 }
 
-const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
+const DetailsP: React.FC<DetailsProps> = ({ activeTask, changeTaskStatus }) => (
   <section style={{ lineHeight: 3 }}>
     <Row>
       <Col span={24}>
@@ -23,7 +24,7 @@ const DetailsP: React.FC<DetailsProps> = ({ activeTask }) => (
       <Col span={8}>
         <EditableStatusTag
           statusName={activeTask.status.name}
-          handleSelect={() => void 0}
+          handleSelect={statusId => changeTaskStatus(activeTask.id, statusId)}
         />
       </Col>
       <Col span={4}>Created:</Col>
