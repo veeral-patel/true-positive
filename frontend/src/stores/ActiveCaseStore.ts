@@ -320,7 +320,7 @@ class ActiveCaseStore {
         },
         mutation: CHANGE_STATUS
       })
-      .then((response: FetchResult) => {
+      .then((_: FetchResult) => {
         message.success("Changed the status");
       })
       .catch((error: ApolloError) => {
