@@ -28,7 +28,7 @@ class Mutations::ChangeAssignee < Mutations::BaseMutation
         # changing the type of a task
         if type === "CASE"
             # find the case and user
-            the_case = find_case_or_throw_execution_error(case_id: case_id)
+            the_case = find_case_or_throw_execution_error(case_id: object_id)
 
             # assign the case
             the_case.assigned_to = user
