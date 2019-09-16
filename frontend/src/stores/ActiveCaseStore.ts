@@ -309,6 +309,35 @@ class ActiveCaseStore {
   }
 
   @action.bound
+  changeTaskAssignee(taskId: number, userId: number) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            objectId: taskId,
+            userId,
+            type: "TASK"
+          }
+        },
+        mutation: CHANGE_ASSIGNEE
+      })
+      .then((response: FetchResult) => {
+        message.success("Assigned the task");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while assigning the task",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
   changeTaskStatus(taskId: number, statusId: number) {
     client
       .mutate({

@@ -1,22 +1,28 @@
 import { navigate, RouteComponentProps } from "@reach/router";
 import {
   Avatar,
+  Col,
   Comment,
   Divider,
   Layout,
   notification,
   PageHeader,
+  Row,
   Typography
 } from "antd";
 import ActionsDropdown from "container/one_task/ActionsDropdown";
 import { inject, observer } from "mobx-react";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
-import DetailsP from "presentational/one_task/DetailsSectionP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import DescriptionP from "presentational/shared/description/DescriptionP";
 import ErrorP from "presentational/shared/errors/ErrorP";
+import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
+import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
+import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
+import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import formatISO8601 from "utils/formatISO8601";
 import { getPathToCaseTasks } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
@@ -96,11 +102,63 @@ export default inject("activeCaseStore")(
                 }
               />
 
-              <DetailsP
-                activeTask={activeTask}
-                changeTaskStatus={activeCaseStore!.changeTaskStatus}
-                changeTaskPriority={activeCaseStore!.changeTaskPriority}
-              />
+              <section style={{ lineHeight: 3 }}>
+                <Row>
+                  <Col span={24}>
+                    <Divider orientation="left">Details</Divider>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={4}>Status:</Col>
+                  <Col span={8}>
+                    <EditableStatusTag
+                      statusName={activeTask.status.name}
+                      handleSelect={statusId =>
+                        activeCaseStore!.changeTaskStatus(
+                          activeTask.id,
+                          statusId
+                        )
+                      }
+                    />
+                  </Col>
+                  <Col span={4}>Created:</Col>
+                  <Col span={8}>
+                    {`${formatISO8601(activeTask.createdAt)} UTC by ${
+                      activeTask.createdBy.username
+                    }`}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={4}>Priority:</Col>
+                  <Col span={8}>
+                    <EditablePriorityTag
+                      priorityName={activeTask.priority.name}
+                      handleSelect={priorityId =>
+                        activeCaseStore!.changeTaskPriority(
+                          activeTask.id,
+                          priorityId
+                        )
+                      }
+                    />
+                  </Col>
+                  <Col span={4}>Assigned To:</Col>
+                  <Col span={8}>
+                    <EditableAssigneeTag
+                      user={activeTask.assignedTo}
+                      handleSelect={userId =>
+                        activeCaseStore!.changeTaskAssignee(
+                          activeTask.id,
+                          userId
+                        )
+                      }
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={4}>Tags:</Col>
+                  <Col span={8}>{<ListOfTagsP tags={activeTask.tags} />}</Col>
+                </Row>
+              </section>
 
               <section>
                 <Divider orientation="left">Description</Divider>
