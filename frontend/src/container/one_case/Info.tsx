@@ -105,6 +105,7 @@ export default inject("activeCaseStore")(
                     <Divider orientation="left">Description</Divider>
                     <DescriptionForm
                       initialDescription={activeCase.description}
+                      updateDescription={newDescription => void 0}
                     />
                   </Col>
                 </Row>

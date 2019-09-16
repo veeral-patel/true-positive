@@ -6,6 +6,9 @@ import ReactQuill from "react-quill";
 interface DescriptionProps {
   // the initial value in the textarea
   initialDescription: string;
+
+  // fired when you click the "Update Description" button
+  updateDescription: (newDescription: string) => void;
 }
 
 interface DescriptionState {
@@ -35,6 +38,7 @@ class DescriptionForm extends React.Component<
     };
 
     const { currentDescription } = this.state;
+    const { updateDescription } = this.props;
 
     return (
       <div>
@@ -45,7 +49,10 @@ class DescriptionForm extends React.Component<
             this.setState({ currentDescription: newDescription })
           }
         />
-        <Button style={{ marginTop: "15px", float: "right" }}>
+        <Button
+          style={{ marginTop: "15px", float: "right" }}
+          onClick={() => updateDescription(currentDescription)}
+        >
           Update Description
         </Button>
       </div>
