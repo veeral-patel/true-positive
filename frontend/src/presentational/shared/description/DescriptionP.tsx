@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import "presentational/shared/description/DescriptionP.css";
 import React from "react";
 import ReactQuill from "react-quill";
@@ -16,7 +17,14 @@ const DescriptionP: React.FC<DescriptionProps> = ({ description }) => {
     ]
   };
 
-  return <ReactQuill value={description} modules={modules} />;
+  return (
+    <div>
+      <ReactQuill value={description} modules={modules} />
+      <Button style={{ marginTop: "15px", float: "right" }}>
+        Update Description
+      </Button>
+    </div>
+  );
 };
 
 export default DescriptionP;
