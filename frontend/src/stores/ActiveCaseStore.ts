@@ -306,6 +306,35 @@ class ActiveCaseStore {
         })
       );
   }
+
+  @action.bound
+  changeTaskStatus(taskId: number, statusId: number) {
+    client
+      .mutate<ITaskDatum>({
+        variables: {
+          input: {
+            objectId: taskId,
+            statusId: statusId,
+            type: "TASK"
+          }
+        },
+        mutation: CHANGE_STATUS
+      })
+      .then((response: FetchResult<ITaskDatum>) => {
+        message.success("Changed the status");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while changing the task's status",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
 }
 
 export default ActiveCaseStore;
