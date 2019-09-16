@@ -1,11 +1,11 @@
 import { RouteComponentProps } from "@reach/router";
 import { Avatar, Col, Comment, Divider, Layout, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
+import DescriptionForm from "container/shared/description/DescriptionForm";
 import { inject, observer } from "mobx-react";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import ListofMergedCasesP from "presentational/one_case/ListofMergedCasesP";
 import CommentList from "presentational/shared/comments/CommentListP";
-import DescriptionP from "presentational/shared/description/DescriptionP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
 import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
@@ -103,7 +103,7 @@ export default inject("activeCaseStore")(
                 <Row>
                   <Col span={24}>
                     <Divider orientation="left">Description</Divider>
-                    <DescriptionP description={activeCase.description} />
+                    <DescriptionForm description={activeCase.description} />
                   </Col>
                 </Row>
               </section>

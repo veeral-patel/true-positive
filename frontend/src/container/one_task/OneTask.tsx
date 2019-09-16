@@ -11,10 +11,10 @@ import {
   Typography
 } from "antd";
 import ActionsDropdown from "container/one_task/ActionsDropdown";
+import DescriptionForm from "container/shared/description/DescriptionForm";
 import { inject, observer } from "mobx-react";
 import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import CommentListP from "presentational/shared/comments/CommentListP";
-import DescriptionP from "presentational/shared/description/DescriptionP";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
@@ -162,7 +162,7 @@ export default inject("activeCaseStore")(
 
               <section>
                 <Divider orientation="left">Description</Divider>
-                <DescriptionP description={activeTask.description} />
+                <DescriptionForm description={activeTask.description} />
               </section>
 
               <section>
