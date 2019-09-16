@@ -54,6 +54,9 @@ const GET_ONE_CASE = gql`
       tasks {
         id
         name
+        assignedTo {
+          username
+        }
         createdBy {
           username
         }
