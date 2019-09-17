@@ -30,7 +30,7 @@ class DescriptionForm extends React.Component<
   render() {
     const modules = {
       toolbar: [
-        [{ header: [1, 2, false] }],
+        [{ header: [1, 2, 3, false] }],
         ["bold", "italic", "underline", "strike", "code-block"],
         [{ list: "ordered" }, { list: "bullet" }],
         ["link", "image"]
