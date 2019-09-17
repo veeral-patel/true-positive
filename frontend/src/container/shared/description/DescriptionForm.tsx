@@ -32,7 +32,7 @@ class DescriptionForm extends React.Component<
       toolbar: [
         [{ header: [1, 2, 3, false] }],
         ["bold", "italic", "underline", "strike", "code-block"],
-        [{ list: "ordered" }, { list: "bullet" }],
+        [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
         ["link", "image"]
       ]
     };
