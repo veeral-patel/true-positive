@@ -4,6 +4,14 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
+import {
+  CASE_SIDER_INDICATORS,
+  CASE_SIDER_INFO,
+  CASE_SIDER_MEMBERS,
+  CASE_SIDER_TASKS,
+  CASE_SIDER_TREE
+} from "utils/constants";
+import getActiveSiderItem from "utils/getActiveSiderItem";
 
 const { Sider } = Layout;
 const { Text } = Typography;
@@ -73,19 +81,23 @@ export default inject("uiStore", "activeCaseStore")(
                 </Text>
               </div>
             )}
-            <Menu mode="inline" style={{ height: "100%", borderRight: 0 }}>
-              <Menu.Item key="info">
+            <Menu
+              mode="inline"
+              selectedKeys={getActiveSiderItem()}
+              style={{ height: "100%", borderRight: 0 }}
+            >
+              <Menu.Item key={CASE_SIDER_INFO}>
                 <Icon type="info-circle" />
                 <span>Info</span>
               </Menu.Item>
-              <Menu.Item key="tasks">
+              <Menu.Item key={CASE_SIDER_TASKS}>
                 <Icon type="check-square" />
                 <span>
                   Tasks{" "}
                   {numberOfTasks !== null && <span>({numberOfTasks})</span>}
                 </span>
               </Menu.Item>
-              <Menu.Item key="indicators">
+              <Menu.Item key={CASE_SIDER_INDICATORS}>
                 <Icon type="security-scan" />
                 <span>
                   Indicators{" "}
@@ -94,11 +106,11 @@ export default inject("uiStore", "activeCaseStore")(
                   )}
                 </span>
               </Menu.Item>
-              <Menu.Item key="tree">
+              <Menu.Item key={CASE_SIDER_TREE}>
                 <Icon type="apartment" />
                 <span>Tree</span>
               </Menu.Item>
-              <Menu.Item key="members">
+              <Menu.Item key={CASE_SIDER_MEMBERS}>
                 <Icon type="user" />
                 <span>
                   Members{" "}
