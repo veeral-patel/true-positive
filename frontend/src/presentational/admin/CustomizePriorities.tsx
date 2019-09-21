@@ -52,7 +52,7 @@ export default inject("priorityStore")(
             <div style={{ marginTop: "20px" }}>
               <div style={{ marginBottom: "20px" }}>
                 <Input
-                  placeholder="Enter the name of a priority to create it"
+                  placeholder="Create a priority"
                   prefix={<Icon type="plus" />}
                   suffix={suffix}
                   value={inputValue}
