@@ -1,5 +1,5 @@
+import { Icon, Input } from "antd";
 import { inject, observer } from "mobx-react";
-import FilterInputP from "presentational/all_cases/FilterInputP";
 import React from "react";
 import CaseStore from "stores/AllCasesStore";
 
@@ -13,8 +13,10 @@ export default inject("allCasesStore")(
       render() {
         const { allCasesStore } = this.props;
         return (
-          <FilterInputP
+          <Input
             value={allCasesStore!.filterValue}
+            placeholder="Filter cases"
+            prefix={<Icon type="search" />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               allCasesStore!.setFilterValue(e.currentTarget.value)
             }
