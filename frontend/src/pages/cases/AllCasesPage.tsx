@@ -42,7 +42,7 @@ export default inject("allCasesStore", "uiStore")(
               >
                 <FilterInput />
               </span>
-              <span style={{ marginLeft: "12px", marginRight: "12px" }}>
+              <span style={{ marginLeft: "8px", marginRight: "8px" }}>
                 <Divider type="vertical" />
               </span>
               <span>
