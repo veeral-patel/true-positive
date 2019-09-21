@@ -5,10 +5,16 @@ import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
 import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
+import PriorityStore from "stores/PriorityStore";
+import StatusStore from "stores/StatusStore";
 import UserStore from "stores/UserStore";
 import ITask from "ts/interfaces/ITask";
 import compareUsers from "utils/compareUsers";
-import { assignedToMatches } from "utils/filterCases";
+import {
+  assignedToMatches,
+  priorityMatches,
+  statusMatches
+} from "utils/filterCases";
 
 const { Column } = Table;
 
@@ -16,22 +22,54 @@ interface ITasksTableProps {
   tasks: ITask[];
   handleRowClick: (clickedTask: ITask, index: number, event: Event) => void;
   userStore?: UserStore;
+  statusStore?: StatusStore;
+  priorityStore?: PriorityStore;
 }
 
-export default inject("userStore")(
+export default inject("userStore", "statusStore", "priorityStore")(
   observer(
     class TasksTable extends React.Component<ITasksTableProps> {
       componentDidMount() {
-        const { userStore } = this.props;
+        const { userStore, statusStore, priorityStore } = this.props;
         userStore!.loadUsers();
+        statusStore!.loadStatuses();
+        priorityStore!.loadPriorities();
       }
 
       render() {
-        const { tasks, handleRowClick, userStore } = this.props;
+        const {
+          tasks,
+          handleRowClick,
+          userStore,
+          statusStore,
+          priorityStore
+        } = this.props;
 
         // show a loading state if our filter options are loading
         if (userStore!.usersAreLoading) {
           return <Table loading={true} />;
+        }
+
+        // populate status filter options -----
+        const statuses = statusStore!.statuses;
+        let statusFilters: ColumnFilterItem[] = [];
+
+        if (statuses) {
+          statusFilters = statuses.map(status => ({
+            text: status.name,
+            value: status.name
+          }));
+        }
+
+        // populate priority filter options ------
+        const priorities = priorityStore!.priorities;
+        let priorityFilters: ColumnFilterItem[] = [];
+
+        if (priorities) {
+          priorityFilters = priorities.map(priority => ({
+            text: priority.name,
+            value: priority.name
+          }));
         }
 
         // populate user filter options -----
@@ -77,6 +115,10 @@ export default inject("userStore")(
               sorter={(a: ITask, b: ITask) =>
                 a.status.name.localeCompare(b.status.name)
               }
+              filters={statusFilters}
+              onFilter={(filterWord, record) =>
+                statusMatches(filterWord, record.status)
+              }
             />
             <Column
               title="Priority"
@@ -87,6 +129,10 @@ export default inject("userStore")(
               )}
               sorter={(a: ITask, b: ITask) =>
                 a.priority.name.localeCompare(b.priority.name)
+              }
+              filters={priorityFilters}
+              onFilter={(filterWord, record) =>
+                priorityMatches(filterWord, record.priority)
               }
             />
             <Column

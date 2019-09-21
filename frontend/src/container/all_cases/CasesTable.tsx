@@ -65,15 +65,6 @@ export default inject(
           userStore,
           tagStore
         } = this.props;
-        const rowSelection = {
-          onChange: (
-            selectedRowKeys: string[] | number[],
-            selectedRows: ICase[]
-          ) => {
-            allCasesStore!.setSelectedCases(selectedRows);
-          },
-          selectedRows: allCasesStore!.selectedCases
-        };
 
         if (
           allCasesStore!.casesAreLoading ||
