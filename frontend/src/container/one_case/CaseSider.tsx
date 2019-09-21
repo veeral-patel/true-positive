@@ -13,7 +13,7 @@ import {
   CASE_SIDER_TREE
 } from "utils/constants";
 import {
-  getPathToACaseInfo,
+  getPathToACase,
   getPathToACaseMembers,
   getPathToACaseTree,
   getPathToCaseIndicators,
@@ -96,7 +96,9 @@ export default inject("uiStore", "activeCaseStore")(
               <Menu.Item
                 key={CASE_SIDER_INFO}
                 onClick={() =>
-                  activeCase && navigate(getPathToACaseInfo(activeCase.id))
+                  // should be getPathToACaseInfo, but the browser scrolls down, beyond the breadcrumb,
+                  // when I do that
+                  activeCase && navigate(getPathToACase(activeCase.id))
                 }
               >
                 <Icon type="info-circle" />
