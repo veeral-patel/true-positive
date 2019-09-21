@@ -12,6 +12,7 @@ import TopMenu from "container/shared/top_menu/TopMenu";
 import AdminPage from "pages/admin/AdminPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
+import AllTasksPage from "pages/tasks/AllTasksPage";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 
@@ -22,6 +23,7 @@ const App: React.FC = () => {
       <Router style={{ margin: "3%", marginTop: "2%" }}>
         <AllCasesPage path="/" />
         <AllCasesPage path="/cases" />
+        <AllTasksPage path="/tasks" />
         <AdminPage path="/admin" />
         <CasePage path="/cases/:caseId/*" />
         <Page404 default />

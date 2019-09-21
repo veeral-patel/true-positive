@@ -1,7 +1,8 @@
 export const paths = {
   ROOT_PATH: "/",
   CASES_PATH: "/cases",
-  ADMIN_PATH: "/admin"
+  ADMIN_PATH: "/admin",
+  TASKS_PATH: "/tasks"
 };
 
 export const ADD_TAGS = "ADD_TAGS";

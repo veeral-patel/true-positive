@@ -29,7 +29,12 @@ export default inject("uiStore")(
             >
               Admin
             </Menu.Item>
-            <Menu.Item style={{ float: "left" }}>Tasks</Menu.Item>
+            <Menu.Item
+              style={{ float: "left" }}
+              onClick={() => navigate(paths.TASKS_PATH)}
+            >
+              Tasks
+            </Menu.Item>
             <SubMenu
               title={
                 <span>
