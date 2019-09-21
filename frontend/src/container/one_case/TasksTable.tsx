@@ -16,6 +16,7 @@ import {
   priorityMatches,
   statusMatches
 } from "utils/filterCases";
+import formatISO8601 from "utils/formatISO8601";
 
 const { Column } = Table;
 
@@ -173,11 +174,12 @@ export default inject("userStore", "statusStore", "priorityStore")(
             {includeExtraColumns && (
               <Column
                 title="Created At (UTC)"
-                dataIndex="formattedCreatedAt"
-                key="formatted_created_at"
+                dataIndex="createdAt"
+                key="created_at"
                 sorter={(a: ITask, b: ITask) =>
                   a.createdAt.localeCompare(b.createdAt)
                 }
+                render={(text, task, index) => formatISO8601(task.createdAt)}
               />
             )}
           </Table>
