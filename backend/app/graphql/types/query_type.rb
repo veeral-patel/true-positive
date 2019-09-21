@@ -99,5 +99,14 @@ module Types
       def tags
         ActsAsTaggableOn::Tag.all
       end
+
+      # -------------- Tasks ------------------------
+      field :tasks, [Types::TaskType], null: false do
+        description "Lists all tasks."
+      end
+      
+      def tasks
+        Task.all
+      end
   end
 end
