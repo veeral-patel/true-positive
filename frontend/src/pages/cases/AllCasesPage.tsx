@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button } from "antd";
+import { Button, Divider, Radio } from "antd";
 import CasesTable from "container/all_cases/CasesTable";
 import FilterInput from "container/all_cases/FilterInput";
 import { inject, observer } from "mobx-react";
@@ -25,7 +25,6 @@ export default inject("allCasesStore", "uiStore")(
               </span>
               <span style={{ float: "right" }}>
                 <Button
-                  type="primary"
                   icon="plus"
                   onClick={() => uiStore!.openCreateCaseModal()}
                 >
@@ -33,23 +32,29 @@ export default inject("allCasesStore", "uiStore")(
                 </Button>
               </span>
             </div>
-            <span
-              style={{
-                marginBottom: "30px",
-                width: "40%",
-                display: "inline-block"
-              }}
-            >
-              <FilterInput />
-            </span>
-            {/* {allCasesStore!.numberOfSelectedCases === 0 ? (
-              <span />
-            ) : (
-              <span style={{ paddingLeft: "18px" }}>
-                <ActionsDropdown />
+            <div>
+              <span
+                style={{
+                  marginBottom: "30px",
+                  width: "40%",
+                  display: "inline-block"
+                }}
+              >
+                <FilterInput />
               </span>
-            )} */}
-            <CasesTable />
+              <span style={{ marginLeft: "12px", marginRight: "12px" }}>
+                <Divider type="vertical" />
+              </span>
+              <span>
+                <Radio.Group defaultValue="assigned">
+                  <Radio.Button value="assigned">Assigned</Radio.Button>
+                  <Radio.Button value="all">All</Radio.Button>
+                </Radio.Group>
+              </span>
+            </div>
+            <div>
+              <CasesTable />
+            </div>
           </div>
         );
       }
