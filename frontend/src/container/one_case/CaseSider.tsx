@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import { Icon, Layout, Menu, Typography } from "antd";
 import { CollapseType } from "antd/lib/layout/Sider";
 import { inject, observer } from "mobx-react";
@@ -11,7 +12,13 @@ import {
   CASE_SIDER_TASKS,
   CASE_SIDER_TREE
 } from "utils/constants";
-import getActiveSiderItem from "utils/getActiveSiderItem";
+import {
+  getPathToACaseInfo,
+  getPathToACaseMembers,
+  getPathToACaseTree,
+  getPathToCaseIndicators,
+  getPathToCaseTasks
+} from "utils/pathHelpers";
 
 const { Sider } = Layout;
 const { Text } = Typography;
@@ -83,21 +90,36 @@ export default inject("uiStore", "activeCaseStore")(
             )}
             <Menu
               mode="inline"
-              selectedKeys={getActiveSiderItem(window.location.pathname)}
+              selectable={false}
               style={{ height: "100%", borderRight: 0 }}
             >
-              <Menu.Item key={CASE_SIDER_INFO}>
+              <Menu.Item
+                key={CASE_SIDER_INFO}
+                onClick={() =>
+                  activeCase && navigate(getPathToACaseInfo(activeCase.id))
+                }
+              >
                 <Icon type="info-circle" />
                 <span>Info</span>
               </Menu.Item>
-              <Menu.Item key={CASE_SIDER_TASKS}>
+              <Menu.Item
+                key={CASE_SIDER_TASKS}
+                onClick={() =>
+                  activeCase && navigate(getPathToCaseTasks(activeCase.id))
+                }
+              >
                 <Icon type="check-square" />
                 <span>
                   Tasks{" "}
                   {numberOfTasks !== null && <span>({numberOfTasks})</span>}
                 </span>
               </Menu.Item>
-              <Menu.Item key={CASE_SIDER_INDICATORS}>
+              <Menu.Item
+                key={CASE_SIDER_INDICATORS}
+                onClick={() =>
+                  activeCase && navigate(getPathToCaseIndicators(activeCase.id))
+                }
+              >
                 <Icon type="security-scan" />
                 <span>
                   Indicators{" "}
@@ -106,11 +128,21 @@ export default inject("uiStore", "activeCaseStore")(
                   )}
                 </span>
               </Menu.Item>
-              <Menu.Item key={CASE_SIDER_TREE}>
+              <Menu.Item
+                key={CASE_SIDER_TREE}
+                onClick={() =>
+                  activeCase && navigate(getPathToACaseTree(activeCase.id))
+                }
+              >
                 <Icon type="apartment" />
                 <span>Tree</span>
               </Menu.Item>
-              <Menu.Item key={CASE_SIDER_MEMBERS}>
+              <Menu.Item
+                key={CASE_SIDER_MEMBERS}
+                onClick={() =>
+                  activeCase && navigate(getPathToACaseMembers(activeCase.id))
+                }
+              >
                 <Icon type="user" />
                 <span>
                   Members{" "}
