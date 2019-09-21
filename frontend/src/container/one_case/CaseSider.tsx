@@ -73,11 +73,7 @@ export default inject("uiStore", "activeCaseStore")(
                 </Text>
               </div>
             )}
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={["info"]}
-              style={{ height: "100%", borderRight: 0 }}
-            >
+            <Menu mode="inline" style={{ height: "100%", borderRight: 0 }}>
               <Menu.Item key="info">
                 <Icon type="info-circle" />
                 <span>Info</span>
