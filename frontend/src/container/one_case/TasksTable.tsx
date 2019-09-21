@@ -29,6 +29,7 @@ export default inject("userStore")(
       render() {
         const { tasks, handleRowClick, userStore } = this.props;
 
+        // show a loading state if our filter options are loading
         if (userStore!.usersAreLoading) {
           return <Table loading={true} />;
         }
