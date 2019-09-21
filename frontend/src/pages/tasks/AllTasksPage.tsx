@@ -12,7 +12,7 @@ class AllTasksPage extends React.Component<Props> {
         <section>
           <h2>Tasks</h2>
           <Paragraph>
-            These are all the tasks from the cases you're a member of.
+            These are all the tasks from the cases that you're a member of.
           </Paragraph>
         </section>
         <section>
