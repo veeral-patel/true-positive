@@ -1,8 +1,11 @@
-import { RouteComponentProps } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
+import { Icon, Input, Layout } from "antd";
 import { inject, observer } from "mobx-react";
-import TasksP from "presentational/one_case/TasksP";
+import TasksTableP from "presentational/shared/tasks/TasksTableP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import { getPathToATask } from "utils/pathHelpers";
+const { Content } = Layout;
 
 interface TaskProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -19,11 +22,33 @@ export default inject("activeCaseStore")(
         // our spinner above this, as a HOC
         if (activeCase)
           return (
-            <TasksP
-              caseId={activeCase.id}
-              caseName={activeCase.name}
-              tasks={activeCase.tasks}
-            />
+            <Content
+              style={{
+                background: "#fff",
+                padding: 24,
+                margin: 0,
+                minHeight: 280
+              }}
+            >
+              <div>
+                <h2>Tasks ({activeCase.tasks.length})</h2>
+              </div>
+
+              <div style={{ marginTop: "30px", marginBottom: "30px" }}>
+                <Input
+                  placeholder="Create a task"
+                  prefix={<Icon type="plus" />}
+                  suffix={<Icon type="arrow-right" />}
+                />
+              </div>
+              <TasksTableP
+                tasks={activeCase.tasks}
+                includeDescription={false}
+                handleRowClick={(clickedTask, index, event) =>
+                  navigate(getPathToATask(activeCase.id, clickedTask.id))
+                }
+              />
+            </Content>
           );
       }
     }
