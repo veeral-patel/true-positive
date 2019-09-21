@@ -12,6 +12,7 @@ import ITask from "ts/interfaces/ITask";
 import compareUsers from "utils/compareUsers";
 import {
   assignedToMatches,
+  createdByMatches,
   priorityMatches,
   statusMatches
 } from "utils/filterCases";
@@ -24,11 +25,18 @@ interface ITasksTableProps {
   userStore?: UserStore;
   statusStore?: StatusStore;
   priorityStore?: PriorityStore;
+
+  // whether to include the created by and created at columns
+  includeExtraColumns: boolean;
 }
 
 export default inject("userStore", "statusStore", "priorityStore")(
   observer(
     class TasksTable extends React.Component<ITasksTableProps> {
+      static defaultProps = {
+        includeExtraColumns: false
+      };
+
       componentDidMount() {
         const { userStore, statusStore, priorityStore } = this.props;
         userStore!.loadUsers();
@@ -42,7 +50,8 @@ export default inject("userStore", "statusStore", "priorityStore")(
           handleRowClick,
           userStore,
           statusStore,
-          priorityStore
+          priorityStore,
+          includeExtraColumns
         } = this.props;
 
         // show a loading state if our filter options are loading
@@ -147,6 +156,30 @@ export default inject("userStore", "statusStore", "priorityStore")(
                 assignedToMatches(filterWord, record.assignedTo)
               }
             />
+            {includeExtraColumns && (
+              <Column
+                title="Created By"
+                dataIndex="createdBy.username"
+                key="created_by"
+                sorter={(a: ITask, b: ITask) =>
+                  compareUsers(a.createdBy, b.createdBy)
+                }
+                filters={userFilters}
+                onFilter={(filterWord, record) =>
+                  createdByMatches(filterWord, record.createdBy)
+                }
+              />
+            )}
+            {includeExtraColumns && (
+              <Column
+                title="Created At (UTC)"
+                dataIndex="formattedCreatedAt"
+                key="formatted_created_at"
+                sorter={(a: ITask, b: ITask) =>
+                  a.createdAt.localeCompare(b.createdAt)
+                }
+              />
+            )}
           </Table>
         );
       }

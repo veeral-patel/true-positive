@@ -24,6 +24,7 @@ export default inject("allTasksStore")(
         return (
           <TasksTable
             tasks={allTasksStore!.tasks}
+            includeExtraColumns={true}
             handleRowClick={() => void 0}
           />
         );
