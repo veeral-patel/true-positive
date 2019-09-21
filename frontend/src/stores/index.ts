@@ -5,6 +5,7 @@ import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
 import UserStore from "stores/UserStore";
+import AllTasksStore from "./AllTasksStore";
 import TagStore from "./TagStore";
 
 const allCasesStore = new AllCasesStore();
@@ -14,6 +15,7 @@ const priorityStore = new PriorityStore();
 const activeCaseStore = new ActiveCaseStore();
 const userStore = new UserStore();
 const tagStore = new TagStore();
+const allTasksStore = new AllTasksStore();
 
 // only let me mutate state within actions
 configure({
@@ -27,5 +29,6 @@ export default {
   priorityStore,
   activeCaseStore,
   userStore,
-  tagStore
+  tagStore,
+  allTasksStore
 };
