@@ -17,7 +17,6 @@ import compareUsers from "utils/compareUsers";
 import { paths } from "utils/constants";
 import {
   assignedToMatches,
-  aTagMatches,
   createdByMatches,
   priorityMatches,
   statusMatches
@@ -37,8 +36,7 @@ export default inject(
   "allCasesStore",
   "statusStore",
   "priorityStore",
-  "userStore",
-  "tagStore"
+  "userStore"
 )(
   observer(
     class CasesTable extends React.Component<ICasesTableProps> {
@@ -47,14 +45,12 @@ export default inject(
           allCasesStore,
           statusStore,
           priorityStore,
-          userStore,
-          tagStore
+          userStore
         } = this.props;
         allCasesStore!.loadCases();
         statusStore!.loadStatuses();
         priorityStore!.loadPriorities();
         userStore!.loadUsers();
-        tagStore!.loadTags();
       }
 
       render() {
@@ -70,8 +66,7 @@ export default inject(
           allCasesStore!.casesAreLoading ||
           statusStore!.statusesAreLoading ||
           priorityStore!.prioritiesAreLoading ||
-          userStore!.usersAreLoading ||
-          tagStore!.tagsAreLoading
+          userStore!.usersAreLoading
         ) {
           return <Table loading={true} />;
         }
@@ -108,20 +103,9 @@ export default inject(
           }));
         }
 
-        // populate tag filter options
-        const tags = tagStore!.tags;
-        let tagFilters: ColumnFilterItem[] = [];
-
-        if (tags) {
-          tagFilters = tags.map(tag => ({
-            text: tag.name,
-            value: tag.name
-          }));
-        }
-
         return (
           <Table
-            dataSource={allCasesStore!.cases}
+            dataSource={allCasesStore!.filteredCases}
             rowKey={theCase => theCase.id.toString()}
             onRowClick={(clickedCase, index, event) =>
               navigate(`${paths.CASES_PATH}/${clickedCase.id}`)
@@ -142,10 +126,6 @@ export default inject(
                   <ListOfTagsP tags={tags} />
                 </div>
               )}
-              filters={tagFilters}
-              onFilter={(filterWord: string, record: ICase) =>
-                aTagMatches(filterWord, record)
-              }
             />
             <Column
               title="Status"
