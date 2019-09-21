@@ -83,7 +83,7 @@ export default inject("uiStore", "activeCaseStore")(
             )}
             <Menu
               mode="inline"
-              selectedKeys={getActiveSiderItem()}
+              selectedKeys={getActiveSiderItem(window.location.pathname)}
               style={{ height: "100%", borderRight: 0 }}
             >
               <Menu.Item key={CASE_SIDER_INFO}>
