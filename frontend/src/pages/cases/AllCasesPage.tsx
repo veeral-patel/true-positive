@@ -4,11 +4,9 @@ import CasesTable from "container/all_cases/CasesTable";
 import FilterInput from "container/all_cases/FilterInput";
 import { inject, observer } from "mobx-react";
 import React from "react";
-import CaseStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
 
 interface IAllCasesPageProps extends RouteComponentProps {
-  allCasesStore?: CaseStore;
   uiStore?: UIStore;
 }
 
@@ -16,7 +14,7 @@ export default inject("allCasesStore", "uiStore")(
   observer(
     class AllCasesPage extends React.Component<IAllCasesPageProps> {
       render() {
-        const { allCasesStore, uiStore } = this.props;
+        const { uiStore } = this.props;
         return (
           <div>
             <div>
