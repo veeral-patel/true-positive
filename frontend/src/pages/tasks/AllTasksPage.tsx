@@ -1,5 +1,6 @@
 import { RouteComponentProps } from "@reach/router";
 import { Divider, Icon, Input, Radio, Typography } from "antd";
+import AllTasksTable from "container/all_tasks/AllTasksTable";
 import React from "react";
 const { Paragraph } = Typography;
 
@@ -34,6 +35,9 @@ class AllTasksPage extends React.Component<Props> {
               <Radio.Button value="all">All</Radio.Button>
             </Radio.Group>
           </span>
+        </section>
+        <section>
+          <AllTasksTable />
         </section>
       </div>
     );

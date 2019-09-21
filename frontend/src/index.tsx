@@ -26,6 +26,7 @@ ReactDOM.render(
     priorityStore={store.priorityStore}
     userStore={store.userStore}
     tagStore={store.tagStore}
+    allTasksStore={store.allTasksStore}
   >
     <StoreContext.Provider value={rootStore}>
       <App />
