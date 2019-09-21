@@ -22,6 +22,9 @@ const GET_TASKS = gql`
         id
         name
       }
+      case {
+        id
+      }
     }
   }
 `;

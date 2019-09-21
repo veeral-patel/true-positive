@@ -57,6 +57,9 @@ const GET_ONE_CASE = gql`
         assignedTo {
           username
         }
+        case {
+          id
+        }
         createdBy {
           username
         }

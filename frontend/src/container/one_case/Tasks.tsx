@@ -50,7 +50,7 @@ export default inject("activeCaseStore")(
               <TasksTable
                 tasks={activeCase.tasks}
                 handleRowClick={(clickedTask, index, event) =>
-                  navigate(getPathToATask(activeCase.id, clickedTask.id))
+                  navigate(getPathToATask(clickedTask.case.id, clickedTask.id))
                 }
               />
             </Content>
