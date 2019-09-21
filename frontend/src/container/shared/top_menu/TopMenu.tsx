@@ -24,16 +24,16 @@ export default inject("uiStore")(
               Cases
             </Menu.Item>
             <Menu.Item
-              onClick={() => navigate(paths.ADMIN_PATH)}
-              style={{ float: "left" }}
-            >
-              Admin
-            </Menu.Item>
-            <Menu.Item
               style={{ float: "left" }}
               onClick={() => navigate(paths.TASKS_PATH)}
             >
               Tasks
+            </Menu.Item>
+            <Menu.Item
+              onClick={() => navigate(paths.ADMIN_PATH)}
+              style={{ float: "left" }}
+            >
+              Admin
             </Menu.Item>
             <SubMenu
               title={
