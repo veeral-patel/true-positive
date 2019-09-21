@@ -1,6 +1,6 @@
 import { navigate, RouteComponentProps } from "@reach/router";
 import { Icon, Input, Layout } from "antd";
-import TasksTableP from "container/one_case/TasksTable";
+import TasksTable from "container/one_case/TasksTable";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -41,7 +41,7 @@ export default inject("activeCaseStore")(
                   suffix={<Icon type="arrow-right" />}
                 />
               </div>
-              <TasksTableP
+              <TasksTable
                 tasks={activeCase.tasks}
                 handleRowClick={(clickedTask, index, event) =>
                   navigate(getPathToATask(activeCase.id, clickedTask.id))
