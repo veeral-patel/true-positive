@@ -51,7 +51,7 @@ export default inject("statusStore")(
             <HelperText />
             <div style={{ marginTop: "20px", marginBottom: "20px" }}>
               <Input
-                placeholder="Enter the name of a status to create it"
+                placeholder="Create a status"
                 prefix={<Icon type="plus" />}
                 suffix={suffix}
                 value={inputValue}
