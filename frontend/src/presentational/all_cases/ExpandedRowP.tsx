@@ -1,6 +1,6 @@
 import { navigate } from "@reach/router";
 import { Typography } from "antd";
-import TasksTableP from "presentational/shared/tasks/TasksTableP";
+import TasksTableP from "container/one_case/TasksTable";
 import React from "react";
 import ITask from "ts/interfaces/ITask";
 import { getPathToATask } from "utils/pathHelpers";
