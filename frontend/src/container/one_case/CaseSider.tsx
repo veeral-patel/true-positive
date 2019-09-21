@@ -1,9 +1,12 @@
+import { Icon, Layout, Menu, Typography } from "antd";
 import { CollapseType } from "antd/lib/layout/Sider";
 import { inject, observer } from "mobx-react";
-import CaseSiderP from "presentational/one_case/CaseSiderP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
+
+const { Sider } = Layout;
+const { Text } = Typography;
 
 interface ICaseSiderProps {
   uiStore?: UIStore;
@@ -42,18 +45,72 @@ export default inject("uiStore", "activeCaseStore")(
             numberOfIndicators = null;
           }
         }
+
+        const collapsed = uiStore!.caseSiderStatus === "COLLAPSED";
+
         return (
-          <CaseSiderP
-            caseName={caseName}
-            numberOfMembers={numberOfMembers}
-            numberOfTasks={numberOfTasks}
-            numberOfIndicators={numberOfIndicators}
-            collapsed={uiStore!.caseSiderStatus === "COLLAPSED"}
-            handleCollapse={(collapsed: boolean, type: CollapseType) =>
+          <Sider
+            width={200}
+            style={{ background: "#fff" }}
+            collapsible
+            collapsed={collapsed}
+            onCollapse={(collapsed: boolean, type: CollapseType) =>
               uiStore!.toggleCaseSider()
             }
-            renameActiveCase={activeCaseStore!.renameActiveCase}
-          />
+            theme="light"
+          >
+            {!collapsed && (
+              <div style={{ marginBottom: "10px" }}>
+                <Text
+                  type="secondary"
+                  style={{ textTransform: "uppercase" }}
+                  editable={{
+                    onChange: (newText: string) =>
+                      activeCaseStore!.renameActiveCase(newText)
+                  }}
+                >
+                  {caseName}
+                </Text>
+              </div>
+            )}
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={["info"]}
+              style={{ height: "100%", borderRight: 0 }}
+            >
+              <Menu.Item key="info">
+                <Icon type="info-circle" />
+                <span>Info</span>
+              </Menu.Item>
+              <Menu.Item key="tasks">
+                <Icon type="check-square" />
+                <span>
+                  Tasks{" "}
+                  {numberOfTasks !== null && <span>({numberOfTasks})</span>}
+                </span>
+              </Menu.Item>
+              <Menu.Item key="indicators">
+                <Icon type="security-scan" />
+                <span>
+                  Indicators{" "}
+                  {numberOfIndicators !== null && (
+                    <span>({numberOfIndicators})</span>
+                  )}
+                </span>
+              </Menu.Item>
+              <Menu.Item key="tree">
+                <Icon type="apartment" />
+                <span>Tree</span>
+              </Menu.Item>
+              <Menu.Item key="members">
+                <Icon type="user" />
+                <span>
+                  Members{" "}
+                  {numberOfMembers !== null && <span>({numberOfMembers})</span>}
+                </span>
+              </Menu.Item>
+            </Menu>
+          </Sider>
         );
       }
     }
