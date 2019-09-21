@@ -21,6 +21,11 @@ interface ITasksTableProps {
 export default inject("userStore")(
   observer(
     class TasksTable extends React.Component<ITasksTableProps> {
+      componentDidMount() {
+        const { userStore } = this.props;
+        userStore!.loadUsers();
+      }
+
       render() {
         const { tasks, handleRowClick, userStore } = this.props;
 
@@ -28,7 +33,8 @@ export default inject("userStore")(
           return <Table loading={true} />;
         }
 
-        // populate user filter options
+        // populate user filter options -----
+
         const users = userStore!.users;
         let userFilters: ColumnFilterItem[] = [];
 
@@ -38,6 +44,8 @@ export default inject("userStore")(
             value: user.username
           }));
         }
+
+        // -----
 
         return (
           <Table
