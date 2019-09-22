@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Divider, Layout, Typography } from "antd";
+import { Button, Divider, Icon, Layout, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import React from "react";
@@ -52,6 +52,7 @@ export default inject("activeCaseStore")(
                   <Divider type="vertical" />
                   <Button type="link" style={{ color: "rgb(130, 130, 130)" }}>
                     Bulk import
+                    <Icon type="down" />
                   </Button>
                 </div>
                 <div>
