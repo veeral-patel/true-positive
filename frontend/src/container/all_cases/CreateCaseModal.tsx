@@ -1,9 +1,12 @@
+import { AutoComplete, Form, Icon, Input, Modal, Select } from "antd";
+import "container/all_cases/CreateCaseModalP.css";
 import { inject, observer } from "mobx-react";
-import CreateCaseModalP from "presentational/all_cases/CreateCaseModalP";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
+
+const { Option } = Select;
 
 interface ICreateCaseModalProps {
   uiStore?: UIStore;
@@ -22,14 +25,61 @@ export default inject("uiStore", "statusStore", "priorityStore")(
 
       render() {
         const { uiStore, statusStore, priorityStore } = this.props;
+
+        const statusOptions = statusStore!.statuses.map(status => (
+          <Option key={status.id}>{status.name}</Option>
+        ));
+
+        const priorityOptions = priorityStore!.priorities.map(priority => (
+          <Option key={priority.id}>{priority.name}</Option>
+        ));
+
         return (
-          <CreateCaseModalP
+          <Modal
             visible={uiStore!.openModal === "CREATE_CASE_MODAL"}
-            handleOk={() => uiStore!.closeModal()}
-            handleCancel={() => uiStore!.closeModal()}
-            statuses={statusStore!.statuses}
-            priorities={priorityStore!.priorities}
-          />
+            title="Create a Case"
+            onOk={() => uiStore!.closeModal()}
+            onCancel={() => uiStore!.closeModal()}
+            okText="Create Case"
+            style={{ padding: "0px" }}
+            destroyOnClose={true}
+          >
+            <Form colon={false}>
+              <Form.Item label="Name" required>
+                <Input
+                  placeholder="Found Ryuk"
+                  ref={input => input && input.focus()}
+                />
+              </Form.Item>
+              <Form.Item label="Status" required>
+                <AutoComplete
+                  dataSource={statusOptions}
+                  placeholder="Choose a status"
+                >
+                  <Input
+                    suffix={<Icon type="down" style={{ color: "gray" }} />}
+                  />
+                </AutoComplete>
+              </Form.Item>
+              <Form.Item label="Priority" required>
+                <AutoComplete
+                  dataSource={priorityOptions}
+                  placeholder="Choose a priority"
+                >
+                  <Input
+                    suffix={<Icon type="down" style={{ color: "gray" }} />}
+                  />
+                </AutoComplete>
+              </Form.Item>
+              <Form.Item label="Tags">
+                <Select
+                  mode="tags"
+                  placeholder="Enter tags"
+                  tokenSeparators={[","]}
+                />
+              </Form.Item>
+            </Form>
+          </Modal>
         );
       }
     }
