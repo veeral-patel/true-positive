@@ -29,8 +29,14 @@ export default inject("activeCaseStore")(
 
         const bulkImportMenu = (
           <Menu>
-            <Menu.Item>Import from CSV</Menu.Item>
-            <Menu.Item>Extract from text</Menu.Item>
+            <Menu.Item>
+              <Icon type="file-excel" />
+              Import from CSV
+            </Menu.Item>
+            <Menu.Item>
+              <Icon type="file-text" />
+              Extract from text
+            </Menu.Item>
           </Menu>
         );
 
