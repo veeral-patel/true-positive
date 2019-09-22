@@ -1,11 +1,12 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Divider, Layout } from "antd";
+import { Button, Divider, Layout, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 
 const { Content } = Layout;
+const { Paragraph } = Typography;
 
 interface IndicatorsProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -31,6 +32,11 @@ export default inject("activeCaseStore")(
             >
               <section>
                 <h2>Indicators ({activeCase.indicators.length})</h2>
+                <Paragraph>
+                  An indicator is a string (ie, a file hash, domain, URL, or
+                  IP), file (ie, a malware sample), or text (ie, a Snort rule or
+                  Yara signature) that implies a compromise.
+                </Paragraph>
               </section>
               <section>
                 <div style={{ float: "right", marginBottom: "6px" }}>
