@@ -8,7 +8,7 @@ import UIStore from "stores/UIStore";
 
 const { Option } = Select;
 
-interface ICreateCaseModalProps {
+interface Props {
   uiStore?: UIStore;
   statusStore?: StatusStore;
   priorityStore?: PriorityStore;
@@ -16,7 +16,7 @@ interface ICreateCaseModalProps {
 
 export default inject("uiStore", "statusStore", "priorityStore")(
   observer(
-    class CreateCaseModal extends React.Component<ICreateCaseModalProps> {
+    class CreateCaseModal extends React.Component<Props> {
       componentDidMount() {
         const { statusStore, priorityStore } = this.props;
         statusStore!.loadStatuses();

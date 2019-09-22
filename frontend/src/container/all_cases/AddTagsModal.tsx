@@ -6,14 +6,14 @@ import UIStore from "stores/UIStore";
 
 const { Paragraph } = Typography;
 
-interface IAddTagsModalProps {
+interface Props {
   uiStore?: UIStore;
   allCasesStore?: CaseStore;
 }
 
 export default inject("uiStore", "allCasesStore")(
   observer(
-    class AddTagsModal extends React.Component<IAddTagsModalProps> {
+    class AddTagsModal extends React.Component<Props> {
       render() {
         const { uiStore, allCasesStore } = this.props;
         return (
