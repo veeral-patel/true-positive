@@ -33,19 +33,26 @@ export default inject("activeCaseStore")(
               <section>
                 <h2>Indicators ({activeCase.indicators.length})</h2>
                 <Paragraph>
-                  An indicator is a string (ie, a file hash, domain, URL, or
-                  IP), file (ie, a malware sample), or text (ie, a Snort rule or
+                  An indicator is a string (like a file hash, domain, or URL),
+                  file (like a malware sample), or text (like a Snort rule or
                   Yara signature) that implies a compromise.
                 </Paragraph>
               </section>
               <section>
                 <div style={{ float: "right", marginBottom: "6px" }}>
-                  <Button type="link" style={{ paddingLeft: 0 }}>
+                  <Button
+                    type="link"
+                    style={{ paddingLeft: 0, color: "rgb(130, 130, 130)" }}
+                  >
                     Add file indicator
                   </Button>
-                  <Button type="link">Add textual indicator</Button>
+                  <Button type="link" style={{ color: "rgb(130, 130, 130)" }}>
+                    Add textual indicator
+                  </Button>
                   <Divider type="vertical" />
-                  <Button type="link">Bulk import</Button>
+                  <Button type="link" style={{ color: "rgb(130, 130, 130)" }}>
+                    Bulk import
+                  </Button>
                 </div>
                 <div>
                   <IndicatorInputP />
