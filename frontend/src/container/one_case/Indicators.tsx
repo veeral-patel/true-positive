@@ -1,5 +1,13 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Divider, Icon, Layout, Typography } from "antd";
+import {
+  Button,
+  Divider,
+  Dropdown,
+  Icon,
+  Layout,
+  Menu,
+  Typography
+} from "antd";
 import { inject, observer } from "mobx-react";
 import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import React from "react";
@@ -18,6 +26,13 @@ export default inject("activeCaseStore")(
       render() {
         const { activeCaseStore } = this.props;
         const activeCase = activeCaseStore!.activeCase;
+
+        const bulkImportMenu = (
+          <Menu>
+            <Menu.Item>Import from CSV</Menu.Item>
+            <Menu.Item>Extract from text</Menu.Item>
+          </Menu>
+        );
 
         // should always render, since we're catching errors and showing spinner above this component
         if (activeCase)
@@ -50,10 +65,12 @@ export default inject("activeCaseStore")(
                     Add textual indicator
                   </Button>
                   <Divider type="vertical" />
-                  <Button type="link" style={{ color: "rgb(130, 130, 130)" }}>
-                    Bulk import
-                    <Icon type="down" />
-                  </Button>
+                  <Dropdown overlay={bulkImportMenu}>
+                    <Button type="link" style={{ color: "rgb(130, 130, 130)" }}>
+                      Bulk import
+                      <Icon type="down" />
+                    </Button>
+                  </Dropdown>
                 </div>
                 <div>
                   <IndicatorInputP />
