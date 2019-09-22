@@ -62,7 +62,7 @@ export default inject("allCasesStore", "uiStore")(
               <Empty
                 description={
                   <div style={{ marginTop: "1em" }}>
-                    <h2>No cases</h2>
+                    <h2 style={{ fontWeight: "normal" }}>No cases</h2>
                     <p style={{ fontSize: 16 }}>
                       <a onClick={() => uiStore!.openCreateCaseModal()}>
                         Create a case
