@@ -1,11 +1,13 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Divider, Empty, Radio } from "antd";
+import { Button, Divider, Empty, Radio, Typography } from "antd";
 import CasesTable from "container/all_cases/CasesTable";
 import FilterInput from "container/all_cases/FilterInput";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
+
+const { Paragraph } = Typography;
 
 interface IAllCasesPageProps extends RouteComponentProps {
   uiStore?: UIStore;
@@ -63,12 +65,12 @@ export default inject("allCasesStore", "uiStore")(
                 description={
                   <div style={{ marginTop: "1em" }}>
                     <h2 style={{ fontWeight: "normal" }}>No cases</h2>
-                    <p style={{ fontSize: 16 }}>
+                    <Paragraph style={{ fontSize: 16 }}>
                       <a onClick={() => uiStore!.openCreateCaseModal()}>
                         Create a case
                       </a>{" "}
                       to start tracking and collaborating on an investigation.
-                    </p>
+                    </Paragraph>
                   </div>
                 }
               />
