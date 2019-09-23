@@ -9,6 +9,7 @@ import {
   Typography
 } from "antd";
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
+import AddTextualIndicatorModal from "container/one_case/AddTextualIndicatorModal";
 import { inject, observer } from "mobx-react";
 import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import React from "react";
@@ -22,7 +23,7 @@ interface Props extends RouteComponentProps {
 }
 
 interface State {
-  openModal: "ADD_FILE_INDICATOR" | null;
+  openModal: "ADD_FILE_INDICATOR" | "ADD_TEXTUAL_INDICATOR" | null;
 }
 
 export default inject("activeCaseStore")(
@@ -85,7 +86,13 @@ export default inject("activeCaseStore")(
                     >
                       Add file indicator
                     </Button>
-                    <Button type="link" style={{ color: "rgb(130, 130, 130)" }}>
+                    <Button
+                      type="link"
+                      style={{ color: "rgb(130, 130, 130)" }}
+                      onClick={() =>
+                        this.setState({ openModal: "ADD_TEXTUAL_INDICATOR" })
+                      }
+                    >
                       Add textual indicator
                     </Button>
                     <Divider type="vertical" />
@@ -106,6 +113,10 @@ export default inject("activeCaseStore")(
               </Content>
               <AddFileIndicatorModal
                 visible={openModal === "ADD_FILE_INDICATOR"}
+                handleClose={() => this.setState({ openModal: null })}
+              />
+              <AddTextualIndicatorModal
+                visible={openModal === "ADD_TEXTUAL_INDICATOR"}
                 handleClose={() => this.setState({ openModal: null })}
               />
             </div>
