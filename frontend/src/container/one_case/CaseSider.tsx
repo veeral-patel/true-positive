@@ -72,6 +72,7 @@ export default inject("uiStore", "activeCaseStore")(
               uiStore!.toggleCaseSider()
             }
             theme="light"
+            breakpoint="lg"
           >
             {!collapsed && (
               <div style={{ marginBottom: "10px" }}>
