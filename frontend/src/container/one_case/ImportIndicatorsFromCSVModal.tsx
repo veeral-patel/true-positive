@@ -11,9 +11,23 @@ interface Props {
   handleClose: () => void;
 }
 
-class ImportIndicatorsFromCSVModal extends React.Component<Props> {
+interface State {
+  /* the step our wizard is in. 0 = choose file, 1 = add indicators */
+  currentStep: 0 | 1;
+}
+
+class ImportIndicatorsFromCSVModal extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      currentStep: 0
+    };
+  }
+
   render() {
     const { visible, handleClose } = this.props;
+    const { currentStep } = this.state;
+
     return (
       <Modal
         title="Import indicators from a CSV"
@@ -22,7 +36,7 @@ class ImportIndicatorsFromCSVModal extends React.Component<Props> {
         footer={null}
       >
         <div>
-          <Steps size="small">
+          <Steps size="small" current={currentStep}>
             <Step title="Choose file" />
             <Step title="Add indicators" />
           </Steps>
