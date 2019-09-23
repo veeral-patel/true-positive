@@ -17,6 +17,7 @@ class AddFileIndicatorModal extends React.Component<Props> {
         title="Add file indicator(s)"
         visible={visible}
         onCancel={() => handleClose()}
+        okText="Add indicator(s)"
       >
         <Paragraph>
           Examples of file indicators include malware samples, phishing emails,
