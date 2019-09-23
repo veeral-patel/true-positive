@@ -1,8 +1,9 @@
-import { Button, Icon, Modal, Steps, Upload } from "antd";
+import { Alert, Button, Icon, Modal, Steps, Typography, Upload } from "antd";
 import React from "react";
 
 const { Step } = Steps;
 const { Dragger } = Upload;
+const { Paragraph } = Typography;
 
 interface Props {
   /* whether this modal is open. */
@@ -37,6 +38,8 @@ class ImportIndicatorsFromCSVModal extends React.Component<Props, State> {
         footer={null}
       >
         <div>
+          <Alert type="info" showIcon message="If you have multiple columns in your CSV, this tool will extract indicators from all of them." />
+          <br />
           <Steps size="small" current={currentStep}>
             <Step title="Choose file" />
             <Step title="Add indicators" />
