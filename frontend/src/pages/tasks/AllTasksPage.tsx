@@ -16,6 +16,11 @@ interface Props extends RouteComponentProps {
 export default inject("allTasksStore", "uiStore")(
   observer(
     class AllTasksPage extends React.Component<Props> {
+      componentDidMount() {
+        const { allTasksStore } = this.props;
+        allTasksStore!.loadTasks();
+      }
+
       render() {
         const { allTasksStore, uiStore } = this.props;
         return (

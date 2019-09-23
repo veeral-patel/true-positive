@@ -17,6 +17,11 @@ interface IAllCasesPageProps extends RouteComponentProps {
 export default inject("allCasesStore", "uiStore")(
   observer(
     class AllCasesPage extends React.Component<IAllCasesPageProps> {
+      componentDidMount() {
+        const { allCasesStore } = this.props;
+        allCasesStore!.loadCases();
+      }
+
       render() {
         const { uiStore, allCasesStore } = this.props;
         return (
