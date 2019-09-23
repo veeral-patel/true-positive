@@ -12,6 +12,7 @@ class AddTextualIndicatorModal extends React.Component<Props> {
     return (
       <Modal
         title="Add a textual indicator"
+        okText="Add indicator"
         visible={visible}
         onCancel={() => handleClose()}
       >
