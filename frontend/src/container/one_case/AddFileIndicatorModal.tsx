@@ -3,12 +3,19 @@ import React from "react";
 
 interface Props {
   visible: boolean;
+  handleClose: () => void;
 }
 
 class AddFileIndicatorModal extends React.Component<Props> {
   render() {
-    const { visible } = this.props;
-    return <Modal title="Add a file indicator" visible={visible}></Modal>;
+    const { visible, handleClose } = this.props;
+    return (
+      <Modal
+        title="Add a file indicator"
+        visible={visible}
+        onCancel={() => handleClose()}
+      ></Modal>
+    );
   }
 }
 

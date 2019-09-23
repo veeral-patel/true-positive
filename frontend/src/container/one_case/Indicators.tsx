@@ -106,6 +106,7 @@ export default inject("activeCaseStore")(
               </Content>
               <AddFileIndicatorModal
                 visible={openModal === "ADD_FILE_INDICATOR"}
+                handleClose={() => this.setState({ openModal: null })}
               />
             </div>
           );
