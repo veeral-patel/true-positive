@@ -26,7 +26,7 @@ export default inject("allCasesStore", "uiStore")(
         const { uiStore, allCasesStore } = this.props;
         return (
           <div>
-            <div>
+            <section>
               <span style={{ display: "inline-block" }}>
                 <h2>Cases</h2>
               </span>
@@ -38,7 +38,7 @@ export default inject("allCasesStore", "uiStore")(
                   Create Case
                 </Button>
               </span>
-            </div>
+            </section>
             {allCasesStore!.cases.length > 0 ? (
               <section>
                 <div>
