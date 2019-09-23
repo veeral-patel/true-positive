@@ -38,23 +38,29 @@ class ImportIndicatorsFromCSVModal extends React.Component<Props, State> {
         footer={null}
       >
         <div>
-          <Alert type="info" showIcon message="If you have multiple columns in your CSV, this tool will extract indicators from all of them." />
-          <br />
           <Steps size="small" current={currentStep}>
             <Step title="Choose file" />
             <Step title="Add indicators" />
           </Steps>
           <div className="steps-content" style={{ marginTop: "1.5em" }}>
             {currentStep === 0 ? (
-              <Dragger>
-                <p className="ant-upload-drag-icon">
-                  <Icon type="upload" />
-                </p>
-                <p className="ant-upload-text">
-                  Drag a CSV into this area to upload
-                </p>
-                <p className="ant-upload-hint">Or click to select the file</p>
-              </Dragger>
+              <div>
+                <Alert
+                  type="info"
+                  showIcon
+                  message="If you have multiple columns in your CSV, this tool will extract indicators from all of them."
+                />
+                <br />
+                <Dragger>
+                  <p className="ant-upload-drag-icon">
+                    <Icon type="upload" />
+                  </p>
+                  <p className="ant-upload-text">
+                    Drag a CSV into this area to upload
+                  </p>
+                  <p className="ant-upload-hint">Or click to select the file</p>
+                </Dragger>
+              </div>
             ) : null}
           </div>
           <div className="steps-action" style={{ marginTop: "1em" }}>
