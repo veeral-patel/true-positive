@@ -1,7 +1,8 @@
-import { Icon, Modal, Upload } from "antd";
+import { Icon, Modal, Typography, Upload } from "antd";
 import React from "react";
 
 const { Dragger } = Upload;
+const { Paragraph } = Typography;
 
 interface Props {
   visible: boolean;
@@ -13,19 +14,25 @@ class AddFileIndicatorModal extends React.Component<Props> {
     const { visible, handleClose } = this.props;
     return (
       <Modal
-        title="Add a file indicator"
+        title="Add file indicator(s)"
         visible={visible}
         onCancel={() => handleClose()}
       >
-        <Dragger>
-          <p className="ant-upload-drag-icon">
-            <Icon type="inbox" />
-          </p>
-          <p className="ant-upload-text">
-            Drag/drop file(s) into this area to upload them
-          </p>
-          <p className="ant-upload-hint">Or click to select file(s)</p>
-        </Dragger>
+        <Paragraph>
+          Examples of file indicators include malware samples, phishing emails,
+          and OpenIOC rules.
+        </Paragraph>
+        <div>
+          <Dragger>
+            <p className="ant-upload-drag-icon">
+              <Icon type="upload" />
+            </p>
+            <p className="ant-upload-text">
+              Drag file(s) into this area to upload them
+            </p>
+            <p className="ant-upload-hint">Or click to select file(s)</p>
+          </Dragger>
+        </div>
       </Modal>
     );
   }
