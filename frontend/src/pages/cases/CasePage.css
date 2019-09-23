@@ -1,3 +1,11 @@
-.activityPaneContainer {
-  flex: 2;
+@media screen and (min-width: 1200px) {
+  .activityPaneContainer {
+    flex: 2;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .activityPaneContainer {
+    display: none;
+  }
 }
