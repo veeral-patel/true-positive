@@ -1,5 +1,7 @@
-import { Modal } from "antd";
+import { Modal, Steps } from "antd";
 import React from "react";
+
+const { Step } = Steps;
 
 interface Props {
   /* whether this modal is open. */
@@ -18,7 +20,12 @@ class ImportIndicatorsFromCSVModal extends React.Component<Props> {
         visible={visible}
         onCancel={() => handleClose()}
         footer={null}
-      ></Modal>
+      >
+        <Steps size="small">
+          <Step title="Choose file" />
+          <Step title="Add indicators" />
+        </Steps>
+      </Modal>
     );
   }
 }
