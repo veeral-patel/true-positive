@@ -28,7 +28,7 @@ export default inject("allTasksStore", "uiStore")(
             <section>
               <h2>Tasks</h2>
             </section>
-            {allTasksStore!.tasks.length > 0 ? (
+            {allTasksStore!.tasks.length > 0 && (
               <div>
                 <section>
                   <Paragraph>
@@ -63,25 +63,27 @@ export default inject("allTasksStore", "uiStore")(
                   <AllTasksTable />
                 </section>
               </div>
-            ) : (
-              <Empty
-                description={
-                  <div style={{ marginTop: "1em" }}>
-                    <h2 style={{ fontWeight: "normal" }}>No tasks</h2>
-                    <Paragraph style={{ fontSize: 16 }}>
-                      A task is a piece of work to be completed in a case.
-                    </Paragraph>
-                    <Paragraph style={{ fontSize: 16 }}>
-                      Before creating a task, you must first{" "}
-                      <a onClick={() => uiStore!.openCreateCaseModal()}>
-                        create a case
-                      </a>
-                      .
-                    </Paragraph>
-                  </div>
-                }
-              />
             )}
+            {allTasksStore!.tasks.length === 0 &&
+              !allTasksStore!.tasksAreLoading && (
+                <Empty
+                  description={
+                    <div style={{ marginTop: "1em" }}>
+                      <h2 style={{ fontWeight: "normal" }}>No tasks</h2>
+                      <Paragraph style={{ fontSize: 16 }}>
+                        A task is a piece of work to be completed in a case.
+                      </Paragraph>
+                      <Paragraph style={{ fontSize: 16 }}>
+                        Before creating a task, you must first{" "}
+                        <a onClick={() => uiStore!.openCreateCaseModal()}>
+                          create a case
+                        </a>
+                        .
+                      </Paragraph>
+                    </div>
+                  }
+                />
+              )}
           </div>
         );
       }
