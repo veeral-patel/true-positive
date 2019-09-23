@@ -39,7 +39,23 @@ export default inject("allCasesStore", "uiStore")(
                 </Button>
               </span>
             </section>
-            {allCasesStore!.cases.length > 0 ? (
+            {allCasesStore!.cases.length === 0 &&
+              !allCasesStore!.casesAreLoading && (
+                <Empty
+                  description={
+                    <div style={{ marginTop: "1em" }}>
+                      <h2 style={{ fontWeight: "normal" }}>No cases</h2>
+                      <Paragraph style={{ fontSize: 16 }}>
+                        <a onClick={() => uiStore!.openCreateCaseModal()}>
+                          Create a case
+                        </a>{" "}
+                        to start tracking and collaborating on an investigation.
+                      </Paragraph>
+                    </div>
+                  }
+                />
+              )}
+            {allCasesStore!.cases.length > 0 && (
               <section>
                 <div>
                   <span
@@ -65,20 +81,6 @@ export default inject("allCasesStore", "uiStore")(
                   <CasesTable />
                 </div>
               </section>
-            ) : (
-              <Empty
-                description={
-                  <div style={{ marginTop: "1em" }}>
-                    <h2 style={{ fontWeight: "normal" }}>No cases</h2>
-                    <Paragraph style={{ fontSize: 16 }}>
-                      <a onClick={() => uiStore!.openCreateCaseModal()}>
-                        Create a case
-                      </a>{" "}
-                      to start tracking and collaborating on an investigation.
-                    </Paragraph>
-                  </div>
-                }
-              />
             )}
           </div>
         );
