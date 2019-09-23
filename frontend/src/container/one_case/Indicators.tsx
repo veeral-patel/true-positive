@@ -10,6 +10,7 @@ import {
 } from "antd";
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
 import AddTextualIndicatorModal from "container/one_case/AddTextualIndicatorModal";
+import ImportIndicatorsFromCSVModal from "container/one_case/ImportIndicatorsFromCSVModal";
 import { inject, observer } from "mobx-react";
 import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import React from "react";
@@ -23,7 +24,11 @@ interface Props extends RouteComponentProps {
 }
 
 interface State {
-  openModal: "ADD_FILE_INDICATOR" | "ADD_TEXTUAL_INDICATOR" | null;
+  openModal:
+    | "ADD_FILE_INDICATOR"
+    | "ADD_TEXTUAL_INDICATOR"
+    | "IMPORT_FROM_CSV"
+    | null;
 }
 
 export default inject("activeCaseStore")(
@@ -44,7 +49,9 @@ export default inject("activeCaseStore")(
 
         const bulkImportMenu = (
           <Menu>
-            <Menu.Item>
+            <Menu.Item
+              onClick={() => this.setState({ openModal: "IMPORT_FROM_CSV" })}
+            >
               <Icon type="file-excel" />
               Import from CSV
             </Menu.Item>
@@ -117,6 +124,10 @@ export default inject("activeCaseStore")(
               />
               <AddTextualIndicatorModal
                 visible={openModal === "ADD_TEXTUAL_INDICATOR"}
+                handleClose={() => this.setState({ openModal: null })}
+              />
+              <ImportIndicatorsFromCSVModal
+                visible={openModal === "IMPORT_FROM_CSV"}
                 handleClose={() => this.setState({ openModal: null })}
               />
             </div>
