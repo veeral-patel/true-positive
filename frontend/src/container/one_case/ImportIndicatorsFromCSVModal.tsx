@@ -34,7 +34,10 @@ class ImportIndicatorsFromCSVModal extends React.Component<Props, State> {
       <Modal
         title="Import indicators from a CSV"
         visible={visible}
-        onCancel={() => handleClose()}
+        onCancel={() => {
+          this.setState({ currentStep: 0 });
+          handleClose();
+        }}
         footer={null}
       >
         <div>
