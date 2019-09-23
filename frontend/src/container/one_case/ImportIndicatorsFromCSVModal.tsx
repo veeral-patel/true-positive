@@ -57,14 +57,17 @@ class ImportIndicatorsFromCSVModal extends React.Component<Props, State> {
           <div className="steps-action" style={{ marginTop: "1em" }}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <Button style={{ marginRight: "0.5em" }}>Cancel</Button>
-              {currentStep === 0 ? (
+              {currentStep === 0 && (
                 <Button
                   type="primary"
                   onClick={() => this.setState({ currentStep: 1 })}
                 >
                   Next
                 </Button>
-              ) : null}
+              )}
+              {currentStep === 1 && (
+                <Button type="primary">Add indicators</Button>
+              )}
             </div>
           </div>
         </div>
