@@ -17,7 +17,7 @@ class AddTextualIndicatorModal extends React.Component<Props> {
         onCancel={() => handleClose()}
       >
         Examples of textual indicators include Snort rules, Yara signatures, and
-        code snippets from malware.
+        malware code snippets.
       </Modal>
     );
   }
