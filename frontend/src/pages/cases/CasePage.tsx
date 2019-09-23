@@ -11,6 +11,7 @@ import Tree from "container/one_case/Tree";
 import OneTask from "container/one_task/OneTask";
 import OneTaskBreadcrumb from "container/one_task/OneTaskBreadcrumb";
 import { inject, observer } from "mobx-react";
+import "pages/cases/CasePage.css";
 import ActivityPaneP from "presentational/one_case/ActivityPaneP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import Page404 from "presentational/shared/errors/Error404P";
@@ -110,7 +111,7 @@ export default inject("activeCaseStore")(
                       <Page404 default showBackButton={false} />
                     </Router>
                   </div>
-                  <div style={{ flex: 2 }}>
+                  <div className="activityPaneContainer">
                     <ActivityPaneP />
                   </div>
                 </div>
