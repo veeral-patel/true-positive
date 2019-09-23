@@ -65,7 +65,6 @@ export default inject("uiStore", "activeCaseStore")(
 
         return (
           <Sider
-            width={200}
             style={{ background: "#fff" }}
             collapsible
             collapsed={collapsed}
