@@ -160,7 +160,7 @@ export default inject("activeCaseStore")(
                 </Row>
               </section>
 
-              <section>
+              <section style={{ maxWidth: "800px" }}>
                 <Divider orientation="left">Description</Divider>
                 <DescriptionForm
                   initialDescription={activeTask.description}
