@@ -50,7 +50,9 @@ export default inject("authStore")(
                 <MergeCasesModal />
                 <MergeOneCaseModal />
               </div>
-            ) : <h3>Not logged in</h3>}
+            ) : (
+              <h3>Not logged in</h3>
+            )}
           </div>
         );
       }
