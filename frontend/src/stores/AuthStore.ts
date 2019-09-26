@@ -1,4 +1,4 @@
-import decode from "jwt-decode";
+import jwt from "jsonwebtoken";
 
 class AuthStore {
   loggedIn() {
@@ -7,14 +7,13 @@ class AuthStore {
   }
 
   isTokenExpired(token: string) {
-    try {
-      const date = new Date(0);
-      const decoded: any = decode(token);
-      date.setUTCSeconds(decoded.exp);
-      return date.valueOf() > new Date().valueOf();
-    } catch (err) {
-      return false;
+    const decoded = jwt.decode(token);
+    if (decoded) {
+      const expiry = (decoded as any).exp;
+      const now = new Date();
+      return now.getTime() > expiry * 1000;
     }
+    return false;
   }
 
   getToken() {

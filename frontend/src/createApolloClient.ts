@@ -2,6 +2,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient, { DefaultOptions } from "apollo-client";
 import { setContext } from "apollo-link-context";
 import { HttpLink } from "apollo-link-http";
+import store from "stores";
 
 const cache = new InMemoryCache();
 
@@ -16,7 +17,7 @@ const httpLink = new HttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("token");
+  const token = store.authStore.getToken();
   return {
     headers: {
       ...headers,
