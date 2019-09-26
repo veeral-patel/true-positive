@@ -5,6 +5,8 @@ export const paths = {
   TASKS_PATH: "/tasks"
 };
 
+export const JWT_TOKEN_KEY = "JWT_TOKEN";
+
 export const ADD_TAGS = "ADD_TAGS";
 export const REMOVE_TAGS = "REMOVE_TAGS";
 export const CHANGE_STATUS = "CHANGE_STATUS";
