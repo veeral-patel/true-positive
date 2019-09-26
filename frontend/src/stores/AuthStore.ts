@@ -1,3 +1,4 @@
+import client from "createApolloClient";
 import jwt from "jsonwebtoken";
 
 class AuthStore {
@@ -22,6 +23,17 @@ class AuthStore {
 
   getToken() {
     return localStorage.getItem("JWT_TOKEN");
+  }
+
+  logout() {
+    // delete our token
+    localStorage.removeItem("JWT_TOKEN");
+
+    // clear our local cache
+    client.resetStore();
+
+    // refresh the page
+    window.location.reload();
   }
 }
 

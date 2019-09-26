@@ -3,18 +3,20 @@ import { Icon, Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { inject, observer } from "mobx-react";
 import React from "react";
+import AuthStore from "stores/AuthStore";
 import UIStore from "stores/UIStore";
 import { paths } from "utils/constants";
 
 interface TopMenuProps {
   uiStore?: UIStore;
+  authStore?: AuthStore;
 }
 
-export default inject("uiStore")(
+export default inject("uiStore", "authStore")(
   observer(
     class TopMenu extends React.Component<TopMenuProps> {
       render() {
-        const { uiStore } = this.props;
+        const { uiStore, authStore } = this.props;
         return (
           <Menu theme="dark" mode="horizontal" selectedKeys={[]}>
             <Menu.Item
@@ -34,6 +36,12 @@ export default inject("uiStore")(
               style={{ float: "left" }}
             >
               Admin
+            </Menu.Item>
+            <Menu.Item
+              style={{ float: "right" }}
+              onClick={() => authStore!.logout()}
+            >
+              Log Out
             </Menu.Item>
             <SubMenu
               title={
