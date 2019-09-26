@@ -7,13 +7,17 @@ class AuthStore {
   }
 
   isTokenExpired(token: string) {
-    const decoded = jwt.decode(token);
-    if (decoded) {
-      const expiry = (decoded as any).exp;
-      const now = new Date();
-      return now.getTime() > expiry * 1000;
+    try {
+      const decoded = jwt.decode(token);
+      if (decoded) {
+        const expiry = (decoded as any).exp;
+        const now = new Date();
+        return now.getTime() > expiry * 1000;
+      }
+      return false;
+    } catch (err) {
+      return true;
     }
-    return false;
   }
 
   getToken() {
