@@ -27,6 +27,7 @@ ReactDOM.render(
     userStore={store.userStore}
     tagStore={store.tagStore}
     allTasksStore={store.allTasksStore}
+    authStore={store.authStore}
   >
     <StoreContext.Provider value={rootStore}>
       <App />

@@ -1,12 +1,13 @@
 import { configure } from "mobx";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import AllCasesStore from "stores/AllCasesStore";
+import AllTasksStore from "stores/AllTasksStore";
+import AuthStore from "stores/AuthStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
+import TagStore from "stores/TagStore";
 import UIStore from "stores/UIStore";
 import UserStore from "stores/UserStore";
-import AllTasksStore from "./AllTasksStore";
-import TagStore from "./TagStore";
 
 const allCasesStore = new AllCasesStore();
 const uiStore = new UIStore();
@@ -16,6 +17,7 @@ const activeCaseStore = new ActiveCaseStore();
 const userStore = new UserStore();
 const tagStore = new TagStore();
 const allTasksStore = new AllTasksStore();
+const authStore = new AuthStore();
 
 // only let me mutate state within actions
 configure({
@@ -30,5 +32,6 @@ export default {
   activeCaseStore,
   userStore,
   tagStore,
-  allTasksStore
+  allTasksStore,
+  authStore
 };
