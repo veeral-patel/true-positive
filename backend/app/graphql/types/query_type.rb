@@ -91,6 +91,13 @@ module Types
         find_user_or_throw_execution_error(user_id: id)
       end
 
+      field :me, Types::UserType, null: true do
+      end
+
+      def me
+        context[:current_user]
+      end
+
       # --------------- Tags -----------------------
       field :tags, [Types::TagType], null: false do
         description "List all existing tags."
