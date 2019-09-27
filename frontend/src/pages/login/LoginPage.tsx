@@ -41,6 +41,7 @@ class NormalLoginForm extends React.Component<Props> {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            style={{ float: "right" }}
           >
             Log in
           </Button>
@@ -57,8 +58,15 @@ const WrappedNormalLoginForm = Form.create({ name: "normal_login" })(
 class LoginPage extends React.Component {
   render() {
     return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <WrappedNormalLoginForm />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center"
+        }}
+      >
+        <div style={{ width: "33%", marginTop: "10%" }}>
+          <WrappedNormalLoginForm />
+        </div>
       </div>
     );
   }
