@@ -11,4 +11,13 @@ class User < ApplicationRecord
     def to_s
         self.username
     end
+
+    # Lists the cases this user is a member of
+    def joined_cases
+        # get the CaseMember records involving this user
+        members = CaseMember.select { |member| member.user === self }
+
+        # and return the case for each CaseMember record
+        return members.map{ |member| member.case }
+    end
 end
