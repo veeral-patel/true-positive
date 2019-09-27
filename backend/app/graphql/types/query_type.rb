@@ -55,7 +55,7 @@ module Types
       end
 
       def cases
-        Case.all
+        CasePolicy::Scope.new(context[:current_user]).resolve
       end
 
       field :case, Types::CaseType, null: false do
