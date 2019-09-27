@@ -13,6 +13,7 @@ import { inject, observer } from "mobx-react";
 import AdminPage from "pages/admin/AdminPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
+import LoginPage from "pages/login/LoginPage";
 import AllTasksPage from "pages/tasks/AllTasksPage";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
@@ -51,7 +52,7 @@ export default inject("authStore")(
                 <MergeOneCaseModal />
               </div>
             ) : (
-              <h3>Not logged in</h3>
+              <LoginPage />
             )}
           </div>
         );
