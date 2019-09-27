@@ -7,12 +7,12 @@ class Mutations::CreateCase < Mutations::BaseMutation
         description "The name of the new case."
     end
 
-    argument :status_id, ID, required: true do
-        description "The ID of this case's status."
+    argument :status, String, required: true do
+        description "The new case's status's name."
     end
 
-    argument :priority_id, ID, required: true do
-        description "The ID of this case's priority."
+    argument :priority, String, required: true do
+        description "The new case's priority's name."
     end
 
     argument :description, String, required: false do
@@ -31,16 +31,16 @@ class Mutations::CreateCase < Mutations::BaseMutation
         description "The newly created case."
     end
 
-    def resolve(name:, status_id:, priority_id:, description: nil, assigned_to_id: nil, tags: nil)
-        status = find_status_or_throw_execution_error(status_id: status_id)
-        priority = find_priority_or_throw_execution_error(priority_id: priority_id)
+    def resolve(name:, status:, priority:, description: nil, assigned_to_id: nil, tags: nil)
+        status_record = find_status_or_throw_execution_error(status_name: status)
+        priority_record = find_priority_or_throw_execution_error(priority_name: priority)
         assigned_to = assigned_to_id.nil? ? nil : find_user_or_throw_execution_error(user_id: assigned_to_id)
 
         new_case = Case.new(
             name: name,
             created_by: context[:current_user],
-            status: status,
-            priority: priority,
+            status: status_record,
+            priority: priority_record,
             description: description,
             assigned_to: assigned_to,
             tag_list: tags
