@@ -1,6 +1,4 @@
 class GraphqlController < ApplicationController
-  include RailsJwtAuth::AuthenticableHelper
-
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
