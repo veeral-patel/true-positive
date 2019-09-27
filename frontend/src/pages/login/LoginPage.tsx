@@ -29,7 +29,7 @@ class NormalLoginForm extends React.Component<Props> {
         </Form.Item>
         <Form.Item>
           {getFieldDecorator("password", {
-            rules: [{ required: true, message: "Please enter your password!" }]
+            rules: [{ required: true, message: "Please enter your password" }]
           })(
             <Input
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
