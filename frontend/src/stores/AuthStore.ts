@@ -5,6 +5,15 @@ import jwt from "jsonwebtoken";
 import { action } from "mobx";
 import { JWT_TOKEN_KEY } from "utils/constants";
 
+interface Response {
+  session: SessionData;
+}
+
+interface SessionData {
+  username: string;
+  jwt: string;
+}
+
 class AuthStore {
   loggedIn() {
     const token = this.getToken();
@@ -14,13 +23,19 @@ class AuthStore {
   @action.bound
   login(username: string, password: string) {
     axios
-      .post(`${process.env.REACT_APP_API_ENDPOINT}/session/`, {
+      .post<Response>(`${process.env.REACT_APP_API_ENDPOINT}/session/`, {
         session: {
           username,
           password
         }
       })
-      .then(response => console.log(response))
+      .then(response => {
+        // set the JWT we receive in localstorage
+        this.setToken(response.data.session.jwt);
+
+        // refresh the page
+        window.location.reload();
+      })
       .catch(err => {
         notification.error({
           message: "Could not log in",
@@ -41,6 +56,10 @@ class AuthStore {
     } catch (err) {
       return true;
     }
+  }
+
+  setToken(jwt: string) {
+    localStorage.setItem(JWT_TOKEN_KEY, jwt);
   }
 
   getToken() {
