@@ -1,7 +1,6 @@
 import { Empty, Select, Spin } from "antd";
 import { observer } from "mobx-react";
 import { useQuery } from "models";
-import TagSelectP from "presentational/shared/tags/TagSelectP";
 import React from "react";
 import ITag from "ts/interfaces/ITag";
 
@@ -26,7 +25,14 @@ const TagSelect: React.FC<TagSelectProps> = observer(({ existingTags }) => {
 
   // generate one option for each existing tag
   return (
-    <TagSelectP existingTags={existingTags} allTagOptions={allTagOptions} />
+    <Select
+    mode="tags"
+    placeholder="Select tags"
+    defaultValue={existingTags.map(tag => tag.name)}
+    style={{ minWidth: "200px" }}
+  >
+    {allTagOptions}
+  </Select>
   );
 });
 
