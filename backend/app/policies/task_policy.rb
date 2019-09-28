@@ -9,7 +9,7 @@ class TaskPolicy
         def resolve
             if @user.admin?
                 # an admin can see all the tasks
-                Tasks.all
+                Task.all
             else
                 # an user can only see the tasks in cases he's a member of
                 Task.where(case: @user.joined_cases)
