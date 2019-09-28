@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import { Table } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
 import { inject, observer } from "mobx-react";
@@ -17,6 +18,7 @@ import {
   statusMatches
 } from "utils/filterCases";
 import formatISO8601 from "utils/formatISO8601";
+import { getPathToACase } from "utils/pathHelpers";
 
 const { Column } = Table;
 
@@ -180,6 +182,23 @@ export default inject("userStore", "statusStore", "priorityStore")(
                   a.createdAt.localeCompare(b.createdAt)
                 }
                 render={(text, task, index) => formatISO8601(task.createdAt)}
+              />
+            )}
+            {includeExtraColumns && (
+              <Column
+                title="Case"
+                dataIndex="case"
+                key="case"
+                render={(text, task: ITask, index) => (
+                  <a
+                    onClick={e => {
+                      e.stopPropagation();
+                      navigate(getPathToACase(task.case.id));
+                    }}
+                  >
+                    {task.case.name}
+                  </a>
+                )}
               />
             )}
           </Table>
