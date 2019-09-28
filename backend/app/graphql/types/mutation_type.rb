@@ -22,6 +22,7 @@ module Types
       field :change_description, mutation: Mutations::ChangeDescription
 
       # comment --------
+      field :create_comment, mutation: Mutations::CreateComment
       field :delete_comment, mutation: Mutations::DeleteComment
 
       # status ----------
