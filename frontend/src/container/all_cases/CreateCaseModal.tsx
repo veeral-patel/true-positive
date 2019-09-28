@@ -71,13 +71,6 @@ export default inject("uiStore", "statusStore", "priorityStore")(
                   />
                 </AutoComplete>
               </Form.Item>
-              <Form.Item label="Tags">
-                <Select
-                  mode="tags"
-                  placeholder="Enter tags"
-                  tokenSeparators={[","]}
-                />
-              </Form.Item>
             </Form>
           </Modal>
         );
