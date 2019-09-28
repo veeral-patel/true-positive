@@ -11,6 +11,7 @@ interface Props {
   authStore?: AuthStore;
 }
 
+// NEVER use this component on its own. use the WrappedLoginForm component below
 class LoginForm extends React.Component<Props> {
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // prevent page reload
