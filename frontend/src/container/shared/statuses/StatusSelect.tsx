@@ -1,38 +1,46 @@
-import { Empty, Select, Spin } from "antd";
-import { observer } from "mobx-react";
-import { useQuery } from "models";
+import { Select, Spin } from "antd";
+import { inject, observer } from "mobx-react";
 import React from "react";
+import StatusStore from "stores/StatusStore";
 
 const { Option } = Select;
 
-interface IStatusSelectProps {
+interface Props {
   handleSelect: (statusId: any) => void;
+  statusStore?: StatusStore;
 }
 
-const StatusSelect: React.FC<IStatusSelectProps> = observer(props => {
-  // fetch the list of statuses
-  const { data, loading, error } = useQuery(store => store.queryStatuses());
+export default inject("statusStore")(
+  observer(
+    class StatusSelect extends React.Component<Props> {
+      componentDidMount() {
+        const { statusStore } = this.props;
+        statusStore!.loadStatuses();
+      }
 
-  // handle loading and error statuses
-  if (loading) return <Spin />;
-  if (error || !data) return <Empty />;
+      render() {
+        const { handleSelect, statusStore } = this.props;
 
-  // generate a list of options
-  const options = data.statuses.map(status => (
-    <Option key={status.id}>{status.name}</Option>
-  ));
+        // handle loading and error statuses
+        if (statusStore!.statusesAreLoading) return <Spin />;
 
-  // render our component
-  return (
-    <Select
-      showSearch
-      placeholder="Choose a status"
-      style={{ minWidth: "200px" }}
-      onSelect={statusId => props.handleSelect(statusId)}
-    >
-      {options}
-    </Select>
-  );
-});
+        // generate a list of options
+        const options = statusStore!.statuses.map(status => (
+          <Option key={status.id}>{status.name}</Option>
+        ));
 
-export default StatusSelect;
+        // render our component
+        return (
+          <Select
+            showSearch
+            placeholder="Choose a status"
+            style={{ minWidth: "200px" }}
+            onSelect={statusId => handleSelect(statusId)}
+          >
+            {options}
+          </Select>
+        );
+      }
+    }
+  )
+);
