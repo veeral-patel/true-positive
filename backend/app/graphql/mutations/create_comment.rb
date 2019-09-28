@@ -1,29 +1,31 @@
 class Mutations::CreateComment < Mutations::BaseMutation
     description "Add a comment to a case, task, or indicator."
 
-    # TO DO: create HasCommentsEnum
     argument :type, Types::HasCommentsEnum, required: true do
-        description: "The type of object you're commenting on."
+        description "The type of object you're commenting on."
     end
 
-    argument :object_id, ID, required: true
+    argument :object_id, ID, required: true do
         description "The ID of the case, task, or indicator."
-    do
+    end
 
     argument :comment, String, required: true do
         description "The text of the comment."
     end
 
-    def resolve(type:, object_id:, comment:) do
+    field :comment, Types::CommentType, null: false do
+        description "The newly created comment."
+    end
 
-        # commenting on a case
-        if type === "CASE"
+    def resolve(type:, object_id:, comment:)
+        if type === "CASE" # commenting on a case
             commentable = find_case_or_throw_execution_error(case_id: object_id)
-        # TO DO: support commenting on a task and on an indicator
         end
 
+        # TO DO: support commenting on a task and on an indicator
+
         new_comment = Comment.new(
-            commentable: commenting_on
+            commentable: commentable,
             comment: comment,
         )
 
