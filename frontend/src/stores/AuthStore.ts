@@ -1,4 +1,5 @@
 import { FetchResult } from "apollo-boost";
+import axios from "axios";
 import client from "createApolloClient";
 import jwt from "jsonwebtoken";
 import { action, observable, runInAction } from "mobx";
@@ -12,6 +13,19 @@ class AuthStore {
   loggedIn() {
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
+  }
+
+  @action.bound
+  login(username: string, password: string) {
+    axios
+      .post(`${process.env.REACT_APP_API_ENDPOINT}/session/`, {
+        session: {
+          username,
+          password
+        }
+      })
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
   }
 
   @action.bound

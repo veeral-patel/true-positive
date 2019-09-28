@@ -1,17 +1,29 @@
 import { Button, Form, Icon, Input } from "antd";
 import { WrappedFormUtils } from "antd/lib/form/Form";
+import { inject, observer } from "mobx-react";
 import React from "react";
+import AuthStore from "stores/AuthStore";
 
 // ----
 
 interface Props {
   form: WrappedFormUtils;
+  authStore?: AuthStore;
 }
 
 class LoginForm extends React.Component<Props> {
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // prevent page reload
     e.preventDefault();
-    this.props.form.validateFields();
+
+    // validate our fields and raise errors if needed
+    const { authStore, form } = this.props;
+    form.validateFields();
+
+    // make API request to fetch our JWT
+    const username = form.getFieldValue("username");
+    const password = form.getFieldValue("password");
+    authStore!.login(username, password);
   };
 
   render() {
@@ -50,7 +62,10 @@ class LoginForm extends React.Component<Props> {
   }
 }
 
-const WrappedLoginForm = Form.create()(LoginForm);
+// provide our form with validation abilities and access to the authentication store
+const WrappedLoginForm = Form.create()(
+  inject("authStore")(observer(LoginForm))
+);
 
 // -----
 
