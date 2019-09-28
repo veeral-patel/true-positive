@@ -21,7 +21,6 @@ export default inject("statusStore")(
       render() {
         const { handleSelect, statusStore } = this.props;
 
-        // handle loading and error statuses
         if (statusStore!.statusesAreLoading) return <Spin />;
 
         // generate a list of options

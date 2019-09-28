@@ -1,38 +1,45 @@
-import { Empty, Select, Spin } from "antd";
-import { observer } from "mobx-react";
-import { useQuery } from "models";
+import { Select, Spin } from "antd";
+import { inject, observer } from "mobx-react";
 import React from "react";
+import PriorityStore from "stores/PriorityStore";
 
 const { Option } = Select;
 
-interface PrioritySelectProps {
+interface Props {
   handleSelect: (priorityId: any) => void;
+  priorityStore?: PriorityStore;
 }
 
-const PrioritySelect: React.FC<PrioritySelectProps> = observer(props => {
-  // fetch the list of priorities
-  const { data, loading, error } = useQuery(store => store.queryPriorities());
+export default inject("priorityStore")(
+  observer(
+    class PrioritySelect extends React.Component<Props> {
+      componentDidMount() {
+        const { priorityStore } = this.props;
+        priorityStore!.loadPriorities();
+      }
 
-  // handle loading and error statuses
-  if (loading) return <Spin />;
-  if (error || !data) return <Empty />;
+      render() {
+        const { handleSelect, priorityStore } = this.props;
 
-  // generate a list of options
-  const options = data.priorities.map(priority => (
-    <Option key={priority.id}>{priority.name}</Option>
-  ));
+        if (priorityStore!.prioritiesAreLoading) return <Spin />;
 
-  // render our component
-  return (
-    <Select
-      showSearch
-      placeholder="Choose a priority"
-      style={{ minWidth: "200px" }}
-      onSelect={priorityId => props.handleSelect(priorityId)}
-    >
-      {options}
-    </Select>
-  );
-});
+        // generate a list of options
+        const options = priorityStore!.priorities.map(priority => (
+          <Option key={priority.id}>{priority.name}</Option>
+        ));
 
-export default PrioritySelect;
+        // render our component
+        return (
+          <Select
+            showSearch
+            placeholder="Choose a priority"
+            style={{ minWidth: "200px" }}
+            onSelect={priorityId => handleSelect(priorityId)}
+          >
+            {options}
+          </Select>
+        );
+      }
+    }
+  )
+);
