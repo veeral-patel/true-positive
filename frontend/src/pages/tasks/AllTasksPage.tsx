@@ -32,8 +32,7 @@ export default inject("allTasksStore", "uiStore")(
               <div>
                 <section>
                   <Paragraph>
-                    These are all the tasks from the cases that you're a member
-                    of.
+                    These are the tasks from the cases that you're a member of.
                   </Paragraph>
                 </section>
                 <section>
