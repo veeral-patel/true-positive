@@ -1,39 +1,47 @@
-import { Empty, Select, Spin } from "antd";
-import { observer } from "mobx-react";
-import { useQuery } from "models";
+import { Select, Spin } from "antd";
+import { inject, observer } from "mobx-react";
 import React from "react";
+import TagStore from "stores/TagStore";
 import ITag from "ts/interfaces/ITag";
 
 const { Option } = Select;
 
-interface TagSelectProps {
-  existingTags: ITag[]; // to pre-populate our tag select
+interface Props {
+  // to pre-populate our tag select
+  existingTags: ITag[];
+  tagStore?: TagStore;
 }
 
-const TagSelect: React.FC<TagSelectProps> = observer(({ existingTags }) => {
-  // fetch the list of tags
-  const { data, loading, error } = useQuery(store => store.queryTags());
+export default inject("tagStore")(
+  observer(
+    class TagSelect extends React.Component<Props> {
+      componentDidMount() {
+        const { tagStore } = this.props;
+        tagStore!.loadTags();
+      }
 
-  // handle loading and error statuses
-  if (loading) return <Spin />;
-  if (error || !data) return <Empty />;
+      render() {
+        const { existingTags, tagStore } = this.props;
 
-  // generate options from our list of all tags
-  const allTagOptions = data.tags.map(tag => (
-    <Option key={tag.id}>{tag.name}</Option>
-  ));
+        if (tagStore!.tagsAreLoading) return <Spin />;
 
-  // generate one option for each existing tag
-  return (
-    <Select
-    mode="tags"
-    placeholder="Select tags"
-    defaultValue={existingTags.map(tag => tag.name)}
-    style={{ minWidth: "200px" }}
-  >
-    {allTagOptions}
-  </Select>
-  );
-});
+        // generate options from our list of all tags
+        const allTagOptions = tagStore!.tags.map(tag => (
+          <Option key={tag.id}>{tag.name}</Option>
+        ));
 
-export default TagSelect;
+        // generate one option for each existing tag
+        return (
+          <Select
+            mode="tags"
+            placeholder="Select tags"
+            defaultValue={existingTags.map(tag => tag.name)}
+            style={{ minWidth: "200px" }}
+          >
+            {allTagOptions}
+          </Select>
+        );
+      }
+    }
+  )
+);
