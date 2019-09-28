@@ -1,38 +1,43 @@
-import { Empty, Select, Spin } from "antd";
-import { observer } from "mobx-react";
-import { useQuery } from "models";
+import { Select } from "antd";
+import { inject, observer } from "mobx-react";
 import React from "react";
+import UserStore from "stores/UserStore";
 
 const { Option } = Select;
 
-interface AssignUserSelectProps {
+interface Props {
   handleSelect: (userId: any) => void;
+  userStore?: UserStore;
 }
 
-const AssignUserSelect: React.FC<AssignUserSelectProps> = observer(props => {
-  // fetch the list of users
-  const { data, loading, error } = useQuery(store => store.queryUsers());
+export default inject("userStore")(
+  observer(
+    class AssignUserSelect extends React.Component<Props> {
+      componentDidMount() {
+        const { userStore } = this.props;
+        userStore!.loadUsers();
+      }
 
-  // handle loading and error statuses
-  if (loading) return <Spin />;
-  if (error || !data) return <Empty />;
+      render() {
+        const { userStore, handleSelect } = this.props;
 
-  // generate a list of options
-  const options = data.users.map(user => (
-    <Option key={user.id}>{user.username}</Option>
-  ));
+        // generate a list of options
+        const options = userStore!.users.map(user => (
+          <Option key={user.id}>{user.username}</Option>
+        ));
 
-  // render our component
-  return (
-    <Select
-      showSearch
-      placeholder="Choose a user"
-      style={{ minWidth: "200px" }}
-      onSelect={userId => props.handleSelect(userId)}
-    >
-      {options}
-    </Select>
-  );
-});
-
-export default AssignUserSelect;
+        // render our component
+        return (
+          <Select
+            showSearch
+            placeholder="Choose a user"
+            style={{ minWidth: "200px" }}
+            onSelect={userId => handleSelect(userId)}
+          >
+            {options}
+          </Select>
+        );
+      }
+    }
+  )
+);
