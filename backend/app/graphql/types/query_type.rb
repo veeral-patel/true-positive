@@ -113,7 +113,7 @@ module Types
       end
       
       def tasks
-        Task.all
+        TaskPolicy::Scope.new(context[:current_user]).resolve
       end
   end
 end
