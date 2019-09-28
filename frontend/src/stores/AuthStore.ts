@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import { FetchResult } from "apollo-boost";
 import axios from "axios";
 import client from "createApolloClient";
@@ -25,7 +26,12 @@ class AuthStore {
         }
       })
       .then(response => console.log(response))
-      .catch(err => console.log(err));
+      .catch(err => {
+        notification.error({
+          message: "Could not log in",
+          description: "Either your username or your password is incorrect"
+        });
+      });
   }
 
   @action.bound

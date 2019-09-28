@@ -18,12 +18,14 @@ class LoginForm extends React.Component<Props> {
 
     // validate our fields and raise errors if needed
     const { authStore, form } = this.props;
-    form.validateFields();
-
-    // make API request to fetch our JWT
-    const username = form.getFieldValue("username");
-    const password = form.getFieldValue("password");
-    authStore!.login(username, password);
+    form.validateFields((errors, values) => {
+      if (!errors) {
+        // make API request to fetch our JWT
+        const username = form.getFieldValue("username");
+        const password = form.getFieldValue("password");
+        authStore!.login(username, password);
+      }
+    });
   };
 
   render() {
