@@ -12,6 +12,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'rack-cors'
 gem 'ancestry'
 gem 'rails_jwt_auth'
+gem 'pundit'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
     include RailsJwtAuth::AuthenticableHelper
+    include Pundit
 
     before_action :authenticate_user
 
