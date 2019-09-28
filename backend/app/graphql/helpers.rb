@@ -1,4 +1,4 @@
-def find_status_or_throw_execution_error(status_name:)
+def find_status_by_name_or_throw_execution_error(status_name:)
     begin
         Status.find_by!(name: status_name)
     rescue ActiveRecord::RecordNotFound
@@ -6,11 +6,27 @@ def find_status_or_throw_execution_error(status_name:)
     end
 end
 
-def find_priority_or_throw_execution_error(priority_name:)
+def find_status_or_throw_execution_error(status_id:)
+    begin
+        Status.find(status_id)  
+    rescue ActiveRecord::RecordNotFound
+        raise GraphQL::ExecutionError, "Could not find a status with id #{status_id}."
+    end
+end
+
+def find_priority_by_name_or_throw_execution_error(priority_name:)
     begin
         Priority.find_by!(name: priority_name)
     rescue ActiveRecord::RecordNotFound
         raise GraphQL::ExecutionError, "Could not find priority '#{priority_name}'."
+    end
+end
+
+def find_priority_or_throw_execution_error(priority_id:)
+    begin
+        Priority.find(priority_id)  
+    rescue ActiveRecord::RecordNotFound
+        raise GraphQL::ExecutionError, "Could not find an priority with id #{priority_id}."
     end
 end
 

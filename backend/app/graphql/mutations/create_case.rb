@@ -32,8 +32,8 @@ class Mutations::CreateCase < Mutations::BaseMutation
     end
 
     def resolve(name:, status:, priority:, description: nil, assigned_to_id: nil, tags: nil)
-        status_record = find_status_or_throw_execution_error(status_name: status)
-        priority_record = find_priority_or_throw_execution_error(priority_name: priority)
+        status_record = find_status_by_name_or_throw_execution_error(status_name: status)
+        priority_record = find_priority_by_name_or_throw_execution_error(priority_name: priority)
         assigned_to = assigned_to_id.nil? ? nil : find_user_or_throw_execution_error(user_id: assigned_to_id)
 
         new_case = Case.new(
