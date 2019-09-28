@@ -1,4 +1,4 @@
-import { AutoComplete, Form, Icon, Input, Modal, Select } from "antd";
+import { AutoComplete, Button, Form, Icon, Input, Modal, Select } from "antd";
 import "container/all_cases/CreateCaseModalP.css";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -38,9 +38,8 @@ export default inject("uiStore", "statusStore", "priorityStore")(
           <Modal
             visible={uiStore!.openModal === "CREATE_CASE_MODAL"}
             title="Create a Case"
-            onOk={() => uiStore!.closeModal()}
+            footer={null}
             onCancel={() => uiStore!.closeModal()}
-            okText="Create Case"
             style={{ padding: "0px" }}
             destroyOnClose={true}
           >
@@ -70,6 +69,19 @@ export default inject("uiStore", "statusStore", "priorityStore")(
                     suffix={<Icon type="down" style={{ color: "gray" }} />}
                   />
                 </AutoComplete>
+              </Form.Item>
+              <Form.Item>
+                <div style={{ float: "right" }}>
+                  <Button
+                    style={{ marginRight: "0.5em" }}
+                    onClick={() => uiStore!.closeModal()}
+                  >
+                    Cancel
+                  </Button>
+                  <Button type="primary" htmlType="submit">
+                    Create Case
+                  </Button>
+                </div>
               </Form.Item>
             </Form>
           </Modal>
