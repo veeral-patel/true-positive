@@ -18,17 +18,22 @@ class Mutations::CreateComment < Mutations::BaseMutation
     end
 
     def resolve(type:, object_id:, comment:)
-        if type === "CASE" # commenting on a case
+        # find the object we're commenting upon
+        if type === "CASE"
             commentable = find_case_or_throw_execution_error(case_id: object_id)
+        elsif type === "TASK"
+            commentable = find_task_or_throw_execution_error(task_id: object_id)
+        elsif type === "INDICATOR"
+            commentable = find_indicator_or_throw_execution_error(indicator_id: object_id)
         end
 
-        # TO DO: support commenting on a task and on an indicator
-
+        # create the comment in memory
         new_comment = context[:current_user].comments.new(
             commentable: commentable,
             comment: comment,
         )
 
+        # actually save it
         if new_comment.save
             { "comment": new_comment }
         else
