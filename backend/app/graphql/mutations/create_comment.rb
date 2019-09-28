@@ -24,7 +24,7 @@ class Mutations::CreateComment < Mutations::BaseMutation
 
         # TO DO: support commenting on a task and on an indicator
 
-        new_comment = Comment.new(
+        new_comment = context[:current_user].comments.new(
             commentable: commentable,
             comment: comment,
         )
