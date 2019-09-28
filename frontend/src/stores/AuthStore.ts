@@ -1,7 +1,7 @@
 import { FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import jwt from "jsonwebtoken";
-import { observable } from "mobx";
+import { action, observable, runInAction } from "mobx";
 import GET_CURRENT_USER from "queries/getCurrentUser";
 import IUser from "ts/interfaces/IUser";
 import { JWT_TOKEN_KEY } from "utils/constants";
@@ -14,13 +14,16 @@ class AuthStore {
     return !!token && !this.isTokenExpired(token);
   }
 
+  @action.bound
   getCurrentUser() {
     client
       .query<IUser>({
         query: GET_CURRENT_USER
       })
       .then((response: FetchResult<IUser>) => {
-        if (response.data) this.currentUser = response.data;
+        runInAction(() => {
+          if (response.data) this.currentUser = response.data;
+        });
       });
   }
 
