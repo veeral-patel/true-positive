@@ -7,10 +7,13 @@ class CasePolicy
         end
 
         def resolve
-            # Todo: admins can see all cases. Try policy namespacing.
-
-            # an user can see the cases he's a member of.
-            @user.joined_cases
+            if @user.admin?
+                # an admin can see all cases
+                Case.all
+            else
+                # an user can see the cases he's a member of.
+                @user.joined_cases
+            end
         end
     end
 end
