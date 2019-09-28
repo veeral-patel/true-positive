@@ -2,11 +2,13 @@ import { Button, Form, Icon, Input } from "antd";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import React from "react";
 
+// ----
+
 interface Props {
   form: WrappedFormUtils;
 }
 
-class NormalLoginForm extends React.Component<Props> {
+class LoginForm extends React.Component<Props> {
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.props.form.validateFields();
@@ -48,11 +50,11 @@ class NormalLoginForm extends React.Component<Props> {
   }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: "normal_login" })(
-  NormalLoginForm
-);
+const WrappedLoginForm = Form.create()(LoginForm);
 
-class LoginPage extends React.Component {
+// -----
+
+export default class LoginPage extends React.Component {
   render() {
     return (
       <div
@@ -65,11 +67,9 @@ class LoginPage extends React.Component {
         }}
       >
         <div style={{ width: "33%", marginTop: "10%" }}>
-          <WrappedNormalLoginForm />
+          <WrappedLoginForm />
         </div>
       </div>
     );
   }
 }
-
-export default LoginPage;
