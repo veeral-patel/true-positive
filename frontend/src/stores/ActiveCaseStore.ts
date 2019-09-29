@@ -126,17 +126,32 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  createTaskComment(taskId: number, comment: string) {
-    client.mutate({
-      variables: {
-        input: {
-          type: "TASK",
-          objectId: taskId,
-          comment
-        }
-      },
-      mutation: CREATE_A_COMMENT
-    });
+  createComment(type: "CASE" | "TASK", objectId: number, comment: string) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            type,
+            objectId,
+            comment
+          }
+        },
+        mutation: CREATE_A_COMMENT
+      })
+      .then(response => {
+        message.success("Created the comment");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while creating the comment",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
   }
 
   @action.bound
