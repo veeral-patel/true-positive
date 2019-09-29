@@ -1,4 +1,4 @@
-import { AutoComplete, Button, Form, Icon, Input, Modal, Select } from "antd";
+import { Button, Form, Input, Modal, Select } from "antd";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import "container/all_cases/CreateCaseModal.css";
 import { inject, observer } from "mobx-react";
@@ -71,24 +71,26 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
           {getFieldDecorator("status", {
             rules: [{ required: true, message: "Please choose a status" }]
           })(
-            <AutoComplete
-              dataSource={statusOptions}
+            <Select
+              showSearch
               placeholder="Choose a status"
+              style={{ minWidth: "200px" }}
             >
-              <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
-            </AutoComplete>
+              {statusOptions}
+            </Select>
           )}
         </Form.Item>
         <Form.Item label="Priority">
           {getFieldDecorator("priority", {
             rules: [{ required: true, message: "Please choose a priority" }]
           })(
-            <AutoComplete
-              dataSource={priorityOptions}
+            <Select
+              showSearch
               placeholder="Choose a priority"
+              style={{ minWidth: "200px" }}
             >
-              <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
-            </AutoComplete>
+              {priorityOptions}
+            </Select>
           )}
         </Form.Item>
         <Form.Item>
