@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Avatar, Icon, Layout, List, Typography } from "antd";
+import { Avatar, Icon, Layout, List, Select, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -36,6 +36,11 @@ export default inject("activeCaseStore")(
               <Paragraph>
                 Only members of a case are authorized to view it.
               </Paragraph>
+              <Select
+                style={{ width: "100%" }}
+                mode="multiple"
+                placeholder="Add members"
+              />
               <List<ICaseMember>
                 itemLayout="horizontal"
                 dataSource={members}
