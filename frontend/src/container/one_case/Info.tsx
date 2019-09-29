@@ -129,7 +129,7 @@ export default inject("activeCaseStore")(
                       />
                     )}
                     <div style={{ width: "70%" }}>
-                      <CreateComment />
+                      <CreateComment objectId={activeCase.id} type="CASE" />
                     </div>
                   </Col>
                 </Row>

@@ -3,6 +3,8 @@ import { WrappedFormUtils } from "antd/lib/form/Form";
 import TextArea from "antd/lib/input/TextArea";
 import React from "react";
 
+// ----
+
 interface FormProps {
   form: WrappedFormUtils;
 }
@@ -41,9 +43,21 @@ class DumbCreateCommentForm extends React.Component<FormProps> {
   }
 }
 
+// ----
+
 const CreateCaseForm = Form.create()(DumbCreateCommentForm);
 
-class CreateComment extends React.Component {
+// ----
+
+interface CreateCommentProps {
+  /* the ID of the task or case we're commenting on */
+  objectId: number;
+
+  /* the type of object we're commenting on */
+  type: "CASE" | "TASK";
+}
+
+class CreateComment extends React.Component<CreateCommentProps> {
   render() {
     return (
       <Comment content={<CreateCaseForm />} avatar={<Avatar icon="user" />} />
