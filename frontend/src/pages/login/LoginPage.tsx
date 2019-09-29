@@ -6,13 +6,13 @@ import AuthStore from "stores/AuthStore";
 
 // ----
 
-interface Props {
+interface FormProps {
   form: WrappedFormUtils;
   authStore?: AuthStore;
 }
 
 // NEVER use this component on its own. use the LoginForm component below
-class DumbLoginForm extends React.Component<Props> {
+class DumbLoginForm extends React.Component<FormProps> {
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     // prevent page reload
     e.preventDefault();
@@ -32,7 +32,7 @@ class DumbLoginForm extends React.Component<Props> {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
+      <Form onSubmit={this.handleSubmit.bind(this)} className="login-form">
         <Form.Item>
           {getFieldDecorator("username", {
             rules: [{ required: true, message: "Please enter your username" }]
