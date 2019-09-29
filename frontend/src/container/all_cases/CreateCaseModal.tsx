@@ -113,7 +113,7 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
 
 // ----
 
-// provide our form with validation abilities and access to our MobX stores
+// provide our form with validation and MobX access
 const CreateCaseForm = Form.create()(
   inject("statusStore", "priorityStore", "uiStore", "allCasesStore")(
     observer(DumbCreateCaseForm)
