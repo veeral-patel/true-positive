@@ -78,7 +78,10 @@ class CaseStore {
         },
         mutation: CREATE_A_CASE
       })
-      .then(response => message.success("Created the case"))
+      .then(response => {
+        message.success("Created the case");
+        this.loadCases();
+      })
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while creating the case",

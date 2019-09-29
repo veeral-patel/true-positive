@@ -3,6 +3,7 @@ import { WrappedFormUtils } from "antd/lib/form/Form";
 import "container/all_cases/CreateCaseModalP.css";
 import { inject, observer } from "mobx-react";
 import React from "react";
+import AllCasesStore from "stores/AllCasesStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
@@ -16,6 +17,7 @@ interface FormProps {
   statusStore?: StatusStore;
   priorityStore?: PriorityStore;
   uiStore?: UIStore;
+  allCasesStore?: AllCasesStore;
 }
 
 class DumbCreateCaseForm extends React.Component<FormProps> {
@@ -30,8 +32,13 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
     event.preventDefault();
 
     // validate our fields and raise errors if needed
-    const { form } = this.props;
-    form.validateFields();
+    const { form, allCasesStore } = this.props;
+
+    form.validateFields((errors, values) => {
+      if (!errors) {
+        allCasesStore!.createCase(values.name, values.status, values.priority);
+      }
+    });
   }
 
   render() {
@@ -106,7 +113,7 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
 
 // provide our form with validation abilities and access to our MobX stores
 const CreateCaseForm = Form.create()(
-  inject("statusStore", "priorityStore", "uiStore")(
+  inject("statusStore", "priorityStore", "uiStore", "allCasesStore")(
     observer(DumbCreateCaseForm)
   )
 );
