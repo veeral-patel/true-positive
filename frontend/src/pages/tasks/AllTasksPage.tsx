@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Divider, Empty, Icon, Input, Radio, Typography } from "antd";
+import { Divider, Empty, Icon, Input, Typography } from "antd";
 import AllTasksTable from "container/all_tasks/AllTasksTable";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -51,12 +51,12 @@ export default inject("allTasksStore", "uiStore")(
                   <span style={{ marginLeft: "8px", marginRight: "8px" }}>
                     <Divider type="vertical" />
                   </span>
-                  <span>
+                  {/* <span>
                     <Radio.Group defaultValue="assigned">
                       <Radio.Button value="assigned">Assigned</Radio.Button>
                       <Radio.Button value="all">All</Radio.Button>
                     </Radio.Group>
-                  </span>
+                  </span> */}
                 </section>
                 <section>
                   <AllTasksTable />
