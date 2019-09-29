@@ -11,8 +11,8 @@ interface Props {
   authStore?: AuthStore;
 }
 
-// NEVER use this component on its own. use the WrappedLoginForm component below
-class LoginForm extends React.Component<Props> {
+// NEVER use this component on its own. use the LoginForm component below
+class DumbLoginForm extends React.Component<Props> {
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     // prevent page reload
     e.preventDefault();
@@ -66,9 +66,7 @@ class LoginForm extends React.Component<Props> {
 }
 
 // provide our form with validation abilities and access to the authentication store
-const WrappedLoginForm = Form.create()(
-  inject("authStore")(observer(LoginForm))
-);
+const LoginForm = Form.create()(inject("authStore")(observer(DumbLoginForm)));
 
 // -----
 
@@ -85,7 +83,7 @@ export default class LoginPage extends React.Component {
         }}
       >
         <div style={{ width: "33%", marginTop: "10%" }}>
-          <WrappedLoginForm />
+          <LoginForm />
         </div>
       </div>
     );
