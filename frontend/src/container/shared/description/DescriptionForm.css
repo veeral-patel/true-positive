@@ -1,5 +1,6 @@
 .ql-editor {
   min-height: 150px;
+  font-size: 14px;
 }
 
 .ql-editor ul[data-checked="false"] > li::before {
