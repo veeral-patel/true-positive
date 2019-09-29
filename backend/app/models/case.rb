@@ -16,8 +16,9 @@ class Case < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :indicators, dependent: :destroy
-
   has_many :case_members, dependent: :destroy
+
+  after_create :add_creator_to_members
 
   acts_as_taggable_on :tags
 
@@ -56,5 +57,10 @@ class Case < ApplicationRecord
   private
     def destroy_merged_cases
       self.merged_cases.each { |the_case| the_case.destroy } 
+    end
+
+    def add_creator_to_members
+      # Add the user who created this case to its list of members, so he/she can access it.
+      self.case_members.create(user: self.created_by, role: "CAN_EDIT")
     end
 end
