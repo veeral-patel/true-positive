@@ -2,6 +2,7 @@ import { message, notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, computed, observable, runInAction } from "mobx";
+import CREATE_A_CASE from "mutations/createCase";
 import DELETE_A_CASE from "mutations/deleteCase";
 import GET_CASES from "queries/getCases";
 import ICase from "ts/interfaces/ICase";
@@ -62,6 +63,28 @@ class CaseStore {
           this.loadCases();
         })
       );
+  }
+
+  @action.bound
+  createCase(name: string, statusName: string, priorityName: string) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            name,
+            status: statusName,
+            priority: priorityName
+          }
+        },
+        mutation: CREATE_A_CASE
+      })
+      .then(response => message.success("Created the case"))
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while creating the case",
+          description: error.message
+        });
+      });
   }
 
   // --------- computed properties -----------
