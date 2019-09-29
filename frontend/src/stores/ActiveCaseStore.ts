@@ -6,6 +6,7 @@ import CHANGE_ASSIGNEE from "mutations/changeAssignee";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_STATUS from "mutations/changeStatus";
+import CREATE_A_COMMENT from "mutations/createComment";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
 import RENAME_A_CASE from "mutations/renameCase";
@@ -122,6 +123,20 @@ class ActiveCaseStore {
           this.loadActiveCase();
         })
       );
+  }
+
+  @action.bound
+  createTaskComment(taskId: number, comment: string) {
+    client.mutate({
+      variables: {
+        input: {
+          type: "TASK",
+          objectId: taskId,
+          comment
+        }
+      },
+      mutation: CREATE_A_COMMENT
+    });
   }
 
   @action.bound
