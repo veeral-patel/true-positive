@@ -1,6 +1,6 @@
 import { AutoComplete, Button, Form, Icon, Input, Modal, Select } from "antd";
 import { WrappedFormUtils } from "antd/lib/form/Form";
-import "container/all_cases/CreateCaseModalP.css";
+import "container/all_cases/CreateCaseModal.css";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
