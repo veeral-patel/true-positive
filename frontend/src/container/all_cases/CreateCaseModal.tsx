@@ -46,11 +46,11 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
     const { getFieldDecorator } = this.props.form;
 
     const statusOptions = statusStore!.statuses.map(status => (
-      <Option key={status.id}>{status.name}</Option>
+      <Option key={status.name}>{status.name}</Option>
     ));
 
     const priorityOptions = priorityStore!.priorities.map(priority => (
-      <Option key={priority.id}>{priority.name}</Option>
+      <Option key={priority.name}>{priority.name}</Option>
     ));
 
     return (
