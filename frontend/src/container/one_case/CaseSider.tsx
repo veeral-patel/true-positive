@@ -9,13 +9,11 @@ import {
   CASE_SIDER_INDICATORS,
   CASE_SIDER_INFO,
   CASE_SIDER_MEMBERS,
-  CASE_SIDER_TASKS,
-  CASE_SIDER_TREE
+  CASE_SIDER_TASKS
 } from "utils/constants";
 import {
   getPathToACase,
   getPathToACaseMembers,
-  getPathToACaseTree,
   getPathToCaseIndicators,
   getPathToCaseTasks
 } from "utils/pathHelpers";
@@ -129,15 +127,6 @@ export default inject("uiStore", "activeCaseStore")(
                     <span>({numberOfIndicators})</span>
                   )}
                 </span>
-              </Menu.Item>
-              <Menu.Item
-                key={CASE_SIDER_TREE}
-                onClick={() =>
-                  activeCase && navigate(getPathToACaseTree(activeCase.id))
-                }
-              >
-                <Icon type="apartment" />
-                <span>Tree</span>
               </Menu.Item>
               <Menu.Item
                 key={CASE_SIDER_MEMBERS}
