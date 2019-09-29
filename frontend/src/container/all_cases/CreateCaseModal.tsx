@@ -61,12 +61,16 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
           )}
         </Form.Item>
         <Form.Item label="Status">
-          <AutoComplete
-            dataSource={statusOptions}
-            placeholder="Choose a status"
-          >
-            <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
-          </AutoComplete>
+          {getFieldDecorator("status", {
+            rules: [{ required: true, message: "Please select a status" }]
+          })(
+            <AutoComplete
+              dataSource={statusOptions}
+              placeholder="Choose a status"
+            >
+              <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
+            </AutoComplete>
+          )}
         </Form.Item>
         <Form.Item label="Priority">
           <AutoComplete
