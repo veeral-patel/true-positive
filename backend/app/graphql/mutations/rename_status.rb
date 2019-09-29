@@ -1,11 +1,11 @@
 class Mutations::RenameStatus < Mutations::BaseMutation
     description "Changes the name of a status."
     
-    argument :id, ID, required: true do
-        description "The ID of the status to rename."
+    argument :old_name, ID, required: true do
+        description "The name of the status to rename."
     end
 
-    argument :name, String, required: true do
+    argument :new_name, String, required: true do
         description "The new status name."
     end
 
@@ -13,10 +13,10 @@ class Mutations::RenameStatus < Mutations::BaseMutation
         description "The updated status."
     end
 
-    def resolve(id:, name:)
+    def resolve(old_name:, new_name:)
         # find and update the status
-        status = find_status_or_throw_execution_error(status_id: id)
-        status.name = name
+        status = find_status_by_name_or_throw_execution_error(status_name: old_name)
+        status.name = new_name
 
         # and save it
         if status.save
