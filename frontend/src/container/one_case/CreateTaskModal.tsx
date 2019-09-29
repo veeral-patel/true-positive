@@ -6,19 +6,21 @@ import UIStore from "stores/UIStore";
 interface ModalProps {
   visible: boolean;
   uiStore?: UIStore;
+  handleClose: () => void;
 }
 
 export default inject("uiStore")(
   observer(
     class CreateTaskModal extends React.Component<ModalProps> {
       render() {
-        const { visible, uiStore } = this.props;
+        const { visible, handleClose } = this.props;
+
         return (
           <Modal
             visible={visible}
             title="Create a Task"
             footer={null}
-            onCancel={() => uiStore!.closeModal()}
+            onCancel={() => handleClose()}
           ></Modal>
         );
       }
