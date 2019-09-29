@@ -210,7 +210,7 @@ class ActiveCaseStore {
   changeCaseStatus(statusId: number) {
     if (!this.activeCase) {
       notification.error({
-        message: "Could not rename case",
+        message: "Could not change the case's status",
         description: "No case is active"
       });
       return null;
@@ -247,7 +247,7 @@ class ActiveCaseStore {
   changeCasePriority(priorityId: number) {
     if (!this.activeCase) {
       notification.error({
-        message: "Could not rename case",
+        message: "Could not change the case's priority",
         description: "No case is active"
       });
       return null;
