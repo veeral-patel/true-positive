@@ -1,5 +1,5 @@
 import { Avatar, Button, Comment, Form } from "antd";
-import { WrappedFormUtils } from "antd/lib/form/Form";
+import { FormComponentProps } from "antd/lib/form/Form";
 import TextArea from "antd/lib/input/TextArea";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -8,9 +8,6 @@ import ActiveCaseStore from "stores/ActiveCaseStore";
 // ----
 
 interface FormProps {
-  /* provides many form operations to us */
-  form: WrappedFormUtils;
-
   /* the ID of the task or case we're commenting on */
   objectId: number;
 
@@ -18,11 +15,13 @@ interface FormProps {
   type: "CASE" | "TASK";
 
   /* used to make the API request to create a comment */
-  activeCaseStore: ActiveCaseStore;
+  activeCaseStore?: ActiveCaseStore;
 }
 
 // don't use this form on its own
-class DumbCreateCommentForm extends React.Component<FormProps> {
+class DumbCreateCommentForm extends React.Component<
+  FormProps & FormComponentProps
+> {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -61,7 +60,7 @@ class DumbCreateCommentForm extends React.Component<FormProps> {
 
 // ----
 
-const CreateCaseForm = Form.create()(
+const CreateCaseForm = Form.create<FormProps & FormComponentProps>()(
   inject("activeCaseStore")(observer(DumbCreateCommentForm))
 );
 
