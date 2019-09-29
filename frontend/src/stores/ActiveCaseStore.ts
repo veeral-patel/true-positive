@@ -7,6 +7,7 @@ import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_STATUS from "mutations/changeStatus";
 import CREATE_A_COMMENT from "mutations/createComment";
+import CREATE_A_TASK from "mutations/createTask";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
 import RENAME_A_CASE from "mutations/renameCase";
@@ -445,6 +446,41 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while changing the task's priority",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  createTask(
+    name: string,
+    statusName: string,
+    priorityName: string,
+    caseId: number
+  ) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            name,
+            status: statusName,
+            priority: priorityName,
+            caseId
+          }
+        },
+        mutation: CREATE_A_TASK
+      })
+      .then((response: FetchResult) => {
+        message.success("Created the task");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while creating the task",
           description: error.message
         });
       })
