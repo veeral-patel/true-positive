@@ -38,6 +38,14 @@ def find_user_or_throw_execution_error(user_id:)
     end
 end
 
+def find_user_by_username_or_throw_execution_error(username:)
+    begin
+        User.find_by!(username: username)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find an user with username '#{username}'."
+    end
+end
+
 def find_case_or_throw_execution_error(case_id:)
     begin
         Case.find(case_id)

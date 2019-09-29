@@ -27,8 +27,8 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "Optional text describing this task."
     end
 
-    argument :assigned_to_id, ID, required: false do
-        description "The ID of the user who this task is assigned to. Optional."
+    argument :assigned_to, ID, required: false do
+        description "The username of the user who this task is assigned to. Optional."
     end
 
     argument :tags, [String], required: false do
@@ -40,12 +40,12 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "The newly created task."
     end
 
-    def resolve(name:, status:, priority:, case_id:, description: nil, assigned_to_id: nil, tags: nil)
+    def resolve(name:, status:, priority:, case_id:, description: nil, assigned_to: nil, tags: nil)
         # find case, status, priority, assigned user for this new task
         the_case = find_case_or_throw_execution_error(case_id: case_id)
         status_record = find_status_by_name_or_throw_execution_error(status_name: status)
         priority_record = find_priority_by_name_or_throw_execution_error(priority_name: priority)
-        assigned_to = assigned_to_id.nil? ? nil : find_user_or_throw_execution_error(user_id: assigned_to_id)
+        assigned_user = assigned_to.nil? ? nil : find_user_by_username_or_throw_execution_error(username: assigned_to)
 
         # create new task in memory
         new_task = Task.new(
@@ -55,7 +55,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
             case: the_case,
             created_by: context[:current_user],
             description: description,
-            assigned_to: assigned_to,
+            assigned_to: assigned_user,
             tag_list: tags
         )
 
