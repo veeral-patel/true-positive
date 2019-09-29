@@ -8,20 +8,24 @@ interface FormProps {
 }
 
 // don't use this form on its own
-const DumbCreateCommentForm: React.FC<FormProps> = () => (
-  <Form>
-    <Form.Item>
-      <TextArea
-        placeholder="Leave a comment"
-        rows={3}
-        style={{ padding: "2%" }}
-      />
-    </Form.Item>
-    <Form.Item style={{ float: "right" }}>
-      <Button htmlType="submit">Add Comment</Button>
-    </Form.Item>
-  </Form>
-);
+class DumbCreateCommentForm extends React.Component<FormProps> {
+  render() {
+    return (
+      <Form>
+        <Form.Item>
+          <TextArea
+            placeholder="Leave a comment"
+            rows={3}
+            style={{ padding: "2%" }}
+          />
+        </Form.Item>
+        <Form.Item style={{ float: "right" }}>
+          <Button htmlType="submit">Add Comment</Button>
+        </Form.Item>
+      </Form>
+    );
+  }
+}
 
 const CreateCaseForm = Form.create()(DumbCreateCommentForm);
 
