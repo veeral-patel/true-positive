@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Avatar, Icon, Layout, List, Select, Typography } from "antd";
+import { Avatar, Button, Layout, List, Select, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -70,7 +70,7 @@ export default inject("activeCaseStore", "userStore")(
                       title={member.user.username}
                       description={member.user.email}
                     />
-                    <Icon type="close" />
+                    <Button icon="cross" style={{ border: "none" }} />
                   </List.Item>
                 )}
               />
