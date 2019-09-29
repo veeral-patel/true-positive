@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_082441) do
     t.datetime "invitation_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
+    t.boolean "admin", default: false, null: false
   end
 
   add_foreign_key "case_members", "cases"
