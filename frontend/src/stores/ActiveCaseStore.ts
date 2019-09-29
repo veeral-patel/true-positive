@@ -207,7 +207,7 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeCaseStatus(statusId: number) {
+  changeCaseStatus(statusName: number) {
     if (!this.activeCase) {
       notification.error({
         message: "Could not change the case's status",
@@ -221,7 +221,7 @@ class ActiveCaseStore {
         variables: {
           input: {
             objectId: this.activeCase.id,
-            statusId: statusId,
+            name: statusName,
             type: "CASE"
           }
         },

@@ -61,8 +61,8 @@ export default inject("activeCaseStore")(
                   <Col span={8}>
                     <EditableStatusTag
                       statusName={activeCase.status.name}
-                      handleSelect={statusId =>
-                        activeCaseStore!.changeCaseStatus(statusId)
+                      handleSelect={statusName =>
+                        activeCaseStore!.changeCaseStatus(statusName)
                       }
                     />
                   </Col>

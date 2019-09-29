@@ -25,7 +25,7 @@ export default inject("statusStore")(
 
         // generate a list of options
         const options = statusStore!.statuses.map(status => (
-          <Option key={status.id}>{status.name}</Option>
+          <Option key={status.name}>{status.name}</Option>
         ));
 
         // render our component
@@ -34,7 +34,7 @@ export default inject("statusStore")(
             showSearch
             placeholder="Choose a status"
             style={{ minWidth: "200px" }}
-            onSelect={statusId => handleSelect(statusId)}
+            onSelect={statusName => handleSelect(statusName)}
           >
             {options}
           </Select>
