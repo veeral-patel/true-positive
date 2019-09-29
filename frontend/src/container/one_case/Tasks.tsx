@@ -69,7 +69,7 @@ export default inject("activeCaseStore")(
 
                 <div style={{ marginBottom: "20px" }}>
                   <Input
-                    placeholder="Search tasks"
+                    placeholder="Filter tasks"
                     prefix={<Icon type="search" />}
                   />
                 </div>
