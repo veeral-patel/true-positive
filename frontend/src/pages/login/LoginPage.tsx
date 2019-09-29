@@ -13,7 +13,7 @@ interface Props {
 
 // NEVER use this component on its own. use the WrappedLoginForm component below
 class LoginForm extends React.Component<Props> {
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     // prevent page reload
     e.preventDefault();
 
@@ -27,7 +27,7 @@ class LoginForm extends React.Component<Props> {
         authStore!.login(username, password);
       }
     });
-  };
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;

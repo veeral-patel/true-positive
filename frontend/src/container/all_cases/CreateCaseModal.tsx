@@ -25,6 +25,15 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
     priorityStore!.loadPriorities();
   }
 
+  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    // prevent page reload
+    event.preventDefault();
+
+    // validate our fields and raise errors if needed
+    const { form } = this.props;
+    form.validateFields((errors, values) => console.log(errors));
+  }
+
   render() {
     const { uiStore, statusStore, priorityStore } = this.props;
 
