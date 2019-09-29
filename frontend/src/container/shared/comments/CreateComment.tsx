@@ -1,7 +1,9 @@
 import { Avatar, Button, Comment, Form } from "antd";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import TextArea from "antd/lib/input/TextArea";
+import { inject, observer } from "mobx-react";
 import React from "react";
+import ActiveCaseStore from "stores/ActiveCaseStore";
 
 // ----
 
@@ -14,6 +16,9 @@ interface FormProps {
 
   /* the type of object we're commenting on */
   type: "CASE" | "TASK";
+
+  /* used to make the API request to create a comment */
+  activeCaseStore: ActiveCaseStore;
 }
 
 // don't use this form on its own
@@ -45,14 +50,20 @@ class DumbCreateCommentForm extends React.Component<FormProps> {
     event.preventDefault();
 
     // validate fields
-    const { form } = this.props;
-    form.validateFields();
+    const { form, objectId, type, activeCaseStore } = this.props;
+    form.validateFields((errors, values) => {
+      if (!errors) {
+        activeCaseStore!.createComment(type, objectId, values.comment);
+      }
+    });
   }
 }
 
 // ----
 
-const CreateCaseForm = Form.create<FormProps>()(DumbCreateCommentForm);
+const CreateCaseForm = Form.create()(
+  inject("activeCaseStore")(observer(DumbCreateCommentForm))
+);
 
 // ----
 
