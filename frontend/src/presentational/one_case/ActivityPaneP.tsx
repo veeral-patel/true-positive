@@ -16,7 +16,16 @@ const ActivityPaneP: React.FC = () => (
     <Text type="secondary" style={{ textTransform: "uppercase" }}>
       Activity
     </Text>
-    <Empty description="No Activity" />
+    <Empty
+      description={
+        <div>
+          <p>No Activity</p>
+          <p style={{ color: "#bfbfbf" }}>
+            Soon, you'll be able to follow case changes in real-time here.
+          </p>
+        </div>
+      }
+    />
   </Content>
 );
 
