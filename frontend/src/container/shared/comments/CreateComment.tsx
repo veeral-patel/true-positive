@@ -6,7 +6,14 @@ import React from "react";
 // ----
 
 interface FormProps {
+  /* provides many form operations to us */
   form: WrappedFormUtils;
+
+  /* the ID of the task or case we're commenting on */
+  objectId: number;
+
+  /* the type of object we're commenting on */
+  type: "CASE" | "TASK";
 }
 
 // don't use this form on its own
@@ -45,7 +52,7 @@ class DumbCreateCommentForm extends React.Component<FormProps> {
 
 // ----
 
-const CreateCaseForm = Form.create()(DumbCreateCommentForm);
+const CreateCaseForm = Form.create<FormProps>()(DumbCreateCommentForm);
 
 // ----
 
@@ -59,8 +66,12 @@ interface CreateCommentProps {
 
 class CreateComment extends React.Component<CreateCommentProps> {
   render() {
+    const { objectId, type } = this.props;
     return (
-      <Comment content={<CreateCaseForm />} avatar={<Avatar icon="user" />} />
+      <Comment
+        content={<CreateCaseForm objectId={objectId} type={type} />}
+        avatar={<Avatar icon="user" />}
+      />
     );
   }
 }
