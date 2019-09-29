@@ -244,7 +244,7 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeCasePriority(priorityId: number) {
+  changeCasePriority(priorityName: string) {
     if (!this.activeCase) {
       notification.error({
         message: "Could not change the case's priority",
@@ -258,7 +258,7 @@ class ActiveCaseStore {
         variables: {
           input: {
             objectId: this.activeCase.id,
-            priorityId: priorityId,
+            priority: priorityName,
             type: "CASE"
           }
         },
@@ -397,13 +397,13 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeTaskPriority(taskId: number, priorityId: number) {
+  changeTaskPriority(taskId: number, priorityName: string) {
     client
       .mutate({
         variables: {
           input: {
             objectId: taskId,
-            priorityId,
+            priority: priorityName,
             type: "TASK"
           }
         },

@@ -5,7 +5,7 @@ class Mutations::ChangePriority < Mutations::BaseMutation
         description "The ID of the case or task whose priority we're updating."
     end
 
-    argument :priority, ID, required: true do
+    argument :priority, String, required: true do
         description "The name of the new priority (eg, Critical)."
     end
 
@@ -21,9 +21,9 @@ class Mutations::ChangePriority < Mutations::BaseMutation
         description "The updated task. Is null if you're not updating a task."
     end
 
-    def resolve(object_id:, name:, type:)
+    def resolve(object_id:, priority:, type:)
         # find the new priority
-        new_priority =  find_priority_by_name_or_throw_execution_error(priority_name: name)
+        new_priority =  find_priority_by_name_or_throw_execution_error(priority_name: priority)
 
         # changing the priority of a case
         if type === "CASE"

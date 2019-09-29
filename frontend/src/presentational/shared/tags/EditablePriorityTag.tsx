@@ -5,7 +5,7 @@ import React from "react";
 
 interface EditablePriorityTagProps {
   priorityName: string;
-  handleSelect: (priorityId: number) => void;
+  handleSelect: (priorityName: string) => void;
 }
 
 const EditablePriorityTag: React.FC<EditablePriorityTagProps> = ({

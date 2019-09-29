@@ -6,7 +6,7 @@ import PriorityStore from "stores/PriorityStore";
 const { Option } = Select;
 
 interface Props {
-  handleSelect: (priorityId: any) => void;
+  handleSelect: (priorityName: any) => void;
   priorityStore?: PriorityStore;
 }
 
@@ -25,7 +25,7 @@ export default inject("priorityStore")(
 
         // generate a list of options
         const options = priorityStore!.priorities.map(priority => (
-          <Option key={priority.id}>{priority.name}</Option>
+          <Option key={priority.name}>{priority.name}</Option>
         ));
 
         // render our component
@@ -34,7 +34,7 @@ export default inject("priorityStore")(
             showSearch
             placeholder="Choose a priority"
             style={{ minWidth: "200px" }}
-            onSelect={priorityId => handleSelect(priorityId)}
+            onSelect={priorityName => handleSelect(priorityName)}
           >
             {options}
           </Select>

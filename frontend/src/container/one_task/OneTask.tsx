@@ -133,10 +133,10 @@ export default inject("activeCaseStore")(
                   <Col span={8}>
                     <EditablePriorityTag
                       priorityName={activeTask.priority.name}
-                      handleSelect={priorityId =>
+                      handleSelect={priorityName =>
                         activeCaseStore!.changeTaskPriority(
                           activeTask.id,
-                          priorityId
+                          priorityName
                         )
                       }
                     />
