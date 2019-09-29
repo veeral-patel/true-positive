@@ -1,5 +1,5 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Button, Icon, Input, Layout, Typography } from "antd";
+import { Button, Layout, Typography } from "antd";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TasksTable from "container/one_case/TasksTable";
 import { inject, observer } from "mobx-react";
@@ -67,12 +67,6 @@ export default inject("activeCaseStore")(
                   </Paragraph>
                 </div>
 
-                <div style={{ marginBottom: "20px" }}>
-                  <Input
-                    placeholder="Filter tasks"
-                    prefix={<Icon type="search" />}
-                  />
-                </div>
                 <TasksTable
                   tasks={activeCase.tasks}
                   handleRowClick={(clickedTask, index, event) =>
