@@ -1,10 +1,10 @@
 import { RouteComponentProps } from "@reach/router";
-import { Layout } from "antd";
+import { Avatar, Icon, Layout, List } from "antd";
 import Text from "antd/lib/typography/Text";
 import { inject, observer } from "mobx-react";
-import MemberListP from "presentational/one_case/MembersP/MemberListP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import ICaseMember from "ts/interfaces/ICaseMember";
 
 const { Content } = Layout;
 
@@ -36,7 +36,20 @@ export default inject("activeCaseStore")(
               <div style={{ marginTop: "15px", marginBottom: "15px" }}>
                 <Text>Only members of a case are authorized to view it.</Text>
               </div>
-              <MemberListP members={members} />
+              <List<ICaseMember>
+                itemLayout="horizontal"
+                dataSource={members}
+                renderItem={member => (
+                  <List.Item>
+                    <List.Item.Meta
+                      avatar={<Avatar icon="user" />}
+                      title={member.user.username}
+                      description={member.user.email}
+                    />
+                    <Icon type="close" />
+                  </List.Item>
+                )}
+              />
             </Content>
           );
         }
