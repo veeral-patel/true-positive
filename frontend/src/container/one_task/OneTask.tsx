@@ -113,10 +113,10 @@ export default inject("activeCaseStore")(
                   <Col span={8}>
                     <EditableStatusTag
                       statusName={activeTask.status.name}
-                      handleSelect={statusId =>
+                      handleSelect={statusName =>
                         activeCaseStore!.changeTaskStatus(
                           activeTask.id,
-                          statusId
+                          statusName
                         )
                       }
                     />

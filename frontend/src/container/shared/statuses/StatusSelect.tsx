@@ -6,7 +6,7 @@ import StatusStore from "stores/StatusStore";
 const { Option } = Select;
 
 interface Props {
-  handleSelect: (statusId: any) => void;
+  handleSelect: (statusName: any) => void;
   statusStore?: StatusStore;
 }
 

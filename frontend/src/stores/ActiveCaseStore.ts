@@ -207,7 +207,7 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeCaseStatus(statusName: number) {
+  changeCaseStatus(statusName: string) {
     if (!this.activeCase) {
       notification.error({
         message: "Could not change the case's status",
@@ -368,13 +368,13 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeTaskStatus(taskId: number, statusId: number) {
+  changeTaskStatus(taskId: number, statusName: string) {
     client
       .mutate({
         variables: {
           input: {
             objectId: taskId,
-            statusId: statusId,
+            name: statusName,
             type: "TASK"
           }
         },

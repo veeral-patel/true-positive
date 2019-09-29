@@ -5,7 +5,7 @@ import React from "react";
 
 interface EditableStatusTagProps {
   statusName: string;
-  handleSelect: (statusId: number) => void;
+  handleSelect: (statusName: string) => void;
 }
 
 const EditableStatusTag: React.FC<EditableStatusTagProps> = ({
