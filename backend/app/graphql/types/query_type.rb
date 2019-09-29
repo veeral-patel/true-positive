@@ -14,18 +14,6 @@ module Types
           Status.all
       end
 
-      field :status, Types::StatusType, null: false do
-          description "Retrieve a status by its ID."
-
-          argument :id, ID, required: true do
-            description "The ID of the status to retrieve."
-          end
-      end
-
-      def status(id:)
-          find_status_or_throw_execution_error(status_id: id)
-      end
-
       # ---------- Priorities -------------------
 
       field :priorities, [Types::PriorityType], null: false do
@@ -34,18 +22,6 @@ module Types
 
       def priorities
           Priority.all
-      end
-
-      field :priority, Types::PriorityType, null: false do
-        description "Retrieve a priority by its ID."
-
-        argument :id, ID, required: true do
-          description "The ID of the priority to retrieve."
-        end
-      end
-
-      def priority(id:)
-        find_priority_or_throw_execution_error(priority_id: id)
       end
 
       # -------------- Cases -------------------
