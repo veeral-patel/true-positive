@@ -6,6 +6,7 @@ import { action, computed, observable, runInAction } from "mobx";
 import CREATE_A_CASE from "mutations/createCase";
 import DELETE_A_CASE from "mutations/deleteCase";
 import GET_CASES from "queries/getCases";
+import rootStore from "stores";
 import ICase from "ts/interfaces/ICase";
 import matchesFilter from "utils/filterCases";
 import { getPathToACase } from "utils/pathHelpers";
@@ -102,6 +103,9 @@ class CaseStore {
           response.data.createCase.case
         ) {
           navigate(getPathToACase(response.data.createCase.case.id));
+
+          // remember to close the create case modal!
+          rootStore.uiStore.closeModal();
         }
       })
       .catch((error: ApolloError) => {
