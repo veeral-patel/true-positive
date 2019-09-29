@@ -4,23 +4,20 @@ import IStatus from "ts/interfaces/IStatus";
 
 const { Text } = Typography;
 
-interface DeleteStatusButtonProps {
+interface Props {
   status: IStatus;
-  deleteStatus: (id: number) => void;
+  deleteStatus: (statusName: string) => void;
 }
 
-const DeleteStatusButtonP: React.FC<DeleteStatusButtonProps> = ({
-  status,
-  deleteStatus
-}) => (
+const DeleteStatusButton: React.FC<Props> = ({ status, deleteStatus }) => (
   <Popconfirm
     title="Delete this status?"
     okText="Yes, Delete"
-    onConfirm={() => deleteStatus(status.id)}
+    onConfirm={() => deleteStatus(status.name)}
     cancelText="No"
   >
     <a style={{ color: "red" }}>Delete</a>
   </Popconfirm>
 );
 
-export default DeleteStatusButtonP;
+export default DeleteStatusButton;

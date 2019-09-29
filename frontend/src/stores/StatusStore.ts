@@ -73,12 +73,12 @@ class StatusStore {
   }
 
   @action.bound
-  deleteStatus(id: number) {
+  deleteStatus(statusName: string) {
     client
       .mutate<IStatusDatum>({
         variables: {
           input: {
-            id: id
+            name: statusName
           }
         },
         mutation: DELETE_A_STATUS
