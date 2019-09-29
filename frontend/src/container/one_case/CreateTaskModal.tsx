@@ -3,6 +3,7 @@ import { WrappedFormUtils } from "antd/lib/form/Form";
 import "container/shared/modals/FormInModal.css";
 import { inject, observer } from "mobx-react";
 import React from "react";
+import ActiveCaseStore from "stores/ActiveCaseStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
@@ -15,7 +16,7 @@ interface FormProps {
   form: WrappedFormUtils;
   statusStore?: StatusStore;
   priorityStore?: PriorityStore;
-  uiStore?: UIStore;
+  activeCaseStore?: ActiveCaseStore;
 }
 
 class DumbCreateTaskForm extends React.Component<FormProps> {
@@ -30,8 +31,17 @@ class DumbCreateTaskForm extends React.Component<FormProps> {
     event.preventDefault();
 
     // validate our fields and raise errors if needed
-    const { form } = this.props;
-    form.validateFields();
+    const { form, activeCaseStore } = this.props;
+    form.validateFields((errors, values) => {
+      if (activeCaseStore!.activeCase) {
+        activeCaseStore!.createTask(
+          values.name,
+          values.status,
+          values.priority,
+          activeCaseStore!.activeCase.id
+        );
+      }
+    });
   }
 
   render() {
@@ -102,7 +112,7 @@ class DumbCreateTaskForm extends React.Component<FormProps> {
 
 // provide our form with validation abilities and access to our MobX stores
 const CreateTaskForm = Form.create()(
-  inject("statusStore", "priorityStore", "uiStore")(
+  inject("statusStore", "priorityStore", "activeCaseStore")(
     observer(DumbCreateTaskForm)
   )
 );
