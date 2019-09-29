@@ -35,7 +35,8 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
   }
 
   render() {
-    const { uiStore, statusStore, priorityStore } = this.props;
+    const { uiStore, statusStore, priorityStore, form } = this.props;
+    const { getFieldDecorator } = this.props.form;
 
     const statusOptions = statusStore!.statuses.map(status => (
       <Option key={status.id}>{status.name}</Option>
@@ -46,12 +47,18 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
     ));
 
     return (
-      <Form colon={false}>
+      <Form colon={false} onSubmit={this.handleSubmit.bind(this)}>
         <Form.Item label="Name" required>
-          <Input
-            placeholder="Found Ryuk"
-            ref={input => input && input.focus()}
-          />
+          {getFieldDecorator("name", {
+            rules: [
+              { required: true, message: "Please enter a name for this case" }
+            ]
+          })(
+            <Input
+              placeholder="Found Ryuk"
+              ref={input => input && input.focus()}
+            />
+          )}
         </Form.Item>
         <Form.Item label="Status" required>
           <AutoComplete
