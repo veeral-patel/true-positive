@@ -1,8 +1,6 @@
 import { navigate, RouteComponentProps } from "@reach/router";
 import {
-  Avatar,
   Col,
-  Comment,
   Divider,
   Layout,
   notification,
@@ -11,9 +9,9 @@ import {
   Typography
 } from "antd";
 import ActionsDropdown from "container/one_task/ActionsDropdown";
+import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionForm from "container/shared/description/DescriptionForm";
 import { inject, observer } from "mobx-react";
-import AddCommentFormP from "presentational/one_case/InfoP/AddCommentFormP";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
@@ -184,10 +182,7 @@ export default inject("activeCaseStore")(
                   />
                 )}
                 <div style={{ width: "70%" }}>
-                  <Comment
-                    content={<AddCommentFormP />}
-                    avatar={<Avatar icon="user" />}
-                  />
+                  <CreateComment />
                 </div>
               </section>
             </Content>
