@@ -31,7 +31,7 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
 
     // validate our fields and raise errors if needed
     const { form } = this.props;
-    form.validateFields((errors, values) => console.log(errors));
+    form.validateFields();
   }
 
   render() {
