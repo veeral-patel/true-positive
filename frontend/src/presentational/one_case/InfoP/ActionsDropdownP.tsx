@@ -1,7 +1,7 @@
 import { Button, Dropdown, Icon, Menu } from "antd";
 import { ClickParam } from "antd/lib/menu";
 import React from "react";
-import { DELETE_CASE, MERGE_CASE } from "utils/constants";
+import { DELETE_CASE } from "utils/constants";
 
 interface ActionsDropdownProps {
   handleMenuClick: (click: ClickParam) => void;
@@ -12,7 +12,7 @@ const ActionsDropdownP: React.FC<ActionsDropdownProps> = ({
 }) => {
   const menu = (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key={MERGE_CASE}>Merge</Menu.Item>
+      {/* <Menu.Item key={MERGE_CASE}>Merge</Menu.Item> */}
       <Menu.Divider />
       <Menu.Item key={DELETE_CASE} style={{ color: "red" }}>
         Delete Case

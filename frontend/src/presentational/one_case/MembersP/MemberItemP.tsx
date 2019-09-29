@@ -1,5 +1,4 @@
 import { Avatar, Icon, List } from "antd";
-import RoleSelectP from "presentational/one_case/MembersP/RoleSelectP";
 import React from "react";
 
 interface MemberItemProps {
@@ -16,9 +15,9 @@ const MemberItemP: React.FC<MemberItemProps> = ({ username, email, role }) => (
       description={email}
     />
     <div>
-      <div style={{ marginRight: "30px", display: "inline-block" }}>
+      {/* <div style={{ marginRight: "30px", display: "inline-block" }}>
         <RoleSelectP role={role} />
-      </div>
+      </div> */}
       <Icon type="close" />
     </div>
   </List.Item>
