@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import { message, notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
@@ -7,9 +8,16 @@ import DELETE_A_CASE from "mutations/deleteCase";
 import GET_CASES from "queries/getCases";
 import ICase from "ts/interfaces/ICase";
 import matchesFilter from "utils/filterCases";
+import { getPathToACase } from "utils/pathHelpers";
 
 interface ICaseData {
   cases: ICase[];
+}
+
+interface ICaseDatum {
+  createCase: {
+    case: ICase;
+  };
 }
 
 class CaseStore {
@@ -68,7 +76,7 @@ class CaseStore {
   @action.bound
   createCase(name: string, statusName: string, priorityName: string) {
     client
-      .mutate({
+      .mutate<ICaseDatum>({
         variables: {
           input: {
             name,
@@ -78,9 +86,23 @@ class CaseStore {
         },
         mutation: CREATE_A_CASE
       })
+      // keep in mind: we're not requesting the whole case object here, just a couple fields
       .then(response => {
+        // show toast
         message.success("Created the case");
+
+        // reload the cases in our store
         this.loadCases();
+
+        // open that case
+        if (
+          response &&
+          response.data &&
+          response.data.createCase &&
+          response.data.createCase.case
+        ) {
+          navigate(getPathToACase(response.data.createCase.case.id));
+        }
       })
       .catch((error: ApolloError) => {
         notification.error({
