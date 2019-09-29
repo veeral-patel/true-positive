@@ -19,7 +19,7 @@ const MembersP: React.FC<MembersProps> = ({ members }) => (
       minHeight: 280
     }}
   >
-    <h2>Members ({members.length})</h2>
+    <h3>Members ({members.length})</h3>
     <div style={{ marginTop: "15px", marginBottom: "15px" }}>
       <Text>Only members of a case are authorized to view it.</Text>
     </div>

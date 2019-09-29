@@ -51,7 +51,7 @@ export default inject("activeCaseStore")(
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <h2>Tasks ({activeCase.tasks.length})</h2>
+                    <h3>Tasks ({activeCase.tasks.length})</h3>
                     <Button
                       icon="plus"
                       onClick={() =>

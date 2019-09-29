@@ -42,7 +42,7 @@ export default inject("activeCaseStore")(
             >
               <section>
                 <div style={{ display: "inline-block" }}>
-                  <h2>Info</h2>
+                  <h3>Info</h3>
                 </div>
                 <div style={{ display: "inline-block", float: "right" }}>
                   <ActionsDropdown caseId={activeCase.id} />

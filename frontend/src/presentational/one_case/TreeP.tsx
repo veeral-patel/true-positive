@@ -14,7 +14,7 @@ const Tree: React.FC<TreeProps> = () => (
       minHeight: 280
     }}
   >
-    <h2>Tree</h2>
+    <h3>Tree</h3>
   </Content>
 );
 
