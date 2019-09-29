@@ -73,12 +73,12 @@ class PriorityStore {
   }
 
   @action.bound
-  deletePriority(id: number) {
+  deletePriority(name: string) {
     client
       .mutate<IPriorityDatum>({
         variables: {
           input: {
-            id: id
+            name
           }
         },
         mutation: DELETE_A_PRIORITY

@@ -1,8 +1,9 @@
 import { List } from "antd";
+import PriorityItem from "container/admin/PriorityItem";
 import { inject, observer } from "mobx-react";
-import ListofPrioritiesP from "presentational/admin/ListofPrioritiesP";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
+import IPriority from "ts/interfaces/IPriority";
 
 interface IListofPriorityProps {
   priorityStore?: PriorityStore;
@@ -26,9 +27,10 @@ export default inject("priorityStore")(
 
         const priorities = priorityStore!.priorities;
         return (
-          <ListofPrioritiesP
-            priorities={priorities}
-            deletePriority={priorityStore!.deletePriority}
+          <List<IPriority>
+            itemLayout="horizontal"
+            dataSource={priorities}
+            renderItem={priority => <PriorityItem priority={priority} />}
           />
         );
       }

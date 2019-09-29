@@ -4,7 +4,7 @@ import IPriority from "ts/interfaces/IPriority";
 
 interface DeletePriorityButtonProps {
   priority: IPriority;
-  deletePriority: (id: number) => void;
+  deletePriority: (name: string) => void;
 }
 
 const DeletePriorityButtonP: React.FC<DeletePriorityButtonProps> = ({
@@ -14,7 +14,7 @@ const DeletePriorityButtonP: React.FC<DeletePriorityButtonProps> = ({
   <Popconfirm
     title="Delete this priority?"
     okText="Yes, Delete"
-    onConfirm={() => deletePriority(priority.id)}
+    onConfirm={() => deletePriority(priority.name)}
     cancelText="No"
   >
     <a style={{ color: "red" }}>Delete</a>
