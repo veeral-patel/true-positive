@@ -32,7 +32,7 @@ export default inject("priorityStore")(
                 <Text
                   editable={{
                     onChange: newText => {
-                      priorityStore!.renamePriority(priority.id, newText);
+                      priorityStore!.renamePriority(priority.name, newText);
                     }
                   }}
                 >

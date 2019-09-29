@@ -99,13 +99,13 @@ class PriorityStore {
       );
   }
 
-  @action.bound renamePriority(id: number, newName: string) {
+  @action.bound renamePriority(oldName: string, newName: string) {
     client
       .mutate<IPriorityDatum>({
         variables: {
           input: {
-            id: id,
-            name: newName
+            oldName,
+            newName
           }
         },
         mutation: RENAME_A_PRIORITY
