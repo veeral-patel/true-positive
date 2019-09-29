@@ -62,7 +62,7 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
         </Form.Item>
         <Form.Item label="Status">
           {getFieldDecorator("status", {
-            rules: [{ required: true, message: "Please select a status" }]
+            rules: [{ required: true, message: "Please choose a status" }]
           })(
             <AutoComplete
               dataSource={statusOptions}
@@ -73,12 +73,16 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
           )}
         </Form.Item>
         <Form.Item label="Priority">
-          <AutoComplete
-            dataSource={priorityOptions}
-            placeholder="Choose a priority"
-          >
-            <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
-          </AutoComplete>
+          {getFieldDecorator("priority", {
+            rules: [{ required: true, message: "Please choose a priority" }]
+          })(
+            <AutoComplete
+              dataSource={priorityOptions}
+              placeholder="Choose a priority"
+            >
+              <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
+            </AutoComplete>
+          )}
         </Form.Item>
         <Form.Item>
           <div style={{ float: "right" }}>
