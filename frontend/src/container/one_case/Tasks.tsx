@@ -42,9 +42,8 @@ export default inject("activeCaseStore")(
 
               <div style={{ marginBottom: "20px" }}>
                 <Input
-                  placeholder="Create a task"
-                  prefix={<Icon type="plus" />}
-                  suffix={<Icon type="arrow-right" />}
+                  placeholder="Search tasks"
+                  prefix={<Icon type="search" />}
                 />
               </div>
               <TasksTable
