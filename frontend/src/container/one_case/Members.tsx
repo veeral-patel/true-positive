@@ -1,12 +1,12 @@
 import { RouteComponentProps } from "@reach/router";
-import { Avatar, Icon, Layout, List } from "antd";
-import Text from "antd/lib/typography/Text";
+import { Avatar, Icon, Layout, List, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
 
 const { Content } = Layout;
+const { Paragraph } = Typography;
 
 interface MembersProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -33,9 +33,9 @@ export default inject("activeCaseStore")(
               }}
             >
               <h3>Members ({members.length})</h3>
-              <div style={{ marginTop: "15px", marginBottom: "15px" }}>
-                <Text>Only members of a case are authorized to view it.</Text>
-              </div>
+              <Paragraph>
+                Only members of a case are authorized to view it.
+              </Paragraph>
               <List<ICaseMember>
                 itemLayout="horizontal"
                 dataSource={members}
