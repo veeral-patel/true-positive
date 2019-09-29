@@ -2,6 +2,7 @@ import { navigate, RouteComponentProps } from "@reach/router";
 import {
   Col,
   Divider,
+  Icon,
   Layout,
   notification,
   PageHeader,
@@ -81,9 +82,10 @@ export default inject("activeCaseStore")(
             >
               <PageHeader
                 onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
+                backIcon={<Icon type="arrow-left" style={{ fontSize: 16 }} />}
                 title={
                   <Text
-                    style={{ fontSize: 18, paddingTop: "5px" }}
+                    style={{ fontSize: 16 }}
                     editable={{
                       onChange: (newText: string) =>
                         activeCaseStore!.renameTask(activeTask.id, newText)
