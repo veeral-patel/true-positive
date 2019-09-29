@@ -35,7 +35,7 @@ class DumbCreateTaskForm extends React.Component<FormProps> {
   }
 
   render() {
-    const { uiStore, statusStore, priorityStore, form } = this.props;
+    const { statusStore, priorityStore } = this.props;
     const { getFieldDecorator } = this.props.form;
 
     const statusOptions = statusStore!.statuses.map(status => (
