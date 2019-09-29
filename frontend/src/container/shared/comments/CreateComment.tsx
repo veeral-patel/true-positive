@@ -10,20 +10,34 @@ interface FormProps {
 // don't use this form on its own
 class DumbCreateCommentForm extends React.Component<FormProps> {
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit.bind(this)}>
         <Form.Item>
-          <TextArea
-            placeholder="Leave a comment"
-            rows={3}
-            style={{ padding: "2%" }}
-          />
+          {getFieldDecorator("comment", {
+            rules: [{ required: true, message: "Please enter a comment" }]
+          })(
+            <TextArea
+              placeholder="Leave a comment"
+              rows={3}
+              style={{ padding: "2%" }}
+            />
+          )}
         </Form.Item>
         <Form.Item style={{ float: "right" }}>
           <Button htmlType="submit">Add Comment</Button>
         </Form.Item>
       </Form>
     );
+  }
+
+  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    // prevent page reload
+    event.preventDefault();
+
+    // validate fields
+    const { form } = this.props;
+    form.validateFields();
   }
 }
 
