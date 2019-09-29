@@ -48,7 +48,7 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
 
     return (
       <Form colon={false} onSubmit={this.handleSubmit.bind(this)}>
-        <Form.Item label="Name" required>
+        <Form.Item label="Name">
           {getFieldDecorator("name", {
             rules: [
               { required: true, message: "Please enter a name for this case" }
@@ -60,7 +60,7 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
             />
           )}
         </Form.Item>
-        <Form.Item label="Status" required>
+        <Form.Item label="Status">
           <AutoComplete
             dataSource={statusOptions}
             placeholder="Choose a status"
@@ -68,7 +68,7 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
             <Input suffix={<Icon type="down" style={{ color: "gray" }} />} />
           </AutoComplete>
         </Form.Item>
-        <Form.Item label="Priority" required>
+        <Form.Item label="Priority">
           <AutoComplete
             dataSource={priorityOptions}
             placeholder="Choose a priority"
