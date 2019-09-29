@@ -3,24 +3,35 @@ import { Avatar, Icon, Layout, List, Select, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import UserStore from "stores/UserStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
 
 const { Content } = Layout;
+const { Option } = Select;
 const { Paragraph } = Typography;
 
 interface MembersProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
+  userStore?: UserStore;
 }
 
-export default inject("activeCaseStore")(
+export default inject("activeCaseStore", "userStore")(
   observer(
     class Members extends React.Component<MembersProps> {
+      componentDidMount() {
+        const { userStore } = this.props;
+        userStore!.loadUsers();
+      }
+
       render() {
-        const { activeCaseStore } = this.props;
+        const { activeCaseStore, userStore } = this.props;
         const activeCase = activeCaseStore!.activeCase;
 
-        // should always render, since we're catching errors and showing
-        // our spinner above this component, as a HOC
+        const userOptions = userStore!.users.map(user => (
+          <Option key={user.username}>{user.username}</Option>
+        ));
+
+        // should always render, since we're handling error/loading states above this component (as a HOC)
         if (activeCase) {
           const members = activeCase.caseMembers;
           return (
@@ -36,11 +47,17 @@ export default inject("activeCaseStore")(
               <Paragraph>
                 Only members of a case are authorized to view it.
               </Paragraph>
-              <Select
-                style={{ width: "100%" }}
-                mode="multiple"
-                placeholder="Add members"
-              />
+              {userStore!.usersAreLoading ? (
+                "Loading..."
+              ) : (
+                <Select
+                  style={{ width: "100%" }}
+                  mode="multiple"
+                  placeholder="Add members"
+                >
+                  {userOptions}
+                </Select>
+              )}
               <List<ICaseMember>
                 itemLayout="horizontal"
                 dataSource={members}
