@@ -47,17 +47,19 @@ export default inject("activeCaseStore", "userStore")(
               <Paragraph>
                 Only members of a case are authorized to view it.
               </Paragraph>
-              {userStore!.usersAreLoading ? (
-                "Loading..."
-              ) : (
-                <Select
-                  style={{ width: "100%" }}
-                  mode="multiple"
-                  placeholder="Add members"
-                >
-                  {userOptions}
-                </Select>
-              )}
+              <div style={{ marginBottom: "1em" }}>
+                {userStore!.usersAreLoading ? (
+                  "Loading..."
+                ) : (
+                  <Select
+                    style={{ width: "100%" }}
+                    mode="multiple"
+                    placeholder="Add members"
+                  >
+                    {userOptions}
+                  </Select>
+                )}
+              </div>
               <List<ICaseMember>
                 itemLayout="horizontal"
                 dataSource={members}
