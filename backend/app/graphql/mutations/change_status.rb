@@ -5,7 +5,7 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
         description "The ID of the case or task whose status we're updating."
     end
 
-    argument :name, ID, required: true do
+    argument :status, ID, required: true do
         description "The name of the new status (eg, Open)"
     end
 
@@ -21,9 +21,9 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
         description "The updated task. Is null if you're not updating a task."
     end
 
-    def resolve(object_id:, name:, type:)
+    def resolve(object_id:, status:, type:)
         # find the new status
-        new_status =  find_status_by_name_or_throw_execution_error(status_name: name)
+        new_status =  find_status_by_name_or_throw_execution_error(status_name: status)
 
         # changing the status of a case
         if type === "CASE"

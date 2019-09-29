@@ -221,7 +221,7 @@ class ActiveCaseStore {
         variables: {
           input: {
             objectId: this.activeCase.id,
-            name: statusName,
+            status: statusName,
             type: "CASE"
           }
         },
@@ -374,7 +374,7 @@ class ActiveCaseStore {
         variables: {
           input: {
             objectId: taskId,
-            name: statusName,
+            status: statusName,
             type: "TASK"
           }
         },
