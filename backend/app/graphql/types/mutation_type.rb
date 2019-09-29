@@ -10,6 +10,7 @@ module Types
       field :add_member, mutation: Mutations::AddMember
 
       # task -------
+      field :create_task, mutation: Mutations::CreateTask
       field :rename_task, mutation: Mutations::RenameTask
       field :delete_task, mutation: Mutations::DeleteTask
 
