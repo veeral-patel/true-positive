@@ -32,7 +32,7 @@ export default inject("statusStore")(
                 <Text
                   editable={{
                     onChange: newText =>
-                      statusStore!.renameStatus(status.id, newText)
+                      statusStore!.renameStatus(status.name, newText)
                   }}
                 >
                   {status.name}

@@ -100,13 +100,13 @@ class StatusStore {
   }
 
   @action.bound
-  renameStatus(id: number, newName: string) {
+  renameStatus(oldName: string, newName: string) {
     client
       .mutate<IStatusDatum>({
         variables: {
           input: {
-            id: id,
-            name: newName
+            oldName,
+            newName
           }
         },
         mutation: RENAME_A_STATUS
