@@ -99,7 +99,7 @@ export default inject("activeCaseStore")(
                   )}
                 </div>
                 <div style={{ display: "flex" }}>
-                  <div style={{ flex: 5 }}>
+                  <div style={{ flex: 5, overflow: "hidden" }}>
                     <Router>
                       <Info path="/" />
                       <Info path="/info" />
