@@ -5,8 +5,8 @@ class Mutations::AddMember < Mutations::BaseMutation
         description "The ID of the case we're adding a member to"
     end
 
-    argument :user_id, ID, required: true do
-        description "The ID (not the username) of the user we're adding to the case."
+    argument :username, String, required: true do
+        description "The username of the user we're adding to the case."
     end
 
     argument :role, Types::CaseRoleEnum, required: true do
@@ -17,10 +17,10 @@ class Mutations::AddMember < Mutations::BaseMutation
         description "The updated case."
     end
 
-    def resolve(case_id:, user_id:, role:)
+    def resolve(case_id:, username:, role:)
         # find the case and user in question
         the_case = find_case_or_throw_execution_error(case_id: case_id)
-        user = find_user_or_throw_execution_error(user_id: user_id)
+        user = find_user_or_throw_execution_error(username: username)
 
         # try to add the user to the case
         if the_case.add_member(user, role)

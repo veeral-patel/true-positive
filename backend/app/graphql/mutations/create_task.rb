@@ -45,7 +45,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
         the_case = find_case_or_throw_execution_error(case_id: case_id)
         status_record = find_status_by_name_or_throw_execution_error(status_name: status)
         priority_record = find_priority_by_name_or_throw_execution_error(priority_name: priority)
-        assigned_user = assigned_to.nil? ? nil : find_user_by_username_or_throw_execution_error(username: assigned_to)
+        assigned_user = assigned_to.nil? ? nil : find_user_or_throw_execution_error(username: assigned_to)
 
         # create new task in memory
         new_task = Task.new(

@@ -5,8 +5,8 @@ class Mutations::ChangeAssignee < Mutations::BaseMutation
         description "The ID of the case or task."
     end
 
-    argument :user_id, ID, required: true do
-        description "The ID of the user to assign."
+    argument :username, String, required: true do
+        description "The username of the user to assign."
     end
 
     argument :type, Types::IsAssignableEnum, required: true do
@@ -21,9 +21,9 @@ class Mutations::ChangeAssignee < Mutations::BaseMutation
         description "The updated task. Is null if you're not assigning a task."
     end
 
-    def resolve(object_id:, user_id:, type:)
+    def resolve(object_id:, username:, type:)
         # find the new assignee
-        user = find_user_or_throw_execution_error(user_id: user_id)
+        user = find_user_or_throw_execution_error(username: username)
 
         # changing the type of a task
         if type === "CASE"
