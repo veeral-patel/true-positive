@@ -23,7 +23,7 @@ export default inject("userStore")(
 
         // generate a list of options
         const options = userStore!.users.map(user => (
-          <Option key={user.id}>{user.username}</Option>
+          <Option key={user.username}>{user.username}</Option>
         ));
 
         // render our component
