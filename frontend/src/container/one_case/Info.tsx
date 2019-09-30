@@ -99,7 +99,7 @@ export default inject("activeCaseStore")(
                 </Row>
               </section>
 
-              <section style={{ maxWidth: "800px" }}>
+              <section>
                 <Row>
                   <Col span={24}>
                     <Divider orientation="left">Description</Divider>
