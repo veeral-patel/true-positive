@@ -82,7 +82,7 @@ export default inject("activeCaseStore")(
             >
               <PageHeader
                 onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
-                backIcon={<Icon type="arrow-left" style={{ fontSize: 16 }} />}
+                backIcon={<Icon type="arrow-left" style={{ fontSize: 14 }} />}
                 title={
                   <Text
                     style={{ fontSize: 16 }}
