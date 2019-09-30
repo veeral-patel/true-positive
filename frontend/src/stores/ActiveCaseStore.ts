@@ -312,13 +312,13 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeCaseAssignee(userId: number) {
+  changeCaseAssignee(username: string) {
     client
       .mutate<ICaseDatum>({
         variables: {
           input: {
             objectId: this.activeCaseId,
-            userId: userId,
+            username,
             type: "CASE"
           }
         },
@@ -341,13 +341,13 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeTaskAssignee(taskId: number, userId: number) {
+  changeTaskAssignee(taskId: number, username: string) {
     client
       .mutate({
         variables: {
           input: {
             objectId: taskId,
-            userId,
+            username,
             type: "TASK"
           }
         },

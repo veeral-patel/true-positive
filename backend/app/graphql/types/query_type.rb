@@ -55,19 +55,8 @@ module Types
         User.all
       end
 
-      field :user, Types::UserType, null: false do
-        description "Retrieve an user by the user's ID."
-
-        argument :id, ID, required: true do
-          description "The ID (not the username) of the user to retrieve."
-        end
-      end
-
-      def user(id:)
-        find_user_or_throw_execution_error(user_id: id)
-      end
-
       field :me, Types::UserType, null: true do
+        description "Retrieve the currently authenticated user."
       end
 
       def me

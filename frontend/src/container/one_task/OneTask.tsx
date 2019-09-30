@@ -145,10 +145,10 @@ export default inject("activeCaseStore")(
                   <Col span={8}>
                     <EditableAssigneeTag
                       user={activeTask.assignedTo}
-                      handleSelect={userId =>
+                      handleSelect={username =>
                         activeCaseStore!.changeTaskAssignee(
                           activeTask.id,
-                          userId
+                          username
                         )
                       }
                     />

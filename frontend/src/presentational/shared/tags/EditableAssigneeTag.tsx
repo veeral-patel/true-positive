@@ -6,7 +6,7 @@ import IUser from "ts/interfaces/IUser";
 
 interface EditableAssigneeTagProps {
   user: IUser | null;
-  handleSelect: (userId: number) => void;
+  handleSelect: (username: string) => void;
 }
 
 const EditableAssigneeTag: React.FC<EditableAssigneeTagProps> = ({
