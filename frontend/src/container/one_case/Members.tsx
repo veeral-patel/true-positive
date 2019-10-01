@@ -1,11 +1,11 @@
 import { RouteComponentProps } from "@reach/router";
 import { Avatar, Button, Layout, List, Select, Typography } from "antd";
+import AddMembersForm from "container/one_case/AddMembersForm";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UserStore from "stores/UserStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
-import AddMembersForm from "./AddMembersSelect";
 
 const { Content } = Layout;
 const { Option } = Select;
