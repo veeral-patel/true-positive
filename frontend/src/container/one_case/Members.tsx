@@ -70,7 +70,7 @@ export default inject("activeCaseStore", "userStore")(
                       title={member.user.username}
                       description={member.user.email}
                     />
-                    <Button icon="cross" style={{ border: "none" }} />
+                    <Button icon="cross" style={{ border: "none" }} onClick={() => activeCaseStore!.removeCaseMember(member.user.username)} />
                   </List.Item>
                 )}
               />

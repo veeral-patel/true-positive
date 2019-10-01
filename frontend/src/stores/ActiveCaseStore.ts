@@ -10,6 +10,7 @@ import CREATE_A_COMMENT from "mutations/createComment";
 import CREATE_A_TASK from "mutations/createTask";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
+import REMOVE_MEMBER from "mutations/removeMember";
 import RENAME_A_CASE from "mutations/renameCase";
 import RENAME_A_TASK from "mutations/renameTask";
 import GET_ONE_CASE from "queries/getOneCase";
@@ -481,6 +482,37 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while creating the task",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  removeCaseMember(username: string) {
+    if (!this.activeCase) return;
+
+    // removes a member from a case
+    client
+      .mutate({
+        variables: {
+          input: {
+            caseId: this.activeCase.id,
+            username
+          }
+        },
+        mutation: REMOVE_MEMBER
+      })
+      .then((response: FetchResult) => {
+        message.success("Removed member");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while removing the member",
           description: error.message
         });
       })
