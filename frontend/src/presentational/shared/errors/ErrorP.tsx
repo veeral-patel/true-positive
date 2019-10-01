@@ -17,7 +17,6 @@ const ErrorP: React.FC<ErrorProps> = ({ title, subtitle }) => (
     }}
   >
     <Result status="error" title={title} subTitle={subtitle} />
-    );
   </Content>
 );
 
