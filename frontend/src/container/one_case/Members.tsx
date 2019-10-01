@@ -27,9 +27,15 @@ export default inject("activeCaseStore", "userStore")(
         const { activeCaseStore, userStore } = this.props;
         const activeCase = activeCaseStore!.activeCase;
 
-        const userOptions = userStore!.users.map(user => (
-          <Option key={user.username}>{user.username}</Option>
-        ));
+        const usernamesOfMembers = activeCase!.caseMembers.map(
+          member => member.user.username
+        );
+
+        const userOptions = userStore!.users.map(user => {
+          if (!usernamesOfMembers.includes(user.username)) {
+            return <Option key={user.username}>{user.username}</Option>;
+          }
+        });
 
         // should always render, since we're handling error/loading states above this component (as a HOC)
         if (activeCase) {
