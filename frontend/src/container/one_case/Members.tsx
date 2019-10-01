@@ -5,6 +5,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UserStore from "stores/UserStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
+import AddMembersForm from "./AddMembersSelect";
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -59,13 +60,7 @@ export default inject("activeCaseStore", "userStore")(
                 {userStore!.usersAreLoading ? (
                   "Loading..."
                 ) : (
-                  <Select
-                    style={{ width: "100%" }}
-                    mode="multiple"
-                    placeholder="Add members"
-                  >
-                    {userOptions}
-                  </Select>
+                  <AddMembersForm userOptions={userOptions} />
                 )}
               </div>
               <List<ICaseMember>
