@@ -2,6 +2,7 @@ import { RouteComponentProps } from "@reach/router";
 import { Avatar, Button, Layout, List, Select, Typography } from "antd";
 import AddMembersForm from "container/one_case/AddMembersForm";
 import { inject, observer } from "mobx-react";
+import RoleSelectP from "presentational/one_case/MembersP/RoleSelectP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UserStore from "stores/UserStore";
@@ -73,9 +74,10 @@ export default inject("activeCaseStore", "userStore")(
                       title={member.user.username}
                       description={member.user.email}
                     />
+                    <RoleSelectP role={member.role} />
                     <Button
                       icon="cross"
-                      style={{ border: "none" }}
+                      style={{ border: "none", marginLeft: "1em" }}
                       onClick={() =>
                         activeCaseStore!.removeCaseMember(member.user.username)
                       }
