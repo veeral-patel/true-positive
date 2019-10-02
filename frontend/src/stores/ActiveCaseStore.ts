@@ -7,6 +7,7 @@ import CHANGE_ASSIGNEE from "mutations/changeAssignee";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_STATUS from "mutations/changeStatus";
+import CHANGE_TAGS from "mutations/changeTags";
 import CREATE_A_COMMENT from "mutations/createComment";
 import CREATE_A_TASK from "mutations/createTask";
 import DELETE_A_COMMENT from "mutations/deleteComment";
@@ -546,6 +547,39 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while adding the member",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  changeTags(
+    tags: string[],
+    objectId: number,
+    type: "CASE" | "TASK" | "INDICATOR"
+  ) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            tags,
+            objectId,
+            type
+          }
+        },
+        mutation: CHANGE_TAGS
+      })
+      .then((response: FetchResult) => {
+        message.success("Updated tags");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while updating the list of tags",
           description: error.message
         });
       })
