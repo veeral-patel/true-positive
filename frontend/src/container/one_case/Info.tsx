@@ -12,6 +12,7 @@ import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
 import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import formatISO8601 from "utils/formatISO8601";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
@@ -68,7 +69,9 @@ export default inject("activeCaseStore")(
                   </Col>
                   <Col span={4}>Created:</Col>
                   <Col span={8}>
-                    {`${activeCase.formattedCreatedAt} UTC by ${activeCase.createdBy.username}`}
+                    {`${formatISO8601(activeCase.createdAt)} UTC by ${
+                      activeCase.createdBy.username
+                    }`}
                   </Col>
                 </Row>
                 <Row>
