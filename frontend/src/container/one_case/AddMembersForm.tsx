@@ -10,15 +10,30 @@ interface FormProps {
 class DumbAddMembersForm extends React.Component<
   FormProps & FormComponentProps
 > {
+  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    // prevent page reload
+    event.preventDefault();
+
+    // validate fields in our form
+    const { form } = this.props;
+    form.validateFields();
+  }
+
   render() {
     const { userOptions } = this.props;
     const { getFieldDecorator } = this.props.form;
 
     return (
-      // add a onSubmit prop to Form below
-      <Form style={{ display: "flex" }}>
+      <Form style={{ display: "flex" }} onSubmit={this.handleSubmit.bind(this)}>
         <Form.Item style={{ flex: "80%" }}>
-          {getFieldDecorator("status")(
+          {getFieldDecorator("members", {
+            rules: [
+              {
+                required: true,
+                message: "Please select at least one user"
+              }
+            ]
+          })(
             <Select
               style={{ width: "100%" }}
               mode="multiple"
