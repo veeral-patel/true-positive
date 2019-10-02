@@ -1,4 +1,5 @@
 import { Button, Form } from "antd";
+import { FormComponentProps } from "antd/lib/form";
 import TagSelect from "container/shared/tags/TagSelect";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
@@ -10,7 +11,8 @@ interface FormProps {
   existingTags: ITag[];
 }
 
-class EditTagsForm extends React.Component<FormProps> {
+// don't use this component directly
+class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
   render() {
     const { existingTags } = this.props;
     return (
@@ -33,6 +35,10 @@ class EditTagsForm extends React.Component<FormProps> {
     );
   }
 }
+
+const EditTagsForm = Form.create<FormProps & FormComponentProps>()(
+  DumbEditTagsForm
+);
 
 // -----
 
