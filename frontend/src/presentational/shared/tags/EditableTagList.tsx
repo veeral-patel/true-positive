@@ -23,7 +23,12 @@ class EditableTagList extends React.Component<Props, State> {
     const { existingTags } = this.props;
 
     if (editing) {
-      return <TagSelect existingTags={existingTags} />;
+      return (
+        <TagSelect
+          existingTags={existingTags}
+          handleBlur={() => this.setState({ editing: false })}
+        />
+      );
     } else {
       return (
         <div onClick={() => this.setState({ editing: true })}>
