@@ -27,7 +27,7 @@ export default inject("tagStore")(
 
         // generate options from our list of all tags
         const allTagOptions = tagStore!.tags.map(tag => (
-          <Option key={tag.id}>{tag.name}</Option>
+          <Option key={tag.name}>{tag.name}</Option>
         ));
 
         // generate one option for each existing tag
