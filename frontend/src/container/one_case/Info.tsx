@@ -96,8 +96,12 @@ export default inject("activeCaseStore")(
                 </Row>
                 <Row>
                   <Col span={4}>Tags:</Col>
-                  <Col span={8}>
-                    {<EditableTagList existingTags={activeCase.tags} />}
+                  <Col span={20}>
+                    {activeCase.tags.length > 0 ? (
+                      <EditableTagList existingTags={activeCase.tags} />
+                    ) : (
+                      "N/A"
+                    )}
                   </Col>
                 </Row>
               </section>

@@ -1,20 +1,33 @@
-import { Popover } from "antd";
 import TagSelect from "container/shared/tags/TagSelect";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import ITag from "ts/interfaces/ITag";
 
-interface EditableTagListProps {
+interface Props {
   existingTags: ITag[];
 }
 
-const EditableTagList: React.FC<EditableTagListProps> = ({ existingTags }) => (
-  <Popover
-    title="Edit Tags"
-    content={<TagSelect existingTags={existingTags} />}
-  >
-    <ListOfTagsP tags={existingTags} />{" "}
-  </Popover>
-);
+interface State {
+  editing: boolean;
+}
+
+class EditableTagList extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      editing: false
+    };
+  }
+  render() {
+    const { editing } = this.state;
+    const { existingTags } = this.props;
+
+    if (editing) {
+      return <TagSelect existingTags={existingTags} />;
+    } else {
+      return <ListOfTagsP tags={existingTags} />;
+    }
+  }
+}
 
 export default EditableTagList;

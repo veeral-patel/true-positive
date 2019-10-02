@@ -36,7 +36,8 @@ export default inject("tagStore")(
             mode="tags"
             placeholder="Select tags"
             defaultValue={existingTags.map(tag => tag.name)}
-            style={{ minWidth: "200px" }}
+            tokenSeparators={[","]}
+            style={{ width: "100%" }}
           >
             {allTagOptions}
           </Select>
