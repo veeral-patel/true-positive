@@ -29,7 +29,7 @@ class DumbAddMembersForm extends React.Component<
           )}
         </Form.Item>
         <Form.Item>
-          <Button>Add Members</Button>
+          <Button htmlType="submit">Add Members</Button>
         </Form.Item>
       </Form>
     );
