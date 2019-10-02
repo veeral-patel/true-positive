@@ -62,10 +62,6 @@ class Case < ApplicationRecord
     self.parent
   end
 
-  def formatted_created_at
-      self.created_at.strftime("%m/%d/%y %H:%M")
-  end
-
   private
     def destroy_merged_cases
       self.merged_cases.each { |the_case| the_case.destroy } 

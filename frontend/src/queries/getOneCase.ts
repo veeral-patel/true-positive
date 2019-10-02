@@ -24,7 +24,6 @@ const GET_ONE_CASE = gql`
       }
       description
       createdAt
-      formattedCreatedAt
       priority {
         name
       }
@@ -74,7 +73,6 @@ const GET_ONE_CASE = gql`
         comments {
           id
           comment
-          formattedCreatedAt
           createdAt
           createdBy {
             username
@@ -88,7 +86,6 @@ const GET_ONE_CASE = gql`
       comments {
         id
         comment
-        formattedCreatedAt
         createdAt
         createdBy {
           username

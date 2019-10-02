@@ -17,9 +17,5 @@ module Types
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
             description "When this comment was created (in ISO8601)"
         end
-
-        field :formatted_created_at, String, null: false do
-            description "When this comment was created (nicely formatted)"
-        end
     end
 end

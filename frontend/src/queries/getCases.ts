@@ -7,7 +7,6 @@ const GET_CASES = gql`
       name
       description
       createdAt
-      formattedCreatedAt
       priority {
         name
       }

@@ -5,7 +5,6 @@ interface IComment {
   comment: string;
   createdBy: IUser;
   createdAt: string;
-  formattedCreatedAt: string;
 }
 
 export default IComment;

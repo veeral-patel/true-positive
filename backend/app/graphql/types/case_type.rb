@@ -15,10 +15,6 @@ module Types
             description "When this case was created (in ISO8601 format)."
         end
 
-        field :formatted_created_at, String, null: false do
-            description "When this case was created (formatted nicely)."
-        end
-
         field :created_by, Types::UserType, null: false do
           description "The user who created this case."  
         end
