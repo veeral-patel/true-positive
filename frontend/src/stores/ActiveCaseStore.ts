@@ -509,7 +509,7 @@ class ActiveCaseStore {
         mutation: REMOVE_MEMBER
       })
       .then((response: FetchResult) => {
-        message.success("Removed member");
+        message.success(`Removed ${username}`);
       })
       .catch((error: ApolloError) => {
         notification.error({
