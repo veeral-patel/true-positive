@@ -21,7 +21,7 @@ export default inject("tagStore")(
       }
 
       render() {
-        const { existingTags, tagStore, handleBlur } = this.props;
+        const { existingTags, tagStore } = this.props;
 
         if (tagStore!.tagsAreLoading) return <Spin />;
 
