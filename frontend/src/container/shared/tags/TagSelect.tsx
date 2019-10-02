@@ -10,7 +10,6 @@ interface Props {
   // to pre-populate our tag select
   existingTags: ITag[];
   tagStore?: TagStore;
-  handleBlur: () => void;
 }
 
 export default inject("tagStore")(
@@ -39,7 +38,6 @@ export default inject("tagStore")(
             defaultValue={existingTags.map(tag => tag.name)}
             tokenSeparators={[","]}
             style={{ width: "100%" }}
-            onBlur={handleBlur}
           >
             {allTagOptions}
           </Select>

@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import TagSelect from "container/shared/tags/TagSelect";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
@@ -24,19 +25,23 @@ class EditableTagList extends React.Component<Props, State> {
 
     if (editing) {
       return (
-        <TagSelect
-          existingTags={existingTags}
-          handleBlur={() => this.setState({ editing: false })}
-        />
+        <div>
+          <TagSelect existingTags={existingTags} />
+          <Button>Save</Button>
+          <Button type="link">Cancel</Button>
+        </div>
       );
     } else {
       return (
-        <div onClick={() => this.setState({ editing: true })}>
+        <div>
           {existingTags.length === 0 ? (
             "N/A"
           ) : (
             <ListOfTagsP tags={existingTags} />
           )}
+          <Button type="link" onClick={() => this.setState({ editing: true })}>
+            Edit
+          </Button>
         </div>
       );
     }
