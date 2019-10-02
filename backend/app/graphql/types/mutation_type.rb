@@ -22,6 +22,7 @@ module Types
 
       # case, task, or indicator
       field :change_description, mutation: Mutations::ChangeDescription
+      field :change_tags, mutation: Mutations::ChangeTags
 
       # comment --------
       field :create_comment, mutation: Mutations::CreateComment
