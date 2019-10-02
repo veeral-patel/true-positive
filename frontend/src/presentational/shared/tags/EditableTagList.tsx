@@ -27,8 +27,12 @@ class EditableTagList extends React.Component<Props, State> {
       return (
         <div>
           <TagSelect existingTags={existingTags} />
-          <Button>Save</Button>
-          <Button type="link">Cancel</Button>
+          <Button onClick={() => this.setState({ editing: false })}>
+            Save
+          </Button>
+          <Button type="link" onClick={() => this.setState({ editing: false })}>
+            Cancel
+          </Button>
         </div>
       );
     } else {
