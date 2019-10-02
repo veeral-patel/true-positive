@@ -1,10 +1,13 @@
 import { Button, Form, Select } from "antd";
 import { FormComponentProps, WrappedFormUtils } from "antd/lib/form/Form";
+import { inject, observer } from "mobx-react";
 import React from "react";
+import ActiveCaseStore from "stores/ActiveCaseStore";
 
 interface FormProps {
   userOptions: React.ReactNode[];
   form: WrappedFormUtils;
+  activeCaseStore?: ActiveCaseStore;
 }
 
 class DumbAddMembersForm extends React.Component<
@@ -15,11 +18,11 @@ class DumbAddMembersForm extends React.Component<
     event.preventDefault();
 
     // validate fields in our form
-    const { form } = this.props;
+    const { form, activeCaseStore } = this.props;
     form.validateFields((errors, values) => {
       if (!errors) {
         values.members.forEach((username: string) => {
-          console.log(username);
+          activeCaseStore!.addCaseMember(username);
         });
       }
     });
@@ -58,7 +61,7 @@ class DumbAddMembersForm extends React.Component<
 }
 
 const AddMembersForm = Form.create<FormProps & FormComponentProps>()(
-  DumbAddMembersForm
+  inject("activeCaseStore")(observer(DumbAddMembersForm))
 );
 
 export default AddMembersForm;

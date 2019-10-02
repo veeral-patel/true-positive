@@ -2,6 +2,7 @@ import { message, notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
+import ADD_MEMBER from "mutations/addMember";
 import CHANGE_ASSIGNEE from "mutations/changeAssignee";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_PRIORITY from "mutations/changePriority";
@@ -513,6 +514,38 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while removing the member",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  addCaseMember(username: string) {
+    if (!this.activeCase) return;
+
+    // adds a member from a case
+    client
+      .mutate({
+        variables: {
+          input: {
+            username,
+            caseId: this.activeCase.id,
+            role: "CAN_EDIT"
+          }
+        },
+        mutation: ADD_MEMBER
+      })
+      .then((response: FetchResult) => {
+        message.success(`Added ${username}`);
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while adding the member",
           description: error.message
         });
       })
