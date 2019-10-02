@@ -1,14 +1,10 @@
 module Types
     class IndicatorType < Types::BaseObject
-        description "A file hash, IP address, domain name, or another indicator of compromise."
-
         field :id, ID, null: false do
             description "An unique integer identifying this indicator."
         end
 
-        field :name, String, null: false do
-            description "The file hash, IP address, domain name, etc. this indicator describes."
-        end
+        field :name, String, null: false
 
         field :description, String, null: true do
             description "This indicator's description."
