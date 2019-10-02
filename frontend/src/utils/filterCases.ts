@@ -2,6 +2,7 @@ import ICase from "ts/interfaces/ICase";
 import IPriority from "ts/interfaces/IPriority";
 import IStatus from "ts/interfaces/IStatus";
 import IUser from "ts/interfaces/IUser";
+import formatISO8601 from "./formatISO8601";
 
 function nameMatches(filterWord: string, theCase: ICase) {
   return theCase.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1;
@@ -29,7 +30,7 @@ function createdByMatches(filterWord: string, createdBy: IUser) {
 
 function createdAtMatches(filterWord: string, theCase: ICase) {
   return (
-    theCase.formattedCreatedAt
+    formatISO8601(theCase.createdAt)
       .toLowerCase()
       .indexOf(filterWord.toLowerCase()) !== -1
   );
