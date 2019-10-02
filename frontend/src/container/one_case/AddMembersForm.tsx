@@ -16,7 +16,13 @@ class DumbAddMembersForm extends React.Component<
 
     // validate fields in our form
     const { form } = this.props;
-    form.validateFields();
+    form.validateFields((errors, values) => {
+      if (!errors) {
+        values.members.forEach((username: string) => {
+          console.log(username);
+        });
+      }
+    });
   }
 
   render() {
