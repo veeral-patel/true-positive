@@ -21,6 +21,7 @@ import {
   priorityMatches,
   statusMatches
 } from "utils/filterCases";
+import formatISO8601 from "utils/formatISO8601";
 
 const { Column } = Table;
 
@@ -183,10 +184,13 @@ export default inject(
             />
             <Column
               title="Created At (UTC)"
-              dataIndex="formattedCreatedAt"
-              key="formatted_created_at"
+              dataIndex="createdAt"
+              key="created_at"
               sorter={(a: ICase, b: ICase) =>
                 a.createdAt.localeCompare(b.createdAt)
+              }
+              render={(text, theCase, index) =>
+                formatISO8601(theCase.createdAt)
               }
             />
           </Table>
