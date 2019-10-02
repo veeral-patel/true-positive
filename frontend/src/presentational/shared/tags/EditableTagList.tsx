@@ -4,16 +4,48 @@ import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import ITag from "ts/interfaces/ITag";
 
-interface Props {
+// -----
+
+interface FormProps {
   existingTags: ITag[];
 }
 
-interface State {
+class EditTagsForm extends React.Component<FormProps> {
+  render() {
+    const { existingTags } = this.props;
+    return (
+      <Form>
+        <Form.Item>
+          <TagSelect existingTags={existingTags} />
+        </Form.Item>
+        <Form.Item>
+          <Button
+            onClick={() => this.setState({ editing: false })}
+            htmlType="submit"
+          >
+            Save
+          </Button>
+          <Button type="link" onClick={() => this.setState({ editing: false })}>
+            Cancel
+          </Button>
+        </Form.Item>
+      </Form>
+    );
+  }
+}
+
+// -----
+
+interface ListProps {
+  existingTags: ITag[];
+}
+
+interface ListState {
   editing: boolean;
 }
 
-class EditableTagList extends React.Component<Props, State> {
-  constructor(props: Props) {
+class EditableTagList extends React.Component<ListProps, ListState> {
+  constructor(props: ListProps) {
     super(props);
     this.state = {
       editing: false
@@ -24,27 +56,7 @@ class EditableTagList extends React.Component<Props, State> {
     const { existingTags } = this.props;
 
     if (editing) {
-      return (
-        <Form>
-          <Form.Item>
-            <TagSelect existingTags={existingTags} />
-          </Form.Item>
-          <Form.Item>
-            <Button
-              onClick={() => this.setState({ editing: false })}
-              htmlType="submit"
-            >
-              Save
-            </Button>
-            <Button
-              type="link"
-              onClick={() => this.setState({ editing: false })}
-            >
-              Cancel
-            </Button>
-          </Form.Item>
-        </Form>
-      );
+      return <EditTagsForm existingTags={existingTags} />;
     } else {
       return (
         <div>
