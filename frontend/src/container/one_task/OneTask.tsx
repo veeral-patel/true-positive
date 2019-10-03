@@ -18,7 +18,7 @@ import ErrorP from "presentational/shared/errors/ErrorP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
 import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
-import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
+import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import formatISO8601 from "utils/formatISO8601";
@@ -156,7 +156,13 @@ export default inject("activeCaseStore")(
                 </Row>
                 <Row>
                   <Col span={4}>Tags:</Col>
-                  <Col span={8}>{<ListOfTagsP tags={activeTask.tags} />}</Col>
+                  <Col span={20}>
+                    <EditableTagList
+                      existingTags={activeTask.tags}
+                      type="TASK"
+                      objectId={taskId}
+                    />
+                  </Col>
                 </Row>
               </section>
 
