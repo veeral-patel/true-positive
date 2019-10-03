@@ -26,6 +26,9 @@ interface FormProps {
 
   /* the type of object we're commenting on */
   type: "CASE" | "TASK";
+
+  /* function that's called when you click Cancel */
+  handleCancel: () => void;
 }
 
 // don't use this component directly
@@ -36,7 +39,7 @@ class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
   }
 
   render() {
-    const { existingTags, form, tagStore } = this.props;
+    const { existingTags, form, tagStore, handleCancel } = this.props;
     const { getFieldDecorator } = form;
 
     // generate options from our list of all tags
@@ -47,11 +50,12 @@ class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
     return (
       <Form onSubmit={this.handleSubmit.bind(this)}>
         <Form.Item>
-          {getFieldDecorator("tags")(
+          {getFieldDecorator("tags", {
+            initialValue: existingTags.map(tag => tag.name)
+          })(
             <Select
               mode="tags"
               placeholder="Select tags"
-              defaultValue={existingTags.map(tag => tag.name)}
               tokenSeparators={[","]}
               style={{ width: "100%" }}
             >
@@ -60,13 +64,8 @@ class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
           )}
         </Form.Item>
         <Form.Item>
-          <Button
-            onClick={() => this.setState({ editing: false })}
-            htmlType="submit"
-          >
-            Save
-          </Button>
-          <Button type="link" onClick={() => this.setState({ editing: false })}>
+          <Button htmlType="submit">Save</Button>
+          <Button type="link" onClick={handleCancel}>
             Cancel
           </Button>
         </Form.Item>
@@ -130,6 +129,7 @@ class EditableTagList extends React.Component<ListProps, ListState> {
           existingTags={existingTags}
           objectId={objectId}
           type={type}
+          handleCancel={() => this.setState({ editing: false })}
         />
       );
     } else {
