@@ -9,6 +9,7 @@ module Types
       field :merge_case, mutation: Mutations::MergeCase
       field :add_member, mutation: Mutations::AddMember
       field :remove_member, mutation: Mutations::RemoveMember
+      field :change_role, mutation: Mutations::ChangeRole
 
       # task -------
       field :create_task, mutation: Mutations::CreateTask
