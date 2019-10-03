@@ -115,7 +115,7 @@ export default inject("userStore", "statusStore", "priorityStore")(
               title="Tags"
               dataIndex="tags"
               key="tags"
-              render={tags => <ListOfTagsP tags={tags} />}
+              render={tags => <ListOfTagsP tags={tags} limit={3} />}
             />
             <Column
               title="Status"
