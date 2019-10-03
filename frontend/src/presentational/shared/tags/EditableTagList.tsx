@@ -1,24 +1,50 @@
-import { Button, Form } from "antd";
+import { Button, Form, Select } from "antd";
 import { FormComponentProps } from "antd/lib/form";
-import TagSelect from "container/shared/tags/TagSelect";
+import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
+import TagStore from "stores/TagStore";
 import ITag from "ts/interfaces/ITag";
+
+const { Option } = Select;
 
 // -----
 
 interface FormProps {
   existingTags: ITag[];
+  tagStore?: TagStore;
 }
 
 // don't use this component directly
 class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
+  componentDidMount() {
+    const { tagStore } = this.props;
+    tagStore!.loadTags();
+  }
+
   render() {
-    const { existingTags } = this.props;
+    const { existingTags, form, tagStore } = this.props;
+    const { getFieldDecorator } = form;
+
+    // generate options from our list of all tags
+    const allTagOptions = tagStore!.tags.map(tag => (
+      <Option key={tag.name}>{tag.name}</Option>
+    ));
+
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit.bind(this)}>
         <Form.Item>
-          <TagSelect existingTags={existingTags} />
+          {getFieldDecorator("tags")(
+            <Select
+              mode="tags"
+              placeholder="Select tags"
+              defaultValue={existingTags.map(tag => tag.name)}
+              tokenSeparators={[","]}
+              style={{ width: "100%" }}
+            >
+              {allTagOptions}
+            </Select>
+          )}
         </Form.Item>
         <Form.Item>
           <Button
@@ -34,10 +60,26 @@ class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
       </Form>
     );
   }
+
+  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    // prevent page reload
+    event.preventDefault();
+
+    // validate fields
+    const { form } = this.props;
+    form.validateFields((errors, values) => {
+      if (!errors) {
+        console.log(values);
+      }
+    });
+  }
 }
 
+// -----
+
+// our smart form
 const EditTagsForm = Form.create<FormProps & FormComponentProps>()(
-  DumbEditTagsForm
+  inject("tagStore")(observer(DumbEditTagsForm))
 );
 
 // -----
