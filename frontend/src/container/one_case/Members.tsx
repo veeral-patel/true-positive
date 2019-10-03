@@ -73,7 +73,7 @@ export default inject("activeCaseStore", "userStore")(
                       avatar={<Avatar icon="user" />}
                       title={
                         <span>
-                          {member.user.username}&nbsp;&nbsp;&nbsp;
+                          {member.user.username}&nbsp;&nbsp;
                           {// show a tag next to the case's creator's username
                           activeCase.createdBy.username ===
                             member.user.username && <Tag>Creator</Tag>}
