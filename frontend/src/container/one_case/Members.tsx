@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Avatar, Button, Layout, List, Select, Typography } from "antd";
+import { Avatar, Button, Layout, List, Select, Tag, Typography } from "antd";
 import AddMembersForm from "container/one_case/AddMembersForm";
 import { inject, observer } from "mobx-react";
 import RoleSelectP from "presentational/one_case/MembersP/RoleSelectP";
@@ -71,7 +71,14 @@ export default inject("activeCaseStore", "userStore")(
                   <List.Item>
                     <List.Item.Meta
                       avatar={<Avatar icon="user" />}
-                      title={member.user.username}
+                      title={
+                        <span>
+                          {member.user.username}&nbsp;&nbsp;&nbsp;
+                          {// show a tag next to the case's creator's username
+                          activeCase.createdBy.username ===
+                            member.user.username && <Tag>Creator</Tag>}
+                        </span>
+                      }
                       description={member.user.email}
                     />
                     <RoleSelectP role={member.role} />
