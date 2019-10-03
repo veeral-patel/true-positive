@@ -124,7 +124,7 @@ export default inject(
               key="tags"
               render={(tags: ITag[]) => (
                 <div style={{ lineHeight: 2.0 }}>
-                  <ListOfTagsP tags={tags} />
+                  <ListOfTagsP tags={tags} limit={3} />
                 </div>
               )}
             />
