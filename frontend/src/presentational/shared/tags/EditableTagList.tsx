@@ -3,6 +3,7 @@ import { FormComponentProps } from "antd/lib/form";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
+import ActiveCaseStore from "stores/ActiveCaseStore";
 import TagStore from "stores/TagStore";
 import ITag from "ts/interfaces/ITag";
 
@@ -13,6 +14,13 @@ const { Option } = Select;
 interface FormProps {
   existingTags: ITag[];
   tagStore?: TagStore;
+  activeCaseStore?: ActiveCaseStore;
+
+  /* the ID of the task or case we're commenting on */
+  objectId: number;
+
+  /* the type of object we're commenting on */
+  type: "CASE" | "TASK";
 }
 
 // don't use this component directly
@@ -66,10 +74,10 @@ class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
     event.preventDefault();
 
     // validate fields
-    const { form } = this.props;
+    const { form, activeCaseStore, objectId, type } = this.props;
     form.validateFields((errors, values) => {
       if (!errors) {
-        console.log(values);
+        activeCaseStore!.changeTags(values.tags, objectId, type);
       }
     });
   }
@@ -79,7 +87,7 @@ class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
 
 // our smart form
 const EditTagsForm = Form.create<FormProps & FormComponentProps>()(
-  inject("tagStore")(observer(DumbEditTagsForm))
+  inject("tagStore", "activeCaseStore")(observer(DumbEditTagsForm))
 );
 
 // -----
