@@ -12,12 +12,17 @@ const { Option } = Select;
 // -----
 
 interface FormProps {
+  /* the list of existing tags this case/task/etc posseses */
   existingTags: ITag[];
+
+  /* used to fetch all existing tags for autocomplete */
   tagStore?: TagStore;
+
+  /* used for the 'update tags' operation */
   activeCaseStore?: ActiveCaseStore;
 
   /* the ID of the task or case we're commenting on */
-  objectId: number;
+  objectId: number | null;
 
   /* the type of object we're commenting on */
   type: "CASE" | "TASK";
@@ -77,7 +82,7 @@ class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
     const { form, activeCaseStore, objectId, type } = this.props;
     form.validateFields((errors, values) => {
       if (!errors) {
-        activeCaseStore!.changeTags(values.tags, objectId, type);
+        if (objectId) activeCaseStore!.changeTags(values.tags, objectId, type);
       }
     });
   }
@@ -93,10 +98,18 @@ const EditTagsForm = Form.create<FormProps & FormComponentProps>()(
 // -----
 
 interface ListProps {
+  /* the list of existing tags this case/task/etc posseses */
   existingTags: ITag[];
+
+  /* the ID of the task or case we're commenting on */
+  objectId: number | null;
+
+  /* the type of object we're commenting on */
+  type: "CASE" | "TASK";
 }
 
 interface ListState {
+  /* if true, display the input to edit tags. if false, display the list of tags. */
   editing: boolean;
 }
 
@@ -109,10 +122,16 @@ class EditableTagList extends React.Component<ListProps, ListState> {
   }
   render() {
     const { editing } = this.state;
-    const { existingTags } = this.props;
+    const { existingTags, objectId, type } = this.props;
 
     if (editing) {
-      return <EditTagsForm existingTags={existingTags} />;
+      return (
+        <EditTagsForm
+          existingTags={existingTags}
+          objectId={objectId}
+          type={type}
+        />
+      );
     } else {
       return (
         <div>
