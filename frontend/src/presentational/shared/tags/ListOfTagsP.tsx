@@ -19,9 +19,7 @@ const ListOfTagsP: React.FC<IListOfTagsProps> = ({ tags, limit }) => {
   return (
     <span>
       {tagsToRender.map((tag: ITag) => (
-        <Tag color="blue" key={tag.id}>
-          {tag.name}
-        </Tag>
+        <Tag key={tag.id}>{tag.name}</Tag>
       ))}
 
       {/* indicate the number of un-displayed tags, if the caller imposed a limit on the # of tags */}
