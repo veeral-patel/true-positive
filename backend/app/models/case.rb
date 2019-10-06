@@ -30,7 +30,7 @@ class Case < ApplicationRecord
     # Tries to remove an user from the case, and returns true iff the operation succeeded
     begin
       member = CaseMember.find_by!(case: self, user: user)
-      member.delete
+      member.destroy
       return true
     rescue ActiveRecord::RecordNotFound => e
       errors[:base] << "The case does not have an user with username #{user.username}"

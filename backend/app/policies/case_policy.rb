@@ -5,6 +5,7 @@ class CasePolicy
     end
 
     def show?
+        # should be true if case member or admin, false otherwise
         false
     end
 
