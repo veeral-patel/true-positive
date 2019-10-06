@@ -1,4 +1,14 @@
 class CasePolicy
+    def initialize(user, the_case)
+        @user = user
+        @case = the_case
+    end
+
+    def show?
+        # Only a case's members, or an admin user, can view it
+        @user.admin? || @case.has_member(@user)
+    end
+
     class Scope
         attr_reader :user
 
