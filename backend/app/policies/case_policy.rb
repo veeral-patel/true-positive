@@ -5,8 +5,8 @@ class CasePolicy
     end
 
     def show?
-        # should be true if case member or admin, false otherwise
-        @case.has_member(@user)
+        # Only a case's members, or an admin user, can view it
+        @user.admin? || @case.has_member(@user)
     end
 
     class Scope
