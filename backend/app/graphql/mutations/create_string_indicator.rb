@@ -3,7 +3,7 @@ class Mutations::CreateStringIndicator < Mutations::BaseMutation
     
     # required ------
 
-    argument :indicator, String, required: true do
+    argument :name, String, required: true do
         description "The indicator itself."
     end
 
