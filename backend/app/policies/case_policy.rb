@@ -1,4 +1,13 @@
 class CasePolicy
+    def initialize(user, the_case)
+        @user = user
+        @case = the_case
+    end
+
+    def show?
+        false
+    end
+
     class Scope
         attr_reader :user
 

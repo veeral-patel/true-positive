@@ -43,7 +43,13 @@ module Types
       end
 
       def case(id:)
-        find_case_or_throw_execution_error(case_id: id)
+        the_case = find_case_or_throw_execution_error(case_id: id)
+
+        unless CasePolicy.new(context[:current_user], the_case).show?
+          raise GraphQL::ExecutionError, "You are not authorized to view this case."
+        end
+
+        the_case
       end
 
       # --------------- Users --------------------
