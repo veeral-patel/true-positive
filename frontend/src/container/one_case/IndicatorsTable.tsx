@@ -3,6 +3,7 @@ import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
 import compareUsers from "utils/compareUsers";
+import truncateString from "utils/truncateString";
 
 const { Column } = Table;
 const { Text } = Typography;
@@ -28,7 +29,9 @@ class IndicatorsTable extends React.Component<Props> {
             a.name.localeCompare(b.name)
           }
           render={(text, indicator, index) => (
-            <Text copyable>{indicator.name}</Text>
+            <Text copyable={{ text: indicator.name }}>
+              {truncateString(indicator.name, 40)}
+            </Text>
           )}
         />
         <Column
