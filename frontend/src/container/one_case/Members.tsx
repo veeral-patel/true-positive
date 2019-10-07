@@ -83,7 +83,7 @@ export default inject("activeCaseStore", "userStore")(
                     />
                     <RoleSelectP role={member.role} />
                     <Button
-                      icon="cross"
+                      icon="close"
                       style={{ border: "none", marginLeft: "1em" }}
                       onClick={() =>
                         activeCaseStore!.removeCaseMember(member.user.username)
