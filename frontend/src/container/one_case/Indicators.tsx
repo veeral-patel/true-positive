@@ -11,11 +11,11 @@ import {
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
 import AddTextualIndicatorModal from "container/one_case/AddTextualIndicatorModal";
 import ImportIndicatorsFromCSVModal from "container/one_case/ImportIndicatorsFromCSVModal";
+import IndicatorsTable from "container/one_case/IndicatorsTable";
 import { inject, observer } from "mobx-react";
 import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
-import IndicatorsTable from "./IndicatorsTable";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
