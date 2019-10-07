@@ -26,4 +26,26 @@ class Mutations::CreateStringIndicator < Mutations::BaseMutation
     field :indicator, Types::IndicatorType, null: false do
         description "The newly created indicator."
     end
+
+    def resolve(name:, case_id:, description: nil, tags: nil)
+        # find the case to create this indicator in
+        the_case = find_case_or_throw_execution_error(case_id: case_id)
+
+        # create the new indicator in memory
+        new_indicator = context[:current_user].created_indicators.new(
+            name: name,
+            description: description,
+            tag_list: tags,
+            case: the_case
+        )
+
+        # and try to save it
+        if new_indicator.save
+            {
+                "indicator": new_indicator
+            }
+        else
+            raise GraphQL::ExecutionError, new_indicator.errors.full_messages.join(" | ") 
+        end
+    end
 end
