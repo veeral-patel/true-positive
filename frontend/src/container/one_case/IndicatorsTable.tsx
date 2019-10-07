@@ -14,7 +14,11 @@ class IndicatorsTable extends React.Component<Props> {
   render() {
     const { indicators } = this.props;
     return (
-      <Table dataSource={indicators} pagination={{ hideOnSinglePage: true }}>
+      <Table
+        size="middle"
+        dataSource={indicators}
+        pagination={{ hideOnSinglePage: true }}
+      >
         <Column
           title="Name"
           dataIndex="name"
