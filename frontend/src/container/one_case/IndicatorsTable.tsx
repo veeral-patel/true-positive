@@ -1,10 +1,11 @@
-import { Table } from "antd";
+import { Table, Typography } from "antd";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
 import compareUsers from "utils/compareUsers";
 
 const { Column } = Table;
+const { Text } = Typography;
 
 interface Props {
   indicators: IIndicator[];
@@ -26,6 +27,9 @@ class IndicatorsTable extends React.Component<Props> {
           sorter={(a: IIndicator, b: IIndicator) =>
             a.name.localeCompare(b.name)
           }
+          render={(text, indicator, index) => (
+            <Text copyable>{indicator.name}</Text>
+          )}
         />
         <Column
           title="Tags"
