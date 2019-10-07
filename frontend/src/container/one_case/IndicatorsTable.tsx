@@ -1,6 +1,8 @@
 import { Table } from "antd";
+import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
+import compareUsers from "utils/compareUsers";
 
 const { Column } = Table;
 
@@ -19,6 +21,20 @@ class IndicatorsTable extends React.Component<Props> {
           key="name"
           sorter={(a: IIndicator, b: IIndicator) =>
             a.name.localeCompare(b.name)
+          }
+        />
+        <Column
+          title="Tags"
+          dataIndex="tags"
+          key="tags"
+          render={tags => <ListOfTagsP tags={tags} limit={3} />}
+        />
+        <Column
+          title="Created By"
+          dataIndex="createdBy.username"
+          key="created_by"
+          sorter={(a: IIndicator, b: IIndicator) =>
+            compareUsers(a.createdBy, b.createdBy)
           }
         />
       </Table>
