@@ -9,7 +9,7 @@ class Mutations::CreatePriority < Mutations::BaseMutation
         description "Some optional information describing this priority."
     end
 
-    field :priority, Types::PriorityType, null: false do
+    field :priority, Types::PriorityType, null: true do
         description "The newly created priority."
     end
 

@@ -5,7 +5,7 @@ class Mutations::DeletePriority < Mutations::BaseMutation
         description "The name of the priority to delete."
     end
 
-    field :name, String, null: false do
+    field :name, String, null: true do
         description "The name of the priority that was just deleted."
     end
 

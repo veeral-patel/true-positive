@@ -9,7 +9,7 @@ class Mutations::RenamePriority < Mutations::BaseMutation
         description "The new priority name."
     end
 
-    field :priority, Types::PriorityType, null: false do
+    field :priority, Types::PriorityType, null: true do
         description "The updated priority."
     end
 

@@ -8,7 +8,7 @@ class Mutations::RenameTask < Mutations::BaseMutation
         description "The new task name."
     end
 
-    field :task, Types::TaskType, null: false do
+    field :task, Types::TaskType, null: true do
         description "The updated task."
     end
 

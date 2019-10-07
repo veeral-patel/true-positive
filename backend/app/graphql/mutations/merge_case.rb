@@ -11,11 +11,11 @@ class Mutations::MergeCase < Mutations::BaseMutation
     end
 
     # the case we just merged
-    field :child_case, Types::CaseType, null: false do
+    field :child_case, Types::CaseType, null: true do
         description "The case we just merged."
     end
 
-    field :parent_case, Types::CaseType, null: false do
+    field :parent_case, Types::CaseType, null: true do
         description "The case we merged it into."
     end
 

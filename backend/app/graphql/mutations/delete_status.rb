@@ -5,7 +5,7 @@ class Mutations::DeleteStatus < Mutations::BaseMutation
         description "The name of the status to delete."
     end
 
-    field :name, String, null: false do
+    field :name, String, null: true do
         description "The name of the status that was just deleted."
     end
 

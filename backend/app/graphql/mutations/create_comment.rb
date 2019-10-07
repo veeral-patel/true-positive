@@ -13,7 +13,7 @@ class Mutations::CreateComment < Mutations::BaseMutation
         description "The text of the comment."
     end
 
-    field :comment, Types::CommentType, null: false do
+    field :comment, Types::CommentType, null: true do
         description "The newly created comment."
     end
 

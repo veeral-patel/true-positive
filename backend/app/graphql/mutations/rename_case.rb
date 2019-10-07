@@ -8,7 +8,7 @@ class Mutations::RenameCase < Mutations::BaseMutation
         description "The new case name."
     end
 
-    field :case, Types::CaseType, null: false do
+    field :case, Types::CaseType, null: true do
         description "The updated case."
     end
 

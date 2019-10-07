@@ -27,7 +27,7 @@ class Mutations::CreateCase < Mutations::BaseMutation
         description "A optional list of tags to add to this case."
     end
 
-    field :case, Types::CaseType, null: false do
+    field :case, Types::CaseType, null: true do
         description "The newly created case."
     end
 

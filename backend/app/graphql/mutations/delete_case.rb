@@ -5,7 +5,7 @@ class Mutations::DeleteCase < Mutations::BaseMutation
         description "The ID of the case to delete."
     end
 
-    field :id, ID, null: false do
+    field :id, ID, null: true do
         description "The ID of the case that was just deleted."
     end
 

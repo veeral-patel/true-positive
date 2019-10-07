@@ -9,7 +9,7 @@ class Mutations::CreateStatus < Mutations::BaseMutation
         description "Some optional information describing this status."
     end
 
-    field :status, Types::StatusType, null: false do
+    field :status, Types::StatusType, null: true do
         description "The newly created status."
     end
 

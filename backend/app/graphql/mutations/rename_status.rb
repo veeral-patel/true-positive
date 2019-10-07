@@ -9,7 +9,7 @@ class Mutations::RenameStatus < Mutations::BaseMutation
         description "The new status name."
     end
 
-    field :status, Types::StatusType, null: false do
+    field :status, Types::StatusType, null: true do
         description "The updated status."
     end
 

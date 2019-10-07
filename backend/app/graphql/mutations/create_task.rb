@@ -35,7 +35,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "A optional list of tags to add to this task."
     end
 
-    field :task, Types::TaskType, null: false do
+    field :task, Types::TaskType, null: true do
         description "The newly created task."
     end
 

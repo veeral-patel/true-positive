@@ -5,7 +5,7 @@ class Mutations::DeleteComment < Mutations::BaseMutation
         description "The ID of the comment to delete."
     end
 
-    field :id, ID, null: false do
+    field :id, ID, null: true do
         description "The ID of the comment that was deleted."
     end
 
