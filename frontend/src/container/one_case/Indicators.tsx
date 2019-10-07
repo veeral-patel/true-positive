@@ -15,6 +15,7 @@ import { inject, observer } from "mobx-react";
 import IndicatorInputP from "presentational/shared/indicators/IndicatorInputP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import IndicatorsTable from "./IndicatorsTable";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
@@ -113,8 +114,11 @@ export default inject("activeCaseStore")(
                       </Button>
                     </Dropdown>
                   </div>
-                  <div>
+                  <div style={{ marginBottom: "2em" }}>
                     <IndicatorInputP />
+                  </div>
+                  <div>
+                    <IndicatorsTable indicators={activeCase.indicators} />
                   </div>
                 </section>
               </Content>
