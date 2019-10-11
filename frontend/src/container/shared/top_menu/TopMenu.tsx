@@ -1,6 +1,5 @@
 import { navigate } from "@reach/router";
-import { Icon, Menu } from "antd";
-import SubMenu from "antd/lib/menu/SubMenu";
+import { Menu } from "antd";
 import logo from "logo/tp_logo_lightblue.svg";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -50,18 +49,6 @@ export default inject("uiStore", "authStore")(
             >
               Log Out
             </Menu.Item>
-            <SubMenu
-              title={
-                <span>
-                  New <Icon type="down" />
-                </span>
-              }
-              style={{ float: "right" }}
-            >
-              <Menu.Item onClick={() => uiStore!.openCreateCaseModal()}>
-                Case
-              </Menu.Item>
-            </SubMenu>
           </Menu>
         );
       }
