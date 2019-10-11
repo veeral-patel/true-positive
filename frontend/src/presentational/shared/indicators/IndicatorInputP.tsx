@@ -60,7 +60,7 @@ class IndicatorInputP extends React.Component<
     else if (status === "LOADING") suffix = <Icon type="loading" />;
     else
       suffix = (
-        <Text style={{ backgroundColor: "rgb(240, 240, 240)", color: "gray" }}>
+        <Text style={{ backgroundColor: "#f5f5f5", color: "#8c8c8c" }}>
           {status}
         </Text>
       );
