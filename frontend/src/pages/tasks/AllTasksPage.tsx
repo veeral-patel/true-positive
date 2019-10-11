@@ -1,6 +1,7 @@
 import { RouteComponentProps } from "@reach/router";
-import { Divider, Empty, Icon, Input, Typography } from "antd";
+import { Divider, Empty, Typography } from "antd";
 import AllTasksTable from "container/all_tasks/AllTasksTable";
+import FilterInput from "container/all_tasks/FilterInput";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllTasksStore from "stores/AllTasksStore";
@@ -43,10 +44,7 @@ export default inject("allTasksStore", "uiStore")(
                       display: "inline-block"
                     }}
                   >
-                    <Input
-                      placeholder="Filter tasks"
-                      prefix={<Icon type="search" />}
-                    />
+                    <FilterInput />
                   </span>
                   <span style={{ marginLeft: "8px", marginRight: "8px" }}>
                     <Divider type="vertical" />
