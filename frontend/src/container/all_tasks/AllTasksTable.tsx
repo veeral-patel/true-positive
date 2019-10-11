@@ -25,7 +25,7 @@ export default inject("allTasksStore")(
         }
         return (
           <TasksTable
-            tasks={allTasksStore!.tasks}
+            tasks={allTasksStore!.filteredTasks}
             includeExtraColumns={true}
             handleRowClick={(clickedTask, index, event) =>
               navigate(getPathToATask(clickedTask.case.id, clickedTask.id))
