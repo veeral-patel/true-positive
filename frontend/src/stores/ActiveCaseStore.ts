@@ -374,13 +374,16 @@ class ActiveCaseStore {
 
   @action.bound
   changeDescription(objectId: number, newDescription: string, type: string) {
+    // if the user wants to make the description empty
+    const description = newDescription ? newDescription : "";
+
     client
       .mutate({
         variables: {
           input: {
             objectId,
             type,
-            description: newDescription
+            description
           }
         },
         mutation: CHANGE_DESCRIPTION
