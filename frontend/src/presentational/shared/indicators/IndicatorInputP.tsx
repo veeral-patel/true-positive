@@ -1,6 +1,8 @@
-import { Icon, Input } from "antd";
+import { Icon, Input, Typography } from "antd";
 import React from "react";
 import { matchIndicator } from "utils/matchIndicator";
+
+const { Text } = Typography;
 
 interface IndicatorInputProps {}
 
@@ -56,7 +58,12 @@ class IndicatorInputP extends React.Component<
     let suffix;
     if (status === "EMPTY") suffix = <Icon type="arrow-right" />;
     else if (status === "LOADING") suffix = <Icon type="loading" />;
-    else suffix = status;
+    else
+      suffix = (
+        <Text style={{ backgroundColor: "rgb(240, 240, 240)", color: "gray" }}>
+          {status}
+        </Text>
+      );
 
     return (
       <Input
