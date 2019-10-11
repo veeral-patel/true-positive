@@ -1,5 +1,5 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Button, Layout, Typography } from "antd";
+import { Button, Empty, Layout, Typography } from "antd";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TasksTable from "container/one_case/TasksTable";
 import { inject, observer } from "mobx-react";
@@ -36,9 +36,9 @@ export default inject("activeCaseStore")(
 
         // should always render, since we're catching errors and showing
         // our spinner above this, as a HOC
-        if (activeCase)
-          return (
-            <div>
+        if (activeCase) {
+          if (activeCase.tasks.length === 0) {
+            return (
               <Content
                 style={{
                   background: "#fff",
@@ -47,41 +47,77 @@ export default inject("activeCaseStore")(
                   minHeight: 280
                 }}
               >
-                <div>
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <h3>Tasks ({activeCase.tasks.length})</h3>
-                    <Button
-                      icon="plus"
-                      onClick={() =>
-                        this.setState({ openModal: "CREATE_TASK" })
-                      }
-                    >
-                      Create Task
-                    </Button>
-                  </div>
-                  <Paragraph>
-                    Create a task for every piece of work to be completed in a
-                    case.
-                  </Paragraph>
-                </div>
-
-                <TasksTable
-                  tasks={activeCase.tasks}
-                  handleRowClick={(clickedTask, index, event) =>
-                    navigate(
-                      getPathToATask(clickedTask.case.id, clickedTask.id)
-                    )
+                <Empty
+                  description={
+                    <div style={{ marginTop: "1em" }}>
+                      <h3>No tasks</h3>
+                      <Paragraph>
+                        A task is a piece of work to be completed in a case.
+                      </Paragraph>
+                      <Button
+                        icon="plus"
+                        onClick={() =>
+                          this.setState({ openModal: "CREATE_TASK" })
+                        }
+                      >
+                        Create Task
+                      </Button>
+                    </div>
                   }
                 />
               </Content>
-              <CreateTaskModal
-                visible={openModal === "CREATE_TASK"}
-                handleClose={() => this.setState({ openModal: null })}
-              />
-            </div>
-          );
+            );
+          } else {
+            return (
+              <div>
+                <Content
+                  style={{
+                    background: "#fff",
+                    padding: 24,
+                    margin: 0,
+                    minHeight: 280
+                  }}
+                >
+                  <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between"
+                      }}
+                    >
+                      <h3>Tasks ({activeCase.tasks.length})</h3>
+                      <Button
+                        icon="plus"
+                        onClick={() =>
+                          this.setState({ openModal: "CREATE_TASK" })
+                        }
+                      >
+                        Create Task
+                      </Button>
+                    </div>
+                    <Paragraph>
+                      Create a task for every piece of work to be completed in a
+                      case.
+                    </Paragraph>
+                  </div>
+
+                  <TasksTable
+                    tasks={activeCase.tasks}
+                    handleRowClick={(clickedTask, index, event) =>
+                      navigate(
+                        getPathToATask(clickedTask.case.id, clickedTask.id)
+                      )
+                    }
+                  />
+                </Content>
+                <CreateTaskModal
+                  visible={openModal === "CREATE_TASK"}
+                  handleClose={() => this.setState({ openModal: null })}
+                />
+              </div>
+            );
+          }
+        }
       }
     }
   )
