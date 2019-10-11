@@ -64,10 +64,10 @@ class DumbEditTagsForm extends React.Component<FormProps & FormComponentProps> {
           )}
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit">Save</Button>
           <Button type="link" onClick={handleCancel}>
             Cancel
           </Button>
+          <Button htmlType="submit">Save</Button>
         </Form.Item>
       </Form>
     );
