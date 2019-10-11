@@ -1,9 +1,10 @@
 import { notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
-import { action, observable, runInAction } from "mobx";
+import { action, computed, observable, runInAction } from "mobx";
 import GET_TASKS from "queries/getTasks";
 import ITask from "ts/interfaces/ITask";
+import matchesFilter from "utils/matchesFilter";
 
 interface ITasksData {
   tasks: ITask[];
@@ -12,6 +13,7 @@ interface ITasksData {
 class AllTasksStore {
   @observable tasks: ITask[] = [];
   @observable tasksAreLoading: boolean = false;
+  @observable filterValue: string = "";
 
   @action.bound
   loadTasks() {
@@ -33,6 +35,21 @@ class AllTasksStore {
         runInAction(() => (this.tasks = []));
       })
       .finally(() => runInAction(() => (this.tasksAreLoading = false)));
+  }
+
+  // ----- filtering logic ---------
+
+  @computed
+  get filteredTasks() {
+    const _this = this;
+    return this.tasks.filter((task: ITask) =>
+      matchesFilter(_this.filterValue, task)
+    );
+  }
+
+  @action.bound
+  setFilterValue(filterValue: string) {
+    this.filterValue = filterValue;
   }
 }
 

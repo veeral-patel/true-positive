@@ -9,14 +9,14 @@ import UIStore from "stores/UIStore";
 
 const { Paragraph } = Typography;
 
-interface IAllCasesPageProps extends RouteComponentProps {
+interface Props extends RouteComponentProps {
   uiStore?: UIStore;
   allCasesStore?: AllCasesStore;
 }
 
 export default inject("allCasesStore", "uiStore")(
   observer(
-    class AllCasesPage extends React.Component<IAllCasesPageProps> {
+    class AllCasesPage extends React.Component<Props> {
       componentDidMount() {
         const { allCasesStore } = this.props;
         allCasesStore!.loadCases();

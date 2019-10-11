@@ -8,7 +8,7 @@ import DELETE_A_CASE from "mutations/deleteCase";
 import GET_CASES from "queries/getCases";
 import rootStore from "stores";
 import ICase from "ts/interfaces/ICase";
-import matchesFilter from "utils/filterCases";
+import matchesFilter from "utils/matchesFilter";
 import { getPathToACase } from "utils/pathHelpers";
 
 interface ICaseData {

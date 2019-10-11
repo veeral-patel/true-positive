@@ -1,11 +1,12 @@
 import ICase from "ts/interfaces/ICase";
 import IPriority from "ts/interfaces/IPriority";
 import IStatus from "ts/interfaces/IStatus";
+import ITask from "ts/interfaces/ITask";
 import IUser from "ts/interfaces/IUser";
 import formatISO8601 from "./formatISO8601";
 
-function nameMatches(filterWord: string, theCase: ICase) {
-  return theCase.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1;
+function nameMatches(filterWord: string, object: ICase | ITask) {
+  return object.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1;
 }
 
 function statusMatches(filterWord: string, status: IStatus) {
@@ -28,9 +29,9 @@ function createdByMatches(filterWord: string, createdBy: IUser) {
   );
 }
 
-function createdAtMatches(filterWord: string, theCase: ICase) {
+function createdAtMatches(filterWord: string, object: ICase | ITask) {
   return (
-    formatISO8601(theCase.createdAt)
+    formatISO8601(object.createdAt)
       .toLowerCase()
       .indexOf(filterWord.toLowerCase()) !== -1
   );
@@ -38,35 +39,35 @@ function createdAtMatches(filterWord: string, theCase: ICase) {
 
 // Returns true iff any of the case's attributes below (but not tags) contain filterWord.
 // filterWord shouldn't have any spaces.
-function anAttributeMatches(filterWord: string, theCase: ICase) {
+function anAttributeMatches(filterWord: string, object: ICase | ITask) {
   return (
-    nameMatches(filterWord, theCase) ||
-    statusMatches(filterWord, theCase.status) ||
-    priorityMatches(filterWord, theCase.priority) ||
-    createdByMatches(filterWord, theCase.createdBy) ||
-    assignedToMatches(filterWord, theCase.assignedTo) ||
-    createdAtMatches(filterWord, theCase)
+    nameMatches(filterWord, object) ||
+    statusMatches(filterWord, object.status) ||
+    priorityMatches(filterWord, object.priority) ||
+    createdByMatches(filterWord, object.createdBy) ||
+    assignedToMatches(filterWord, object.assignedTo) ||
+    createdAtMatches(filterWord, object)
   );
 }
 
 // Returns TRUE iff any of the case's tags contain filterWord. filterWord shouldn't have spaces.
-function aTagMatches(filterWord: string, theCase: ICase) {
-  for (const tag of theCase.tags) {
+function aTagMatches(filterWord: string, object: ITask | ICase) {
+  for (const tag of object.tags) {
     if (tag.name.indexOf(filterWord) !== -1) return true;
   }
   return false;
 }
 
-// Returns true iff the case matches the given filter value
-function matchesFilter(filterValue: string, theCase: ICase) {
+// Returns true iff the case or task matches the given filter value
+function matchesFilter(filterValue: string, object: ITask | ICase) {
   // Split our filter string into words
   const filterWords = filterValue.split(" ");
 
-  // For a case to match, all of the filter words must either:
-  // (1) match one of the case's attributes or
-  // (2) match one of the case's tags
+  // For a case/task to match, all of the filter words must either:
+  // (1) match one of the case/task's attributes or
+  // (2) match one of the case/task's tags
   for (const word of filterWords) {
-    if (!anAttributeMatches(word, theCase) && !aTagMatches(word, theCase))
+    if (!anAttributeMatches(word, object) && !aTagMatches(word, object))
       return false;
   }
   return true;

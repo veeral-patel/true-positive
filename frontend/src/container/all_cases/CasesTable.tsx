@@ -15,13 +15,13 @@ import ICase from "ts/interfaces/ICase";
 import ITag from "ts/interfaces/ITag";
 import compareUsers from "utils/compareUsers";
 import { paths } from "utils/constants";
+import formatISO8601 from "utils/formatISO8601";
 import {
   assignedToMatches,
   createdByMatches,
   priorityMatches,
   statusMatches
-} from "utils/filterCases";
-import formatISO8601 from "utils/formatISO8601";
+} from "utils/matchesFilter";
 
 const { Column } = Table;
 

@@ -11,13 +11,13 @@ import StatusStore from "stores/StatusStore";
 import UserStore from "stores/UserStore";
 import ITask from "ts/interfaces/ITask";
 import compareUsers from "utils/compareUsers";
+import formatISO8601 from "utils/formatISO8601";
 import {
   assignedToMatches,
   createdByMatches,
   priorityMatches,
   statusMatches
-} from "utils/filterCases";
-import formatISO8601 from "utils/formatISO8601";
+} from "utils/matchesFilter";
 import { getPathToACase } from "utils/pathHelpers";
 
 const { Column } = Table;
