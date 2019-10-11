@@ -20,7 +20,10 @@ export default inject("uiStore", "authStore")(
         const { uiStore, authStore } = this.props;
         return (
           <Menu theme="dark" mode="horizontal" selectedKeys={[]}>
-            <Menu.Item style={{ float: "left" }}>
+            <Menu.Item
+              style={{ float: "left" }}
+              onClick={() => navigate(paths.CASES_PATH)}
+            >
               <img src={logo} style={{ verticalAlign: "middle" }} />
             </Menu.Item>
             <Menu.Item
