@@ -14,6 +14,7 @@ export default inject("allCasesStore")(
         const { allCasesStore } = this.props;
         return (
           <Input
+            allowClear
             value={allCasesStore!.filterValue}
             placeholder="Filter cases"
             prefix={<Icon type="search" />}

@@ -14,6 +14,7 @@ export default inject("allTasksStore")(
         const { allTasksStore } = this.props;
         return (
           <Input
+            allowClear
             value={allTasksStore!.filterValue}
             placeholder="Filter tasks"
             prefix={<Icon type="search" />}
