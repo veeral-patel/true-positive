@@ -37,8 +37,8 @@ export default inject("activeCaseStore")(
         // should always render, since we're catching errors and showing
         // our spinner above this, as a HOC
         if (activeCase) {
-          if (activeCase.tasks.length === 0) {
-            return (
+          return (
+            <div>
               <Content
                 style={{
                   background: "#fff",
@@ -47,37 +47,26 @@ export default inject("activeCaseStore")(
                   minHeight: 280
                 }}
               >
-                <Empty
-                  description={
-                    <div style={{ marginTop: "1em" }}>
-                      <h3>No tasks</h3>
-                      <Paragraph>
-                        A task is a piece of work to be completed in a case.
-                      </Paragraph>
-                      <Button
-                        icon="plus"
-                        onClick={() =>
-                          this.setState({ openModal: "CREATE_TASK" })
-                        }
-                      >
-                        Create Task
-                      </Button>
-                    </div>
-                  }
-                />
-              </Content>
-            );
-          } else {
-            return (
-              <div>
-                <Content
-                  style={{
-                    background: "#fff",
-                    padding: 24,
-                    margin: 0,
-                    minHeight: 280
-                  }}
-                >
+                {activeCase.tasks.length === 0 ? (
+                  <Empty
+                    description={
+                      <div style={{ marginTop: "1em" }}>
+                        <h3>No tasks</h3>
+                        <Paragraph>
+                          A task is a piece of work to be completed in a case.
+                        </Paragraph>
+                        <Button
+                          icon="plus"
+                          onClick={() =>
+                            this.setState({ openModal: "CREATE_TASK" })
+                          }
+                        >
+                          Create Task
+                        </Button>
+                      </div>
+                    }
+                  />
+                ) : (
                   <div>
                     <div
                       style={{
@@ -99,24 +88,24 @@ export default inject("activeCaseStore")(
                       Create a task for every piece of work to be completed in a
                       case.
                     </Paragraph>
-                  </div>
-
-                  <TasksTable
-                    tasks={activeCase.tasks}
-                    handleRowClick={(clickedTask, index, event) =>
-                      navigate(
-                        getPathToATask(clickedTask.case.id, clickedTask.id)
-                      )
+                    <TasksTable
+                      tasks={activeCase.tasks}
+                      handleRowClick={(clickedTask, index, event) =>
+                        navigate(
+                          getPathToATask(clickedTask.case.id, clickedTask.id)
+                        )
+                      }
+                    />
                     }
-                  />
-                </Content>
-                <CreateTaskModal
-                  visible={openModal === "CREATE_TASK"}
-                  handleClose={() => this.setState({ openModal: null })}
-                />
-              </div>
-            );
-          }
+                  </div>
+                )}
+              </Content>
+              <CreateTaskModal
+                visible={openModal === "CREATE_TASK"}
+                handleClose={() => this.setState({ openModal: null })}
+              />
+            </div>
+          );
         }
       }
     }
