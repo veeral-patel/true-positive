@@ -27,8 +27,15 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
 
         # changing the status of a case
         if type == "CASE"
-            # find and update the case
+            # find the case
             the_case = find_case_or_throw_execution_error(case_id: object_id)
+
+            # authorize this action
+            unless CasePolicy.new(context[:current_user], the_case).change_status?
+                raise GraphQL::ExecutionError, "You are not authorized to change the status of this case."
+            end
+
+            # update the case in memory
             the_case.status = new_status
 
             # save it
@@ -40,8 +47,15 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
         elsif type == "TASK" # changing the status of a task
-            # find and update the task
+            # find the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
+
+            # authorize this action
+            unless TaskPolicy.new(context[:current_user], the_task).change_status?
+                raise GraphQL::ExecutionError, "You are not authorized to change the status of this task."
+            end
+
+            # update the task in memory
             the_task.status = new_status
 
             # save it
