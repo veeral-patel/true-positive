@@ -4,6 +4,11 @@ class CasePolicy
         @case = the_case
     end
 
+    def create?
+        # Anyone can create a case.
+        true
+    end
+
     def show?
         # Only a case's members, or an admin user, can view it
         @user.admin? || @case.has_member(@user)
