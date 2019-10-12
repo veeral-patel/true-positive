@@ -8,8 +8,8 @@ class AdminPage extends React.Component<RouteComponentProps> {
     return (
       <div>
         <PageHeader
-          title="Admin"
-          subTitle="Change settings that affect all users"
+          title="Manage"
+          subTitle="Customize settings that affect all users"
         />
         <div style={{ width: "60%" }}>
           <AdminTabsP />
