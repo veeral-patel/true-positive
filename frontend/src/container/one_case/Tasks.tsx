@@ -96,7 +96,6 @@ export default inject("activeCaseStore")(
                         )
                       }
                     />
-                    }
                   </div>
                 )}
               </Content>
