@@ -46,6 +46,11 @@ class Mutations::CreateTask < Mutations::BaseMutation
         priority_record = find_priority_by_name_or_throw_execution_error(priority_name: priority)
         assigned_user = assigned_to.nil? ? nil : find_user_or_throw_execution_error(username: assigned_to)
 
+        # authorize this action
+        unless CasePolicy.new(context[:current_user], the_case).create_task?
+            raise GraphQL::ExecutionError, "You are not authorized to create tasks in this case."
+        end
+
         # create new task in memory
         new_task = Task.new(
             name: name,

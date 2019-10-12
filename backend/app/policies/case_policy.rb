@@ -29,6 +29,11 @@ class CasePolicy
         user_can_edit_case? 
     end
 
+    def create_task?
+        # Only a case's members with a CAN_EDIT role can remove members
+        user_can_edit_case? 
+    end
+
     def rename?
         show?
     end
