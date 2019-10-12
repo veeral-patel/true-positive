@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import { Table } from "antd";
+import { Spin, Table } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
@@ -102,6 +102,10 @@ export default inject(
             text: user.username,
             value: user.username
           }));
+        }
+
+        if (allCasesStore!.casesAreLoading) {
+          return <Spin />;
         }
 
         return (
