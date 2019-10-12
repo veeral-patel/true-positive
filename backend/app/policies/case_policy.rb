@@ -39,6 +39,11 @@ class CasePolicy
         user_can_edit_case? 
     end
 
+    def change_role?
+        # Only a case's members with a CAN_EDIT role can change another member's role
+        user_can_edit_case? 
+    end
+
     class Scope
         attr_reader :user
 

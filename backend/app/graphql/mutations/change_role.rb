@@ -22,6 +22,11 @@ class Mutations::ChangeRole  < Mutations::BaseMutation
         the_case = find_case_or_throw_execution_error(case_id: case_id)
         user = find_user_or_throw_execution_error(username: username)
 
+        # authorize this action
+        unless CasePolicy.new(context[:current_user], the_case).change_role?
+            raise GraphQL::ExecutionError, "You are not authorized to change a case member's role."
+        end
+
         begin
             member = the_case.case_members.find_by!(user: user)
             member.role = role
