@@ -12,6 +12,10 @@ class Mutations::DeleteComment < Mutations::BaseMutation
     def resolve(id:)
         comment = find_comment_or_throw_execution_error(comment_id: id)
 
+        unless CommentPolicy.new(context[:current_user], comment).destroy?
+            raise GraphQL::ExecutionError, "You are not authorized to delete this comment."
+        end
+
         if comment.destroy
             {
                 "id": id
