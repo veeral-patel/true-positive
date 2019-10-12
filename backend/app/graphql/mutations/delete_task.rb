@@ -12,6 +12,11 @@ class Mutations::DeleteTask < Mutations::BaseMutation
     def resolve(id:)
         task = find_task_or_throw_execution_error(task_id: id)
 
+        # authorize this action
+        unless TaskPolicy.new(context[:current_user], task).delete_task?
+            raise GraphQL::ExecutionError, "You are not authorized to delete tasks in this case."
+        end
+
         if task.destroy
             {
                 "id": id

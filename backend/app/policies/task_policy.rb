@@ -14,6 +14,11 @@ class TaskPolicy
         user_can_edit_case? 
     end
 
+    def delete_task?
+        # Only a case's members with a CAN_EDIT role can delete tasks
+        user_can_edit_case?
+    end
+
     class Scope
         attr_reader :user
 
