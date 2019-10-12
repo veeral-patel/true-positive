@@ -26,7 +26,7 @@ class Mutations::ChangeAssignee < Mutations::BaseMutation
         user = find_user_or_throw_execution_error(username: username)
 
         # changing the type of a task
-        if type === "CASE"
+        if type == "CASE"
             # find the case and user
             the_case = find_case_or_throw_execution_error(case_id: object_id)
 
@@ -42,7 +42,7 @@ class Mutations::ChangeAssignee < Mutations::BaseMutation
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
         # changing the status of a task
-        elsif type === "TASK"
+        elsif type == "TASK"
             # find and update the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
 

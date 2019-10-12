@@ -26,7 +26,7 @@ class Mutations::ChangePriority < Mutations::BaseMutation
         new_priority =  find_priority_by_name_or_throw_execution_error(priority_name: priority)
 
         # changing the priority of a case
-        if type === "CASE"
+        if type == "CASE"
             # find and update the case
             the_case = find_case_or_throw_execution_error(case_id: object_id)
             the_case.priority = new_priority
@@ -39,7 +39,7 @@ class Mutations::ChangePriority < Mutations::BaseMutation
             else
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
-        elsif type === "TASK" # changing the priority of a task
+        elsif type == "TASK" # changing the priority of a task
             # find and update the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
             the_task.priority = new_priority
