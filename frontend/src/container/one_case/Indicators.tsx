@@ -3,6 +3,7 @@ import {
   Button,
   Divider,
   Dropdown,
+  Empty,
   Icon,
   Layout,
   Menu,
@@ -118,7 +119,18 @@ export default inject("activeCaseStore")(
                     <IndicatorInputP />
                   </div>
                   <div>
-                    <IndicatorsTable indicators={activeCase.indicators} />
+                    {activeCase.indicators.length === 0 ? (
+                      <Empty
+                        description={
+                          <div>
+                            <h3>No indicators</h3>
+                            <Paragraph>Create an indicator above</Paragraph>
+                          </div>
+                        }
+                      />
+                    ) : (
+                      <IndicatorsTable indicators={activeCase.indicators} />
+                    )}
                   </div>
                 </section>
               </Content>
