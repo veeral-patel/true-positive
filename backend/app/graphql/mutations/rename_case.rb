@@ -17,7 +17,7 @@ class Mutations::RenameCase < Mutations::BaseMutation
         thecase = find_case_or_throw_execution_error(case_id: id)
 
         # authorize this action
-        unless CasePolicy.new(context[:current_user], thecase).rename?
+        unless CasePolicy.new(context[:current_user], thecase).rename_case?
             raise GraphQL::ExecutionError, "Only a case's members can rename it."
         end
 

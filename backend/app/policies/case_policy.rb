@@ -34,8 +34,9 @@ class CasePolicy
         user_can_edit_case? 
     end
 
-    def rename?
-        show?
+    def rename_case?
+        # Only a case's members with a CAN_EDIT role can rename the case
+        user_can_edit_case? 
     end
 
     class Scope
