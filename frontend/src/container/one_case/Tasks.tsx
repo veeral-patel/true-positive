@@ -20,7 +20,7 @@ interface State {
 
 export default inject("activeCaseStore")(
   observer(
-    class Task extends React.Component<Props, State> {
+    class Tasks extends React.Component<Props, State> {
       constructor(props: Props) {
         super(props);
         this.state = {
