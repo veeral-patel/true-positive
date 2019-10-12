@@ -13,8 +13,15 @@ class Mutations::RenameCase < Mutations::BaseMutation
     end
 
     def resolve(id:, name:)
-        # find and update the case
+        # find the case
         thecase = find_case_or_throw_execution_error(case_id: id)
+
+        # authorize this action
+        unless CasePolicy.new(context[:current_user], thecase).rename?
+            raise GraphQL::ExecutionError, "You are not authorized to rename this case."
+        end
+
+        # update the case in memory
         thecase.name = name
 
         # and save it

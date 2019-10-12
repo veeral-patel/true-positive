@@ -14,6 +14,10 @@ class CasePolicy
         @user.admin? || @case.has_member(@user)
     end
 
+    def rename?
+        show?
+    end
+
     class Scope
         attr_reader :user
 
