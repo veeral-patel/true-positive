@@ -10,8 +10,8 @@ class CasePolicy
     end
 
     def show?
-        # Only a case's members, or an admin user, can view it
-        @user.admin? || @case.has_member(@user)
+        # Only a case's members can view it
+        @case.has_member(@user)
     end
 
     def rename?
@@ -26,13 +26,8 @@ class CasePolicy
         end
 
         def resolve
-            if @user.admin?
-                # an admin can see all cases
-                Case.all
-            else
-                # an user can see the cases he's a member of.
-                @user.joined_cases
-            end
+            # an user can see the cases he's a member of.
+            @user.joined_cases
         end
     end
 end
