@@ -24,6 +24,10 @@ class TaskPolicy
         user_can_edit_case?
     end
 
+    def change_assignee?
+        user_can_edit_case?
+    end
+
     class Scope
         attr_reader :user
 

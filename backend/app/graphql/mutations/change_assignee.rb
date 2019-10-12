@@ -30,7 +30,12 @@ class Mutations::ChangeAssignee < Mutations::BaseMutation
             # find the case and user
             the_case = find_case_or_throw_execution_error(case_id: object_id)
 
-            # assign the case
+            # authorize this action
+            unless CasePolicy.new(context[:current_user], the_case).change_assignee?
+                raise GraphQL::ExecutionError, "You are not authorized to change this case's assignee."
+            end
+
+            # update the case in memory
             the_case.assigned_to = user
 
             # and save it
@@ -45,6 +50,11 @@ class Mutations::ChangeAssignee < Mutations::BaseMutation
         elsif type == "TASK"
             # find and update the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
+
+            # authorize this action
+            unless TaskPolicy.new(context[:current_user], the_task).change_assignee?
+                raise GraphQL::ExecutionError, "You are not authorized to change this task's assignee."
+            end
 
             # assign the task
             the_task.assigned_to = user
