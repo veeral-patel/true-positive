@@ -20,10 +20,10 @@ module Types
       field :change_priority, mutation: Mutations::ChangePriority
       field :change_assignee, mutation: Mutations::ChangeAssignee
 
-      # indicator
+      # indicator --------
       field :create_string_indicator, mutation: Mutations::CreateStringIndicator
 
-      # case, task, or indicator
+      # case, task, or indicator --------
       field :change_description, mutation: Mutations::ChangeDescription
       field :change_tags, mutation: Mutations::ChangeTags
 
