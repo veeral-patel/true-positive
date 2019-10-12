@@ -17,6 +17,11 @@ class Mutations::RenameTask < Mutations::BaseMutation
         task = find_task_or_throw_execution_error(task_id: id)
         task.name = name
 
+        # authorize this action
+        unless TaskPolicy.new(context[:current_user], task).rename_task?
+            raise GraphQL::ExecutionError, "You are not authorized to rename tasks in this case."
+        end
+
         # and save it
         if task.save
             {
