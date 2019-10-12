@@ -1,9 +1,10 @@
-import { Avatar, Button, Comment, Form } from "antd";
+import { Avatar, Button, Comment, Form, Input } from "antd";
 import { FormComponentProps } from "antd/lib/form/Form";
-import TextArea from "antd/lib/input/TextArea";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+
+const { TextArea } = Input;
 
 // ----
 

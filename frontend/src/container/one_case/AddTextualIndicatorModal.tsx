@@ -1,5 +1,8 @@
-import { Modal } from "antd";
+import { Form, Input, Modal, Typography } from "antd";
 import React from "react";
+
+const { TextArea } = Input;
+const { Paragraph } = Typography;
 
 interface Props {
   visible: boolean;
@@ -16,8 +19,15 @@ class AddTextualIndicatorModal extends React.Component<Props> {
         visible={visible}
         onCancel={() => handleClose()}
       >
-        Examples of textual indicators include Snort rules, Yara signatures, and
-        malware code snippets.
+        <Paragraph>
+          Examples of textual indicators include Snort rules, Yara signatures,
+          and Exif metadata.
+        </Paragraph>
+        <Form>
+          <Form.Item>
+            <TextArea placeholder="Enter indicator here" />
+          </Form.Item>
+        </Form>
       </Modal>
     );
   }
