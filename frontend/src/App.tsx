@@ -18,6 +18,7 @@ import AllTasksPage from "pages/tasks/AllTasksPage";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 import AuthStore from "stores/AuthStore";
+import { paths } from "utils/constants";
 
 interface Props {
   authStore?: AuthStore;
@@ -34,10 +35,10 @@ export default inject("authStore")(
               <div>
                 <TopMenu />
                 <Router style={{ margin: "3%", marginTop: "2%" }}>
-                  <AllCasesPage path="/" />
-                  <AllCasesPage path="/cases" />
-                  <AllTasksPage path="/tasks" />
-                  <AdminPage path="/admin" />
+                  <AllCasesPage path={paths.ROOT_PATH} />
+                  <AllCasesPage path={paths.CASES_PATH} />
+                  <AllTasksPage path={paths.TASKS_PATH} />
+                  <AdminPage path={paths.MANAGE_PATH} />
                   <CasePage path="/cases/:caseId/*" />
                   <Page404 default />
                 </Router>

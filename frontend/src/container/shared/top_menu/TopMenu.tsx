@@ -38,10 +38,10 @@ export default inject("uiStore", "authStore")(
               Tasks
             </Menu.Item>
             <Menu.Item
-              onClick={() => navigate(paths.ADMIN_PATH)}
+              onClick={() => navigate(paths.MANAGE_PATH)}
               style={{ float: "left" }}
             >
-              Admin
+              Manage
             </Menu.Item>
             <Menu.Item
               style={{ float: "right" }}
