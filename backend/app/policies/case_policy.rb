@@ -14,9 +14,19 @@ class CasePolicy
         @case.has_member(@user)
     end
 
+    def user_can_edit_case?
+        # Whether the user is a member of the case and has the CAN_EDIT role
+        CaseMember.where(case: @case, user: @user, role: "CAN_EDIT").exists?
+    end
+
     def add_member?
         # Only a case's members with a CAN_EDIT role can add members
-        CaseMember.where(case: @case, user: @user, role: "CAN_EDIT").exists?
+        user_can_edit_case?
+    end
+
+    def remove_member?
+        # Only a case's members with a CAN_EDIT role can remove members
+        user_can_edit_case? 
     end
 
     def rename?
