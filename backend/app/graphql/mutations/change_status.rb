@@ -26,7 +26,7 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
         new_status =  find_status_by_name_or_throw_execution_error(status_name: status)
 
         # changing the status of a case
-        if type === "CASE"
+        if type == "CASE"
             # find and update the case
             the_case = find_case_or_throw_execution_error(case_id: object_id)
             the_case.status = new_status
@@ -39,7 +39,7 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
             else
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
-        elsif type === "TASK" # changing the status of a task
+        elsif type == "TASK" # changing the status of a task
             # find and update the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
             the_task.status = new_status

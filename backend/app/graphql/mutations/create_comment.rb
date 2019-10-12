@@ -19,11 +19,11 @@ class Mutations::CreateComment < Mutations::BaseMutation
 
     def resolve(type:, object_id:, comment:)
         # find the object we're commenting upon
-        if type === "CASE"
+        if type == "CASE"
             commentable = find_case_or_throw_execution_error(case_id: object_id)
-        elsif type === "TASK"
+        elsif type == "TASK"
             commentable = find_task_or_throw_execution_error(task_id: object_id)
-        elsif type === "INDICATOR"
+        elsif type == "INDICATOR"
             commentable = find_indicator_or_throw_execution_error(indicator_id: object_id)
         end
 

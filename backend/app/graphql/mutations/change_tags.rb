@@ -27,7 +27,7 @@ class Mutations::ChangeTags < Mutations::BaseMutation
     end
 
     def resolve(object_id:, tags:, type:)
-        if type === "CASE"
+        if type == "CASE"
             # find and update the case
             the_case = find_case_or_throw_execution_error(case_id: object_id)
             the_case.tag_list = tags
@@ -38,7 +38,7 @@ class Mutations::ChangeTags < Mutations::BaseMutation
             else
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
-        elsif type === "TASK"
+        elsif type == "TASK"
             # find and update the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
             the_task.tag_list = tags
@@ -49,7 +49,7 @@ class Mutations::ChangeTags < Mutations::BaseMutation
             else
                 raise GraphQL::ExecutionError, the_task.errors.full_messages.join(" | ")
             end
-        elsif type === "INDICATOR"
+        elsif type == "INDICATOR"
             # find and update the indicator
             the_indicator = find_indicator_or_throw_execution_error(indicator_id: object_id)
             the_indicator.tag_list = tags
