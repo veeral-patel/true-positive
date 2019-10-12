@@ -22,6 +22,11 @@ class Mutations::AddMember < Mutations::BaseMutation
         the_case = find_case_or_throw_execution_error(case_id: case_id)
         user = find_user_or_throw_execution_error(username: username)
 
+        # authorize this action
+        unless CasePolicy.new(context[:current_user], the_case).add_member?
+            raise GraphQL::ExecutionError, "You are not authorized to add users to this case."
+        end
+
         # try to add the user to the case
         if the_case.add_member(user, role)
             {
