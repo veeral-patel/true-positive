@@ -5,8 +5,8 @@ module Types
       # case ------------
       field :create_case, mutation: Mutations::CreateCase
       field :rename_case, mutation: Mutations::RenameCase
-      field :delete_case, mutation: Mutations::DeleteCase
-      field :merge_case, mutation: Mutations::MergeCase
+      field :delete_case, mutation: Mutations::DeleteCase # missing authz
+      field :merge_case, mutation: Mutations::MergeCase # missing authz
       field :add_member, mutation: Mutations::AddMember
       field :remove_member, mutation: Mutations::RemoveMember
       field :change_role, mutation: Mutations::ChangeRole
@@ -29,7 +29,7 @@ module Types
       field :change_tags, mutation: Mutations::ChangeTags
 
       # comment --------
-      field :create_comment, mutation: Mutations::CreateComment
+      field :create_comment, mutation: Mutations::CreateComment # missing authz
       field :delete_comment, mutation: Mutations::DeleteComment
 
       # status ----------
