@@ -9,7 +9,7 @@ class CasePolicy
         true
     end
 
-    def show?
+    def show_case?
         # Only a case's members can view it
         @case.has_member(@user)
     end
