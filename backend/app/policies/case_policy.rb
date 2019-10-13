@@ -49,6 +49,10 @@ class CasePolicy
         user_can_edit_case? 
     end
 
+    def change_priority?
+        user_can_edit_case? 
+    end
+
     def change_assignee?
         user_can_edit_case?
     end
