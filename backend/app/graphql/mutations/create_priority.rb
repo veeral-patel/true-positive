@@ -18,7 +18,7 @@ class Mutations::CreatePriority < Mutations::BaseMutation
         priority = Priority.new(name: name, description: description)
 
         # authorize this action
-        unless PriorityPolicy.new(context[:current_user], status).create_priority?
+        unless PriorityPolicy.new(context[:current_user], priority).create_priority?
             raise GraphQL::ExecutionError, "You are not authorized to create priorities."
         end
 
