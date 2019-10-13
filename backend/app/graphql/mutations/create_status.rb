@@ -14,8 +14,15 @@ class Mutations::CreateStatus < Mutations::BaseMutation
     end
 
     def resolve(name:, description: nil)
+        # create the status in memory
         status = Status.new(name: name, description: description)
 
+        # authorize this action
+        unless StatusPolicy.new(context[:current_user], status).create?
+            raise GraphQL::ExecutionError, "You are not authorized to create statuses."
+        end
+
+        # save it
         if status.save
             {
                 "status": status
