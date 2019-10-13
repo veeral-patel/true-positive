@@ -19,7 +19,7 @@ class Mutations::RenameStatus < Mutations::BaseMutation
 
         # authorize this action
         unless StatusPolicy.new(context[:current_user], status).rename_status?
-            raise GraphQL::ExecutionError, "You are not authorized to rename this status."
+            raise GraphQL::ExecutionError, "You are not authorized to rename statuses."
         end
 
         # update the status in memory
