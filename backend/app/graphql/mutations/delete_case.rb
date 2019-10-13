@@ -10,14 +10,19 @@ class Mutations::DeleteCase < Mutations::BaseMutation
     end
 
     def resolve(id:)
-        theCase = find_case_or_throw_execution_error(case_id: id)
+        the_case = find_case_or_throw_execution_error(case_id: id)
 
-        if theCase.destroy
+        # authorize this action
+        unless CasePolicy.new(context[:current_user], the_case).delete_case?
+            raise GraphQL::ExecutionError, "Only a case's members can delete it."
+        end
+
+        if the_case.destroy
             {
                 "id": id
             }
         else
-            raise GraphQL::ExecutionError, theCase.errors.full_messages.join(" | ")
+            raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
         end
     end
 end

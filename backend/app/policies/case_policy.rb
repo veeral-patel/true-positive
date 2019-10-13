@@ -65,6 +65,10 @@ class CasePolicy
         user_can_edit_case?
     end
 
+    def delete_case?
+        user_can_edit_case?
+    end
+
     class Scope
         attr_reader :user
 
