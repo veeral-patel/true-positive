@@ -14,11 +14,18 @@ class Mutations::RenamePriority < Mutations::BaseMutation
     end
 
     def resolve(old_name:, new_name:)
-        # find and update the priority
+        # find the priority
         priority = find_priority_by_name_or_throw_execution_error(priority_name: old_name)
+
+        # authorize this action
+        unless PriorityPolicy.new(context[:current_user], priority).rename_priority?
+            raise GraphQL::ExecutionError, "You are not authorized to rename priorities."
+        end
+
+        # update the priority in memory
         priority.name = new_name
 
-        # and save it
+        # and save the priority
         if priority.save
             {
                 "priority": priority
