@@ -1,7 +1,10 @@
 import { RouteComponentProps } from "@reach/router";
-import { PageHeader } from "antd";
-import AdminTabsP from "presentational/admin/AdminTabsP";
+import { PageHeader, Tabs } from "antd";
+import CustomizePriorities from "presentational/admin/CustomizePriorities";
+import CustomizeStatuses from "presentational/admin/CustomizeStatuses";
 import React from "react";
+
+const { TabPane } = Tabs;
 
 class AdminPage extends React.Component<RouteComponentProps> {
   render() {
@@ -12,7 +15,14 @@ class AdminPage extends React.Component<RouteComponentProps> {
           subTitle="Customize settings that affect all users"
         />
         <div style={{ width: "60%" }}>
-          <AdminTabsP />
+          <Tabs tabPosition="left">
+            <TabPane tab="Customize Statuses" key="statuses">
+              <CustomizeStatuses />
+            </TabPane>
+            <TabPane tab="Customize Priorities" key="priorities">
+              <CustomizePriorities />
+            </TabPane>
+          </Tabs>
         </div>
       </div>
     );
