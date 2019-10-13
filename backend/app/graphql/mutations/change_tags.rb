@@ -64,8 +64,15 @@ class Mutations::ChangeTags < Mutations::BaseMutation
                 raise GraphQL::ExecutionError, the_task.errors.full_messages.join(" | ")
             end
         elsif type == "INDICATOR"
-            # find and update the indicator
+            # find the indicator
             the_indicator = find_indicator_or_throw_execution_error(indicator_id: object_id)
+
+            # authorize this action
+            unless IndicatorPolicy.new(context[:current_user], the_indicator).change_tags?
+                raise GraphQL::ExecutionError, "You are not authorized to change this indicator's tags."
+            end
+
+            # update the indicator in memory
             the_indicator.tag_list = tags
 
             # save it
