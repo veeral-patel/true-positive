@@ -10,8 +10,15 @@ class Mutations::DeleteStatus < Mutations::BaseMutation
     end
 
     def resolve(name:)
+        # find the status
         status = find_status_by_name_or_throw_execution_error(status_name: name)
 
+        # authorize this action
+        unless StatusPolicy.new(context[:current_user], status).delete_status?
+            raise GraphQL::ExecutionError, "You are not authorized to delete statuses."
+        end
+
+        # destroy the status
         if status.destroy
             {
                 "name": name

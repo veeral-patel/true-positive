@@ -18,7 +18,7 @@ class Mutations::CreateStatus < Mutations::BaseMutation
         status = Status.new(name: name, description: description)
 
         # authorize this action
-        unless StatusPolicy.new(context[:current_user], status).create?
+        unless StatusPolicy.new(context[:current_user], status).create_status?
             raise GraphQL::ExecutionError, "You are not authorized to create statuses."
         end
 

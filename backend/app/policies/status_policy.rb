@@ -4,8 +4,13 @@ class StatusPolicy
         @status = status
     end
 
-    def create?
+    def create_status?
         # Anyone can create a status.
+        true
+    end
+
+    def delete_status?
+        # Anyone can delete a status.
         true
     end
 end
