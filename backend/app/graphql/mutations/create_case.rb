@@ -47,7 +47,7 @@ class Mutations::CreateCase < Mutations::BaseMutation
         )
 
         # authorize this action
-        unless CasePolicy.new(context[:current_user], new_case).create?
+        unless CasePolicy.new(context[:current_user], new_case).create_case?
             raise GraphQL::ExecutionError, "You are not authorized to create cases."
         end
 

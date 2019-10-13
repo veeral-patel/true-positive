@@ -4,7 +4,7 @@ class CasePolicy
         @case = the_case
     end
 
-    def create?
+    def create_case?
         # Anyone can create a case.
         true
     end
