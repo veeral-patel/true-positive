@@ -14,8 +14,15 @@ class Mutations::RenameStatus < Mutations::BaseMutation
     end
 
     def resolve(old_name:, new_name:)
-        # find and update the status
+        # find the status
         status = find_status_by_name_or_throw_execution_error(status_name: old_name)
+
+        # authorize this action
+        unless StatusPolicy.new(context[:current_user], status).rename_status?
+            raise GraphQL::ExecutionError, "You are not authorized to rename this status."
+        end
+
+        # update the status in memory
         status.name = new_name
 
         # and save it

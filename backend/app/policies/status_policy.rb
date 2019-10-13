@@ -9,6 +9,11 @@ class StatusPolicy
         true
     end
 
+    def rename_status?
+        # Anyone can rename a status.
+        true
+    end
+
     def delete_status?
         # Anyone can delete a status.
         true
