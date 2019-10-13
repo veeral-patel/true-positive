@@ -28,8 +28,15 @@ class Mutations::ChangeTags < Mutations::BaseMutation
 
     def resolve(object_id:, tags:, type:)
         if type == "CASE"
-            # find and update the case
+            # find the case
             the_case = find_case_or_throw_execution_error(case_id: object_id)
+
+            # authorize this action
+            unless CasePolicy.new(context[:current_user], the_case).change_tags?
+                raise GraphQL::ExecutionError, "You are not authorized to change this case's tags."
+            end
+
+            # update the case in memory
             the_case.tag_list = tags
 
             # save it
