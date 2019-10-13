@@ -12,4 +12,8 @@ class IndicatorPolicy
     def change_description?
         user_can_edit_case?
     end
+
+    def create_indicator?
+        user_can_edit_case?
+    end
 end

@@ -39,6 +39,11 @@ class Mutations::CreateStringIndicator < Mutations::BaseMutation
             case: the_case
         )
 
+        # authorize this action
+        unless IndicatorPolicy.new(context[:current_user], new_indicator).create_indicator?
+            raise GraphQL::ExecutionError, "You are not authorized to create indicators in this case."
+        end
+
         # and try to save it
         if new_indicator.save
             {
