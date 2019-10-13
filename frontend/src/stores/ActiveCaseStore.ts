@@ -578,7 +578,7 @@ class ActiveCaseStore {
       })
       .catch((error: ApolloError) => {
         notification.error({
-          message: "An error occurred while updating the list of tags",
+          message: "An error occurred while updating tags",
           description: error.message
         });
       })

@@ -39,8 +39,15 @@ class Mutations::ChangeTags < Mutations::BaseMutation
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
         elsif type == "TASK"
-            # find and update the task
+            # find the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
+
+            # authorize this action
+            unless TaskPolicy.new(context[:current_user], the_task).change_tags?
+                raise GraphQL::ExecutionError, "You are not authorized to change this task's tags."
+            end
+
+            # update the task in memory
             the_task.tag_list = tags
 
             # save it
