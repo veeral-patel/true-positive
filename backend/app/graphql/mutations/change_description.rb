@@ -28,33 +28,56 @@ class Mutations::ChangeDescription < Mutations::BaseMutation
 
     def resolve(object_id:, description:, type:)
         if type == "CASE"
-            # find and update the case
+            # find the case
             the_case = find_case_or_throw_execution_error(case_id: object_id)
+
+            # authorize this action
+            unless CasePolicy.new(context[:current_user], the_case).change_description?
+                raise GraphQL::ExecutionError, "You are not authorized to change this case's description."
+            end
+
+            # update the description in memory
             the_case.description = description
 
-            # save it
+            # save the case
             if the_case.save
                 { "case": the_case }
             else
                 raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
             end
         elsif type == "TASK"
-            # find and update the task
+            # find the task
             the_task = find_task_or_throw_execution_error(task_id: object_id)
+
+            # authorize this action
+            unless TaskPolicy.new(context[:current_user], the_task).change_description?
+                raise GraphQL::ExecutionError, "You are not authorized to change this task's description."
+            end
+
+            # update the task in memory
             the_task.description = description
 
             # save it
             if the_task.save
-                { "task": the_task }
+                {
+                    "task": the_task
+                }
             else
                 raise GraphQL::ExecutionError, the_task.errors.full_messages.join(" | ")
             end
         elsif type == "INDICATOR"
-            # find and update the indicator
+            # find the indicator
             the_indicator = find_indicator_or_throw_execution_error(indicator_id: object_id)
+
+            # authorize this action
+            unless IndicatorPolicy.new(context[:current_user], the_indicator).change_description?
+                raise GraphQL::ExecutionError, "You are not authorized to change this indicator's description."
+            end
+
+            # update the indicator in memory
             the_indicator.description = description
 
-            # save it
+            # save the indicator
             if the_indicator.save
                 { "indicator": the_indicator }
             else
