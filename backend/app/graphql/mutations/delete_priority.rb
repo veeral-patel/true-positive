@@ -10,8 +10,15 @@ class Mutations::DeletePriority < Mutations::BaseMutation
     end
 
     def resolve(name:)
+        # find the priority
         priority = find_priority_by_name_or_throw_execution_error(priority_name: name)
 
+        # authorize this action
+        unless PriorityPolicy.new(context[:current_user], priority).delete_priority?
+            raise GraphQL::ExecutionError, "You are not authorized to delete priorities."
+        end
+
+        # and delete the priority
         if priority.destroy
             {
                 "name": name
