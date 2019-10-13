@@ -61,6 +61,8 @@ module Types
         User.all
       end
 
+      # ------------------- Me ----------------------
+
       field :me, Types::UserType, null: true do
         description "Retrieve the currently authenticated user."
       end
