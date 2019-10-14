@@ -11,7 +11,6 @@ import {
 } from "antd";
 import AddMembersForm from "container/one_case/AddMembersForm";
 import { inject, observer } from "mobx-react";
-import RoleSelectP from "presentational/one_case/MembersP/RoleSelectP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UserStore from "stores/UserStore";
@@ -90,7 +89,13 @@ export default inject("activeCaseStore", "userStore")(
                       }
                       description={member.user.email}
                     />
-                    <RoleSelectP role={member.role} />
+                    <Select<"CAN_VIEW" | "CAN_EDIT">
+                      value={member.role}
+                      style={{ width: "120px" }}
+                    >
+                      <Option value="CAN_VIEW">Can View</Option>
+                      <Option value="CAN_EDIT">Can Edit</Option>
+                    </Select>
                     <Popconfirm
                       title={`Remove ${member.user.username}?`}
                       okText="Yes, Remove"
