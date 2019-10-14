@@ -92,6 +92,13 @@ export default inject("activeCaseStore", "userStore")(
                     <Select<"CAN_VIEW" | "CAN_EDIT">
                       value={member.role}
                       style={{ width: "120px" }}
+                      onSelect={newRole =>
+                        activeCaseStore!.changeRole(
+                          activeCase.id,
+                          member.user.username,
+                          newRole
+                        )
+                      }
                     >
                       <Option value="CAN_VIEW">Can View</Option>
                       <Option value="CAN_EDIT">Can Edit</Option>

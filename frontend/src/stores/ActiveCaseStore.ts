@@ -6,6 +6,7 @@ import ADD_MEMBER from "mutations/addMember";
 import CHANGE_ASSIGNEE from "mutations/changeAssignee";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_PRIORITY from "mutations/changePriority";
+import CHANGE_ROLE from "mutations/changeRole";
 import CHANGE_STATUS from "mutations/changeStatus";
 import CHANGE_TAGS from "mutations/changeTags";
 import CREATE_A_COMMENT from "mutations/createComment";
@@ -579,6 +580,35 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while updating tags",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  changeRole(caseId: number, username: string, role: "CAN_VIEW" | "CAN_EDIT") {
+    client
+      .mutate({
+        variables: {
+          input: {
+            caseId,
+            username,
+            role
+          }
+        },
+        mutation: CHANGE_ROLE
+      })
+      .then((response: FetchResult) => {
+        message.success("Changed role");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while changing the user's role",
           description: error.message
         });
       })
