@@ -1,5 +1,14 @@
 import { RouteComponentProps } from "@reach/router";
-import { Avatar, Button, Layout, List, Select, Tag, Typography } from "antd";
+import {
+  Avatar,
+  Button,
+  Layout,
+  List,
+  Popconfirm,
+  Select,
+  Tag,
+  Typography
+} from "antd";
 import AddMembersForm from "container/one_case/AddMembersForm";
 import { inject, observer } from "mobx-react";
 import RoleSelectP from "presentational/one_case/MembersP/RoleSelectP";
@@ -82,13 +91,19 @@ export default inject("activeCaseStore", "userStore")(
                       description={member.user.email}
                     />
                     <RoleSelectP role={member.role} />
-                    <Button
-                      icon="close"
-                      style={{ border: "none", marginLeft: "1em" }}
-                      onClick={() =>
+                    <Popconfirm
+                      title={`Remove ${member.user.username}?`}
+                      okText="Yes, Remove"
+                      cancelText="No"
+                      onConfirm={() =>
                         activeCaseStore!.removeCaseMember(member.user.username)
                       }
-                    />
+                    >
+                      <Button
+                        icon="close"
+                        style={{ border: "none", marginLeft: "1em" }}
+                      />
+                    </Popconfirm>
                   </List.Item>
                 )}
               />
