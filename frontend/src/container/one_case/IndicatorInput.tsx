@@ -4,9 +4,9 @@ import { matchIndicator } from "utils/matchIndicator";
 
 const { Text } = Typography;
 
-interface IndicatorInputProps {}
+interface Props {}
 
-interface IndicatorInputState {
+interface State {
   status:
     | "EMPTY"
     | "LOADING"
@@ -25,11 +25,8 @@ interface IndicatorInputState {
   inputValue: string;
 }
 
-class IndicatorInputP extends React.Component<
-  IndicatorInputProps,
-  IndicatorInputState
-> {
-  constructor(props: IndicatorInputProps) {
+class IndicatorInput extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       status: "EMPTY",
@@ -77,4 +74,4 @@ class IndicatorInputP extends React.Component<
   }
 }
 
-export default IndicatorInputP;
+export default IndicatorInput;
