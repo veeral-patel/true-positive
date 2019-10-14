@@ -1,6 +1,7 @@
 import { List, Typography } from "antd";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
+import truncateString from "utils/truncateString";
 
 const { Text } = Typography;
 
@@ -17,8 +18,8 @@ class IndicatorList extends React.Component<Props> {
         dataSource={indicators}
         renderItem={indicator => (
           <List.Item>
-            <Text copyable style={{ overflowX: "hidden", maxWidth: "90%" }}>
-              {indicator.name}
+            <Text copyable={{ text: indicator.name }}>
+              {truncateString(indicator.name, 50)}
             </Text>
           </List.Item>
         )}
