@@ -25,7 +25,7 @@ class AddTextualIndicatorModal extends React.Component<Props> {
         </Paragraph>
         <Form>
           <Form.Item>
-            <TextArea placeholder="Enter indicator here" />
+            <TextArea placeholder="Enter indicator here" rows={5} />
           </Form.Item>
         </Form>
       </Modal>
