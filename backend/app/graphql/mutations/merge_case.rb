@@ -24,6 +24,11 @@ class Mutations::MergeCase < Mutations::BaseMutation
         child_case = find_case_or_throw_execution_error(case_id: child_case_id)
         parent_case = find_case_or_throw_execution_error(case_id: parent_case_id)
 
+        # authorize this action
+        unless CasePolicy.new(context[:current_user], child_case).can_merge_into?(parent_case)
+            raise GraphQL::ExecutionError, "To merge a case into another, you must have permission to edit both cases."
+        end
+
         if child_case.merge_case_into(parent_case)
             {
                 "child_case": child_case,
