@@ -7,6 +7,7 @@ import {
   Icon,
   Layout,
   Menu,
+  Modal,
   Typography
 } from "antd";
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
@@ -116,15 +117,41 @@ export default inject("activeCaseStore")(
                     </Dropdown>
                   </div>
                   <div style={{ marginBottom: "2em" }}>
+                    {/* for adding string indicators */}
                     <IndicatorInput
                       handleEnter={(
                         event: React.KeyboardEvent<HTMLInputElement>
-                      ) =>
-                        activeCaseStore!.createStringIndicator(
-                          activeCase.id,
-                          event.currentTarget.value
-                        )
-                      }
+                      ) => {
+                        const newIndicator = event.currentTarget.value;
+
+                        // make a list of this case's existing indicators
+                        const existingIndicators = activeCase.indicators.map(
+                          indicator => indicator.name
+                        );
+
+                        if (existingIndicators.includes(newIndicator)) {
+                          Modal.confirm({
+                            title: "Add duplicate indicator?",
+                            content:
+                              "This case has another string indicator with the same name. Do you still want to add this string indicator?",
+                            okText: "Yes, add it",
+                            cancelText: "No",
+                            onOk() {
+                              // add the new indicator to the case
+                              activeCaseStore!.createStringIndicator(
+                                activeCase.id,
+                                newIndicator
+                              );
+                            }
+                          });
+                        } else {
+                          // add the new indicator to the case
+                          activeCaseStore!.createStringIndicator(
+                            activeCase.id,
+                            newIndicator
+                          );
+                        }
+                      }}
                     />
                   </div>
                   <div>
