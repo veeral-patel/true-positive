@@ -68,7 +68,7 @@ export default inject("activeCaseStore")(
                     />
                   </Col>
                   <Col span={4}>Created:</Col>
-                  <Col span={8}>
+                  <Col span={8} style={{ lineHeight: 2 }}>
                     {`${formatISO8601(activeCase.createdAt)} UTC by ${
                       activeCase.createdBy.username
                     }`}
