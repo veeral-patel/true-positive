@@ -33,6 +33,11 @@ class Mutations::CreateComment < Mutations::BaseMutation
             comment: comment,
         )
 
+        # authorize this action
+        unless CommentPolicy.new(context[:current_user], new_comment).create_comment?
+            raise GraphQL::ExecutionError, "You are not authorized to comment."
+        end
+
         # actually save it
         if new_comment.save
             { "comment": new_comment }

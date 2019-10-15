@@ -20,4 +20,8 @@ class IndicatorPolicy
     def change_tags?
         user_can_edit_case?
     end
+
+    def create_comment?
+        user_can_edit_case?
+    end
 end

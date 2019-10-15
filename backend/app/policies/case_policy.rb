@@ -81,6 +81,10 @@ class CasePolicy
         can_edit_child_case && can_edit_parent_case
     end
 
+    def create_comment?
+        user_can_edit_this_case?
+    end
+
     class Scope
         attr_reader :user
 
