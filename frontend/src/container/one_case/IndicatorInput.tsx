@@ -4,7 +4,10 @@ import { matchIndicator } from "utils/matchIndicator";
 
 const { Text } = Typography;
 
-interface Props {}
+interface Props {
+  /* the callback that's run when you hit enter after inputting your indicator. */
+  handleEnter: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+}
 
 interface State {
   status:
@@ -51,6 +54,7 @@ class IndicatorInput extends React.Component<Props, State> {
 
   render() {
     const { status, inputValue } = this.state;
+    const { handleEnter } = this.props;
 
     let suffix;
     if (status === "EMPTY") suffix = <Icon type="arrow-right" />;
@@ -69,6 +73,7 @@ class IndicatorInput extends React.Component<Props, State> {
         prefix={<Icon type="plus" />}
         suffix={suffix}
         onChange={this.handleChange.bind(this)}
+        onPressEnter={handleEnter}
       />
     );
   }

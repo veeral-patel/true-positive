@@ -116,7 +116,16 @@ export default inject("activeCaseStore")(
                     </Dropdown>
                   </div>
                   <div style={{ marginBottom: "2em" }}>
-                    <IndicatorInput />
+                    <IndicatorInput
+                      handleEnter={(
+                        event: React.KeyboardEvent<HTMLInputElement>
+                      ) =>
+                        activeCaseStore!.createStringIndicator(
+                          activeCase.id,
+                          event.currentTarget.value
+                        )
+                      }
+                    />
                   </div>
                   <div>
                     {activeCase.indicators.length === 0 ? (
