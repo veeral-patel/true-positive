@@ -7,11 +7,15 @@ module Types
         end
 
         field :name, String, null: false do
-            description "The name of the indicator."
+            description "A brief name for this indicator."
+        end
+
+        field :text, String, null: true do
+            description "For text-based indicators, the indicator itself. Null for string and file indicators."
         end
 
         field :description, String, null: true do
-            description "This indicator's description."
+            description "A description for this indicator."
         end
 
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
