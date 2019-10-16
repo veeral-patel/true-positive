@@ -8,7 +8,7 @@ class Mutations::CreateStringIndicator < Mutations::BaseMutation
     end
 
     argument :case_id, ID, required: true do
-        description "The ID of the case to add this task to."
+        description "The ID of the case to add this indicator to."
     end
 
     # not required -----
