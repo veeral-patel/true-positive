@@ -16,6 +16,7 @@ class Mutations::CreateTextIndicator < Mutations::BaseMutation
     end
 
     # not required -----
+
     argument :description, String, required: false do
         description "Optional text describing this indicator."
     end
