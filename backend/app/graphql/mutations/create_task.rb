@@ -9,14 +9,6 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "The name of the new task."
     end
 
-    argument :status, String, required: true do
-        description "The new status's status's name."
-    end
-
-    argument :priority, String, required: true do
-        description "The new priority's priority's name."
-    end
-
     argument :case_id, ID, required: true do
         description "The ID of the case to add this task to."
     end
@@ -39,11 +31,9 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "The newly created task."
     end
 
-    def resolve(name:, status:, priority:, case_id:, description: nil, assigned_to: nil, tags: nil)
-        # find case, status, priority, assigned user for this new task
+    def resolve(name:, case_id:, description: nil, assigned_to: nil, tags: nil)
+        # find case, assigned user for this new task
         the_case = find_case_or_throw_execution_error(case_id: case_id)
-        status_record = find_status_by_name_or_throw_execution_error(status_name: status)
-        priority_record = find_priority_by_name_or_throw_execution_error(priority_name: priority)
         assigned_user = assigned_to.nil? ? nil : find_user_or_throw_execution_error(username: assigned_to)
 
         # authorize this action
@@ -54,8 +44,6 @@ class Mutations::CreateTask < Mutations::BaseMutation
         # create new task in memory
         new_task = Task.new(
             name: name,
-            status: status_record,
-            priority: priority_record,
             case: the_case,
             created_by: context[:current_user],
             description: description,
