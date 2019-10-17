@@ -64,12 +64,6 @@ const GET_ONE_CASE = gql`
         }
         createdAt
         description
-        status {
-          name
-        }
-        priority {
-          name
-        }
         comments {
           id
           comment
