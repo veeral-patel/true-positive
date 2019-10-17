@@ -13,7 +13,6 @@ import {
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
 import AddTextIndicatorModal from "container/one_case/AddTextIndicatorModal";
 import ImportIndicatorsFromCSVModal from "container/one_case/ImportIndicatorsFromCSVModal";
-import IndicatorInput from "container/one_case/IndicatorInput";
 import IndicatorsTable from "container/one_case/IndicatorList";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -117,7 +116,7 @@ export default inject("activeCaseStore")(
                   </div>
                   <div style={{ marginBottom: "2em" }}>
                     {/* for adding string indicators */}
-                    <IndicatorInput
+                    <CreateIndicatorInput
                       handleEnter={(
                         event: React.KeyboardEvent<HTMLInputElement>
                       ) => {

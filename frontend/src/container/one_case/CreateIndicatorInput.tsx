@@ -28,7 +28,7 @@ interface State {
   inputValue: string;
 }
 
-class IndicatorInput extends React.Component<Props, State> {
+class CreateIndicatorInput extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -79,4 +79,4 @@ class IndicatorInput extends React.Component<Props, State> {
   }
 }
 
-export default IndicatorInput;
+export default CreateIndicatorInput;
