@@ -27,12 +27,6 @@ const GET_CASES = gql`
         id
         name
         description
-        status {
-          name
-        }
-        priority {
-          name
-        }
         tags {
           id
           name

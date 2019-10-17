@@ -12,12 +12,6 @@ const GET_TASKS = gql`
         username
       }
       createdAt
-      status {
-        name
-      }
-      priority {
-        name
-      }
       tags {
         id
         name
