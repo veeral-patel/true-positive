@@ -12,6 +12,7 @@ import CHANGE_TAGS from "mutations/changeTags";
 import CREATE_A_COMMENT from "mutations/createComment";
 import CREATE_STRING_INDICATOR from "mutations/createStringIndicator";
 import CREATE_A_TASK from "mutations/createTask";
+import CREATE_TEXT_INDICATOR from "mutations/createTextIndicator";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
 import REMOVE_MEMBER from "mutations/removeMember";
@@ -647,6 +648,35 @@ class ActiveCaseStore {
         })
       );
   }
+
+  @action.bound
+  createTextIndicator(caseId: number, indicatorName: string, text: string) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            caseId,
+            name: indicatorName,
+            text
+          }
+        },
+        mutation: CREATE_TEXT_INDICATOR
+      })
+      .then((response: FetchResult) => {
+        message.success("Added indicator");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while adding the indicator",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+
 }
 
 export default ActiveCaseStore;
