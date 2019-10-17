@@ -17,7 +17,7 @@ class AddTextIndicatorModal extends React.Component<Props> {
         title="Add a textual indicator"
         okText="Add indicator"
         visible={visible}
-        onCancel={() => handleClose()}
+        onCancel={handleClose}
       >
         <Paragraph>
           Examples of textual indicators include Snort rules, Yara signatures,
