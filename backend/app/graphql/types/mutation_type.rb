@@ -10,6 +10,8 @@ module Types
       field :add_member, mutation: Mutations::AddMember
       field :remove_member, mutation: Mutations::RemoveMember
       field :change_role, mutation: Mutations::ChangeRole
+      field :change_status, mutation: Mutations::ChangeStatus
+      field :change_priority, mutation: Mutations::ChangePriority
 
       # task -------
       field :create_task, mutation: Mutations::CreateTask
@@ -17,8 +19,6 @@ module Types
       field :delete_task, mutation: Mutations::DeleteTask
 
       # case or task --------
-      field :change_status, mutation: Mutations::ChangeStatus
-      field :change_priority, mutation: Mutations::ChangePriority
       field :change_assignee, mutation: Mutations::ChangeAssignee
 
       # indicator --------

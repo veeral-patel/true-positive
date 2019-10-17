@@ -89,7 +89,7 @@ class PriorityStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while deleting the priority",
-          description: "Ensure no existing case or task has this priority"
+          description: "Ensure no existing case has this priority"
         });
       })
       .finally(() =>

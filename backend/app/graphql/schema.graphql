@@ -99,7 +99,7 @@ type Mutation {
 }
 
 """
-Describes the severity level of a case or task.
+Describes the severity level of a case.
 """
 type Priority {
   description: String
@@ -143,7 +143,7 @@ type Query {
 }
 
 """
-A state a case or a task can be in.
+A state a case can be in.
 """
 type Status {
   description: String

@@ -1,5 +1,5 @@
 class Mutations::CreateStatus < Mutations::BaseMutation
-    description "Add a status. Any case or task can now be given this status."
+    description "Add a status. Any case can now be given this status."
 
     argument :name, String, required: true do
         description "The name of the status to create (such as 'Open')."

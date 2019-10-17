@@ -89,7 +89,7 @@ class StatusStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while deleting the status",
-          description: "Ensure no existing case or task has this status"
+          description: "Ensure no existing case has this status"
         });
       })
       .finally(() =>

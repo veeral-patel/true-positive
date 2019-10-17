@@ -1,6 +1,6 @@
 module Types
     class PriorityType < Types::BaseObject
-        description "Describes the severity level of a case or task."
+        description "Describes the severity level of a case."
 
         field :id, ID, null: false do
             description "An unique integer identifying this priority."
