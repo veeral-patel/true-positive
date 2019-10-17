@@ -17,6 +17,7 @@ import IndicatorsTable from "container/one_case/IndicatorList";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import CreateIndicatorInput from "./CreateIndicatorInput";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;

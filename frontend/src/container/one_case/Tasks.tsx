@@ -6,7 +6,7 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import { getPathToATask } from "utils/pathHelpers";
-import CreateTaskInput from "./TaskInput";
+import CreateTaskInput from "./CreateTaskInput";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
@@ -73,7 +73,12 @@ export default inject("activeCaseStore")(
                     <Paragraph>
                       A task is a piece of work to be completed in a case.
                     </Paragraph>
-                    <CreateTaskInput />
+                    <CreateTaskInput
+                      handleEnter={event => {
+                        const newTask = event.currentTarget.value;
+                        activeCaseStore!.createTask(newTask, activeCase.id);
+                      }}
+                    />
                     <TasksTable
                       tasks={activeCase.tasks}
                       handleRowClick={(clickedTask, index, event) =>
