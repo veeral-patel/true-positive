@@ -408,64 +408,6 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeTaskStatus(taskId: number, statusName: string) {
-    client
-      .mutate({
-        variables: {
-          input: {
-            objectId: taskId,
-            status: statusName,
-            type: "TASK"
-          }
-        },
-        mutation: CHANGE_STATUS
-      })
-      .then((_: FetchResult) => {
-        message.success("Changed the status");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while changing the task's status",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
-  @action.bound
-  changeTaskPriority(taskId: number, priorityName: string) {
-    client
-      .mutate({
-        variables: {
-          input: {
-            objectId: taskId,
-            priority: priorityName,
-            type: "TASK"
-          }
-        },
-        mutation: CHANGE_PRIORITY
-      })
-      .then((response: FetchResult) => {
-        message.success("Changed the priority");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while changing the task's priority",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
-  @action.bound
   createTask(
     name: string,
     statusName: string,
