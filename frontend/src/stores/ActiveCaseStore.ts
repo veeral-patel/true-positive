@@ -676,7 +676,7 @@ class ActiveCaseStore {
           this.loadActiveCase();
         })
       );
-
+  }
 }
 
 export default ActiveCaseStore;
