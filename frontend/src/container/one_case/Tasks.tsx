@@ -1,12 +1,11 @@
-import { navigate, RouteComponentProps } from "@reach/router";
-import { Button, Empty, Layout, Typography } from "antd";
+import { RouteComponentProps } from "@reach/router";
+import { Button, Empty, Layout, List, Typography } from "antd";
+import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
-import TasksTable from "container/one_case/TasksTable";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
-import { getPathToATask } from "utils/pathHelpers";
-import CreateTaskInput from "./CreateTaskInput";
+import ITask from "ts/interfaces/ITask";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
@@ -38,6 +37,7 @@ export default inject("activeCaseStore")(
         // should always render, since we're catching errors and showing
         // our spinner above this, as a HOC
         if (activeCase) {
+          const tasks = activeCase.tasks;
           return (
             <div>
               <Content
@@ -48,7 +48,7 @@ export default inject("activeCaseStore")(
                   minHeight: 280
                 }}
               >
-                {activeCase.tasks.length === 0 ? (
+                {tasks.length === 0 ? (
                   <Empty
                     description={
                       <div style={{ marginTop: "1em" }}>
@@ -69,7 +69,7 @@ export default inject("activeCaseStore")(
                   />
                 ) : (
                   <div>
-                    <h3>Tasks ({activeCase.tasks.length})</h3>
+                    <h3>Tasks ({tasks.length})</h3>
                     <Paragraph>
                       A task is a piece of work to be completed in a case.
                     </Paragraph>
@@ -79,13 +79,15 @@ export default inject("activeCaseStore")(
                         activeCaseStore!.createTask(newTask, activeCase.id);
                       }}
                     />
-                    <TasksTable
-                      tasks={activeCase.tasks}
-                      handleRowClick={(clickedTask, index, event) =>
-                        navigate(
-                          getPathToATask(clickedTask.case.id, clickedTask.id)
-                        )
-                      }
+                    <List<ITask>
+                      itemLayout="horizontal"
+                      dataSource={tasks}
+                      bordered
+                      renderItem={task => (
+                        <List.Item>
+                          <List.Item.Meta title={task.name} />
+                        </List.Item>
+                      )}
                     />
                   </div>
                 )}
