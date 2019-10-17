@@ -16,7 +16,7 @@ class DumbAddIndicatorForm extends React.Component<FormProps> {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form>
+      <Form colon={false}>
         <Form.Item label="Name">
           {getFieldDecorator("name", {
             rules: [{ required: true, message: "Please name your indicator" }]
