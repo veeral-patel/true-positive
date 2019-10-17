@@ -1,5 +1,5 @@
 import { Button, Form, Input, Modal, Typography } from "antd";
-import { WrappedFormUtils } from "antd/lib/form/Form";
+import { FormComponentProps, WrappedFormUtils } from "antd/lib/form/Form";
 import React from "react";
 
 const { TextArea } = Input;
@@ -9,12 +9,17 @@ const { Paragraph } = Typography;
 
 interface FormProps {
   form: WrappedFormUtils;
+  handleClose: () => void;
 }
 
 // Don't use this form directly
-class DumbAddIndicatorForm extends React.Component<FormProps> {
+class DumbAddIndicatorForm extends React.Component<
+  FormProps & FormComponentProps
+> {
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { handleClose } = this.props;
+
     return (
       <Form colon={false}>
         <Form.Item label="Name">
@@ -29,7 +34,9 @@ class DumbAddIndicatorForm extends React.Component<FormProps> {
         </Form.Item>
         <Form.Item>
           <div style={{ float: "right" }}>
-            <Button style={{ marginRight: "0.5em" }}>Cancel</Button>
+            <Button style={{ marginRight: "0.5em" }} onClick={handleClose}>
+              Cancel
+            </Button>
             <Button type="primary" htmlType="submit">
               Add indicator
             </Button>
@@ -43,7 +50,9 @@ class DumbAddIndicatorForm extends React.Component<FormProps> {
 // -----
 
 // Use this form instead
-const AddIndicatorForm = Form.create()(DumbAddIndicatorForm);
+const AddIndicatorForm = Form.create<FormProps & FormComponentProps>()(
+  DumbAddIndicatorForm
+);
 
 // -----
 
@@ -67,7 +76,7 @@ class AddTextIndicatorModal extends React.Component<ModalProps> {
           Examples of text indicators include Snort rules, Yara signatures, and
           Exif metadata.
         </Paragraph>
-        <AddIndicatorForm />
+        <AddIndicatorForm handleClose={handleClose} />
       </Modal>
     );
   }
