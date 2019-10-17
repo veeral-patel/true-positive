@@ -107,8 +107,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_082441) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "status_id"
-    t.bigint "priority_id"
+    t.boolean "done", default: false
     t.bigint "case_id"
     t.bigint "created_by_id"
     t.bigint "assigned_to_id"
@@ -117,8 +116,6 @@ ActiveRecord::Schema.define(version: 2019_09_27_082441) do
     t.index ["assigned_to_id"], name: "index_tasks_on_assigned_to_id"
     t.index ["case_id"], name: "index_tasks_on_case_id"
     t.index ["created_by_id"], name: "index_tasks_on_created_by_id"
-    t.index ["priority_id"], name: "index_tasks_on_priority_id"
-    t.index ["status_id"], name: "index_tasks_on_status_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -153,8 +150,6 @@ ActiveRecord::Schema.define(version: 2019_09_27_082441) do
   add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "tasks", "cases"
-  add_foreign_key "tasks", "priorities"
-  add_foreign_key "tasks", "statuses"
   add_foreign_key "tasks", "users", column: "assigned_to_id"
   add_foreign_key "tasks", "users", column: "created_by_id"
 end

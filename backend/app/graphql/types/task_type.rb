@@ -19,14 +19,6 @@ module Types
             description "The user who created this task."
         end
 
-        field :status, Types::StatusType, null: false do
-            description "This task's status."
-        end
-
-        field :priority, Types::PriorityType, null: false do
-            description "This task's priority."
-        end
-
         field :case, Types::CaseType, null: false do
             description "The case this task is in."
         end
