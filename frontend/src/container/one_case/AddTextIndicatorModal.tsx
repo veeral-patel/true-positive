@@ -1,4 +1,4 @@
-import { Form, Input, Modal, Typography } from "antd";
+import { Button, Form, Input, Modal, Typography } from "antd";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import React from "react";
 
@@ -27,6 +27,14 @@ class DumbAddIndicatorForm extends React.Component<FormProps> {
             rules: [{ required: true, message: "Please enter your indicator" }]
           })(<TextArea placeholder="Enter your indicator here" rows={5} />)}
         </Form.Item>
+        <Form.Item>
+          <div style={{ float: "right" }}>
+            <Button style={{ marginRight: "0.5em" }}>Cancel</Button>
+            <Button type="primary" htmlType="submit">
+              Add indicator
+            </Button>
+          </div>
+        </Form.Item>
       </Form>
     );
   }
@@ -52,7 +60,6 @@ class AddTextIndicatorModal extends React.Component<ModalProps> {
         visible={visible}
         title="Add a text indicator"
         footer={null}
-        okText="Add indicator"
         onCancel={handleClose}
         destroyOnClose={true}
       >
