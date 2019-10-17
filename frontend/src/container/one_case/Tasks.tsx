@@ -68,22 +68,7 @@ export default inject("activeCaseStore")(
                   />
                 ) : (
                   <div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between"
-                      }}
-                    >
-                      <h3>Tasks ({activeCase.tasks.length})</h3>
-                      <Button
-                        icon="plus"
-                        onClick={() =>
-                          this.setState({ openModal: "CREATE_TASK" })
-                        }
-                      >
-                        Create Task
-                      </Button>
-                    </div>
+                    <h3>Tasks ({activeCase.tasks.length})</h3>
                     <Paragraph>
                       Create a task for every piece of work to be completed in a
                       case.
