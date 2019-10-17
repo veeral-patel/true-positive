@@ -80,9 +80,8 @@ export default inject("activeCaseStore")(
                 <section>
                   <h3>Indicators ({activeCase.indicators.length})</h3>
                   <Paragraph>
-                    An indicator is a string (like a file hash), file (like a
-                    malware sample), or piece of text (like a Snort rule) that
-                    implies a compromise.
+                    An indicator can be a string (like a file hash), a piece of
+                    text (like a Snort rule), or a file.
                   </Paragraph>
                 </section>
                 <section>

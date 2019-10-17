@@ -1,5 +1,5 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Button, Empty, Layout, Typography } from "antd";
+import { Button, Empty, Icon, Input, Layout, Typography } from "antd";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TasksTable from "container/one_case/TasksTable";
 import { inject, observer } from "mobx-react";
@@ -70,9 +70,14 @@ export default inject("activeCaseStore")(
                   <div>
                     <h3>Tasks ({activeCase.tasks.length})</h3>
                     <Paragraph>
-                      Create a task for every piece of work to be completed in a
-                      case.
+                      A task is a piece of work to be completed in a case.
                     </Paragraph>
+                    <Input
+                      placeholder="Create a task"
+                      prefix={<Icon type="plus" />}
+                      suffix={<Icon type="arrow-right" />}
+                      style={{ marginBottom: "2em" }}
+                    />
                     <TasksTable
                       tasks={activeCase.tasks}
                       handleRowClick={(clickedTask, index, event) =>
