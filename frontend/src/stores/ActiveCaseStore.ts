@@ -408,19 +408,12 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  createTask(
-    name: string,
-    statusName: string,
-    priorityName: string,
-    caseId: number
-  ) {
+  createTask(name: string, caseId: number) {
     client
       .mutate({
         variables: {
           input: {
             name,
-            status: statusName,
-            priority: priorityName,
             caseId
           }
         },
