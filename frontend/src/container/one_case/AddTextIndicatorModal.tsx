@@ -14,14 +14,14 @@ class AddTextIndicatorModal extends React.Component<Props> {
     const { visible, handleClose } = this.props;
     return (
       <Modal
-        title="Add a textual indicator"
+        title="Add a text indicator"
         okText="Add indicator"
         visible={visible}
         onCancel={handleClose}
       >
         <Paragraph>
-          Examples of textual indicators include Snort rules, Yara signatures,
-          and Exif metadata.
+          Examples of text indicators include Snort rules, Yara signatures, and
+          Exif metadata.
         </Paragraph>
         <Form>
           <Form.Item>

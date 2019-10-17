@@ -11,7 +11,7 @@ import {
   Typography
 } from "antd";
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
-import AddTextualIndicatorModal from "container/one_case/AddTextIndicatorModal";
+import AddTextIndicatorModal from "container/one_case/AddTextIndicatorModal";
 import ImportIndicatorsFromCSVModal from "container/one_case/ImportIndicatorsFromCSVModal";
 import IndicatorInput from "container/one_case/IndicatorInput";
 import IndicatorsTable from "container/one_case/IndicatorList";
@@ -29,7 +29,7 @@ interface Props extends RouteComponentProps {
 interface State {
   openModal:
     | "ADD_FILE_INDICATOR"
-    | "ADD_TEXTUAL_INDICATOR"
+    | "ADD_TEXT_INDICATOR"
     | "IMPORT_FROM_CSV"
     | null;
 }
@@ -100,10 +100,10 @@ export default inject("activeCaseStore")(
                       type="link"
                       style={{ color: "rgb(130, 130, 130)" }}
                       onClick={() =>
-                        this.setState({ openModal: "ADD_TEXTUAL_INDICATOR" })
+                        this.setState({ openModal: "ADD_TEXT_INDICATOR" })
                       }
                     >
-                      Add textual indicator
+                      Add text indicator
                     </Button>
                     <Divider type="vertical" />
                     <Dropdown overlay={bulkImportMenu}>
@@ -174,8 +174,8 @@ export default inject("activeCaseStore")(
                 visible={openModal === "ADD_FILE_INDICATOR"}
                 handleClose={() => this.setState({ openModal: null })}
               />
-              <AddTextualIndicatorModal
-                visible={openModal === "ADD_TEXTUAL_INDICATOR"}
+              <AddTextIndicatorModal
+                visible={openModal === "ADD_TEXT_INDICATOR"}
                 handleClose={() => this.setState({ openModal: null })}
               />
               <ImportIndicatorsFromCSVModal
