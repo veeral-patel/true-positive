@@ -4,7 +4,7 @@ class Mutations::CreateTextIndicator < Mutations::BaseMutation
     # required ----
 
     argument :name, String, required: true do
-        description "A brief name for this text-based indicator."
+        description "A brief name for this indicator."
     end
     
     argument :text, String, required: true do
