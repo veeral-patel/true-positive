@@ -9,7 +9,7 @@ interface Props {
   handleClose: () => void;
 }
 
-class AddTextualIndicatorModal extends React.Component<Props> {
+class AddTextIndicatorModal extends React.Component<Props> {
   render() {
     const { visible, handleClose } = this.props;
     return (
@@ -33,4 +33,4 @@ class AddTextualIndicatorModal extends React.Component<Props> {
   }
 }
 
-export default AddTextualIndicatorModal;
+export default AddTextIndicatorModal;

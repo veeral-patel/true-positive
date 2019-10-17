@@ -11,7 +11,7 @@ import {
   Typography
 } from "antd";
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
-import AddTextualIndicatorModal from "container/one_case/AddTextualIndicatorModal";
+import AddTextualIndicatorModal from "container/one_case/AddTextIndicatorModal";
 import ImportIndicatorsFromCSVModal from "container/one_case/ImportIndicatorsFromCSVModal";
 import IndicatorInput from "container/one_case/IndicatorInput";
 import IndicatorsTable from "container/one_case/IndicatorList";
