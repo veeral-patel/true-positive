@@ -1,6 +1,8 @@
 import { Button, Form, Input, Modal, Typography } from "antd";
 import { FormComponentProps, WrappedFormUtils } from "antd/lib/form/Form";
+import { inject, observer } from "mobx-react";
 import React from "react";
+import ActiveCaseStore from "stores/ActiveCaseStore";
 
 const { TextArea } = Input;
 const { Paragraph } = Typography;
@@ -10,6 +12,7 @@ const { Paragraph } = Typography;
 interface FormProps {
   form: WrappedFormUtils;
   handleClose: () => void;
+  activeCaseStore?: ActiveCaseStore;
 }
 
 // Don't use this form directly
@@ -21,7 +24,7 @@ class DumbAddIndicatorForm extends React.Component<
     const { handleClose } = this.props;
 
     return (
-      <Form colon={false}>
+      <Form colon={false} onSubmit={this.handleSubmit.bind(this)}>
         <Form.Item label="Name">
           {getFieldDecorator("name", {
             rules: [{ required: true, message: "Please name your indicator" }]
@@ -45,13 +48,30 @@ class DumbAddIndicatorForm extends React.Component<
       </Form>
     );
   }
+
+  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    // prevent page reload
+    event.preventDefault();
+
+    // validate our fields and raise errors if needed
+    const { form, activeCaseStore } = this.props;
+    form.validateFields((errors, values) => {
+      if (!errors && activeCaseStore!.activeCase) {
+        activeCaseStore!.createTextIndicator(
+          activeCaseStore!.activeCase.id,
+          values.name,
+          values.indicator
+        );
+      }
+    });
+  }
 }
 
 // -----
 
 // Use this form instead
 const AddIndicatorForm = Form.create<FormProps & FormComponentProps>()(
-  DumbAddIndicatorForm
+  inject("activeCaseStore")(observer(DumbAddIndicatorForm))
 );
 
 // -----

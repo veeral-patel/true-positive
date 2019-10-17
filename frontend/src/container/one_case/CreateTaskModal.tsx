@@ -33,7 +33,7 @@ class DumbCreateTaskForm extends React.Component<FormProps> {
     // validate our fields and raise errors if needed
     const { form, activeCaseStore } = this.props;
     form.validateFields((errors, values) => {
-      if (activeCaseStore!.activeCase) {
+      if (!errors && activeCaseStore!.activeCase) {
         activeCaseStore!.createTask(
           values.name,
           values.status,
