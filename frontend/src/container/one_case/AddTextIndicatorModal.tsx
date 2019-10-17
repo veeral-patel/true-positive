@@ -11,7 +11,8 @@ interface FormProps {
   form: WrappedFormUtils;
 }
 
-class DumbAddIndicatorModal extends React.Component<FormProps> {
+// Don't use this form directly
+class DumbAddIndicatorForm extends React.Component<FormProps> {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -30,6 +31,11 @@ class DumbAddIndicatorModal extends React.Component<FormProps> {
     );
   }
 }
+
+// -----
+
+// Use this form instead
+const AddIndicatorForm = Form.create()(DumbAddIndicatorForm);
 
 // -----
 
@@ -52,6 +58,7 @@ class AddTextIndicatorModal extends React.Component<ModalProps> {
           Examples of text indicators include Snort rules, Yara signatures, and
           Exif metadata.
         </Paragraph>
+        <AddIndicatorForm />
       </Modal>
     );
   }
