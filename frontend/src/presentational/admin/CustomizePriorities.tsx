@@ -13,8 +13,7 @@ const HelperText = () => (
       You can customize the default list of priorities to fit your workflow.
     </Paragraph>
     <Paragraph type="secondary">
-      Note: You cannot delete a priority if an existing case or task has that
-      priority.
+      Note: You cannot delete a priority if an existing case has that priority.
     </Paragraph>
   </Text>
 );

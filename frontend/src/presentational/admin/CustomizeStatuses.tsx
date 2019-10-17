@@ -13,8 +13,7 @@ const HelperText = () => (
       You can customize the default list of statuses to fit your workflow.
     </Paragraph>
     <Paragraph type="secondary">
-      Note: You cannot delete a status if an existing case or task has that
-      status.
+      Note: You cannot delete a status if an existing case has that status.
     </Paragraph>
   </Text>
 );
