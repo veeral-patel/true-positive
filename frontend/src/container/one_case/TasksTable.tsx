@@ -3,8 +3,6 @@ import { Table } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
-import PriorityTagP from "presentational/shared/tags/PriorityTagP";
-import StatusTagP from "presentational/shared/tags/StatusTagP";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
@@ -12,12 +10,7 @@ import UserStore from "stores/UserStore";
 import ITask from "ts/interfaces/ITask";
 import compareUsers from "utils/compareUsers";
 import formatISO8601 from "utils/formatISO8601";
-import {
-  assignedToMatches,
-  createdByMatches,
-  priorityMatches,
-  statusMatches
-} from "utils/matchesFilter";
+import { assignedToMatches, createdByMatches } from "utils/matchesFilter";
 import { getPathToACase } from "utils/pathHelpers";
 
 const { Column } = Table;
@@ -116,36 +109,6 @@ export default inject("userStore", "statusStore", "priorityStore")(
               dataIndex="tags"
               key="tags"
               render={tags => <ListOfTagsP tags={tags} limit={3} />}
-            />
-            <Column
-              title="Status"
-              dataIndex="status.name"
-              key="status"
-              render={(statusName: string) => (
-                <StatusTagP statusName={statusName} />
-              )}
-              sorter={(a: ITask, b: ITask) =>
-                a.status.name.localeCompare(b.status.name)
-              }
-              filters={statusFilters}
-              onFilter={(filterWord, record) =>
-                statusMatches(filterWord, record.status)
-              }
-            />
-            <Column
-              title="Priority"
-              dataIndex="priority.name"
-              key="priority"
-              render={(priorityName: string) => (
-                <PriorityTagP priorityName={priorityName} />
-              )}
-              sorter={(a: ITask, b: ITask) =>
-                a.priority.name.localeCompare(b.priority.name)
-              }
-              filters={priorityFilters}
-              onFilter={(filterWord, record) =>
-                priorityMatches(filterWord, record.priority)
-              }
             />
             <Column
               title="Assigned To"

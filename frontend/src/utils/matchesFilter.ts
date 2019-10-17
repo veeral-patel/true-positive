@@ -39,11 +39,20 @@ function createdAtMatches(filterWord: string, object: ICase | ITask) {
 
 // Returns true iff any of the case's attributes below (but not tags) contain filterWord.
 // filterWord shouldn't have any spaces.
-function anAttributeMatches(filterWord: string, object: ICase | ITask) {
+function aCaseAttributeMatches(filterWord: string, object: ICase) {
   return (
     nameMatches(filterWord, object) ||
     statusMatches(filterWord, object.status) ||
     priorityMatches(filterWord, object.priority) ||
+    createdByMatches(filterWord, object.createdBy) ||
+    assignedToMatches(filterWord, object.assignedTo) ||
+    createdAtMatches(filterWord, object)
+  );
+}
+
+function aTaskAttributeMatches(filterWord: string, object: ITask) {
+  return (
+    nameMatches(filterWord, object) ||
     createdByMatches(filterWord, object.createdBy) ||
     assignedToMatches(filterWord, object.assignedTo) ||
     createdAtMatches(filterWord, object)
@@ -58,8 +67,7 @@ function aTagMatches(filterWord: string, object: ITask | ICase) {
   return false;
 }
 
-// Returns true iff the case or task matches the given filter value
-function matchesFilter(filterValue: string, object: ITask | ICase) {
+function matchesCaseFilter(filterValue: string, object: ICase) {
   // Split our filter string into words
   const filterWords = filterValue.split(" ");
 
@@ -67,17 +75,32 @@ function matchesFilter(filterValue: string, object: ITask | ICase) {
   // (1) match one of the case/task's attributes or
   // (2) match one of the case/task's tags
   for (const word of filterWords) {
-    if (!anAttributeMatches(word, object) && !aTagMatches(word, object))
+    if (!aCaseAttributeMatches(word, object) && !aTagMatches(word, object))
       return false;
   }
   return true;
 }
 
-export default matchesFilter;
+function matchesTaskFilter(filterValue: string, object: ITask) {
+  // Split our filter string into words
+  const filterWords = filterValue.split(" ");
+
+  // For a case/task to match, all of the filter words must either:
+  // (1) match one of the case/task's attributes or
+  // (2) match one of the case/task's tags
+  for (const word of filterWords) {
+    if (!aTaskAttributeMatches(word, object) && !aTagMatches(word, object))
+      return false;
+  }
+  return true;
+}
+
 export {
   statusMatches,
   priorityMatches,
   createdByMatches,
   assignedToMatches,
-  aTagMatches
+  aTagMatches,
+  matchesCaseFilter,
+  matchesTaskFilter
 };

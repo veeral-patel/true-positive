@@ -4,7 +4,7 @@ import client from "createApolloClient";
 import { action, computed, observable, runInAction } from "mobx";
 import GET_TASKS from "queries/getTasks";
 import ITask from "ts/interfaces/ITask";
-import matchesFilter from "utils/matchesFilter";
+import { matchesTaskFilter } from "utils/matchesFilter";
 
 interface ITasksData {
   tasks: ITask[];
@@ -43,7 +43,7 @@ class AllTasksStore {
   get filteredTasks() {
     const _this = this;
     return this.tasks.filter((task: ITask) =>
-      matchesFilter(_this.filterValue, task)
+      matchesTaskFilter(_this.filterValue, task)
     );
   }
 

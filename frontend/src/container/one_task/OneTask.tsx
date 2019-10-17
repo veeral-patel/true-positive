@@ -16,8 +16,6 @@ import { inject, observer } from "mobx-react";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
-import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
-import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
 import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -109,18 +107,6 @@ export default inject("activeCaseStore")(
                   </Col>
                 </Row>
                 <Row>
-                  <Col span={4}>Status:</Col>
-                  <Col span={8}>
-                    <EditableStatusTag
-                      statusName={activeTask.status.name}
-                      handleSelect={statusName =>
-                        activeCaseStore!.changeTaskStatus(
-                          activeTask.id,
-                          statusName
-                        )
-                      }
-                    />
-                  </Col>
                   <Col span={4}>Created:</Col>
                   <Col span={8}>
                     {`${formatISO8601(activeTask.createdAt)} UTC by ${
@@ -129,18 +115,6 @@ export default inject("activeCaseStore")(
                   </Col>
                 </Row>
                 <Row>
-                  <Col span={4}>Priority:</Col>
-                  <Col span={8}>
-                    <EditablePriorityTag
-                      priorityName={activeTask.priority.name}
-                      handleSelect={priorityName =>
-                        activeCaseStore!.changeTaskPriority(
-                          activeTask.id,
-                          priorityName
-                        )
-                      }
-                    />
-                  </Col>
                   <Col span={4}>Assigned To:</Col>
                   <Col span={8}>
                     <EditableAssigneeTag
