@@ -93,7 +93,10 @@ export default inject("activeCaseStore")(
                           style={{ cursor: "pointer" }}
                           className="hoverable_item"
                         >
-                          <Checkbox style={{ marginRight: "1.0em" }} />
+                          <Checkbox
+                            style={{ marginRight: "1.0em" }}
+                            defaultChecked={task.done}
+                          />
                           <Text>{task.name}</Text>
                         </List.Item>
                       )}

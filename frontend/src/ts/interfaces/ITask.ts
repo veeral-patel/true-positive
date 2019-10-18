@@ -15,6 +15,7 @@ interface ITask {
   comments: IComment[];
   indicators: IIndicator[];
   case: ICase;
+  done: boolean;
 }
 
 export default ITask;
