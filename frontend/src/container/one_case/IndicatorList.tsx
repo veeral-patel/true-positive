@@ -1,4 +1,5 @@
-import { List, Typography } from "antd";
+import { Icon, List, Typography } from "antd";
+import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
 import truncateString from "utils/truncateString";
@@ -18,9 +19,21 @@ class IndicatorList extends React.Component<Props> {
         dataSource={indicators}
         renderItem={indicator => (
           <List.Item style={{ cursor: "pointer" }} className="hoverable_item">
-            <Text copyable={{ text: indicator.name }}>
-              {truncateString(indicator.name, 50)}
-            </Text>
+            <List.Item.Meta
+              title={
+                <Text copyable={{ text: indicator.name }}>
+                  {truncateString(indicator.name, 50)}
+                </Text>
+              }
+              description={
+                <div style={{ marginTop: "0.75em" }}>
+                  <ListOfTagsP tags={indicator.tags} limit={5} />
+                </div>
+              }
+            />
+            <div>
+              <Icon type="message" /> {indicator.comments.length}
+            </div>
           </List.Item>
         )}
       />

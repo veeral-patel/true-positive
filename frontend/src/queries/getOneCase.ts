@@ -49,6 +49,14 @@ const GET_ONE_CASE = gql`
         createdBy {
           username
         }
+        comments {
+          id
+          comment
+          createdAt
+          createdBy {
+            username
+          }
+        }
       }
       tasks {
         id
