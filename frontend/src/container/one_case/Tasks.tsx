@@ -1,5 +1,5 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Button, Empty, Layout, List, Typography } from "antd";
+import { Button, Checkbox, Empty, Layout, List, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import { inject, observer } from "mobx-react";
@@ -10,7 +10,7 @@ import ITask from "ts/interfaces/ITask";
 import { getPathToATask } from "utils/pathHelpers";
 
 const { Content } = Layout;
-const { Paragraph } = Typography;
+const { Paragraph, Text } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -93,7 +93,8 @@ export default inject("activeCaseStore")(
                           style={{ cursor: "pointer" }}
                           className="hoverable_item"
                         >
-                          <List.Item.Meta title={task.name} />
+                          <Checkbox style={{ marginRight: "0.75em" }} />
+                          <Text>{task.name}</Text>
                         </List.Item>
                       )}
                     />
