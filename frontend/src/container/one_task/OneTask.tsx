@@ -1,14 +1,5 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import {
-  Col,
-  Divider,
-  Icon,
-  Layout,
-  notification,
-  PageHeader,
-  Row,
-  Typography
-} from "antd";
+import { Col, Divider, Icon, Layout, PageHeader, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_task/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionForm from "container/shared/description/DescriptionForm";
@@ -40,10 +31,6 @@ export default inject("activeCaseStore")(
         const activeCase = activeCaseStore!.activeCase;
 
         if (!taskId) {
-          notification.error({
-            message: "Could not extract this task's ID from the URL",
-            description: "Ensure you're at a valid URL"
-          });
           return (
             <ErrorP
               title="Could not extract this task's ID from the URL"
@@ -55,10 +42,6 @@ export default inject("activeCaseStore")(
         const activeTask = activeCaseStore!.getTask(taskId);
 
         if (!activeTask) {
-          notification.error({
-            message: "Could not load task",
-            description: "Ensure that a task with this ID exists"
-          });
           return (
             <ErrorP
               title="Could not load task"
