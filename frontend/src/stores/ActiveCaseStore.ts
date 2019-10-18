@@ -88,13 +88,7 @@ class ActiveCaseStore {
 
     // if no tasks match, return null
     if (matchingTasks.length === 0) return null;
-
-    const activeTask = matchingTasks.pop();
-
-    // if the matching task is undefined for whatever reason, return null.
-    // otherwise, return the matching task
-    if (!activeTask) return null;
-    return activeTask;
+    return matchingTasks[0];
   }
 
   @action.bound
