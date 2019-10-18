@@ -108,7 +108,7 @@ export default inject("activeCaseStore")(
                 </Row>
                 <Row>
                   <Col span={4}>Created:</Col>
-                  <Col span={8}>
+                  <Col span={20}>
                     {`${formatISO8601(activeTask.createdAt)} UTC by ${
                       activeTask.createdBy.username
                     }`}
@@ -116,7 +116,7 @@ export default inject("activeCaseStore")(
                 </Row>
                 <Row>
                   <Col span={4}>Assigned To:</Col>
-                  <Col span={8}>
+                  <Col span={20}>
                     <EditableAssigneeTag
                       user={activeTask.assignedTo}
                       handleSelect={username =>
