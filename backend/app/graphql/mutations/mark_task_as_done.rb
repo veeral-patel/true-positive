@@ -1,4 +1,4 @@
-class Mutations::ChangeDone < Mutations::BaseMutation
+class Mutations::MarkTaskAsDone < Mutations::BaseMutation
     description "Marks a task as done (or not done)."
 
     argument :id, ID, required: true do
@@ -20,7 +20,7 @@ class Mutations::ChangeDone < Mutations::BaseMutation
 
         # authorize this action
         unless TaskPolicy.new(context[:current_user], task).change_done?
-            raise GraphQL::ExecutionError, "You are not authorized to change this task's completion status."
+            raise GraphQL::ExecutionError, "You are not authorized to mark this task as done (or not done)."
         end
 
         # and save it
