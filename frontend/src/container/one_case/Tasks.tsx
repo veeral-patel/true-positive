@@ -96,6 +96,7 @@ export default inject("activeCaseStore")(
                           <Checkbox
                             style={{ marginRight: "1.0em" }}
                             defaultChecked={task.done}
+                            onClick={event => event.stopPropagation()}
                           />
                           <Text>{task.name}</Text>
                         </List.Item>
