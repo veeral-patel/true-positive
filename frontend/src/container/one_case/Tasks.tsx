@@ -1,4 +1,4 @@
-import { RouteComponentProps } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 import { Button, Checkbox, Empty, Layout, List, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
@@ -91,7 +91,11 @@ export default inject("activeCaseStore")(
                             style={{ marginRight: "1.0em" }}
                             defaultChecked={task.done}
                           />
-                          <a href={getPathToATask(task.case.id, task.id)}>
+                          <a
+                            onClick={() =>
+                              navigate(getPathToATask(task.case.id, task.id))
+                            }
+                          >
                             {task.name}
                           </a>
                         </List.Item>
