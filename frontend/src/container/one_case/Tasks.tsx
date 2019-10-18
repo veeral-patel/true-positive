@@ -1,11 +1,13 @@
-import { RouteComponentProps } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 import { Button, Empty, Layout, List, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import { inject, observer } from "mobx-react";
+import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITask from "ts/interfaces/ITask";
+import { getPathToATask } from "utils/pathHelpers";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
@@ -84,7 +86,13 @@ export default inject("activeCaseStore")(
                       dataSource={tasks}
                       bordered
                       renderItem={task => (
-                        <List.Item>
+                        <List.Item
+                          onClick={() =>
+                            navigate(getPathToATask(task.case.id, task.id))
+                          }
+                          style={{ cursor: "pointer" }}
+                          className="hoverable_item"
+                        >
                           <List.Item.Meta title={task.name} />
                         </List.Item>
                       )}
