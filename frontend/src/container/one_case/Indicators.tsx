@@ -1,14 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import {
-  Button,
-  Divider,
-  Dropdown,
-  Empty,
-  Icon,
-  Layout,
-  Menu,
-  Typography
-} from "antd";
+import { Button, Divider, Empty, Icon, Layout, Menu, Typography } from "antd";
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
 import AddTextIndicatorModal from "container/one_case/AddTextIndicatorModal";
 import CreateIndicatorInput from "container/one_case/CreateIndicatorInput";
@@ -104,7 +95,7 @@ export default inject("activeCaseStore")(
                       Add text indicator
                     </Button>
                     <Divider type="vertical" />
-                    <Dropdown overlay={bulkImportMenu}>
+                    {/* <Dropdown overlay={bulkImportMenu}>
                       <Button
                         type="link"
                         style={{ color: "rgb(130, 130, 130)" }}
@@ -112,7 +103,7 @@ export default inject("activeCaseStore")(
                         Bulk import
                         <Icon type="down" />
                       </Button>
-                    </Dropdown>
+                    </Dropdown> */}
                   </div>
                   <div style={{ marginBottom: "2em" }}>
                     {/* for adding string indicators */}
