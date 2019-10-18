@@ -17,7 +17,7 @@ class IndicatorList extends React.Component<Props> {
         bordered
         dataSource={indicators}
         renderItem={indicator => (
-          <List.Item>
+          <List.Item style={{ cursor: "pointer" }} className="hoverable_item">
             <Text copyable={{ text: indicator.name }}>
               {truncateString(indicator.name, 50)}
             </Text>

@@ -7,17 +7,16 @@ import {
   Icon,
   Layout,
   Menu,
-  Modal,
   Typography
 } from "antd";
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
 import AddTextIndicatorModal from "container/one_case/AddTextIndicatorModal";
+import CreateIndicatorInput from "container/one_case/CreateIndicatorInput";
 import ImportIndicatorsFromCSVModal from "container/one_case/ImportIndicatorsFromCSVModal";
-import IndicatorsTable from "container/one_case/IndicatorList";
+import IndicatorList from "container/one_case/IndicatorList";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
-import CreateIndicatorInput from "./CreateIndicatorInput";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
@@ -128,28 +127,11 @@ export default inject("activeCaseStore")(
                           indicator => indicator.name
                         );
 
-                        if (existingIndicators.includes(newIndicator)) {
-                          Modal.confirm({
-                            title: "Add duplicate indicator?",
-                            content:
-                              "This case has another string indicator with the same name. Do you still want to add this string indicator?",
-                            okText: "Yes, add it",
-                            cancelText: "No",
-                            onOk() {
-                              // add the new indicator to the case
-                              activeCaseStore!.createStringIndicator(
-                                activeCase.id,
-                                newIndicator
-                              );
-                            }
-                          });
-                        } else {
-                          // add the new indicator to the case
-                          activeCaseStore!.createStringIndicator(
-                            activeCase.id,
-                            newIndicator
-                          );
-                        }
+                        // add the new indicator to the case
+                        activeCaseStore!.createStringIndicator(
+                          activeCase.id,
+                          newIndicator
+                        );
                       }}
                     />
                   </div>
@@ -164,7 +146,7 @@ export default inject("activeCaseStore")(
                         }
                       />
                     ) : (
-                      <IndicatorsTable indicators={activeCase.indicators} />
+                      <IndicatorList indicators={activeCase.indicators} />
                     )}
                   </div>
                 </section>
