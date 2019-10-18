@@ -90,6 +90,12 @@ export default inject("activeCaseStore")(
                           <Checkbox
                             style={{ marginRight: "1.0em" }}
                             defaultChecked={task.done}
+                            onChange={event => {
+                              activeCaseStore!.markTaskAsDone(
+                                task.id,
+                                event.target.checked
+                              );
+                            }}
                           />
                           <a
                             onClick={() =>

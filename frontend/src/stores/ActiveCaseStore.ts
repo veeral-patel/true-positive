@@ -15,6 +15,7 @@ import CREATE_A_TASK from "mutations/createTask";
 import CREATE_TEXT_INDICATOR from "mutations/createTextIndicator";
 import DELETE_A_COMMENT from "mutations/deleteComment";
 import DELETE_A_TASK from "mutations/deleteTask";
+import MARK_TASK_AS_DONE from "mutations/markTaskAsDone";
 import REMOVE_MEMBER from "mutations/removeMember";
 import RENAME_A_CASE from "mutations/renameCase";
 import RENAME_A_TASK from "mutations/renameTask";
@@ -603,6 +604,35 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while adding the indicator",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  markTaskAsDone(taskId: number, done: boolean) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            id: taskId,
+            done
+          }
+        },
+        mutation: MARK_TASK_AS_DONE
+      })
+      .then((response: FetchResult) => {
+        if (done) message.success("Marked task as complete");
+        else message.success("Marked task as incomplete");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while updating the task",
           description: error.message
         });
       })
