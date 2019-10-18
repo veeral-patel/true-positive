@@ -4,6 +4,7 @@ class Mutations::RenameTask < Mutations::BaseMutation
     argument :id, ID, required: true do
         description "The ID of the task to rename."
     end
+
     argument :name, String, required: true do
         description "The new task name."
     end
