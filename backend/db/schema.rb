@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_082441) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "done", default: false
+    t.boolean "done", default: false, null: false
     t.bigint "case_id"
     t.bigint "created_by_id"
     t.bigint "assigned_to_id"

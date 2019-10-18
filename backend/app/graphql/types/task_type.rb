@@ -11,6 +11,10 @@ module Types
             description "This task's name."
         end
 
+        field :done, Boolean, null: false do
+            description "Whether this task has been completed."
+        end
+
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
             description "When this task was created (in ISO8601 format)."
         end
