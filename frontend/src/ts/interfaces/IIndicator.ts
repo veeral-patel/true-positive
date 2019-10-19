@@ -1,10 +1,12 @@
+import ICase from "ts/interfaces/ICase";
 import IComment from "ts/interfaces/IComment";
+import ITag from "ts/interfaces/ITag";
+import ITask from "ts/interfaces/ITask";
 import IUser from "ts/interfaces/IUser";
-import ITag from "./ITag";
-import ITask from "./ITask";
 
 interface IIndicator {
   id: number;
+  case: ICase;
   name: string;
   description: string;
   createdAt: string;

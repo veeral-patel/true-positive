@@ -33,5 +33,9 @@ module Types
         field :tags, [Types::TagType], null: false do
             description "This indicator's tags."
         end
+
+        field :case, Types::CaseType, null: false do
+            description "The case this indicator belongs to."
+        end
     end
 end

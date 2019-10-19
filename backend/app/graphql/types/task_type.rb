@@ -24,7 +24,7 @@ module Types
         end
 
         field :case, Types::CaseType, null: false do
-            description "The case this task is in."
+            description "The case this task belongs to."
         end
 
         field :comments, [Types::CommentType], null: false do

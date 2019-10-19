@@ -57,6 +57,9 @@ const GET_ONE_CASE = gql`
             username
           }
         }
+        case {
+          id
+        }
       }
       tasks {
         id

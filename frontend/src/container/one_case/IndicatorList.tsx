@@ -1,7 +1,9 @@
+import { navigate } from "@reach/router";
 import { Icon, List, Tooltip, Typography } from "antd";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
+import { getPathToAnIndicator } from "utils/pathHelpers";
 import truncateString from "utils/truncateString";
 
 const { Text } = Typography;
@@ -18,7 +20,13 @@ class IndicatorList extends React.Component<Props> {
         bordered
         dataSource={indicators}
         renderItem={indicator => (
-          <List.Item style={{ cursor: "pointer" }} className="hoverable_item">
+          <List.Item
+            style={{ cursor: "pointer" }}
+            className="hoverable_item"
+            onClick={() =>
+              navigate(getPathToAnIndicator(indicator.case.id, indicator.id))
+            }
+          >
             <List.Item.Meta
               title={
                 <Text copyable={{ text: indicator.name }}>

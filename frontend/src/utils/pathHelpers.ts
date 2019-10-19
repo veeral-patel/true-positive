@@ -31,3 +31,7 @@ export function getPathToACaseMembers(caseId: number) {
 export function getPathToATask(caseId: number, taskId: number) {
   return `${paths.CASES_PATH}/${caseId}/tasks/${taskId}`;
 }
+
+export function getPathToAnIndicator(caseId: number, indicatorId: number) {
+  return `${paths.CASES_PATH}/${caseId}/indicators/${indicatorId}`;
+}
