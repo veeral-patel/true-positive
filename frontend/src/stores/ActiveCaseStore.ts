@@ -14,6 +14,7 @@ import CREATE_STRING_INDICATOR from "mutations/createStringIndicator";
 import CREATE_A_TASK from "mutations/createTask";
 import CREATE_TEXT_INDICATOR from "mutations/createTextIndicator";
 import DELETE_A_COMMENT from "mutations/deleteComment";
+import DELETE_AN_INDICATOR from "mutations/deleteIndicator";
 import DELETE_A_TASK from "mutations/deleteTask";
 import MARK_TASK_AS_DONE from "mutations/markTaskAsDone";
 import REMOVE_MEMBER from "mutations/removeMember";
@@ -219,6 +220,32 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while deleting the task",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+  @action.bound
+  deleteIndicator(indicatorId: number) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            id: indicatorId
+          }
+        },
+        mutation: DELETE_AN_INDICATOR
+      })
+      .then(response => {
+        message.success("Deleted the indicator");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while deleting the indicator",
           description: error.message
         });
       })

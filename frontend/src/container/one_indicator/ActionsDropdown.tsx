@@ -40,11 +40,12 @@ export default inject("activeCaseStore")(
       }
 
       deleteTask() {
-        const { caseId } = this.props;
+        const { indicatorId, caseId, activeCaseStore } = this.props;
         Modal.confirm({
           title: "Delete indicator?",
           content: "Are you sure you want to delete this indicator?",
           onOk() {
+            activeCaseStore!.deleteIndicator(indicatorId);
             navigate(getPathToCaseIndicators(caseId));
           },
           onCancel() {}
