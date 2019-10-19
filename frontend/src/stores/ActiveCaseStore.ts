@@ -327,9 +327,8 @@ class ActiveCaseStore {
       .mutate<ICaseDatum>({
         variables: {
           input: {
-            objectId: this.activeCase.id,
-            status: statusName,
-            type: "CASE"
+            caseId: this.activeCase.id,
+            status: statusName
           }
         },
         mutation: CHANGE_STATUS

@@ -6,9 +6,6 @@ const CHANGE_STATUS = gql`
       case {
         id
       }
-      task {
-        id
-      }
     }
   }
 `;

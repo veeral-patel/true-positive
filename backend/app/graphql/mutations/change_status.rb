@@ -13,7 +13,7 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
         description "The updated case."
     end
 
-    def resolve(case_id:, type:)
+    def resolve(case_id:, status:)
         # find the new status
         new_status =  find_status_by_name_or_throw_execution_error(status_name: status)
 
