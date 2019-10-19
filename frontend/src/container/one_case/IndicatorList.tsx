@@ -1,4 +1,4 @@
-import { Icon, List, Typography } from "antd";
+import { Icon, List, Tooltip, Typography } from "antd";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
@@ -31,9 +31,9 @@ class IndicatorList extends React.Component<Props> {
                 </div>
               }
             />
-            <div>
+            <Tooltip title={`${indicator.comments.length} comments`}>
               <Icon type="message" /> {indicator.comments.length}
-            </div>
+            </Tooltip>
           </List.Item>
         )}
       />
