@@ -19,11 +19,11 @@ export default inject("activeCaseStore")(
 
         const activeCase = activeCaseStore!.activeCase;
 
-        if (!activeCase || !indicatorId) return <p>Error</p>;
+        if (!activeCase || !indicatorId) return null;
 
         const activeIndicator = activeCaseStore!.getIndicator(indicatorId);
 
-        if (!activeIndicator) return <p>Error</p>;
+        if (!activeIndicator) return null;
 
         return (
           <Breadcrumb style={{ margin: "16px 0" }}>
