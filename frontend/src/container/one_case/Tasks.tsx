@@ -87,23 +87,37 @@ export default inject("activeCaseStore")(
                       bordered
                       renderItem={task => (
                         <List.Item>
-                          <Checkbox
-                            style={{ marginRight: "1.0em" }}
-                            defaultChecked={task.done}
-                            onChange={event => {
-                              activeCaseStore!.markTaskAsDone(
-                                task.id,
-                                event.target.checked
-                              );
-                            }}
-                          />
-                          <a
-                            onClick={() =>
-                              navigate(getPathToATask(task.case.id, task.id))
+                          <List.Item.Meta
+                            title={
+                              <div>
+                                <Checkbox
+                                  style={{ marginRight: "1.0em" }}
+                                  defaultChecked={task.done}
+                                  onChange={event => {
+                                    activeCaseStore!.markTaskAsDone(
+                                      task.id,
+                                      event.target.checked
+                                    );
+                                  }}
+                                />
+                                <a
+                                  onClick={() =>
+                                    navigate(
+                                      getPathToATask(task.case.id, task.id)
+                                    )
+                                  }
+                                >
+                                  {task.name}
+                                </a>
+                              </div>
                             }
-                          >
-                            {task.name}
-                          </a>
+                            description={
+                              <div>
+                                {task.assignedTo !== null &&
+                                  `Assigned to ${task.assignedTo.username}`}
+                              </div>
+                            }
+                          />
                         </List.Item>
                       )}
                     />
