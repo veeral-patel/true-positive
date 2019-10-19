@@ -10,7 +10,7 @@ import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import formatISO8601 from "utils/formatISO8601";
-import { getPathToCaseTasks } from "utils/pathHelpers";
+import { getPathToCaseIndicators } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
@@ -58,7 +58,7 @@ export default inject("activeCaseStore")(
               }}
             >
               <PageHeader
-                onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
+                onBack={() => navigate(getPathToCaseIndicators(activeCase.id))}
                 backIcon={<Icon type="arrow-left" style={{ fontSize: 14 }} />}
                 title={
                   <Text
