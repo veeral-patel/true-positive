@@ -3,6 +3,7 @@ import { Col, Divider, Icon, Layout, PageHeader, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_indicator/ActionsDropdown";
 import { inject, observer } from "mobx-react";
 import ErrorP from "presentational/shared/errors/ErrorP";
+import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import formatISO8601 from "utils/formatISO8601";
@@ -79,6 +80,18 @@ export default inject("activeCaseStore")(
                     {`${formatISO8601(activeIndicator.createdAt)} UTC by ${
                       activeIndicator.createdBy.username
                     }`}
+                  </Col>
+                </Row>
+              </section>
+              <section style={{ lineHeight: 3 }}>
+                <Row>
+                  <Col span={4}>Tags:</Col>
+                  <Col span={20}>
+                    <EditableTagList
+                      existingTags={activeIndicator.tags}
+                      type="INDICATOR"
+                      objectId={activeIndicator.id}
+                    />
                   </Col>
                 </Row>
               </section>

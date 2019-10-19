@@ -117,7 +117,7 @@ export default inject("activeCaseStore")(
                     <EditableTagList
                       existingTags={activeTask.tags}
                       type="TASK"
-                      objectId={taskId}
+                      objectId={activeTask.id}
                     />
                   </Col>
                 </Row>

@@ -25,7 +25,7 @@ interface FormProps {
   objectId: number | null;
 
   /* the type of object we're commenting on */
-  type: "CASE" | "TASK";
+  type: "CASE" | "TASK" | "INDICATOR";
 
   /* function that's called when you click Cancel */
   handleCancel: () => void;
@@ -104,7 +104,7 @@ interface ListProps {
   objectId: number | null;
 
   /* the type of object we're commenting on */
-  type: "CASE" | "TASK";
+  type: "CASE" | "TASK" | "INDICATOR";
 }
 
 interface ListState {

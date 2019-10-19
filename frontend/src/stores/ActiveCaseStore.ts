@@ -509,7 +509,11 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeTags(tags: string[], objectId: number, type: "CASE" | "TASK") {
+  changeTags(
+    tags: string[],
+    objectId: number,
+    type: "CASE" | "TASK" | "INDICATOR"
+  ) {
     client
       .mutate({
         variables: {
