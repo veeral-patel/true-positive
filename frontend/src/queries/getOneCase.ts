@@ -43,6 +43,7 @@ const GET_ONE_CASE = gql`
       indicators {
         id
         name
+        description
         tags {
           name
         }
