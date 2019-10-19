@@ -14,6 +14,10 @@ module Types
             description "For text-based indicators, the indicator itself. Null for string and file indicators."
         end
 
+        field :type, Types::IndicatorTypeEnum, null: false, method: :indicator_type do
+            description "What kind of indicator this is."
+        end
+
         field :description, String, null: true do
             description "A description for this indicator."
         end
