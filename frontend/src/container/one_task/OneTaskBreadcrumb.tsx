@@ -1,8 +1,10 @@
-import { RouteComponentProps } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
+import { Breadcrumb } from "antd";
 import { inject, observer } from "mobx-react";
-import OneTaskBreadcrumbP from "presentational/one_task/OneTaskBreadcrumbP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import { paths } from "utils/constants";
+import { getPathToACase, getPathToCaseTasks } from "utils/pathHelpers";
 
 interface OneTaskBreadcrumbProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -17,24 +19,30 @@ export default inject("activeCaseStore")(
 
         const activeCase = activeCaseStore!.activeCase;
 
-        if (!taskId) {
-          return <p>Error</p>;
-        }
+        if (!activeCase || !taskId) return null;
 
         const activeTask = activeCaseStore!.getTask(taskId);
 
-        if (!activeTask) {
-          return <p>Error</p>;
-        }
+        if (!activeTask) return null;
 
-        if (activeCase)
-          return (
-            <OneTaskBreadcrumbP
-              caseName={activeCase.name}
-              caseId={activeCase.id}
-              taskName={activeTask.name}
-            />
-          );
+        return (
+          <Breadcrumb style={{ margin: "16px 0" }}>
+            <Breadcrumb.Item>
+              <a onClick={() => navigate(paths.CASES_PATH)}>Cases</a>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <a onClick={() => navigate(getPathToACase(activeCase.id))}>
+                {activeCase.name}
+              </a>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <a onClick={() => navigate(getPathToCaseTasks(activeCase.id))}>
+                Tasks
+              </a>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>{activeTask.name}</Breadcrumb.Item>
+          </Breadcrumb>
+        );
       }
     }
   )
