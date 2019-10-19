@@ -21,6 +21,7 @@ import RENAME_A_CASE from "mutations/renameCase";
 import RENAME_A_TASK from "mutations/renameTask";
 import GET_ONE_CASE from "queries/getOneCase";
 import ICase from "ts/interfaces/ICase";
+import IIndicator from "ts/interfaces/IIndicator";
 import ITask from "ts/interfaces/ITask";
 
 interface ICaseDatum {
@@ -89,6 +90,20 @@ class ActiveCaseStore {
     // if no tasks match, return null
     if (matchingTasks.length === 0) return null;
     return matchingTasks[0];
+  }
+
+  @action.bound
+  getIndicator(indicatorId: number): IIndicator | null {
+    if (!this.activeCase) return null;
+
+    // filter indicators by ID (exactly one indicators should match)
+    const matchingIndicators = this.activeCase.indicators.filter(
+      indicator => indicator.id === indicatorId
+    );
+
+    // if no tasks match, return null
+    if (matchingIndicators.length === 0) return null;
+    return matchingIndicators[0];
   }
 
   @action.bound

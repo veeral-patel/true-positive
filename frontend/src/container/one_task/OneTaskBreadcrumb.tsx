@@ -29,10 +29,6 @@ export default inject("activeCaseStore")(
         const activeTask = activeCaseStore!.getTask(taskId);
 
         if (!activeTask) {
-          notification.error({
-            message: "Could not load task",
-            description: "Ensure that a task with this ID exists"
-          });
           return <p>Error</p>;
         }
 

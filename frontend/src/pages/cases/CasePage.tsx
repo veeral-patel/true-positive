@@ -8,10 +8,11 @@ import Members from "container/one_case/Members";
 import Tasks from "container/one_case/Tasks";
 import ThisCaseHasBeenMergedAlert from "container/one_case/ThisCaseHasBeenMergedAlert";
 import Tree from "container/one_case/Tree";
+import OneIndicator from "container/one_indicator/OneIndicator";
 import OneTask from "container/one_task/OneTask";
 import OneTaskBreadcrumb from "container/one_task/OneTaskBreadcrumb";
 import { inject, observer } from "mobx-react";
-import "pages/cases/CasePage.css";
+import "pages/cases/CasePage.css"; // for responsiveness
 import ActivityPaneP from "presentational/one_case/ActivityPaneP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import Page404 from "presentational/shared/errors/Error404P";
@@ -108,6 +109,7 @@ export default inject("activeCaseStore")(
                       <Indicators path="/indicators" />
                       <Tasks path="/tasks" />
                       <OneTask path="/tasks/:taskId" />
+                      <OneIndicator path="/indicators/:indicatorId" />
                       <Page404 default showBackButton={false} />
                     </Router>
                   </div>
