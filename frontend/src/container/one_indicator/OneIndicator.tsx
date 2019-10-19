@@ -123,7 +123,10 @@ export default inject("activeCaseStore")(
                   />
                 )}
                 <div style={{ width: "70%" }}>
-                  <CreateComment objectId={activeIndicator.id} type="TASK" />
+                  <CreateComment
+                    objectId={activeIndicator.id}
+                    type="INDICATOR"
+                  />
                 </div>
               </section>
             </Content>

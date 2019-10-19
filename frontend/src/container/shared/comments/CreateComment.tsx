@@ -13,7 +13,7 @@ interface FormProps {
   objectId: number;
 
   /* the type of object we're commenting on */
-  type: "CASE" | "TASK";
+  type: "CASE" | "TASK" | "INDICATOR";
 
   /* used to make the API request to create a comment */
   activeCaseStore?: ActiveCaseStore;
@@ -72,7 +72,7 @@ interface CreateCommentProps {
   objectId: number;
 
   /* the type of object we're commenting on */
-  type: "CASE" | "TASK";
+  type: "CASE" | "TASK" | "INDICATOR";
 }
 
 class CreateComment extends React.Component<CreateCommentProps> {

@@ -143,7 +143,11 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  createComment(type: "CASE" | "TASK", objectId: number, comment: string) {
+  createComment(
+    type: "CASE" | "TASK" | "INDICATOR",
+    objectId: number,
+    comment: string
+  ) {
     client
       .mutate({
         variables: {
