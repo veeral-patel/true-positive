@@ -1,5 +1,14 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Button, Checkbox, Empty, Layout, List, Typography } from "antd";
+import {
+  Button,
+  Checkbox,
+  Empty,
+  Icon,
+  Layout,
+  List,
+  Tooltip,
+  Typography
+} from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import { inject, observer } from "mobx-react";
@@ -118,6 +127,9 @@ export default inject("activeCaseStore")(
                               </div>
                             }
                           />
+                          <Tooltip title={`${task.comments.length} comment(s)`}>
+                            <Icon type="message" /> {task.comments.length}
+                          </Tooltip>
                         </List.Item>
                       )}
                     />
