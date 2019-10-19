@@ -6,9 +6,6 @@ const CHANGE_PRIORITY = gql`
       case {
         id
       }
-      task {
-        id
-      }
     }
   }
 `;

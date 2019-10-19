@@ -364,9 +364,8 @@ class ActiveCaseStore {
       .mutate<ICaseDatum>({
         variables: {
           input: {
-            objectId: this.activeCase.id,
-            priority: priorityName,
-            type: "CASE"
+            caseId: this.activeCase.id,
+            priority: priorityName
           }
         },
         mutation: CHANGE_PRIORITY

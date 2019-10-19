@@ -13,12 +13,12 @@ class Mutations::ChangePriority < Mutations::BaseMutation
         description "The updated case."
     end
 
-    def resolve(case_id:, priority:, type:)
+    def resolve(case_id:, priority:)
         # find the new priority
         new_priority =  find_priority_by_name_or_throw_execution_error(priority_name: priority)
 
         # find the case
-        the_case = find_case_or_throw_execution_error(case_id: object_id)
+        the_case = find_case_or_throw_execution_error(case_id: case_id)
 
         # authorize this action
         unless CasePolicy.new(context[:current_user], the_case).change_priority?
