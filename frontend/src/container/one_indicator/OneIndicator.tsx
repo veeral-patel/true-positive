@@ -61,7 +61,16 @@ export default inject("activeCaseStore")(
                 onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
                 backIcon={<Icon type="arrow-left" style={{ fontSize: 14 }} />}
                 title={
-                  <Text style={{ fontSize: 16 }} editable>
+                  <Text
+                    style={{ fontSize: 16 }}
+                    editable={{
+                      onChange: (newText: string) =>
+                        activeCaseStore!.renameIndicator(
+                          activeIndicator.id,
+                          newText
+                        )
+                    }}
+                  >
                     {activeIndicator.name}
                   </Text>
                 }
