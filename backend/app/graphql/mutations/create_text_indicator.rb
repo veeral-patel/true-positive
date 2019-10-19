@@ -40,7 +40,8 @@ class Mutations::CreateTextIndicator < Mutations::BaseMutation
             text: text,
             description: description,
             tag_list: tags,
-            case: the_case
+            case: the_case,
+            indicator_type: "TEXT"
         )
 
         # authorize this action

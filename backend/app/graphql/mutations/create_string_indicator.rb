@@ -36,7 +36,8 @@ class Mutations::CreateStringIndicator < Mutations::BaseMutation
             name: name,
             description: description,
             tag_list: tags,
-            case: the_case
+            case: the_case,
+            indicator_type: "STRING"
         )
 
         # authorize this action
