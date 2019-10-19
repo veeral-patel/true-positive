@@ -17,6 +17,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITask from "ts/interfaces/ITask";
 import { getPathToATask } from "utils/pathHelpers";
+import truncateString from "utils/truncateString";
 
 const { Content } = Layout;
 const { Paragraph, Text } = Typography;
@@ -116,7 +117,7 @@ export default inject("activeCaseStore")(
                                     )
                                   }
                                 >
-                                  {task.name}
+                                  {truncateString(task.name, 75)}
                                 </a>
                               </div>
                             }
