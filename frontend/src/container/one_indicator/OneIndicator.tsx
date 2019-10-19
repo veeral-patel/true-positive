@@ -1,5 +1,6 @@
 import { navigate, RouteComponentProps } from "@reach/router";
 import { Icon, Layout, PageHeader, Typography } from "antd";
+import ActionsDropdown from "container/one_indicator/ActionsDropdown";
 import { inject, observer } from "mobx-react";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import React from "react";
@@ -54,7 +55,15 @@ export default inject("activeCaseStore")(
                 onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
                 backIcon={<Icon type="arrow-left" style={{ fontSize: 14 }} />}
                 title={
-                  <Text style={{ fontSize: 16 }}>{activeIndicator.name}</Text>
+                  <Text style={{ fontSize: 16 }} editable>
+                    {activeIndicator.name}
+                  </Text>
+                }
+                extra={
+                  <ActionsDropdown
+                    indicatorId={activeIndicator.id}
+                    caseId={activeCase.id}
+                  />
                 }
               />
             </Content>
