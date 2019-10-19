@@ -1,5 +1,6 @@
 import { navigate } from "@reach/router";
-import { Icon, List, Tooltip, Typography } from "antd";
+import { Button, Icon, List, message, Tooltip, Typography } from "antd";
+import copy from "copy-to-clipboard";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import IIndicator from "ts/interfaces/IIndicator";
@@ -29,9 +30,19 @@ class IndicatorList extends React.Component<Props> {
           >
             <List.Item.Meta
               title={
-                <Text copyable={{ text: indicator.name }}>
-                  {truncateString(indicator.name, 50)}
-                </Text>
+                <div>
+                  <Text>{truncateString(indicator.name, 50)}</Text>
+                  <Button
+                    icon="copy"
+                    type="link"
+                    size="small"
+                    onClick={event => {
+                      event.stopPropagation();
+                      copy(indicator.name);
+                      message.success("Copied indicator");
+                    }}
+                  />
+                </div>
               }
               description={
                 <div style={{ marginTop: "0.75em" }}>
