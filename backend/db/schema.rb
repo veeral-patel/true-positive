@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_082441) do
     t.string "name"
     t.text "description"
     t.text "text"
-    t.integer "type"
+    t.integer "indicator_type"
     t.bigint "created_by_id"
     t.bigint "case_id"
     t.datetime "created_at", null: false
