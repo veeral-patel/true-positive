@@ -1,10 +1,11 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Icon, Layout, PageHeader, Typography } from "antd";
+import { Col, Divider, Icon, Layout, PageHeader, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_indicator/ActionsDropdown";
 import { inject, observer } from "mobx-react";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import formatISO8601 from "utils/formatISO8601";
 import { getPathToCaseTasks } from "utils/pathHelpers";
 
 const { Content } = Layout;
@@ -66,6 +67,21 @@ export default inject("activeCaseStore")(
                   />
                 }
               />
+              <section style={{ lineHeight: 3 }}>
+                <Row>
+                  <Col span={24}>
+                    <Divider orientation="left">Details</Divider>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={4}>Created:</Col>
+                  <Col span={20}>
+                    {`${formatISO8601(activeIndicator.createdAt)} UTC by ${
+                      activeIndicator.createdBy.username
+                    }`}
+                  </Col>
+                </Row>
+              </section>
             </Content>
           );
         }
