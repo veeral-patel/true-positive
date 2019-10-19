@@ -45,8 +45,14 @@ class IndicatorList extends React.Component<Props> {
                 </div>
               }
               description={
-                <div style={{ marginTop: "0.75em" }}>
-                  <ListOfTagsP tags={indicator.tags} limit={5} />
+                <div>
+                  {indicator.tags.length === 0 ? (
+                    "No tags"
+                  ) : (
+                    <div style={{ marginTop: "0.75em" }}>
+                      <ListOfTagsP tags={indicator.tags} limit={5} />
+                    </div>
+                  )}
                 </div>
               }
             />
