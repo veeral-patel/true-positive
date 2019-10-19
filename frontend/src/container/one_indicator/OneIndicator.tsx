@@ -1,13 +1,17 @@
 import { navigate, RouteComponentProps } from "@reach/router";
 import { Col, Divider, Icon, Layout, PageHeader, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_indicator/ActionsDropdown";
+import CreateComment from "container/shared/comments/CreateComment";
+import DescriptionForm from "container/shared/description/DescriptionForm";
 import { inject, observer } from "mobx-react";
+import CommentListP from "presentational/shared/comments/CommentListP";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import formatISO8601 from "utils/formatISO8601";
 import { getPathToCaseTasks } from "utils/pathHelpers";
+import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
 const { Text } = Typography;
@@ -94,6 +98,33 @@ export default inject("activeCaseStore")(
                     />
                   </Col>
                 </Row>
+              </section>
+
+              <section>
+                <Divider orientation="left">Description</Divider>
+                <DescriptionForm
+                  initialDescription={activeIndicator.description}
+                  updateDescription={newDescription =>
+                    activeCaseStore!.changeDescription(
+                      activeIndicator.id,
+                      newDescription,
+                      "INDICATOR"
+                    )
+                  }
+                />
+              </section>
+              <section>
+                <Divider orientation="left">
+                  Comments ({activeIndicator.comments.length})
+                </Divider>
+                {activeIndicator.comments.length > 0 && (
+                  <CommentListP
+                    comments={sortCommentsByCreatedAt(activeIndicator.comments)}
+                  />
+                )}
+                <div style={{ width: "70%" }}>
+                  <CreateComment objectId={activeIndicator.id} type="TASK" />
+                </div>
               </section>
             </Content>
           );
