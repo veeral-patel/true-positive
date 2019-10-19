@@ -1,5 +1,4 @@
 import { RouteComponentProps } from "@reach/router";
-import { notification } from "antd";
 import { inject, observer } from "mobx-react";
 import OneTaskBreadcrumbP from "presentational/one_task/OneTaskBreadcrumbP";
 import React from "react";
@@ -19,10 +18,6 @@ export default inject("activeCaseStore")(
         const activeCase = activeCaseStore!.activeCase;
 
         if (!taskId) {
-          notification.error({
-            message: "Could not extract this task's ID from the URL",
-            description: "Ensure you're at a valid URL"
-          });
           return <p>Error</p>;
         }
 

@@ -9,6 +9,7 @@ import Tasks from "container/one_case/Tasks";
 import ThisCaseHasBeenMergedAlert from "container/one_case/ThisCaseHasBeenMergedAlert";
 import Tree from "container/one_case/Tree";
 import OneIndicator from "container/one_indicator/OneIndicator";
+import OneIndicatorBreadcrumb from "container/one_indicator/OneIndicatorBreadcrumb";
 import OneTask from "container/one_task/OneTask";
 import OneTaskBreadcrumb from "container/one_task/OneTaskBreadcrumb";
 import { inject, observer } from "mobx-react";
@@ -96,6 +97,7 @@ export default inject("activeCaseStore")(
                         path="/tasks"
                       />
                       <OneTaskBreadcrumb path="/tasks/:taskId" />
+                      <OneIndicatorBreadcrumb path="/indicators/:indicatorId" />
                     </Router>
                   )}
                 </div>
