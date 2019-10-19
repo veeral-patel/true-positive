@@ -14,6 +14,7 @@ interface IIndicator {
   comments: IComment[];
   tags: ITag[];
   task: ITask;
+  type: "STRING" | "TEXT" | "FILE";
 }
 
 export default IIndicator;

@@ -56,9 +56,14 @@ class IndicatorList extends React.Component<Props> {
                 </div>
               }
             />
-            <Tooltip title={`${indicator.comments.length} comment(s)`}>
-              <Icon type="message" /> {indicator.comments.length}
-            </Tooltip>
+            <div>
+              <Text style={{ marginRight: "0.75em" }} type="secondary">
+                {indicator.type}
+              </Text>
+              <Tooltip title={`${indicator.comments.length} comment(s)`}>
+                <Icon type="message" /> {indicator.comments.length}
+              </Tooltip>
+            </div>
           </List.Item>
         )}
       />

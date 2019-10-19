@@ -44,6 +44,7 @@ const GET_ONE_CASE = gql`
         id
         name
         description
+        type
         tags {
           name
         }
