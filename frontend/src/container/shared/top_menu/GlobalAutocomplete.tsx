@@ -3,23 +3,27 @@ import { AutoComplete, Icon, Input } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
+import TagStore from "stores/TagStore";
 import { getPathToACase } from "utils/pathHelpers";
 
 const { Option, OptGroup } = AutoComplete;
 
 interface Props {
   allCasesStore?: AllCasesStore;
+  tagStore?: TagStore;
 }
 
-export default inject("allCasesStore")(
+export default inject("allCasesStore", "tagStore")(
   observer(
     class GlobalAutocomplete extends React.Component<Props> {
       componentDidMount() {
-        const { allCasesStore } = this.props;
+        const { allCasesStore, tagStore } = this.props;
         allCasesStore!.loadCases();
+        tagStore!.loadTags();
       }
 
       render() {
+        // case options
         const { allCasesStore } = this.props;
 
         let caseOptions: Object[];
@@ -36,7 +40,31 @@ export default inject("allCasesStore")(
               {theCase.name}
             </Option>
           ));
-          if (caseOptions.length > 5) caseOptions = caseOptions.slice(0, 5);
+
+          // show only first 5 matches
+          if (caseOptions.length > 5) caseOptions = caseOptions.slice(0, 3);
+        }
+
+        // tag options
+        const { tagStore } = this.props;
+
+        let tagOptions: Object[];
+
+        if (tagStore!.tagsAreLoading) {
+          tagOptions = [
+            <Option disabled key="loading" value="loading">
+              Loading...
+            </Option>
+          ];
+        } else {
+          tagOptions = tagStore!.tags.map(tag => (
+            <Option key={tag.name} value={tag.name}>
+              {tag.name}
+            </Option>
+          ));
+
+          // show only first 5 matches
+          if (tagOptions.length > 5) tagOptions = tagOptions.slice(0, 3);
         }
 
         return (
@@ -47,6 +75,9 @@ export default inject("allCasesStore")(
             dataSource={[
               <OptGroup key="Cases" label="Cases">
                 {caseOptions}
+              </OptGroup>,
+              <OptGroup key="Tags" label="Tags">
+                {tagOptions}
               </OptGroup>
             ]}
           >
