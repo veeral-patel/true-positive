@@ -94,7 +94,9 @@ export default inject("activeCaseStore")(
                         Tasks ({doneTasks.length}/{tasks.length})
                       </h3>
                       <Progress
-                        percent={(doneTasks.length / tasks.length) * 100}
+                        percent={Math.round(
+                          (doneTasks.length / tasks.length) * 100
+                        )}
                         style={{ width: "30%" }}
                       />
                     </div>
