@@ -18,14 +18,25 @@ export default inject("allCasesStore")(
       }
 
       render() {
-        // const { allCasesStore } = this.props;
+        const { allCasesStore } = this.props;
+
+        let caseOptions: any[];
+
+        if (allCasesStore!.casesAreLoading) {
+          caseOptions = [];
+        } else {
+          caseOptions = allCasesStore!.cases.map(theCase => (
+            <Option key={theCase.id} value={theCase.id}>
+              {theCase.name}
+            </Option>
+          ));
+        }
+
         return (
           <AutoComplete
             dataSource={[
               <OptGroup key="Cases" label="Cases">
-                <Option key="uno" value="uno">
-                  Case Uno
-                </Option>
+                {caseOptions}
               </OptGroup>
             ]}
           >
