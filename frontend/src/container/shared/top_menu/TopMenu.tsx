@@ -1,5 +1,6 @@
 import { navigate } from "@reach/router";
-import { Icon, Input, Menu } from "antd";
+import { Menu } from "antd";
+import GlobalAutocomplete from "container/shared/top_menu/GlobalAutocomplete";
 import logo from "logo/tp_logo_lightblue.svg";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -42,7 +43,7 @@ export default inject("uiStore", "authStore")(
               Manage
             </Menu.Item>
             <Menu.Item style={{ float: "left" }}>
-              <Input placeholder="Search" prefix={<Icon type="search" />} />
+              <GlobalAutocomplete />
             </Menu.Item>
             <Menu.Item
               style={{ float: "right" }}
