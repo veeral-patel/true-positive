@@ -22,7 +22,7 @@ export default inject("allCasesStore")(
       render() {
         const { allCasesStore } = this.props;
 
-        let caseOptions: any[];
+        let caseOptions: Object[];
 
         if (allCasesStore!.casesAreLoading) {
           caseOptions = [
