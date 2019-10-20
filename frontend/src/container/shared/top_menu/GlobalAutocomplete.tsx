@@ -3,6 +3,7 @@ import { AutoComplete, Icon, Input } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
+import AllTasksStore from "stores/AllTasksStore";
 import TagStore from "stores/TagStore";
 import { getPathToACase } from "utils/pathHelpers";
 
@@ -11,9 +12,10 @@ const { Option, OptGroup } = AutoComplete;
 interface Props {
   allCasesStore?: AllCasesStore;
   tagStore?: TagStore;
+  allTasksStore?: AllTasksStore;
 }
 
-export default inject("allCasesStore", "tagStore")(
+export default inject("allCasesStore", "tagStore", "allTasksStore")(
   observer(
     class GlobalAutocomplete extends React.Component<Props> {
       componentDidMount() {
@@ -41,8 +43,8 @@ export default inject("allCasesStore", "tagStore")(
             </Option>
           ));
 
-          // show only first 5 matches
-          if (caseOptions.length > 5) caseOptions = caseOptions.slice(0, 3);
+          // show only first 3 matches
+          if (caseOptions.length > 3) caseOptions = caseOptions.slice(0, 3);
         }
 
         // tag options
@@ -63,8 +65,30 @@ export default inject("allCasesStore", "tagStore")(
             </Option>
           ));
 
-          // show only first 5 matches
-          if (tagOptions.length > 5) tagOptions = tagOptions.slice(0, 3);
+          // show only first 3 matches
+          if (tagOptions.length > 3) tagOptions = tagOptions.slice(0, 3);
+        }
+
+        // task options
+        const { allTasksStore } = this.props;
+
+        let taskOptions: Object[];
+
+        if (allTasksStore!.tasksAreLoading) {
+          taskOptions = [
+            <Option disabled key="loading" value="loading">
+              Loading...
+            </Option>
+          ];
+        } else {
+          taskOptions = allTasksStore!.tasks.map(task => (
+            <Option key={task.id} value={task.id}>
+              {task.name}
+            </Option>
+          ));
+
+          // show only first 3 matches
+          if (taskOptions.length > 3) taskOptions = taskOptions.slice(0, 3);
         }
 
         return (
@@ -78,6 +102,9 @@ export default inject("allCasesStore", "tagStore")(
               </OptGroup>,
               <OptGroup key="Tags" label="Tags">
                 {tagOptions}
+              </OptGroup>,
+              <OptGroup key="Tasks" label="Tasks">
+                {taskOptions}
               </OptGroup>
             ]}
           >
