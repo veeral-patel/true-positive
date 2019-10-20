@@ -55,8 +55,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_082441) do
 
   create_table "indicators", force: :cascade do |t|
     t.string "name"
-    t.text "description"
-    t.text "text"
+    t.text "indicator"
     t.integer "indicator_type"
     t.bigint "created_by_id"
     t.bigint "case_id"
