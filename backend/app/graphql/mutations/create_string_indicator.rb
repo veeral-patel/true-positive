@@ -4,6 +4,10 @@ class Mutations::CreateStringIndicator < Mutations::BaseMutation
     # required ------
 
     argument :name, String, required: true do
+        description "A brief name for this indicator."
+    end
+
+    argument :indicator, String, required: true do
         description "The indicator itself."
     end
 
@@ -27,13 +31,14 @@ class Mutations::CreateStringIndicator < Mutations::BaseMutation
         description "The newly created indicator."
     end
 
-    def resolve(name:, case_id:, description: nil, tags: nil)
+    def resolve(name:, indicator:, case_id:, description: nil, tags: nil)
         # find the case to create this indicator in
         the_case = find_case_or_throw_execution_error(case_id: case_id)
 
         # create the new indicator in memory
         new_indicator = context[:current_user].created_indicators.new(
             name: name,
+            indicator: indicator,
             description: description,
             tag_list: tags,
             case: the_case,

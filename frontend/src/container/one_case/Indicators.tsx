@@ -121,6 +121,7 @@ export default inject("activeCaseStore")(
                         // add the new indicator to the case
                         activeCaseStore!.createStringIndicator(
                           activeCase.id,
+                          newIndicator,
                           newIndicator
                         );
                       }}
