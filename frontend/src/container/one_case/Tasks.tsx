@@ -50,6 +50,8 @@ export default inject("activeCaseStore")(
         // our spinner above this, as a HOC
         if (activeCase) {
           const tasks = activeCase.tasks;
+          const doneTasks = activeCase.tasks.filter(task => task.done);
+
           return (
             <div>
               <Content
@@ -81,7 +83,9 @@ export default inject("activeCaseStore")(
                   />
                 ) : (
                   <div>
-                    <h3>Tasks ({tasks.length})</h3>
+                    <h3>
+                      Tasks ({doneTasks.length}/{tasks.length})
+                    </h3>
                     <Paragraph>
                       A task is a piece of work to be completed in a case.
                     </Paragraph>
