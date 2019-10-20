@@ -6,6 +6,7 @@ import {
   Icon,
   Layout,
   List,
+  Progress,
   Tooltip,
   Typography
 } from "antd";
@@ -83,9 +84,20 @@ export default inject("activeCaseStore")(
                   />
                 ) : (
                   <div>
-                    <h3>
-                      Tasks ({doneTasks.length}/{tasks.length})
-                    </h3>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between"
+                      }}
+                    >
+                      <h3>
+                        Tasks ({doneTasks.length}/{tasks.length})
+                      </h3>
+                      <Progress
+                        percent={(doneTasks.length / tasks.length) * 100}
+                        style={{ width: "30%" }}
+                      />
+                    </div>
                     <Paragraph>
                       A task is a piece of work to be completed in a case.
                     </Paragraph>
