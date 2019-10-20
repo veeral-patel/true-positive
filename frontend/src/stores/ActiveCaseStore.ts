@@ -662,14 +662,18 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  createTextIndicator(caseId: number, indicatorName: string, text: string) {
+  createTextIndicator(
+    caseId: number,
+    indicatorName: string,
+    indicator: string
+  ) {
     client
       .mutate({
         variables: {
           input: {
             caseId,
             name: indicatorName,
-            text
+            indicator
           }
         },
         mutation: CREATE_TEXT_INDICATOR
