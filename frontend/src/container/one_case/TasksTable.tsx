@@ -95,7 +95,6 @@ export default inject("userStore", "statusStore", "priorityStore")(
           <Table
             dataSource={tasks}
             rowKey={record => record.id.toString()}
-            pagination={{ hideOnSinglePage: true }}
             onRowClick={handleRowClick}
           >
             <Column
