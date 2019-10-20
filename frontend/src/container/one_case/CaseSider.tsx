@@ -37,23 +37,28 @@ export default inject("uiStore", "activeCaseStore")(
 
         let caseName: string;
         let numberOfMembers: number | null;
+        let numberOfDoneTasks: number | null;
         let numberOfTasks: number | null;
         let numberOfIndicators: number | null;
 
         if (isLoading) {
           caseName = "Loading";
           numberOfMembers = null;
+          numberOfDoneTasks = null;
           numberOfTasks = null;
           numberOfIndicators = null;
         } else {
           if (activeCase) {
             caseName = activeCase.name;
             numberOfMembers = activeCase.caseMembers.length;
+            numberOfDoneTasks = activeCase.tasks.filter(task => task.done)
+              .length;
             numberOfTasks = activeCase.tasks.length;
             numberOfIndicators = activeCase.indicators.length;
           } else {
             caseName = "Error";
             numberOfMembers = null;
+            numberOfDoneTasks = null;
             numberOfTasks = null;
             numberOfIndicators = null;
           }
@@ -111,7 +116,15 @@ export default inject("uiStore", "activeCaseStore")(
                 <Icon type="check-square" />
                 <span>
                   Tasks{" "}
-                  {numberOfTasks !== null && <span>({numberOfTasks})</span>}
+                  {numberOfTasks !== null &&
+                    numberOfDoneTasks !== null &&
+                    (numberOfTasks === 0 ? (
+                      <span>({numberOfTasks})</span>
+                    ) : (
+                      <span>
+                        ({numberOfDoneTasks}/{numberOfTasks})
+                      </span>
+                    ))}
                 </span>
               </Menu.Item>
               <Menu.Item
