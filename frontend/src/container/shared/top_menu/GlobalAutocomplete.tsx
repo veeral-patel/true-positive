@@ -21,7 +21,6 @@ export default inject("allCasesStore")(
         // const { allCasesStore } = this.props;
         return (
           <AutoComplete
-            placeholder="Search"
             dataSource={[
               <OptGroup key="Cases" label="Cases">
                 <Option key="uno" value="uno">
@@ -30,7 +29,7 @@ export default inject("allCasesStore")(
               </OptGroup>
             ]}
           >
-            <Input prefix={<Icon type="search" />} />
+            <Input prefix={<Icon type="search" />} placeholder="Search" />
           </AutoComplete>
         );
       }
