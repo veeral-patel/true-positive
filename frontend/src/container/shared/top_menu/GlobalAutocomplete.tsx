@@ -36,6 +36,7 @@ export default inject("allCasesStore")(
               {theCase.name}
             </Option>
           ));
+          if (caseOptions.length > 5) caseOptions = caseOptions.slice(0, 5);
         }
 
         return (
