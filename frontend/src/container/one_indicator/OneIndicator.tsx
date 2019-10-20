@@ -141,7 +141,7 @@ export default inject("activeCaseStore")(
                       defaultValue={activeIndicator.indicator}
                       rows={5}
                       placeholder="Enter your indicator here"
-                      style={{ padding: "2%" }}
+                      style={{ padding: "2%", fontFamily: "monospace" }}
                     />
                   </Row>
                 </section>
