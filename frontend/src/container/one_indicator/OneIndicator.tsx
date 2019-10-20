@@ -91,7 +91,9 @@ export default inject("activeCaseStore")(
                   <Row>
                     <Col span={4}>Indicator:</Col>
                     <Col span={20}>
-                      <Text copyable>{activeIndicator.indicator}</Text>
+                      <Text copyable editable>
+                        {activeIndicator.indicator}
+                      </Text>
                     </Col>
                   </Row>
                 )}
