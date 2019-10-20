@@ -87,6 +87,14 @@ export default inject("activeCaseStore")(
                     <Divider orientation="left">Details</Divider>
                   </Col>
                 </Row>
+                {activeIndicator.type === "STRING" && (
+                  <Row>
+                    <Col span={4}>Indicator:</Col>
+                    <Col span={20}>
+                      <Text copyable>{activeIndicator.indicator}</Text>
+                    </Col>
+                  </Row>
+                )}
                 <Row>
                   <Col span={4}>Created:</Col>
                   <Col span={20}>

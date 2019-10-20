@@ -15,6 +15,7 @@ interface IIndicator {
   tags: ITag[];
   task: ITask;
   type: "STRING" | "TEXT" | "FILE";
+  indicator: string /* the indicator itself */;
 }
 
 export default IIndicator;

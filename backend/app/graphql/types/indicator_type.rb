@@ -10,8 +10,8 @@ module Types
             description "A brief name for this indicator."
         end
 
-        field :text, String, null: true do
-            description "For text-based indicators, the indicator itself. Null for string and file indicators."
+        field :indicator, String, null: true do
+            description "The indicator itself."
         end
 
         field :type, Types::IndicatorTypeEnum, null: false, method: :indicator_type do
