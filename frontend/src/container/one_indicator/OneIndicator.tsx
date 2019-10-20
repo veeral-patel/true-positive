@@ -1,5 +1,14 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Col, Divider, Icon, Layout, PageHeader, Row, Typography } from "antd";
+import {
+  Col,
+  Divider,
+  Icon,
+  Input,
+  Layout,
+  PageHeader,
+  Row,
+  Typography
+} from "antd";
 import ActionsDropdown from "container/one_indicator/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionForm from "container/shared/description/DescriptionForm";
@@ -13,6 +22,7 @@ import formatISO8601 from "utils/formatISO8601";
 import { getPathToCaseIndicators } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
+const { TextArea } = Input;
 const { Content } = Layout;
 const { Text } = Typography;
 
@@ -118,6 +128,23 @@ export default inject("activeCaseStore")(
                   </Col>
                 </Row>
               </section>
+
+              {activeIndicator.type === "TEXT" && (
+                <section>
+                  <Row>
+                    <Col span={24}>
+                      <Divider orientation="left">Indicator</Divider>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <TextArea
+                      defaultValue={activeIndicator.indicator}
+                      rows={5}
+                      placeholder="Enter your indicator here"
+                    />
+                  </Row>
+                </section>
+              )}
 
               <section>
                 <Divider orientation="left">Description</Divider>
