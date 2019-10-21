@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Divider, Empty, Typography } from "antd";
+import { Button, Divider, Empty, Radio, Typography } from "antd";
 import CasesTable from "container/all_cases/CasesTable";
 import FilterInput from "container/all_cases/FilterInput";
 import { inject, observer } from "mobx-react";
@@ -70,12 +70,12 @@ export default inject("allCasesStore", "uiStore")(
                   <span style={{ marginLeft: "8px", marginRight: "8px" }}>
                     <Divider type="vertical" />
                   </span>
-                  {/* <span>
+                  <span>
                     <Radio.Group defaultValue="assigned">
                       <Radio.Button value="assigned">Assigned</Radio.Button>
                       <Radio.Button value="all">All</Radio.Button>
                     </Radio.Group>
-                  </span> */}
+                  </span>
                 </div>
                 <div>
                   <CasesTable />
