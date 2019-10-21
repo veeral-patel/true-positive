@@ -1,14 +1,13 @@
 import { navigate } from "@reach/router";
 import { Menu } from "antd";
+import GlobalAutocomplete from "container/shared/top_menu/GlobalAutocomplete";
 import logo from "logo/tp_logo_lightblue.svg";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AuthStore from "stores/AuthStore";
-import UIStore from "stores/UIStore";
 import { paths } from "utils/constants";
 
 interface TopMenuProps {
-  uiStore?: UIStore;
   authStore?: AuthStore;
 }
 
@@ -16,7 +15,7 @@ export default inject("uiStore", "authStore")(
   observer(
     class TopMenu extends React.Component<TopMenuProps> {
       render() {
-        const { uiStore, authStore } = this.props;
+        const { authStore } = this.props;
         return (
           <Menu theme="dark" mode="horizontal" selectedKeys={[]}>
             <Menu.Item
@@ -42,6 +41,9 @@ export default inject("uiStore", "authStore")(
               style={{ float: "left" }}
             >
               Manage
+            </Menu.Item>
+            <Menu.Item style={{ float: "left" }}>
+              <GlobalAutocomplete />
             </Menu.Item>
             <Menu.Item
               style={{ float: "right" }}
