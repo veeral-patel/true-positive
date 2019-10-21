@@ -37,7 +37,7 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
           ];
         } else {
           caseOptions = allCasesStore!.cases.map(theCase => (
-            <Option key={theCase.id} value={theCase.id}>
+            <Option key={theCase.id} value={theCase.name}>
               {theCase.name}
             </Option>
           ));
@@ -81,7 +81,7 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
           ];
         } else {
           taskOptions = allTasksStore!.tasks.map(task => (
-            <Option key={task.id} value={task.id}>
+            <Option key={task.id} value={task.name}>
               {task.name}
             </Option>
           ));
@@ -92,6 +92,17 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
 
         return (
           <AutoComplete
+            filterOption={(inputValue, option) => {
+              if (option.props.value) {
+                return (
+                  option.props.value
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(inputValue.toLowerCase()) !== -1
+                );
+              }
+              return false;
+            }}
             dataSource={[
               <OptGroup key="Cases" label="Cases">
                 {caseOptions}
