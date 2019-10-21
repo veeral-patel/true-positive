@@ -83,6 +83,8 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
 
         return (
           <AutoComplete
+            dropdownMatchSelectWidth={false}
+            dropdownStyle={{ width: 350 }}
             filterOption={(inputValue, option) => {
               // filter options based on the name of the task/tag/indicator/case
               if (option.props.value) {
