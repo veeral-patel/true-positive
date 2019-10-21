@@ -22,6 +22,7 @@ import {
   priorityMatches,
   statusMatches
 } from "utils/matchesFilter";
+import truncateString from "utils/truncateString";
 
 const { Column } = Table;
 
@@ -121,6 +122,7 @@ export default inject(
               dataIndex="name"
               key="name"
               sorter={(a: ICase, b: ICase) => a.name.localeCompare(b.name)}
+              render={name => truncateString(name, 40)}
             />
             <Column
               title="Tags"
