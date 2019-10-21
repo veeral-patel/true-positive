@@ -19,8 +19,9 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
   observer(
     class GlobalAutocomplete extends React.Component<Props> {
       componentDidMount() {
-        const { allCasesStore, tagStore } = this.props;
+        const { allCasesStore, allTasksStore, tagStore } = this.props;
         allCasesStore!.loadCases();
+        allTasksStore!.loadTasks();
         tagStore!.loadTags();
       }
 
