@@ -5,6 +5,7 @@ import AllCasesStore from "stores/AllCasesStore";
 import AllTasksStore from "stores/AllTasksStore";
 import TagStore from "stores/TagStore";
 import { formatDateOnly } from "utils/formatISO8601";
+import truncateString from "utils/truncateString";
 
 const { Option, OptGroup } = AutoComplete;
 const { Text } = Typography;
@@ -84,6 +85,11 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
           taskOptions = allTasksStore!.tasks.map(task => (
             <Option key={task.id} value={task.name}>
               {task.name}
+              <span style={{ position: "absolute", right: "16px" }}>
+                <Text type="secondary">
+                  {truncateString(task.case.name, 15)}
+                </Text>
+              </span>
             </Option>
           ));
         }
