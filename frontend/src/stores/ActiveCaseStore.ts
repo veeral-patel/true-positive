@@ -25,6 +25,7 @@ import GET_ONE_CASE from "queries/getOneCase";
 import ICase from "ts/interfaces/ICase";
 import IIndicator from "ts/interfaces/IIndicator";
 import ITask from "ts/interfaces/ITask";
+import { NO_ASSIGNED_USER } from "utils/constants";
 
 interface ICaseDatum {
   case: ICase;
@@ -386,7 +387,9 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeCaseAssignee(username: string) {
+  changeCaseAssignee(username: string | null) {
+    if (username === NO_ASSIGNED_USER) username = null;
+
     client
       .mutate<ICaseDatum>({
         variables: {
@@ -415,7 +418,9 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeTaskAssignee(taskId: number, username: string) {
+  changeTaskAssignee(taskId: number, username: string | null) {
+    if (username === NO_ASSIGNED_USER) username = null;
+
     client
       .mutate({
         variables: {

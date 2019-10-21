@@ -2,6 +2,7 @@ import { Select } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import UserStore from "stores/UserStore";
+import { NO_ASSIGNED_USER } from "utils/constants";
 
 const { Option } = Select;
 
@@ -22,9 +23,9 @@ export default inject("userStore")(
         const { userStore, handleSelect } = this.props;
 
         // generate a list of options
-        const options = userStore!.users.map(user => (
-          <Option key={user.username}>{user.username}</Option>
-        ));
+        const options = userStore!.users
+          .map(user => <Option key={user.username}>{user.username}</Option>)
+          .concat(<Option key={NO_ASSIGNED_USER}>N/A</Option>);
 
         // render our component
         return (
