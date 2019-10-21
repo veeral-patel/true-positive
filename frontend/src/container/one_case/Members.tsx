@@ -4,6 +4,7 @@ import {
   Button,
   Layout,
   List,
+  Modal,
   Popconfirm,
   Select,
   Tag,
@@ -15,6 +16,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UserStore from "stores/UserStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
+import { USERNAME_KEY } from "utils/constants";
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -92,13 +94,35 @@ export default inject("activeCaseStore", "userStore")(
                     <Select<"CAN_VIEW" | "CAN_EDIT">
                       value={member.role}
                       style={{ width: "120px" }}
-                      onSelect={newRole =>
-                        activeCaseStore!.changeRole(
-                          activeCase.id,
-                          member.user.username,
-                          newRole
-                        )
-                      }
+                      onSelect={newRole => {
+                        const usernameOfCurrentUser = localStorage.getItem(
+                          USERNAME_KEY
+                        );
+                        if (
+                          usernameOfCurrentUser === member.user.username &&
+                          newRole === "CAN_VIEW"
+                        ) {
+                          Modal.confirm({
+                            title: "Make yourself view only?",
+                            content:
+                              "Are you sure you want to change your role to 'Can View' in this case?",
+                            onOk() {
+                              activeCaseStore!.changeRole(
+                                activeCase.id,
+                                member.user.username,
+                                newRole
+                              );
+                            },
+                            onCancel() {}
+                          });
+                        } else {
+                          activeCaseStore!.changeRole(
+                            activeCase.id,
+                            member.user.username,
+                            newRole
+                          );
+                        }
+                      }}
                     >
                       <Option value="CAN_VIEW">Can View</Option>
                       <Option value="CAN_EDIT">Can Edit</Option>
