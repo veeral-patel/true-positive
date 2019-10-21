@@ -5,6 +5,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import { paths } from "utils/constants";
 import { getPathToACase, getPathToCaseIndicators } from "utils/pathHelpers";
+import truncateString from "utils/truncateString";
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -32,7 +33,7 @@ export default inject("activeCaseStore")(
             </Breadcrumb.Item>
             <Breadcrumb.Item>
               <a onClick={() => navigate(getPathToACase(activeCase.id))}>
-                {activeCase.name}
+                {truncateString(activeCase.name, 90)}
               </a>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
@@ -42,7 +43,9 @@ export default inject("activeCaseStore")(
                 Indicators
               </a>
             </Breadcrumb.Item>
-            <Breadcrumb.Item>{activeIndicator.name}</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              {truncateString(activeIndicator.name, 90)}
+            </Breadcrumb.Item>
           </Breadcrumb>
         );
       }
