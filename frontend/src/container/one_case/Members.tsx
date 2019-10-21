@@ -1,4 +1,4 @@
-import { RouteComponentProps } from "@reach/router";
+import { navigate, RouteComponentProps } from "@reach/router";
 import {
   Avatar,
   Button,
@@ -16,7 +16,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UserStore from "stores/UserStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
-import { USERNAME_KEY } from "utils/constants";
+import { paths, USERNAME_KEY } from "utils/constants";
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -145,6 +145,7 @@ export default inject("activeCaseStore", "userStore")(
                               activeCaseStore!.removeCaseMember(
                                 member.user.username
                               );
+                              navigate(paths.CASES_PATH);
                             },
                             onCancel() {},
                             okText: "Yes, Remove Myself"
