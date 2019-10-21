@@ -154,6 +154,11 @@ class CaseStore {
   }
 
   @action.bound
+  setAssignedFilter(newFilter: "ASSIGNED" | "ALL") {
+    this.assignedOrAll = newFilter;
+  }
+
+  @action.bound
   setFilterValue(filterValue: string) {
     this.filterValue = filterValue;
   }

@@ -71,9 +71,15 @@ export default inject("allCasesStore", "uiStore")(
                     <Divider type="vertical" />
                   </span>
                   <span>
-                    <Radio.Group defaultValue="assigned">
-                      <Radio.Button value="assigned">Assigned</Radio.Button>
-                      <Radio.Button value="all">All</Radio.Button>
+                    <Radio.Group
+                      defaultValue="ASSIGNED"
+                      onChange={event => {
+                        const newFilter = event.target.value;
+                        allCasesStore!.setAssignedFilter(newFilter);
+                      }}
+                    >
+                      <Radio.Button value="ASSIGNED">Assigned</Radio.Button>
+                      <Radio.Button value="ALL">All</Radio.Button>
                     </Radio.Group>
                   </span>
                 </div>
