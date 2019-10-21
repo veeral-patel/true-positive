@@ -28,8 +28,13 @@ class Mutations::ChangeRole  < Mutations::BaseMutation
         end
 
         begin
+            # find the case member to update
             member = the_case.case_members.find_by!(user: user)
+
+            # update the case member in memory
             member.role = role
+
+            # and save to the database
             if member.save
                 {
                     "case": the_case
