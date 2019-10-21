@@ -5,6 +5,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import { paths } from "utils/constants";
 import { getPathToACase, getPathToCaseTasks } from "utils/pathHelpers";
+import truncateString from "utils/truncateString";
 
 interface OneTaskBreadcrumbProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -40,7 +41,9 @@ export default inject("activeCaseStore")(
                 Tasks
               </a>
             </Breadcrumb.Item>
-            <Breadcrumb.Item>{activeTask.name}</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              {truncateString(activeTask.name, 90)}
+            </Breadcrumb.Item>
           </Breadcrumb>
         );
       }
