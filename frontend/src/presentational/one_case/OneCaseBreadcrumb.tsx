@@ -3,6 +3,7 @@ import { Breadcrumb } from "antd";
 import React from "react";
 import { paths } from "utils/constants";
 import { getPathToACase } from "utils/pathHelpers";
+import truncateString from "utils/truncateString";
 
 interface IOneCaseBreadcrumbProps extends RouteComponentProps {
   caseId: number;
@@ -20,7 +21,9 @@ const OneCaseBreadcrumb: React.FC<IOneCaseBreadcrumbProps> = ({
       <a onClick={() => navigate(paths.CASES_PATH)}>Cases</a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-      <a onClick={() => navigate(getPathToACase(caseId))}>{caseName}</a>
+      <a onClick={() => navigate(getPathToACase(caseId))}>
+        {truncateString(caseName, 100)}
+      </a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>{tabName}</Breadcrumb.Item>
   </Breadcrumb>
