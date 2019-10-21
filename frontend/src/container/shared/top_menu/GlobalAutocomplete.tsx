@@ -1,11 +1,9 @@
-import { navigate } from "@reach/router";
 import { AutoComplete, Icon, Input } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import AllTasksStore from "stores/AllTasksStore";
 import TagStore from "stores/TagStore";
-import { getPathToACase } from "utils/pathHelpers";
 
 const { Option, OptGroup } = AutoComplete;
 
@@ -94,9 +92,6 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
 
         return (
           <AutoComplete
-            onSelect={(caseId: any, Option: Object) =>
-              navigate(getPathToACase(caseId))
-            }
             dataSource={[
               <OptGroup key="Cases" label="Cases">
                 {caseOptions}
