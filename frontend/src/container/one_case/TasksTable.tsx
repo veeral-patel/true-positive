@@ -12,6 +12,7 @@ import compareUsers from "utils/compareUsers";
 import formatISO8601 from "utils/formatISO8601";
 import { assignedToMatches, createdByMatches } from "utils/matchesFilter";
 import { getPathToACase } from "utils/pathHelpers";
+import truncateString from "utils/truncateString";
 
 const { Column } = Table;
 
@@ -102,6 +103,7 @@ export default inject("userStore", "statusStore", "priorityStore")(
               dataIndex="name"
               key="name"
               sorter={(a: ITask, b: ITask) => a.name.localeCompare(b.name)}
+              render={name => truncateString(name, 40)}
             />
             <Column
               title="Tags"
@@ -158,7 +160,7 @@ export default inject("userStore", "statusStore", "priorityStore")(
                       navigate(getPathToACase(task.case.id));
                     }}
                   >
-                    {task.case.name}
+                    {truncateString(task.case.name, 25)}
                   </a>
                 )}
               />
