@@ -113,10 +113,7 @@ export default inject("activeCaseStore")(
                       ) => {
                         const newIndicator = event.currentTarget.value;
 
-                        // make a list of this case's existing indicators
-                        const existingIndicators = activeCase.indicators.map(
-                          indicator => indicator.name
-                        );
+                        if (newIndicator === "") return;
 
                         // add the new indicator to the case
                         activeCaseStore!.createStringIndicator(
