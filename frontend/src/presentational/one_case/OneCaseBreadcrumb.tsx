@@ -22,7 +22,7 @@ const OneCaseBreadcrumb: React.FC<IOneCaseBreadcrumbProps> = ({
     </Breadcrumb.Item>
     <Breadcrumb.Item>
       <a onClick={() => navigate(getPathToACase(caseId))}>
-        {truncateString(caseName, 100)}
+        {truncateString(caseName, 90)}
       </a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>{tabName}</Breadcrumb.Item>

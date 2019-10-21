@@ -17,6 +17,7 @@ import {
   getPathToCaseIndicators,
   getPathToCaseTasks
 } from "utils/pathHelpers";
+import truncateString from "utils/truncateString";
 
 const { Sider } = Layout;
 const { Text } = Typography;
@@ -87,7 +88,7 @@ export default inject("uiStore", "activeCaseStore")(
                       activeCaseStore!.renameActiveCase(newText)
                   }}
                 >
-                  {caseName}
+                  {truncateString(caseName, 90)}
                 </Text>
               </div>
             )}
