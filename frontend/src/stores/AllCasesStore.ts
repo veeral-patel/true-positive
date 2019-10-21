@@ -137,11 +137,11 @@ class CaseStore {
     const _this = this;
 
     // filter based on text filter + column filters
-    var filtered = this.cases.filter((thecase: ICase) =>
+    const filtered = this.cases.filter((thecase: ICase) =>
       matchesCaseFilter(_this.filterValue, thecase)
     );
 
-    // filtered based on Assigned/All radio
+    // filter based on Assigned/All radio
     if (this.assignedOrAll === "ALL") return filtered;
     else if (this.assignedOrAll === "ASSIGNED") {
       const usernameOfCurrentUser = localStorage.getItem(USERNAME_KEY);
@@ -151,6 +151,7 @@ class CaseStore {
           theCase.assignedTo.username === usernameOfCurrentUser
       );
     }
+    return [];
   }
 
   @action.bound

@@ -4,6 +4,7 @@ import client from "createApolloClient";
 import { action, computed, observable, runInAction } from "mobx";
 import GET_TASKS from "queries/getTasks";
 import ITask from "ts/interfaces/ITask";
+import { USERNAME_KEY } from "utils/constants";
 import { matchesTaskFilter } from "utils/matchesFilter";
 
 interface ITasksData {
@@ -14,6 +15,7 @@ class AllTasksStore {
   @observable tasks: ITask[] = [];
   @observable tasksAreLoading: boolean = false;
   @observable filterValue: string = "";
+  @observable assignedOrAll: "ASSIGNED" | "ALL" = "ASSIGNED";
 
   @action.bound
   loadTasks() {
@@ -42,9 +44,25 @@ class AllTasksStore {
   @computed
   get filteredTasks() {
     const _this = this;
-    return this.tasks.filter((task: ITask) =>
+    const filtered = this.tasks.filter((task: ITask) =>
       matchesTaskFilter(_this.filterValue, task)
     );
+
+    // filter based on Assigned/All radio
+    if (this.assignedOrAll === "ALL") return filtered;
+    else if (this.assignedOrAll === "ASSIGNED") {
+      const usernameOfCurrentUser = localStorage.getItem(USERNAME_KEY);
+      return filtered.filter(
+        task =>
+          task.assignedTo && task.assignedTo.username === usernameOfCurrentUser
+      );
+    }
+    return [];
+  }
+
+  @action.bound
+  setAssignedFilter(newFilter: "ASSIGNED" | "ALL") {
+    this.assignedOrAll = newFilter;
   }
 
   @action.bound

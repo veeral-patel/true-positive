@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Divider, Empty, Typography } from "antd";
+import { Divider, Empty, Radio, Typography } from "antd";
 import AllTasksTable from "container/all_tasks/AllTasksTable";
 import FilterInput from "container/all_tasks/FilterInput";
 import { inject, observer } from "mobx-react";
@@ -49,12 +49,18 @@ export default inject("allTasksStore", "uiStore")(
                   <span style={{ marginLeft: "8px", marginRight: "8px" }}>
                     <Divider type="vertical" />
                   </span>
-                  {/* <span>
-                    <Radio.Group defaultValue="assigned">
-                      <Radio.Button value="assigned">Assigned</Radio.Button>
-                      <Radio.Button value="all">All</Radio.Button>
+                  <span>
+                    <Radio.Group
+                      defaultValue="ASSIGNED"
+                      onChange={event => {
+                        const newFilter = event.target.value;
+                        allTasksStore!.setAssignedFilter(newFilter);
+                      }}
+                    >
+                      <Radio.Button value="ASSIGNED">Assigned</Radio.Button>
+                      <Radio.Button value="ALL">All</Radio.Button>
                     </Radio.Group>
-                  </span> */}
+                  </span>
                 </section>
                 <section>
                   <AllTasksTable />
