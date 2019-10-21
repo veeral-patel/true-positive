@@ -113,7 +113,8 @@ export default inject("activeCaseStore", "userStore")(
                                 newRole
                               );
                             },
-                            onCancel() {}
+                            onCancel() {},
+                            okText: "Yes, Change My Role"
                           });
                         } else {
                           activeCaseStore!.changeRole(
@@ -131,9 +132,29 @@ export default inject("activeCaseStore", "userStore")(
                       title={`Remove ${member.user.username}?`}
                       okText="Yes, Remove"
                       cancelText="No"
-                      onConfirm={() =>
-                        activeCaseStore!.removeCaseMember(member.user.username)
-                      }
+                      onConfirm={() => {
+                        const usernameOfCurrentUser = localStorage.getItem(
+                          USERNAME_KEY
+                        );
+                        if (usernameOfCurrentUser === member.user.username) {
+                          Modal.confirm({
+                            title: "Remove yourself from this case?",
+                            content:
+                              "You won't be able to view this case if you remove yourself from it.",
+                            onOk() {
+                              activeCaseStore!.removeCaseMember(
+                                member.user.username
+                              );
+                            },
+                            onCancel() {},
+                            okText: "Yes, Remove Myself"
+                          });
+                        } else {
+                          activeCaseStore!.removeCaseMember(
+                            member.user.username
+                          );
+                        }
+                      }}
                     >
                       {members.length > 1 && (
                         <Button
