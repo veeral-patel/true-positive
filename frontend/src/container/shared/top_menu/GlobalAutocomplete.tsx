@@ -1,11 +1,13 @@
-import { AutoComplete, Icon, Input } from "antd";
+import { AutoComplete, Icon, Input, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import AllTasksStore from "stores/AllTasksStore";
 import TagStore from "stores/TagStore";
+import { formatDateOnly } from "utils/formatISO8601";
 
 const { Option, OptGroup } = AutoComplete;
+const { Text } = Typography;
 
 interface Props {
   allCasesStore?: AllCasesStore;
@@ -39,6 +41,11 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
           caseOptions = allCasesStore!.cases.map(theCase => (
             <Option key={theCase.id} value={theCase.name}>
               {theCase.name}
+              <span style={{ position: "absolute", right: "16px" }}>
+                <Text type="secondary">
+                  {formatDateOnly(theCase.createdAt)}
+                </Text>
+              </span>
             </Option>
           ));
         }
@@ -84,6 +91,7 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
         return (
           <AutoComplete
             dropdownMatchSelectWidth={false}
+            optionLabelProp="value"
             dropdownStyle={{ width: 350 }}
             filterOption={(inputValue, option) => {
               // filter options based on the name of the task/tag/indicator/case
