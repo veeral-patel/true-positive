@@ -31,6 +31,12 @@ class Mutations::ChangeRole  < Mutations::BaseMutation
             # find the case member to update
             member = the_case.case_members.find_by!(user: user)
 
+            # if this is the last CAN_EDIT member in the case, you cannot make him CAN_VIEW
+            members_who_can_edit = the_case.case_members.where(role: "CAN_EDIT")
+            if members_who_can_edit.count == 1  && member.role == "CAN_EDIT"  && role == "CAN_VIEW"
+                raise GraphQL::ExecutionError, "You can't make a case's last 'Can Edit' member 'Can View'."
+            end
+
             # update the case member in memory
             member.role = role
 
