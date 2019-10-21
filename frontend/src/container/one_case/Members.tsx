@@ -111,10 +111,12 @@ export default inject("activeCaseStore", "userStore")(
                         activeCaseStore!.removeCaseMember(member.user.username)
                       }
                     >
-                      <Button
-                        icon="close"
-                        style={{ border: "none", marginLeft: "1em" }}
-                      />
+                      {members.length > 1 && (
+                        <Button
+                          icon="close"
+                          style={{ border: "none", marginLeft: "1em" }}
+                        />
+                      )}
                     </Popconfirm>
                   </List.Item>
                 )}
