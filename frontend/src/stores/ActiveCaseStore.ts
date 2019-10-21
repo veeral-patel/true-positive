@@ -528,7 +528,7 @@ class ActiveCaseStore {
       })
       .catch((error: ApolloError) => {
         notification.error({
-          message: "An error occurred while removing the member",
+          message: "An error occurred while removing the user",
           description: error.message
         });
       })

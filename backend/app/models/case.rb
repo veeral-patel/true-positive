@@ -28,6 +28,11 @@ class Case < ApplicationRecord
 
   def remove_member(user)
     # Tries to remove an user from the case, and returns true iff the operation succeeded
+    if self.case_members.length == 1
+      errors[:base] << "You cannot remove the last user from a case."
+      return false
+    end
+
     begin
       member = CaseMember.find_by!(case: self, user: user)
       member.destroy
