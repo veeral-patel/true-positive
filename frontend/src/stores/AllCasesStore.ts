@@ -8,6 +8,7 @@ import DELETE_A_CASE from "mutations/deleteCase";
 import GET_CASES from "queries/getCases";
 import rootStore from "stores";
 import ICase from "ts/interfaces/ICase";
+import { USERNAME_KEY } from "utils/constants";
 import { matchesCaseFilter } from "utils/matchesFilter";
 import { getPathToACase } from "utils/pathHelpers";
 
@@ -26,6 +27,7 @@ class CaseStore {
   @observable casesAreLoading: boolean = false;
   @observable selectedCases: ICase[] = [];
   @observable filterValue: string = "";
+  @observable assignedOrAll: "ASSIGNED" | "ALL" = "ASSIGNED";
 
   @action.bound
   loadCases() {
@@ -133,9 +135,22 @@ class CaseStore {
   @computed
   get filteredCases() {
     const _this = this;
-    return this.cases.filter((thecase: ICase) =>
+
+    // filter based on text filter + column filters
+    var filtered = this.cases.filter((thecase: ICase) =>
       matchesCaseFilter(_this.filterValue, thecase)
     );
+
+    // filtered based on Assigned/All radio
+    if (this.assignedOrAll === "ALL") return filtered;
+    else if (this.assignedOrAll === "ASSIGNED") {
+      const usernameOfCurrentUser = localStorage.getItem(USERNAME_KEY);
+      return filtered.filter(
+        theCase =>
+          theCase.assignedTo &&
+          theCase.assignedTo.username === usernameOfCurrentUser
+      );
+    }
   }
 
   @action.bound
