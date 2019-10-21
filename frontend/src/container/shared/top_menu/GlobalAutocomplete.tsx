@@ -114,7 +114,18 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
               </OptGroup>,
               <OptGroup key="Tasks" label="Tasks">
                 {taskOptions}
-              </OptGroup>
+              </OptGroup>,
+              <Option
+                disabled
+                key="all"
+                style={{
+                  textAlign: "center",
+                  cursor: "default",
+                  lineHeight: 2
+                }}
+              >
+                <a>View all results</a>
+              </Option>
             ]}
           >
             <Input
