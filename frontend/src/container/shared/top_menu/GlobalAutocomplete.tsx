@@ -41,9 +41,6 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
               {theCase.name}
             </Option>
           ));
-
-          // show only first 3 matches
-          if (caseOptions.length > 3) caseOptions = caseOptions.slice(0, 3);
         }
 
         // tag options
@@ -63,9 +60,6 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
               {tag.name}
             </Option>
           ));
-
-          // show only first 3 matches
-          if (tagOptions.length > 3) tagOptions = tagOptions.slice(0, 3);
         }
 
         // task options
@@ -85,14 +79,12 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
               {task.name}
             </Option>
           ));
-
-          // show only first 3 matches
-          if (taskOptions.length > 3) taskOptions = taskOptions.slice(0, 3);
         }
 
         return (
           <AutoComplete
             filterOption={(inputValue, option) => {
+              // filter options based on the name of the task/tag/indicator/case
               if (option.props.value) {
                 return (
                   option.props.value
