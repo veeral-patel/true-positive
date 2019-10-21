@@ -33,7 +33,7 @@ export default inject("activeCaseStore")(
             </Breadcrumb.Item>
             <Breadcrumb.Item>
               <a onClick={() => navigate(getPathToACase(activeCase.id))}>
-                {activeCase.name}
+                {truncateString(activeCase.name, 90)}
               </a>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
