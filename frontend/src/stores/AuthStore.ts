@@ -3,7 +3,7 @@ import axios from "axios";
 import client from "createApolloClient";
 import jwt from "jsonwebtoken";
 import { action } from "mobx";
-import { JWT_TOKEN_KEY } from "utils/constants";
+import { JWT_TOKEN_KEY, USERNAME_KEY } from "utils/constants";
 
 interface Response {
   session: SessionData;
@@ -32,6 +32,7 @@ class AuthStore {
       .then(response => {
         // set the JWT we receive in localstorage
         this.setToken(response.data.session.jwt);
+        this.setUsername(response.data.session.username);
 
         // refresh the page
         window.location.reload();
@@ -62,13 +63,18 @@ class AuthStore {
     localStorage.setItem(JWT_TOKEN_KEY, jwt);
   }
 
+  setUsername(username: string) {
+    localStorage.setItem(USERNAME_KEY, username);
+  }
+
   getToken() {
     return localStorage.getItem(JWT_TOKEN_KEY);
   }
 
   logout() {
-    // delete our token
+    // remove our token and username from localstorage
     localStorage.removeItem(JWT_TOKEN_KEY);
+    localStorage.removeItem(USERNAME_KEY);
 
     // clear our local cache
     client.resetStore();

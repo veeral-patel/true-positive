@@ -6,6 +6,7 @@ export const paths = {
 };
 
 export const JWT_TOKEN_KEY = "JWT_TOKEN";
+export const USERNAME_KEY = "CURRENT_USER_USERNAME";
 
 export const ADD_TAGS = "ADD_TAGS";
 export const REMOVE_TAGS = "REMOVE_TAGS";
