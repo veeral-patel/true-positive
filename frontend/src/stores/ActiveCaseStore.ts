@@ -26,6 +26,7 @@ import ICase from "ts/interfaces/ICase";
 import IIndicator from "ts/interfaces/IIndicator";
 import ITask from "ts/interfaces/ITask";
 import { NO_ASSIGNED_USER } from "utils/constants";
+import getUsernameOfCurrentUser from "utils/currentUser";
 
 interface ICaseDatum {
   case: ICase;
@@ -532,11 +533,15 @@ class ActiveCaseStore {
           description: error.message
         });
       })
-      .finally(() =>
+      .finally(() => {
+        // don't try refreshing the case if you remove yourself from it
+        const usernameOfCurrentUser = getUsernameOfCurrentUser();
+        if (usernameOfCurrentUser === username) return;
+
         runInAction(() => {
           this.loadActiveCase();
-        })
-      );
+        });
+      });
   }
 
   @action.bound
