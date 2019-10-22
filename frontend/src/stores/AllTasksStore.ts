@@ -4,7 +4,7 @@ import client from "createApolloClient";
 import { action, computed, observable, runInAction } from "mobx";
 import GET_TASKS from "queries/getTasks";
 import ITask from "ts/interfaces/ITask";
-import { USERNAME_KEY } from "utils/constants";
+import getUsernameOfCurrentUser from "utils/currentUser";
 import { matchesTaskFilter } from "utils/matchesFilter";
 
 interface ITasksData {
@@ -51,7 +51,7 @@ class AllTasksStore {
     // filter based on Assigned/All radio
     if (this.assignedOrAll === "ALL") return filtered;
     else if (this.assignedOrAll === "ASSIGNED") {
-      const usernameOfCurrentUser = localStorage.getItem(USERNAME_KEY);
+      const usernameOfCurrentUser = getUsernameOfCurrentUser();
       return filtered.filter(
         task =>
           task.assignedTo && task.assignedTo.username === usernameOfCurrentUser

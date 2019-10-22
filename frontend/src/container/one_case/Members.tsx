@@ -16,7 +16,8 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UserStore from "stores/UserStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
-import { paths, USERNAME_KEY } from "utils/constants";
+import { paths } from "utils/constants";
+import getUsernameOfCurrentUser from "utils/currentUser";
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -95,9 +96,7 @@ export default inject("activeCaseStore", "userStore")(
                       value={member.role}
                       style={{ width: "120px" }}
                       onSelect={newRole => {
-                        const usernameOfCurrentUser = localStorage.getItem(
-                          USERNAME_KEY
-                        );
+                        const usernameOfCurrentUser = getUsernameOfCurrentUser();
                         if (
                           usernameOfCurrentUser === member.user.username &&
                           newRole === "CAN_VIEW"
@@ -133,9 +132,7 @@ export default inject("activeCaseStore", "userStore")(
                       okText="Yes, Remove"
                       cancelText="No"
                       onConfirm={() => {
-                        const usernameOfCurrentUser = localStorage.getItem(
-                          USERNAME_KEY
-                        );
+                        const usernameOfCurrentUser = getUsernameOfCurrentUser();
                         if (usernameOfCurrentUser === member.user.username) {
                           Modal.confirm({
                             title: "Remove yourself from this case?",
