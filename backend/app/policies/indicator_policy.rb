@@ -32,4 +32,8 @@ class IndicatorPolicy
     def rename_indicator?
         user_can_edit_case?
     end
+
+    def change_indicator?
+        user_can_edit_case?
+    end
 end
