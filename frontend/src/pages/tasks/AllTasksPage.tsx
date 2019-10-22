@@ -62,7 +62,13 @@ export default inject("allTasksStore", "uiStore")(
                     </Radio.Group>
                   </span>
                   <span>
-                    <Radio.Group>
+                    <Radio.Group
+                      value={allTasksStore!.doneFilter}
+                      onChange={event => {
+                        const newFilter = event.target.value;
+                        allTasksStore!.setDoneFilter(newFilter);
+                      }}
+                    >
                       <Radio.Button value="NOT_DONE">Not Done</Radio.Button>
                       <Radio.Button value="DONE">Done</Radio.Button>
                       <Radio.Button value="ALL">All</Radio.Button>

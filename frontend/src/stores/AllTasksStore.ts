@@ -16,6 +16,7 @@ class AllTasksStore {
   @observable tasksAreLoading: boolean = false;
   @observable filterValue: string = "";
   @observable assignedOrAll: "ASSIGNED" | "ALL" = "ASSIGNED";
+  @observable doneFilter: "NOT_DONE" | "DONE" | "ALL" = "NOT_DONE";
 
   @action.bound
   loadTasks() {
@@ -44,20 +45,41 @@ class AllTasksStore {
   @computed
   get filteredTasks() {
     const _this = this;
-    const filtered = this.tasks.filter((task: ITask) =>
+
+    // filter based on column filters
+    var filtered = this.tasks.filter((task: ITask) =>
       matchesTaskFilter(_this.filterValue, task)
     );
 
     // filter based on Assigned/All radio
-    if (this.assignedOrAll === "ALL") return filtered;
-    else if (this.assignedOrAll === "ASSIGNED") {
+    if (this.assignedOrAll === "ALL") {
+      filtered = filtered;
+    } else if (this.assignedOrAll === "ASSIGNED") {
       const usernameOfCurrentUser = getUsernameOfCurrentUser();
-      return filtered.filter(
+      filtered = filtered.filter(
         task =>
           task.assignedTo && task.assignedTo.username === usernameOfCurrentUser
       );
+    } else {
+      filtered = [];
     }
-    return [];
+
+    // filter based on Done/Not Done/All radio
+    if (this.doneFilter === "ALL") {
+      filtered = filtered;
+    } else if (this.doneFilter === "DONE") {
+      filtered = filtered.filter(task => task.done);
+    } else if (this.doneFilter === "NOT_DONE") {
+      filtered = filtered.filter(task => !task.done);
+    } else {
+      filtered = [];
+    }
+    return filtered;
+  }
+
+  @action.bound
+  setDoneFilter(newFilter: "NOT_DONE" | "DONE" | "ALL") {
+    this.doneFilter = newFilter;
   }
 
   @action.bound
