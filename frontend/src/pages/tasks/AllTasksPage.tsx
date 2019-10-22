@@ -51,7 +51,7 @@ export default inject("allTasksStore", "uiStore")(
                   </span>
                   <span>
                     <Radio.Group
-                      defaultValue="ASSIGNED"
+                      value={allTasksStore!.assignedOrAll}
                       onChange={event => {
                         const newFilter = event.target.value;
                         allTasksStore!.setAssignedFilter(newFilter);

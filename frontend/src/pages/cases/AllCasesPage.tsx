@@ -72,7 +72,7 @@ export default inject("allCasesStore", "uiStore")(
                   </span>
                   <span>
                     <Radio.Group
-                      defaultValue="ASSIGNED"
+                      value={allCasesStore!.assignedOrAll}
                       onChange={event => {
                         const newFilter = event.target.value;
                         allCasesStore!.setAssignedFilter(newFilter);
