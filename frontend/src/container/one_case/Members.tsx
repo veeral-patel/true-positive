@@ -137,7 +137,7 @@ export default inject("activeCaseStore", "userStore")(
                           Modal.confirm({
                             title: "Remove yourself from this case?",
                             content:
-                              "You won't be able to view this case if you remove yourself from it.",
+                              "You won't be able to view this case anymore after you remove yourself from it.",
                             onOk() {
                               activeCaseStore!.removeCaseMember(
                                 member.user.username
