@@ -84,7 +84,20 @@ export default inject("allCasesStore", "uiStore")(
                   </span>
                 </div>
                 <div>
-                  <CasesTable />
+                  {allCasesStore!.filteredCases.length === 0 ? (
+                    <Empty
+                      description={
+                        <div style={{ marginTop: "1em" }}>
+                          <h3>No cases</h3>
+                          <Paragraph>
+                            No cases match your filters above
+                          </Paragraph>
+                        </div>
+                      }
+                    />
+                  ) : (
+                    <CasesTable />
+                  )}
                 </div>
               </section>
             )}

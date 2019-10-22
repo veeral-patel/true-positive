@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import { Spin, Table } from "antd";
+import { Spin, Table, Typography } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
@@ -25,6 +25,7 @@ import {
 import truncateString from "utils/truncateString";
 
 const { Column } = Table;
+const { Paragraph } = Typography;
 
 interface ICasesTableProps {
   allCasesStore?: CaseStore;
