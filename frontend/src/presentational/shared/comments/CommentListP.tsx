@@ -1,4 +1,4 @@
-import { Avatar, Comment, List } from "antd";
+import { Avatar, Button, Comment, List } from "antd";
 import DeleteCommentButton from "container/shared/comments/DeleteCommentButton";
 import React from "react";
 import IComment from "ts/interfaces/IComment";
@@ -25,7 +25,10 @@ const CommentListP: React.FC<CommentListProps> = ({ comments }) => {
             avatar={<Avatar icon="user" />}
             actions={[
               usernameOfCurrentUser === comment.createdBy.username && (
-                <DeleteCommentButton comment={comment} />
+                <span>
+                  <Button type="link" icon="edit" />
+                  <DeleteCommentButton comment={comment} />
+                </span>
               )
             ]}
           />
