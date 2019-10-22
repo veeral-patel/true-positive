@@ -49,7 +49,7 @@ export default inject("allTasksStore", "uiStore")(
                   <span style={{ marginLeft: "8px", marginRight: "8px" }}>
                     <Divider type="vertical" />
                   </span>
-                  <span>
+                  <span style={{ marginRight: "16px" }}>
                     <Radio.Group
                       value={allTasksStore!.assignedOrAll}
                       onChange={event => {
@@ -58,6 +58,13 @@ export default inject("allTasksStore", "uiStore")(
                       }}
                     >
                       <Radio.Button value="ASSIGNED">Assigned</Radio.Button>
+                      <Radio.Button value="ALL">All</Radio.Button>
+                    </Radio.Group>
+                  </span>
+                  <span>
+                    <Radio.Group>
+                      <Radio.Button value="NOT_DONE">Not Done</Radio.Button>
+                      <Radio.Button value="DONE">Done</Radio.Button>
                       <Radio.Button value="ALL">All</Radio.Button>
                     </Radio.Group>
                   </span>
