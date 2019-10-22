@@ -58,7 +58,7 @@ export default inject("activeCaseStore")(
                   <ThisCaseHasBeenMergedAlert />
                 </div>
                 <div>
-                  {activeCaseStore!.activeCase !== null && (
+                  {activeCaseStore!.activeCase && (
                     <Router>
                       <OneCaseBreadcrumb
                         caseId={activeCaseStore!.activeCase.id}
