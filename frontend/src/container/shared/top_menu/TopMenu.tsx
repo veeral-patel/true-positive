@@ -1,6 +1,6 @@
 import { navigate } from "@reach/router";
 import { Icon, Menu } from "antd";
-import logo from "logo/tp_logo_lightblue.svg";
+import logo from "logo/tp_logo_lightblue.png";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AuthStore from "stores/AuthStore";
@@ -26,7 +26,10 @@ export default inject("uiStore", "authStore")(
               style={{ float: "left" }}
               onClick={() => navigate(paths.CASES_PATH)}
             >
-              <img src={logo} style={{ verticalAlign: "middle" }} />
+              <img
+                src={logo}
+                style={{ verticalAlign: "middle", height: "20px" }}
+              />
             </Menu.Item>
             <Menu.Item
               onClick={() => navigate(paths.CASES_PATH)}
