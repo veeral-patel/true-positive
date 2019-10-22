@@ -76,7 +76,20 @@ export default inject("allTasksStore", "uiStore")(
                   </span>
                 </section>
                 <section>
-                  <AllTasksTable />
+                  {allTasksStore!.filteredTasks.length === 0 ? (
+                    <Empty
+                      description={
+                        <div style={{ marginTop: "1em" }}>
+                          <h3>No tasks</h3>
+                          <Paragraph>
+                            No tasks match your filters above
+                          </Paragraph>
+                        </div>
+                      }
+                    />
+                  ) : (
+                    <AllTasksTable />
+                  )}
                 </section>
               </div>
             )}
