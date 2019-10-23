@@ -1,5 +1,5 @@
+import { Button, Popconfirm } from "antd";
 import { inject, observer } from "mobx-react";
-import DeleteCommentButtonP from "presentational/shared/comments/DeleteCommentButtonP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import IComment from "ts/interfaces/IComment";
@@ -17,9 +17,18 @@ export default inject("activeCaseStore")(
       render() {
         const { activeCaseStore, comment } = this.props;
         return (
-          <DeleteCommentButtonP
-            deleteComment={() => activeCaseStore!.deleteComment(comment.id)}
-          />
+          <Popconfirm
+            title="Delete this comment?"
+            okText="Yes, Delete"
+            onConfirm={() => activeCaseStore!.deleteComment(comment.id)}
+            cancelText="No"
+          >
+            <Button
+              type="link"
+              icon="delete"
+              style={{ margin: 0, padding: 0 }}
+            />
+          </Popconfirm>
         );
       }
     }
