@@ -18,7 +18,7 @@ class Mutations::ChangeComment < Mutations::BaseMutation
 
         # authorize this action
         unless CommentPolicy.new(context[:current_user], comment_record).change_comment?
-            raise GraphQL::ExecutionError, "You can only update comments that you've created."
+            raise GraphQL::ExecutionError, "To edit a comment, you must (1) be its author and (2) be able to edit its case."
         end
 
         # update the comment in memory

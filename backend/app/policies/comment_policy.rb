@@ -15,8 +15,19 @@ class CommentPolicy
     end
 
     def change_comment?
-        # Only a comment's creator can change it
-        @comment.created_by == @user
+        # To edit a comment, you must be its author...
+        if not @comment.created_by == @user
+            return false
+        end
+
+        # And be able to edit the case that it's in (as of now)
+        if @comment.commentable_type == "Case"
+            CasePolicy.new(@user, @comment.commentable).change_comment?
+        elsif @comment.commentable_type == "Task"
+            TaskPolicy.new(@user, @comment.commentable).change_comment?
+        elsif @comment.commentable_type == "Indicator"
+            IndicatorPolicy.new(@user, @comment.commentable).change_comment?
+        end
     end
 
     def delete_comment?

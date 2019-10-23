@@ -25,6 +25,10 @@ class IndicatorPolicy
         user_can_edit_case?
     end
 
+    def change_comment?
+        user_can_edit_case?
+    end
+
     def delete_indicator?
         user_can_edit_case?
     end
