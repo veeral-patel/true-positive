@@ -6,11 +6,11 @@ class Mutations::ChangeComment < Mutations::BaseMutation
     end
 
     argument :comment, String, required: true do
-        description "The updated comment."
+        description "The comment's new text."
     end
 
     field :comment, Types::CommentType, null: true do
-        description "The newly created comment."
+        description "The updated comment."
     end
 
     def resolve(id:, comment:)
@@ -24,6 +24,7 @@ class Mutations::ChangeComment < Mutations::BaseMutation
         # update the comment in memory
         comment_record.comment = comment
 
+        # and save it to the database
         if comment_record.save
             {
                 "comment": comment_record
