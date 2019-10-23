@@ -73,7 +73,10 @@ export default inject("activeCaseStore")(
                 backIcon={<Icon type="arrow-left" style={{ fontSize: 14 }} />}
                 title={
                   <Text
-                    style={{ fontSize: 16 }}
+                    style={{
+                      fontSize: 16
+                    }}
+                    ellipsis
                     editable={{
                       onChange: (newText: string) =>
                         activeCaseStore!.renameIndicator(
@@ -99,23 +102,26 @@ export default inject("activeCaseStore")(
                   </Col>
                 </Row>
                 {activeIndicator.type === "STRING" && (
-                  <Row>
-                    <Col span={4}>Indicator:</Col>
-                    <Col span={20}>
-                      <Text
-                        copyable
-                        editable={{
-                          onChange: (newValue: string) =>
-                            activeCaseStore!.changeIndicatorValue(
-                              activeIndicator.id,
-                              newValue
-                            )
-                        }}
-                      >
-                        {activeIndicator.indicator}
-                      </Text>
-                    </Col>
-                  </Row>
+                  <div>
+                    <Row>
+                      <Col span={4}>Indicator:</Col>
+                      <Col span={20}>
+                        <Text
+                          copyable
+                          ellipsis
+                          editable={{
+                            onChange: (newValue: string) =>
+                              activeCaseStore!.changeIndicatorValue(
+                                activeIndicator.id,
+                                newValue
+                              )
+                          }}
+                        >
+                          {activeIndicator.indicator}
+                        </Text>
+                      </Col>
+                    </Row>
+                  </div>
                 )}
                 <Row>
                   <Col span={4}>Created:</Col>
