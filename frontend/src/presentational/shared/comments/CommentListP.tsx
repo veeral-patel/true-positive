@@ -17,19 +17,17 @@ const CommentListP: React.FC<CommentListProps> = ({ comments }) => {
       itemLayout="horizontal"
       dataSource={comments}
       renderItem={comment => (
-        <li>
-          <Comment
-            content={comment.comment}
-            author={comment.createdBy.username}
-            datetime={`${formatISO8601(comment.createdAt)} UTC`}
-            avatar={<Avatar icon="user" />}
-            actions={[
-              usernameOfCurrentUser === comment.createdBy.username && (
-                <DeleteCommentButton comment={comment} />
-              )
-            ]}
-          />
-        </li>
+        <Comment
+          content={comment.comment}
+          author={comment.createdBy.username}
+          datetime={`${formatISO8601(comment.createdAt)} UTC`}
+          avatar={<Avatar icon="user" />}
+          actions={[
+            usernameOfCurrentUser === comment.createdBy.username && (
+              <DeleteCommentButton comment={comment} />
+            )
+          ]}
+        />
       )}
     />
   );
