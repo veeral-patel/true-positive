@@ -4,6 +4,7 @@ import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import ADD_MEMBER from "mutations/addMember";
 import CHANGE_ASSIGNEE from "mutations/changeAssignee";
+import CHANGE_A_COMMENT from "mutations/changeComment";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_AN_INDICATOR from "mutations/changeIndicator";
 import CHANGE_PRIORITY from "mutations/changePriority";
@@ -170,6 +171,33 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while creating the comment",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+  @action.bound
+  changeComment(commentId: number, newComment: string) {
+    client
+      .mutate({
+        variables: {
+          input: {
+            id: commentId,
+            comment: newComment
+          }
+        },
+        mutation: CHANGE_A_COMMENT
+      })
+      .then(response => {
+        message.success("Updated the comment");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while updating the comment",
           description: error.message
         });
       })
