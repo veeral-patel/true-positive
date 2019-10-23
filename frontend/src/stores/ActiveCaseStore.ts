@@ -5,6 +5,7 @@ import { action, autorun, observable, runInAction } from "mobx";
 import ADD_MEMBER from "mutations/addMember";
 import CHANGE_ASSIGNEE from "mutations/changeAssignee";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
+import CHANGE_AN_INDICATOR from "mutations/changeIndicator";
 import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_ROLE from "mutations/changeRole";
 import CHANGE_STATUS from "mutations/changeStatus";
@@ -723,6 +724,34 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while updating the task",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  changeIndicatorValue(indicatorId: number, newValue: string) {
+    client
+      .mutate<ITaskDatum>({
+        variables: {
+          input: {
+            id: indicatorId,
+            indicator: newValue
+          }
+        },
+        mutation: CHANGE_AN_INDICATOR
+      })
+      .then((response: FetchResult<ITaskDatum>) => {
+        message.success("Updated the indicator");
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while updating the indicator",
           description: error.message
         });
       })

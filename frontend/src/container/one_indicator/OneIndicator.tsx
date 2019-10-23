@@ -101,7 +101,16 @@ export default inject("activeCaseStore")(
                   <Row>
                     <Col span={4}>Indicator:</Col>
                     <Col span={20}>
-                      <Text copyable editable>
+                      <Text
+                        copyable
+                        editable={{
+                          onChange: (newValue: string) =>
+                            activeCaseStore!.changeIndicatorValue(
+                              activeIndicator.id,
+                              newValue
+                            )
+                        }}
+                      >
                         {activeIndicator.indicator}
                       </Text>
                     </Col>
