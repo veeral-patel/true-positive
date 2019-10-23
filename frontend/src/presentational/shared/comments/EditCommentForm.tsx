@@ -21,12 +21,9 @@ class DumbEditCommentForm extends React.Component<FormProps> {
     return (
       <Form onSubmit={this.handleSubmit.bind(this)}>
         <Form.Item>
-          {getFieldDecorator("comment")(
-            <TextArea
-              defaultValue={initialComment}
-              style={{ paddingTop: "2%" }}
-            />
-          )}
+          {getFieldDecorator("comment", {
+            initialValue: initialComment
+          })(<TextArea style={{ paddingTop: "2%" }} />)}
         </Form.Item>
         <Form.Item>
           <Button type="link" onClick={() => this.setState({ editing: false })}>
