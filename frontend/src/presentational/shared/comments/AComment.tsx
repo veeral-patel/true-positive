@@ -1,11 +1,10 @@
-import { Avatar, Button, Comment, Input } from "antd";
+import { Avatar, Button, Comment } from "antd";
 import DeleteCommentButton from "container/shared/comments/DeleteCommentButton";
 import React from "react";
 import IComment from "ts/interfaces/IComment";
 import getUsernameOfCurrentUser from "utils/currentUser";
 import formatISO8601 from "utils/formatISO8601";
-
-const { TextArea } = Input;
+import EditCommentForm from "./EditCommentForm";
 
 interface Props {
   comment: IComment;
@@ -29,21 +28,10 @@ class AComment extends React.Component<Props, State> {
       <Comment
         content={
           editing ? (
-            <div>
-              <TextArea
-                defaultValue={comment.comment}
-                style={{ paddingTop: "2%" }}
-              />
-              <div style={{ marginTop: "1em" }}>
-                <Button
-                  type="link"
-                  onClick={() => this.setState({ editing: false })}
-                >
-                  Cancel
-                </Button>
-                <Button>Update</Button>
-              </div>
-            </div>
+            <EditCommentForm
+              initialComment={comment.comment}
+              commentId={comment.id}
+            />
           ) : (
             comment.comment
           )
