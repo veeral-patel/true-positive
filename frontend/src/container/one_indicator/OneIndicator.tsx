@@ -10,6 +10,7 @@ import {
   Typography
 } from "antd";
 import ActionsDropdown from "container/one_indicator/ActionsDropdown";
+import IndicatorForm from "container/one_indicator/IndicatorForm";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionForm from "container/shared/description/DescriptionForm";
 import { inject, observer } from "mobx-react";
@@ -146,12 +147,7 @@ export default inject("activeCaseStore")(
                     </Col>
                   </Row>
                   <Row>
-                    <TextArea
-                      defaultValue={activeIndicator.indicator}
-                      rows={5}
-                      placeholder="Enter your indicator here"
-                      style={{ padding: "2%", fontFamily: "monospace" }}
-                    />
+                    <IndicatorForm activeIndicator={activeIndicator} />
                   </Row>
                 </section>
               )}
