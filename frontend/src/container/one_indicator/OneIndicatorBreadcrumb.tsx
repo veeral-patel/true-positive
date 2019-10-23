@@ -33,7 +33,7 @@ export default inject("activeCaseStore")(
             </Breadcrumb.Item>
             <Breadcrumb.Item>
               <a onClick={() => navigate(getPathToACase(activeCase.id))}>
-                {truncateString(activeCase.name, 90)}
+                {truncateString(activeCase.name, 60)}
               </a>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
@@ -44,7 +44,7 @@ export default inject("activeCaseStore")(
               </a>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              {truncateString(activeIndicator.name, 90)}
+              {truncateString(activeIndicator.name, 60)}
             </Breadcrumb.Item>
           </Breadcrumb>
         );
