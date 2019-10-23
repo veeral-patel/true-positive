@@ -34,7 +34,8 @@ module Types
       field :change_tags, mutation: Mutations::ChangeTags
 
       # comment --------
-      field :create_comment, mutation: Mutations::CreateComment # missing authz
+      field :create_comment, mutation: Mutations::CreateComment
+      field :change_comment, mutation: Mutations::ChangeComment
       field :delete_comment, mutation: Mutations::DeleteComment
 
       # status ----------

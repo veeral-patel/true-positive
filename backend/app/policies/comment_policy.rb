@@ -14,6 +14,11 @@ class CommentPolicy
         end
     end
 
+    def change_comment?
+        # Only a comment's creator can change it
+        @comment.created_by == @user
+    end
+
     def delete_comment?
         # Only a comment's creator can delete it
         @comment.created_by == @user
