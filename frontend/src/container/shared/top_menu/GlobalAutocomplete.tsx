@@ -16,9 +16,17 @@ interface Props {
   allTasksStore?: AllTasksStore;
 }
 
+interface State {
+  searchValue: string;
+}
+
 export default inject("allCasesStore", "tagStore", "allTasksStore")(
   observer(
-    class GlobalAutocomplete extends React.Component<Props> {
+    class GlobalAutocomplete extends React.Component<Props, State> {
+      state = {
+        searchValue: ""
+      };
+
       componentDidMount() {
         const { allCasesStore, allTasksStore, tagStore } = this.props;
         allCasesStore!.loadCases();
@@ -96,9 +104,12 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
 
         return (
           <AutoComplete
+            value={this.state.searchValue}
+            onChange={(value: any) => this.setState({ searchValue: value })}
             dropdownMatchSelectWidth={false}
+            onSelect={event => this.setState({ searchValue: "" })}
             optionLabelProp="value"
-            dropdownStyle={{ width: 350 }}
+            dropdownStyle={{ width: "350px" }}
             filterOption={(inputValue, option) => {
               // filter options based on the name of the task/tag/indicator/case
               if (option.props.value) {
