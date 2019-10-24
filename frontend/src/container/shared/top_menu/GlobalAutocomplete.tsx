@@ -49,7 +49,7 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
         } else {
           caseOptions = allCasesStore!.cases.map(theCase => (
             <Option key={theCase.id} value={theCase.name}>
-              {theCase.name}
+              {truncateString(theCase.name, 35)}
               <span style={{ position: "absolute", right: "16px" }}>
                 <Text type="secondary">
                   {formatDateOnly(theCase.createdAt)}
@@ -145,7 +145,15 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
               >
                 {tagOptions}
               </OptGroup>,
-              <OptGroup key="Tasks" label="Tasks">
+              <OptGroup
+                key="Tasks"
+                label={
+                  <span>
+                    Tasks
+                    <a style={{ float: "right" }}>More</a>
+                  </span>
+                }
+              >
                 {taskOptions}
               </OptGroup>,
               <Option
