@@ -134,7 +134,15 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
               >
                 {caseOptions}
               </OptGroup>,
-              <OptGroup key="Tags" label="Tags">
+              <OptGroup
+                key="Tags"
+                label={
+                  <span>
+                    Tags
+                    <a style={{ float: "right" }}>More</a>
+                  </span>
+                }
+              >
                 {tagOptions}
               </OptGroup>,
               <OptGroup key="Tasks" label="Tasks">
