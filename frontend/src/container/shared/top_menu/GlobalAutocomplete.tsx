@@ -123,7 +123,15 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
               return false;
             }}
             dataSource={[
-              <OptGroup key="Cases" label="Cases">
+              <OptGroup
+                key="Cases"
+                label={
+                  <span>
+                    Cases
+                    <a style={{ float: "right" }}>More</a>
+                  </span>
+                }
+              >
                 {caseOptions}
               </OptGroup>,
               <OptGroup key="Tags" label="Tags">
