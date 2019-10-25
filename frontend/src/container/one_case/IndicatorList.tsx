@@ -39,7 +39,7 @@ class IndicatorList extends React.Component<Props> {
                     onClick={event => {
                       event.stopPropagation();
                       copy(indicator.name);
-                      message.success("Copied indicator");
+                      message.success("Copied name");
                     }}
                   />
                 </div>
