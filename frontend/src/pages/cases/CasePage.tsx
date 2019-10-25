@@ -1,5 +1,5 @@
 import { RouteComponentProps, Router } from "@reach/router";
-import { Layout, notification } from "antd";
+import { Layout } from "antd";
 import CaseSider from "container/one_case/CaseSider";
 import HandleErrorAndLoading from "container/one_case/HandleErrorAndLoading";
 import Indicators from "container/one_case/Indicators";
@@ -20,23 +20,18 @@ import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 
-interface ICasePageProps extends RouteComponentProps {
+interface Props extends RouteComponentProps {
   caseId?: number;
   activeCaseStore?: ActiveCaseStore;
 }
 
 export default inject("activeCaseStore")(
   observer(
-    class CasePage extends React.Component<ICasePageProps> {
+    class CasePage extends React.Component<Props> {
       componentDidMount() {
         const { activeCaseStore, caseId } = this.props;
         if (caseId) {
           activeCaseStore!.setActiveCaseId(caseId);
-        } else {
-          notification.error({
-            message: "Unable to extract the case's ID from the URL",
-            description: "Ensure you're at a valid URL"
-          });
         }
       }
 
@@ -44,6 +39,12 @@ export default inject("activeCaseStore")(
         const { activeCaseStore, caseId } = this.props;
         if (caseId) {
           activeCaseStore!.setActiveCaseId(null);
+        }
+      }
+
+      componentDidUpdate(previousProps: Props) {
+        if (previousProps.caseId !== this.props.caseId) {
+          this.componentDidMount();
         }
       }
 
