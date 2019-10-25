@@ -4,6 +4,7 @@ import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import AllTasksStore from "stores/AllTasksStore";
 import TagStore from "stores/TagStore";
+import { VIEW_ALL_RESULTS } from "utils/constants";
 import { formatDateOnly } from "utils/formatISO8601";
 import truncateString from "utils/truncateString";
 
@@ -113,16 +114,30 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
             filterOption={(inputValue, option) => {
               // filter options based on the name of the task/tag/indicator/case
               if (option.props.value) {
-                return (
-                  option.props.value
-                    .toString()
-                    .toLowerCase()
-                    .indexOf(inputValue.toLowerCase()) !== -1
-                );
+                // always show "View all results"
+                if (option.props.value === VIEW_ALL_RESULTS) return true;
+                else {
+                  return (
+                    option.props.value
+                      .toString()
+                      .toLowerCase()
+                      .indexOf(inputValue.toLowerCase()) !== -1
+                  );
+                }
               }
               return false;
             }}
             dataSource={[
+              <Option
+                key={VIEW_ALL_RESULTS}
+                value={VIEW_ALL_RESULTS}
+                style={{
+                  cursor: "default",
+                  lineHeight: 2
+                }}
+              >
+                View all results
+              </Option>,
               <OptGroup
                 key="Cases"
                 label={
@@ -155,18 +170,7 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
                 }
               >
                 {taskOptions}
-              </OptGroup>,
-              <Option
-                disabled
-                key="all"
-                style={{
-                  textAlign: "center",
-                  cursor: "default",
-                  lineHeight: 2
-                }}
-              >
-                <a>View all results</a>
-              </Option>
+              </OptGroup>
             ]}
           >
             <Input
