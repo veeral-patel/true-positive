@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import { Spin, Table, Typography } from "antd";
+import { Spin, Table } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
@@ -12,7 +12,6 @@ import StatusStore from "stores/StatusStore";
 import TagStore from "stores/TagStore";
 import UserStore from "stores/UserStore";
 import ICase from "ts/interfaces/ICase";
-import ITag from "ts/interfaces/ITag";
 import compareUsers from "utils/compareUsers";
 import { paths } from "utils/constants";
 import formatISO8601 from "utils/formatISO8601";
@@ -25,7 +24,6 @@ import {
 import truncateString from "utils/truncateString";
 
 const { Column } = Table;
-const { Paragraph } = Typography;
 
 interface ICasesTableProps {
   allCasesStore?: CaseStore;
@@ -123,15 +121,12 @@ export default inject(
               dataIndex="name"
               key="name"
               sorter={(a: ICase, b: ICase) => a.name.localeCompare(b.name)}
-              render={name => truncateString(name, 40)}
-            />
-            <Column
-              title="Tags"
-              dataIndex="tags"
-              key="tags"
-              render={(tags: ITag[]) => (
-                <div style={{ lineHeight: 2.0 }}>
-                  <ListOfTagsP tags={tags} limit={3} />
+              render={(name, theCase, index) => (
+                <div>
+                  <div>{truncateString(name, 40)}</div>
+                  <div style={{ lineHeight: 2.0, marginTop: "0.5em" }}>
+                    <ListOfTagsP tags={theCase.tags} limit={6} />
+                  </div>
                 </div>
               )}
             />
