@@ -17,7 +17,6 @@ import { paths } from "utils/constants";
 import formatISO8601 from "utils/formatISO8601";
 import {
   assignedToMatches,
-  createdByMatches,
   priorityMatches,
   statusMatches
 } from "utils/matchesFilter";
@@ -173,26 +172,15 @@ export default inject(
               }
             />
             <Column
-              title="Created By"
-              dataIndex="createdBy.username"
-              key="created_by"
-              sorter={(a: ICase, b: ICase) =>
-                compareUsers(a.createdBy, b.createdBy)
-              }
-              filters={userFilters}
-              onFilter={(filterWord, record) =>
-                createdByMatches(filterWord, record.createdBy)
-              }
-            />
-            <Column
-              title="Created At (UTC)"
-              dataIndex="createdAt"
-              key="created_at"
+              title="Created"
+              key="created"
               sorter={(a: ICase, b: ICase) =>
                 a.createdAt.localeCompare(b.createdAt)
               }
               render={(text, theCase, index) =>
-                formatISO8601(theCase.createdAt)
+                `${formatISO8601(theCase.createdAt)} by ${
+                  theCase.createdBy.username
+                }`
               }
             />
           </Table>
