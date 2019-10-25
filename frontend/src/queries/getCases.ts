@@ -26,6 +26,7 @@ const GET_CASES = gql`
       tasks {
         id
         name
+        done
         description
         tags {
           id

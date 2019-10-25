@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import { Spin, Table } from "antd";
+import { Progress, Spin, Table, Tooltip } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
@@ -124,7 +124,7 @@ export default inject(
                 <div>
                   <div>{truncateString(name, 40)}</div>
                   <div style={{ lineHeight: 2.0, marginTop: "0.5em" }}>
-                    <ListOfTagsP tags={theCase.tags} limit={6} />
+                    <ListOfTagsP tags={theCase.tags} limit={4} />
                   </div>
                 </div>
               )}
@@ -180,6 +180,25 @@ export default inject(
               render={(text, theCase, index) =>
                 formatISO8601(theCase.createdAt)
               }
+            />
+            <Column
+              title="Tasks"
+              key="tasks"
+              render={(value, theCase: ICase, index) => {
+                const doneTasks = theCase.tasks.filter(task => task.done);
+                return (
+                  <Tooltip
+                    title={`${doneTasks.length} / ${theCase.tasks.length} tasks are done`}
+                  >
+                    <Progress
+                      percent={Math.round(
+                        (doneTasks.length / theCase.tasks.length) * 100
+                      )}
+                      style={{ width: "125px" }}
+                    />
+                  </Tooltip>
+                );
+              }}
             />
           </Table>
         );
