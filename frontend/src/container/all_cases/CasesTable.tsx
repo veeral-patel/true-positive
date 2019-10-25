@@ -188,7 +188,7 @@ export default inject(
                 const doneTasks = theCase.tasks.filter(task => task.done);
                 return (
                   <Tooltip
-                    title={`${doneTasks.length} / ${theCase.tasks.length} tasks are done`}
+                    title={`${doneTasks.length}/${theCase.tasks.length} tasks are done`}
                   >
                     <Progress
                       percent={Math.round(
