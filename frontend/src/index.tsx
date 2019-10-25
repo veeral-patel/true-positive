@@ -18,6 +18,7 @@ ReactDOM.render(
     tagStore={store.tagStore}
     allTasksStore={store.allTasksStore}
     authStore={store.authStore}
+    indicatorStore={store.indicatorStore}
   >
     <App />
   </Provider>,

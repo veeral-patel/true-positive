@@ -4,6 +4,7 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import AllTasksStore from "stores/AllTasksStore";
+import IndicatorStore from "stores/IndicatorStore";
 import TagStore from "stores/TagStore";
 import { VIEW_ALL_RESULTS } from "utils/constants";
 import { formatDateOnly } from "utils/formatISO8601";
@@ -17,13 +18,19 @@ interface Props {
   allCasesStore?: AllCasesStore;
   tagStore?: TagStore;
   allTasksStore?: AllTasksStore;
+  indicatorStore?: IndicatorStore;
 }
 
 interface State {
   searchValue: string;
 }
 
-export default inject("allCasesStore", "tagStore", "allTasksStore")(
+export default inject(
+  "allCasesStore",
+  "tagStore",
+  "allTasksStore",
+  "indicatorStore"
+)(
   observer(
     class GlobalAutocomplete extends React.Component<Props, State> {
       state = {
@@ -31,9 +38,16 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
       };
 
       componentDidMount() {
-        const { allCasesStore, allTasksStore, tagStore } = this.props;
+        const {
+          allCasesStore,
+          allTasksStore,
+          tagStore,
+          indicatorStore
+        } = this.props;
+
         allCasesStore!.loadCases();
         allTasksStore!.loadTasks();
+        indicatorStore!.loadIndicators();
         tagStore!.loadTags();
       }
 
@@ -52,7 +66,7 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
         } else {
           caseOptions = allCasesStore!.cases.map(theCase => (
             <Option key={theCase.id} value={theCase.name} title="CASE">
-              {truncateString(theCase.name, 35)}
+              {truncateString(theCase.name, 22)}
               <span style={{ position: "absolute", right: "16px" }}>
                 <Text type="secondary">
                   {formatDateOnly(theCase.createdAt)}
@@ -76,7 +90,35 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
         } else {
           tagOptions = tagStore!.tags.map(tag => (
             <Option key={tag.name} value={tag.name}>
-              {tag.name}
+              {truncateString(tag.name, 30)}
+            </Option>
+          ));
+        }
+
+        // task options
+        const { indicatorStore } = this.props;
+
+        let indicatorOptions: Object[];
+
+        if (indicatorStore!.indicatorsAreLoading) {
+          indicatorOptions = [
+            <Option disabled key="loading" value="loading">
+              Loading...
+            </Option>
+          ];
+        } else {
+          indicatorOptions = indicatorStore!.indicators.map(indicator => (
+            <Option
+              key={`${indicator.case.id}-${indicator.id}`}
+              value={indicator.name}
+              title="INDICATOR"
+            >
+              {truncateString(indicator.name, 22)}
+              <span style={{ position: "absolute", right: "16px" }}>
+                <Text type="secondary">
+                  {truncateString(indicator.case.name, 15)}
+                </Text>
+              </span>
             </Option>
           ));
         }
@@ -99,7 +141,7 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
               value={task.name}
               title="TASK"
             >
-              {task.name}
+              {truncateString(task.name, 22)}
               <span style={{ position: "absolute", right: "16px" }}>
                 <Text type="secondary">
                   {truncateString(task.case.name, 15)}
@@ -177,17 +219,6 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
                 {caseOptions}
               </OptGroup>,
               <OptGroup
-                key="Tags"
-                label={
-                  <span>
-                    Tags
-                    <a style={{ float: "right" }}>More</a>
-                  </span>
-                }
-              >
-                {tagOptions}
-              </OptGroup>,
-              <OptGroup
                 key="Tasks"
                 label={
                   <span>
@@ -197,6 +228,28 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
                 }
               >
                 {taskOptions}
+              </OptGroup>,
+              <OptGroup
+                key="Indicators"
+                label={
+                  <span>
+                    Indicators
+                    <a style={{ float: "right" }}>More</a>
+                  </span>
+                }
+              >
+                {indicatorOptions}
+              </OptGroup>,
+              <OptGroup
+                key="Tags"
+                label={
+                  <span>
+                    Tags
+                    <a style={{ float: "right" }}>More</a>
+                  </span>
+                }
+              >
+                {tagOptions}
               </OptGroup>
             ]}
           >

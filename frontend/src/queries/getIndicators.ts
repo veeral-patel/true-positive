@@ -7,6 +7,7 @@ const GET_INDICATORS = gql`
       name
       case {
         id
+        name
       }
     }
   }

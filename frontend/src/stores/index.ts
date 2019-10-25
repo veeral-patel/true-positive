@@ -8,6 +8,7 @@ import StatusStore from "stores/StatusStore";
 import TagStore from "stores/TagStore";
 import UIStore from "stores/UIStore";
 import UserStore from "stores/UserStore";
+import IndicatorStore from "./IndicatorStore";
 
 const allCasesStore = new AllCasesStore();
 const uiStore = new UIStore();
@@ -18,6 +19,7 @@ const userStore = new UserStore();
 const tagStore = new TagStore();
 const allTasksStore = new AllTasksStore();
 const authStore = new AuthStore();
+const indicatorStore = new IndicatorStore();
 
 // only let me mutate state within actions
 configure({
@@ -33,5 +35,6 @@ export default {
   userStore,
   tagStore,
   allTasksStore,
-  authStore
+  authStore,
+  indicatorStore
 };
