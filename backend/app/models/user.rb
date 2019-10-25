@@ -19,6 +19,6 @@ class User < ApplicationRecord
         members = CaseMember.select { |member| member.user == self }
 
         # and return the case for each CaseMember record
-        return members.map{ |member| member.case }
+        return members.map { |member| member.case }
     end
 end

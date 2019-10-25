@@ -40,4 +40,17 @@ class IndicatorPolicy
     def change_indicator?
         user_can_edit_case?
     end
+
+    class Scope
+        attr_reader :user
+
+        def initialize(user)
+            @user  = user
+        end
+
+        def resolve
+            # an user can only see the tasks in cases he's a member of
+            Indicator.where(case: @user.joined_cases)
+        end
+    end
 end

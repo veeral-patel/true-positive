@@ -82,11 +82,20 @@ module Types
 
       # -------------- Tasks ------------------------
       field :tasks, [Types::TaskType], null: false do
-        description "Lists all tasks."
+        description "Lists all the tasks from the cases you're a member of."
       end
       
       def tasks
         TaskPolicy::Scope.new(context[:current_user]).resolve
+      end
+
+      # --------------- Indicators -------------------
+      field :indicators, [Types::IndicatorType], null: false do
+        description "Lists all the indicators from the cases you're a member of."
+      end
+      
+      def indicators
+        IndicatorPolicy::Scope.new(context[:current_user]).resolve
       end
   end
 end
