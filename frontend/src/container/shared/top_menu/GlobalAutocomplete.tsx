@@ -7,7 +7,7 @@ import AllTasksStore from "stores/AllTasksStore";
 import TagStore from "stores/TagStore";
 import { VIEW_ALL_RESULTS } from "utils/constants";
 import { formatDateOnly } from "utils/formatISO8601";
-import { getPathToACase } from "utils/pathHelpers";
+import { getPathToACase, getPathToATask } from "utils/pathHelpers";
 import truncateString from "utils/truncateString";
 
 const { Option, OptGroup } = AutoComplete;
@@ -94,7 +94,11 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
           ];
         } else {
           taskOptions = allTasksStore!.tasks.map(task => (
-            <Option key={task.id} value={task.name}>
+            <Option
+              key={`${task.case.id}-${task.id}`}
+              value={task.name}
+              title="TASK"
+            >
               {task.name}
               <span style={{ position: "absolute", right: "16px" }}>
                 <Text type="secondary">
@@ -113,8 +117,23 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
             onSelect={(value, option: any) => {
               this.setState({ searchValue: "" });
 
-              if (option.props.title === "CASE") {
-                navigate(getPathToACase(option.key));
+              // the clicked option's type
+              const type = option.props.title;
+
+              if (type === "CASE") {
+                const caseId = option.key;
+
+                // open the chosen case
+                navigate(getPathToACase(caseId));
+              } else if (type === "TASK") {
+                // the key is formatted caseId-taskId
+
+                // extract the case ID and task ID
+                const caseId = option.key.split("-")[0];
+                const taskId = option.key.split("-")[1];
+
+                // and then open the chosen task
+                navigate(getPathToATask(caseId, taskId));
               }
             }}
             optionLabelProp="value"
