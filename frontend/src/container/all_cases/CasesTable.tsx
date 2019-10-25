@@ -172,15 +172,13 @@ export default inject(
               }
             />
             <Column
-              title="Created"
-              key="created"
+              title="Created (UTC)"
+              key="created_at"
               sorter={(a: ICase, b: ICase) =>
                 a.createdAt.localeCompare(b.createdAt)
               }
               render={(text, theCase, index) =>
-                `${formatISO8601(theCase.createdAt)} by ${
-                  theCase.createdBy.username
-                }`
+                formatISO8601(theCase.createdAt)
               }
             />
           </Table>

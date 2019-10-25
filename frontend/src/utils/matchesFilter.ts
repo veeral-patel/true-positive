@@ -44,7 +44,7 @@ function aCaseAttributeMatches(filterWord: string, object: ICase) {
     nameMatches(filterWord, object) ||
     statusMatches(filterWord, object.status) ||
     priorityMatches(filterWord, object.priority) ||
-    createdByMatches(filterWord, object.createdBy) ||
+    // createdByMatches(filterWord, object.createdBy) ||
     assignedToMatches(filterWord, object.assignedTo) ||
     createdAtMatches(filterWord, object)
   );
