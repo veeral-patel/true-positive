@@ -17,7 +17,7 @@ interface SessionData {
 class AuthStore {
   loggedIn() {
     const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
+    return token !== null && !this.isTokenExpired(token);
   }
 
   @action.bound
@@ -55,6 +55,9 @@ class AuthStore {
       }
       return false;
     } catch (err) {
+      // log the user out
+      this.logout();
+
       return true;
     }
   }
