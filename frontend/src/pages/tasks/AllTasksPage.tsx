@@ -27,13 +27,18 @@ export default inject("allTasksStore", "uiStore")(
         return (
           <div>
             <section>
-              <h2>Tasks</h2>
+              {allTasksStore!.tasksAreLoading ? (
+                <h3>Tasks</h3>
+              ) : (
+                <h3>Tasks ({allTasksStore!.filteredTasks.length})</h3>
+              )}
             </section>
             {allTasksStore!.tasks.length > 0 && (
               <div>
                 <section>
-                  <Paragraph>
-                    These are the tasks from the cases that you're a member of.
+                  <Paragraph type="secondary">
+                    These are all the tasks from the cases that you're a member
+                    of.
                   </Paragraph>
                 </section>
                 <section>

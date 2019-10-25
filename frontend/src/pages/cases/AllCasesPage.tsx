@@ -28,7 +28,11 @@ export default inject("allCasesStore", "uiStore")(
           <div>
             <section>
               <span style={{ display: "inline-block" }}>
-                <h2>Cases</h2>
+                {allCasesStore!.casesAreLoading ? (
+                  <h3>Cases</h3>
+                ) : (
+                  <h3>Cases ({allCasesStore!.filteredCases.length})</h3>
+                )}
               </span>
               <span style={{ float: "right" }}>
                 <Button
