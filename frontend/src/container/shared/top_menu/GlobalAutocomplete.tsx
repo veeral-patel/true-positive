@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import { AutoComplete, Icon, Input, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -6,6 +7,7 @@ import AllTasksStore from "stores/AllTasksStore";
 import TagStore from "stores/TagStore";
 import { VIEW_ALL_RESULTS } from "utils/constants";
 import { formatDateOnly } from "utils/formatISO8601";
+import { getPathToACase } from "utils/pathHelpers";
 import truncateString from "utils/truncateString";
 
 const { Option, OptGroup } = AutoComplete;
@@ -49,7 +51,7 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
           ];
         } else {
           caseOptions = allCasesStore!.cases.map(theCase => (
-            <Option key={theCase.id} value={theCase.name}>
+            <Option key={theCase.id} value={theCase.name} title="CASE">
               {truncateString(theCase.name, 35)}
               <span style={{ position: "absolute", right: "16px" }}>
                 <Text type="secondary">
@@ -108,7 +110,13 @@ export default inject("allCasesStore", "tagStore", "allTasksStore")(
             value={this.state.searchValue}
             onChange={(value: any) => this.setState({ searchValue: value })}
             dropdownMatchSelectWidth={false}
-            onSelect={event => this.setState({ searchValue: "" })}
+            onSelect={(value, option: any) => {
+              this.setState({ searchValue: "" });
+
+              if (option.props.title === "CASE") {
+                navigate(getPathToACase(option.key));
+              }
+            }}
             optionLabelProp="value"
             dropdownStyle={{ width: "350px" }}
             filterOption={(inputValue, option) => {
