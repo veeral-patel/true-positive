@@ -8,7 +8,11 @@ import IndicatorStore from "stores/IndicatorStore";
 import TagStore from "stores/TagStore";
 import { VIEW_ALL_RESULTS } from "utils/constants";
 import { formatDateOnly } from "utils/formatISO8601";
-import { getPathToACase, getPathToATask } from "utils/pathHelpers";
+import {
+  getPathToACase,
+  getPathToAnIndicator,
+  getPathToATask
+} from "utils/pathHelpers";
 import truncateString from "utils/truncateString";
 
 const { Option, OptGroup } = AutoComplete;
@@ -168,7 +172,7 @@ export default inject(
                 // open the chosen case
                 navigate(getPathToACase(caseId));
               } else if (type === "TASK") {
-                // the key is formatted caseId-taskId
+                // the key is formatted case ID-task ID
 
                 // extract the case ID and task ID
                 const caseId = option.key.split("-")[0];
@@ -176,6 +180,15 @@ export default inject(
 
                 // and then open the chosen task
                 navigate(getPathToATask(caseId, taskId));
+              } else if (type === "INDICATOR") {
+                // the key is formatted case ID-indicator ID
+
+                // extract the case ID and indicator ID
+                const caseId = option.key.split("-")[0];
+                const indicatorId = option.key.split("-")[1];
+
+                // and then open the chosen indicator
+                navigate(getPathToAnIndicator(caseId, indicatorId));
               }
             }}
             optionLabelProp="value"
