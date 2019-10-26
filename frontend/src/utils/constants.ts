@@ -2,7 +2,8 @@ export const paths = {
   ROOT_PATH: "/",
   CASES_PATH: "/cases",
   MANAGE_PATH: "/manage",
-  TASKS_PATH: "/tasks"
+  TASKS_PATH: "/tasks",
+  SEARCH_PATH: "/search"
 };
 
 export const JWT_TOKEN_KEY = "JWT_TOKEN";

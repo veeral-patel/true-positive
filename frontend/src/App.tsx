@@ -1,12 +1,5 @@
 import { Router } from "@reach/router";
-import AddCommentToCaseModal from "container/all_cases/AddCommentToCaseModal";
-import AddTagsModal from "container/all_cases/AddTagsModal";
-import AssignCasesModal from "container/all_cases/AssignCasesModal";
-import ChangePriorityModal from "container/all_cases/ChangePriorityModal";
-import ChangeStatusModal from "container/all_cases/ChangeStatusModal";
 import CreateCaseModal from "container/all_cases/CreateCaseModal";
-import MergeCasesModal from "container/all_cases/MergeCasesModal";
-import RemoveTagsModal from "container/all_cases/RemoveTagsModal";
 import MergeOneCaseModal from "container/one_case/MergeOneCaseModal";
 import TopMenu from "container/shared/top_menu/TopMenu";
 import { inject, observer } from "mobx-react";
@@ -14,6 +7,7 @@ import AdminPage from "pages/admin/AdminPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
 import LoginPage from "pages/login/LoginPage";
+import SearchPage from "pages/search/SearchPage";
 import AllTasksPage from "pages/tasks/AllTasksPage";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
@@ -40,16 +34,10 @@ export default inject("authStore")(
                   <AllTasksPage path={paths.TASKS_PATH} />
                   <AdminPage path={paths.MANAGE_PATH} />
                   <CasePage path="/cases/:caseId/*" />
+                  <SearchPage path={paths.SEARCH_PATH} />
                   <Page404 default />
                 </Router>
-                <AddTagsModal />
-                <RemoveTagsModal />
                 <CreateCaseModal />
-                <ChangeStatusModal />
-                <ChangePriorityModal />
-                <AddCommentToCaseModal />
-                <AssignCasesModal />
-                <MergeCasesModal />
                 <MergeOneCaseModal />
               </div>
             ) : (

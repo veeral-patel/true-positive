@@ -6,7 +6,7 @@ import AllCasesStore from "stores/AllCasesStore";
 import AllTasksStore from "stores/AllTasksStore";
 import IndicatorStore from "stores/IndicatorStore";
 import TagStore from "stores/TagStore";
-import { VIEW_ALL_RESULTS } from "utils/constants";
+import { paths, VIEW_ALL_RESULTS } from "utils/constants";
 import { formatDateOnly } from "utils/formatISO8601";
 import {
   getPathToACase,
@@ -166,7 +166,13 @@ export default inject(
               // the clicked option's type
               const type = option.props.title;
 
-              if (type === "CASE") {
+              // clicked on "View all results"
+              if (value === VIEW_ALL_RESULTS) {
+                navigate(paths.SEARCH_PATH);
+              }
+
+              // clicked on an actual option
+              else if (type === "CASE") {
                 const caseId = option.key;
 
                 // open the chosen case
@@ -196,7 +202,7 @@ export default inject(
             filterOption={(inputValue, option) => {
               // filter options based on the name of the task/tag/indicator/case
               if (option.props.value) {
-                // always show "View all results"
+                // always show the "View all results" option
                 if (option.props.value === VIEW_ALL_RESULTS) return true;
                 else {
                   return (
