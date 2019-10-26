@@ -99,7 +99,7 @@ export default inject(
           ));
         }
 
-        // task options
+        // indicator options
         const { indicatorStore } = this.props;
 
         let indicatorOptions: Object[];
