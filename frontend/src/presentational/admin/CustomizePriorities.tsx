@@ -7,15 +7,15 @@ import PriorityStore from "stores/PriorityStore";
 const { Paragraph, Text } = Typography;
 
 const HelperText = () => (
-  <Text>
-    <h4>Customize Priorities</h4>
+  <div>
+    <h3>Customize Priorities</h3>
     <Paragraph>
       You can customize the default list of priorities to fit your workflow.
     </Paragraph>
     <Paragraph type="secondary">
       You cannot delete a priority if an existing case has that priority.
     </Paragraph>
-  </Text>
+  </div>
 );
 
 // -----------

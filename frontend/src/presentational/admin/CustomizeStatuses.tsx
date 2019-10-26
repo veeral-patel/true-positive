@@ -7,15 +7,15 @@ import StatusStore from "stores/StatusStore";
 const { Paragraph, Text } = Typography;
 
 const HelperText = () => (
-  <Text>
-    <h4>Customize Statuses</h4>
+  <div>
+    <h3>Customize Statuses</h3>
     <Paragraph>
       You can customize the default list of statuses to fit your workflow.
     </Paragraph>
     <Paragraph type="secondary">
       You cannot delete a status if an existing case has that status.
     </Paragraph>
-  </Text>
+  </div>
 );
 
 // -----------
