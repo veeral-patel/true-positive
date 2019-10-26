@@ -18,8 +18,22 @@ class SearchPage extends React.Component<Props> {
                 </div>
               </div>
             </Menu.Item>
-            <Menu.Item key="tasks">Tasks</Menu.Item>
-            <Menu.Item key="indicators">Indicators</Menu.Item>
+            <Menu.Item key="tasks">
+              <div>
+                Tasks
+                <div style={{ float: "right" }}>
+                  <Badge count={20} />
+                </div>
+              </div>
+            </Menu.Item>
+            <Menu.Item key="indicators">
+              <div>
+                Indicators
+                <div style={{ float: "right" }}>
+                  <Badge count={5} />
+                </div>
+              </div>
+            </Menu.Item>
           </Menu>
         </div>
         <div style={{ flex: 4 }}></div>
