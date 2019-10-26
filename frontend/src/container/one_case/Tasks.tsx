@@ -6,12 +6,12 @@ import {
   Icon,
   Layout,
   List,
-  Progress,
   Tooltip,
   Typography
 } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
+import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
 import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
@@ -93,12 +93,7 @@ export default inject("activeCaseStore")(
                       <h3>
                         Tasks ({doneTasks.length}/{tasks.length})
                       </h3>
-                      <Progress
-                        percent={Math.round(
-                          (doneTasks.length / tasks.length) * 100
-                        )}
-                        style={{ width: "30%" }}
-                      />
+                      <TaskProgress theCase={activeCase} />
                     </div>
                     <Paragraph>
                       A task is a piece of work to be completed in a case.
