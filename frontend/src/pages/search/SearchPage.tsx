@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Menu } from "antd";
+import { Badge, Menu } from "antd";
 import React from "react";
 
 interface Props extends RouteComponentProps {}
@@ -10,7 +10,14 @@ class SearchPage extends React.Component<Props> {
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }}>
           <Menu theme="light" mode="vertical" defaultSelectedKeys={["cases"]}>
-            <Menu.Item key="cases">Cases</Menu.Item>
+            <Menu.Item key="cases">
+              <div>
+                Cases
+                <div style={{ float: "right" }}>
+                  <Badge count={25} />
+                </div>
+              </div>
+            </Menu.Item>
             <Menu.Item key="tasks">Tasks</Menu.Item>
             <Menu.Item key="indicators">Indicators</Menu.Item>
           </Menu>
