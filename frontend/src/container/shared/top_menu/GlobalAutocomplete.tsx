@@ -160,6 +160,7 @@ export default inject(
             value={this.state.searchValue}
             onChange={(value: any) => this.setState({ searchValue: value })}
             dropdownMatchSelectWidth={false}
+            open={this.state.searchValue !== ""}
             onSelect={(value, option: any) => {
               this.setState({ searchValue: "" });
 
