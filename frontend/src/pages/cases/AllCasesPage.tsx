@@ -35,10 +35,7 @@ export default inject("allCasesStore", "uiStore")(
                 )}
               </span>
               <span style={{ float: "right" }}>
-                <Button
-                  icon="plus"
-                  onClick={() => uiStore!.openCreateCaseModal()}
-                >
+                <Button onClick={() => uiStore!.openCreateCaseModal()}>
                   Create Case
                 </Button>
               </span>
