@@ -27,18 +27,20 @@ export default inject("allCasesStore", "uiStore")(
         return (
           <div>
             <section>
-              <span style={{ display: "inline-block" }}>
-                {allCasesStore!.casesAreLoading ? (
-                  <h3>Cases</h3>
-                ) : (
-                  <h3>Cases ({allCasesStore!.filteredCases.length})</h3>
-                )}
-              </span>
-              <span style={{ float: "right" }}>
-                <Button onClick={() => uiStore!.openCreateCaseModal()}>
-                  Create Case
-                </Button>
-              </span>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div>
+                  {allCasesStore!.casesAreLoading ? (
+                    <h3>Cases</h3>
+                  ) : (
+                    <h3>Cases ({allCasesStore!.filteredCases.length})</h3>
+                  )}
+                </div>
+                <div>
+                  <Button onClick={() => uiStore!.openCreateCaseModal()}>
+                    Create Case
+                  </Button>
+                </div>
+              </div>
             </section>
             {allCasesStore!.cases.length === 0 &&
               !allCasesStore!.casesAreLoading && (
