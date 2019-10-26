@@ -167,13 +167,8 @@ export default inject(
               // the clicked option's type
               const type = option.props.title;
 
-              // clicked on "View all results"
-              if (value === VIEW_ALL_RESULTS) {
-                navigate(paths.SEARCH_PATH);
-              }
-
               // clicked on an actual option
-              else if (type === "CASE") {
+              if (type === "CASE") {
                 const caseId = option.key;
 
                 // open the chosen case
@@ -218,6 +213,7 @@ export default inject(
             }}
             dataSource={[
               <Option
+                disabled
                 key={VIEW_ALL_RESULTS}
                 value={VIEW_ALL_RESULTS}
                 style={{
@@ -225,7 +221,9 @@ export default inject(
                   lineHeight: 2
                 }}
               >
-                View all results
+                <a onClick={() => navigate(paths.SEARCH_PATH)}>
+                  View all results
+                </a>
               </Option>,
               <OptGroup
                 key="Cases"
