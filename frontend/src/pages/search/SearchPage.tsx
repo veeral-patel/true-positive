@@ -14,7 +14,13 @@ class SearchPage extends React.Component<Props> {
               <div>
                 Cases
                 <div style={{ float: "right" }}>
-                  <Badge count={25} />
+                  <Badge
+                    count={25}
+                    style={{
+                      backgroundColor: "#40a9ff",
+                      color: "white"
+                    }}
+                  />
                 </div>
               </div>
             </Menu.Item>
@@ -22,7 +28,13 @@ class SearchPage extends React.Component<Props> {
               <div>
                 Tasks
                 <div style={{ float: "right" }}>
-                  <Badge count={20} />
+                  <Badge
+                    count={20}
+                    style={{
+                      backgroundColor: "#40a9ff",
+                      color: "white"
+                    }}
+                  />
                 </div>
               </div>
             </Menu.Item>
@@ -30,7 +42,13 @@ class SearchPage extends React.Component<Props> {
               <div>
                 Indicators
                 <div style={{ float: "right" }}>
-                  <Badge count={5} />
+                  <Badge
+                    count={5}
+                    style={{
+                      backgroundColor: "#40a9ff",
+                      color: "white"
+                    }}
+                  />
                 </div>
               </div>
             </Menu.Item>
