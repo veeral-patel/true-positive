@@ -1,6 +1,7 @@
 import { navigate } from "@reach/router";
-import { Progress, Spin, Table, Tooltip } from "antd";
+import { Spin, Table } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
+import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
@@ -184,21 +185,9 @@ export default inject(
             <Column
               title="Tasks"
               key="tasks"
-              render={(value, theCase: ICase, index) => {
-                const doneTasks = theCase.tasks.filter(task => task.done);
-                return (
-                  <Tooltip
-                    title={`${doneTasks.length}/${theCase.tasks.length} tasks are done`}
-                  >
-                    <Progress
-                      percent={Math.round(
-                        (doneTasks.length / theCase.tasks.length) * 100
-                      )}
-                      style={{ width: "125px" }}
-                    />
-                  </Tooltip>
-                );
-              }}
+              render={(value, theCase: ICase, index) => (
+                <TaskProgress theCase={theCase} />
+              )}
             />
           </Table>
         );
