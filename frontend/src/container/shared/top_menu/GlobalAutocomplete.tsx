@@ -225,48 +225,16 @@ export default inject(
                   View all results
                 </a>
               </Option>,
-              <OptGroup
-                key="Cases"
-                label={
-                  <span>
-                    Cases
-                    <a style={{ float: "right" }}>More</a>
-                  </span>
-                }
-              >
+              <OptGroup key="Cases" label="Cases">
                 {caseOptions}
               </OptGroup>,
-              <OptGroup
-                key="Tasks"
-                label={
-                  <span>
-                    Tasks
-                    <a style={{ float: "right" }}>More</a>
-                  </span>
-                }
-              >
+              <OptGroup key="Tasks" label="Tasks">
                 {taskOptions}
               </OptGroup>,
-              <OptGroup
-                key="Indicators"
-                label={
-                  <span>
-                    Indicators
-                    <a style={{ float: "right" }}>More</a>
-                  </span>
-                }
-              >
+              <OptGroup key="Indicators" label="Indicators">
                 {indicatorOptions}
               </OptGroup>,
-              <OptGroup
-                key="Tags"
-                label={
-                  <span>
-                    Tags
-                    <a style={{ float: "right" }}>More</a>
-                  </span>
-                }
-              >
+              <OptGroup key="Tags" label="Tags">
                 {tagOptions}
               </OptGroup>
             ]}
