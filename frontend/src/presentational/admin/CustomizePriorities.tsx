@@ -10,7 +10,8 @@ const HelperText = () => (
   <div>
     <h3>Customize Priorities</h3>
     <Paragraph>
-      You can customize the default list of priorities to fit your workflow.
+      You can customize the default list of case priorities to fit your
+      workflow.
     </Paragraph>
     <Paragraph type="secondary">
       You cannot delete a priority if an existing case has that priority.

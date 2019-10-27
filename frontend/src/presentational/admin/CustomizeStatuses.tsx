@@ -10,7 +10,7 @@ const HelperText = () => (
   <div>
     <h3>Customize Statuses</h3>
     <Paragraph>
-      You can customize the default list of statuses to fit your workflow.
+      You can customize the default list of case statuses to fit your workflow.
     </Paragraph>
     <Paragraph type="secondary">
       You cannot delete a status if an existing case has that status.
