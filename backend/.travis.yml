@@ -1,13 +1,19 @@
 language: ruby
 rvm:
-  - 2.5.1
+- 2.5.1
 before_install:
-  - gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
+- gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
 script:
-  - bundle install
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  - bundle exec rake spec
+- bundle install
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake spec
 cache: bundler
 services:
-  - postgresql
+- postgresql
+deploy:
+  api_key:
+    secure: HyRBpwViYV7g22nOe1vzU7Gu9OCGnXqyRwiSeCPTs+d8sJTE3XoVW6QgSDTHsl3B0Xs1jDMuVq1hTkrVmbz5aqAQicRLbCLxQo2W9MVhxzkV7ZoP5b1yBrR+IH6eQxZo+hNu9fnl+OPQrH8NpbrdqvaOLSfP/cP/EuF0xr+jghytN433Gwdu64S5zCCl1vYAZ/1EhDGZui9F6AdsE1sGjA9Yx/SKCkUrHJmaRR4KNu6LF9U3Q7IUac+UJ8WVv6kW3bqsmIgrjEaOM48Zv3hW2GQT1Ad+wPXrFyQjH1GhUr+ljF2jNKlctTqOqa/8oQXO4egzu5kN3Z6gJm/CggpSvCFK4UeglEKJZa3ZN6ocsWWem05+gfIIu5AG8srLjpQEbDE631y22iULd4VEDndPKeARFPzV+Cpp3ca9A3lXUQ1iooZ5k7hTf77bLeT5rA+PUj52QaVITyEjWqaGgIETnbl2hvrvXgccBEw0ColVbibYyeK+C8b6cZbTKL7Tv4MZxG79STk+d8o3LHGvvW8h5PpPlr1ufxgfwnr/O/skyNB+jqVkmGYEZzAhRljBk2IMxyKbrt/OlqI7F42FtNsc2P9OZtjyH73Ufrtbwqdw6Wckb04QnW4DD1Vr7dWNaiVyI8bpFgceF1rYNR9PaHpQsghkjlxFbfHjxyjsV1Sv0pI=
+env:
+  global:
+    secure: PLKH/xtPSfMSeSFLacTI9doOuzOuqyPRJ3eXTxrozdB7cnx8V/00yUfTBHz0t5EGcGPDXS9F7NhG6ip5jaMiCY6cZrcA/FlnOMKq6otCcv73ywPbl1i97O7cQ+3g5SUzJdg/qqv9W4y62/wPWRnWZegYL7I5UHZWypbyhzX6xresVIPDLlQ+XOibMLDU/azg5rqDgSfJutjKyAPMFyCu/Ac/jxQmEhktubchx+HmhOcIClpNVMHFVLvz5D4Nk7iN/2RmmAvEPoa6pNPegXZiCbTykI9J4b/wbjUyo1kqOfS2/vQkRqQ/il4DXUJp/jpHM+Io3GAIVSw1tGiR5q6xT75nmFmVveWxQ0qie0/RsHjQKO761fOSIbp+ZiCBLwmgwpBmzvaJObnCkJfOjIXkepiXRC6SnyrcbVDaE3hVQZ15Xb2kfjCiyWzBZZkF2j1Emmfaw4b2wK1Z7OwcySK2sins5w97irhnNLL1P58Pqr56zyBRAuRwh9OFGwaiy8nheSU5uukj0NY63L71z13atDthFmc4YLHBU1cY1Pb0EZR+sNv3q1nOBd/YzfXfVmzta7RHWYEJnzaA6oKY1Rej8pE6dkGgNL9nPeqs8OiC5v4QzN/KJrh6sV5Y/dt6DXuOagkBimjb3+v1MJlwtNZ1JbYWVco89TAS9rF5Iqskn0A=
