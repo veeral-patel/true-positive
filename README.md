@@ -22,10 +22,23 @@ rails s -p 4000
 
 Runs at http://localhost:4000
 
-## Deploying to Heroku
+## Deploying (to `staging`)
+
+### Backend
+
+I deploy to Heroku utomatically when I push to my master branch on GitHub, but if not, run:
 
 ```
 git subtree push --prefix backend heroku master
+```
+
+To push my code manually.
+
+### Frontend
+
+```
+yarn build
+netlify deploy --prod
 ```
 
 ### Tips
