@@ -5,6 +5,7 @@ const GET_TASKS = gql`
     tasks {
       id
       name
+      done
       assignedTo {
         username
       }
