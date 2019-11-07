@@ -198,8 +198,8 @@ export default inject(
             filterOption={(inputValue, option) => {
               // filter options based on the name of the task/tag/indicator/case
               if (option.props.value) {
-                // always show the "View all results" option
-                if (option.props.value === VIEW_ALL_RESULTS) return true;
+                // change to true to always show View all Results
+                if (option.props.value === VIEW_ALL_RESULTS) return false;
                 else {
                   return (
                     option.props.value
@@ -233,10 +233,10 @@ export default inject(
               </OptGroup>,
               <OptGroup key="Indicators" label="Indicators">
                 {indicatorOptions}
-              </OptGroup>,
-              <OptGroup key="Tags" label="Tags">
-                {tagOptions}
               </OptGroup>
+              // <OptGroup key="Tags" label="Tags">
+              //   {tagOptions}
+              // </OptGroup>
             ]}
           >
             <Input

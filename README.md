@@ -26,7 +26,7 @@ Runs at http://localhost:4000
 
 ### Backend
 
-I deploy to Heroku utomatically when I push to my master branch on GitHub, but if not, run:
+I deploy to Heroku automatically when I push to my master branch on GitHub, but if not, run:
 
 ```
 git subtree push --prefix backend heroku master
