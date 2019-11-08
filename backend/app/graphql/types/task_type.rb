@@ -31,10 +31,6 @@ module Types
             description "The comments on this task."
         end
 
-        field :tags, [Types::TagType], null: false do
-            description "This task's tags."
-        end
-
         # optional fields
         field :description, String, null: true do
             description "This task's description."
