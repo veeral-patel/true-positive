@@ -1,6 +1,6 @@
 module Types
     class StatusType < Types::BaseObject
-        description "A state a case or a task can be in."
+        description "A state a case can be in."
 
         field :name, String, null: false do
             description "This status's name (such as 'Open')."
