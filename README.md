@@ -38,6 +38,8 @@ To push my code manually.
 
 ### Frontend
 
+Code should deploy automatically to Netlify upon pushes to master but if not:
+
 ```
 yarn build
 netlify deploy --prod
