@@ -1,5 +1,7 @@
 # V1
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8486d8d3-031b-440f-899e-6f9c75a32ef0/deploy-status)](https://app.netlify.com/sites/tp-staging/deploys)
+
 This is the next version of [INCIDENTS](https://github.com/veeral-patel/incidents).
 
 It's composed of a Rails-powered GraphQL API and a React frontend.
