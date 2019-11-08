@@ -13,10 +13,6 @@ const GET_TASKS = gql`
         username
       }
       createdAt
-      tags {
-        id
-        name
-      }
       case {
         id
         name

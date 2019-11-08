@@ -44,7 +44,6 @@ function aCaseAttributeMatches(filterWord: string, object: ICase) {
     nameMatches(filterWord, object) ||
     statusMatches(filterWord, object.status) ||
     priorityMatches(filterWord, object.priority) ||
-    // createdByMatches(filterWord, object.createdBy) ||
     assignedToMatches(filterWord, object.assignedTo) ||
     createdAtMatches(filterWord, object)
   );
@@ -60,7 +59,7 @@ function aTaskAttributeMatches(filterWord: string, object: ITask) {
 }
 
 // Returns TRUE iff any of the case's tags contain filterWord. filterWord shouldn't have spaces.
-function aTagMatches(filterWord: string, object: ITask | ICase) {
+function aTagMatches(filterWord: string, object: ICase) {
   for (const tag of object.tags) {
     if (tag.name.indexOf(filterWord) !== -1) return true;
   }
@@ -89,8 +88,7 @@ function matchesTaskFilter(filterValue: string, object: ITask) {
   // (1) match one of the case/task's attributes or
   // (2) match one of the case/task's tags
   for (const word of filterWords) {
-    if (!aTaskAttributeMatches(word, object) && !aTagMatches(word, object))
-      return false;
+    if (!aTaskAttributeMatches(word, object)) return false;
   }
   return true;
 }

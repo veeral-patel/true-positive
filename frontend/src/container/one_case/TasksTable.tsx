@@ -2,7 +2,6 @@ import { navigate } from "@reach/router";
 import { Table } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
 import { inject, observer } from "mobx-react";
-import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
@@ -104,12 +103,6 @@ export default inject("userStore", "statusStore", "priorityStore")(
               key="name"
               sorter={(a: ITask, b: ITask) => a.name.localeCompare(b.name)}
               render={name => truncateString(name, 40)}
-            />
-            <Column
-              title="Tags"
-              dataIndex="tags"
-              key="tags"
-              render={tags => <ListOfTagsP tags={tags} limit={3} />}
             />
             <Column
               title="Assigned To"

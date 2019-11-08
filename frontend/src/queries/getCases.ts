@@ -20,7 +20,6 @@ const GET_CASES = gql`
         username
       }
       tags {
-        id
         name
       }
       tasks {
@@ -28,10 +27,6 @@ const GET_CASES = gql`
         name
         done
         description
-        tags {
-          id
-          name
-        }
       }
     }
   }

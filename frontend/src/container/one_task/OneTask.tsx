@@ -7,7 +7,6 @@ import { inject, observer } from "mobx-react";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
-import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import formatISO8601 from "utils/formatISO8601";
@@ -108,16 +107,6 @@ export default inject("activeCaseStore")(
                           username
                         )
                       }
-                    />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col span={4}>Tags:</Col>
-                  <Col span={20}>
-                    <EditableTagList
-                      existingTags={activeTask.tags}
-                      type="TASK"
-                      objectId={activeTask.id}
                     />
                   </Col>
                 </Row>

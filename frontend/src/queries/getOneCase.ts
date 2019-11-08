@@ -37,7 +37,6 @@ const GET_ONE_CASE = gql`
         username
       }
       tags {
-        id
         name
       }
       indicators {
@@ -86,10 +85,6 @@ const GET_ONE_CASE = gql`
           createdBy {
             username
           }
-        }
-        tags {
-          id
-          name
         }
       }
       comments {
