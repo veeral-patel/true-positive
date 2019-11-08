@@ -27,15 +27,11 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "The username of the user who this task is assigned to. Optional."
     end
 
-    argument :tags, [String], required: false do
-        description "A optional list of tags to add to this task."
-    end
-
     field :task, Types::TaskType, null: true do
         description "The newly created task."
     end
 
-    def resolve(name:, case_id:, done: false, description: nil, assigned_to: nil, tags: nil)
+    def resolve(name:, case_id:, done: false, description: nil, assigned_to: nil)
         # find case, assigned user for this new task
         the_case = find_case_or_throw_execution_error(case_id: case_id)
         assigned_user = assigned_to.nil? ? nil : find_user_or_throw_execution_error(username: assigned_to)
@@ -52,7 +48,6 @@ class Mutations::CreateTask < Mutations::BaseMutation
             created_by: context[:current_user],
             description: description,
             assigned_to: assigned_user,
-            tag_list: tags,
             done: done
         )
 
