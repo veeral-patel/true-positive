@@ -1,5 +1,5 @@
 class Mutations::ChangeComment < Mutations::BaseMutation
-    description "Update a comment that you wrote."
+    description "Update a comment. You must be the author of the comment to edit it."
 
     argument :id, ID, required: true do
         description "The ID of the comment to delete."

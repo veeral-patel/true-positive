@@ -1,5 +1,5 @@
 class Mutations::ChangeRole  < Mutations::BaseMutation
-    description "Change a case member's role."
+    description "Change the role of a user in a case, either to grant him edit access or make him view only."
 
     argument :case_id, ID, required: true do
         description "The ID of the case in which we're changing a member's role."

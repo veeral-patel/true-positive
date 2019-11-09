@@ -1,5 +1,5 @@
 class Mutations::ChangeIndicator < Mutations::BaseMutation
-    description "Updates the actual indicator value associated with an indicator."
+    description "Update the indicator value associated with an indicator."
 
     argument :id, ID, required: true do
         description "The ID of the indicator to update."

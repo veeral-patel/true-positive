@@ -1,5 +1,5 @@
 class Mutations::ChangeAssignee < Mutations::BaseMutation
-    description "Assign a case or a task to an user."
+    description "Assign a case or a task to a user."
 
     argument :object_id, ID, required: true do
         description "The ID of the case or task."

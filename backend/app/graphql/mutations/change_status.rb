@@ -1,5 +1,5 @@
 class Mutations::ChangeStatus < Mutations::BaseMutation
-    description "Change the status of a case."
+    description "Update the status of a case."
 
     argument :case_id, ID, required: true do
         description "The ID of the case whose status we're updating."
