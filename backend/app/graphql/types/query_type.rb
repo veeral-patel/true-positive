@@ -7,7 +7,7 @@ module Types
       # ---------- Statuses -------------------
 
       field :statuses, [Types::StatusType], null: false do
-          description "Lists all statuses."
+          description "Lists all statuses a case can have."
       end
 
       def statuses
@@ -17,7 +17,7 @@ module Types
       # ---------- Priorities -------------------
 
       field :priorities, [Types::PriorityType], null: false do
-        description "Lists all priorities."
+        description "Lists all priorities a case can have."
       end
 
       def priorities
@@ -54,7 +54,7 @@ module Types
 
       # --------------- Users --------------------
       field :users, [Types::UserType], null: false do
-        description "List all users."
+        description "Lists all users."
       end
 
       def users
@@ -64,7 +64,7 @@ module Types
       # ------------------- Me ----------------------
 
       field :me, Types::UserType, null: true do
-        description "Retrieve the currently authenticated user."
+        description "Retrieve the logged in user."
       end
 
       def me
@@ -73,7 +73,7 @@ module Types
 
       # --------------- Tags -----------------------
       field :tags, [Types::TagType], null: false do
-        description "List all existing tags."
+        description "List all tags that have been applied to a case or an indicator."
       end
 
       def tags
