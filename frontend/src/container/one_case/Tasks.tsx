@@ -1,24 +1,17 @@
 import { navigate, RouteComponentProps } from "@reach/router";
-import {
-  Button,
-  Checkbox,
-  Empty,
-  Icon,
-  Layout,
-  List,
-  Tooltip,
-  Typography
-} from "antd";
+import { Button, Checkbox, Empty, Icon, Layout, List, Tooltip, Typography } from "antd";
+import { inject, observer } from "mobx-react";
+import React from "react";
+
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TaskProgress from "container/shared/tasks/TaskProgress";
-import { inject, observer } from "mobx-react";
-import "presentational/shared/styles/hoverable_item.css";
-import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITask from "ts/interfaces/ITask";
 import { getPathToATask } from "utils/pathHelpers";
 import truncateString from "utils/truncateString";
+
+import "presentational/shared/styles/hoverable_item.css";
 
 const { Content } = Layout;
 const { Paragraph, Text } = Typography;
