@@ -1,5 +1,5 @@
 class Mutations::MarkTaskAsDone < Mutations::BaseMutation
-    description "Marks a task as done (or not done)."
+    description "Change whether a task is done or not."
 
     argument :id, ID, required: true do
         description "The ID of the task to update."
