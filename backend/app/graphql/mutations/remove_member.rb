@@ -1,6 +1,5 @@
-# edge case: member doesn't exist in the case
 class Mutations::RemoveMember < Mutations::BaseMutation
-    description "Remove a member from a case."
+    description "Remove an user from a case. The removed user won't be able to view or change the case anymore."
 
     argument :case_id, ID, required: true do
         description "The ID of the case we're removing the member from."
