@@ -27,7 +27,7 @@ module Types
       # -------------- Cases -------------------
 
       field :cases, [Types::CaseType], null: false do
-        description "List all cases."
+        description "Lists all cases (that you're a member of)."
       end
 
       def cases
