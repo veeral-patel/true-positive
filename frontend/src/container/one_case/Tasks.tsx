@@ -95,9 +95,6 @@ export default inject("activeCaseStore")(
                       </h3>
                       <TaskProgress theCase={activeCase} />
                     </div>
-                    <Paragraph>
-                      A task is a piece of work to be completed in a case.
-                    </Paragraph>
                     <CreateTaskInput
                       handleEnter={event => {
                         const newTask = event.currentTarget.value;
