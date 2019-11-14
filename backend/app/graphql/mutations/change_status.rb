@@ -5,7 +5,7 @@ class Mutations::ChangeStatus < Mutations::BaseMutation
         description "The ID of the case whose status we're updating."
     end
 
-    argument :status, ID, required: true do
+    argument :status, String, required: true do
         description "The name of the new status (eg, Open)"
     end
 
