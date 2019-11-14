@@ -19,7 +19,7 @@ class Mutations::CreateCase < Mutations::BaseMutation
         description "Optional text describing this case."
     end
 
-    argument :assigned_to, ID, required: false do
+    argument :assigned_to, String, required: false do
         description "The username of the user who this case is assigned to. Optional."
     end
 
