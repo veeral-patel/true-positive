@@ -23,7 +23,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "Optional text describing this task."
     end
 
-    argument :assigned_to, ID, required: false do
+    argument :assigned_to, String, required: false do
         description "The username of the user who this task is assigned to. Optional."
     end
 
