@@ -6,9 +6,6 @@ const CHANGE_TAGS = gql`
       case {
         id
       }
-      task {
-        id
-      }
       indicator {
         id
       }
