@@ -14,7 +14,10 @@ interface TopMenuProps {
   authStore?: AuthStore;
 }
 
-export default inject("uiStore", "authStore")(
+export default inject(
+  "uiStore",
+  "authStore"
+)(
   observer(
     class TopMenu extends React.Component<TopMenuProps> {
       render() {
@@ -50,6 +53,25 @@ export default inject("uiStore", "authStore")(
             >
               Manage
             </Menu.Item>
+            <SubMenu
+              title={
+                <div>
+                  API
+                  {"  "}
+                  <Icon type="down" />
+                </div>
+              }
+              style={{ float: "left" }}
+            >
+              <Menu.Item
+                onClick={() =>
+                  process.env.REACT_APP_API_ENDPOINT &&
+                  navigate(process.env.REACT_APP_API_ENDPOINT)
+                }
+              >
+                Explorer
+              </Menu.Item>
+            </SubMenu>
             <Menu.Item style={{ float: "left" }}>
               <GlobalAutocomplete />
             </Menu.Item>
