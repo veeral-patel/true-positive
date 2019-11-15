@@ -69,6 +69,7 @@ export default inject(
                   navigate(process.env.REACT_APP_API_ENDPOINT)
                 }
               >
+                <Icon type="deployment-unit" />
                 Explorer
               </Menu.Item>
             </SubMenu>
