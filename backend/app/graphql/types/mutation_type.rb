@@ -50,5 +50,6 @@ module Types
       
       # user -------
       field :change_username, mutation: Mutations::ChangeUsername
+      field :change_email, mutation: Mutations::ChangeEmail
   end
 end
