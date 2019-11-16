@@ -70,7 +70,7 @@ export default inject(
                 }
               >
                 <Icon type="deployment-unit" />
-                Explorer
+                Playground
               </Menu.Item>
             </SubMenu>
             <Menu.Item style={{ float: "left" }}>
