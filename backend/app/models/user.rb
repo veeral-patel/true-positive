@@ -7,7 +7,7 @@ class User < ApplicationRecord
     has_many :comments, foreign_key: "created_by_id", class_name: "Comment"
 
     validates :username, presence: true, uniqueness: true
-    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } , uniqueness: true, presence: true
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true
 
     def to_s
         self.username
