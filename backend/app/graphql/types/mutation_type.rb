@@ -47,5 +47,8 @@ module Types
       field :create_priority, mutation: Mutations::CreatePriority
       field :delete_priority, mutation: Mutations::DeletePriority
       field :rename_priority, mutation: Mutations::RenamePriority
+      
+      # user -------
+      field :change_username, mutation: Mutations::ChangeUsername
   end
 end
