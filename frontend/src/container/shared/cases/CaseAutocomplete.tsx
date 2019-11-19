@@ -20,6 +20,8 @@ export default inject("allCasesStore")(
         // One day, handle the case where the cases are loading.
         const { allCasesStore } = this.props;
 
+        if (allCasesStore!.casesAreLoading) return <div>Loading...</div>;
+
         const options = allCasesStore!.cases.map(thecase => (
           <Option key={thecase.id}>{thecase.name}</Option>
         ));
