@@ -26,7 +26,7 @@ export default inject("uiStore")(
               type="info"
               showIcon
               message="Merging this case will simply mark this case as merged. It will
-              not modify this case, its indicators, or its tasks at all."
+              not modify this case or the parent case at all."
             />
             <br />
             <Paragraph>Choose a case to merge this case into:</Paragraph>
