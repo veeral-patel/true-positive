@@ -13,7 +13,7 @@ class Mutations::CreateTaskTemplate < Mutations::BaseMutation
         description "Username of the user to assign to tasks created with this template."
     end
 
-    field :task_template, Types::TaskTemplate, null: true do
+    field :task_template, Types::TaskTemplateType, null: true do
         description "The newly created task template."
     end
 

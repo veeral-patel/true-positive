@@ -97,5 +97,14 @@ module Types
       def indicators
         IndicatorPolicy::Scope.new(context[:current_user]).resolve
       end
+
+      # ------------- Task Templates ------------------
+      field :task_templates, [Types::TaskTemplateType], null: false do
+        description "Lists all task templates."
+      end
+
+      def task_templates
+        TaskTemplate.all
+      end
   end
 end

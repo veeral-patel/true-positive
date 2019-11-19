@@ -1,4 +1,4 @@
-class Types::TaskTemplate < Types::BaseObject
+class Types::TaskTemplateType < Types::BaseObject
     description "A template you can initialize new tasks from."
 
     # never null ---
@@ -16,6 +16,6 @@ class Types::TaskTemplate < Types::BaseObject
     end
 
     field :assigned_to, Types::UserType, null: true do
-        description "The user this case was assigned to (if any)."
+        description "Default user to assign to tasks created with this template (if any)."
     end
 end
