@@ -1,8 +1,7 @@
 import { navigate } from "@reach/router";
-import { Modal } from "antd";
-import { ClickParam } from "antd/lib/menu";
+import { Button, Dropdown, Icon, Modal } from "antd";
+import Menu, { ClickParam } from "antd/lib/menu";
 import { inject, observer } from "mobx-react";
-import ActionsDropdownP from "presentational/one_case/InfoP/ActionsDropdownP";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
@@ -14,12 +13,28 @@ interface ActionsDropdownProps {
   caseId: number;
 }
 
-export default inject("allCasesStore", "uiStore")(
+export default inject(
+  "allCasesStore",
+  "uiStore"
+)(
   observer(
     class ActionsDropdown extends React.Component<ActionsDropdownProps> {
       render() {
+        const menu = (
+          <Menu onClick={this.handleMenuClick.bind(this)}>
+            {/* <Menu.Item key={MERGE_CASE}>Merge</Menu.Item> */}
+            <Menu.Divider />
+            <Menu.Item key={DELETE_CASE} style={{ color: "red" }}>
+              Delete Case
+            </Menu.Item>
+          </Menu>
+        );
         return (
-          <ActionsDropdownP handleMenuClick={this.handleMenuClick.bind(this)} />
+          <Dropdown overlay={menu}>
+            <Button>
+              Actions <Icon type="down" />
+            </Button>
+          </Dropdown>
         );
       }
 
