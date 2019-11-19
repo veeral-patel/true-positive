@@ -96,6 +96,14 @@ export default inject("activeCaseStore")(
                       </h3>
                       <TaskProgress theCase={activeCase} />
                     </div>
+                    <div style={{ float: "right", marginBottom: "6px" }}>
+                      <Button
+                        type="link"
+                        style={{ color: "rgb(130, 130, 130)" }}
+                      >
+                        Create from template
+                      </Button>
+                    </div>
                     <CreateTaskInput
                       handleEnter={event => {
                         const newTask = event.currentTarget.value;
