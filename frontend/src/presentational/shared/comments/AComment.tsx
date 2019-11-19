@@ -31,6 +31,7 @@ class AComment extends React.Component<Props, State> {
             <EditCommentForm
               initialComment={comment.comment}
               commentId={comment.id}
+              handleCancel={() => this.setState({ editing: false })}
             />
           ) : (
             comment.comment

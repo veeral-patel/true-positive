@@ -11,12 +11,13 @@ interface FormProps {
   activeCaseStore?: ActiveCaseStore;
   initialComment: string;
   commentId: number;
+  handleCancel: () => void;
 }
 
 class DumbEditCommentForm extends React.Component<FormProps> {
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { initialComment } = this.props;
+    const { initialComment, handleCancel } = this.props;
 
     return (
       <Form onSubmit={this.handleSubmit.bind(this)}>
@@ -26,7 +27,7 @@ class DumbEditCommentForm extends React.Component<FormProps> {
           })(<TextArea style={{ paddingTop: "2%" }} />)}
         </Form.Item>
         <Form.Item>
-          <Button type="link" onClick={() => this.setState({ editing: false })}>
+          <Button type="link" onClick={handleCancel}>
             Cancel
           </Button>
           <Button htmlType="submit">Update</Button>
