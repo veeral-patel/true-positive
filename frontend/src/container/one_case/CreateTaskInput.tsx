@@ -14,7 +14,6 @@ class CreateTaskInput extends React.Component<Props> {
         placeholder="Create a task"
         prefix={<Icon type="plus" />}
         suffix={<Icon type="arrow-right" />}
-        style={{ marginBottom: "2em" }}
         onPressEnter={handleEnter}
       />
     );
