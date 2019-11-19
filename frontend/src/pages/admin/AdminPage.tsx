@@ -18,9 +18,9 @@ class AdminPage extends React.Component<RouteComponentProps> {
           <TabPane tab="Customize Priorities" key="priorities">
             <CustomizePriorities />
           </TabPane>
-          <TabPane tab="Task Templates" key="task_templates">
+          {/* <TabPane tab="Task Templates" key="task_templates">
             <h3>Task Templates</h3>
-          </TabPane>
+          </TabPane> */}
         </Tabs>
       </div>
     );
