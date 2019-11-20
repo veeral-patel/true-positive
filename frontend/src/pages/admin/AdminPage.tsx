@@ -1,11 +1,10 @@
 import { RouteComponentProps } from "@reach/router";
-import { Tabs, Typography } from "antd";
+import { Tabs } from "antd";
 import CustomizePriorities from "presentational/admin/CustomizePriorities";
 import CustomizeStatuses from "presentational/admin/CustomizeStatuses";
 import React from "react";
 
 const { TabPane } = Tabs;
-const { Paragraph } = Typography;
 
 class AdminPage extends React.Component<RouteComponentProps> {
   render() {
