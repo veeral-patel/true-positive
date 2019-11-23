@@ -5,7 +5,6 @@ import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import AllTasksStore from "stores/AllTasksStore";
 import IndicatorStore from "stores/IndicatorStore";
-import TagStore from "stores/TagStore";
 import { paths, VIEW_ALL_RESULTS } from "utils/constants";
 import { formatDateOnly } from "utils/formatISO8601";
 import {
@@ -20,7 +19,6 @@ const { Text } = Typography;
 
 interface Props {
   allCasesStore?: AllCasesStore;
-  tagStore?: TagStore;
   allTasksStore?: AllTasksStore;
   indicatorStore?: IndicatorStore;
 }
@@ -31,7 +29,6 @@ interface State {
 
 export default inject(
   "allCasesStore",
-  "tagStore",
   "allTasksStore",
   "indicatorStore"
 )(
@@ -42,17 +39,11 @@ export default inject(
       };
 
       componentDidMount() {
-        const {
-          allCasesStore,
-          allTasksStore,
-          tagStore,
-          indicatorStore
-        } = this.props;
+        const { allCasesStore, allTasksStore, indicatorStore } = this.props;
 
         allCasesStore!.loadCases();
         allTasksStore!.loadTasks();
         indicatorStore!.loadIndicators();
-        tagStore!.loadTags();
       }
 
       render() {
@@ -76,25 +67,6 @@ export default inject(
                   {formatDateOnly(theCase.createdAt)}
                 </Text>
               </span>
-            </Option>
-          ));
-        }
-
-        // tag options
-        const { tagStore } = this.props;
-
-        let tagOptions: Object[];
-
-        if (tagStore!.tagsAreLoading) {
-          tagOptions = [
-            <Option disabled key="loading" value="loading">
-              Loading...
-            </Option>
-          ];
-        } else {
-          tagOptions = tagStore!.tags.map(tag => (
-            <Option key={tag.name} value={tag.name}>
-              {truncateString(tag.name, 30)}
             </Option>
           ));
         }
@@ -196,7 +168,7 @@ export default inject(
             optionLabelProp="value"
             dropdownStyle={{ width: "350px" }}
             filterOption={(inputValue, option) => {
-              // filter options based on the name of the task/tag/indicator/case
+              // filter options based on the name of the task/indicator/case
               if (option.props.value) {
                 // change to true to always show View all Results
                 if (option.props.value === VIEW_ALL_RESULTS) return false;
@@ -234,9 +206,6 @@ export default inject(
               <OptGroup key="Indicators" label="Indicators">
                 {indicatorOptions}
               </OptGroup>
-              // <OptGroup key="Tags" label="Tags">
-              //   {tagOptions}
-              // </OptGroup>
             ]}
           >
             <Input

@@ -15,7 +15,6 @@ ReactDOM.render(
     statusStore={store.statusStore}
     priorityStore={store.priorityStore}
     userStore={store.userStore}
-    tagStore={store.tagStore}
     allTasksStore={store.allTasksStore}
     authStore={store.authStore}
     indicatorStore={store.indicatorStore}
