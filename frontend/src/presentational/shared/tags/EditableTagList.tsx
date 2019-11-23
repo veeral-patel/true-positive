@@ -2,7 +2,7 @@ import { Button, Form, Select } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
-import React from "react";
+import React, { useState } from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import TagStore from "stores/TagStore";
 import ITag from "ts/interfaces/ITag";
@@ -107,45 +107,30 @@ interface ListProps {
   type: "CASE" | "TASK" | "INDICATOR";
 }
 
-interface ListState {
-  /* if true, display the input to edit tags. if false, display the list of tags. */
-  editing: boolean;
-}
-
-class EditableTagList extends React.Component<ListProps, ListState> {
-  constructor(props: ListProps) {
-    super(props);
-    this.state = {
-      editing: false
-    };
-  }
-  render() {
-    const { editing } = this.state;
-    const { existingTags, objectId, type } = this.props;
-
-    if (editing) {
-      return (
-        <EditTagsForm
-          existingTags={existingTags}
-          objectId={objectId}
-          type={type}
-          handleCancel={() => this.setState({ editing: false })}
-        />
-      );
-    } else {
-      return (
-        <div>
-          {existingTags.length === 0 ? (
-            "N/A"
-          ) : (
-            <ListOfTagsP tags={existingTags} />
-          )}
-          <Button type="link" onClick={() => this.setState({ editing: true })}>
-            Edit
-          </Button>
-        </div>
-      );
-    }
+function EditableTagList({ existingTags, objectId, type }: ListProps) {
+  const [editing, setEditing] = useState(false);
+  if (editing) {
+    return (
+      <EditTagsForm
+        existingTags={existingTags}
+        objectId={objectId}
+        type={type}
+        handleCancel={() => setEditing(false)}
+      />
+    );
+  } else {
+    return (
+      <div>
+        {existingTags.length === 0 ? (
+          "N/A"
+        ) : (
+          <ListOfTagsP tags={existingTags} />
+        )}
+        <Button type="link" onClick={() => setEditing(true)}>
+          Edit
+        </Button>
+      </div>
+    );
   }
 }
 
