@@ -1,7 +1,9 @@
+import { ApolloProvider } from "@apollo/react-hooks";
 import { Router } from "@reach/router";
 import CreateCaseModal from "container/all_cases/CreateCaseModal";
 import MergeOneCaseModal from "container/one_case/MergeOneCaseModal";
 import TopMenu from "container/shared/top_menu/TopMenu";
+import client from "createApolloClient";
 import { inject, observer } from "mobx-react";
 import AdminPage from "pages/admin/AdminPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
@@ -23,7 +25,7 @@ export default inject("authStore")(
       render() {
         const { authStore } = this.props;
         return (
-          <div>
+          <ApolloProvider client={client}>
             {authStore!.loggedIn() ? (
               <div>
                 <TopMenu />
@@ -42,7 +44,7 @@ export default inject("authStore")(
             ) : (
               <LoginPage />
             )}
-          </div>
+          </ApolloProvider>
         );
       }
     }
