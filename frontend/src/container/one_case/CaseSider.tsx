@@ -1,7 +1,9 @@
+import { useMutation } from "@apollo/react-hooks";
 import { navigate } from "@reach/router";
-import { Icon, Layout, Menu, Typography } from "antd";
+import { Icon, Layout, Menu, message, Typography } from "antd";
 import { CollapseType } from "antd/lib/layout/Sider";
 import { inject, observer } from "mobx-react";
+import RENAME_A_CASE from "mutations/renameCase";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
@@ -67,6 +69,12 @@ export default inject(
 
     const collapsed = uiStore!.caseSiderStatus === "COLLAPSED";
 
+    const [renameCase] = useMutation(RENAME_A_CASE, {
+      onCompleted: function() {
+        message.success("Renamed the case");
+      }
+    });
+
     return (
       <Sider
         style={{ background: "#fff" }}
@@ -84,8 +92,17 @@ export default inject(
               type="secondary"
               style={{ textTransform: "uppercase" }}
               editable={{
-                onChange: (newText: string) =>
-                  activeCaseStore!.renameActiveCase(newText)
+                onChange: (newName: string) => {
+                  if (!activeCaseStore!.activeCase) return;
+                  renameCase({
+                    variables: {
+                      input: {
+                        id: activeCaseStore!.activeCase.id,
+                        name: newName
+                      }
+                    }
+                  });
+                }
               }}
             >
               {truncateString(caseName, 90)}
