@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 const HelperText = () => (
   <div>
