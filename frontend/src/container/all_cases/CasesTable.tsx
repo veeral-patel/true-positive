@@ -10,7 +10,6 @@ import React from "react";
 import CaseStore from "stores/AllCasesStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
-import TagStore from "stores/TagStore";
 import UserStore from "stores/UserStore";
 import ICase from "ts/interfaces/ICase";
 import compareUsers from "utils/compareUsers";
@@ -30,7 +29,6 @@ interface ICasesTableProps {
   statusStore?: StatusStore;
   priorityStore?: PriorityStore;
   userStore?: UserStore;
-  tagStore?: TagStore;
 }
 
 export default inject(
@@ -59,8 +57,7 @@ export default inject(
           allCasesStore,
           statusStore,
           priorityStore,
-          userStore,
-          tagStore
+          userStore
         } = this.props;
 
         if (
