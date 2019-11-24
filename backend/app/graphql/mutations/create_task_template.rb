@@ -24,7 +24,8 @@ class Mutations::CreateTaskTemplate < Mutations::BaseMutation
         new_template = TaskTemplate.new(
             name: name,
             description: description,
-            assigned_to: assigned_user
+            assigned_to: assigned_user,
+            created_by: context[:current_user],
         )
 
         # authorize this action

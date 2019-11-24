@@ -4,6 +4,7 @@ class User < ApplicationRecord
     has_many :created_cases, foreign_key: "created_by_id", class_name: "Case"
     has_many :created_tasks, foreign_key: "created_by_id", class_name: "Task"
     has_many :created_indicators, foreign_key: "created_by_id", class_name: "Indicator"
+    has_many :created_task_templates, foreign_key: "created_by_id", class_name: "TaskTemplate"
     has_many :comments, foreign_key: "created_by_id", class_name: "Comment"
 
     validates :username, presence: true, uniqueness: true
