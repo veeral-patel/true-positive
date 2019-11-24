@@ -8,6 +8,8 @@ import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 const { TabPane } = Tabs;
 
+// ---
+
 interface TaskTemplateData {
   taskTemplates: ITaskTemplate[];
 }
@@ -27,6 +29,8 @@ function CustomizeTaskTemplates() {
     );
   }
 }
+
+// ---
 
 function CustomizeTemplates() {
   return (
