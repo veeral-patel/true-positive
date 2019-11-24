@@ -12,7 +12,7 @@ import {
 import ActionsDropdown from "container/one_indicator/ActionsDropdown";
 import IndicatorForm from "container/one_indicator/IndicatorForm";
 import CreateComment from "container/shared/comments/CreateComment";
-import DescriptionForm from "container/shared/description/DescriptionForm";
+import MarkdownEditor from "container/shared/markdown/MarkdownEditor";
 import { inject, observer } from "mobx-react";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import ErrorP from "presentational/shared/errors/ErrorP";
@@ -160,9 +160,9 @@ export default inject("activeCaseStore")(
 
               <section>
                 <Divider orientation="left">Description</Divider>
-                <DescriptionForm
-                  initialDescription={activeIndicator.description}
-                  updateDescription={newDescription =>
+                <MarkdownEditor
+                  initialValue={activeIndicator.description}
+                  updateValue={newDescription =>
                     activeCaseStore!.changeDescription(
                       activeIndicator.id,
                       newDescription,
