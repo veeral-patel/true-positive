@@ -50,6 +50,7 @@ function TaskTemplateDrawer(props: Props) {
       visible={isOpen}
       onClose={handleClose}
       width={500}
+      maskClosable={false}
     >
       {drawerContent}
     </Drawer>
