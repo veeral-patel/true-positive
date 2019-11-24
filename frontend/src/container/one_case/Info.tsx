@@ -112,10 +112,10 @@ export default inject("activeCaseStore")(
                     <Divider orientation="left">Description</Divider>
                     <MarkdownEditor
                       initialValue={activeCase.description}
-                      updateValue={newValue =>
+                      updateValue={newDescription =>
                         activeCaseStore!.changeDescription(
                           activeCase.id,
-                          newValue,
+                          newDescription,
                           "CASE"
                         )
                       }
