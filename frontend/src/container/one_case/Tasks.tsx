@@ -77,7 +77,7 @@ export default inject("activeCaseStore")(
                             this.setState({ openModal: "CREATE_TASK" })
                           }
                         >
-                          Create Task
+                          Create a task
                         </Button>
                       </div>
                     }

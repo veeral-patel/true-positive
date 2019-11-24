@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { Spin, Tabs } from "antd";
+import { Button, Empty, Spin, Tabs, Typography } from "antd";
 import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
@@ -7,6 +7,7 @@ import React from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 const { TabPane } = Tabs;
+const { Paragraph } = Typography;
 
 // ---
 
@@ -19,7 +20,24 @@ function CustomizeTaskTemplates() {
 
   if (loading) return <Spin />;
   else if (data) {
-    return <ListofTaskTemplates taskTemplates={data.taskTemplates} />;
+    if (data.taskTemplates.length === 0) {
+      return (
+        <Empty
+          description={
+            <div style={{ marginTop: "1em" }}>
+              <h3>No task templates</h3>
+              <Paragraph>
+                Create templates for common tasks, so you can quickly create
+                tasks from them later.
+              </Paragraph>
+              <Button icon="plus">Create task template</Button>
+            </div>
+          }
+        />
+      );
+    } else {
+      return <ListofTaskTemplates taskTemplates={data.taskTemplates} />;
+    }
   } else {
     return (
       <ErrorP
