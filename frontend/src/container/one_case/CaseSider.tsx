@@ -93,15 +93,7 @@ export default inject(
               style={{ textTransform: "uppercase" }}
               editable={{
                 onChange: (newName: string) => {
-                  if (!activeCaseStore!.activeCase) return;
-                  renameCase({
-                    variables: {
-                      input: {
-                        id: activeCaseStore!.activeCase.id,
-                        name: newName
-                      }
-                    }
-                  });
+                  activeCaseStore!.renameActiveCase(newName);
                 }
               }}
             >
