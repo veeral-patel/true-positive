@@ -60,7 +60,6 @@ function ListofTaskTemplates(props: Props) {
         isOpen={drawerIsOpen && idOfVisibleTemplate != null}
         handleClose={() => {
           toggleDrawer(false);
-          setIdOfVisibleTemplate(null);
         }}
         templateId={idOfVisibleTemplate}
       />

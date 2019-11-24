@@ -45,7 +45,12 @@ function TaskTemplateDrawer(props: Props) {
   }
 
   return (
-    <Drawer visible={isOpen} onClose={handleClose} width={500}>
+    <Drawer
+      title="Edit task template"
+      visible={isOpen}
+      onClose={handleClose}
+      width={500}
+    >
       {drawerContent}
     </Drawer>
   );
