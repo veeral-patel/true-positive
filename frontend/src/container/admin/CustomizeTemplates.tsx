@@ -13,7 +13,7 @@ function CustomizeTemplates() {
         <TabPane key="task_templates" tab="Task Templates">
           <Paragraph>
             Create templates for common tasks here, so you can initialize tasks
-            quickly later.
+            from them later.
           </Paragraph>
         </TabPane>
       </Tabs>
