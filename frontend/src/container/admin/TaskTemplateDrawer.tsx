@@ -64,7 +64,9 @@ function TaskTemplateDrawer(props: Props) {
             textAlign: "right"
           }}
         >
-          <Button style={{ marginRight: 8 }}>Cancel</Button>
+          <Button style={{ marginRight: "1em" }} onClick={handleClose}>
+            Cancel
+          </Button>
           <Button type="primary">Update Template</Button>
         </div>
       </>
