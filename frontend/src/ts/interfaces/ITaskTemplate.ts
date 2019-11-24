@@ -1,6 +1,7 @@
 import IUser from "./IUser";
 
 interface ITaskTemplate {
+  id: number;
   name: string;
   createdAt: string;
   createdBy: IUser;

@@ -9,7 +9,15 @@ interface Props {
 }
 
 function ListofTaskTemplates(props: Props) {
-  const [modalIsOpen, toggleModal] = useState(false);
+  /* toggle the drawer. you must also set the ID of the template to show (below) */
+  /* in order to show the drawer. */
+  const [drawerIsOpen, toggleDrawer] = useState(false);
+
+  /* set the ID of the template to show in the drawer. */
+  const [idOfVisibleTemplate, setIdOfVisibleTemplate] = useState<number | null>(
+    null
+  );
+
   return (
     <>
       <List
@@ -29,7 +37,17 @@ function ListofTaskTemplates(props: Props) {
             ]}
           >
             <List.Item.Meta
-              title={<a onClick={() => toggleModal(true)}>{template.name}</a>}
+              title={
+                <a
+                  onClick={() => {
+                    /* open the drawer and tell it which template to render. */
+                    toggleDrawer(true);
+                    setIdOfVisibleTemplate(template.id);
+                  }}
+                >
+                  {template.name}
+                </a>
+              }
               description={`Created by ${
                 template.createdBy.username
               } on ${formatDateOnly(template.createdAt)} (UTC)`}
@@ -38,8 +56,12 @@ function ListofTaskTemplates(props: Props) {
         )}
       />
       <TaskTemplateDrawer
-        isOpen={modalIsOpen}
-        handleClose={() => toggleModal(false)}
+        isOpen={drawerIsOpen}
+        handleClose={() => {
+          toggleDrawer(false);
+          setIdOfVisibleTemplate(null);
+        }}
+        templateId={idOfVisibleTemplate}
       />
     </>
   );
