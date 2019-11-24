@@ -1,6 +1,5 @@
-import { List, Typography } from "antd";
+import { Button, List, Popconfirm, Typography } from "antd";
 import { inject, observer } from "mobx-react";
-import DeleteStatusButton from "presentational/admin/DeleteStatusButtonP";
 import React from "react";
 import StatusStore from "stores/StatusStore";
 import IStatus from "ts/interfaces/IStatus";
@@ -21,10 +20,14 @@ export default inject("statusStore")(
         return (
           <List.Item
             actions={[
-              <DeleteStatusButton
-                status={status}
-                deleteStatus={statusStore!.deleteStatus}
-              />
+              <Popconfirm
+                title="Delete this status?"
+                okText="Yes, Delete"
+                onConfirm={() => statusStore!.deleteStatus(status.name)}
+                cancelText="No"
+              >
+                <Button type="link" icon="delete" />
+              </Popconfirm>
             ]}
           >
             <List.Item.Meta
