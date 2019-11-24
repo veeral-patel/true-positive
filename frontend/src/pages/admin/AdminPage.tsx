@@ -10,7 +10,7 @@ const { TabPane } = Tabs;
 class AdminPage extends React.Component<RouteComponentProps> {
   render() {
     return (
-      <div style={{ width: "70%" }}>
+      <div style={{ width: "75%" }}>
         <Tabs tabPosition="left">
           <TabPane tab="Customize Statuses" key="statuses">
             <CustomizeStatuses />
