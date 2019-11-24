@@ -1,4 +1,4 @@
-import IUser from "./IUser";
+import IUser from "ts/interfaces/IUser";
 
 interface ITaskTemplate {
   id: number;
