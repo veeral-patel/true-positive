@@ -1,14 +1,15 @@
 import { Button, List, Popconfirm } from "antd";
-import React from "react";
+import TaskTemplateDrawer from "container/admin/TaskTemplateDrawer";
+import React, { useState } from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 import { formatDateOnly } from "utils/formatISO8601";
-import TaskTemplateDrawer from "./TaskTemplateDrawer";
 
 interface Props {
   taskTemplates: ITaskTemplate[];
 }
 
 function ListofTaskTemplates(props: Props) {
+  const [modalIsOpen, toggleModal] = useState(false);
   return (
     <>
       <List
@@ -28,7 +29,7 @@ function ListofTaskTemplates(props: Props) {
             ]}
           >
             <List.Item.Meta
-              title={template.name}
+              title={<a onClick={() => toggleModal(true)}>{template.name}</a>}
               description={`Created by ${
                 template.createdBy.username
               } on ${formatDateOnly(template.createdAt)} (UTC)`}
@@ -36,7 +37,10 @@ function ListofTaskTemplates(props: Props) {
           </List.Item>
         )}
       />
-      <TaskTemplateDrawer isOpen={false} />
+      <TaskTemplateDrawer
+        isOpen={modalIsOpen}
+        handleClose={() => toggleModal(false)}
+      />
     </>
   );
 }
