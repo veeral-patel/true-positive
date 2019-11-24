@@ -76,6 +76,7 @@ function TaskTemplateDrawer(props: Props) {
       onClose={handleClose}
       width={500}
       maskClosable={false}
+      keyboard={false}
     >
       {drawerContent}
     </Drawer>
