@@ -1,4 +1,5 @@
 import { Tabs, Typography } from "antd";
+import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
 import React from "react";
 
 const { Paragraph } = Typography;
@@ -15,6 +16,7 @@ function CustomizeTemplates() {
             Create templates for common tasks here, so you can initialize tasks
             from them later.
           </Paragraph>
+          <ListofTaskTemplates />
         </TabPane>
       </Tabs>
     </>
