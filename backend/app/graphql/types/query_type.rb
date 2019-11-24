@@ -106,5 +106,19 @@ module Types
       def task_templates
         TaskTemplate.all
       end
+
+      field :task_template, Types::TaskTemplateType, null: false do
+        description "Retrieve a task template by its ID."
+
+        argument :id, ID, required: true do
+          description "The ID of the task template to retrieve."
+        end
+      end
+
+      def task_template(id:)
+        the_template = find_task_template_or_throw_execution_error(template_id: id)
+
+        the_template
+      end
   end
 end
