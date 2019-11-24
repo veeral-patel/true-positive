@@ -1,6 +1,7 @@
 import { Button, List, Popconfirm } from "antd";
 import React from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
+import { formatDateOnly } from "utils/formatISO8601";
 
 interface Props {
   taskTemplates: ITaskTemplate[];
@@ -24,7 +25,12 @@ function ListofTaskTemplates(props: Props) {
             </Popconfirm>
           ]}
         >
-          <List.Item.Meta title={template.name} />
+          <List.Item.Meta
+            title={template.name}
+            description={`Created by ${
+              template.createdBy.username
+            } on ${formatDateOnly(template.createdAt)} (UTC)`}
+          />
         </List.Item>
       )}
     />
