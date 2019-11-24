@@ -1,5 +1,13 @@
-import { Drawer } from "antd";
+import { useQuery } from "@apollo/react-hooks";
+import { Drawer, Spin } from "antd";
+import ErrorP from "presentational/shared/errors/ErrorP";
+import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
+import ITaskTemplate from "ts/interfaces/ITaskTemplate";
+
+interface OneTemplateData {
+  taskTemplate: ITaskTemplate;
+}
 
 interface Props {
   /* Whether to render this drawer. */
@@ -15,12 +23,30 @@ interface Props {
 function TaskTemplateDrawer(props: Props) {
   const { isOpen, handleClose, templateId } = props;
 
-  /* can't render the drawer without knowing which template you're editing! */
-  if (templateId == null) return null;
+  /* retrieve this template's existing information. */
+  const { loading, error, data } = useQuery<OneTemplateData>(
+    GET_ONE_TASK_TEMPLATE,
+    {
+      variables: {
+        id: templateId
+      }
+    }
+  );
+
+  let drawerContent: React.ReactNode = null;
+  if (loading) drawerContent = <Spin />;
+  else if (error) {
+    drawerContent = (
+      <ErrorP
+        title="Couldn't retrieve template"
+        subtitle="Ensure your Internet connection is working"
+      />
+    );
+  }
 
   return (
-    <Drawer visible={isOpen} onClose={handleClose}>
-      Hello world!
+    <Drawer visible={isOpen} onClose={handleClose} width={500}>
+      {drawerContent}
     </Drawer>
   );
 }
