@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { Drawer, Spin } from "antd";
+import { Button, Drawer, Form, Input, Spin } from "antd";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
@@ -41,6 +41,31 @@ function TaskTemplateDrawer(props: Props) {
         title="Couldn't retrieve template"
         subtitle="Ensure your Internet connection is working"
       />
+    );
+  } else if (data) {
+    drawerContent = (
+      <>
+        <Form colon={false}>
+          <Form.Item label="Name">
+            <Input placeholder="Your task's name" />
+          </Form.Item>
+        </Form>
+        <div
+          style={{
+            position: "absolute",
+            right: 0,
+            bottom: 0,
+            width: "100%",
+            borderTop: "1px solid #e9e9e9",
+            padding: "10px 16px",
+            background: "#fff",
+            textAlign: "right"
+          }}
+        >
+          <Button style={{ marginRight: 8 }}>Cancel</Button>
+          <Button type="primary">Update Template</Button>
+        </div>
+      </>
     );
   }
 
