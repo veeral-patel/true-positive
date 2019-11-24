@@ -2,7 +2,7 @@ import { RouteComponentProps } from "@reach/router";
 import { Col, Divider, Layout, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
-import DescriptionForm from "container/shared/description/DescriptionForm";
+import MarkdownEditor from "container/shared/markdown/MarkdownEditor";
 import { inject, observer } from "mobx-react";
 import ListofMergedCasesP from "presentational/one_case/ListofMergedCasesP";
 import CommentList from "presentational/shared/comments/CommentListP";
@@ -110,12 +110,12 @@ export default inject("activeCaseStore")(
                 <Row>
                   <Col span={24}>
                     <Divider orientation="left">Description</Divider>
-                    <DescriptionForm
-                      initialDescription={activeCase.description}
-                      updateDescription={newDescription =>
+                    <MarkdownEditor
+                      initialValue={activeCase.description}
+                      updateValue={newValue =>
                         activeCaseStore!.changeDescription(
                           activeCase.id,
-                          newDescription,
+                          newValue,
                           "CASE"
                         )
                       }
