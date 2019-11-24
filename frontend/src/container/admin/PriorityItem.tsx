@@ -1,6 +1,5 @@
-import { List, Typography } from "antd";
+import { Button, List, Popconfirm, Typography } from "antd";
 import { inject, observer } from "mobx-react";
-import DeletePriorityButtonP from "presentational/admin/DeletePriorityButtonP";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import IPriority from "ts/interfaces/IPriority";
@@ -21,10 +20,14 @@ export default inject("priorityStore")(
         return (
           <List.Item
             actions={[
-              <DeletePriorityButtonP
-                priority={priority}
-                deletePriority={priorityStore!.deletePriority}
-              />
+              <Popconfirm
+                title="Delete this priority?"
+                okText="Yes, Delete"
+                onConfirm={() => priorityStore!.deletePriority(priority.name)}
+                cancelText="No"
+              >
+                <Button type="link" icon="delete" />
+              </Popconfirm>
             ]}
           >
             <List.Item.Meta
