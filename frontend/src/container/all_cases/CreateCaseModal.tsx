@@ -115,9 +115,12 @@ class DumbCreateCaseForm extends React.Component<FormProps> {
 
 // provide our form with validation and MobX access
 const CreateCaseForm = Form.create()(
-  inject("statusStore", "priorityStore", "uiStore", "allCasesStore")(
-    observer(DumbCreateCaseForm)
-  )
+  inject(
+    "statusStore",
+    "priorityStore",
+    "uiStore",
+    "allCasesStore"
+  )(observer(DumbCreateCaseForm))
 );
 
 // -----
@@ -139,6 +142,7 @@ export default inject("uiStore")(
             onCancel={() => uiStore!.closeModal()}
             style={{ padding: "0px" }}
             destroyOnClose={true}
+            keyboard={false}
           >
             <CreateCaseForm />
           </Modal>
