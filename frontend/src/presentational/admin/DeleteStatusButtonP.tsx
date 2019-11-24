@@ -1,4 +1,4 @@
-import { Popconfirm, Typography } from "antd";
+import { Button, Popconfirm, Typography } from "antd";
 import React from "react";
 import IStatus from "ts/interfaces/IStatus";
 
@@ -16,7 +16,7 @@ const DeleteStatusButton: React.FC<Props> = ({ status, deleteStatus }) => (
     onConfirm={() => deleteStatus(status.name)}
     cancelText="No"
   >
-    <a style={{ color: "red" }}>Delete</a>
+    <Button type="link" icon="delete" />
   </Popconfirm>
 );
 

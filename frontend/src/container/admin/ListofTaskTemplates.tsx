@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { List, Spin } from "antd";
+import { Button, List, Popconfirm, Spin } from "antd";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React from "react";
@@ -29,7 +29,17 @@ function ListofTaskTemplates() {
         dataSource={data.taskTemplates}
         bordered
         renderItem={template => (
-          <List.Item>
+          <List.Item
+            actions={[
+              <Popconfirm
+                title="Delete this template?"
+                okText="Yes, Delete"
+                cancelText="No"
+              >
+                <Button type="link" icon="delete" />
+              </Popconfirm>
+            ]}
+          >
             <List.Item.Meta title={template.name} />
           </List.Item>
         )}

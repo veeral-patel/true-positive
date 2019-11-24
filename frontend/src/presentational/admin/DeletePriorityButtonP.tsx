@@ -1,4 +1,4 @@
-import { Popconfirm } from "antd";
+import { Button, Popconfirm } from "antd";
 import React from "react";
 import IPriority from "ts/interfaces/IPriority";
 
@@ -17,7 +17,7 @@ const DeletePriorityButtonP: React.FC<DeletePriorityButtonProps> = ({
     onConfirm={() => deletePriority(priority.name)}
     cancelText="No"
   >
-    <a style={{ color: "red" }}>Delete</a>
+    <Button type="link" icon="delete" />
   </Popconfirm>
 );
 
