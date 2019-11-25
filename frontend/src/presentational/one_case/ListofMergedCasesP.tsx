@@ -17,7 +17,11 @@ const ListofMergedCasesP: React.FC<ListofMergedCasesProps> = ({
       <List.Item>
         <List.Item.Meta
           title={<a href={getPathToACase(childCase.id)}>{childCase.name}</a>}
-          description={childCase.description}
+          description={
+            childCase.reasonForMerging == null
+              ? "No reason for merging was given"
+              : childCase.reasonForMerging
+          }
         />
       </List.Item>
     )}

@@ -13,7 +13,7 @@ const GET_ONE_CASE = gql`
       mergedCases {
         id
         name
-        description
+        reasonForMerging
       }
       caseMembers {
         role

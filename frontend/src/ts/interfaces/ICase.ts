@@ -22,6 +22,7 @@ interface ICase {
   isMerged: boolean;
   mergedInto: ICase | null;
   mergedCases: ICase[];
+  reasonForMerging: string | null;
   caseMembers: ICaseMember[];
   indicators: IIndicator[];
 }

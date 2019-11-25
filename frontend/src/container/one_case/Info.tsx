@@ -147,10 +147,6 @@ export default inject("activeCaseStore")(
                   <Divider orientation="left">
                     Merged Cases ({activeCase.mergedCases.length})
                   </Divider>
-                  <Text>
-                    {activeCase.mergedCases.length} case(s) have been merged
-                    into this case.
-                  </Text>
                   <div style={{ marginTop: "15px" }}>
                     <ListofMergedCasesP mergedCases={activeCase.mergedCases} />
                   </div>

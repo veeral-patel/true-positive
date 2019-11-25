@@ -5,16 +5,12 @@ const GET_CASES = gql`
     cases {
       id
       name
-      description
       createdAt
       priority {
         name
       }
       status {
         name
-      }
-      createdBy {
-        username
       }
       assignedTo {
         username
