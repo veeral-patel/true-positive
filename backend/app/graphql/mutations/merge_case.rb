@@ -10,6 +10,10 @@ class Mutations::MergeCase < Mutations::BaseMutation
         description "The ID of the case we're merging it into."
     end
 
+    argument :reason, String, required: false do
+        description "Reason for merging the two cases."
+    end
+
     # the case we just merged
     field :child_case, Types::CaseType, null: true do
         description "The case we just merged."
@@ -19,7 +23,7 @@ class Mutations::MergeCase < Mutations::BaseMutation
         description "The case we merged it into."
     end
 
-    def resolve(child_case_id:, parent_case_id:)
+    def resolve(child_case_id:, parent_case_id:, reason: nil)
         # find our intended child case and the parent case
         child_case = find_case_or_throw_execution_error(case_id: child_case_id)
         parent_case = find_case_or_throw_execution_error(case_id: parent_case_id)
@@ -29,7 +33,7 @@ class Mutations::MergeCase < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "To merge a case into another, you must have permission to edit both cases."
         end
 
-        if child_case.merge_case_into(parent_case)
+        if child_case.merge_case_into(parent_case, reason)
             {
                 "child_case": child_case,
                 "parent_case": parent_case

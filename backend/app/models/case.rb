@@ -52,8 +52,9 @@ class Case < ApplicationRecord
     self.name
   end
 
-  def merge_case_into(parent_case)
+  def merge_case_into(parent_case, reason)
     self.parent = parent_case
+    self.reason_for_merging = reason
     self.save
   end
 
