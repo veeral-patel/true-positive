@@ -37,15 +37,32 @@ function DumbMergeCaseForm(props: FormProps) {
     caseOptions = [<Option key="error">Failed to fetch tags</Option>];
   } else if (data) {
     caseOptions = data.cases.map(theCase => (
-      <Option key={theCase.id}>{theCase.name}</Option>
+      <Option key={theCase.id} value={theCase.name}>
+        {theCase.name}
+      </Option>
     ));
   }
 
   return (
     <Form colon={false}>
-      <Form.Item label="The case to merge this case into" required={true}>
+      <Form.Item label="Case to merge this case into" required={true}>
         {getFieldDecorator("parentCase")(
-          <AutoComplete dataSource={caseOptions}>
+          <AutoComplete
+            dataSource={caseOptions}
+            optionLabelProp="value"
+            filterOption={(inputValue, option) => {
+              // filter options based on the name of the case
+              if (option.props.value) {
+                return (
+                  option.props.value
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(inputValue.toLowerCase()) !== -1
+                );
+              }
+              return false;
+            }}
+          >
             <Input prefix={<Icon type="search" />} placeholder="Filter cases" />
           </AutoComplete>
         )}
