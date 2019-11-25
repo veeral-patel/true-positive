@@ -1,9 +1,15 @@
 import { Alert, Form, Input, Modal } from "antd";
+import { FormComponentProps } from "antd/lib/form";
+import { WrappedFormUtils } from "antd/lib/form/Form";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import UIStore from "stores/UIStore";
 
 const { TextArea } = Input;
+
+interface FormProps {
+  form: WrappedFormUtils;
+}
 
 // ---
 
@@ -17,6 +23,10 @@ function DumbMergeCaseForm() {
     </Form>
   );
 }
+
+const MergeCaseForm = Form.create<FormProps & FormComponentProps>()(
+  observer(DumbMergeCaseForm)
+);
 
 // ---
 
@@ -43,7 +53,7 @@ export default inject("uiStore")(
               not modify this case or the parent case at all."
             />
             <div style={{ marginTop: "1em" }} />
-            <DumbMergeCaseForm />
+            <MergeCaseForm />
           </Modal>
         );
       }
