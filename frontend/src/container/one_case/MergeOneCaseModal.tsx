@@ -14,11 +14,15 @@ interface FormProps {
 // ---
 
 // Don't use this form directly
-function DumbMergeCaseForm() {
+function DumbMergeCaseForm(props: FormProps) {
+  const { getFieldDecorator } = props.form;
+
   return (
     <Form colon={false}>
       <Form.Item label="Reason">
-        <TextArea placeholder="Describe how the two cases are related" />
+        {getFieldDecorator("reason")(
+          <TextArea placeholder="Describe how the two cases are related" />
+        )}
       </Form.Item>
     </Form>
   );
