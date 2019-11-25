@@ -18,12 +18,6 @@ const GET_CASES = gql`
       tags {
         name
       }
-      tasks {
-        id
-        name
-        done
-        description
-      }
     }
   }
 `;

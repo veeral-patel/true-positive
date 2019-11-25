@@ -55,6 +55,14 @@ module Types
             description "This case's indicators."
         end
 
+        field :completed_task_count, Int, null: false do
+            description "The number of completed tasks in this case."
+        end
+
+        field :total_task_count, Int, null: false do
+            description "The number of total tasks in this case."
+        end
+
         # possibly null
         field :description, String, null: true do
             description "This case's description."
