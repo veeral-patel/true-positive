@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_043624) do
+ActiveRecord::Schema.define(version: 2019_11_25_045412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_11_25_043624) do
     t.text "description"
     t.bigint "assigned_to_id"
     t.string "ancestry"
-    t.text "merge_reason"
+    t.text "reason_for_merging"
     t.index ["ancestry"], name: "index_cases_on_ancestry"
     t.index ["assigned_to_id"], name: "index_cases_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_cases_on_created_by_id"

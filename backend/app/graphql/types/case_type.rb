@@ -67,5 +67,9 @@ module Types
         field :merged_into, Types::CaseType, null: true do
             description "The case that this case has been merged into (if any)."
         end
+
+        field :reason_for_merging, String, null: true do
+            description "The reason why this case was merged into its parent case."
+        end
     end
 end
