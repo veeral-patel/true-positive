@@ -1,5 +1,14 @@
 import { useQuery } from "@apollo/react-hooks";
-import { Alert, AutoComplete, Form, Icon, Input, Modal, Select } from "antd";
+import {
+  Alert,
+  AutoComplete,
+  Button,
+  Form,
+  Icon,
+  Input,
+  Modal,
+  Select
+} from "antd";
 import { DataSourceItemType } from "antd/lib/auto-complete";
 import { FormComponentProps } from "antd/lib/form";
 import { WrappedFormUtils } from "antd/lib/form/Form";
@@ -14,6 +23,7 @@ const { TextArea } = Input;
 
 interface FormProps {
   form: WrappedFormUtils;
+  uiStore?: UIStore;
 }
 
 // ---
@@ -25,8 +35,23 @@ interface CaseNameData {
 
 // Don't use this form directly
 function DumbMergeCaseForm(props: FormProps) {
+  const { uiStore } = props;
   const { getFieldDecorator } = props.form;
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    // prevent page reload
+    event.preventDefault();
+
+    // validate form fields; raise errors
+    const { form } = props;
+    form.validateFields((errors, values) => {
+      if (!errors) {
+        // do nothing
+      }
+    });
+  };
+
+  // populate our list of case options
   const { error, loading, data } = useQuery<CaseNameData>(GET_CASE_NAMES);
 
   let caseOptions: DataSourceItemType[] = [];
@@ -43,8 +68,9 @@ function DumbMergeCaseForm(props: FormProps) {
     ));
   }
 
+  // render the form
   return (
-    <Form colon={false}>
+    <Form colon={false} onSubmit={handleSubmit}>
       <Form.Item label="Case to merge this case into" required={true}>
         {getFieldDecorator("parentCase")(
           <AutoComplete
@@ -72,12 +98,25 @@ function DumbMergeCaseForm(props: FormProps) {
           <TextArea placeholder="Describe how the two cases are related" />
         )}
       </Form.Item>
+      <Form.Item>
+        <div style={{ float: "right" }}>
+          <Button
+            style={{ marginRight: "0.5em" }}
+            onClick={() => uiStore!.closeModal()}
+          >
+            Cancel
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Create Case
+          </Button>
+        </div>
+      </Form.Item>
     </Form>
   );
 }
 
 const MergeCaseForm = Form.create<FormProps & FormComponentProps>()(
-  observer(DumbMergeCaseForm)
+  inject("uiStore")(observer(DumbMergeCaseForm))
 );
 
 // ---
@@ -95,10 +134,9 @@ export default inject("uiStore")(
           <Modal
             title="Merge Case"
             visible={uiStore!.openModal === "MERGE_ONE_CASE_MODAL"}
-            onCancel={() => uiStore!.closeModal()}
-            okText="Merge"
             destroyOnClose={true}
             keyboard={false}
+            footer={null}
           >
             <Alert
               type="info"
