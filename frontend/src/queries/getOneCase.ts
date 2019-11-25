@@ -6,6 +6,8 @@ const GET_ONE_CASE = gql`
       id
       name
       isMerged
+      completedTaskCount
+      totalTaskCount
       mergedInto {
         id
         name

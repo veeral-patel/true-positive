@@ -50,9 +50,6 @@ export default inject("activeCaseStore")(
         // should always render, since we're catching errors and showing
         // our spinner above this, as a HOC
         if (activeCase) {
-          const tasks = activeCase.tasks;
-          const doneTasks = activeCase.tasks.filter(task => task.done);
-
           return (
             <div>
               <Content
@@ -63,7 +60,7 @@ export default inject("activeCaseStore")(
                   minHeight: 280
                 }}
               >
-                {tasks.length === 0 ? (
+                {activeCase.totalTaskCount === 0 ? (
                   <Empty
                     description={
                       <div style={{ marginTop: "1em" }}>
@@ -92,9 +89,13 @@ export default inject("activeCaseStore")(
                       }}
                     >
                       <h3>
-                        Tasks ({doneTasks.length}/{tasks.length})
+                        Tasks ({activeCase.completedTaskCount}/
+                        {activeCase.totalTaskCount})
                       </h3>
-                      <TaskProgress theCase={activeCase} />
+                      <TaskProgress
+                        completedTaskCount={activeCase.completedTaskCount}
+                        totalTaskCount={activeCase.totalTaskCount}
+                      />
                     </div>
                     <div style={{ float: "right", marginBottom: "6px" }}>
                       <Button
@@ -113,7 +114,7 @@ export default inject("activeCaseStore")(
                     <div style={{ marginBottom: "2em" }} />
                     <List<ITask>
                       itemLayout="horizontal"
-                      dataSource={tasks}
+                      dataSource={activeCase.tasks}
                       bordered
                       renderItem={task => (
                         <List.Item>

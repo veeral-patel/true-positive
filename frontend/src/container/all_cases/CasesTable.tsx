@@ -1,6 +1,7 @@
 import { navigate } from "@reach/router";
 import { Spin, Table } from "antd";
 import { ColumnFilterItem } from "antd/lib/table";
+import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import PriorityTagP from "presentational/shared/tags/PriorityTagP";
@@ -178,13 +179,16 @@ export default inject(
                 formatISO8601(theCase.createdAt)
               }
             />
-            {/* <Column
+            <Column
               title="Tasks"
               key="tasks"
               render={(value, theCase: ICase, index) => (
-                <TaskProgress theCase={theCase} />
+                <TaskProgress
+                  completedTaskCount={theCase.completedTaskCount}
+                  totalTaskCount={theCase.totalTaskCount}
+                />
               )}
-            /> */}
+            />
           </Table>
         );
       }

@@ -18,6 +18,8 @@ const GET_CASES = gql`
       tags {
         name
       }
+      completedTaskCount
+      totalTaskCount
     }
   }
 `;

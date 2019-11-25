@@ -73,6 +73,17 @@ class Case < ApplicationRecord
     self.parent
   end
 
+  def completed_task_count
+    # Number of completed tasks in this case
+    completed_tasks = self.tasks.where(done: true)
+    completed_tasks.count
+  end
+
+  def total_task_count
+    # Number of total tasks in this case
+    self.tasks.count
+  end
+
   private
     def destroy_merged_cases
       self.merged_cases.each { |the_case| the_case.destroy } 

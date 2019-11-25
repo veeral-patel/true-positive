@@ -25,6 +25,8 @@ interface ICase {
   reasonForMerging: string | null;
   caseMembers: ICaseMember[];
   indicators: IIndicator[];
+  completedTaskCount: number;
+  totalTaskCount: number;
 }
 
 export default ICase;
