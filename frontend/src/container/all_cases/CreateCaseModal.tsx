@@ -140,7 +140,6 @@ export default inject("uiStore")(
             title="Create a Case"
             footer={null}
             onCancel={() => uiStore!.closeModal()}
-            style={{ padding: "0px" }}
             destroyOnClose={true}
             keyboard={false}
           >
