@@ -1,4 +1,4 @@
-import { Alert, Form, Input, Modal } from "antd";
+import { Alert, AutoComplete, Form, Icon, Input, Modal } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import { inject, observer } from "mobx-react";
@@ -19,6 +19,13 @@ function DumbMergeCaseForm(props: FormProps) {
 
   return (
     <Form colon={false}>
+      <Form.Item label="The case to merge this case into">
+        {getFieldDecorator("parentCase")(
+          <AutoComplete dataSource={[]}>
+            <Input prefix={<Icon type="search" />} placeholder="Filter cases" />
+          </AutoComplete>
+        )}
+      </Form.Item>
       <Form.Item label="Reason">
         {getFieldDecorator("reason")(
           <TextArea placeholder="Describe how the two cases are related" />
