@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Empty, Spin, Tabs, Typography } from "antd";
+import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
 import ErrorP from "presentational/shared/errors/ErrorP";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
-import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
 
 const { TabPane } = Tabs;
 const { Paragraph } = Typography;
