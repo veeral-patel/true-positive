@@ -30,13 +30,7 @@ class DumbCreateCommentForm extends React.Component<
         <Form.Item>
           {getFieldDecorator("comment", {
             rules: [{ required: true, message: "Please enter a comment" }]
-          })(
-            <TextArea
-              placeholder="Leave a comment"
-              rows={3}
-              style={{ padding: "2%" }}
-            />
-          )}
+          })(<TextArea placeholder="Leave a comment" rows={3} />)}
         </Form.Item>
         <Form.Item style={{ float: "right" }}>
           <Button htmlType="submit">Add Comment</Button>

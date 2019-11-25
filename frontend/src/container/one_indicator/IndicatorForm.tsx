@@ -29,7 +29,7 @@ class DumbIndicatorForm extends React.Component<
             <TextArea
               rows={5}
               placeholder="Enter your indicator here"
-              style={{ padding: "2%", fontFamily: "monospace" }}
+              style={{ fontFamily: "monospace" }}
             />
           )}
         </Form.Item>

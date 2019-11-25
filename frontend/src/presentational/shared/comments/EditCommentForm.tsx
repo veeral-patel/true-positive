@@ -24,7 +24,7 @@ class DumbEditCommentForm extends React.Component<FormProps> {
         <Form.Item>
           {getFieldDecorator("comment", {
             initialValue: initialComment
-          })(<TextArea style={{ paddingTop: "2%" }} />)}
+          })(<TextArea />)}
         </Form.Item>
         <Form.Item>
           <Button type="link" onClick={handleCancel}>
