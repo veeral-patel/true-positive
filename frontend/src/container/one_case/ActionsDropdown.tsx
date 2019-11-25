@@ -22,7 +22,7 @@ export default inject(
       render() {
         const menu = (
           <Menu onClick={this.handleMenuClick.bind(this)}>
-            {/* <Menu.Item key={MERGE_CASE}>Merge</Menu.Item> */}
+            <Menu.Item key={MERGE_CASE}>Merge</Menu.Item>
             <Menu.Divider />
             <Menu.Item key={DELETE_CASE} style={{ color: "red" }}>
               Delete Case
