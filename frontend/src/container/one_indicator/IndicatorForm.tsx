@@ -35,7 +35,7 @@ class DumbIndicatorForm extends React.Component<
         </Form.Item>
         <Form.Item>
           <Button htmlType="submit" style={{ float: "right" }}>
-            Update Indicator
+            Update
           </Button>
         </Form.Item>
       </Form>
