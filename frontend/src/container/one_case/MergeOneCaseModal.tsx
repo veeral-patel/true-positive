@@ -15,6 +15,7 @@ import { WrappedFormUtils } from "antd/lib/form/Form";
 import { inject, observer } from "mobx-react";
 import GET_CASE_NAMES from "queries/getCaseNames";
 import React from "react";
+import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 import ICase from "ts/interfaces/ICase";
 
@@ -24,6 +25,7 @@ const { TextArea } = Input;
 interface FormProps {
   form: WrappedFormUtils;
   uiStore?: UIStore;
+  activeCaseStore?: ActiveCaseStore;
 }
 
 // ---
@@ -35,7 +37,7 @@ interface CaseNameData {
 
 // Don't use this form directly
 function DumbMergeCaseForm(props: FormProps) {
-  const { uiStore } = props;
+  const { uiStore, activeCaseStore } = props;
   const { getFieldDecorator } = props.form;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -47,6 +49,7 @@ function DumbMergeCaseForm(props: FormProps) {
     form.validateFields((errors, values) => {
       if (!errors) {
         // do nothing
+        // console.log(values);
       }
     });
   };
@@ -62,7 +65,7 @@ function DumbMergeCaseForm(props: FormProps) {
     caseOptions = [<Option key="error">Failed to fetch tags</Option>];
   } else if (data) {
     caseOptions = data.cases.map(theCase => (
-      <Option key={theCase.id} value={theCase.name}>
+      <Option key={theCase.id} value={theCase.id}>
         {theCase.name}
       </Option>
     ));
@@ -71,11 +74,13 @@ function DumbMergeCaseForm(props: FormProps) {
   // render the form
   return (
     <Form colon={false} onSubmit={handleSubmit}>
-      <Form.Item label="Case to merge this case into" required={true}>
-        {getFieldDecorator("parentCase")(
+      <Form.Item label="Case to merge this case into">
+        {getFieldDecorator("parentCase", {
+          rules: [{ required: true, message: "Please select a case" }]
+        })(
           <AutoComplete
             dataSource={caseOptions}
-            optionLabelProp="value"
+            optionLabelProp="children"
             filterOption={(inputValue, option) => {
               // filter options based on the name of the case
               if (option.props.value) {
@@ -116,7 +121,7 @@ function DumbMergeCaseForm(props: FormProps) {
 }
 
 const MergeCaseForm = Form.create<FormProps & FormComponentProps>()(
-  inject("uiStore")(observer(DumbMergeCaseForm))
+  inject("uiStore", "activeCaseStore")(observer(DumbMergeCaseForm))
 );
 
 // ---
