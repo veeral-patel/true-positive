@@ -107,12 +107,12 @@ function DumbMergeCaseForm(props: FormProps) {
         })(
           <AutoComplete
             dataSource={caseOptions}
-            optionLabelProp="children"
             filterOption={(inputValue, option) => {
               // filter options based on the name of the case
-              if (option.props.value) {
+              const caseName = option.props.children;
+              if (caseName) {
                 return (
-                  option.props.value
+                  caseName
                     .toString()
                     .toLowerCase()
                     .indexOf(inputValue.toLowerCase()) !== -1
