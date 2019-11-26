@@ -12,10 +12,12 @@ import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 interface FormProps {
   form: WrappedFormUtils;
+  currentTemplate: ITaskTemplate;
 }
 
 // Don't use me directly
 function DumbTaskTemplateForm(props: FormProps) {
+  const { currentTemplate } = props;
   const { getFieldDecorator } = props.form;
 
   return (
@@ -28,9 +30,9 @@ function DumbTaskTemplateForm(props: FormProps) {
               message:
                 "Please provide a default name for tasks created with this template"
             }
-          ]
-        })}
-        <Input placeholder="Your task's name" />
+          ],
+          initialValue: currentTemplate.name
+        })(<Input placeholder="Your task's name" />)}
       </Form.Item>
     </Form>
   );
@@ -83,7 +85,7 @@ function TaskTemplateDrawer(props: DrawerProps) {
   } else if (data) {
     drawerContent = (
       <>
-        <TaskTemplateForm />
+        <TaskTemplateForm currentTemplate={data.taskTemplate} />
         <div
           style={{
             position: "absolute",
