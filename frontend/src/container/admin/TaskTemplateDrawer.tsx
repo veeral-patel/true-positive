@@ -5,8 +5,6 @@ import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
-const { TextArea } = Input;
-
 interface OneTemplateData {
   taskTemplate: ITaskTemplate;
 }
