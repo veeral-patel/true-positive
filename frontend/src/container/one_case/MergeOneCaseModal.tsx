@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Alert,
   AutoComplete,
@@ -6,13 +6,17 @@ import {
   Form,
   Icon,
   Input,
+  message,
   Modal,
+  notification,
   Select
 } from "antd";
 import { DataSourceItemType } from "antd/lib/auto-complete";
 import { FormComponentProps } from "antd/lib/form";
 import { WrappedFormUtils } from "antd/lib/form/Form";
+import { ApolloError } from "apollo-boost";
 import { inject, observer } from "mobx-react";
+import MERGE_A_CASE from "mutations/mergeCase";
 import GET_CASE_NAMES from "queries/getCaseNames";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -40,6 +44,22 @@ function DumbMergeCaseForm(props: FormProps) {
   const { uiStore, activeCaseStore } = props;
   const { getFieldDecorator } = props.form;
 
+  const activeCase = activeCaseStore!.activeCase;
+
+  const [mergeCase] = useMutation(MERGE_A_CASE, {
+    onCompleted: function() {
+      message.success("Merged the case");
+      uiStore!.closeModal();
+      activeCaseStore!.loadActiveCase();
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not merge this case",
+        description: error.message
+      });
+    }
+  });
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // prevent page reload
     event.preventDefault();
@@ -47,9 +67,16 @@ function DumbMergeCaseForm(props: FormProps) {
     // validate form fields; raise errors
     const { form } = props;
     form.validateFields((errors, values) => {
-      if (!errors) {
-        // do nothing
-        // console.log(values);
+      if (!errors && activeCase) {
+        mergeCase({
+          variables: {
+            input: {
+              childCaseId: activeCase.id,
+              parentCaseId: values.parentCase,
+              reason: values.reason
+            }
+          }
+        });
       }
     });
   };
@@ -112,7 +139,7 @@ function DumbMergeCaseForm(props: FormProps) {
             Cancel
           </Button>
           <Button type="primary" htmlType="submit">
-            Create Case
+            Merge Case
           </Button>
         </div>
       </Form.Item>
@@ -139,6 +166,7 @@ export default inject("uiStore")(
           <Modal
             title="Merge Case"
             visible={uiStore!.openModal === "MERGE_ONE_CASE_MODAL"}
+            onCancel={() => uiStore!.closeModal()}
             destroyOnClose={true}
             keyboard={false}
             footer={null}
