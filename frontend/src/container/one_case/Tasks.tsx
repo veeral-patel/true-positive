@@ -97,14 +97,14 @@ export default inject("activeCaseStore")(
                         totalTaskCount={activeCase.totalTaskCount}
                       />
                     </div>
-                    <div style={{ float: "right", marginBottom: "6px" }}>
+                    {/* <div style={{ float: "right", marginBottom: "6px" }}>
                       <Button
                         type="link"
                         style={{ color: "rgb(130, 130, 130)" }}
                       >
                         Create from template
                       </Button>
-                    </div>
+                    </div> */}
                     <CreateTaskInput
                       handleEnter={event => {
                         const newTask = event.currentTarget.value;
