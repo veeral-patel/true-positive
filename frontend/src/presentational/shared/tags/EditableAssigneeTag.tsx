@@ -1,6 +1,5 @@
-import { Popover } from "antd";
+import { Popover, Tag } from "antd";
 import AssignUserSelect from "container/shared/users/AssignUserSelect";
-import UserTagP from "presentational/shared/tags/UserTagP";
 import React from "react";
 import IUser from "ts/interfaces/IUser";
 
@@ -18,7 +17,7 @@ const EditableAssigneeTag: React.FC<EditableAssigneeTagProps> = ({
     title="Change Assignee"
     content={<AssignUserSelect handleSelect={handleSelect} />}
   >
-    <UserTagP user={user} />{" "}
+    <Tag>{user ? user.username : "N/A"}</Tag>{" "}
   </Popover>
 );
 
