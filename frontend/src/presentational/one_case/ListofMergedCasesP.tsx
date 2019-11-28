@@ -3,13 +3,11 @@ import React from "react";
 import ICase from "ts/interfaces/ICase";
 import { getPathToACase } from "utils/pathHelpers";
 
-interface ListofMergedCasesProps {
+interface Props {
   mergedCases: ICase[];
 }
 
-const ListofMergedCasesP: React.FC<ListofMergedCasesProps> = ({
-  mergedCases
-}) => (
+const ListofMergedCasesP: React.FC<Props> = ({ mergedCases }) => (
   <List
     itemLayout="horizontal"
     dataSource={mergedCases}
