@@ -1,6 +1,6 @@
 import { Spin } from "antd";
 import { inject, observer } from "mobx-react";
-import ErrorP from "presentational/shared/errors/ErrorP";
+import Error from "presentational/shared/errors/Error";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 
@@ -27,7 +27,7 @@ const HandleErrorAndLoading: React.FC<HandleErrorAndLoadingProps> = ({
     );
   } else if (!activeCaseStore!.activeCase) {
     return (
-      <ErrorP
+      <Error
         title="Could not fetch case"
         subtitle="Please ensure that the case exists and that your Internet connection is working."
       />

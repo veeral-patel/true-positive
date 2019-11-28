@@ -5,7 +5,7 @@ import CreateComment from "container/shared/comments/CreateComment";
 import MarkdownEditor from "container/shared/markdown/MarkdownEditor";
 import { inject, observer } from "mobx-react";
 import CommentListP from "presentational/shared/comments/CommentListP";
-import ErrorP from "presentational/shared/errors/ErrorP";
+import Error from "presentational/shared/errors/Error";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -31,7 +31,7 @@ export default inject("activeCaseStore")(
 
         if (!taskId) {
           return (
-            <ErrorP
+            <Error
               title="Could not extract this task's ID from the URL"
               subtitle="Ensure you're at a valid URL"
             />
@@ -42,7 +42,7 @@ export default inject("activeCaseStore")(
 
         if (!activeTask) {
           return (
-            <ErrorP
+            <Error
               title="Could not load task"
               subtitle="Ensure that a task with this ID exists"
             />

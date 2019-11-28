@@ -15,7 +15,7 @@ import CreateComment from "container/shared/comments/CreateComment";
 import MarkdownEditor from "container/shared/markdown/MarkdownEditor";
 import { inject, observer } from "mobx-react";
 import CommentListP from "presentational/shared/comments/CommentListP";
-import ErrorP from "presentational/shared/errors/ErrorP";
+import Error from "presentational/shared/errors/Error";
 import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -41,7 +41,7 @@ export default inject("activeCaseStore")(
 
         if (!indicatorId) {
           return (
-            <ErrorP
+            <Error
               title="Could not extract this indicator's ID from the URL"
               subtitle="Ensure you're at a valid URL"
             />
@@ -52,7 +52,7 @@ export default inject("activeCaseStore")(
 
         if (!activeIndicator) {
           return (
-            <ErrorP
+            <Error
               title="Could not load indicator"
               subtitle="Ensure that an indicator with this ID exists"
             />

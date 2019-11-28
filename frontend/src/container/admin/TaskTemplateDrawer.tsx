@@ -3,7 +3,7 @@ import { Button, Drawer, Form, Input, Spin } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import { observer } from "mobx-react";
-import ErrorP from "presentational/shared/errors/ErrorP";
+import Error from "presentational/shared/errors/Error";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
@@ -77,7 +77,7 @@ function TaskTemplateDrawer(props: DrawerProps) {
   if (loading) drawerContent = <Spin />;
   else if (error) {
     drawerContent = (
-      <ErrorP
+      <Error
         title="Couldn't retrieve template"
         subtitle="Ensure your Internet connection is working"
       />
