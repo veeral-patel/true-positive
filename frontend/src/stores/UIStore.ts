@@ -36,43 +36,8 @@ class UIStore {
   }
 
   @action.bound
-  openAddTagsToCaseModal() {
-    this.openModal = "ADD_TAGS_TO_CASE_MODAL";
-  }
-
-  @action.bound
-  openRemoveTagsFromCaseModal() {
-    this.openModal = "REMOVE_TAGS_FROM_CASE_MODAL";
-  }
-
-  @action.bound
   openCreateCaseModal() {
     this.openModal = "CREATE_CASE_MODAL";
-  }
-
-  @action.bound
-  openChangeCaseStatusModal() {
-    this.openModal = "CHANGE_CASE_STATUS_MODAL";
-  }
-
-  @action.bound
-  openChangeCasePriorityModal() {
-    this.openModal = "CHANGE_CASE_PRIORITY_MODAL";
-  }
-
-  @action.bound
-  openAddCommentToCaseModal() {
-    this.openModal = "ADD_COMMENT_TO_CASE";
-  }
-
-  @action.bound
-  openMergeCasesModal() {
-    this.openModal = "MERGE_CASES_MODAL";
-  }
-
-  @action.bound
-  openAssignCasesModal() {
-    this.openModal = "ASSIGN_CASES_MODAL";
   }
 
   @action.bound
