@@ -1,8 +1,9 @@
-import { Spin } from "antd";
+import { List, Spin } from "antd";
+import StatusItem from "container/admin/StatusItem";
 import { inject, observer } from "mobx-react";
-import ListofStatusesP from "presentational/admin/ListofStatusesP";
 import React from "react";
 import StatusStore from "stores/StatusStore";
+import IStatus from "ts/interfaces/IStatus";
 
 interface IListofStatusProps {
   statusStore?: StatusStore;
@@ -26,7 +27,13 @@ export default inject("statusStore")(
 
         const statuses = statusStore!.statuses;
 
-        return <ListofStatusesP statuses={statuses} />;
+        return (
+          <List<IStatus>
+            itemLayout="horizontal"
+            dataSource={statuses}
+            renderItem={status => <StatusItem status={status} />}
+          />
+        );
       }
     }
   )
