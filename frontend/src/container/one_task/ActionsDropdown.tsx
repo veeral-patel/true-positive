@@ -1,8 +1,7 @@
 import { navigate } from "@reach/router";
-import { Modal } from "antd";
+import { Button, Dropdown, Icon, Menu, Modal } from "antd";
 import { ClickParam } from "antd/lib/menu";
 import { inject, observer } from "mobx-react";
-import ActionsDropdownP from "presentational/one_task/ActionsDropdownP";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import { DELETE_TASK } from "utils/constants";
@@ -18,8 +17,20 @@ export default inject("activeCaseStore")(
   observer(
     class ActionsDropdown extends React.Component<ActionsDropdownProps> {
       render() {
+        const menu = (
+          <Menu onClick={this.handleMenuClick.bind(this)}>
+            <Menu.Item key={DELETE_TASK} style={{ color: "red" }}>
+              Delete Task
+            </Menu.Item>
+          </Menu>
+        );
+
         return (
-          <ActionsDropdownP handleMenuClick={this.handleMenuClick.bind(this)} />
+          <Dropdown overlay={menu}>
+            <Button>
+              Actions <Icon type="down" />
+            </Button>
+          </Dropdown>
         );
       }
 
