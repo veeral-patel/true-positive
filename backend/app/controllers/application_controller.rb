@@ -2,15 +2,16 @@ class ApplicationController < ActionController::API
     include RailsJwtAuth::AuthenticableHelper
     include Pundit
 
+    # before_action :authenticate_user_ui
     before_action :authenticate_user_api
 
-    # def authenticate_user_ui
-    #     begin
-    #         self.authenticate!
-    #     rescue RailsJwtAuth::NotAuthorized
-    #         render json: { "error": "You are not authenticated." }, status: 401
-    #     end
-    # end
+    def authenticate_user_ui
+        begin
+            self.authenticate!
+        rescue RailsJwtAuth::NotAuthorized
+            render json: { "error": "You are not authenticated." }, status: 401
+        end
+    end
 
     def authenticate_user_api
         # extract the API token from the Authorization HTTP header
