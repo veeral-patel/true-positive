@@ -122,7 +122,7 @@ module Types
       end
 
       # -------------------- API tokens -----------------------
-      field :api_tokens, Types::ApiTokenType, null: false do
+      field :api_tokens, [Types::ApiTokenType], null: false do
         description "Lists the current user's API tokens."
       end
 

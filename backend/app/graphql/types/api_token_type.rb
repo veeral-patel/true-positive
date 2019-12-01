@@ -3,6 +3,10 @@ module Types
         description "Describes an token you can use to authenticate to the API."
 
         # never null ---
+        field :id, ID, null: false do
+            description "A unique integer identifying this API token."
+        end
+
         field :name, String, null: false do
             description "A brief name describing the API token."
         end
