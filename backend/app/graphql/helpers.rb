@@ -61,3 +61,11 @@ def find_task_template_or_throw_execution_error(template_id:)
         raise GraphQL::ExecutionError, "Could not find a task template with id #{template_id}."
     end
 end
+
+def find_api_token_or_throw_execution_error(id:)
+    begin
+        ApiToken.find(id)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find an API token with id #{id}."
+    end
+end
