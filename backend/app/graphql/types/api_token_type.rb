@@ -10,5 +10,9 @@ module Types
         field :name, String, null: false do
             description "A brief name describing the API token."
         end
+
+        field :api_token, String, null: false do
+            description "The API token itself."
+        end
     end
 end
