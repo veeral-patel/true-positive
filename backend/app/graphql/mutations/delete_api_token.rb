@@ -13,8 +13,6 @@ class Mutations::DeleteApiToken < Mutations::BaseMutation
     def resolve(id:)
         api_token = find_api_token_or_throw_execution_error(id: id)
 
-        # TODO: authorize this action
-
         if api_token.destroy
             {
                 "id": id

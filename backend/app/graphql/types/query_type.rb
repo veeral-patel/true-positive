@@ -127,7 +127,7 @@ module Types
       end
 
       def api_tokens
-        context[:current_user].api_tokens
+        ApiTokenPolicy::Scope.new(context[:current_user]).resolve
       end
   end
 end
