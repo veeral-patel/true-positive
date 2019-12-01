@@ -4,6 +4,10 @@ class ApiTokenPolicy
         @api_token = api_token
     end
 
+    def delete_token?
+        @user.api_tokens.include? @api_token
+    end
+
     class Scope
         attr_reader :user
 

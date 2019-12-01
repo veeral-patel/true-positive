@@ -13,6 +13,11 @@ class Mutations::DeleteApiToken < Mutations::BaseMutation
     def resolve(id:)
         api_token = find_api_token_or_throw_execution_error(id: id)
 
+        # authorize this action
+        unless ApiTokenPolicy.new(context[:current_user], api_token).delete_token?
+            raise GraphQL::ExecutionError, "You are not authorized to delete this API token."
+        end
+
         if api_token.destroy
             {
                 "id": id
