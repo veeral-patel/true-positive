@@ -120,5 +120,14 @@ module Types
 
         the_template
       end
+
+      # -------------------- API tokens -----------------------
+      field :api_tokens, Types::ApiTokenType, null: false do
+        description "Lists the current user's API tokens."
+      end
+
+      def api_tokens
+        context[:current_user].api_tokens
+      end
   end
 end
