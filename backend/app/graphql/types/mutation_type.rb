@@ -54,5 +54,8 @@ module Types
 
       # task templates -----
       field :create_task_template, mutation: Mutations::CreateTaskTemplate
+
+      # api tokens ------
+      field :create_api_token, mutation: Mutations::CreateApiToken
   end
 end
