@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_045412) do
+ActiveRecord::Schema.define(version: 2019_12_01_031721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_tokens", force: :cascade do |t|
+    t.string "name"
+    t.text "api_token"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_api_tokens_on_user_id"
+  end
 
   create_table "case_members", force: :cascade do |t|
     t.bigint "case_id"
@@ -152,6 +161,7 @@ ActiveRecord::Schema.define(version: 2019_11_25_045412) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "api_tokens", "users"
   add_foreign_key "case_members", "cases"
   add_foreign_key "case_members", "users"
   add_foreign_key "cases", "priorities"
