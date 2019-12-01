@@ -14,7 +14,7 @@ class Mutations::CreateApiToken < Mutations::BaseMutation
         # create a new task in memory
         new_token = context[:current_user].api_tokens.new(
             name: name,
-            api_token: SecureRandom.hex(24)
+            api_token: SecureRandom.alphanumeric(40)
         )
 
         # authorize this action

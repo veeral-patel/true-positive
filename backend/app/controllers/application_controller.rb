@@ -2,8 +2,17 @@ class ApplicationController < ActionController::API
     include RailsJwtAuth::AuthenticableHelper
     include Pundit
 
-    # before_action :authenticate_user_ui
-    before_action :authenticate_user_api
+    before_action :authenticate_user
+
+    def authenticate_user
+        token_from_request = request.env['HTTP_AUTHORIZATION']&.split&.last
+
+        if token_from_request.size == 40
+            authenticate_user_api(token_from_request)
+        else
+            authenticate_user_ui
+        end 
+    end
 
     def authenticate_user_ui
         begin
@@ -13,10 +22,7 @@ class ApplicationController < ActionController::API
         end
     end
 
-    def authenticate_user_api
-        # extract the API token from the Authorization HTTP header
-        token_from_request = request.env['HTTP_AUTHORIZATION']&.split&.last
-
+    def authenticate_user_api(token_from_request)
         begin
             # determine if the provided API token exists in the database
             existing_token = ApiToken.find_by!(api_token: token_from_request)
