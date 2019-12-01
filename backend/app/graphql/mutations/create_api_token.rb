@@ -17,6 +17,11 @@ class Mutations::CreateApiToken < Mutations::BaseMutation
             api_token: SecureRandom.hex(24)
         )
 
+        # authorize this action
+        unless ApiTokenPolicy.new(context[:current_user], new_token).create_token?
+            raise GraphQL::ExecutionError, "You are not authorized to create this API token."
+        end
+
         # and save it to the database
         if new_token.save
             {
