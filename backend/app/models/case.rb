@@ -19,7 +19,6 @@ class Case < ApplicationRecord
   has_many :case_members, dependent: :destroy
 
   after_create :add_creator_to_members
-  before_destroy :unmerge_merged_cases
 
   acts_as_taggable_on :tags
 
