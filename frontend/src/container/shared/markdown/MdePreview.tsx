@@ -7,7 +7,6 @@ export interface ReactMdePreviewProps {
   className?: string;
   previewRef?: (ref: MdePreview) => void;
   loadingPreview?: React.ReactNode;
-  minHeight: number;
   generateMarkdownPreview: GenerateMarkdownPreview;
   markdown: string;
 }
@@ -41,7 +40,7 @@ export class MdePreview extends React.Component<
   }
 
   render() {
-    const { className, minHeight, loadingPreview } = this.props;
+    const { className, loadingPreview } = this.props;
     const { preview, loading } = this.state;
     const finalHtml = loading ? loadingPreview : preview;
 
@@ -62,7 +61,6 @@ export class MdePreview extends React.Component<
     return (
       <div
         className={classNames("mde-preview", { className, loading })}
-        style={{ minHeight: minHeight + 10 }}
         data-testid="mde-preview"
       >
         {content}

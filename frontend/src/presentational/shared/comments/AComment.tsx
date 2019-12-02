@@ -37,7 +37,6 @@ class AComment extends React.Component<Props, State> {
             />
           ) : (
             <MdePreview
-              minHeight={200}
               markdown={comment.comment}
               generateMarkdownPreview={markdown =>
                 Promise.resolve(converter.makeHtml(markdown))
