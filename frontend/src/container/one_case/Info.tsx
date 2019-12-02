@@ -177,9 +177,9 @@ export default inject("activeCaseStore")(
                 renderItem={childCase => (
                   <List.Item
                     actions={[
-                      <Tooltip title="Edit merge reason">
-                        <Button icon="edit" type="link" />,
-                      </Tooltip>,
+                      // <Tooltip title="Edit merge reason">
+                      //   <Button icon="edit" type="link" />,
+                      // </Tooltip>,
                       <Popconfirm
                         title="Un-merge this case?"
                         onConfirm={() =>
