@@ -2,7 +2,7 @@ import { navigate, RouteComponentProps } from "@reach/router";
 import { Col, Divider, Icon, Layout, PageHeader, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_task/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
-import MarkdownEditor from "container/shared/markdown/MarkdownEditor";
+import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
 import { inject, observer } from "mobx-react";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import Error from "presentational/shared/errors/Error";
@@ -114,7 +114,7 @@ export default inject("activeCaseStore")(
 
               <section>
                 <Divider orientation="left">Description</Divider>
-                <MarkdownEditor
+                <DescriptionEditor
                   initialValue={activeTask.description}
                   updateValue={newDescription =>
                     activeCaseStore!.changeDescription(

@@ -15,7 +15,7 @@ import {
 import { ApolloError } from "apollo-boost";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
-import MarkdownEditor from "container/shared/markdown/DescriptionEditor";
+import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
 import { inject, observer } from "mobx-react";
 import MERGE_A_CASE from "mutations/mergeCase";
 import CommentList from "presentational/shared/comments/CommentListP";
@@ -134,7 +134,7 @@ export default inject("activeCaseStore")(
             <Row>
               <Col span={24}>
                 <Divider orientation="left">Description</Divider>
-                <MarkdownEditor
+                <DescriptionEditor
                   initialValue={activeCase.description}
                   updateValue={newDescription =>
                     activeCaseStore!.changeDescription(
