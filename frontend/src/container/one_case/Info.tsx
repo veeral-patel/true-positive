@@ -179,7 +179,7 @@ export default inject("activeCaseStore")(
                           }
                           description={
                             childCase.reasonForMerging == null
-                              ? "No reason for merging was given"
+                              ? "No merge reason was given"
                               : childCase.reasonForMerging
                           }
                         />
