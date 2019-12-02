@@ -2,7 +2,6 @@ import { Button } from "antd";
 import converter from "container/shared/markdown/converter";
 import * as React from "react";
 import ReactMde from "react-mde";
-import "react-mde/lib/styles/css/react-mde-all.css";
 
 interface Props {
   // the initial value in the textarea

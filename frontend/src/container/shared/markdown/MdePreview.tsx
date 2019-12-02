@@ -1,7 +1,6 @@
 import { classNames } from "container/shared/markdown/classNames";
 import * as React from "react";
 import { GenerateMarkdownPreview } from "react-mde/lib/definitions/types";
-import "react-mde/lib/styles/css/react-mde-all.css";
 
 export interface ReactMdePreviewProps {
   className?: string;
