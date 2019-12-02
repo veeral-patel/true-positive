@@ -12,7 +12,6 @@ import LoginPage from "pages/login/LoginPage";
 import AllTasksPage from "pages/tasks/AllTasksPage";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
-import "react-mde/lib/styles/css/react-mde-all.css";
 import AuthStore from "stores/AuthStore";
 import { paths } from "utils/constants";
 
