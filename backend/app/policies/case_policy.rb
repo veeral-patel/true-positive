@@ -74,11 +74,16 @@ class CasePolicy
         user_can_edit_this_case?
     end
 
-    def can_merge_into?(parent_case)
+    def can_merge_into?(parent_case: nil)
         # You can merge this case into PARENT_CASE if you can edit both cases.
         can_edit_child_case =  user_can_edit_this_case?
-        can_edit_parent_case = user_can_edit_specified_case?(parent_case)
-        can_edit_child_case && can_edit_parent_case
+
+        if parent_case.nil?
+            return can_edit_child_case
+        else
+            can_edit_parent_case = user_can_edit_specified_case?(parent_case)
+            can_edit_child_case && can_edit_parent_case
+        end
     end
 
     def create_comment?
