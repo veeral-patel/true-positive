@@ -27,6 +27,7 @@ class Mutations::MergeCase < Mutations::BaseMutation
         # find our intended child case and the parent case
         child_case = find_case_or_throw_execution_error(case_id: child_case_id)
 
+        # find parent case if we were given its ID
         if parent_case_id.nil?
             parent_case = nil
         else
