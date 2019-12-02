@@ -17,14 +17,23 @@ interface Props {
 
   // fired after clicking the Update button
   updateValue: (newValue: string) => void;
+
+  // whether to show the update button
+  showButton?: boolean;
 }
 
 function MarkdownEditor(props: Props) {
-  const { initialValue, updateValue } = props;
+  const { initialValue, updateValue, showButton } = props;
   const [currentValue, setValue] = React.useState(initialValue);
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "preview"
   );
+
+  // show button by default
+  let showButtonReal: boolean;
+  if (showButton == undefined) showButtonReal = true;
+  else showButtonReal = showButton;
+
   return (
     <>
       <ReactMde
@@ -36,12 +45,14 @@ function MarkdownEditor(props: Props) {
           Promise.resolve(converter.makeHtml(markdown))
         }
       />
-      <Button
-        style={{ marginTop: "0.5em", float: "right" }}
-        onClick={() => updateValue(currentValue)}
-      >
-        Update
-      </Button>
+      {showButtonReal && (
+        <Button
+          style={{ marginTop: "0.5em", float: "right" }}
+          onClick={() => updateValue(currentValue)}
+        >
+          Update
+        </Button>
+      )}
     </>
   );
 }
