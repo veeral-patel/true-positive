@@ -10,16 +10,9 @@ interface Props {
 
   // fired after clicking the Update button
   updateValue: (newValue: string) => void;
-
-  // whether to show the update button
-  showButton?: boolean;
 }
 
-function DescriptionEditor({
-  initialValue,
-  updateValue,
-  showButton = true
-}: Props) {
+function DescriptionEditor({ initialValue, updateValue }: Props) {
   const [currentValue, setValue] = React.useState(initialValue);
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "preview"
@@ -36,14 +29,12 @@ function DescriptionEditor({
           Promise.resolve(converter.makeHtml(markdown))
         }
       />
-      {showButton && (
-        <Button
-          style={{ marginTop: "0.5em", float: "right" }}
-          onClick={() => updateValue(currentValue)}
-        >
-          Update
-        </Button>
-      )}
+      <Button
+        style={{ marginTop: "0.5em", float: "right" }}
+        onClick={() => updateValue(currentValue)}
+      >
+        Update
+      </Button>
     </>
   );
 }
