@@ -7,8 +7,7 @@ import {
   List,
   Popconfirm,
   Row,
-  Tooltip,
-  Typography
+  Tooltip
 } from "antd";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
@@ -26,7 +25,6 @@ import { getPathToACase } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
-const { Text } = Typography;
 
 interface InfoProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
