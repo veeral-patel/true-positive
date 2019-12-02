@@ -1,10 +1,9 @@
 import { RouteComponentProps } from "@reach/router";
-import { Col, Divider, Layout, Row, Typography } from "antd";
+import { Col, Divider, Layout, List, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import MarkdownEditor from "container/shared/markdown/MarkdownEditor";
 import { inject, observer } from "mobx-react";
-import ListofMergedCasesP from "presentational/one_case/ListofMergedCasesP";
 import CommentList from "presentational/shared/comments/CommentListP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
@@ -13,6 +12,7 @@ import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import formatISO8601 from "utils/formatISO8601";
+import { getPathToACase } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
@@ -147,9 +147,26 @@ export default inject("activeCaseStore")(
                   <Divider orientation="left">
                     Merged Cases ({activeCase.mergedCases.length})
                   </Divider>
-                  <div style={{ marginTop: "15px" }}>
-                    <ListofMergedCasesP mergedCases={activeCase.mergedCases} />
-                  </div>
+                  <List
+                    itemLayout="horizontal"
+                    dataSource={activeCase.mergedCases}
+                    renderItem={childCase => (
+                      <List.Item>
+                        <List.Item.Meta
+                          title={
+                            <a href={getPathToACase(childCase.id)}>
+                              {childCase.name}
+                            </a>
+                          }
+                          description={
+                            childCase.reasonForMerging == null
+                              ? "No reason for merging was given"
+                              : childCase.reasonForMerging
+                          }
+                        />
+                      </List.Item>
+                    )}
+                  />
                 </section>
               )}
             </Content>
