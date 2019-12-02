@@ -15,6 +15,8 @@ function CommentEditor({ value, onChange }: Props) {
 
   return (
     <ReactMde
+      minEditorHeight={125}
+      minPreviewHeight={125}
       value={value}
       onChange={onChange}
       selectedTab={selectedTab}
