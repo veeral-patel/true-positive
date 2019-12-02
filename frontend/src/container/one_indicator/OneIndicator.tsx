@@ -180,12 +180,7 @@ export default inject("activeCaseStore")(
                     comments={sortCommentsByCreatedAt(activeIndicator.comments)}
                   />
                 )}
-                <div style={{ width: "70%" }}>
-                  <CreateComment
-                    objectId={activeIndicator.id}
-                    type="INDICATOR"
-                  />
-                </div>
+                <CreateComment objectId={activeIndicator.id} type="INDICATOR" />
               </section>
             </Content>
           );
