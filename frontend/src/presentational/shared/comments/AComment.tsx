@@ -1,10 +1,12 @@
 import { Avatar, Button, Comment } from "antd";
 import DeleteCommentButton from "container/shared/comments/DeleteCommentButton";
+import converter from "container/shared/markdown/converter";
+import { MdePreview } from "container/shared/markdown/MdePreview";
+import EditCommentForm from "presentational/shared/comments/EditCommentForm";
 import React from "react";
 import IComment from "ts/interfaces/IComment";
 import getUsernameOfCurrentUser from "utils/currentUser";
 import formatISO8601 from "utils/formatISO8601";
-import EditCommentForm from "./EditCommentForm";
 
 interface Props {
   comment: IComment;
@@ -34,7 +36,13 @@ class AComment extends React.Component<Props, State> {
               handleCancel={() => this.setState({ editing: false })}
             />
           ) : (
-            comment.comment
+            <MdePreview
+              minHeight={200}
+              markdown={comment.comment}
+              generateMarkdownPreview={markdown =>
+                Promise.resolve(converter.makeHtml(markdown))
+              }
+            />
           )
         }
         author={comment.createdBy.username}
