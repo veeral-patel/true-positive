@@ -1,7 +1,7 @@
 require 'ancestry'
 
 class Case < ApplicationRecord
-  has_ancestry
+  has_ancestry :orphan_strategy => :rootify 
 
   validates :name, presence: true
   validates :status, presence: true
@@ -19,6 +19,7 @@ class Case < ApplicationRecord
   has_many :case_members, dependent: :destroy
 
   after_create :add_creator_to_members
+  before_destroy :unmerge_merged_cases
 
   acts_as_taggable_on :tags
 
@@ -92,10 +93,6 @@ class Case < ApplicationRecord
   end
 
   private
-    def destroy_merged_cases
-      self.merged_cases.each { |the_case| the_case.destroy } 
-    end
-
     def add_creator_to_members
       # Add the user who created this case to its list of members, so he/she can access it.
       self.case_members.create(user: self.created_by, role: "CAN_EDIT")

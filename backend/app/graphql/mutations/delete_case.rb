@@ -1,5 +1,5 @@
 class Mutations::DeleteCase < Mutations::BaseMutation
-    description "Deletes a case, its tasks, its indicators, and any cases merged into it."
+    description "Deletes a case, its tasks, and its indicators"
 
     argument :id, ID, required: true do
         description "The ID of the case to delete."

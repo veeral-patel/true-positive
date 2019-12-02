@@ -51,7 +51,7 @@ export default inject(
         Modal.confirm({
           title: "Delete case?",
           content:
-            "Are you sure you want to delete this case? This will delete all of its indicators, tasks, and merged cases, too.",
+            "Delete this case? This will delete its indicators and tasks (but not its merged cases).",
           onOk() {
             allCasesStore!.deleteCase(caseId);
             navigate(paths.CASES_PATH);
