@@ -159,9 +159,7 @@ export default inject("activeCaseStore")(
                     comments={sortCommentsByCreatedAt(activeCase.comments)}
                   />
                 )}
-                <div style={{ width: "70%" }}>
-                  <CreateComment objectId={activeCase.id} type="CASE" />
-                </div>
+                <CreateComment objectId={activeCase.id} type="CASE" />
               </Col>
             </Row>
           </section>
