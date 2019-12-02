@@ -7,6 +7,7 @@ import {
   List,
   Popconfirm,
   Row,
+  Tooltip,
   Typography
 } from "antd";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
@@ -162,9 +163,13 @@ export default inject("activeCaseStore")(
                     renderItem={childCase => (
                       <List.Item
                         actions={[
-                          <Button icon="edit" type="link" />,
-                          <Popconfirm title="Un-merge this case?">
-                            <Button icon="cross" type="link" />
+                          <Tooltip title="Edit merge reason">
+                            <Button icon="edit" type="link" />,
+                          </Tooltip>,
+                          <Popconfirm title="Unmerge this case?">
+                            <Tooltip title="Unmerge case">
+                              <Button icon="cross" type="link" />
+                            </Tooltip>
                           </Popconfirm>
                         ]}
                       >
