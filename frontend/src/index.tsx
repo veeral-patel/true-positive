@@ -5,7 +5,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import store from "stores";
-import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider
@@ -23,5 +22,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-
-serviceWorker.unregister();
