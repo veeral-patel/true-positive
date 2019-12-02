@@ -11,7 +11,7 @@ interface Props {
 // used for writing comments
 function MarkdownEditor2({ value, onChange }: Props) {
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-    "preview"
+    "write"
   );
 
   return (

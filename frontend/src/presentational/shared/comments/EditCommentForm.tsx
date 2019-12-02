@@ -1,5 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { FormComponentProps, WrappedFormUtils } from "antd/lib/form/Form";
+import MarkdownEditor2 from "container/shared/markdown/MarkdownEditor2";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -24,7 +25,7 @@ class DumbEditCommentForm extends React.Component<FormProps> {
         <Form.Item>
           {getFieldDecorator("comment", {
             initialValue: initialComment
-          })(<TextArea />)}
+          })(<MarkdownEditor2 />)}
         </Form.Item>
         <Form.Item>
           <Button type="link" onClick={handleCancel}>
