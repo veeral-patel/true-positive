@@ -22,17 +22,15 @@ interface Props {
   showButton?: boolean;
 }
 
-function MarkdownEditor(props: Props) {
-  const { initialValue, updateValue, showButton } = props;
+function MarkdownEditor({
+  initialValue,
+  updateValue,
+  showButton = true
+}: Props) {
   const [currentValue, setValue] = React.useState(initialValue);
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "preview"
   );
-
-  // show button by default
-  let showButtonReal: boolean;
-  if (showButton == undefined) showButtonReal = true;
-  else showButtonReal = showButton;
 
   return (
     <>
@@ -45,7 +43,7 @@ function MarkdownEditor(props: Props) {
           Promise.resolve(converter.makeHtml(markdown))
         }
       />
-      {showButtonReal && (
+      {showButton && (
         <Button
           style={{ marginTop: "0.5em", float: "right" }}
           onClick={() => updateValue(currentValue)}
