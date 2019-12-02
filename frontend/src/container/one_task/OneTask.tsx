@@ -135,9 +135,7 @@ export default inject("activeCaseStore")(
                     comments={sortCommentsByCreatedAt(activeTask.comments)}
                   />
                 )}
-                <div style={{ width: "70%" }}>
-                  <CreateComment objectId={activeTask.id} type="TASK" />
-                </div>
+                <CreateComment objectId={activeTask.id} type="TASK" />
               </section>
             </Content>
           );
