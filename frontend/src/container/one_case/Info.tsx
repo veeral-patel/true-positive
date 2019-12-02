@@ -193,7 +193,7 @@ export default inject("activeCaseStore")(
                           })
                         }
                       >
-                        <Tooltip title="Un-merge case">
+                        <Tooltip title="Un-merge case" placement="right">
                           <Button icon="cross" type="link" />
                         </Tooltip>
                       </Popconfirm>
