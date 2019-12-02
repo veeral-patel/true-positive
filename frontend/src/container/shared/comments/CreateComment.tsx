@@ -1,10 +1,9 @@
-import { Avatar, Button, Comment, Form, Input } from "antd";
+import { Avatar, Button, Comment, Form } from "antd";
 import { FormComponentProps } from "antd/lib/form/Form";
+import MarkdownEditor2 from "container/shared/markdown/MarkdownEditor2";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
-
-const { TextArea } = Input;
 
 // ----
 
@@ -30,7 +29,7 @@ class DumbCreateCommentForm extends React.Component<
         <Form.Item>
           {getFieldDecorator("comment", {
             rules: [{ required: true, message: "Please enter a comment" }]
-          })(<TextArea placeholder="Leave a comment" rows={3} />)}
+          })(<MarkdownEditor2 />)}
         </Form.Item>
         <Form.Item style={{ float: "right" }}>
           <Button htmlType="submit">Add Comment</Button>
