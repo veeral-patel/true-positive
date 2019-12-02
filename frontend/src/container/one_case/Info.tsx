@@ -1,3 +1,4 @@
+import { useMutation } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import {
   Button,
@@ -5,14 +6,18 @@ import {
   Divider,
   Layout,
   List,
+  message,
+  notification,
   Popconfirm,
   Row,
   Tooltip
 } from "antd";
+import { ApolloError } from "apollo-boost";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import MarkdownEditor from "container/shared/markdown/MarkdownEditor";
 import { inject, observer } from "mobx-react";
+import MERGE_A_CASE from "mutations/mergeCase";
 import CommentList from "presentational/shared/comments/CommentListP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
@@ -34,6 +39,19 @@ export default inject("activeCaseStore")(
   observer(function Info(props: InfoProps) {
     const { activeCaseStore } = props;
     const activeCase = activeCaseStore!.activeCase;
+
+    const [unmergeCase] = useMutation(MERGE_A_CASE, {
+      onCompleted: function() {
+        message.success("Un-merged the case");
+        activeCaseStore!.loadActiveCase();
+      },
+      onError: function(error: ApolloError) {
+        notification.error({
+          message: "Could not un-merge this case",
+          description: error.message
+        });
+      }
+    });
 
     // should always render, since we're catching errors and showing
     // our spinner above this, as a HOC
@@ -162,8 +180,20 @@ export default inject("activeCaseStore")(
                       <Tooltip title="Edit merge reason">
                         <Button icon="edit" type="link" />,
                       </Tooltip>,
-                      <Popconfirm title="Unmerge this case?">
-                        <Tooltip title="Unmerge case">
+                      <Popconfirm
+                        title="Un-merge this case?"
+                        onConfirm={() =>
+                          unmergeCase({
+                            variables: {
+                              input: {
+                                childCaseId: childCase.id,
+                                parentCaseId: null
+                              }
+                            }
+                          })
+                        }
+                      >
+                        <Tooltip title="Un-merge case">
                           <Button icon="cross" type="link" />
                         </Tooltip>
                       </Popconfirm>
