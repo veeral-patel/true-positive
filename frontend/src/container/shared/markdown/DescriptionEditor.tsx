@@ -15,8 +15,7 @@ interface Props {
   showButton?: boolean;
 }
 
-// used in descriptions
-function MarkdownEditor({
+function DescriptionEditor({
   initialValue,
   updateValue,
   showButton = true
@@ -49,4 +48,4 @@ function MarkdownEditor({
   );
 }
 
-export default MarkdownEditor;
+export default DescriptionEditor;

@@ -8,8 +8,7 @@ interface Props {
   onChange?: (newValue: string) => void;
 }
 
-// used for writing comments
-function MarkdownEditor2({ value, onChange }: Props) {
+function CommentEditor({ value, onChange }: Props) {
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "write"
   );
@@ -27,4 +26,4 @@ function MarkdownEditor2({ value, onChange }: Props) {
   );
 }
 
-export default MarkdownEditor2;
+export default CommentEditor;

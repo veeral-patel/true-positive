@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { FormComponentProps, WrappedFormUtils } from "antd/lib/form/Form";
-import MarkdownEditor2 from "container/shared/markdown/MarkdownEditor2";
+import MarkdownEditor2 from "container/shared/markdown/CommentEditor";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
