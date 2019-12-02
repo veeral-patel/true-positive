@@ -1,5 +1,14 @@
 import { RouteComponentProps } from "@reach/router";
-import { Col, Divider, Layout, List, Row, Typography } from "antd";
+import {
+  Button,
+  Col,
+  Divider,
+  Layout,
+  List,
+  Popconfirm,
+  Row,
+  Typography
+} from "antd";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import MarkdownEditor from "container/shared/markdown/MarkdownEditor";
@@ -151,7 +160,14 @@ export default inject("activeCaseStore")(
                     itemLayout="horizontal"
                     dataSource={activeCase.mergedCases}
                     renderItem={childCase => (
-                      <List.Item>
+                      <List.Item
+                        actions={[
+                          <Button icon="edit" type="link" />,
+                          <Popconfirm title="Un-merge this case?">
+                            <Button icon="cross" type="link" />
+                          </Popconfirm>
+                        ]}
+                      >
                         <List.Item.Meta
                           title={
                             <a href={getPathToACase(childCase.id)}>
