@@ -1,31 +1,20 @@
-import { List } from "antd";
-import SortableItem from "container/one_case/SortableTaskList/SortableItem";
-import { inject, observer } from "mobx-react";
-import React from "react";
-import ActiveCaseStore from "stores/ActiveCaseStore";
+import SortableList from "container/one_case/SortableTaskList/SortableList";
+import React, { useState } from "react";
 import ITask from "ts/interfaces/ITask";
 
 interface Props {
-  activeCaseStore?: ActiveCaseStore;
+  existingTasks: ITask[];
 }
 
-function SortableList({ activeCaseStore }: Props) {
-  const activeCase = activeCaseStore!.activeCase;
-  if (activeCase)
-    return (
-      <List<ITask>
-        itemLayout="horizontal"
-        dataSource={activeCase.tasks}
-        bordered
-        renderItem={task => (
-          <SortableItem
-            task={task}
-            markTaskAsDone={activeCaseStore!.markTaskAsDone}
-          />
-        )}
-      />
-    );
-  return null;
+function SortableComponent({ existingTasks }: Props) {
+  const [orderedTasks, setOrderedTasks] = useState(existingTasks);
+
+  const onSortEnd = ({ oldIndex, newIndex }: any) => {
+    // setOrderedTasks(arrayMove(orderedTasks, oldIndex, newIndex));
+    console.log(newIndex, oldIndex);
+  };
+
+  return <SortableList orderedTasks={orderedTasks} onSortEnd={onSortEnd} />;
 }
 
-export default inject("activeCaseStore")(observer(SortableList));
+export default SortableComponent;

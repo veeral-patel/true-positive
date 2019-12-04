@@ -2,15 +2,15 @@ import { RouteComponentProps } from "@reach/router";
 import { Button, Empty, Layout, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
+import SortableTaskList from "container/one_case/SortableTaskList";
 import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
 import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
-import SortableTaskList from "./SortableTaskList";
 
 const { Content } = Layout;
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -93,7 +93,7 @@ export default inject("activeCaseStore")(
                       }}
                     />
                     <div style={{ marginBottom: "2em" }} />
-                    <SortableTaskList />
+                    <SortableTaskList existingTasks={activeCase.tasks} />
                   </div>
                 )}
               </Content>
