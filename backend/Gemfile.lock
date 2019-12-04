@@ -46,6 +46,8 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (6.0.0)
       activerecord (~> 5.0)
+    acts_as_list (1.0.0)
+      activerecord (>= 4.2)
     ancestry (3.0.7)
       activerecord (>= 3.2.0)
     arel (9.0.0)
@@ -213,6 +215,7 @@ PLATFORMS
 DEPENDENCIES
   active_interaction (~> 3.7)
   acts-as-taggable-on (~> 6.0)
+  acts_as_list
   ancestry
   bootsnap (>= 1.1.0)
   byebug
