@@ -1,14 +1,5 @@
-import { navigate, RouteComponentProps } from "@reach/router";
-import {
-  Button,
-  Checkbox,
-  Empty,
-  Icon,
-  Layout,
-  List,
-  Tooltip,
-  Typography
-} from "antd";
+import { RouteComponentProps } from "@reach/router";
+import { Button, Empty, Layout, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TaskProgress from "container/shared/tasks/TaskProgress";
@@ -16,9 +7,7 @@ import { inject, observer } from "mobx-react";
 import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
-import ITask from "ts/interfaces/ITask";
-import { getPathToATask } from "utils/pathHelpers";
-import truncateString from "utils/truncateString";
+import SortableTaskList from "./SortableTaskList";
 
 const { Content } = Layout;
 const { Paragraph, Text } = Typography;
@@ -104,49 +93,7 @@ export default inject("activeCaseStore")(
                       }}
                     />
                     <div style={{ marginBottom: "2em" }} />
-                    <List<ITask>
-                      itemLayout="horizontal"
-                      dataSource={activeCase.tasks}
-                      bordered
-                      renderItem={task => (
-                        <List.Item>
-                          <List.Item.Meta
-                            title={
-                              <div>
-                                <Checkbox
-                                  style={{ marginRight: "1.0em" }}
-                                  defaultChecked={task.done}
-                                  onChange={event => {
-                                    activeCaseStore!.markTaskAsDone(
-                                      task.id,
-                                      event.target.checked
-                                    );
-                                  }}
-                                />
-                                <a
-                                  onClick={() =>
-                                    navigate(
-                                      getPathToATask(task.case.id, task.id)
-                                    )
-                                  }
-                                >
-                                  {truncateString(task.name, 75)}
-                                </a>
-                              </div>
-                            }
-                            description={
-                              <div>
-                                {task.assignedTo !== null &&
-                                  `Assigned to ${task.assignedTo.username}`}
-                              </div>
-                            }
-                          />
-                          <Tooltip title={`${task.comments.length} comment(s)`}>
-                            <Icon type="message" /> {task.comments.length}
-                          </Tooltip>
-                        </List.Item>
-                      )}
-                    />
+                    <SortableTaskList />
                   </div>
                 )}
               </Content>
