@@ -23,7 +23,7 @@ function SortableTaskList({ activeCaseStore }: Props) {
           <List.Item>
             <List.Item.Meta
               title={
-                <div>
+                <>
                   <Checkbox
                     style={{ marginRight: "1.0em" }}
                     defaultChecked={task.done}
@@ -41,13 +41,10 @@ function SortableTaskList({ activeCaseStore }: Props) {
                   >
                     {truncateString(task.name, 75)}
                   </a>
-                </div>
+                </>
               }
               description={
-                <div>
-                  {task.assignedTo !== null &&
-                    `Assigned to ${task.assignedTo.username}`}
-                </div>
+                task.assignedTo && `Assigned to ${task.assignedTo.username}`
               }
             />
             <Tooltip title={`${task.comments.length} comment(s)`}>
