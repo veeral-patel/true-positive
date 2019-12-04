@@ -1,18 +1,16 @@
 import { List } from "antd";
 import SortableItem from "container/one_case/SortableTaskList/SortableItem";
-import { inject, observer } from "mobx-react";
 import React from "react";
 import { SortableContainer } from "react-sortable-hoc";
-import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITask from "ts/interfaces/ITask";
 
 interface Props {
-  activeCaseStore?: ActiveCaseStore;
+  markTaskAsDone: (taskId: number, done: boolean) => void;
   orderedTasks: ITask[];
 }
 
 const SortableList = SortableContainer(
-  ({ activeCaseStore, orderedTasks }: Props) => {
+  ({ markTaskAsDone, orderedTasks }: Props) => {
     return (
       <List<ITask>
         itemLayout="horizontal"
@@ -23,7 +21,7 @@ const SortableList = SortableContainer(
             key={task.id}
             index={index}
             task={task}
-            markTaskAsDone={activeCaseStore!.markTaskAsDone}
+            markTaskAsDone={markTaskAsDone}
           />
         )}
       />
@@ -31,4 +29,4 @@ const SortableList = SortableContainer(
   }
 );
 
-export default inject("activeCaseStore")(observer(SortableList));
+export default SortableList;

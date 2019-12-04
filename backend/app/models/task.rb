@@ -7,7 +7,7 @@ class Task < ApplicationRecord
   belongs_to :assigned_to, :class_name => 'User', optional: true
   belongs_to :case
 
-  acts_as_list scope: :case
+  acts_as_list scope: :case, top_of_list: 0
 
   has_many :comments, as: :commentable
 
