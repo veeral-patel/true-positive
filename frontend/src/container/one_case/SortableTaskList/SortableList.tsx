@@ -18,10 +18,10 @@ const SortableList = SortableContainer(
         itemLayout="horizontal"
         dataSource={orderedTasks}
         bordered
-        renderItem={task => (
+        renderItem={(task, index) => (
           <SortableItem
             key={task.id}
-            index={task.id}
+            index={index} // this needs to be index, not task.id
             task={task}
             markTaskAsDone={activeCaseStore!.markTaskAsDone}
           />
