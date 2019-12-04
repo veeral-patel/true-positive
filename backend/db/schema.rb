@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_01_031721) do
+ActiveRecord::Schema.define(version: 2019_12_04_095725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_12_01_031721) do
     t.bigint "assigned_to_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position"
     t.index ["assigned_to_id"], name: "index_tasks_on_assigned_to_id"
     t.index ["case_id"], name: "index_tasks_on_case_id"
     t.index ["created_by_id"], name: "index_tasks_on_created_by_id"
@@ -159,6 +160,7 @@ ActiveRecord::Schema.define(version: 2019_12_01_031721) do
     t.datetime "invitation_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "firebase_user_id"
   end
 
   add_foreign_key "api_tokens", "users"
