@@ -7,11 +7,45 @@ import ITask from "ts/interfaces/ITask";
 import { getPathToATask } from "utils/pathHelpers";
 import truncateString from "utils/truncateString";
 
-interface Props {
+interface ListProps {
   activeCaseStore?: ActiveCaseStore;
 }
 
-function SortableTaskList({ activeCaseStore }: Props) {
+interface ItemProps {
+  task: ITask;
+  markTaskAsDone: (taskId: number, done: boolean) => void;
+}
+
+function SortableItem({ task, markTaskAsDone }: ItemProps) {
+  return (
+    <List.Item>
+      <List.Item.Meta
+        title={
+          <>
+            <Checkbox
+              style={{ marginRight: "1.0em" }}
+              defaultChecked={task.done}
+              onChange={event => {
+                markTaskAsDone(task.id, event.target.checked);
+              }}
+            />
+            <a onClick={() => navigate(getPathToATask(task.case.id, task.id))}>
+              {truncateString(task.name, 75)}
+            </a>
+          </>
+        }
+        description={
+          task.assignedTo && `Assigned to ${task.assignedTo.username}`
+        }
+      />
+      <Tooltip title={`${task.comments.length} comment(s)`}>
+        <Icon type="message" /> {task.comments.length}
+      </Tooltip>
+    </List.Item>
+  );
+}
+
+function SortableList({ activeCaseStore }: ListProps) {
   const activeCase = activeCaseStore!.activeCase;
   if (activeCase)
     return (
@@ -20,41 +54,14 @@ function SortableTaskList({ activeCaseStore }: Props) {
         dataSource={activeCase.tasks}
         bordered
         renderItem={task => (
-          <List.Item>
-            <List.Item.Meta
-              title={
-                <>
-                  <Checkbox
-                    style={{ marginRight: "1.0em" }}
-                    defaultChecked={task.done}
-                    onChange={event => {
-                      activeCaseStore!.markTaskAsDone(
-                        task.id,
-                        event.target.checked
-                      );
-                    }}
-                  />
-                  <a
-                    onClick={() =>
-                      navigate(getPathToATask(task.case.id, task.id))
-                    }
-                  >
-                    {truncateString(task.name, 75)}
-                  </a>
-                </>
-              }
-              description={
-                task.assignedTo && `Assigned to ${task.assignedTo.username}`
-              }
-            />
-            <Tooltip title={`${task.comments.length} comment(s)`}>
-              <Icon type="message" /> {task.comments.length}
-            </Tooltip>
-          </List.Item>
+          <SortableItem
+            task={task}
+            markTaskAsDone={activeCaseStore!.markTaskAsDone}
+          />
         )}
       />
     );
   return null;
 }
 
-export default inject("activeCaseStore")(observer(SortableTaskList));
+export default inject("activeCaseStore")(observer(SortableList));
