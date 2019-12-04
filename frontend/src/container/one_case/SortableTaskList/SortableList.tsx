@@ -21,7 +21,7 @@ const SortableList = SortableContainer(
         renderItem={(task, index) => (
           <SortableItem
             key={task.id}
-            index={index} // this needs to be index, not task.id
+            index={index}
             task={task}
             markTaskAsDone={activeCaseStore!.markTaskAsDone}
           />
