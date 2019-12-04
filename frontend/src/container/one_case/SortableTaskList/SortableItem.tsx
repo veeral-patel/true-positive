@@ -12,7 +12,7 @@ interface Props {
 }
 
 const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => (
-  <List.Item>
+  <List.Item style={{ cursor: "grab" }}>
     <List.Item.Meta
       title={
         <>
