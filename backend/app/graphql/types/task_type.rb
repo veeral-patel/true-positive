@@ -2,7 +2,7 @@ module Types
     class TaskType < Types::BaseObject
         description "Represents a piece of work in a case."
 
-        # required fields
+        # never null
         field :id, ID, null: false do
             description "A unique integer identifying this task."
         end
@@ -13,6 +13,10 @@ module Types
 
         field :done, Boolean, null: false do
             description "Whether this task has been completed."
+        end
+
+        field :position, Int, null: false do
+            description "The UI lists tasks in ascending order of their position."
         end
 
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
@@ -31,7 +35,7 @@ module Types
             description "The comments on this task."
         end
 
-        # optional fields
+        # possibly null
         field :description, String, null: true do
             description "This task's description."
         end
