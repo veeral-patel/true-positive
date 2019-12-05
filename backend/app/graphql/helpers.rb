@@ -69,3 +69,11 @@ def find_api_token_or_throw_execution_error(id:)
         raise GraphQL::ExecutionError, "Could not find an API token with id #{id}."
     end
 end
+
+def find_task_group_or_throw_execution_error(id:)
+    begin
+        TaskGroup.find(id)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find an task group with id #{id}."
+    end
+end
