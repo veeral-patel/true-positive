@@ -40,7 +40,7 @@ export default inject("activeCaseStore")(
         // our spinner above this, as a HOC
         if (activeCase) {
           const taskGroups = activeCase.taskGroups.map(group => (
-            <TaskGroup name={group.name} tasks={group.tasks} />
+            <TaskGroup name={group.name} tasks={group.tasks} key={group.id} />
           ));
 
           return (

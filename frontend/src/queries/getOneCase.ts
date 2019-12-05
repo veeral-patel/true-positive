@@ -30,6 +30,7 @@ const GET_ONE_CASE = gql`
         }
       }
       taskGroups {
+        id
         name
         tasks {
           id
