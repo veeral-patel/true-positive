@@ -10,7 +10,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 
 const { Content } = Layout;
-const { Paragraph } = Typography;
+const { Paragraph, Text } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -93,6 +93,23 @@ export default inject("activeCaseStore")(
                       }}
                     />
                     <div style={{ marginBottom: "2em" }} />
+                    <div
+                      style={{
+                        marginBottom: "0.5em"
+                      }}
+                    >
+                      <Text
+                        type="secondary"
+                        style={{
+                          textTransform: "uppercase",
+                          display: "inline-block"
+                        }}
+                        editable
+                      >
+                        General
+                      </Text>
+                      <Button icon="delete" type="link" />
+                    </div>
                     <SortableTaskList existingTasks={activeCase.tasks} />
                   </div>
                 )}
