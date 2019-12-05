@@ -6,12 +6,13 @@ import ITask from "ts/interfaces/ITask";
 interface Props {
   name: string;
   tasks: ITask[];
+  id: number;
 }
 
-function TaskGroup({ name, tasks }: Props) {
+function TaskGroup({ name, tasks, id }: Props) {
   return (
     <>
-      <Heading heading={name} />
+      <Heading heading={name} id={id} />
       <SortableTaskList existingTasks={tasks} />
     </>
   );
