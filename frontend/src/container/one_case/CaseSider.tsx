@@ -53,8 +53,8 @@ export default inject(
       if (activeCase) {
         caseName = activeCase.name;
         numberOfMembers = activeCase.caseMembers.length;
-        numberOfDoneTasks = activeCase.tasks.filter(task => task.done).length;
-        numberOfTasks = activeCase.tasks.length;
+        numberOfDoneTasks = activeCase.completedTaskCount;
+        numberOfTasks = activeCase.totalTaskCount;
         numberOfIndicators = activeCase.indicators.length;
       } else {
         caseName = "Error";

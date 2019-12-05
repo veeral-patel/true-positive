@@ -1,11 +1,12 @@
 import ICaseMember from "ts/interfaces/ICaseMember";
 import IComment from "ts/interfaces/IComment";
+import IIndicator from "ts/interfaces/IIndicator";
 import IPriority from "ts/interfaces/IPriority";
 import IStatus from "ts/interfaces/IStatus";
 import ITag from "ts/interfaces/ITag";
 import ITask from "ts/interfaces/ITask";
+import ITaskGroup from "ts/interfaces/ITaskGroup";
 import IUser from "ts/interfaces/IUser";
-import IIndicator from "./IIndicator";
 
 interface ICase {
   id: number;
@@ -27,6 +28,7 @@ interface ICase {
   indicators: IIndicator[];
   completedTaskCount: number;
   totalTaskCount: number;
+  taskGroups: ITaskGroup[];
 }
 
 export default ICase;

@@ -2,12 +2,12 @@ import { RouteComponentProps } from "@reach/router";
 import { Button, Empty, Layout, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
-import SortableTaskList from "container/one_case/SortableTaskList";
 import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
 import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import TaskGroup from "./TaskGroup";
 
 const { Content } = Layout;
 const { Paragraph, Text } = Typography;
@@ -39,6 +39,10 @@ export default inject("activeCaseStore")(
         // should always render, since we're catching errors and showing
         // our spinner above this, as a HOC
         if (activeCase) {
+          const taskGroups = activeCase.taskGroups.map(group => (
+            <TaskGroup name={group.name} tasks={group.tasks} />
+          ));
+
           return (
             <div>
               <Content
@@ -92,25 +96,7 @@ export default inject("activeCaseStore")(
                         activeCaseStore!.createTask(newTask, activeCase.id);
                       }}
                     />
-                    <div style={{ marginBottom: "2em" }} />
-                    <div
-                      style={{
-                        marginBottom: "0.5em"
-                      }}
-                    >
-                      <Text
-                        type="secondary"
-                        style={{
-                          textTransform: "uppercase",
-                          display: "inline-block"
-                        }}
-                        editable
-                      >
-                        General
-                      </Text>
-                      <Button icon="delete" type="link" />
-                    </div>
-                    <SortableTaskList existingTasks={activeCase.tasks} />
+                    {taskGroups}
                   </div>
                 )}
               </Content>
