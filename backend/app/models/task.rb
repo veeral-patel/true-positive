@@ -11,7 +11,7 @@ class Task < ApplicationRecord
   belongs_to :case
   belongs_to :task_group
 
-  acts_as_list scope: :case, top_of_list: 0
+  acts_as_list scope: :task_group, top_of_list: 0
 
   has_many :comments, as: :commentable
 
