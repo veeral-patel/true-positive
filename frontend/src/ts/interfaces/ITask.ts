@@ -14,6 +14,7 @@ interface ITask {
   indicators: IIndicator[];
   case: ICase;
   done: boolean;
+  commentCount: number;
 }
 
 export default ITask;

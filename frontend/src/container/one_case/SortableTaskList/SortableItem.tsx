@@ -30,8 +30,8 @@ const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => (
       }
       description={task.assignedTo && `Assigned to ${task.assignedTo.username}`}
     />
-    <Tooltip title={`${task.comments.length} comment(s)`}>
-      <Icon type="message" /> {task.comments.length}
+    <Tooltip title={`${task.commentCount} comment(s)`}>
+      <Icon type="message" /> {task.commentCount}
     </Tooltip>
   </List.Item>
 ));

@@ -10,7 +10,7 @@ import ActiveCaseStore from "stores/ActiveCaseStore";
 import TaskGroup from "./TaskGroup";
 
 const { Content } = Layout;
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;

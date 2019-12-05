@@ -8,6 +8,27 @@ const GET_ONE_CASE = gql`
       isMerged
       completedTaskCount
       totalTaskCount
+      tasks {
+        id
+        name
+        done
+        assignedTo {
+          username
+        }
+        createdBy {
+          username
+        }
+        createdAt
+        description
+        comments {
+          id
+          comment
+          createdAt
+          createdBy {
+            username
+          }
+        }
+      }
       taskGroups {
         name
         tasks {
@@ -20,19 +41,7 @@ const GET_ONE_CASE = gql`
           case {
             id
           }
-          createdBy {
-            username
-          }
-          createdAt
-          description
-          comments {
-            id
-            comment
-            createdAt
-            createdBy {
-              username
-            }
-          }
+          commentCount
         }
       }
       mergedInto {

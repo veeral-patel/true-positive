@@ -18,4 +18,8 @@ class Task < ApplicationRecord
   def to_s
     self.name
   end
+
+  def comment_count
+    self.comments.count
+  end
 end

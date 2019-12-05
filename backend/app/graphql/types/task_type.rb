@@ -35,6 +35,10 @@ module Types
             description "The comments on this task."
         end
 
+        field :comment_count, Int, null: false do
+            description "The number of comments on this task."
+        end
+
         # possibly null
         field :description, String, null: true do
             description "This task's description."
