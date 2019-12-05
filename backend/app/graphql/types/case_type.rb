@@ -31,6 +31,10 @@ module Types
             description "The comments on this case. Does not include comments on this case's tasks or indicators."
         end
 
+        field :task_groups, [Types::TaskGroupType], null: false do
+            description "This case's task groups."
+        end
+
         field :tasks, [Types::TaskType], null: false do
             description "This case's tasks."
         end
