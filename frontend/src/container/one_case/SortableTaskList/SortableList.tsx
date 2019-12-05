@@ -1,8 +1,10 @@
-import { List } from "antd";
+import { Empty, List, Typography } from "antd";
 import SortableItem from "container/one_case/SortableTaskList/SortableItem";
 import React from "react";
 import { SortableContainer } from "react-sortable-hoc";
 import ITask from "ts/interfaces/ITask";
+
+const { Paragraph, Text } = Typography;
 
 interface Props {
   markTaskAsDone: (taskId: number, done: boolean) => void;
@@ -24,6 +26,21 @@ const SortableList = SortableContainer(
             markTaskAsDone={markTaskAsDone}
           />
         )}
+        locale={{
+          emptyText: (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={
+                <div>
+                  <Paragraph>No tasks</Paragraph>
+                  <Text type="secondary">
+                    You can drag/drop an existing task here to add it.
+                  </Text>
+                </div>
+              }
+            />
+          )
+        }}
       />
     );
   }
