@@ -1,5 +1,5 @@
 import { RouteComponentProps, Router } from "@reach/router";
-import { Layout } from "antd";
+import { Empty, Layout, Typography } from "antd";
 import CaseSider from "container/one_case/CaseSider";
 import HandleErrorAndLoading from "container/one_case/HandleErrorAndLoading";
 import Indicators from "container/one_case/Indicators";
@@ -14,18 +14,25 @@ import OneTask from "container/one_task/OneTask";
 import OneTaskBreadcrumb from "container/one_task/OneTaskBreadcrumb";
 import { inject, observer } from "mobx-react";
 import "pages/cases/CasePage.css"; // for responsiveness
-import ActivityPaneP from "presentational/one_case/ActivityPaneP";
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import UIStore from "stores/UIStore";
+
+const { Text } = Typography;
+const { Content } = Layout;
 
 interface Props extends RouteComponentProps {
   caseId?: number;
   activeCaseStore?: ActiveCaseStore;
+  uiStore?: UIStore;
 }
 
-export default inject("activeCaseStore")(
+export default inject(
+  "activeCaseStore",
+  "uiStore"
+)(
   observer(
     class CasePage extends React.Component<Props> {
       componentDidMount() {
@@ -49,7 +56,7 @@ export default inject("activeCaseStore")(
       }
 
       render() {
-        const { activeCaseStore } = this.props;
+        const { activeCaseStore, uiStore } = this.props;
         return (
           <Layout>
             <CaseSider />
@@ -117,7 +124,33 @@ export default inject("activeCaseStore")(
                     </Router>
                   </div>
                   <div className="activityPaneContainer">
-                    <ActivityPaneP />
+                    <Content
+                      style={{
+                        backgroundColor:
+                          uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
+                        padding: 24,
+                        marginLeft: 24,
+                        height: "100%"
+                      }}
+                    >
+                      <Text
+                        type="secondary"
+                        style={{ textTransform: "uppercase" }}
+                      >
+                        Activity
+                      </Text>
+                      <Empty
+                        description={
+                          <div>
+                            <p>No Activity</p>
+                            <p style={{ color: "#bfbfbf" }}>
+                              Soon, you'll be able to follow case changes in
+                              real-time here.
+                            </p>
+                          </div>
+                        }
+                      />
+                    </Content>
                   </div>
                 </div>
               </HandleErrorAndLoading>

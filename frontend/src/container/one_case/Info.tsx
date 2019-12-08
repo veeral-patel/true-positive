@@ -64,7 +64,7 @@ export default inject(
       return (
         <Content
           style={{
-            background: uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
+            backgroundColor: uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
             padding: 24,
             margin: 0,
             minHeight: 280
