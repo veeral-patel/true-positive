@@ -8,19 +8,24 @@ import { inject, observer } from "mobx-react";
 import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import UIStore from "stores/UIStore";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
+  uiStore?: UIStore;
 }
 
 interface State {
   openModal: "CREATE_TASK" | null;
 }
 
-export default inject("activeCaseStore")(
+export default inject(
+  "activeCaseStore",
+  "uiStore"
+)(
   observer(
     class Tasks extends React.Component<Props, State> {
       constructor(props: Props) {
@@ -31,7 +36,7 @@ export default inject("activeCaseStore")(
       }
 
       render() {
-        const { activeCaseStore } = this.props;
+        const { activeCaseStore, uiStore } = this.props;
         const { openModal } = this.state;
 
         const activeCase = activeCaseStore!.activeCase;
@@ -52,7 +57,8 @@ export default inject("activeCaseStore")(
             <div>
               <Content
                 style={{
-                  background: "#fff",
+                  backgroundColor:
+                    uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
                   padding: 24,
                   margin: 0,
                   minHeight: 280
