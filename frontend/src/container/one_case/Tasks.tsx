@@ -2,12 +2,12 @@ import { RouteComponentProps } from "@reach/router";
 import { Button, Empty, Layout, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
+import TaskGroup from "container/one_case/TaskGroup";
 import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
 import "presentational/shared/styles/hoverable_item.css";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
-import TaskGroup from "./TaskGroup";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
