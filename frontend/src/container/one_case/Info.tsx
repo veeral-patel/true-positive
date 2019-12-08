@@ -25,6 +25,7 @@ import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
 import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import UIStore from "stores/UIStore";
 import formatISO8601 from "utils/formatISO8601";
 import { getPathToACase } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
@@ -33,11 +34,15 @@ const { Content } = Layout;
 
 interface InfoProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
+  uiStore?: UIStore;
 }
 
-export default inject("activeCaseStore")(
+export default inject(
+  "activeCaseStore",
+  "uiStore"
+)(
   observer(function Info(props: InfoProps) {
-    const { activeCaseStore } = props;
+    const { activeCaseStore, uiStore } = props;
     const activeCase = activeCaseStore!.activeCase;
 
     const [unmergeCase] = useMutation(MERGE_A_CASE, {
@@ -59,7 +64,7 @@ export default inject("activeCaseStore")(
       return (
         <Content
           style={{
-            background: "#fff",
+            background: uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
             padding: 24,
             margin: 0,
             minHeight: 280

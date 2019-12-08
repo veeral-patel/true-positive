@@ -14,28 +14,27 @@ import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 import { Helmet } from "react-helmet";
 import AuthStore from "stores/AuthStore";
+import UIStore from "stores/UIStore";
 import { paths } from "utils/constants";
-import "./dark.css";
+import "./light.css";
 
 interface Props {
   authStore?: AuthStore;
+  uiStore?: UIStore;
 }
 
-interface State {
-  /* whether dark mode is on. */
-  dark: boolean;
-}
-
-export default inject("authStore")(
+export default inject(
+  "authStore",
+  "uiStore"
+)(
   observer(
-    class App extends React.Component<Props, State> {
+    class App extends React.Component<Props> {
       state = {
         dark: true
       };
 
       render() {
-        const { authStore } = this.props;
-        const { dark } = this.state;
+        const { authStore, uiStore } = this.props;
 
         return (
           <>
@@ -59,10 +58,10 @@ export default inject("authStore")(
               )}
             </ApolloProvider>
             <Helmet>
-              {dark ? (
-                <link rel="stylesheet" href="./dark.css" />
-              ) : (
+              {uiStore!.theme === "LIGHT" ? (
                 <link rel="stylesheet" href="./light.css" />
+              ) : (
+                <link rel="stylesheet" href="./dark.css" />
               )}
             </Helmet>
           </>
