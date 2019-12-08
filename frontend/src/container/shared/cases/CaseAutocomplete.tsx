@@ -1,4 +1,5 @@
-import { AutoComplete, Icon, Input } from "antd";
+import { ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
+import { AutoComplete, Input } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
@@ -23,14 +24,16 @@ export default inject("allCasesStore")(
         if (allCasesStore!.casesAreLoading) return <div>Loading...</div>;
 
         const options = allCasesStore!.cases.map(thecase => (
-          <Option key={thecase.id}>{thecase.name}</Option>
+          <Option key={thecase.id} value={thecase.name}>
+            {thecase.name}
+          </Option>
         ));
 
         return (
-          <AutoComplete dataSource={options} style={{ width: "100%" }}>
+          <AutoComplete dataSource={options as any} style={{ width: "100%" }}>
             <Input
-              prefix={<Icon type="search" />}
-              suffix={<Icon type="arrow-right" />}
+              prefix={<SearchOutlined />}
+              suffix={<ArrowRightOutlined />}
               placeholder="Filter cases"
             />
           </AutoComplete>
