@@ -1,3 +1,4 @@
+import { UploadOutlined } from "@ant-design/icons";
 import { Button, Modal, Steps, Typography, Upload } from "antd";
 import React from "react";
 

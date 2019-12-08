@@ -1,8 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Drawer, Form, Input, Spin } from "antd";
-import { FormComponentProps } from "antd/lib/form";
-import { WrappedFormUtils } from "antd/lib/form/Form";
-import { observer } from "mobx-react";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
@@ -11,37 +8,30 @@ import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 // ---
 
 interface FormProps {
-  form: WrappedFormUtils;
   currentTemplate: ITaskTemplate;
 }
 
-// Don't use me directly
-function DumbTaskTemplateForm(props: FormProps) {
+function TaskTemplateForm(props: FormProps) {
   const { currentTemplate } = props;
-  const { getFieldDecorator } = props.form;
 
   return (
-    <Form colon={false}>
-      <Form.Item label="Name">
-        {getFieldDecorator("name", {
-          rules: [
-            {
-              required: true,
-              message:
-                "Please provide a default name for tasks created with this template"
-            }
-          ],
-          initialValue: currentTemplate.name
-        })(<Input placeholder="Your task's name" />)}
+    <Form colon={false} initialValues={{ name: currentTemplate.name }}>
+      <Form.Item
+        label="Name"
+        name="name"
+        rules={[
+          {
+            required: true,
+            message:
+              "Please provide a default name for tasks created with this template"
+          }
+        ]}
+      >
+        <Input placeholder="Your task's name" />
       </Form.Item>
     </Form>
   );
 }
-
-// use me instead
-const TaskTemplateForm = Form.create<FormProps & FormComponentProps>()(
-  observer(DumbTaskTemplateForm)
-);
 
 // ---
 
