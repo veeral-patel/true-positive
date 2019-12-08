@@ -1,4 +1,5 @@
-import { Icon, Input } from "antd";
+import { ArrowRightOutlined, PlusOutlined } from "@ant-design/icons";
+import { Input } from "antd";
 import React from "react";
 
 interface Props {
@@ -12,8 +13,8 @@ class CreateTaskInput extends React.Component<Props> {
     return (
       <Input
         placeholder="Create a task"
-        prefix={<Icon type="plus" />}
-        suffix={<Icon type="arrow-right" />}
+        prefix={<PlusOutlined />}
+        suffix={<ArrowRightOutlined />}
         onPressEnter={handleEnter}
       />
     );

@@ -1,5 +1,6 @@
+import { MessageOutlined } from "@ant-design/icons";
 import { navigate } from "@reach/router";
-import { Checkbox, Icon, List, Tooltip } from "antd";
+import { Checkbox, List, Tooltip } from "antd";
 import React from "react";
 import { SortableElement } from "react-sortable-hoc";
 import ITask from "ts/interfaces/ITask";
@@ -31,7 +32,7 @@ const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => (
       description={task.assignedTo && `Assigned to ${task.assignedTo.username}`}
     />
     <Tooltip title={`${task.commentCount} comment(s)`}>
-      <Icon type="message" /> {task.commentCount}
+      <MessageOutlined /> {task.commentCount}
     </Tooltip>
   </List.Item>
 ));

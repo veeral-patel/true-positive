@@ -1,3 +1,4 @@
+import { PlusOutlined } from "@ant-design/icons";
 import { Icon, Input, Typography } from "antd";
 import React from "react";
 import { matchIndicator } from "utils/matchIndicator";
@@ -70,7 +71,7 @@ class CreateIndicatorInput extends React.Component<Props, State> {
       <Input
         placeholder="Enter an IP, file hash, domain, email, MAC address, or URL to add it"
         value={inputValue}
-        prefix={<Icon type="plus" />}
+        prefix={<PlusOutlined />}
         suffix={suffix}
         onChange={this.handleChange.bind(this)}
         onPressEnter={handleEnter}
