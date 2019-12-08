@@ -1,5 +1,5 @@
-import { UserOutlined } from "@ant-design/icons";
-import { Button, Form, Icon, Input } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Form, Input } from "antd";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -46,7 +46,7 @@ class DumbLoginForm extends React.Component<FormProps> {
             rules: [{ required: true, message: "Please enter your password" }]
           })(
             <Input
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+              prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
               type="password"
               placeholder="Password"
             />

@@ -1,6 +1,10 @@
-import { DeploymentUnitOutlined, DownOutlined } from "@ant-design/icons";
+import {
+  DeploymentUnitOutlined,
+  DownOutlined,
+  LogoutOutlined
+} from "@ant-design/icons";
 import { navigate } from "@reach/router";
-import { Icon, Menu } from "antd";
+import { Menu } from "antd";
 import GlobalAutocomplete from "container/shared/top_menu/GlobalAutocomplete";
 import logo from "logo/tp_logo_lightblue.png";
 import { inject, observer } from "mobx-react";
@@ -88,7 +92,7 @@ export default inject(
               style={{ float: "right" }}
             >
               <Menu.Item onClick={() => authStore!.logout()}>
-                <Icon type="logout" />
+                <LogoutOutlined />
                 Log Out
               </Menu.Item>
             </SubMenu>

@@ -1,5 +1,6 @@
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Col, Divider, Icon, Layout, PageHeader, Row, Typography } from "antd";
+import { Col, Divider, Layout, PageHeader, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_task/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
@@ -62,7 +63,7 @@ export default inject("activeCaseStore")(
             >
               <PageHeader
                 onBack={() => navigate(getPathToCaseTasks(activeCase.id))}
-                backIcon={<Icon type="arrow-left" style={{ fontSize: 14 }} />}
+                backIcon={<ArrowLeftOutlined style={{ fontSize: 14 }} />}
                 title={
                   <Text
                     style={{ fontSize: 16 }}

@@ -1,4 +1,4 @@
-import { Button, Icon, Modal, Steps, Typography, Upload } from "antd";
+import { Button, Modal, Steps, Typography, Upload } from "antd";
 import React from "react";
 
 const { Step } = Steps;
@@ -54,7 +54,7 @@ class ImportIndicatorsFromCSVModal extends React.Component<Props, State> {
                 </Paragraph>
                 <Dragger>
                   <p className="ant-upload-drag-icon">
-                    <Icon type="upload" />
+                    <UploadOutlined />
                   </p>
                   <p className="ant-upload-text">
                     Drag a CSV into this area to upload
