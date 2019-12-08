@@ -1,6 +1,6 @@
 import { navigate } from "@reach/router";
 import { Spin, Table } from "antd";
-import { ColumnFilterItem } from "antd/lib/table";
+import { ColumnFilterItem } from "antd/lib/table/interface";
 import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
@@ -12,14 +12,8 @@ import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UserStore from "stores/UserStore";
 import ICase from "ts/interfaces/ICase";
-import compareUsers from "utils/compareUsers";
 import { paths } from "utils/constants";
 import formatISO8601 from "utils/formatISO8601";
-import {
-  assignedToMatches,
-  priorityMatches,
-  statusMatches
-} from "utils/matchesFilter";
 import truncateString from "utils/truncateString";
 
 const { Column } = Table;
@@ -106,12 +100,12 @@ export default inject(
         }
 
         return (
-          <Table
+          <Table<ICase>
             dataSource={allCasesStore!.filteredCases}
             rowKey={theCase => theCase.id.toString()}
-            onRow={(record: ICase, rowIndex: any) => {
+            onRow={(record, rowIndex) => {
               return {
-                onClick: event => {
+                onClick: () => {
                   navigate(`${paths.CASES_PATH}/${record.id}`);
                 }
               };
@@ -121,8 +115,8 @@ export default inject(
               title="Name"
               dataIndex="name"
               key="name"
-              sorter={(a: ICase, b: ICase) => a.name.localeCompare(b.name)}
-              render={(name, theCase, index) => (
+              // sorter={(a: ICase, b: ICase) => a.name.localeCompare(b.name)}
+              render={(name, theCase: ICase, index) => (
                 <div>
                   <div>{truncateString(name, 40)}</div>
                   <div style={{ lineHeight: 2.0, marginTop: "0.5em" }}>
@@ -133,18 +127,17 @@ export default inject(
             />
             <Column
               title="Status"
-              dataIndex="status.name"
               key="status"
-              render={(statusName: string) => (
-                <StatusTagP statusName={statusName} />
+              render={(text, theCase, index: number) => (
+                <StatusTagP statusName={(theCase as ICase).status.name} />
               )}
-              sorter={(a: ICase, b: ICase) =>
-                a.status.name.localeCompare(b.status.name)
-              }
-              filters={statusFilters}
-              onFilter={(filterWord, record) =>
-                statusMatches(filterWord, record.status)
-              }
+              // sorter={(a: ICase, b: ICase) =>
+              //   a.status.name.localeCompare(b.status.name)
+              // }
+              // filters={statusFilters}
+              // onFilter={(filterWord: string, record: ICase) =>
+              //   statusMatches(filterWord, record.status)
+              // }
             />
             <Column
               title="Priority"
@@ -153,34 +146,34 @@ export default inject(
               render={(priorityName: string) => (
                 <PriorityTagP priorityName={priorityName} />
               )}
-              sorter={(a: ICase, b: ICase) =>
-                a.priority.name.localeCompare(b.priority.name)
-              }
-              filters={priorityFilters}
-              onFilter={(filterWord, record) =>
-                priorityMatches(filterWord, record.priority)
-              }
+              // sorter={(a: ICase, b: ICase) =>
+              //   a.priority.name.localeCompare(b.priority.name)
+              // }
+              // filters={priorityFilters}
+              // onFilter={(filterWord: string, record: ICase) =>
+              //   priorityMatches(filterWord, record.priority)
+              // }
             />
             <Column
               title="Assigned To"
               dataIndex="assignedTo.username"
               key="assigned_to"
-              sorter={(a: ICase, b: ICase) =>
-                compareUsers(a.assignedTo, b.assignedTo)
-              }
-              filters={userFilters}
-              onFilter={(filterWord, record) =>
-                assignedToMatches(filterWord, record.assignedTo)
-              }
+              // sorter={(a: ICase, b: ICase) =>
+              //   compareUsers(a.assignedTo, b.assignedTo)
+              // }
+              // filters={userFilters}
+              // onFilter={(filterWord: string, record: ICase) =>
+              //   assignedToMatches(filterWord, record.assignedTo)
+              // }
             />
             <Column
               title="Created (UTC)"
               key="created_at"
-              sorter={(a: ICase, b: ICase) =>
-                a.createdAt.localeCompare(b.createdAt)
-              }
-              render={(text, theCase, index) =>
-                formatISO8601(theCase.createdAt)
+              // sorter={(a: ICase, b: ICase) =>
+              //   a.createdAt.localeCompare(b.createdAt)
+              // }
+              render={(value, theCase, index) =>
+                formatISO8601((theCase as ICase).createdAt)
               }
             />
             <Column
