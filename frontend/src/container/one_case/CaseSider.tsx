@@ -69,13 +69,12 @@ export default inject(
 
     return (
       <Sider
-        style={{ background: "#fff" }}
         collapsible
         collapsed={collapsed}
         onCollapse={(collapsed: boolean, type: CollapseType) =>
           uiStore!.toggleCaseSider()
         }
-        theme="light"
+        theme={uiStore!.theme === "LIGHT" ? "light" : "dark"}
         breakpoint="lg"
       >
         {!collapsed && (
