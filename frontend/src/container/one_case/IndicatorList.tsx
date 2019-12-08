@@ -1,5 +1,6 @@
+import { MessageOutlined } from "@ant-design/icons";
 import { navigate } from "@reach/router";
-import { Button, Icon, List, message, Tooltip, Typography } from "antd";
+import { Button, List, message, Tooltip, Typography } from "antd";
 import copy from "copy-to-clipboard";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import React from "react";
@@ -61,7 +62,8 @@ class IndicatorList extends React.Component<Props> {
                 {indicator.type}
               </Text>
               <Tooltip title={`${indicator.comments.length} comment(s)`}>
-                <Icon type="message" /> {indicator.comments.length}
+                <MessageOutlined />
+                {indicator.comments.length}
               </Tooltip>
             </div>
           </List.Item>

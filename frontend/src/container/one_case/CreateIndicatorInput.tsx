@@ -1,5 +1,9 @@
-import { PlusOutlined } from "@ant-design/icons";
-import { Icon, Input, Typography } from "antd";
+import {
+  ArrowRightOutlined,
+  LoadingOutlined,
+  PlusOutlined
+} from "@ant-design/icons";
+import { Input, Typography } from "antd";
 import React from "react";
 import { matchIndicator } from "utils/matchIndicator";
 
@@ -58,8 +62,8 @@ class CreateIndicatorInput extends React.Component<Props, State> {
     const { handleEnter } = this.props;
 
     let suffix;
-    if (status === "EMPTY") suffix = <Icon type="arrow-right" />;
-    else if (status === "LOADING") suffix = <Icon type="loading" />;
+    if (status === "EMPTY") suffix = <ArrowRightOutlined />;
+    else if (status === "LOADING") suffix = <LoadingOutlined />;
     else
       suffix = (
         <Text style={{ backgroundColor: "#f5f5f5", color: "#8c8c8c" }}>
