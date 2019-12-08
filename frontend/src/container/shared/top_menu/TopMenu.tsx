@@ -1,3 +1,4 @@
+import { DownOutlined } from "@ant-design/icons";
 import { navigate } from "@reach/router";
 import { Icon, Menu } from "antd";
 import GlobalAutocomplete from "container/shared/top_menu/GlobalAutocomplete";
@@ -81,7 +82,7 @@ export default inject(
                 <div>
                   {usernameOfCurrentUser}
                   {"  "}
-                  <Icon type="down" />
+                  <DownOutlined />
                 </div>
               }
               style={{ float: "right" }}

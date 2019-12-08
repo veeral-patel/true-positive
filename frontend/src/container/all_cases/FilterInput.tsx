@@ -1,4 +1,5 @@
-import { Icon, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { Input } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import CaseStore from "stores/AllCasesStore";
@@ -17,7 +18,7 @@ export default inject("allCasesStore")(
             allowClear
             value={allCasesStore!.filterValue}
             placeholder="Filter cases"
-            prefix={<Icon type="search" />}
+            prefix={<SearchOutlined />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               allCasesStore!.setFilterValue(e.currentTarget.value)
             }

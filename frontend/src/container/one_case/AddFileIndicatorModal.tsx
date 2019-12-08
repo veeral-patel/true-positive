@@ -1,4 +1,5 @@
-import { Icon, Modal, Typography, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import { Modal, Typography, Upload } from "antd";
 import React from "react";
 
 const { Dragger } = Upload;
@@ -26,7 +27,7 @@ class AddFileIndicatorModal extends React.Component<Props> {
         <div>
           <Dragger>
             <p className="ant-upload-drag-icon">
-              <Icon type="upload" />
+              <UploadOutlined />
             </p>
             <p className="ant-upload-text">
               Drag file(s) into this area to upload them

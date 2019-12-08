@@ -1,4 +1,5 @@
-import { Icon, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { Input } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllTasksStore from "stores/AllTasksStore";
@@ -17,7 +18,7 @@ export default inject("allTasksStore")(
             allowClear
             value={allTasksStore!.filterValue}
             placeholder="Filter tasks"
-            prefix={<Icon type="search" />}
+            prefix={<SearchOutlined />}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               allTasksStore!.setFilterValue(e.currentTarget.value)
             }

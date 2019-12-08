@@ -1,5 +1,6 @@
+import { DownOutlined } from "@ant-design/icons";
 import { navigate } from "@reach/router";
-import { Button, Dropdown, Icon, Menu, Modal } from "antd";
+import { Button, Dropdown, Menu, Modal } from "antd";
 import { ClickParam } from "antd/lib/menu";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -28,7 +29,7 @@ export default inject("activeCaseStore")(
         return (
           <Dropdown overlay={menu}>
             <Button>
-              Actions <Icon type="down" />
+              Actions <DownOutlined />
             </Button>
           </Dropdown>
         );
