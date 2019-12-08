@@ -1,4 +1,9 @@
-import { Icon, Input, Typography } from "antd";
+import {
+  ArrowRightOutlined,
+  LoadingOutlined,
+  PlusOutlined
+} from "@ant-design/icons";
+import { Input, Typography } from "antd";
 import ListofPriorities from "container/admin/ListofPriorities";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -45,9 +50,9 @@ export default inject("priorityStore")(
 
         const priorityIsBeingCreated = priorityStore!.priorityIsBeingCreated;
         const suffix = priorityIsBeingCreated ? (
-          <Icon type="loading" />
+          <LoadingOutlined />
         ) : (
-          <Icon type="arrow-right" />
+          <ArrowRightOutlined />
         );
 
         return (
@@ -57,7 +62,7 @@ export default inject("priorityStore")(
               <div style={{ marginBottom: "20px" }}>
                 <Input
                   placeholder="Create a priority"
-                  prefix={<Icon type="plus" />}
+                  prefix={<PlusOutlined />}
                   suffix={suffix}
                   value={inputValue}
                   onChange={event =>
