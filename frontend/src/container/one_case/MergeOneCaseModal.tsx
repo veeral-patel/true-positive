@@ -1,10 +1,10 @@
+import { UserOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Alert,
   AutoComplete,
   Button,
   Form,
-  Icon,
   Input,
   message,
   Modal,
@@ -121,7 +121,7 @@ function DumbMergeCaseForm(props: FormProps) {
               return false;
             }}
           >
-            <Input prefix={<Icon type="search" />} placeholder="Filter cases" />
+            <Input prefix={<UserOutlined />} placeholder="Filter cases" />
           </AutoComplete>
         )}
       </Form.Item>

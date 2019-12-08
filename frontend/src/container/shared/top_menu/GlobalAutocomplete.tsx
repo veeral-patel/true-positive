@@ -1,5 +1,6 @@
+import { SearchOutlined } from "@ant-design/icons";
 import { navigate } from "@reach/router";
-import { AutoComplete, Icon, Input, Typography } from "antd";
+import { AutoComplete, Input, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
@@ -209,7 +210,7 @@ export default inject(
             ]}
           >
             <Input
-              prefix={<Icon type="search" />}
+              prefix={<SearchOutlined />}
               placeholder="Search"
               allowClear
               style={{ width: "250px" }}

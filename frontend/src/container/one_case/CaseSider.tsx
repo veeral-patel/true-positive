@@ -1,5 +1,11 @@
+import {
+  CheckSquareOutlined,
+  InfoCircleOutlined,
+  SecurityScanOutlined,
+  UserOutlined
+} from "@ant-design/icons";
 import { navigate } from "@reach/router";
-import { Icon, Layout, Menu, Typography } from "antd";
+import { Layout, Menu, Typography } from "antd";
 import { CollapseType } from "antd/lib/layout/Sider";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -105,7 +111,7 @@ export default inject(
               activeCase && navigate(getPathToACase(activeCase.id))
             }
           >
-            <Icon type="info-circle" />
+            <InfoCircleOutlined />
             <span>Info</span>
           </Menu.Item>
           <Menu.Item
@@ -114,7 +120,7 @@ export default inject(
               activeCase && navigate(getPathToCaseTasks(activeCase.id))
             }
           >
-            <Icon type="check-square" />
+            <CheckSquareOutlined />
             <span>
               Tasks{" "}
               {numberOfTasks !== null &&
@@ -134,7 +140,7 @@ export default inject(
               activeCase && navigate(getPathToCaseIndicators(activeCase.id))
             }
           >
-            <Icon type="security-scan" />
+            <SecurityScanOutlined />
             <span>
               Indicators{" "}
               {numberOfIndicators !== null && (
@@ -148,7 +154,7 @@ export default inject(
               activeCase && navigate(getPathToACaseMembers(activeCase.id))
             }
           >
-            <Icon type="user" />
+            <UserOutlined />
             <span>
               Members{" "}
               {numberOfMembers !== null && <span>({numberOfMembers})</span>}

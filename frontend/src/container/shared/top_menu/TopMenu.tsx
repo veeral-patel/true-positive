@@ -1,4 +1,4 @@
-import { DownOutlined } from "@ant-design/icons";
+import { DeploymentUnitOutlined, DownOutlined } from "@ant-design/icons";
 import { navigate } from "@reach/router";
 import { Icon, Menu } from "antd";
 import GlobalAutocomplete from "container/shared/top_menu/GlobalAutocomplete";
@@ -59,7 +59,7 @@ export default inject(
                 <div>
                   API
                   {"  "}
-                  <Icon type="down" />
+                  <DownOutlined />
                 </div>
               }
               style={{ float: "left" }}
@@ -70,7 +70,7 @@ export default inject(
                   navigate(process.env.REACT_APP_API_ENDPOINT)
                 }
               >
-                <Icon type="deployment-unit" />
+                <DeploymentUnitOutlined />
                 Playground
               </Menu.Item>
             </SubMenu>

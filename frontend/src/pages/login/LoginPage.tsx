@@ -1,3 +1,4 @@
+import { UserOutlined } from "@ant-design/icons";
 import { Button, Form, Icon, Input } from "antd";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import { inject, observer } from "mobx-react";
@@ -37,11 +38,7 @@ class DumbLoginForm extends React.Component<FormProps> {
           {getFieldDecorator("username", {
             rules: [{ required: true, message: "Please enter your username" }]
           })(
-            <Input
-              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="Username"
-              autoFocus
-            />
+            <Input prefix={<UserOutlined />} placeholder="Username" autoFocus />
           )}
         </Form.Item>
         <Form.Item>
