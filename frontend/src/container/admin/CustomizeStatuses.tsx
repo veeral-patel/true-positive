@@ -1,10 +1,15 @@
-import { Icon, Input, Typography } from "antd";
+import {
+  ArrowRightOutlined,
+  LoadingOutlined,
+  PlusOutlined
+} from "@ant-design/icons";
+import { Input, Typography } from "antd";
 import ListofStatuses from "container/admin/ListofStatuses";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import StatusStore from "stores/StatusStore";
 
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 const HelperText = () => (
   <div>
@@ -44,9 +49,9 @@ export default inject("statusStore")(
 
         const statusIsBeingCreated = statusStore!.statusIsBeingCreated;
         const suffix = statusIsBeingCreated ? (
-          <Icon type="loading" />
+          <LoadingOutlined />
         ) : (
-          <Icon type="arrow-right" />
+          <ArrowRightOutlined />
         );
 
         return (
@@ -55,7 +60,7 @@ export default inject("statusStore")(
             <div style={{ marginTop: "20px", marginBottom: "20px" }}>
               <Input
                 placeholder="Create a status"
-                prefix={<Icon type="plus" />}
+                prefix={<PlusOutlined />}
                 suffix={suffix}
                 value={inputValue}
                 onChange={event =>
