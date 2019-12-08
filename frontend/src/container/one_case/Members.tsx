@@ -14,6 +14,7 @@ import AddMembersForm from "container/one_case/AddMembersForm";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import UIStore from "stores/UIStore";
 import UserStore from "stores/UserStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import { paths } from "utils/constants";
@@ -23,21 +24,26 @@ const { Content } = Layout;
 const { Option } = Select;
 const { Paragraph } = Typography;
 
-interface MembersProps extends RouteComponentProps {
+interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
   userStore?: UserStore;
+  uiStore?: UIStore;
 }
 
-export default inject("activeCaseStore", "userStore")(
+export default inject(
+  "activeCaseStore",
+  "userStore",
+  "uiStore"
+)(
   observer(
-    class Members extends React.Component<MembersProps> {
+    class Members extends React.Component<Props> {
       componentDidMount() {
         const { userStore } = this.props;
         userStore!.loadUsers();
       }
 
       render() {
-        const { activeCaseStore, userStore } = this.props;
+        const { activeCaseStore, userStore, uiStore } = this.props;
         const activeCase = activeCaseStore!.activeCase;
 
         // make a list of the usernames of existing members
@@ -58,7 +64,8 @@ export default inject("activeCaseStore", "userStore")(
           return (
             <Content
               style={{
-                background: "#fff",
+                backgroundColor:
+                  uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
                 padding: 24,
                 margin: 0,
                 minHeight: 280
