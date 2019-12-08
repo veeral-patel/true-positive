@@ -32,26 +32,13 @@ const CreateCaseForm = inject(
         priorityStore!.loadPriorities();
       }
 
-      handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        // prevent page reload
-        event.preventDefault();
-
-        // validate our fields and raise errors if needed
-        const { form, allCasesStore } = this.props;
-
-        form.validateFields((errors, values) => {
-          if (!errors) {
-            allCasesStore!.createCase(
-              values.name,
-              values.status,
-              values.priority
-            );
-          }
-        });
-      }
-
       render() {
-        const { uiStore, statusStore, priorityStore } = this.props;
+        const {
+          uiStore,
+          statusStore,
+          priorityStore,
+          allCasesStore
+        } = this.props;
 
         const statusOptions = statusStore!.statuses.map(status => (
           <Option key={status.name} value={status.name}>
@@ -66,7 +53,16 @@ const CreateCaseForm = inject(
         ));
 
         return (
-          <Form colon={false} submit={this.handleSubmit.bind(this)}>
+          <Form
+            colon={false}
+            onFinish={values => {
+              allCasesStore!.createCase(
+                values.name,
+                values.status,
+                values.priority
+              );
+            }}
+          >
             <Form.Item
               label="Name"
               rules={[
@@ -78,18 +74,17 @@ const CreateCaseForm = inject(
                 ref={input => input && input.focus()}
               />
             </Form.Item>
-            <Form.Item label="Status">
-              {getFieldDecorator("status", {
-                rules: [{ required: true, message: "Please choose a status" }]
-              })(
-                <Select
-                  showSearch
-                  placeholder="Choose a status"
-                  style={{ minWidth: "200px" }}
-                >
-                  {statusOptions}
-                </Select>
-              )}
+            <Form.Item
+              label="Status"
+              rules={[{ required: true, message: "Please choose a status" }]}
+            >
+              <Select
+                showSearch
+                placeholder="Choose a status"
+                style={{ minWidth: "200px" }}
+              >
+                {statusOptions}
+              </Select>
             </Form.Item>
             <Form.Item
               label="Priority"
