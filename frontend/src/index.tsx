@@ -1,4 +1,3 @@
-import "antd/dist/antd.css";
 import App from "App";
 import { Provider } from "mobx-react";
 import React from "react";

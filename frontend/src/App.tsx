@@ -12,39 +12,60 @@ import LoginPage from "pages/login/LoginPage";
 import AllTasksPage from "pages/tasks/AllTasksPage";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
+import { Helmet } from "react-helmet";
 import AuthStore from "stores/AuthStore";
 import { paths } from "utils/constants";
+import "./dark.css";
 
 interface Props {
   authStore?: AuthStore;
 }
 
+interface State {
+  /* whether dark mode is on. */
+  dark: boolean;
+}
+
 export default inject("authStore")(
   observer(
-    class App extends React.Component<Props> {
+    class App extends React.Component<Props, State> {
+      state = {
+        dark: true
+      };
+
       render() {
         const { authStore } = this.props;
+        const { dark } = this.state;
+
         return (
-          <ApolloProvider client={client}>
-            {authStore!.loggedIn() ? (
-              <div>
-                <TopMenu />
-                <Router style={{ margin: "3%", marginTop: "2%" }}>
-                  <AllCasesPage path={paths.ROOT_PATH} />
-                  <AllCasesPage path={paths.CASES_PATH} />
-                  <AllTasksPage path={paths.TASKS_PATH} />
-                  <AdminPage path={paths.MANAGE_PATH} />
-                  <CasePage path="/cases/:caseId/*" />
-                  {/* <SearchPage path={paths.SEARCH_PATH} /> */}
-                  <Page404 default />
-                </Router>
-                <CreateCaseModal />
-                <MergeOneCaseModal />
-              </div>
-            ) : (
-              <LoginPage />
-            )}
-          </ApolloProvider>
+          <>
+            <ApolloProvider client={client}>
+              {authStore!.loggedIn() ? (
+                <div>
+                  <TopMenu />
+                  <Router style={{ margin: "3%", marginTop: "2%" }}>
+                    <AllCasesPage path={paths.ROOT_PATH} />
+                    <AllCasesPage path={paths.CASES_PATH} />
+                    <AllTasksPage path={paths.TASKS_PATH} />
+                    <AdminPage path={paths.MANAGE_PATH} />
+                    <CasePage path="/cases/:caseId/*" />
+                    <Page404 default />
+                  </Router>
+                  <CreateCaseModal />
+                  <MergeOneCaseModal />
+                </div>
+              ) : (
+                <LoginPage />
+              )}
+            </ApolloProvider>
+            <Helmet>
+              {dark ? (
+                <link rel="stylesheet" href="./dark.css" />
+              ) : (
+                <link rel="stylesheet" href="./light.css" />
+              )}
+            </Helmet>
+          </>
         );
       }
     }
