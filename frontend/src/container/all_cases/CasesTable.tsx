@@ -109,9 +109,13 @@ export default inject(
           <Table
             dataSource={allCasesStore!.filteredCases}
             rowKey={theCase => theCase.id.toString()}
-            onRowClick={(clickedCase, index, event) =>
-              navigate(`${paths.CASES_PATH}/${clickedCase.id}`)
-            }
+            onRow={(record: ICase, rowIndex: any) => {
+              return {
+                onClick: event => {
+                  navigate(`${paths.CASES_PATH}/${record.id}`);
+                }
+              };
+            }}
           >
             <Column
               title="Name"
