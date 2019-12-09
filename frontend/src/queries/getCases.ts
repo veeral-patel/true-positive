@@ -12,6 +12,9 @@ const GET_CASES = gql`
       status {
         name
       }
+      createdBy {
+        username
+      }
       assignedTo {
         username
       }

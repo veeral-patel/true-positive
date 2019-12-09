@@ -175,8 +175,10 @@ export default inject(
               // sorter={(a: ICase, b: ICase) =>
               //   a.createdAt.localeCompare(b.createdAt)
               // }
-              render={(value, theCase, index) =>
-                formatISO8601((theCase as ICase).createdAt)
+              render={(value, theCase: ICase, index) =>
+                `${formatISO8601((theCase as ICase).createdAt)} by ${
+                  theCase.createdBy.username
+                }`
               }
             />
             <Column
