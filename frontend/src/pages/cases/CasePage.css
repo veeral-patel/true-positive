@@ -12,8 +12,22 @@
 
 .dark > .mde-header {
   background-color: black !important;
+  border-bottom: none;
 }
 
-.dark > .react-mde .grip {
+.dark > .mde-header > .mde-tabs > .selected {
+  border: 1px solid #595959 !important;
+}
+
+.dark.react-mde > .grip {
   background-color: inherit !important;
+  border-top: none;
+}
+
+.dark.react-mde {
+  border: none !important;
+}
+
+.dark.react-mde > .mde-text {
+  border: 1px solid #262626 !important;
 }
