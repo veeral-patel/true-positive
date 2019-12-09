@@ -35,6 +35,7 @@ const AddIndicatorForm = inject("activeCaseStore")(
           >
             <Form.Item
               label="Name"
+              name="name"
               rules={[
                 { required: true, message: "Please name your indicator" }
               ]}
@@ -43,6 +44,7 @@ const AddIndicatorForm = inject("activeCaseStore")(
             </Form.Item>
             <Form.Item
               label="Indicator"
+              name="indicator"
               rules={[
                 { required: true, message: "Please enter your indicator" }
               ]}

@@ -65,6 +65,7 @@ const CreateCaseForm = inject(
           >
             <Form.Item
               label="Name"
+              name="name"
               rules={[
                 { required: true, message: "Please enter a name for this case" }
               ]}
@@ -76,6 +77,7 @@ const CreateCaseForm = inject(
             </Form.Item>
             <Form.Item
               label="Status"
+              name="status"
               rules={[{ required: true, message: "Please choose a status" }]}
             >
               <Select
@@ -88,6 +90,7 @@ const CreateCaseForm = inject(
             </Form.Item>
             <Form.Item
               label="Priority"
+              name="priority"
               rules={[{ required: true, message: "Please choose a priority" }]}
             >
               <Select
