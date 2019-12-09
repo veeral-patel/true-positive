@@ -118,6 +118,10 @@ export default inject(
               title="Assigned To"
               dataIndex="assignedTo.username"
               key="assigned_to"
+              render={(text, task: ITask, index: number) => {
+                if (task.assignedTo) return task.assignedTo.username;
+                else return null;
+              }}
               // sorter={(a: ITask, b: ITask) =>
               //   compareUsers(a.assignedTo, b.assignedTo)
               // }
