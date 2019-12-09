@@ -29,7 +29,6 @@ const CreateCaseForm = inject("activeCaseStore")(
             }}
           >
             <Form.Item
-              label="Comment"
               name="comment"
               rules={[{ required: true, message: "Please enter a comment" }]}
             >
