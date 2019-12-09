@@ -54,7 +54,11 @@ export default inject(
         // only show non-members in our dropdown
         const userOptions = userStore!.users.map(user => {
           if (!usernamesOfMembers.includes(user.username)) {
-            return <Option key={user.username}>{user.username}</Option>;
+            return (
+              <Option key={user.username} value={user.username}>
+                {user.username}
+              </Option>
+            );
           }
         });
 
