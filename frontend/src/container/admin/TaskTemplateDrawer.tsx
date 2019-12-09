@@ -15,7 +15,11 @@ function TaskTemplateForm(props: FormProps) {
   const { currentTemplate } = props;
 
   return (
-    <Form colon={false} initialValues={{ name: currentTemplate.name }}>
+    <Form
+      colon={false}
+      layout="vertical"
+      initialValues={{ name: currentTemplate.name }}
+    >
       <Form.Item
         label="Name"
         name="name"

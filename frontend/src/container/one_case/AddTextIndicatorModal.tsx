@@ -23,6 +23,7 @@ const AddIndicatorForm = inject("activeCaseStore")(
         return (
           <Form
             colon={false}
+            layout="vertical"
             onFinish={values => {
               if (activeCaseStore!.activeCase) {
                 activeCaseStore!.createTextIndicator(

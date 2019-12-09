@@ -55,6 +55,7 @@ const CreateCaseForm = inject(
         return (
           <Form
             colon={false}
+            layout="vertical"
             onFinish={values => {
               allCasesStore!.createCase(
                 values.name,

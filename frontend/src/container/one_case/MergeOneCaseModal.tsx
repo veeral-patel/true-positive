@@ -87,6 +87,7 @@ const MergeCaseForm = inject(
     return (
       <Form
         colon={false}
+        layout="vertical"
         onFinish={values => {
           if (activeCase) {
             mergeCase({

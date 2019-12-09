@@ -17,6 +17,8 @@ const LoginForm = inject("authStore")(
         const { authStore } = this.props;
         return (
           <Form
+            colon={false}
+            layout="vertical"
             onFinish={values =>
               authStore!.login(values.username, values.password)
             }

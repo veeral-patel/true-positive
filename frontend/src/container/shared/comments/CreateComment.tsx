@@ -25,6 +25,8 @@ const CreateCaseForm = inject("activeCaseStore")(
         const { type, objectId, activeCaseStore } = this.props;
         return (
           <Form
+            colon={false}
+            layout="vertical"
             onFinish={values => {
               activeCaseStore!.createComment(type, objectId, values.comment);
             }}

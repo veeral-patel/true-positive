@@ -61,6 +61,8 @@ const EditTagsForm = inject("activeCaseStore")(
 
     return (
       <Form
+        colon={false}
+        layout="vertical"
         onFinish={values => {
           if (objectId)
             activeCaseStore!.changeTags(values.tags, objectId, type);

@@ -24,6 +24,8 @@ const EditCommentForm = inject("activeCaseStore")(
 
         return (
           <Form
+            colon={false}
+            layout="vertical"
             onFinish={values => {
               activeCaseStore!.changeComment(commentId, values.comment);
             }}

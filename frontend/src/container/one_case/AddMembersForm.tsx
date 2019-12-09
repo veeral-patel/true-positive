@@ -16,6 +16,8 @@ const AddMembersForm = inject("activeCaseStore")(
 
         return (
           <Form
+            colon={false}
+            layout="vertical"
             style={{ display: "flex" }}
             onFinish={values => {
               values.members.forEach((username: string) => {
