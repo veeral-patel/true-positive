@@ -81,7 +81,11 @@ const EditTagsForm = inject("activeCaseStore")(
         </Form.Item>
         <Form.Item>
           <>
-            <Button type="link" onClick={props.handleCancel}>
+            <Button
+              type="link"
+              onClick={props.handleCancel}
+              style={{ paddingLeft: 0 }}
+            >
               Cancel
             </Button>
             <Button htmlType="submit">Save</Button>
