@@ -1,3 +1,4 @@
+import { PlusOutlined } from "@ant-design/icons";
 import { RouteComponentProps } from "@reach/router";
 import { Button, Empty, Layout, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
@@ -73,7 +74,7 @@ export default inject(
                           A task is a piece of work to be completed in a case.
                         </Paragraph>
                         <Button
-                          icon="plus"
+                          icon={<PlusOutlined />}
                           onClick={() =>
                             this.setState({ openModal: "CREATE_TASK" })
                           }

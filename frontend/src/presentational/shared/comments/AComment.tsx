@@ -1,3 +1,4 @@
+import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment } from "antd";
 import DeleteCommentButton from "container/shared/comments/DeleteCommentButton";
 import converter from "container/shared/markdown/converter";
@@ -46,14 +47,14 @@ class AComment extends React.Component<Props, State> {
         }
         author={comment.createdBy.username}
         datetime={`${formatISO8601(comment.createdAt)} UTC`}
-        avatar={<Avatar icon="user" />}
+        avatar={<Avatar icon={<UserOutlined />} />}
         actions={[
           !editing && usernameOfCurrentUser === comment.createdBy.username && (
             <span>
               <DeleteCommentButton comment={comment} />
               <Button
                 type="link"
-                icon="edit"
+                icon={<EditOutlined />}
                 onClick={() => this.setState({ editing: true })}
               />
             </span>

@@ -1,3 +1,4 @@
+import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Form } from "antd";
 import CommentEditor from "container/shared/markdown/CommentEditor";
 import { inject, observer } from "mobx-react";
@@ -60,7 +61,7 @@ class CreateComment extends React.Component<CreateCommentProps> {
     return (
       <Comment
         content={<CreateCaseForm objectId={objectId} type={type} />}
-        avatar={<Avatar icon="user" />}
+        avatar={<Avatar icon={<UserOutlined />} />}
       />
     );
   }
