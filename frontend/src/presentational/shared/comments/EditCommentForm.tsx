@@ -1,58 +1,52 @@
-import { Button, Form, Input } from "antd";
-import { FormComponentProps, WrappedFormUtils } from "antd/lib/form/Form";
+import { Button, Form } from "antd";
 import CommentEditor from "container/shared/markdown/CommentEditor";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 
-const { TextArea } = Input;
-
-interface FormProps {
-  form: WrappedFormUtils;
+interface Props {
   activeCaseStore?: ActiveCaseStore;
   initialComment: string;
   commentId: number;
   handleCancel: () => void;
 }
 
-class DumbEditCommentForm extends React.Component<FormProps> {
-  render() {
-    const { getFieldDecorator } = this.props.form;
-    const { initialComment, handleCancel } = this.props;
+const EditCommentForm = inject("activeCaseStore")(
+  observer(
+    class InnerForm extends React.Component<Props> {
+      render() {
+        const {
+          initialComment,
+          handleCancel,
+          commentId,
+          activeCaseStore
+        } = this.props;
 
-    return (
-      <Form onSubmit={this.handleSubmit.bind(this)}>
-        <Form.Item>
-          {getFieldDecorator("comment", {
-            initialValue: initialComment
-          })(<CommentEditor />)}
-        </Form.Item>
-        <Form.Item>
-          <Button type="link" onClick={handleCancel}>
-            Cancel
-          </Button>
-          <Button htmlType="submit">Update</Button>
-        </Form.Item>
-      </Form>
-    );
-  }
-
-  handleSubmit(event: React.FormEvent<HTMLElement>) {
-    // prevent page reload
-    event.preventDefault();
-
-    // validate fields in our form
-    const { form, activeCaseStore, commentId } = this.props;
-    form.validateFields((errors, values) => {
-      if (!errors) {
-        activeCaseStore!.changeComment(commentId, values.comment);
+        return (
+          <Form
+            onFinish={values => {
+              activeCaseStore!.changeComment(commentId, values.comment);
+            }}
+            initialValues={{
+              comment: initialComment
+            }}
+          >
+            <Form.Item label="Comment" name="comment">
+              <CommentEditor />
+            </Form.Item>
+            <Form.Item>
+              <>
+                <Button type="link" onClick={handleCancel}>
+                  Cancel
+                </Button>
+                <Button htmlType="submit">Update</Button>
+              </>
+            </Form.Item>
+          </Form>
+        );
       }
-    });
-  }
-}
-
-const EditCommentForm = Form.create<FormProps & FormComponentProps>()(
-  inject("activeCaseStore")(observer(DumbEditCommentForm))
+    }
+  )
 );
 
 export default EditCommentForm;
