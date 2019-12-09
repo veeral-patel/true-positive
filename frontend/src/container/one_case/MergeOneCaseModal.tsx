@@ -149,13 +149,13 @@ const MergeCaseForm = inject(
 
 // ---
 
-interface MergeOneCaseModalProps {
+interface Props {
   uiStore?: UIStore;
 }
 
 export default inject("uiStore")(
   observer(
-    class MergeOneCaseModal extends React.Component<MergeOneCaseModalProps> {
+    class MergeOneCaseModal extends React.Component<Props> {
       render() {
         const { uiStore } = this.props;
         return (
