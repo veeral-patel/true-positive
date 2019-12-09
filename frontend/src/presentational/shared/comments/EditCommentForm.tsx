@@ -31,7 +31,11 @@ const EditCommentForm = inject("activeCaseStore")(
               comment: initialComment
             }}
           >
-            <Form.Item label="Comment" name="comment">
+            <Form.Item
+              label="Comment"
+              name="comment"
+              rules={[{ required: true, message: "Comment cannot be blank" }]}
+            >
               <CommentEditor />
             </Form.Item>
             <Form.Item>

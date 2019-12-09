@@ -30,7 +30,7 @@ class Mutations::ChangeComment < Mutations::BaseMutation
                 "comment": comment_record
             }
         else
-            raise GraphQL::ExecutionError, comment.errors.full_messages.join(" | ")
+            raise GraphQL::ExecutionError, comment_record.errors.full_messages.join(" | ")
         end
     end
 end
