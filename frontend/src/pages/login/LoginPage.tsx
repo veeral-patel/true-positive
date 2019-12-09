@@ -44,7 +44,7 @@ const LoginForm = inject("authStore")(
               ]}
             >
               <Input
-                prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+                prefix={<LockOutlined />}
                 type="password"
                 placeholder="Password"
               />
