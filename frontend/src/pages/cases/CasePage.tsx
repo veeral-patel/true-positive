@@ -7,7 +7,6 @@ import Info from "container/one_case/Info";
 import Members from "container/one_case/Members";
 import Tasks from "container/one_case/Tasks";
 import ThisCaseHasBeenMergedAlert from "container/one_case/ThisCaseHasBeenMergedAlert";
-import Tree from "container/one_case/Tree";
 import OneIndicator from "container/one_indicator/OneIndicator";
 import OneIndicatorBreadcrumb from "container/one_indicator/OneIndicatorBreadcrumb";
 import OneTask from "container/one_task/OneTask";
@@ -83,12 +82,6 @@ export default inject(
                       <OneCaseBreadcrumb
                         caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
-                        tabName="Tree"
-                        path="/tree"
-                      />
-                      <OneCaseBreadcrumb
-                        caseId={activeCaseStore!.activeCase.id}
-                        caseName={activeCaseStore!.activeCase.name}
                         tabName="Members"
                         path="/members"
                       />
@@ -116,7 +109,6 @@ export default inject(
                     <Router>
                       <Info path="/" />
                       <Info path="/info" />
-                      <Tree path="/tree" />
                       <Members path="/members" />
                       <Indicators path="/indicators" />
                       <Tasks path="/tasks" />
