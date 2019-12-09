@@ -68,8 +68,7 @@ export default inject(
             backgroundColor: uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
             padding: 24,
             margin: 0,
-            minHeight: 280,
-            borderRadius: "6px"
+            minHeight: 280
           }}
         >
           <section>

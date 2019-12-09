@@ -110,7 +110,9 @@ export default inject(
                   )}
                 </div>
                 <div style={{ display: "flex" }}>
-                  <div style={{ flex: 7, overflow: "hidden" }}>
+                  <div
+                    style={{ flex: 7, overflow: "hidden", borderRadius: "6px" }}
+                  >
                     <Router>
                       <Info path="/" />
                       <Info path="/info" />
