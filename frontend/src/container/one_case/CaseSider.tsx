@@ -84,7 +84,7 @@ export default inject(
         breakpoint="lg"
       >
         {!collapsed && (
-          <div style={{ marginBottom: "10px" }}>
+          <div style={{ marginBottom: "1em" }}>
             <Text
               type="secondary"
               style={{ textTransform: "uppercase" }}
