@@ -69,7 +69,7 @@ const EditTagsForm = inject("activeCaseStore")(
           tags: existingTags.map(tag => tag.name)
         }}
       >
-        <Form.Item label="Tags" name="tags">
+        <Form.Item name="tags">
           <Select
             mode="tags"
             placeholder="Select tags"
