@@ -130,7 +130,8 @@ export default inject(
                           uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
                         padding: 24,
                         marginLeft: 24,
-                        height: "100%"
+                        height: "100%",
+                        borderRadius: "6px"
                       }}
                     >
                       <Text

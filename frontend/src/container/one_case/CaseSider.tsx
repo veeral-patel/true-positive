@@ -6,7 +6,6 @@ import {
 } from "@ant-design/icons";
 import { navigate } from "@reach/router";
 import { Layout, Menu, Typography } from "antd";
-import { CollapseType } from "antd/lib/layout/Sider";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -77,11 +76,10 @@ export default inject(
       <Sider
         collapsible
         collapsed={collapsed}
-        onCollapse={(collapsed: boolean, type: CollapseType) =>
-          uiStore!.toggleCaseSider()
-        }
         theme={uiStore!.theme === "LIGHT" ? "light" : "dark"}
         breakpoint="lg"
+        style={{ borderRadius: "6px" }}
+        onCollapse={() => uiStore!.toggleCaseSider()}
       >
         {!collapsed && (
           <div
