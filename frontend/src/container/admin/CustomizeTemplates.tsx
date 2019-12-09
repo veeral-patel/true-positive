@@ -1,3 +1,4 @@
+import { PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Empty, Spin, Tabs, Typography } from "antd";
 import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
@@ -30,7 +31,7 @@ function CustomizeTaskTemplates() {
                 Create templates for common tasks, so you can quickly create
                 tasks from them later.
               </Paragraph>
-              <Button icon="plus">Create task template</Button>
+              <Button icon={<PlusOutlined />}>Create task template</Button>
             </div>
           }
         />

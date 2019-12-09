@@ -1,3 +1,4 @@
+import { CloseOutlined } from "@ant-design/icons";
 import { navigate, RouteComponentProps } from "@reach/router";
 import {
   Avatar,
@@ -167,7 +168,7 @@ export default inject(
                     >
                       {members.length > 1 && (
                         <Button
-                          icon="close"
+                          icon={<CloseOutlined />}
                           style={{ border: "none", marginLeft: "1em" }}
                         />
                       )}

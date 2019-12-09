@@ -1,4 +1,4 @@
-import { MessageOutlined } from "@ant-design/icons";
+import { CopyOutlined, MessageOutlined } from "@ant-design/icons";
 import { navigate } from "@reach/router";
 import { Button, List, message, Tooltip, Typography } from "antd";
 import copy from "copy-to-clipboard";
@@ -34,7 +34,7 @@ class IndicatorList extends React.Component<Props> {
                 <div>
                   <Text>{truncateString(indicator.name, 50)}</Text>
                   <Button
-                    icon="copy"
+                    icon={<CopyOutlined />}
                     type="link"
                     size="small"
                     onClick={event => {
