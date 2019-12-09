@@ -1,5 +1,4 @@
 import { Button, Form, Input, Modal } from "antd";
-import { WrappedFormUtils } from "antd/lib/form/Form";
 import "container/shared/modals/FormInModal.css";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -9,61 +8,48 @@ import UIStore from "stores/UIStore";
 // -----
 
 interface FormProps {
-  form: WrappedFormUtils;
   activeCaseStore?: ActiveCaseStore;
 }
 
-class DumbCreateTaskForm extends React.Component<FormProps> {
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    // prevent page reload
-    event.preventDefault();
+const CreateTaskForm = inject("activeCaseStore")(
+  observer(
+    class InnerForm extends React.Component<FormProps> {
+      render() {
+        const { activeCaseStore } = this.props;
 
-    // validate our fields and raise errors if needed
-    const { form, activeCaseStore } = this.props;
-    form.validateFields((errors, values) => {
-      if (!errors && activeCaseStore!.activeCase) {
-        activeCaseStore!.createTask(
-          values.name,
-          activeCaseStore!.activeCase.id
+        return (
+          <Form
+            colon={false}
+            onFinish={values => {
+              if (activeCaseStore!.activeCase) {
+                activeCaseStore!.createTask(
+                  values.name,
+                  activeCaseStore!.activeCase.id
+                );
+              }
+            }}
+          >
+            <Form.Item
+              label="Name"
+              rules={[{ required: true, message: "Please name this task" }]}
+            >
+              <Input
+                placeholder="Image hard drive"
+                ref={input => input && input.focus()}
+              />
+            </Form.Item>
+            <Form.Item>
+              <div style={{ float: "right" }}>
+                <Button type="primary" htmlType="submit">
+                  Create Task
+                </Button>
+              </div>
+            </Form.Item>
+          </Form>
         );
       }
-    });
-  }
-
-  render() {
-    const { getFieldDecorator } = this.props.form;
-
-    return (
-      <Form colon={false} onSubmit={this.handleSubmit.bind(this)}>
-        <Form.Item label="Name">
-          {getFieldDecorator("name", {
-            rules: [
-              { required: true, message: "Please enter a name for this task" }
-            ]
-          })(
-            <Input
-              placeholder="Image hard drive"
-              ref={input => input && input.focus()}
-            />
-          )}
-        </Form.Item>
-        <Form.Item>
-          <div style={{ float: "right" }}>
-            <Button type="primary" htmlType="submit">
-              Create Task
-            </Button>
-          </div>
-        </Form.Item>
-      </Form>
-    );
-  }
-}
-
-// ----
-
-// provide our form with validation abilities and access to our MobX stores
-const CreateTaskForm = Form.create()(
-  inject("activeCaseStore")(observer(DumbCreateTaskForm))
+    }
+  )
 );
 
 // -----
