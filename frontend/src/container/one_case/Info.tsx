@@ -1,3 +1,4 @@
+import { CloseOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import {
@@ -197,7 +198,7 @@ export default inject(
                         }
                       >
                         <Tooltip title="Un-merge case" placement="right">
-                          <Button icon="cross" type="link" />
+                          <Button icon={<CloseOutlined />} type="link" />
                         </Tooltip>
                       </Popconfirm>
                     ]}
