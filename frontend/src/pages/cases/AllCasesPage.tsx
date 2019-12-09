@@ -14,7 +14,10 @@ interface Props extends RouteComponentProps {
   allCasesStore?: AllCasesStore;
 }
 
-export default inject("allCasesStore", "uiStore")(
+export default inject(
+  "allCasesStore",
+  "uiStore"
+)(
   observer(
     class AllCasesPage extends React.Component<Props> {
       componentDidMount() {
@@ -28,7 +31,7 @@ export default inject("allCasesStore", "uiStore")(
           <div>
             <section>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div>
+                <div style={{ marginBottom: "1em" }}>
                   {allCasesStore!.casesAreLoading ? (
                     <h3>Cases</h3>
                   ) : (
@@ -63,7 +66,7 @@ export default inject("allCasesStore", "uiStore")(
                 <div>
                   <span
                     style={{
-                      marginBottom: "2em",
+                      marginBottom: "30px",
                       width: "40%",
                       display: "inline-block"
                     }}
@@ -90,7 +93,7 @@ export default inject("allCasesStore", "uiStore")(
                   {allCasesStore!.filteredCases.length === 0 ? (
                     <Empty
                       description={
-                        <div style={{ marginTop: "1em" }}>
+                        <div style={{ marginTop: "30px" }}>
                           <h3>No cases</h3>
                           <Paragraph>
                             No cases match your filters above
