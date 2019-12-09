@@ -155,8 +155,12 @@ export default inject(
             />
             <Column
               title="Assigned To"
-              dataIndex="assignedTo.username"
+              dataIndex="assignedTo"
               key="assigned_to"
+              render={(text, theCase: ICase, index: number) => {
+                if (theCase.assignedTo) return theCase.assignedTo.username;
+                else return null;
+              }}
               // sorter={(a: ICase, b: ICase) =>
               //   compareUsers(a.assignedTo, b.assignedTo)
               // }
