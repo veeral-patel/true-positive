@@ -1,7 +1,9 @@
 import { Button } from "antd";
 import converter from "container/shared/markdown/converter";
+import { inject, observer } from "mobx-react";
 import * as React from "react";
 import ReactMde from "react-mde";
+import UIStore from "stores/UIStore";
 
 interface Props {
   // the initial value in the textarea
@@ -9,9 +11,11 @@ interface Props {
 
   // fired after clicking the Update button
   updateValue: (newValue: string) => void;
+
+  uiStore?: UIStore;
 }
 
-function DescriptionEditor({ initialValue, updateValue }: Props) {
+function DescriptionEditor({ initialValue, updateValue, uiStore }: Props) {
   const [currentValue, setValue] = React.useState(initialValue);
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "preview"
@@ -24,6 +28,7 @@ function DescriptionEditor({ initialValue, updateValue }: Props) {
         onChange={setValue}
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
+        className={uiStore!.theme === "LIGHT" ? "" : "dark"}
         generateMarkdownPreview={markdown =>
           Promise.resolve(converter.makeHtml(markdown))
         }
@@ -38,4 +43,4 @@ function DescriptionEditor({ initialValue, updateValue }: Props) {
   );
 }
 
-export default DescriptionEditor;
+export default inject("uiStore")(observer(DescriptionEditor));

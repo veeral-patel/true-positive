@@ -9,3 +9,11 @@
     display: none;
   }
 }
+
+.dark > .mde-header {
+  background-color: black !important;
+}
+
+.dark > .react-mde .grip {
+  background-color: inherit !important;
+}

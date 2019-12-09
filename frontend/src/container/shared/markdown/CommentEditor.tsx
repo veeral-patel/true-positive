@@ -1,13 +1,16 @@
 import converter from "container/shared/markdown/converter";
+import { inject, observer } from "mobx-react";
 import * as React from "react";
 import ReactMde from "react-mde";
+import UIStore from "stores/UIStore";
 
 interface Props {
   value?: string;
   onChange?: (newValue: string) => void;
+  uiStore?: UIStore;
 }
 
-function CommentEditor({ value, onChange }: Props) {
+function CommentEditor({ value, onChange, uiStore }: Props) {
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "write"
   );
@@ -17,6 +20,7 @@ function CommentEditor({ value, onChange }: Props) {
       minEditorHeight={125}
       minPreviewHeight={125}
       value={value}
+      className={uiStore!.theme === "LIGHT" ? "" : "dark"}
       onChange={onChange}
       selectedTab={selectedTab}
       onTabChange={setSelectedTab}
@@ -27,4 +31,4 @@ function CommentEditor({ value, onChange }: Props) {
   );
 }
 
-export default CommentEditor;
+export default inject("uiStore")(observer(CommentEditor));
