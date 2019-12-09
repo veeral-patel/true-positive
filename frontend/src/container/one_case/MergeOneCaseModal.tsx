@@ -11,9 +11,6 @@ import {
   notification,
   Select
 } from "antd";
-import { DataSourceItemType } from "antd/lib/auto-complete";
-import { FormComponentProps } from "antd/lib/form";
-import { WrappedFormUtils } from "antd/lib/form/Form";
 import { ApolloError } from "apollo-boost";
 import { inject, observer } from "mobx-react";
 import MERGE_A_CASE from "mutations/mergeCase";
@@ -27,7 +24,6 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 interface FormProps {
-  form: WrappedFormUtils;
   uiStore?: UIStore;
   activeCaseStore?: ActiveCaseStore;
 }
@@ -42,7 +38,6 @@ interface CaseNameData {
 // Don't use this form directly
 function DumbMergeCaseForm(props: FormProps) {
   const { uiStore, activeCaseStore } = props;
-  const { getFieldDecorator } = props.form;
 
   const activeCase = activeCaseStore!.activeCase;
 
@@ -60,36 +55,23 @@ function DumbMergeCaseForm(props: FormProps) {
     }
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // prevent page reload
-    event.preventDefault();
-
-    // validate form fields; raise errors
-    const { form } = props;
-    form.validateFields((errors, values) => {
-      if (!errors && activeCase) {
-        mergeCase({
-          variables: {
-            input: {
-              childCaseId: activeCase.id,
-              parentCaseId: values.parentCase,
-              reason: values.reason
-            }
-          }
-        });
-      }
-    });
-  };
-
   // populate our list of case options
   const { error, loading, data } = useQuery<CaseNameData>(GET_CASE_NAMES);
 
-  let caseOptions: DataSourceItemType[] = [];
+  let caseOptions: any[] = [];
 
   if (loading) {
-    caseOptions = [<Option key="loading">Loading...</Option>];
+    caseOptions = [
+      <Option key="loading" value="loading">
+        Loading...
+      </Option>
+    ];
   } else if (error) {
-    caseOptions = [<Option key="error">Failed to fetch tags</Option>];
+    caseOptions = [
+      <Option key="error" value="error">
+        Failed to fetch tags
+      </Option>
+    ];
   } else if (data) {
     caseOptions = data.cases.map(theCase => (
       <Option key={theCase.id} value={theCase.id}>
@@ -100,30 +82,46 @@ function DumbMergeCaseForm(props: FormProps) {
 
   // render the form
   return (
-    <Form colon={false} onSubmit={handleSubmit}>
-      <Form.Item label="Case to merge this case into">
-        {getFieldDecorator("parentCase", {
-          rules: [{ required: true, message: "Please select a case" }]
-        })(
-          <AutoComplete
-            dataSource={caseOptions}
-            filterOption={(inputValue, option) => {
-              // filter options based on the name of the case
-              const caseName = option.props.children;
-              if (caseName) {
-                return (
-                  caseName
-                    .toString()
-                    .toLowerCase()
-                    .indexOf(inputValue.toLowerCase()) !== -1
-                );
+    <Form
+      colon={false}
+      onFinish={values => {
+        if (activeCase) {
+          mergeCase({
+            variables: {
+              input: {
+                childCaseId: activeCase.id,
+                parentCaseId: values.parentCase,
+                reason: values.reason
               }
-              return false;
-            }}
-          >
-            <Input prefix={<UserOutlined />} placeholder="Filter cases" />
-          </AutoComplete>
-        )}
+            }
+          });
+        }
+      }}
+    >
+      <Form.Item
+        label="Case to merge this case into"
+        name="parentCase"
+        rules={[{ required: true, message: "Please select a case" }]}
+      >
+        <AutoComplete
+          dataSource={caseOptions}
+          filterOption={(inputValue, option) => {
+            // filter options based on the name of the case
+            if (!option) return false;
+            const caseName = option.props.children;
+            if (caseName) {
+              return (
+                caseName
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(inputValue.toLowerCase()) !== -1
+              );
+            }
+            return false;
+          }}
+        >
+          <Input prefix={<UserOutlined />} placeholder="Filter cases" />
+        </AutoComplete>
       </Form.Item>
       <Form.Item label="Reason">
         {getFieldDecorator("reason")(
