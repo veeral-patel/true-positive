@@ -182,7 +182,7 @@ export default inject(
                   <List.Item
                     actions={[
                       // <Tooltip title="Edit merge reason">
-                      //   <Button icon="edit" type="link" />,
+                      //   <Button icon={<EditOutlined />} type="link" />,
                       // </Tooltip>,
                       <Popconfirm
                         title="Un-merge this case?"

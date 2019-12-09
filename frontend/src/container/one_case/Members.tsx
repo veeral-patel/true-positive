@@ -1,4 +1,4 @@
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, UserOutlined } from "@ant-design/icons";
 import { navigate, RouteComponentProps } from "@reach/router";
 import {
   Avatar,
@@ -93,7 +93,7 @@ export default inject(
                 renderItem={member => (
                   <List.Item>
                     <List.Item.Meta
-                      avatar={<Avatar icon="user" />}
+                      avatar={<Avatar icon={<UserOutlined />} />}
                       title={
                         <span>
                           {member.user.username}&nbsp;&nbsp;
