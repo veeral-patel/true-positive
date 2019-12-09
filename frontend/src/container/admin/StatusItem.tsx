@@ -1,3 +1,4 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { Button, List, Popconfirm, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -26,7 +27,7 @@ export default inject("statusStore")(
                 onConfirm={() => statusStore!.deleteStatus(status.name)}
                 cancelText="No"
               >
-                <Button type="link" icon="delete" />
+                <Button type="link" icon={<DeleteOutlined />} />
               </Popconfirm>
             ]}
           >

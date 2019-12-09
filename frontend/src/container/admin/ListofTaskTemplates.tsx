@@ -1,3 +1,4 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { Button, List, Popconfirm } from "antd";
 import TaskTemplateDrawer from "container/admin/TaskTemplateDrawer";
 import React, { useState } from "react";
@@ -32,7 +33,7 @@ function ListofTaskTemplates(props: Props) {
                 okText="Yes, Delete"
                 cancelText="No"
               >
-                <Button type="link" icon="delete" />
+                <Button type="link" icon={<DeleteOutlined />} />
               </Popconfirm>
             ]}
           >

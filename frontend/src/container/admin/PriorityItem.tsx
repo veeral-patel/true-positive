@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import IPriority from "ts/interfaces/IPriority";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
@@ -26,7 +27,7 @@ export default inject("priorityStore")(
                 onConfirm={() => priorityStore!.deletePriority(priority.name)}
                 cancelText="No"
               >
-                <Button type="link" icon="delete" />
+                <Button type="link" icon={<DeleteOutlined />} />
               </Popconfirm>
             ]}
           >
