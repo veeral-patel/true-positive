@@ -1,9 +1,9 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { Button, List, Popconfirm, Typography } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import IPriority from "ts/interfaces/IPriority";
-import { DeleteOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
