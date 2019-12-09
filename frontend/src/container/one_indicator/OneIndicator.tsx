@@ -1,6 +1,6 @@
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { navigate, RouteComponentProps } from "@reach/router";
-import { Col, Divider, Input, Layout, PageHeader, Row, Typography } from "antd";
+import { Col, Divider, Layout, PageHeader, Row, Typography } from "antd";
 import ActionsDropdown from "container/one_indicator/ActionsDropdown";
 import IndicatorForm from "container/one_indicator/IndicatorForm";
 import CreateComment from "container/shared/comments/CreateComment";
@@ -11,24 +11,28 @@ import Error from "presentational/shared/errors/Error";
 import EditableTagList from "presentational/shared/tags/EditableTagList";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import UIStore from "stores/UIStore";
 import formatISO8601 from "utils/formatISO8601";
 import { getPathToCaseIndicators } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
-const { TextArea } = Input;
 const { Content } = Layout;
 const { Text } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
+  uiStore?: UIStore;
   indicatorId?: number;
 }
 
-export default inject("activeCaseStore")(
+export default inject(
+  "activeCaseStore",
+  "uiStore"
+)(
   observer(
     class OneIndicator extends React.Component<Props> {
       render() {
-        const { activeCaseStore, indicatorId } = this.props;
+        const { activeCaseStore, uiStore, indicatorId } = this.props;
         const activeCase = activeCaseStore!.activeCase;
 
         if (!indicatorId) {
@@ -55,7 +59,8 @@ export default inject("activeCaseStore")(
           return (
             <Content
               style={{
-                backgroundColor: "#fff",
+                backgroundColor:
+                  uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
                 padding: 24,
                 height: "100%"
               }}
