@@ -27,6 +27,7 @@ const AddMembersForm = inject("activeCaseStore")(
           >
             <Form.Item
               style={{ flex: "80%" }}
+              name="members"
               rules={[
                 { required: true, message: "Please select at least one user" }
               ]}
