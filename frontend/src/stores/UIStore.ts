@@ -9,26 +9,12 @@ class UIStore {
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
   @observable theme: "LIGHT" | "DARK" = "DARK";
 
-  constructor() {
-    // read caseSiderStatus from localStorage, if it's there
-    const value = localStorage.getItem("caseSiderStatus");
-    if (value) {
-      if (value === "COLLAPSED")
-        runInAction(() => (this.caseSiderStatus = "COLLAPSED"));
-      else if (value === "OPEN")
-        runInAction(() => (this.caseSiderStatus = "OPEN"));
-    }
-  }
-
   @action.bound
   toggleCaseSider() {
     if (this.caseSiderStatus === "COLLAPSED")
       runInAction(() => (this.caseSiderStatus = "OPEN"));
     else if (this.caseSiderStatus === "OPEN")
       runInAction(() => (this.caseSiderStatus = "COLLAPSED"));
-
-    // persist to localStorage
-    localStorage.setItem("caseSiderStatus", this.caseSiderStatus);
   }
 
   @action.bound
