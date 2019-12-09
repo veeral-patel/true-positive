@@ -25,7 +25,9 @@ export default inject("statusStore")(
 
         // generate a list of options
         const options = statusStore!.statuses.map(status => (
-          <Option key={status.name}>{status.name}</Option>
+          <Option key={status.name} value={status.name}>
+            {status.name}
+          </Option>
         ));
 
         // render our component

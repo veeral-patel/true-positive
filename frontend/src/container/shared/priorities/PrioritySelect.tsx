@@ -25,7 +25,7 @@ export default inject("priorityStore")(
 
         // generate a list of options
         const options = priorityStore!.priorities.map(priority => (
-          <Option key={priority.name}>{priority.name}</Option>
+          <Option key={priority.name} value={priority.name}>{priority.name}</Option>
         ));
 
         // render our component
