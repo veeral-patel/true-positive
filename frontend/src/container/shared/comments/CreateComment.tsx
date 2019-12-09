@@ -1,5 +1,4 @@
 import { Avatar, Button, Comment, Form } from "antd";
-import { FormComponentProps } from "antd/lib/form/Form";
 import CommentEditor from "container/shared/markdown/CommentEditor";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -7,7 +6,7 @@ import ActiveCaseStore from "stores/ActiveCaseStore";
 
 // ----
 
-interface FormProps {
+interface Props {
   /* the ID of the task or case we're commenting on */
   objectId: number;
 
@@ -18,44 +17,32 @@ interface FormProps {
   activeCaseStore?: ActiveCaseStore;
 }
 
-// don't use this form on its own
-class DumbCreateCommentForm extends React.Component<
-  FormProps & FormComponentProps
-> {
-  render() {
-    const { getFieldDecorator } = this.props.form;
-    return (
-      <Form onSubmit={this.handleSubmit.bind(this)}>
-        <Form.Item>
-          {getFieldDecorator("comment", {
-            rules: [{ required: true, message: "Please enter a comment" }]
-          })(<CommentEditor />)}
-        </Form.Item>
-        <Form.Item style={{ float: "right" }}>
-          <Button htmlType="submit">Add Comment</Button>
-        </Form.Item>
-      </Form>
-    );
-  }
-
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    // prevent page reload
-    event.preventDefault();
-
-    // validate fields
-    const { form, objectId, type, activeCaseStore } = this.props;
-    form.validateFields((errors, values) => {
-      if (!errors) {
-        activeCaseStore!.createComment(type, objectId, values.comment);
+const CreateCaseForm = inject("activeCaseStore")(
+  observer(
+    class InnerForm extends React.Component<Props> {
+      render() {
+        const { type, objectId, activeCaseStore } = this.props;
+        return (
+          <Form
+            onFinish={values => {
+              activeCaseStore!.createComment(type, objectId, values.comment);
+            }}
+          >
+            <Form.Item
+              label="Comment"
+              name="comment"
+              rules={[{ required: true, message: "Please enter a comment" }]}
+            >
+              <CommentEditor />
+            </Form.Item>
+            <Form.Item style={{ float: "right" }}>
+              <Button htmlType="submit">Add Comment</Button>
+            </Form.Item>
+          </Form>
+        );
       }
-    });
-  }
-}
-
-// ----
-
-const CreateCaseForm = Form.create<FormProps & FormComponentProps>()(
-  inject("activeCaseStore")(observer(DumbCreateCommentForm))
+    }
+  )
 );
 
 // ----
