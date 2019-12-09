@@ -5,8 +5,7 @@ class TaskGroupPolicy
     end
 
     def user_can_edit_case?
-        # Whether the user is a member of this group's case and has the CAN_EDIT role
-        CaseMember.where(case: @task_group.case, user: @user, role: "CAN_EDIT").exists?
+        CaseMember.where(case: @task_group.case, user: @user, role: "OWNER").exists?
     end
 
     def update?

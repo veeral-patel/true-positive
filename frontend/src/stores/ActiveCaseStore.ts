@@ -639,7 +639,11 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeRole(caseId: number, username: string, role: "CAN_VIEW" | "CAN_EDIT") {
+  changeRole(
+    caseId: number,
+    username: string,
+    role: "CAN_VIEW" | "CAN_EDIT" | "OWNER"
+  ) {
     client
       .mutate({
         variables: {

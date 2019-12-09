@@ -5,5 +5,5 @@ class CaseMember < ApplicationRecord
   belongs_to :case
   belongs_to :user
 
-  enum role: { CAN_VIEW: 1, CAN_EDIT: 2 }
+  enum role: { CAN_VIEW: 1, CAN_EDIT: 2, OWNER: 3 }
 end

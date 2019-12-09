@@ -15,42 +15,34 @@ class CasePolicy
     end
 
     def user_can_edit_specified_case?(the_case)
-        # Whether the user is a member of THE_CASE and has the CAN_EDIT role
-        CaseMember.where(case: the_case, user: @user, role: "CAN_EDIT").exists?
+        CaseMember.where(case: the_case, user: @user, role: ["CAN_EDIT", "OWNER"]).exists?
     end
 
     def user_can_edit_this_case?
-        # Whether the user is a member of this case and has the CAN_EDIT role
         user_can_edit_specified_case?(@case)  
     end
 
     def add_member?
-        # Only a case's members with a CAN_EDIT role can add members
         user_can_edit_this_case?
     end
 
     def remove_member?
-        # Only a case's members with a CAN_EDIT role can remove members
         user_can_edit_this_case? 
     end
 
     def create_task?
-        # Only a case's members with a CAN_EDIT role can remove members
         user_can_edit_this_case? 
     end
 
     def rename_case?
-        # Only a case's members with a CAN_EDIT role can rename the case
         user_can_edit_this_case? 
     end
 
     def change_role?
-        # Only a case's members with a CAN_EDIT role can change another member's role
         user_can_edit_this_case? 
     end
 
     def change_status?
-        # Only a case's members with a CAN_EDIT role can change the case's status
         user_can_edit_this_case? 
     end
 

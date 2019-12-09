@@ -6,6 +6,10 @@ class Types::CaseRoleEnum < Types::BaseEnum
     end
 
     value "CAN_EDIT" do
-        description "The user can view and edit the case."
+        description "The user can edit the case."
+    end
+
+    value "OWNER" do
+        description "The user can edit and delete this case."
     end
 end
