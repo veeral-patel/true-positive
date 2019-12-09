@@ -210,7 +210,7 @@ export default inject(
                       }
                       description={
                         childCase.reasonForMerging == null
-                          ? "No merge reason was given"
+                          ? "No reason for merging was given"
                           : childCase.reasonForMerging
                       }
                     />
