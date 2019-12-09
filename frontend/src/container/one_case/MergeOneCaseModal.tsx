@@ -35,118 +35,116 @@ interface CaseNameData {
   cases: ICase[];
 }
 
-// Don't use this form directly
-function DumbMergeCaseForm(props: FormProps) {
-  const { uiStore, activeCaseStore } = props;
+const MergeCaseForm = inject(
+  "uiStore",
+  "activeCaseStore"
+)(
+  observer(function InnerForm(props: FormProps) {
+    const { uiStore, activeCaseStore } = props;
 
-  const activeCase = activeCaseStore!.activeCase;
+    const activeCase = activeCaseStore!.activeCase;
 
-  const [mergeCase] = useMutation(MERGE_A_CASE, {
-    onCompleted: function() {
-      message.success("Merged the case");
-      uiStore!.closeModal();
-      activeCaseStore!.loadActiveCase();
-    },
-    onError: function(error: ApolloError) {
-      notification.error({
-        message: "Could not merge this case",
-        description: error.message
-      });
+    const [mergeCase] = useMutation(MERGE_A_CASE, {
+      onCompleted: function() {
+        message.success("Merged the case");
+        uiStore!.closeModal();
+        activeCaseStore!.loadActiveCase();
+      },
+      onError: function(error: ApolloError) {
+        notification.error({
+          message: "Could not merge this case",
+          description: error.message
+        });
+      }
+    });
+
+    // populate our list of case options
+    const { error, loading, data } = useQuery<CaseNameData>(GET_CASE_NAMES);
+
+    let caseOptions: any[] = [];
+
+    if (loading) {
+      caseOptions = [
+        <Option key="loading" value="loading">
+          Loading...
+        </Option>
+      ];
+    } else if (error) {
+      caseOptions = [
+        <Option key="error" value="error">
+          Failed to fetch tags
+        </Option>
+      ];
+    } else if (data) {
+      caseOptions = data.cases.map(theCase => (
+        <Option key={theCase.id} value={theCase.id}>
+          {theCase.name}
+        </Option>
+      ));
     }
-  });
 
-  // populate our list of case options
-  const { error, loading, data } = useQuery<CaseNameData>(GET_CASE_NAMES);
-
-  let caseOptions: any[] = [];
-
-  if (loading) {
-    caseOptions = [
-      <Option key="loading" value="loading">
-        Loading...
-      </Option>
-    ];
-  } else if (error) {
-    caseOptions = [
-      <Option key="error" value="error">
-        Failed to fetch tags
-      </Option>
-    ];
-  } else if (data) {
-    caseOptions = data.cases.map(theCase => (
-      <Option key={theCase.id} value={theCase.id}>
-        {theCase.name}
-      </Option>
-    ));
-  }
-
-  // render the form
-  return (
-    <Form
-      colon={false}
-      onFinish={values => {
-        if (activeCase) {
-          mergeCase({
-            variables: {
-              input: {
-                childCaseId: activeCase.id,
-                parentCaseId: values.parentCase,
-                reason: values.reason
+    // render the form
+    return (
+      <Form
+        colon={false}
+        onFinish={values => {
+          if (activeCase) {
+            mergeCase({
+              variables: {
+                input: {
+                  childCaseId: activeCase.id,
+                  parentCaseId: values.parentCase,
+                  reason: values.reason
+                }
               }
-            }
-          });
-        }
-      }}
-    >
-      <Form.Item
-        label="Case to merge this case into"
-        name="parentCase"
-        rules={[{ required: true, message: "Please select a case" }]}
+            });
+          }
+        }}
       >
-        <AutoComplete
-          dataSource={caseOptions}
-          filterOption={(inputValue, option) => {
-            // filter options based on the name of the case
-            if (!option) return false;
-            const caseName = option.props.children;
-            if (caseName) {
-              return (
-                caseName
-                  .toString()
-                  .toLowerCase()
-                  .indexOf(inputValue.toLowerCase()) !== -1
-              );
-            }
-            return false;
-          }}
+        <Form.Item
+          label="Case to merge this case into"
+          name="parentCase"
+          rules={[{ required: true, message: "Please select a case" }]}
         >
-          <Input prefix={<UserOutlined />} placeholder="Filter cases" />
-        </AutoComplete>
-      </Form.Item>
-      <Form.Item label="Reason">
-        {getFieldDecorator("reason")(
-          <TextArea placeholder="Describe how the two cases are related" />
-        )}
-      </Form.Item>
-      <Form.Item>
-        <div style={{ float: "right" }}>
-          <Button
-            style={{ marginRight: "0.5em" }}
-            onClick={() => uiStore!.closeModal()}
+          <AutoComplete
+            dataSource={caseOptions}
+            filterOption={(inputValue, option) => {
+              // filter options based on the name of the case
+              if (!option) return false;
+              const caseName = option.props.children;
+              if (caseName) {
+                return (
+                  caseName
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(inputValue.toLowerCase()) !== -1
+                );
+              }
+              return false;
+            }}
           >
-            Cancel
-          </Button>
-          <Button type="primary" htmlType="submit">
-            Merge Case
-          </Button>
-        </div>
-      </Form.Item>
-    </Form>
-  );
-}
-
-const MergeCaseForm = Form.create<FormProps & FormComponentProps>()(
-  inject("uiStore", "activeCaseStore")(observer(DumbMergeCaseForm))
+            <Input prefix={<UserOutlined />} placeholder="Filter cases" />
+          </AutoComplete>
+        </Form.Item>
+        <Form.Item label="Reason" name="reason">
+          <TextArea placeholder="Describe how the two cases are related" />
+        </Form.Item>
+        <Form.Item>
+          <div style={{ float: "right" }}>
+            <Button
+              style={{ marginRight: "0.5em" }}
+              onClick={() => uiStore!.closeModal()}
+            >
+              Cancel
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Merge Case
+            </Button>
+          </div>
+        </Form.Item>
+      </Form>
+    );
+  })
 );
 
 // ---
