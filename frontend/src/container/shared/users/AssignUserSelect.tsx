@@ -24,8 +24,16 @@ export default inject("userStore")(
 
         // generate a list of options
         const options = userStore!.users
-          .map(user => <Option key={user.username}>{user.username}</Option>)
-          .concat(<Option key={NO_ASSIGNED_USER}>N/A</Option>);
+          .map(user => (
+            <Option key={user.username} value={user.username}>
+              {user.username}
+            </Option>
+          ))
+          .concat(
+            <Option key={NO_ASSIGNED_USER} value={NO_ASSIGNED_USER}>
+              N/A
+            </Option>
+          );
 
         // render our component
         return (
