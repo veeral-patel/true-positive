@@ -116,7 +116,6 @@ export default inject(
             />
             <Column
               title="Assigned To"
-              dataIndex="assignedTo.username"
               key="assigned_to"
               render={(text, task: ITask, index: number) => {
                 if (task.assignedTo) return task.assignedTo.username;
@@ -133,8 +132,10 @@ export default inject(
             {includeExtraColumns && (
               <Column
                 title="Created By"
-                dataIndex="createdBy.username"
                 key="created_by"
+                render={(text, task: ITask, index: number) => {
+                  return task.createdBy.username;
+                }}
                 // sorter={(a: ITask, b: ITask) =>
                 //   compareUsers(a.createdBy, b.createdBy)
                 // }
