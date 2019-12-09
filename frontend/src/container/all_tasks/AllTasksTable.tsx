@@ -1,6 +1,6 @@
 import { navigate } from "@reach/router";
 import { Table } from "antd";
-import TasksTable from "container/one_case/TasksTable";
+import TasksTable from "container/all_tasks/TasksTable";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllTasksStore from "stores/AllTasksStore";
