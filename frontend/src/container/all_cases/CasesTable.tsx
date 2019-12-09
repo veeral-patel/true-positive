@@ -141,10 +141,9 @@ export default inject(
             />
             <Column
               title="Priority"
-              dataIndex="priority.name"
               key="priority"
-              render={(priorityName: string) => (
-                <PriorityTagP priorityName={priorityName} />
+              render={(text, theCase, index: number) => (
+                <PriorityTagP priorityName={(theCase as ICase).priority.name} />
               )}
               // sorter={(a: ICase, b: ICase) =>
               //   a.priority.name.localeCompare(b.priority.name)
