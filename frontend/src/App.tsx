@@ -12,6 +12,7 @@ import LoginPage from "pages/login/LoginPage";
 import AllTasksPage from "pages/tasks/AllTasksPage";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
+import Helmet from "react-helmet";
 import AuthStore from "stores/AuthStore";
 import UIStore from "stores/UIStore";
 import { paths } from "utils/constants";
@@ -56,13 +57,13 @@ export default inject(
                 <LoginPage />
               )}
             </ApolloProvider>
-            {/* <Helmet>
+            <Helmet>
               {uiStore!.theme === "LIGHT" ? (
                 <link rel="stylesheet" href="./light.css" />
               ) : (
                 <link rel="stylesheet" href="./dark.css" />
               )}
-            </Helmet> */}
+            </Helmet>
           </>
         );
       }

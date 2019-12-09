@@ -7,7 +7,7 @@ class UIStore {
     | "MERGE_ONE_CASE_MODAL" = null;
 
   @observable caseSiderStatus: "COLLAPSED" | "OPEN" = "OPEN";
-  @observable theme: "LIGHT" | "DARK" = "LIGHT";
+  @observable theme: "LIGHT" | "DARK" = "DARK";
 
   constructor() {
     // read caseSiderStatus from localStorage, if it's there
