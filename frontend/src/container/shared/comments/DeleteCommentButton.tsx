@@ -1,3 +1,4 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { Button, Popconfirm } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -25,7 +26,7 @@ export default inject("activeCaseStore")(
           >
             <Button
               type="link"
-              icon="delete"
+              icon={<DeleteOutlined />}
               style={{ margin: 0, padding: 0 }}
             />
           </Popconfirm>
