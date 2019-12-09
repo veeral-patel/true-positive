@@ -10,6 +10,7 @@ import Error from "presentational/shared/errors/Error";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
+import UIStore from "stores/UIStore";
 import formatISO8601 from "utils/formatISO8601";
 import { getPathToCaseTasks } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
@@ -20,13 +21,17 @@ const { Text } = Typography;
 interface OneTaskProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
   taskId?: number;
+  uiStore?: UIStore;
 }
 
-export default inject("activeCaseStore")(
+export default inject(
+  "activeCaseStore",
+  "uiStore"
+)(
   observer(
     class OneTask extends React.Component<OneTaskProps> {
       render() {
-        const { activeCaseStore, taskId } = this.props;
+        const { activeCaseStore, uiStore, taskId } = this.props;
 
         const activeCase = activeCaseStore!.activeCase;
 
@@ -56,7 +61,8 @@ export default inject("activeCaseStore")(
           return (
             <Content
               style={{
-                backgroundColor: "#fff",
+                backgroundColor:
+                  uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
                 padding: 24,
                 height: "100%"
               }}
