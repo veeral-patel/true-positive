@@ -18,6 +18,10 @@ class CasePolicy
         CaseMember.where(case: the_case, user: @user, role: ["CAN_EDIT", "OWNER"]).exists?
     end
 
+    def user_owns_a_case?(the_case)
+        CaseMember.where(case: the_case, user: @user, role: "OWNER").exists?
+    end
+
     def user_can_edit_this_case?
         user_can_edit_specified_case?(@case)  
     end
@@ -64,8 +68,7 @@ class CasePolicy
 
     def delete_case?
         # only a user's owner can delete it
-        is_owner = CaseMember.where(case: the_case, user: @user, role: "OWNER").exists?
-        is_owner
+        user_owns_a_case?(@case)
     end
 
     def can_merge_into?(parent_case: nil)
