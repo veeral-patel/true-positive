@@ -1,3 +1,4 @@
+import { CheckCircleFilled } from "@ant-design/icons";
 import { navigate } from "@reach/router";
 import { Table } from "antd";
 import { inject, observer } from "mobx-react";
@@ -109,10 +110,15 @@ export default inject(
           >
             <Column
               title="Name"
-              dataIndex="name"
               key="name"
               // sorter={(a: ITask, b: ITask) => a.name.localeCompare(b.name)}
-              render={name => truncateString(name, 40)}
+              render={(text, task: ITask, index: number) => (
+                <>
+                  {task.done && <CheckCircleFilled />}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span>{truncateString(task.name, 40)}</span>
+                </>
+              )}
             />
             <Column
               title="Assigned To"
