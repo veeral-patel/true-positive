@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Form, Select } from "antd";
-import { FormComponentProps } from "antd/lib/form";
 import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import GET_TAGS from "queries/getTags";
@@ -33,42 +32,44 @@ interface TagData {
   tags: ITag[];
 }
 
-function DumbEditTagsForm(props: FormProps & FormComponentProps) {
-  // runs when form is submitted
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // prevent page reload
-    event.preventDefault();
+const EditTagsForm = inject("activeCaseStore")(
+  observer(function InnerForm(props: FormProps) {
+    const { objectId, activeCaseStore, type, existingTags } = props;
+    const { loading, error, data } = useQuery<TagData>(GET_TAGS);
 
-    // validate fields
-    const { form, activeCaseStore, objectId, type } = props;
-    form.validateFields((errors, values) => {
-      if (!errors) {
-        if (objectId) activeCaseStore!.changeTags(values.tags, objectId, type);
-      }
-    });
-  };
+    let allTagOptions: React.ReactNode[] = [];
 
-  const { getFieldDecorator } = props.form;
-  const { loading, error, data } = useQuery<TagData>(GET_TAGS);
+    if (loading) {
+      allTagOptions = [
+        <Option key="loading" value="loading">
+          Loading...
+        </Option>
+      ];
+    } else if (error) {
+      allTagOptions = [
+        <Option key="error" value="error">
+          Failed to fetch tags
+        </Option>
+      ];
+    } else if (data) {
+      allTagOptions = data.tags.map(tag => (
+        <Option key={tag.name} value={tag.name}>
+          {tag.name}
+        </Option>
+      ));
+    }
 
-  let allTagOptions: React.ReactNode[] = [];
-
-  if (loading) {
-    allTagOptions = [<Option key="loading">Loading...</Option>];
-  } else if (error) {
-    allTagOptions = [<Option key="error">Failed to fetch tags</Option>];
-  } else if (data) {
-    allTagOptions = data.tags.map(tag => (
-      <Option key={tag.name}>{tag.name}</Option>
-    ));
-  }
-
-  return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Item>
-        {getFieldDecorator("tags", {
-          initialValue: props.existingTags.map(tag => tag.name)
-        })(
+    return (
+      <Form
+        onFinish={values => {
+          if (objectId)
+            activeCaseStore!.changeTags(values.tags, objectId, type);
+        }}
+        initialValues={{
+          tags: existingTags.map(tag => tag.name)
+        }}
+      >
+        <Form.Item label="Tags" name="tags">
           <Select
             mode="tags"
             placeholder="Select tags"
@@ -77,23 +78,18 @@ function DumbEditTagsForm(props: FormProps & FormComponentProps) {
           >
             {allTagOptions}
           </Select>
-        )}
-      </Form.Item>
-      <Form.Item>
-        <Button type="link" onClick={props.handleCancel}>
-          Cancel
-        </Button>
-        <Button htmlType="submit">Save</Button>
-      </Form.Item>
-    </Form>
-  );
-}
-
-// -----
-
-// our smart form
-const EditTagsForm = Form.create<FormProps & FormComponentProps>()(
-  inject("activeCaseStore")(observer(DumbEditTagsForm))
+        </Form.Item>
+        <Form.Item>
+          <>
+            <Button type="link" onClick={props.handleCancel}>
+              Cancel
+            </Button>
+            <Button htmlType="submit">Save</Button>
+          </>
+        </Form.Item>
+      </Form>
+    );
+  })
 );
 
 // -----
