@@ -10,12 +10,16 @@
   }
 }
 
-.dark > .mde-header {
+.dark.react-mde > .mde-header {
   background-color: black !important;
   border-bottom: none;
 }
 
-.dark > .mde-header > .mde-tabs > .selected {
+.dark.react-mde .mde-header-item path {
+  fill: #8c8c8c !important;
+}
+
+.dark.react-mde > .mde-header > .mde-tabs > .selected {
   border: 1px solid #595959 !important;
 }
 
