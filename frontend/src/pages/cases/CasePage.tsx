@@ -104,7 +104,7 @@ export default inject(
                 </div>
                 <div style={{ display: "flex" }}>
                   <div
-                    style={{ flex: 7, overflow: "hidden", borderRadius: "6px" }}
+                    style={{ flex: 7, overflow: "hidden", borderRadius: "8px" }}
                   >
                     <Router>
                       <Info path="/" />
@@ -125,7 +125,7 @@ export default inject(
                         padding: 24,
                         marginLeft: 24,
                         height: "100%",
-                        borderRadius: "6px"
+                        borderRadius: "8px"
                       }}
                     >
                       <Text
