@@ -72,7 +72,6 @@ export default class LoginPage extends React.Component {
     return (
       <div
         style={{
-          backgroundColor: "rgb(240, 242, 245)",
           width: "100vw",
           height: "100vh",
           display: "flex",
