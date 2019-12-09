@@ -1,23 +1,24 @@
 import { navigate } from "@reach/router";
 import { Table } from "antd";
-import { ColumnFilterItem } from "antd/lib/table";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UserStore from "stores/UserStore";
 import ITask from "ts/interfaces/ITask";
-import compareUsers from "utils/compareUsers";
 import formatISO8601 from "utils/formatISO8601";
-import { assignedToMatches, createdByMatches } from "utils/matchesFilter";
 import { getPathToACase } from "utils/pathHelpers";
 import truncateString from "utils/truncateString";
 
 const { Column } = Table;
 
-interface ITasksTableProps {
+interface Props {
   tasks: ITask[];
-  handleRowClick: (clickedTask: ITask, index: number, event: Event) => void;
+  handleRowClick: (
+    clickedTask: ITask,
+    index: number,
+    event: React.MouseEvent
+  ) => void;
   userStore?: UserStore;
   statusStore?: StatusStore;
   priorityStore?: PriorityStore;
@@ -26,9 +27,13 @@ interface ITasksTableProps {
   includeExtraColumns: boolean;
 }
 
-export default inject("userStore", "statusStore", "priorityStore")(
+export default inject(
+  "userStore",
+  "statusStore",
+  "priorityStore"
+)(
   observer(
-    class TasksTable extends React.Component<ITasksTableProps> {
+    class TasksTable extends React.Component<Props> {
       static defaultProps = {
         includeExtraColumns: false
       };
@@ -57,7 +62,7 @@ export default inject("userStore", "statusStore", "priorityStore")(
 
         // populate status filter options -----
         const statuses = statusStore!.statuses;
-        let statusFilters: ColumnFilterItem[] = [];
+        let statusFilters = [];
 
         if (statuses) {
           statusFilters = statuses.map(status => ({
@@ -68,7 +73,7 @@ export default inject("userStore", "statusStore", "priorityStore")(
 
         // populate priority filter options ------
         const priorities = priorityStore!.priorities;
-        let priorityFilters: ColumnFilterItem[] = [];
+        let priorityFilters = [];
 
         if (priorities) {
           priorityFilters = priorities.map(priority => ({
@@ -80,7 +85,7 @@ export default inject("userStore", "statusStore", "priorityStore")(
         // populate user filter options -----
 
         const users = userStore!.users;
-        let userFilters: ColumnFilterItem[] = [];
+        let userFilters = [];
 
         if (users) {
           userFilters = users.map(user => ({
@@ -92,42 +97,47 @@ export default inject("userStore", "statusStore", "priorityStore")(
         // -----
 
         return (
-          <Table
+          <Table<ITask>
             dataSource={tasks}
             rowKey={record => record.id.toString()}
-            onRowClick={handleRowClick}
+            onRow={(record, rowIndex) => {
+              return {
+                onClick: event =>
+                  rowIndex && handleRowClick(record, rowIndex, event)
+              };
+            }}
           >
             <Column
               title="Name"
               dataIndex="name"
               key="name"
-              sorter={(a: ITask, b: ITask) => a.name.localeCompare(b.name)}
+              // sorter={(a: ITask, b: ITask) => a.name.localeCompare(b.name)}
               render={name => truncateString(name, 40)}
             />
             <Column
               title="Assigned To"
               dataIndex="assignedTo.username"
               key="assigned_to"
-              sorter={(a: ITask, b: ITask) =>
-                compareUsers(a.assignedTo, b.assignedTo)
-              }
-              filters={userFilters}
-              onFilter={(filterWord, record) =>
-                assignedToMatches(filterWord, record.assignedTo)
-              }
+              // sorter={(a: ITask, b: ITask) =>
+              //   compareUsers(a.assignedTo, b.assignedTo)
+              // }
+              // filters={userFilters}
+              // onFilter={(filterWord, record) =>
+              //   assignedToMatches(filterWord, record.assignedTo)
+              // }
             />
             {includeExtraColumns && (
               <Column
                 title="Created By"
                 dataIndex="createdBy.username"
                 key="created_by"
-                sorter={(a: ITask, b: ITask) =>
-                  compareUsers(a.createdBy, b.createdBy)
-                }
-                filters={userFilters}
-                onFilter={(filterWord, record) =>
-                  createdByMatches(filterWord, record.createdBy)
-                }
+                // sorter={(a: ITask, b: ITask) =>
+                //   compareUsers(a.createdBy, b.createdBy)
+                // }
+                // filters={userFilters}
+                // onFilter={(filterWord, record) =>
+                //   createdByMatches(filterWord, record.createdBy)
+                // }
               />
             )}
             {includeExtraColumns && (
@@ -135,10 +145,12 @@ export default inject("userStore", "statusStore", "priorityStore")(
                 title="Created At (UTC)"
                 dataIndex="createdAt"
                 key="created_at"
-                sorter={(a: ITask, b: ITask) =>
-                  a.createdAt.localeCompare(b.createdAt)
+                // sorter={(a: ITask, b: ITask) =>
+                //   a.createdAt.localeCompare(b.createdAt)
+                // }
+                render={(text, task: ITask, index) =>
+                  formatISO8601(task.createdAt)
                 }
-                render={(text, task, index) => formatISO8601(task.createdAt)}
               />
             )}
             {includeExtraColumns && (
