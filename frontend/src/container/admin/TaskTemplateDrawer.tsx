@@ -1,8 +1,10 @@
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Drawer, Form, Input, Spin } from "antd";
+import { inject, observer } from "mobx-react";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
+import UIStore from "stores/UIStore";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 // ---
@@ -48,6 +50,8 @@ interface DrawerProps {
 
   /* ID of the task template to show. */
   templateId: number | null;
+
+  uiStore?: UIStore;
 }
 
 interface OneTemplateData {
@@ -55,7 +59,7 @@ interface OneTemplateData {
 }
 
 function TaskTemplateDrawer(props: DrawerProps) {
-  const { isOpen, handleClose, templateId } = props;
+  const { isOpen, handleClose, templateId, uiStore } = props;
 
   /* retrieve this template's existing information. */
   const { loading, error, data } = useQuery<OneTemplateData>(
@@ -86,9 +90,7 @@ function TaskTemplateDrawer(props: DrawerProps) {
             right: 0,
             bottom: 0,
             width: "100%",
-            borderTop: "1px solid #e9e9e9",
             padding: "10px 16px",
-            background: "#fff",
             textAlign: "right"
           }}
         >
@@ -103,10 +105,10 @@ function TaskTemplateDrawer(props: DrawerProps) {
 
   return (
     <Drawer
-      title="Edit task template"
+      title={<h3>Edit task template</h3>}
       visible={isOpen}
       onClose={handleClose}
-      width={500}
+      width={600}
       maskClosable={false}
       keyboard={false}
     >
@@ -115,4 +117,4 @@ function TaskTemplateDrawer(props: DrawerProps) {
   );
 }
 
-export default TaskTemplateDrawer;
+export default inject("uiStore")(observer(TaskTemplateDrawer));
