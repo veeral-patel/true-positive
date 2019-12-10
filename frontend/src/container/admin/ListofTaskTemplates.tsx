@@ -3,21 +3,18 @@ import { MutationResult } from "@apollo/react-common";
 import { useMutation } from "@apollo/react-hooks";
 import { Button, List, message, notification, Popconfirm } from "antd";
 import { ApolloError } from "apollo-boost";
-import TaskTemplateDrawer from "container/admin/TaskTemplateDrawer";
-import { inject, observer } from "mobx-react";
+import TaskTemplateDrawer from "container/admin/EditTaskTemplateDrawer";
 import DELETE_A_TASK_TEMPLATE from "mutations/deleteTaskTemplate";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React, { useState } from "react";
-import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 import { formatDateOnly } from "utils/formatISO8601";
 
 interface Props {
   taskTemplates: ITaskTemplate[];
-  activeCaseStore?: ActiveCaseStore;
 }
 
-function ListofTaskTemplates({ taskTemplates, activeCaseStore }: Props) {
+function ListofTaskTemplates({ taskTemplates }: Props) {
   /* toggle the drawer. you must also set the ID of the template to show (below) */
   /* in order to show the drawer. */
   const [drawerIsOpen, toggleDrawer] = useState(false);
@@ -103,4 +100,4 @@ function ListofTaskTemplates({ taskTemplates, activeCaseStore }: Props) {
   );
 }
 
-export default inject("activeCaseStore")(observer(ListofTaskTemplates));
+export default ListofTaskTemplates;
