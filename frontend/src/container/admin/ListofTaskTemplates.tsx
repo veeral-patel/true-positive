@@ -1,10 +1,12 @@
 import { DeleteOutlined } from "@ant-design/icons";
+import { MutationResult } from "@apollo/react-common";
 import { useMutation } from "@apollo/react-hooks";
 import { Button, List, message, notification, Popconfirm } from "antd";
 import { ApolloError } from "apollo-boost";
 import TaskTemplateDrawer from "container/admin/TaskTemplateDrawer";
 import { inject, observer } from "mobx-react";
 import DELETE_A_TASK_TEMPLATE from "mutations/deleteTaskTemplate";
+import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React, { useState } from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
@@ -56,6 +58,9 @@ function ListofTaskTemplates({ taskTemplates, activeCaseStore }: Props) {
                       input: {
                         id: template.id
                       }
+                    },
+                    refetchQueries: function(result: MutationResult) {
+                      return [{ query: GET_TASK_TEMPLATES }];
                     }
                   })
                 }
