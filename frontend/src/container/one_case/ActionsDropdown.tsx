@@ -56,8 +56,7 @@ export default inject(
           onOk() {
             allCasesStore!.deleteCase(caseId);
             navigate(paths.CASES_PATH);
-          },
-          onCancel() {}
+          }
         });
       }
 
