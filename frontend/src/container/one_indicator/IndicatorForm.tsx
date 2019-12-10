@@ -30,8 +30,9 @@ const IndicatorForm = inject("activeCaseStore")(
             initialValues={{
               indicatorValue: activeIndicator.indicator
             }}
+            style={{ width: "100%" }}
           >
-            <Form.Item label="Indicator" name="indicatorValue">
+            <Form.Item name="indicatorValue">
               <TextArea
                 rows={5}
                 placeholder="Enter your indicator here"
