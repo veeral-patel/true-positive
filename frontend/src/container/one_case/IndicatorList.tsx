@@ -62,6 +62,7 @@ class IndicatorList extends React.Component<Props> {
               </Text>
               <Tooltip title={`${indicator.comments.length} comment(s)`}>
                 <MessageOutlined />
+                &nbsp;
                 {indicator.comments.length}
               </Tooltip>
             </div>
