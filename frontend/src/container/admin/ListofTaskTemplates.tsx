@@ -1,15 +1,21 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, List, Popconfirm } from "antd";
+import { useMutation } from "@apollo/react-hooks";
+import { Button, List, message, notification, Popconfirm } from "antd";
+import { ApolloError } from "apollo-boost";
 import TaskTemplateDrawer from "container/admin/TaskTemplateDrawer";
+import { inject, observer } from "mobx-react";
+import DELETE_A_TASK_TEMPLATE from "mutations/deleteTaskTemplate";
 import React, { useState } from "react";
+import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 import { formatDateOnly } from "utils/formatISO8601";
 
 interface Props {
   taskTemplates: ITaskTemplate[];
+  activeCaseStore?: ActiveCaseStore;
 }
 
-function ListofTaskTemplates(props: Props) {
+function ListofTaskTemplates({ taskTemplates, activeCaseStore }: Props) {
   /* toggle the drawer. you must also set the ID of the template to show (below) */
   /* in order to show the drawer. */
   const [drawerIsOpen, toggleDrawer] = useState(false);
@@ -19,11 +25,23 @@ function ListofTaskTemplates(props: Props) {
     null
   );
 
+  const [deleteTaskTemplate] = useMutation(DELETE_A_TASK_TEMPLATE, {
+    onCompleted: function() {
+      message.success("Deleted the template");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not delete the template",
+        description: error.message
+      });
+    }
+  });
+
   return (
     <>
       <List
         itemLayout="horizontal"
-        dataSource={props.taskTemplates}
+        dataSource={taskTemplates}
         bordered
         renderItem={template => (
           <List.Item
@@ -32,6 +50,15 @@ function ListofTaskTemplates(props: Props) {
                 title="Delete this template?"
                 okText="Yes, Delete"
                 cancelText="No"
+                onConfirm={() =>
+                  deleteTaskTemplate({
+                    variables: {
+                      input: {
+                        id: template.id
+                      }
+                    }
+                  })
+                }
               >
                 <Button type="link" icon={<DeleteOutlined />} />
               </Popconfirm>
@@ -68,4 +95,4 @@ function ListofTaskTemplates(props: Props) {
   );
 }
 
-export default ListofTaskTemplates;
+export default inject("activeCaseStore")(observer(ListofTaskTemplates));
