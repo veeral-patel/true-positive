@@ -9,7 +9,7 @@ class Mutations::UpdateTaskTemplate < Mutations::BaseMutation
         description "New name."
     end
 
-    argument :description, String: false do
+    argument :description, String, required: false do
         description "New description."
     end
 
