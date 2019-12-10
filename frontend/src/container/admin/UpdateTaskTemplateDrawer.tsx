@@ -2,12 +2,10 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Button, Drawer, Form, Input, message, notification, Spin } from "antd";
 import { ApolloError } from "apollo-boost";
 import GenericEditor from "container/shared/markdown/GenericEditor";
-import { inject, observer } from "mobx-react";
 import UPDATE_TASK_TEMPLATE from "mutations/updateTaskTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
-import UIStore from "stores/UIStore";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 // ---
@@ -21,8 +19,6 @@ interface DrawerProps {
 
   /* ID of the task template to show. */
   templateId: number | null;
-
-  uiStore?: UIStore;
 }
 
 interface OneTemplateData {
@@ -30,7 +26,7 @@ interface OneTemplateData {
 }
 
 function UpdateTaskTemplateDrawer(props: DrawerProps) {
-  const { isOpen, handleClose, templateId, uiStore } = props;
+  const { isOpen, handleClose, templateId } = props;
 
   /* retrieve this template's existing information. */
   const { loading, error, data } = useQuery<OneTemplateData>(
@@ -45,6 +41,7 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
   const [updateTaskTemplate] = useMutation(UPDATE_TASK_TEMPLATE, {
     onCompleted: function() {
       message.success("Updated the template");
+      handleClose();
     },
     onError: function(error: ApolloError) {
       notification.error({
@@ -99,14 +96,14 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
             <GenericEditor />
           </Form.Item>
           <Form.Item>
-            <>
+            <div>
               <Button style={{ marginRight: "1em" }} onClick={handleClose}>
                 Cancel
               </Button>
               <Button type="primary" htmlType="submit">
                 Update Template
               </Button>
-            </>
+            </div>
           </Form.Item>
         </Form>
       </>
@@ -127,4 +124,4 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
   );
 }
 
-export default inject("uiStore")(observer(UpdateTaskTemplateDrawer));
+export default UpdateTaskTemplateDrawer;
