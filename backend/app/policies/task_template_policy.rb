@@ -9,6 +9,11 @@ class TaskTemplatePolicy
         true
     end
 
+    def update_template?
+        # Anyone can update a task template
+        true
+    end
+
     def delete_template?
         # Anyone can delete a task template
         true
