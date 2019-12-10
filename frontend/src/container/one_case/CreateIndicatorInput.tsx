@@ -3,7 +3,7 @@ import {
   LoadingOutlined,
   PlusOutlined
 } from "@ant-design/icons";
-import { Input, Typography } from "antd";
+import { Input, Tag, Typography } from "antd";
 import React from "react";
 import { matchIndicator } from "utils/matchIndicator";
 
@@ -66,9 +66,12 @@ class CreateIndicatorInput extends React.Component<Props, State> {
     else if (status === "LOADING") suffix = <LoadingOutlined />;
     else
       suffix = (
-        <Text style={{ backgroundColor: "#f5f5f5", color: "#8c8c8c" }}>
+        <Tag
+          color={status === "OTHER" ? "" : "green"}
+          style={{ marginRight: 0 }}
+        >
           {status}
-        </Text>
+        </Tag>
       );
 
     return (
