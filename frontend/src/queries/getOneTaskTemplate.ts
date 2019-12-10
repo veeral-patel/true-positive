@@ -6,9 +6,6 @@ const GET_ONE_TASK_TEMPLATE = gql`
       id
       name
       description
-      assignedTo {
-        username
-      }
     }
   }
 `;
