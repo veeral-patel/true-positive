@@ -32,6 +32,7 @@ const CreateTaskForm = inject("activeCaseStore")(
           >
             <Form.Item
               label="Name"
+              name="name"
               rules={[{ required: true, message: "Please name this task" }]}
             >
               <Input
