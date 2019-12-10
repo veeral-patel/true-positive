@@ -17,6 +17,7 @@ class Mutations::DeleteTask < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You are not authorized to delete tasks in this case."
         end
 
+        # delete the task
         if task.destroy
             {
                 "id": id

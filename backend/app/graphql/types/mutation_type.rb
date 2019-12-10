@@ -55,6 +55,7 @@ module Types
 
       # task templates -----
       field :create_task_template, mutation: Mutations::CreateTaskTemplate
+      field :delete_task_template, mutation: Mutations::DeleteTaskTemplate
 
       # task groups ------
       field :update_task_group, mutation: Mutations::UpdateTaskGroup
