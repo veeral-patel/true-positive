@@ -24,7 +24,6 @@ class IndicatorList extends React.Component<Props> {
         renderItem={indicator => (
           <List.Item
             style={{ cursor: "pointer" }}
-            className="hoverable_item"
             onClick={() =>
               navigate(getPathToAnIndicator(indicator.case.id, indicator.id))
             }
