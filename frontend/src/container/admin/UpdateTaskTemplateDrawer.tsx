@@ -62,51 +62,49 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
     );
   } else if (data) {
     drawerContent = (
-      <>
-        <Form
-          colon={false}
-          layout="vertical"
-          initialValues={{ name: data.taskTemplate.name }}
-          onFinish={values =>
-            updateTaskTemplate({
-              variables: {
-                input: {
-                  id: data.taskTemplate.id,
-                  name: values.name,
-                  description: values.description
-                }
+      <Form
+        colon={false}
+        layout="vertical"
+        initialValues={{ name: data.taskTemplate.name }}
+        onFinish={values =>
+          updateTaskTemplate({
+            variables: {
+              input: {
+                id: data.taskTemplate.id,
+                name: values.name,
+                description: values.description
               }
-            })
-          }
+            }
+          })
+        }
+      >
+        <Form.Item
+          label="Name"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message:
+                "Please provide a default name for tasks created with this template"
+            }
+          ]}
         >
-          <Form.Item
-            label="Name"
-            name="name"
-            rules={[
-              {
-                required: true,
-                message:
-                  "Please provide a default name for tasks created with this template"
-              }
-            ]}
-          >
-            <Input placeholder="Your task's name" />
-          </Form.Item>
-          <Form.Item label="Description" name="description">
-            <GenericEditor />
-          </Form.Item>
-          <Form.Item>
-            <div>
-              <Button style={{ marginRight: "1em" }} onClick={handleClose}>
-                Cancel
-              </Button>
-              <Button type="primary" htmlType="submit">
-                Update Template
-              </Button>
-            </div>
-          </Form.Item>
-        </Form>
-      </>
+          <Input placeholder="Your task's name" />
+        </Form.Item>
+        <Form.Item label="Description" name="description">
+          <GenericEditor />
+        </Form.Item>
+        <Form.Item>
+          <div style={{ float: "right", marginTop: "1em" }}>
+            <Button style={{ marginRight: "1em" }} onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Update Template
+            </Button>
+          </div>
+        </Form.Item>
+      </Form>
     );
   }
 
