@@ -27,7 +27,7 @@ interface OneTemplateData {
   taskTemplate: ITaskTemplate;
 }
 
-function TaskTemplateDrawer(props: DrawerProps) {
+function UpdateTaskTemplateDrawer(props: DrawerProps) {
   const { isOpen, handleClose, templateId, uiStore } = props;
 
   /* retrieve this template's existing information. */
@@ -95,7 +95,7 @@ function TaskTemplateDrawer(props: DrawerProps) {
 
   return (
     <Drawer
-      title={<h3>Edit task template</h3>}
+      title={<h3>Update task template</h3>}
       visible={isOpen}
       onClose={handleClose}
       width={600}
@@ -107,4 +107,4 @@ function TaskTemplateDrawer(props: DrawerProps) {
   );
 }
 
-export default inject("uiStore")(observer(TaskTemplateDrawer));
+export default inject("uiStore")(observer(UpdateTaskTemplateDrawer));

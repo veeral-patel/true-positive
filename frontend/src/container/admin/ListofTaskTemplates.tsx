@@ -3,7 +3,7 @@ import { MutationResult } from "@apollo/react-common";
 import { useMutation } from "@apollo/react-hooks";
 import { Button, List, message, notification, Popconfirm } from "antd";
 import { ApolloError } from "apollo-boost";
-import TaskTemplateDrawer from "container/admin/EditTaskTemplateDrawer";
+import TaskTemplateDrawer from "container/admin/UpdateTaskTemplateDrawer";
 import DELETE_A_TASK_TEMPLATE from "mutations/deleteTaskTemplate";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React, { useState } from "react";
