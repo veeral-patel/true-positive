@@ -35,7 +35,7 @@ function DescriptionEditor({ initialValue, updateValue, uiStore }: Props) {
         }
       />
       <Button
-        style={{ marginTop: "0.5em", float: "right" }}
+        style={{ marginTop: "1.5em", float: "right" }}
         onClick={() => updateValue(currentValue)}
       >
         Update
