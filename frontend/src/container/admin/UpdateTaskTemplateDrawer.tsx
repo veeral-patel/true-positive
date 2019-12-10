@@ -1,7 +1,9 @@
-import { useQuery } from "@apollo/react-hooks";
-import { Button, Drawer, Form, Input, Spin } from "antd";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { Button, Drawer, Form, Input, message, notification, Spin } from "antd";
+import { ApolloError } from "apollo-boost";
 import GenericEditor from "container/shared/markdown/GenericEditor";
 import { inject, observer } from "mobx-react";
+import UPDATE_TASK_TEMPLATE from "mutations/updateTaskTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
@@ -40,6 +42,18 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
     }
   );
 
+  const [updateTaskTemplate] = useMutation(UPDATE_TASK_TEMPLATE, {
+    onCompleted: function() {
+      message.success("Updated the template");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not update the template",
+        description: error.message
+      });
+    }
+  });
+
   let drawerContent: React.ReactNode = null;
   if (loading) drawerContent = <Spin />;
   else if (error) {
@@ -56,6 +70,17 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
           colon={false}
           layout="vertical"
           initialValues={{ name: data.taskTemplate.name }}
+          onFinish={values =>
+            updateTaskTemplate({
+              variables: {
+                input: {
+                  id: data.taskTemplate.id,
+                  name: values.name,
+                  description: values.description
+                }
+              }
+            })
+          }
         >
           <Form.Item
             label="Name"
@@ -73,22 +98,17 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
           <Form.Item label="Description" name="description">
             <GenericEditor />
           </Form.Item>
+          <Form.Item>
+            <>
+              <Button style={{ marginRight: "1em" }} onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button type="primary" htmlType="submit">
+                Update Template
+              </Button>
+            </>
+          </Form.Item>
         </Form>
-        <div
-          style={{
-            position: "absolute",
-            right: 0,
-            bottom: "0.5em",
-            width: "100%",
-            padding: "10px 16px",
-            textAlign: "right"
-          }}
-        >
-          <Button style={{ marginRight: "1em" }} onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button type="primary">Update Template</Button>
-        </div>
       </>
     );
   }
