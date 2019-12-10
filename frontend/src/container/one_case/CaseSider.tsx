@@ -78,7 +78,7 @@ export default inject(
         collapsed={collapsed}
         theme={uiStore!.theme === "LIGHT" ? "light" : "dark"}
         breakpoint="lg"
-        style={{ borderRadius: "6px" }}
+        style={{ borderRadius: "8px" }}
         onCollapse={() => uiStore!.toggleCaseSider()}
       >
         {!collapsed && (
