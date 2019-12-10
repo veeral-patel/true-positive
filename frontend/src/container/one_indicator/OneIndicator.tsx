@@ -1,7 +1,6 @@
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { navigate, RouteComponentProps } from "@reach/router";
 import { Col, Divider, Layout, PageHeader, Row, Typography } from "antd";
-import ActionsDropdown from "container/one_indicator/ActionsDropdown";
 import IndicatorForm from "container/one_indicator/IndicatorForm";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
@@ -15,6 +14,8 @@ import UIStore from "stores/UIStore";
 import formatISO8601 from "utils/formatISO8601";
 import { getPathToCaseIndicators } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
+import truncateString from "utils/truncateString";
+import ActionsDropdown from "./ActionsDropdown";
 
 const { Content } = Layout;
 const { Text } = Typography;
@@ -70,10 +71,7 @@ export default inject(
                 backIcon={<ArrowLeftOutlined style={{ fontSize: 14 }} />}
                 title={
                   <Text
-                    style={{
-                      fontSize: 16
-                    }}
-                    ellipsis
+                    style={{ fontSize: 16 }}
                     editable={{
                       onChange: (newText: string) =>
                         activeCaseStore!.renameIndicator(
@@ -82,7 +80,7 @@ export default inject(
                         )
                     }}
                   >
-                    {activeIndicator.name}
+                    {truncateString(activeIndicator.name, 40)}
                   </Text>
                 }
                 extra={
@@ -92,7 +90,7 @@ export default inject(
                   />
                 }
               />
-              <section style={{ lineHeight: 3 }}>
+              <section style={{ lineHeight: 4 }}>
                 <Row>
                   <Col span={24}>
                     <Divider orientation="left">Details</Divider>
@@ -114,7 +112,7 @@ export default inject(
                               )
                           }}
                         >
-                          {activeIndicator.indicator}
+                          {truncateString(activeIndicator.indicator, 50)}
                         </Text>
                       </Col>
                     </Row>
