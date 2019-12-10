@@ -12,6 +12,7 @@ interface Props {
   // fired after clicking the Update button
   updateValue: (newValue: string) => void;
 
+  // style component based on whether we're in dark theme
   uiStore?: UIStore;
 }
 

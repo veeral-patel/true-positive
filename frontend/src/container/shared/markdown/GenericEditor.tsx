@@ -10,7 +10,7 @@ interface Props {
   uiStore?: UIStore;
 }
 
-function CommentEditor({ value, onChange, uiStore }: Props) {
+function GenericEditor({ value, onChange, uiStore }: Props) {
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "write"
   );
@@ -31,4 +31,4 @@ function CommentEditor({ value, onChange, uiStore }: Props) {
   );
 }
 
-export default inject("uiStore")(observer(CommentEditor));
+export default inject("uiStore")(observer(GenericEditor));

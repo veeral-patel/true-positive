@@ -1,6 +1,6 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment, Form } from "antd";
-import CommentEditor from "container/shared/markdown/CommentEditor";
+import CommentEditor from "container/shared/markdown/GenericEditor";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";

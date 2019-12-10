@@ -1,43 +1,12 @@
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Drawer, Form, Input, Spin } from "antd";
+import GenericEditor from "container/shared/markdown/GenericEditor";
 import { inject, observer } from "mobx-react";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
 import UIStore from "stores/UIStore";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
-
-// ---
-
-interface FormProps {
-  currentTemplate: ITaskTemplate;
-}
-
-function TaskTemplateForm(props: FormProps) {
-  const { currentTemplate } = props;
-
-  return (
-    <Form
-      colon={false}
-      layout="vertical"
-      initialValues={{ name: currentTemplate.name }}
-    >
-      <Form.Item
-        label="Name"
-        name="name"
-        rules={[
-          {
-            required: true,
-            message:
-              "Please provide a default name for tasks created with this template"
-          }
-        ]}
-      >
-        <Input placeholder="Your task's name" />
-      </Form.Item>
-    </Form>
-  );
-}
 
 // ---
 
@@ -83,12 +52,33 @@ function TaskTemplateDrawer(props: DrawerProps) {
   } else if (data) {
     drawerContent = (
       <>
-        <TaskTemplateForm currentTemplate={data.taskTemplate} />
+        <Form
+          colon={false}
+          layout="vertical"
+          initialValues={{ name: data.taskTemplate.name }}
+        >
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message:
+                  "Please provide a default name for tasks created with this template"
+              }
+            ]}
+          >
+            <Input placeholder="Your task's name" />
+          </Form.Item>
+          <Form.Item label="Description" name="description">
+            <GenericEditor />
+          </Form.Item>
+        </Form>
         <div
           style={{
             position: "absolute",
             right: 0,
-            bottom: 0,
+            bottom: "0.5em",
             width: "100%",
             padding: "10px 16px",
             textAlign: "right"
