@@ -38,7 +38,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
 
         # authorize this action
         unless CasePolicy.new(context[:current_user], the_case).create_task?
-            raise GraphQL::ExecutionError, "You are not authorized to create tasks in this case."
+            raise GraphQL::ExecutionError, "You are not authorized to add tasks to this case."
         end
 
         # create new task in memory
