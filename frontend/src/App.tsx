@@ -23,50 +23,45 @@ interface Props {
   uiStore?: UIStore;
 }
 
-export default inject(
-  "authStore",
-  "uiStore"
-)(
-  observer(
-    class App extends React.Component<Props> {
-      state = {
-        dark: true
-      };
+class App extends React.Component<Props> {
+  state = {
+    dark: true
+  };
 
-      render() {
-        const { authStore, uiStore } = this.props;
+  render() {
+    const { authStore, uiStore } = this.props;
 
-        return (
-          <>
-            <ApolloProvider client={client}>
-              {authStore!.loggedIn() ? (
-                <div>
-                  <TopMenu />
-                  <Router style={{ margin: "3%", marginTop: "2%" }}>
-                    <AllCasesPage path={paths.ROOT_PATH} />
-                    <AllCasesPage path={paths.CASES_PATH} />
-                    <AllTasksPage path={paths.TASKS_PATH} />
-                    <AdminPage path={paths.MANAGE_PATH} />
-                    <CasePage path="/cases/:caseId/*" />
-                    <Page404 default />
-                  </Router>
-                  <CreateCaseModal />
-                  <MergeOneCaseModal />
-                </div>
-              ) : (
-                <LoginPage />
-              )}
-            </ApolloProvider>
-            <Helmet>
-              {uiStore!.theme === "LIGHT" ? (
-                <link rel="stylesheet" href="./light.css" />
-              ) : (
-                <link rel="stylesheet" href="./dark.css" />
-              )}
-            </Helmet>
-          </>
-        );
-      }
-    }
-  )
-);
+    return (
+      <>
+        <ApolloProvider client={client}>
+          {authStore!.loggedIn() ? (
+            <div>
+              <TopMenu />
+              <Router style={{ margin: "3%", marginTop: "2%" }}>
+                <AllCasesPage path={paths.ROOT_PATH} />
+                <AllCasesPage path={paths.CASES_PATH} />
+                <AllTasksPage path={paths.TASKS_PATH} />
+                <AdminPage path={paths.MANAGE_PATH} />
+                <CasePage path="/cases/:caseId/*" />
+                <Page404 default />
+              </Router>
+              <CreateCaseModal />
+              <MergeOneCaseModal />
+            </div>
+          ) : (
+            <LoginPage />
+          )}
+        </ApolloProvider>
+        <Helmet>
+          {uiStore!.theme === "LIGHT" ? (
+            <link rel="stylesheet" href="./light.css" />
+          ) : (
+            <link rel="stylesheet" href="./dark.css" />
+          )}
+        </Helmet>
+      </>
+    );
+  }
+}
+
+export default inject("authStore", "uiStore")(observer(App));
