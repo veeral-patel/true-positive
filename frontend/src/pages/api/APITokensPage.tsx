@@ -59,12 +59,16 @@ function APITokensPage(props: Props) {
       )}
       {data && data.apiTokens.length >= 1 && (
         <>
+          <div style={{ marginTop: "2em" }} />
           <Alert
             showIcon
             type="warning"
             message="Guard your tokens! They provide full access to your account."
+            closable
           />
+          <div style={{ marginTop: "3em" }} />
           <List<IApiToken>
+            bordered
             dataSource={data.apiTokens}
             renderItem={apiToken => (
               <List.Item>
