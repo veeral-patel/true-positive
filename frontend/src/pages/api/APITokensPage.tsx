@@ -27,7 +27,6 @@ function APITokensPage(props: Props) {
 
   // Show more descriptive error in a notification in addition to rendering
   // a error component in the UI.
-
   if (error) {
     notification.error({
       message: "Failed to fetch API tokens",
