@@ -132,6 +132,7 @@ export default inject(
         return (
           <AutoComplete
             value={this.state.searchValue}
+            defaultActiveFirstOption={true}
             onChange={(value: any) => this.setState({ searchValue: value })}
             open={this.state.searchValue !== ""}
             onSelect={(value, option: any) => {

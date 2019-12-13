@@ -109,6 +109,7 @@ const MergeCaseForm = inject(
         >
           <AutoComplete
             dataSource={caseOptions}
+            defaultActiveFirstOption={true}
             filterOption={(inputValue, option) => {
               // filter options based on the name of the case
               if (!option) return false;
