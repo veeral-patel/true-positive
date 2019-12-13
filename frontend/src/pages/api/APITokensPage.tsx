@@ -1,6 +1,14 @@
 import { useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
-import { Alert, Button, Empty, List, Spin, Typography } from "antd";
+import {
+  Alert,
+  Button,
+  Empty,
+  List,
+  notification,
+  Spin,
+  Typography
+} from "antd";
 import Error from "presentational/shared/errors/Error";
 import GET_API_TOKENS from "queries/getApiTokens";
 import React from "react";
@@ -16,6 +24,17 @@ interface Props extends RouteComponentProps {}
 
 function APITokensPage(props: Props) {
   const { loading, error, data } = useQuery<ResponseData>(GET_API_TOKENS);
+
+  // Show more descriptive error in a notification in addition to rendering
+  // a error component in the UI.
+
+  if (error) {
+    notification.error({
+      message: "Failed to fetch API tokens",
+      description: error.message
+    });
+  }
+
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
