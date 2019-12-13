@@ -96,6 +96,13 @@ export default inject(
               }
               style={{ float: "right" }}
             >
+              {/* <Menu.Item>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Switch />
+                  <div>Dark</div>
+                </div>
+              </Menu.Item> */}
+              {/* <Menu.Divider /> */}
               <Menu.Item onClick={() => authStore!.logout()}>
                 <LogoutOutlined />
                 Log Out
