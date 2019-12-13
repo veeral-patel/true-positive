@@ -1,4 +1,4 @@
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, EditOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import {
@@ -181,9 +181,9 @@ export default inject(
                 renderItem={childCase => (
                   <List.Item
                     actions={[
-                      // <Tooltip title="Edit merge reason">
-                      //   <Button icon={<EditOutlined />} type="link" />,
-                      // </Tooltip>,
+                      <Tooltip title="Edit merge reason">
+                        <Button icon={<EditOutlined />} type="link" />
+                      </Tooltip>,
                       <Popconfirm
                         title="Un-merge this case?"
                         onConfirm={() =>
