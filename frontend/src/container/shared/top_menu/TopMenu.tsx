@@ -69,7 +69,7 @@ export default inject(
               }
               style={{ float: "left" }}
             >
-              <Menu.Item>
+              <Menu.Item onClick={() => navigate(paths.API_TOKENS_PATH)}>
                 <KeyOutlined />
                 Tokens
               </Menu.Item>

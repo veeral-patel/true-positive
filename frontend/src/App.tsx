@@ -6,6 +6,7 @@ import TopMenu from "container/shared/top_menu/TopMenu";
 import client from "createApolloClient";
 import { inject, observer } from "mobx-react";
 import AdminPage from "pages/admin/AdminPage";
+import APITokensPage from "pages/api/APITokensPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
 import LoginPage from "pages/login/LoginPage";
@@ -43,6 +44,7 @@ class App extends React.Component<Props> {
                 <AllTasksPage path={paths.TASKS_PATH} />
                 <AdminPage path={paths.MANAGE_PATH} />
                 <CasePage path="/cases/:caseId/*" />
+                <APITokensPage path={paths.API_TOKENS_PATH} />
                 <Page404 default />
               </Router>
               <CreateCaseModal />
