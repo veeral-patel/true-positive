@@ -237,7 +237,7 @@ function Info(props: InfoProps) {
               <Form.Item label="Reason" name="reason">
                 <TextArea
                   placeholder="Describe how the two cases are related"
-                  rows={4}
+                  rows={3}
                 />
               </Form.Item>
             </Form>
