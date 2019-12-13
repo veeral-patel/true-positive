@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import { Alert, Button, Empty, List, Spin, Typography } from "antd";
+import Error from "presentational/shared/errors/Error";
 import GET_API_TOKENS from "queries/getApiTokens";
 import React from "react";
 import IApiToken from "ts/interfaces/IApiToken";
@@ -22,6 +23,12 @@ function APITokensPage(props: Props) {
         <Button>Generate Token</Button>
       </div>
       {loading && <Spin size="large" />}
+      {error && (
+        <Error
+          title="Failed to fetch API tokens"
+          subtitle="Please check your Internet connection"
+        />
+      )}
       {data && data.apiTokens.length === 0 && (
         <Empty
           description={
