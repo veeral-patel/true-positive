@@ -124,11 +124,9 @@ ActiveRecord::Schema.define(version: 2019_12_05_040723) do
   create_table "task_templates", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "assigned_to_id"
     t.bigint "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["assigned_to_id"], name: "index_task_templates_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_task_templates_on_created_by_id"
   end
 
@@ -168,7 +166,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_040723) do
     t.datetime "invitation_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "firebase_user_id"
   end
 
   add_foreign_key "api_tokens", "users"
@@ -182,7 +179,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_040723) do
   add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "task_groups", "cases"
-  add_foreign_key "task_templates", "users", column: "assigned_to_id"
   add_foreign_key "task_templates", "users", column: "created_by_id"
   add_foreign_key "tasks", "cases"
   add_foreign_key "tasks", "task_groups"
