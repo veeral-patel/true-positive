@@ -34,12 +34,21 @@ function DescriptionEditor({ initialValue, updateValue, uiStore }: Props) {
           Promise.resolve(converter.makeHtml(markdown))
         }
       />
-      <Button
-        style={{ marginTop: "1.5em", float: "right" }}
-        onClick={() => updateValue(currentValue)}
-      >
-        Update
-      </Button>
+      <div style={{ marginTop: "1.5em" }} />
+      {selectedTab === "write" && (
+        <div style={{ float: "right" }}>
+          <Button
+            type="link"
+            onClick={() => {
+              setValue(initialValue);
+              setSelectedTab("preview");
+            }}
+          >
+            Cancel
+          </Button>
+          <Button onClick={() => updateValue(currentValue)}>Update</Button>
+        </div>
+      )}
     </>
   );
 }
