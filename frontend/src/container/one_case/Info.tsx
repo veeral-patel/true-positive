@@ -5,9 +5,12 @@ import {
   Button,
   Col,
   Divider,
+  Form,
+  Input,
   Layout,
   List,
   message,
+  Modal,
   notification,
   Popconfirm,
   Row,
@@ -24,7 +27,7 @@ import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag"
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
 import EditableStatusTag from "presentational/shared/tags/EditableStatusTag";
 import EditableTagList from "presentational/shared/tags/EditableTagList";
-import React from "react";
+import React, { useState } from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 import formatISO8601 from "utils/formatISO8601";
@@ -32,37 +35,36 @@ import { getPathToACase } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
+const { TextArea } = Input;
 
 interface InfoProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
   uiStore?: UIStore;
 }
 
-export default inject(
-  "activeCaseStore",
-  "uiStore"
-)(
-  observer(function Info(props: InfoProps) {
-    const { activeCaseStore, uiStore } = props;
-    const activeCase = activeCaseStore!.activeCase;
+function Info(props: InfoProps) {
+  const { activeCaseStore, uiStore } = props;
+  const activeCase = activeCaseStore!.activeCase;
+  const [openModal, setOpenModal] = useState<"EDIT_MERGE_REASON" | null>(null);
 
-    const [unmergeCase] = useMutation(MERGE_A_CASE, {
-      onCompleted: function() {
-        message.success("Un-merged the case");
-        activeCaseStore!.loadActiveCase();
-      },
-      onError: function(error: ApolloError) {
-        notification.error({
-          message: "Could not un-merge this case",
-          description: error.message
-        });
-      }
-    });
+  const [unmergeCase] = useMutation(MERGE_A_CASE, {
+    onCompleted: function() {
+      message.success("Un-merged the case");
+      activeCaseStore!.loadActiveCase();
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not un-merge this case",
+        description: error.message
+      });
+    }
+  });
 
-    // should always render, since we're catching errors and showing
-    // our spinner above this, as a HOC
-    if (activeCase)
-      return (
+  // should always render, since we're catching errors and showing
+  // our spinner above this, as a HOC
+  if (activeCase)
+    return (
+      <>
         <Content
           style={{
             backgroundColor: uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
@@ -182,7 +184,11 @@ export default inject(
                   <List.Item
                     actions={[
                       <Tooltip title="Edit merge reason">
-                        <Button icon={<EditOutlined />} type="link" />
+                        <Button
+                          icon={<EditOutlined />}
+                          type="link"
+                          onClick={() => setOpenModal("EDIT_MERGE_REASON")}
+                        />
                       </Tooltip>,
                       <Popconfirm
                         title="Un-merge this case?"
@@ -221,7 +227,25 @@ export default inject(
             </section>
           )}
         </Content>
-      );
-    return null;
-  })
-);
+        {openModal && (
+          <Modal
+            title="Edit reason for merging"
+            visible={openModal === "EDIT_MERGE_REASON"}
+            onCancel={() => setOpenModal(null)}
+          >
+            <Form colon={false} layout="vertical">
+              <Form.Item label="Reason" name="reason">
+                <TextArea
+                  placeholder="Describe how the two cases are related"
+                  rows={4}
+                />
+              </Form.Item>
+            </Form>
+          </Modal>
+        )}
+      </>
+    );
+  return null;
+}
+
+export default inject("activeCaseStore", "uiStore")(observer(Info));
