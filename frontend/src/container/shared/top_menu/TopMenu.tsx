@@ -1,6 +1,7 @@
 import {
   DeploymentUnitOutlined,
   DownOutlined,
+  KeyOutlined,
   LogoutOutlined
 } from "@ant-design/icons";
 import { navigate } from "@reach/router";
@@ -68,6 +69,10 @@ export default inject(
               }
               style={{ float: "left" }}
             >
+              <Menu.Item>
+                <KeyOutlined />
+                Tokens
+              </Menu.Item>
               <Menu.Item
                 onClick={() =>
                   process.env.REACT_APP_API_ENDPOINT &&
