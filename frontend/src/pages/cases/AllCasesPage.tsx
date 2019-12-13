@@ -50,7 +50,7 @@ export default inject(
                 <Empty
                   description={
                     <div style={{ marginTop: "1em" }}>
-                      <h2 style={{ fontWeight: "normal" }}>No cases</h2>
+                      <h3 style={{ fontWeight: "normal" }}>No cases</h3>
                       <Paragraph style={{ fontSize: 16 }}>
                         <a onClick={() => uiStore!.openCreateCaseModal()}>
                           Create a case

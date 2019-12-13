@@ -14,7 +14,10 @@ interface Props extends RouteComponentProps {
   allTasksStore?: AllTasksStore;
 }
 
-export default inject("allTasksStore", "uiStore")(
+export default inject(
+  "allTasksStore",
+  "uiStore"
+)(
   observer(
     class AllTasksPage extends React.Component<Props> {
       componentDidMount() {
@@ -103,7 +106,7 @@ export default inject("allTasksStore", "uiStore")(
                 <Empty
                   description={
                     <div style={{ marginTop: "1em" }}>
-                      <h2 style={{ fontWeight: "normal" }}>No tasks</h2>
+                      <h3 style={{ fontWeight: "normal" }}>No tasks</h3>
                       <Paragraph style={{ fontSize: 16 }}>
                         A task is a piece of work to be completed in a case.
                       </Paragraph>

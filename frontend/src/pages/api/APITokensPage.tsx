@@ -1,11 +1,12 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import {
-  Alert,
   Button,
   Empty,
   List,
   notification,
+  Popconfirm,
   Spin,
   Typography
 } from "antd";
@@ -60,18 +61,28 @@ function APITokensPage(props: Props) {
       {data && data.apiTokens.length >= 1 && (
         <>
           <div style={{ marginTop: "2em" }} />
-          <Alert
+          {/* <Alert
             showIcon
             type="warning"
             message="Guard your tokens! They provide full access to your account."
             closable
           />
-          <div style={{ marginTop: "3em" }} />
+          <div style={{ marginTop: "2.5em" }} /> */}
           <List<IApiToken>
             bordered
             dataSource={data.apiTokens}
             renderItem={apiToken => (
-              <List.Item>
+              <List.Item
+                actions={[
+                  <Popconfirm
+                    title="Delete this API token?"
+                    okText="Yes, Delete"
+                    cancelText="No"
+                  >
+                    <Button type="link" icon={<DeleteOutlined />} />
+                  </Popconfirm>
+                ]}
+              >
                 <List.Item.Meta
                   title={apiToken.name}
                   description={<Text copyable>{apiToken.apiToken}</Text>}
