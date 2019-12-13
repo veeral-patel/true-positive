@@ -1,15 +1,7 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
-import {
-  Button,
-  Empty,
-  List,
-  notification,
-  Popconfirm,
-  Spin,
-  Typography
-} from "antd";
+import { Button, Empty, List, notification, Popconfirm, Spin, Typography } from "antd";
 import Error from "presentational/shared/errors/Error";
 import GET_API_TOKENS from "queries/getApiTokens";
 import React from "react";
@@ -61,13 +53,6 @@ function APITokensPage(props: Props) {
       {data && data.apiTokens.length >= 1 && (
         <>
           <div style={{ marginTop: "2em" }} />
-          {/* <Alert
-            showIcon
-            type="warning"
-            message="Guard your tokens! They provide full access to your account."
-            closable
-          />
-          <div style={{ marginTop: "2.5em" }} /> */}
           <List<IApiToken>
             bordered
             dataSource={data.apiTokens}
