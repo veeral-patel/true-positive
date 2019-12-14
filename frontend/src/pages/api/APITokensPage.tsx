@@ -13,7 +13,8 @@ import {
   notification,
   Popconfirm,
   Spin,
-  Typography
+  Typography,
+  Alert
 } from "antd";
 import { ApolloError } from "apollo-client";
 import CREATE_AN_API_TOKEN from "mutations/createApiToken";
@@ -75,6 +76,9 @@ function APITokensPage(props: Props) {
           Generate Token
         </Button>
       </div>
+      <div style={{ marginTop: "2em" }} />
+      <Alert showIcon type="warning" message="Guard your tokens! They provide full access to your account." />
+      <div style={{ marginTop: "2em" }} />
       {loading && <Spin size="large" />}
       {error && (
         <Error
@@ -93,8 +97,6 @@ function APITokensPage(props: Props) {
         />
       )}
       {data && data.apiTokens.length >= 1 && (
-        <>
-          <div style={{ marginTop: "2em" }} />
           <List<IApiToken>
             bordered
             dataSource={data.apiTokens}
@@ -129,7 +131,6 @@ function APITokensPage(props: Props) {
               </List.Item>
             )}
           />
-        </>
       )}
       <Modal
         visible={openModal === "GENERATE_TOKEN"}
