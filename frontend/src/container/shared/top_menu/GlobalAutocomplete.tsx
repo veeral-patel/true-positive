@@ -173,7 +173,7 @@ export default inject(
               // filter options based on the name of the task/indicator/case
               if (option.value) {
                 // change to true to always show View all Results
-                if (option.value === VIEW_ALL_RESULTS) return false;
+                if (option.value === VIEW_ALL_RESULTS) return true;
                 else {
                   return (
                     option.value
