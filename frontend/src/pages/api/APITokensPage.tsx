@@ -16,6 +16,7 @@ import {
   Typography
 } from "antd";
 import { ApolloError } from "apollo-client";
+import CREATE_AN_API_TOKEN from "mutations/createApiToken";
 import DELETE_AN_API_TOKEN from "mutations/deleteApiToken";
 import Error from "presentational/shared/errors/Error";
 import GET_API_TOKENS from "queries/getApiTokens";
@@ -48,6 +49,19 @@ function APITokensPage(props: Props) {
     onError: function(error: ApolloError) {
       notification.error({
         message: "Could not delete the API token",
+        description: error.message
+      });
+    }
+  });
+
+  const [createApiToken] = useMutation(CREATE_AN_API_TOKEN, {
+    onCompleted: function() {
+      message.success("Generated API token");
+      setOpenModal(null);
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not generate an API token",
         description: error.message
       });
     }
@@ -122,8 +136,22 @@ function APITokensPage(props: Props) {
         onCancel={() => setOpenModal(null)}
         title="Generate Token"
         footer={null}
+        destroyOnClose={true}
       >
-        <Form layout="vertical" colon={false} onFinish={values => void 0}>
+        <Form
+          layout="vertical"
+          colon={false}
+          onFinish={values =>
+            createApiToken({
+              variables: {
+                input: {
+                  name: values.name
+                }
+              },
+              refetchQueries: [{ query: GET_API_TOKENS }]
+            })
+          }
+        >
           <Form.Item
             label="Name your token"
             name="name"
