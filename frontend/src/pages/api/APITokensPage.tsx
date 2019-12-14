@@ -121,10 +121,19 @@ function APITokensPage(props: Props) {
         visible={openModal === "GENERATE_TOKEN"}
         onCancel={() => setOpenModal(null)}
         title="Generate Token"
+        footer={null}
       >
         <Form layout="vertical" colon={false}>
           <Form.Item label="Name your token">
             <Input placeholder="Experiment with TP" />
+          </Form.Item>
+          <Form.Item>
+            <div style={{ float: "right" }}>
+              <Button style={{ marginRight: "0.75em" }}>Cancel</Button>
+              <Button type="primary" htmlType="submit">
+                Generate Token
+              </Button>
+            </div>
           </Form.Item>
         </Form>
       </Modal>
