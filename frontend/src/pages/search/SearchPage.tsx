@@ -1,6 +1,6 @@
 import { RouteComponentProps } from "@reach/router";
 import { Badge, Menu } from "antd";
-import React from "react";
+import React, { useState } from "react";
 
 interface Props extends RouteComponentProps {}
 
@@ -10,10 +10,17 @@ function SearchPage(props: Props) {
     color: "#e8e8e8"
   };
 
+  const [selectedKeys, setSelectedKeys] = useState<string[]>(["cases"]);
+
   return (
     <div style={{ display: "flex" }}>
       <div style={{ flex: 1 }}>
-        <Menu theme="light" mode="vertical" defaultSelectedKeys={["cases"]}>
+        <Menu
+          theme="light"
+          mode="vertical"
+          defaultSelectedKeys={selectedKeys}
+          onClick={param => setSelectedKeys([param.key])}
+        >
           <Menu.Item key="cases">
             <div>
               Cases
