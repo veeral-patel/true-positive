@@ -1,7 +1,19 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { useQuery } from "@apollo/react-hooks";
+import { MutationResult } from "@apollo/react-common";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
-import { Button, Empty, List, notification, Popconfirm, Spin, Typography } from "antd";
+import {
+  Button,
+  Empty,
+  List,
+  message,
+  notification,
+  Popconfirm,
+  Spin,
+  Typography
+} from "antd";
+import { ApolloError } from "apollo-client";
+import DELETE_AN_API_TOKEN from "mutations/deleteApiToken";
 import Error from "presentational/shared/errors/Error";
 import GET_API_TOKENS from "queries/getApiTokens";
 import React from "react";
@@ -18,14 +30,24 @@ interface Props extends RouteComponentProps {}
 function APITokensPage(props: Props) {
   const { loading, error, data } = useQuery<ResponseData>(GET_API_TOKENS);
 
-  // Show more descriptive error in a notification in addition to rendering
-  // a error component in the UI.
   if (error) {
     notification.error({
       message: "Failed to fetch API tokens",
       description: error.message
     });
   }
+
+  const [deleteApiToken] = useMutation(DELETE_AN_API_TOKEN, {
+    onCompleted: function() {
+      message.success("Deleted the API token");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not delete the API token",
+        description: error.message
+      });
+    }
+  });
 
   return (
     <>
@@ -63,6 +85,18 @@ function APITokensPage(props: Props) {
                     title="Delete this API token?"
                     okText="Yes, Delete"
                     cancelText="No"
+                    onConfirm={() =>
+                      deleteApiToken({
+                        variables: {
+                          input: {
+                            id: apiToken.id
+                          }
+                        },
+                        refetchQueries: function(result: MutationResult) {
+                          return [{ query: GET_API_TOKENS }];
+                        }
+                      })
+                    }
                   >
                     <Button type="link" icon={<DeleteOutlined />} />
                   </Popconfirm>
