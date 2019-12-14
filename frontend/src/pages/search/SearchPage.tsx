@@ -7,7 +7,7 @@ interface Props extends RouteComponentProps {}
 class SearchPage extends React.Component<Props> {
   render() {
     const badgeStyle = {
-      backgroundColor: "#595959",
+      backgroundColor: "#262626",
       color: "#e8e8e8"
     };
 
