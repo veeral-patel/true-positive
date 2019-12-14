@@ -124,7 +124,11 @@ function APITokensPage(props: Props) {
         footer={null}
       >
         <Form layout="vertical" colon={false} onFinish={values => void 0}>
-          <Form.Item label="Name your token" name="name">
+          <Form.Item
+            label="Name your token"
+            name="name"
+            rules={[{ required: true, message: "Please name this token" }]}
+          >
             <Input placeholder="Test token" />
           </Form.Item>
           <Form.Item>
