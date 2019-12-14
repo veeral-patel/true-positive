@@ -115,19 +115,19 @@ function APITokensPage(props: Props) {
               </List.Item>
             )}
           />
-          <Modal
-            visible={openModal === "GENERATE_TOKEN"}
-            onCancel={() => setOpenModal(null)}
-            title="Generate Token"
-          >
-            <Form layout="vertical" colon={false}>
-              <Form.Item label="Name your token">
-                <Input placeholder="Experiment with TP" />
-              </Form.Item>
-            </Form>
-          </Modal>
         </>
       )}
+      <Modal
+        visible={openModal === "GENERATE_TOKEN"}
+        onCancel={() => setOpenModal(null)}
+        title="Generate Token"
+      >
+        <Form layout="vertical" colon={false}>
+          <Form.Item label="Name your token">
+            <Input placeholder="Experiment with TP" />
+          </Form.Item>
+        </Form>
+      </Modal>
     </>
   );
 }
