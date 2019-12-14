@@ -123,9 +123,9 @@ function APITokensPage(props: Props) {
         title="Generate Token"
         footer={null}
       >
-        <Form layout="vertical" colon={false}>
-          <Form.Item label="Name your token">
-            <Input placeholder="Experiment with TP" />
+        <Form layout="vertical" colon={false} onFinish={values => void 0}>
+          <Form.Item label="Name your token" name="name">
+            <Input placeholder="Test token" />
           </Form.Item>
           <Form.Item>
             <div style={{ float: "right" }}>
