@@ -5,7 +5,7 @@ class IndicatorPolicy
     end
 
     def user_can_edit_case?
-        CaseMember.where(case: @indicator.case, user: @user, role: "CAN_EDIT"]).exists?
+        CaseMember.where(case: @indicator.case, user: @user, role: "CAN_EDIT").exists?
     end
 
     def change_description?
