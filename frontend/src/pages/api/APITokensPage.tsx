@@ -7,6 +7,7 @@ import {
   Empty,
   List,
   message,
+  Modal,
   notification,
   Popconfirm,
   Spin,
@@ -16,7 +17,7 @@ import { ApolloError } from "apollo-client";
 import DELETE_AN_API_TOKEN from "mutations/deleteApiToken";
 import Error from "presentational/shared/errors/Error";
 import GET_API_TOKENS from "queries/getApiTokens";
-import React from "react";
+import React, { useState } from "react";
 import IApiToken from "ts/interfaces/IApiToken";
 
 const { Text, Paragraph } = Typography;
@@ -29,6 +30,7 @@ interface Props extends RouteComponentProps {}
 
 function APITokensPage(props: Props) {
   const { loading, error, data } = useQuery<ResponseData>(GET_API_TOKENS);
+  const [openModal, setOpenModal] = useState<"GENERATE_TOKEN" | null>(null);
 
   if (error) {
     notification.error({
@@ -53,7 +55,9 @@ function APITokensPage(props: Props) {
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h3>API Tokens</h3>
-        <Button>Generate Token</Button>
+        <Button onClick={() => setOpenModal("GENERATE_TOKEN")}>
+          Generate Token
+        </Button>
       </div>
       {loading && <Spin size="large" />}
       {error && (
@@ -109,6 +113,11 @@ function APITokensPage(props: Props) {
               </List.Item>
             )}
           />
+          <Modal
+            visible={openModal === "GENERATE_TOKEN"}
+            onCancel={() => setOpenModal(null)}
+            title="Generate token"
+          ></Modal>
         </>
       )}
     </>
