@@ -104,7 +104,7 @@ export default inject(
                       }
                       description={member.user.email}
                     />
-                    <Select<"CAN_VIEW" | "CAN_EDIT" | "OWNER">
+                    <Select<"CAN_VIEW" | "CAN_EDIT">
                       value={member.role}
                       style={{ width: "120px" }}
                       onSelect={newRole => {
@@ -138,7 +138,6 @@ export default inject(
                     >
                       <Option value="CAN_VIEW">Can View</Option>
                       <Option value="CAN_EDIT">Can Edit</Option>
-                      <Option value="OWNER">Owner</Option>
                     </Select>
                     <Popconfirm
                       title={`Remove ${member.user.username}?`}

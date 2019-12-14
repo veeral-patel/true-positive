@@ -5,7 +5,7 @@ class TaskPolicy
     end
 
     def user_can_edit_case?
-        CaseMember.where(case: @task.case, user: @user, role: ["CAN_EDIT", "OWNER"]).exists?
+        CaseMember.where(case: @task.case, user: @user, role: "CAN_EDIT").exists?
     end
 
     def rename_task?

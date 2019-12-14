@@ -95,6 +95,6 @@ class Case < ApplicationRecord
   private
     def add_creator_to_members
       # Add the user who created this case to its list of members, so he/she can access it.
-      self.case_members.create(user: self.created_by, role: "OWNER")
+      self.case_members.create(user: self.created_by, role: "CAN_EDIT")
     end
 end
