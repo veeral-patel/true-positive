@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Divider, Empty, Layout, Typography } from "antd";
+import { Empty, Layout, Typography } from "antd";
 import AddFileIndicatorModal from "container/one_case/AddFileIndicatorModal";
 import AddTextIndicatorModal from "container/one_case/AddTextIndicatorModal";
 import CreateIndicatorInput from "container/one_case/CreateIndicatorInput";
@@ -81,7 +81,7 @@ export default inject(
                 </section>
                 <section>
                   <div style={{ float: "right", marginBottom: "6px" }}>
-                    <Button
+                    {/* <Button
                       type="link"
                       style={{ paddingLeft: 0, color: "rgb(130, 130, 130)" }}
                       onClick={() =>
@@ -98,8 +98,8 @@ export default inject(
                       }
                     >
                       Add text indicator
-                    </Button>
-                    <Divider type="vertical" />
+                    </Button> */}
+                    {/* <Divider type="vertical" /> */}
                     {/* <Dropdown overlay={bulkImportMenu}>
                       <Button
                         type="link"
