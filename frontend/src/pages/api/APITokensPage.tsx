@@ -116,7 +116,7 @@ function APITokensPage(props: Props) {
           <Modal
             visible={openModal === "GENERATE_TOKEN"}
             onCancel={() => setOpenModal(null)}
-            title="Generate token"
+            title="Generate Token"
           ></Modal>
         </>
       )}
