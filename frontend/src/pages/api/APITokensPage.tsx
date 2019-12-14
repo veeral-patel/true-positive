@@ -5,6 +5,8 @@ import { RouteComponentProps } from "@reach/router";
 import {
   Button,
   Empty,
+  Form,
+  Input,
   List,
   message,
   Modal,
@@ -117,7 +119,13 @@ function APITokensPage(props: Props) {
             visible={openModal === "GENERATE_TOKEN"}
             onCancel={() => setOpenModal(null)}
             title="Generate Token"
-          ></Modal>
+          >
+            <Form layout="vertical" colon={false}>
+              <Form.Item label="Name your token">
+                <Input placeholder="Experiment with TP" />
+              </Form.Item>
+            </Form>
+          </Modal>
         </>
       )}
     </>
