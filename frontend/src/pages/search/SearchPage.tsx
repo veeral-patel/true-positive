@@ -6,6 +6,11 @@ interface Props extends RouteComponentProps {}
 
 class SearchPage extends React.Component<Props> {
   render() {
+    const badgeStyle = {
+      backgroundColor: "#595959",
+      color: "#e8e8e8"
+    };
+
     return (
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }}>
@@ -14,7 +19,7 @@ class SearchPage extends React.Component<Props> {
               <div>
                 Cases
                 <div style={{ float: "right" }}>
-                  <Badge count={25} />
+                  <Badge count={25} style={badgeStyle} />
                 </div>
               </div>
             </Menu.Item>
@@ -22,7 +27,7 @@ class SearchPage extends React.Component<Props> {
               <div>
                 Tasks
                 <div style={{ float: "right" }}>
-                  <Badge count={20} />
+                  <Badge count={20} style={badgeStyle} />
                 </div>
               </div>
             </Menu.Item>
@@ -30,7 +35,7 @@ class SearchPage extends React.Component<Props> {
               <div>
                 Indicators
                 <div style={{ float: "right" }}>
-                  <Badge count={5} />
+                  <Badge count={5} style={badgeStyle} />
                 </div>
               </div>
             </Menu.Item>
@@ -38,7 +43,7 @@ class SearchPage extends React.Component<Props> {
               <div>
                 Comments
                 <div style={{ float: "right" }}>
-                  <Badge count={0} />
+                  <Badge count={0} style={badgeStyle} />
                 </div>
               </div>
             </Menu.Item>
