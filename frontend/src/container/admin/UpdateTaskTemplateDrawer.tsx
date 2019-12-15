@@ -75,7 +75,10 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
             }
           })
         }
-        initialValues={{ name: data.taskTemplate.name }}
+        initialValues={{
+          name: data.taskTemplate.name,
+          description: data.taskTemplate.description
+        }}
       />
     );
   }
