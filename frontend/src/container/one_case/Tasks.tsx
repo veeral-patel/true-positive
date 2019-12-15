@@ -36,7 +36,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
     ));
 
     return (
-      <div>
+      <>
         <Content
           style={{
             backgroundColor: uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
@@ -94,7 +94,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
           visible={openModal === "CREATE_TASK"}
           handleClose={() => setOpenModal(null)}
         />
-      </div>
+      </>
     );
   }
   return null;
