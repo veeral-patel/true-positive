@@ -6,6 +6,7 @@ import Error from "presentational/shared/errors/Error";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React, { useState } from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
+import TaskTemplateForm from "./TaskTemplateForm";
 
 const { TabPane } = Tabs;
 const { Paragraph } = Typography;
@@ -64,7 +65,9 @@ function CustomizeTaskTemplates() {
           maskClosable={false}
           keyboard={false}
           onClose={() => setOpenDrawer(null)}
-        ></Drawer>
+        >
+          <TaskTemplateForm handleClose={() => setOpenDrawer(null)} />
+        </Drawer>
       </>
     );
   } else {

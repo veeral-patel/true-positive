@@ -2,8 +2,12 @@ import { Button, Form, Input } from "antd";
 import GenericEditor from "container/shared/markdown/GenericEditor";
 import React from "react";
 
+interface Props {
+  handleClose: () => void;
+}
+
 // Form used for updating/creating a task template.
-function TaskTemplateForm() {
+function TaskTemplateForm({ handleClose }: Props) {
   return (
     <Form colon={false} layout="vertical">
       <Form.Item
