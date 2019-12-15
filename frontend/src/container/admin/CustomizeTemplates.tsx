@@ -1,10 +1,10 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
-import { Button, Empty, Spin, Tabs, Typography } from "antd";
+import { Button, Drawer, Empty, Spin, Tabs, Typography } from "antd";
 import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
 import Error from "presentational/shared/errors/Error";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
-import React from "react";
+import React, { useState } from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 const { TabPane } = Tabs;
@@ -18,35 +18,51 @@ interface TaskTemplateData {
 
 function CustomizeTaskTemplates() {
   const { loading, data } = useQuery<TaskTemplateData>(GET_TASK_TEMPLATES);
+  const [openDrawer, setOpenDrawer] = useState<"CREATE_TASK_TEMPLATE" | null>(
+    null
+  );
 
   if (loading) return <Spin />;
   else if (data) {
-    if (data.taskTemplates.length === 0) {
-      return (
-        <Empty
-          description={
-            <div style={{ marginTop: "1em" }}>
-              <h3>No task templates</h3>
-              <Paragraph>
-                Create templates for common tasks, so you can quickly create
-                tasks from them later.
-              </Paragraph>
-              <Button icon={<PlusOutlined />}>Create task template</Button>
-            </div>
-          }
-        />
-      );
-    } else {
-      return (
-        <>
-          <Button type="link" style={{ paddingLeft: 0 }}>
-            Create Template
-          </Button>
-          <div style={{ marginTop: "1em" }} />
-          <ListofTaskTemplates taskTemplates={data.taskTemplates} />
-        </>
-      );
-    }
+    return (
+      <>
+        {data.taskTemplates.length === 0 ? (
+          <Empty
+            description={
+              <div style={{ marginTop: "1em" }}>
+                <h3>No task templates</h3>
+                <Paragraph>
+                  Create templates for common tasks, so you can quickly create
+                  tasks from them later.
+                </Paragraph>
+                <Button
+                  icon={<PlusOutlined />}
+                  onClick={() => setOpenDrawer("CREATE_TASK_TEMPLATE")}
+                >
+                  Create task template
+                </Button>
+              </div>
+            }
+          />
+        ) : (
+          <>
+            <Button type="link" style={{ paddingLeft: 0 }}>
+              Create Template
+            </Button>
+            <div style={{ marginTop: "1em" }} />
+            <ListofTaskTemplates taskTemplates={data.taskTemplates} />
+          </>
+        )}
+        <Drawer
+          visible={openDrawer === "CREATE_TASK_TEMPLATE"}
+          title={<h3>Create a task template</h3>}
+          width={600}
+          maskClosable={false}
+          keyboard={false}
+          onClose={() => setOpenDrawer(null)}
+        ></Drawer>
+      </>
+    );
   } else {
     return (
       <Error
