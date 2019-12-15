@@ -32,6 +32,7 @@ function Heading({ heading, activeCaseStore, id }: Props) {
   const [deleteTaskGroup] = useMutation(DELETE_A_TASK_GROUP, {
     onCompleted: function() {
       message.success("Deleted task group");
+      activeCaseStore!.loadActiveCase();
     },
     onError: function(error: ApolloError) {
       notification.error({
