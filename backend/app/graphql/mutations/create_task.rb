@@ -41,6 +41,14 @@ class Mutations::CreateTask < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You are not authorized to add tasks to this case."
         end
 
+        # if the case has a task group already, add our new task to the first task group.
+        # if it has no task groups, create a task group called "General" and add our new task to it
+        if the_case.task_groups.size == 0
+            task_group = the_case.task_groups.create(name: "General")
+        else
+            task_group = the_case.task_groups.first
+        end
+
         # create new task in memory
         new_task = Task.new(
             name: name,
@@ -48,7 +56,8 @@ class Mutations::CreateTask < Mutations::BaseMutation
             created_by: context[:current_user],
             description: description,
             assigned_to: assigned_user,
-            done: done
+            done: done,
+            task_group: task_group
         )
 
         # save it to the database
