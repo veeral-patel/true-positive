@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { RouteComponentProps } from "@reach/router";
-import { Button, Empty, Layout, Typography } from "antd";
+import { Button, Empty, Layout, Modal, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TaskGroup from "container/one_case/TaskGroup";
@@ -19,7 +19,9 @@ interface Props extends RouteComponentProps {
 }
 
 function Tasks({ activeCaseStore, uiStore }: Props) {
-  const [openModal, setOpenModal] = useState<"CREATE_TASK" | null>(null);
+  const [openModal, setOpenModal] = useState<
+    "CREATE_TASK" | "CREATE_TASK_GROUP" | null
+  >(null);
 
   const activeCase = activeCaseStore!.activeCase;
 
@@ -87,7 +89,11 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
                 }}
               />
               <div style={{ float: "right" }}>
-                <Button type="link" style={{ padding: 0, marginTop: "0.5em" }}>
+                <Button
+                  type="link"
+                  onClick={() => setOpenModal("CREATE_TASK_GROUP")}
+                  style={{ padding: 0, marginTop: "0.5em" }}
+                >
                   Create a task group
                 </Button>
               </div>
@@ -99,6 +105,11 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
           visible={openModal === "CREATE_TASK"}
           handleClose={() => setOpenModal(null)}
         />
+        <Modal
+          visible={openModal === "CREATE_TASK_GROUP"}
+          onCancel={() => setOpenModal(null)}
+          title="Create a Task Group"
+        ></Modal>
       </>
     );
   }
