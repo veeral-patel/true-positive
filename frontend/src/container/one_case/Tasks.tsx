@@ -11,7 +11,7 @@ import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 
 const { Content } = Layout;
-const { Paragraph } = Typography;
+const { Paragraph, Text } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -86,7 +86,12 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
                   activeCaseStore!.createTask(newTask, activeCase.id);
                 }}
               />
-              {taskGroups}
+              <div style={{ float: "right" }}>
+                <Button type="link" style={{ padding: 0, marginTop: "0.5em" }}>
+                  Create a task group
+                </Button>
+              </div>
+              <div>{taskGroups}</div>
             </>
           )}
         </Content>
