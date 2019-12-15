@@ -11,4 +11,8 @@ class TaskGroupPolicy
     def update?
         user_can_edit_case?
     end
+
+    def delete?
+        user_can_edit_case?
+    end
 end
