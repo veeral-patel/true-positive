@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { Button, message, Modal, notification, Typography } from "antd";
 import { ApolloError } from "apollo-boost";
 import { inject, observer } from "mobx-react";
+import DELETE_A_TASK_GROUP from "mutations/deleteTaskGroup";
 import UPDATE_TASK_GROUP from "mutations/updateTaskGroup";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -24,6 +25,18 @@ function Heading({ heading, activeCaseStore, id }: Props) {
       notification.error({
         message: "An error occurred while renaming the task group",
         description: error
+      });
+    }
+  });
+
+  const [deleteTaskGroup] = useMutation(DELETE_A_TASK_GROUP, {
+    onCompleted: function() {
+      message.success("Deleted task group");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not delete this task group",
+        description: error.message
       });
     }
   });
@@ -54,7 +67,16 @@ function Heading({ heading, activeCaseStore, id }: Props) {
         onClick={() => {
           Modal.confirm({
             title: "Delete this task group?",
-            content: "This will also delete all the tasks in this task group."
+            content: "This will also delete all the tasks in this task group.",
+            onOk: () => {
+              deleteTaskGroup({
+                variables: {
+                  input: {
+                    id: id
+                  }
+                }
+              });
+            }
           });
         }}
       />
