@@ -1,5 +1,6 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
-import { message, notification, Typography } from "antd";
+import { Button, message, Modal, notification, Typography } from "antd";
 import { ApolloError } from "apollo-boost";
 import { inject, observer } from "mobx-react";
 import UPDATE_TASK_GROUP from "mutations/updateTaskGroup";
@@ -47,6 +48,16 @@ function Heading({ heading, activeCaseStore, id }: Props) {
       >
         {heading}
       </Text>
+      <Button
+        icon={<DeleteOutlined />}
+        type="link"
+        onClick={() => {
+          Modal.confirm({
+            title: "Delete this task group?",
+            content: "This will also delete all the tasks in this task group."
+          });
+        }}
+      />
     </div>
   );
 }
