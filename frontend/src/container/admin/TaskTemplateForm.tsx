@@ -4,12 +4,19 @@ import React from "react";
 
 interface Props {
   handleClose: () => void;
+  handleFinish?: (values: any) => void;
+  initialValues?: any;
 }
 
 // Form used for updating/creating a task template.
-function TaskTemplateForm({ handleClose }: Props) {
+function TaskTemplateForm({ handleClose, handleFinish, initialValues }: Props) {
   return (
-    <Form colon={false} layout="vertical">
+    <Form
+      colon={false}
+      layout="vertical"
+      onFinish={handleFinish}
+      initialValues={initialValues}
+    >
       <Form.Item
         label="Name"
         name="name"

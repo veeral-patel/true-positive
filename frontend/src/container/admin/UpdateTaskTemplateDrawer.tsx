@@ -1,12 +1,12 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { Button, Drawer, Form, Input, message, notification, Spin } from "antd";
+import { Drawer, message, notification, Spin } from "antd";
 import { ApolloError } from "apollo-boost";
-import GenericEditor from "container/shared/markdown/GenericEditor";
 import UPDATE_TASK_TEMPLATE from "mutations/updateTaskTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
+import TaskTemplateForm from "./TaskTemplateForm";
 
 // ---
 
@@ -62,11 +62,9 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
     );
   } else if (data) {
     drawerContent = (
-      <Form
-        colon={false}
-        layout="vertical"
-        initialValues={{ name: data.taskTemplate.name }}
-        onFinish={values =>
+      <TaskTemplateForm
+        handleClose={handleClose}
+        handleFinish={values =>
           updateTaskTemplate({
             variables: {
               input: {
@@ -77,34 +75,8 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
             }
           })
         }
-      >
-        <Form.Item
-          label="Name"
-          name="name"
-          rules={[
-            {
-              required: true,
-              message:
-                "Please provide a default name for tasks created with this template"
-            }
-          ]}
-        >
-          <Input placeholder="Your task's name" />
-        </Form.Item>
-        <Form.Item label="Description" name="description">
-          <GenericEditor />
-        </Form.Item>
-        <Form.Item>
-          <div style={{ float: "right", marginTop: "1em" }}>
-            <Button style={{ marginRight: "1em" }} onClick={handleClose}>
-              Cancel
-            </Button>
-            <Button type="primary" htmlType="submit">
-              Update Template
-            </Button>
-          </div>
-        </Form.Item>
-      </Form>
+        initialValues={{ name: data.taskTemplate.name }}
+      />
     );
   }
 
