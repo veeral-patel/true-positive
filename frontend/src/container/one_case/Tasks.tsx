@@ -112,7 +112,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
         >
           <Paragraph>
             Categorize your tasks using task groups. For example, you might
-            create task groups for Triage, Containment, and Remediation.
+            create groups called "Triage", "Containment", and "Remediation".
           </Paragraph>
           <Form layout="vertical" colon={false}>
             <Form.Item
