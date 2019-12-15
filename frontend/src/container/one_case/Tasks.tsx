@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { RouteComponentProps } from "@reach/router";
-import { Button, Empty, Layout, Modal, Typography } from "antd";
+import { Button, Empty, Form, Input, Layout, Modal, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TaskGroup from "container/one_case/TaskGroup";
@@ -109,7 +109,23 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
           visible={openModal === "CREATE_TASK_GROUP"}
           onCancel={() => setOpenModal(null)}
           title="Create a Task Group"
-        ></Modal>
+        >
+          <Paragraph>
+            Categorize your tasks using task groups. For example, you might
+            create task groups for Triage, Containment, and Remediation.
+          </Paragraph>
+          <Form layout="vertical" colon={false}>
+            <Form.Item
+              label="Name"
+              name="name"
+              rules={[
+                { required: true, message: "Please name your task group" }
+              ]}
+            >
+              <Input placeholder="Containment" />
+            </Form.Item>
+          </Form>
+        </Modal>
       </>
     );
   }
