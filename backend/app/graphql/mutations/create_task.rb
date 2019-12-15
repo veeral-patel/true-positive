@@ -1,7 +1,7 @@
 require_relative '../helpers'
 
 class Mutations::CreateTask < Mutations::BaseMutation
-    description "Creates a new task in a case."
+    description "Adds a new task to a case."
 
     # required ----
 

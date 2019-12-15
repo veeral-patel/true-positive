@@ -59,6 +59,7 @@ module Types
       field :delete_task_template, mutation: Mutations::DeleteTaskTemplate
 
       # task groups ------
+      field :create_task_group, mutation: Mutations::CreateTaskGroup
       field :update_task_group, mutation: Mutations::UpdateTaskGroup
       field :delete_task_group, mutation: Mutations::DeleteTaskGroup
 

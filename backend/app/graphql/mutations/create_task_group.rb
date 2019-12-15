@@ -1,0 +1,35 @@
+class Mutations::CreateTaskGroup < Mutations::BaseMutation
+    description "Adds a new task group to a case."
+
+    argument :name, String, requied: true do
+        description "The name of the new task group."
+    end
+
+    argument :case_id, ID, required: true do
+        description "The ID of the case to add this task group to."
+    end
+
+    field :task, Types::TaskGroupType, null: true do
+        description "The newly created task group."
+    end
+
+    def resolve(name:)
+        # find the case for this new task group
+        the_case = find_case_or_throw_execution_error(case_id: case_id)
+
+        # TODO: authorize this action
+
+        # create a new task group in memory
+        new_task_group = TaskGroup.new(
+            name: name,
+            case: the_case
+        )
+
+        # save it to the database
+        if new_task_group.save
+            { "task_group": new_task_group }
+        else
+            raise GraphQL::ExecutionError, new_task_group.errors.full_messages.join(" | ") 
+        end
+    end
+end
