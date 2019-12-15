@@ -8,6 +8,10 @@ class TaskGroupPolicy
         CaseMember.where(case: @task_group.case, user: @user, role: "CAN_EDIT").exists?
     end
 
+    def create?
+        user_can_edit_case?
+    end
+
     def update?
         user_can_edit_case?
     end

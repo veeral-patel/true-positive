@@ -17,13 +17,13 @@ class Mutations::CreateTaskGroup < Mutations::BaseMutation
         # find the case for this new task group
         the_case = find_case_or_throw_execution_error(case_id: case_id)
 
-        # TODO: authorize this action
+        # authorize this action
+        unless TaskGroupPolicy.new(context[:current_user], task_group).create?
+            raise GraphQL::ExecutionError, "You are not authorized to add task groups to this case."
+        end
 
         # create a new task group in memory
-        new_task_group = TaskGroup.new(
-            name: name,
-            case: the_case
-        )
+        new_task_group = TaskGroup.new(name: name, case: the_case)
 
         # save it to the database
         if new_task_group.save
