@@ -9,22 +9,15 @@ class Mutations::CreateTaskTemplate < Mutations::BaseMutation
         description "Default description for tasks created with this template."
     end
 
-    argument :assigned_to, String, required: false do
-        description "Username of the user to assign to tasks created with this template."
-    end
-
     field :task_template, Types::TaskTemplateType, null: true do
         description "The newly created task template."
     end
 
-    def resolve(name:, description: nil, assigned_to: nil)
-        assigned_user = assigned_to.nil? ? nil : find_user_or_throw_execution_error(username: assigned_to)
-
+    def resolve(name:, description: nil)
         # create the task template in memory
         new_template = TaskTemplate.new(
             name: name,
             description: description,
-            assigned_to: assigned_user,
             created_by: context[:current_user],
         )
 
