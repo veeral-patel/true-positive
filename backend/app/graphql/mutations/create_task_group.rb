@@ -1,7 +1,7 @@
 class Mutations::CreateTaskGroup < Mutations::BaseMutation
     description "Adds a new task group to a case."
 
-    argument :name, String, requied: true do
+    argument :name, String, required: true do
         description "The name of the new task group."
     end
 
