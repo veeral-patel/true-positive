@@ -46,7 +46,11 @@ function CustomizeTaskTemplates() {
           />
         ) : (
           <>
-            <Button type="link" style={{ paddingLeft: 0 }}>
+            <Button
+              type="link"
+              style={{ paddingLeft: 0 }}
+              onClick={() => setOpenDrawer("CREATE_TASK_TEMPLATE")}
+            >
               Create Template
             </Button>
             <div style={{ marginTop: "1em" }} />
