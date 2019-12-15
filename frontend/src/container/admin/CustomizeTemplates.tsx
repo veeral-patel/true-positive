@@ -36,6 +36,9 @@ function CustomizeTaskTemplates() {
   const [createTaskTemplate] = useMutation(CREATE_A_TASK_TEMPLATE, {
     onCompleted: () => {
       message.success("Created task template");
+
+      // Close drawer after creating a T.T.
+      setOpenDrawer(null);
     },
     onError: error => {
       notification.error({
@@ -97,7 +100,8 @@ function CustomizeTaskTemplates() {
                     name: values.name,
                     description: values.description
                   }
-                }
+                },
+                refetchQueries: [{ query: GET_TASK_TEMPLATES }]
               })
             }
           />
