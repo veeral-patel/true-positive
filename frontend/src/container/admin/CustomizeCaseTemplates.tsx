@@ -147,7 +147,8 @@ function CustomizeCaseTemplates() {
                     priority: values.priority,
                     description: values.description
                   }
-                }
+                },
+                refetchQueries: [{ query: GET_CASE_TEMPLATES }]
               })
             }
           />

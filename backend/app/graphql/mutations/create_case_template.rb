@@ -21,7 +21,7 @@ class Mutations::CreateCaseTemplate < Mutations::BaseMutation
         description "The newly created case template."
     end
 
-    def resolve(name:, status:, priority:, description:)
+    def resolve(name:, status:, priority:, description: nil)
         # find the status and priority
         status_record = find_status_by_name_or_throw_execution_error(status_name: status)
         priority_record = find_priority_by_name_or_throw_execution_error(priority_name: priority)
