@@ -2,12 +2,12 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Drawer, Empty, List, Popconfirm, Spin } from "antd";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
+import UpdateCaseTemplateDrawer from "container/admin/UpdateCaseTemplateDrawer";
 import Error from "presentational/shared/errors/Error";
 import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React, { useState } from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import { formatDateOnly } from "utils/formatISO8601";
-import UpdateTaskTemplateDrawer from "./UpdateTaskTemplateDrawer";
 
 interface CaseTemplateData {
   caseTemplates: ICaseTemplate[];
@@ -89,7 +89,7 @@ function CustomizeCaseTemplates() {
         >
           <CaseTemplateForm handleClose={() => setOpenDrawer(null)} />
         </Drawer>
-        <UpdateTaskTemplateDrawer
+        <UpdateCaseTemplateDrawer
           visible={openDrawer === "UPDATE_CASE_TEMPLATE"}
           handleClose={() => setOpenDrawer(null)}
         />
