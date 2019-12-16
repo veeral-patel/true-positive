@@ -55,10 +55,6 @@ function CustomizeTaskTemplates() {
             description={
               <div style={{ marginTop: "1em" }}>
                 <h3>No task templates</h3>
-                <Paragraph>
-                  Create templates for common tasks, so you can quickly create
-                  tasks from them later.
-                </Paragraph>
                 <Button
                   icon={<PlusOutlined />}
                   onClick={() => setOpenDrawer("CREATE_TASK_TEMPLATE")}
