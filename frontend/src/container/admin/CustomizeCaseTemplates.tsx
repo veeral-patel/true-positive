@@ -1,6 +1,6 @@
-import { PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
-import { Button, Drawer, Empty, List, Spin } from "antd";
+import { Button, Drawer, Empty, List, Popconfirm, Spin } from "antd";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import Error from "presentational/shared/errors/Error";
 import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
@@ -52,7 +52,17 @@ function CustomizeCaseTemplates() {
               dataSource={data.caseTemplates}
               pagination={{ position: "bottom" }}
               renderItem={template => (
-                <List.Item>
+                <List.Item
+                  actions={[
+                    <Popconfirm
+                      title="Delete this template?"
+                      okText="Yes, Delete"
+                      cancelText="No"
+                    >
+                      <Button type="link" icon={<DeleteOutlined />} />
+                    </Popconfirm>
+                  ]}
+                >
                   <List.Item.Meta
                     title={
                       <a onClick={() => setOpenDrawer("UPDATE_CASE_TEMPLATE")}>
