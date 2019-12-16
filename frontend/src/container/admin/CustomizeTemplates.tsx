@@ -128,6 +128,7 @@ function CustomizeTemplates() {
         <TabPane key="task_templates" tab="Task Templates">
           <CustomizeTaskTemplates />
         </TabPane>
+        <TabPane key="case_templates" tab="Case Templates"></TabPane>
       </Tabs>
     </>
   );
