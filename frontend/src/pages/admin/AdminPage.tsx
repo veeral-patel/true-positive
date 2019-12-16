@@ -12,14 +12,14 @@ class AdminPage extends React.Component<RouteComponentProps> {
     return (
       <div style={{ width: "75%" }}>
         <Tabs tabPosition="left">
+          <TabPane tab="Templates" key="templates">
+            <CustomizeTemplates />
+          </TabPane>
           <TabPane tab="Customize Statuses" key="statuses">
             <CustomizeStatuses />
           </TabPane>
           <TabPane tab="Customize Priorities" key="priorities">
             <CustomizePriorities />
-          </TabPane>
-          <TabPane tab="Templates" key="templates">
-            <CustomizeTemplates />
           </TabPane>
         </Tabs>
       </div>
