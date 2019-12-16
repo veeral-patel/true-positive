@@ -44,21 +44,6 @@ export default inject(
 
         const activeCase = activeCaseStore!.activeCase;
 
-        // const bulkImportMenu = (
-        //   <Menu>
-        //     <Menu.Item
-        //       onClick={() => this.setState({ openModal: "IMPORT_FROM_CSV" })}
-        //     >
-        //       <Icon type="file-excel" />
-        //       Import from CSV
-        //     </Menu.Item>
-        //     <Menu.Item>
-        //       <Icon type="file-text" />
-        //       Extract from text
-        //     </Menu.Item>
-        //   </Menu>
-        // );
-
         // should always render, since we're catching errors and showing spinner above this component
         if (activeCase)
           return (
@@ -80,36 +65,7 @@ export default inject(
                   </Paragraph>
                 </section>
                 <section>
-                  <div style={{ float: "right", marginBottom: "6px" }}>
-                    {/* <Button
-                      type="link"
-                      style={{ paddingLeft: 0, color: "rgb(130, 130, 130)" }}
-                      onClick={() =>
-                        this.setState({ openModal: "ADD_FILE_INDICATOR" })
-                      }
-                    >
-                      Add file indicator
-                    </Button>
-                    <Button
-                      type="link"
-                      style={{ color: "rgb(130, 130, 130)" }}
-                      onClick={() =>
-                        this.setState({ openModal: "ADD_TEXT_INDICATOR" })
-                      }
-                    >
-                      Add text indicator
-                    </Button> */}
-                    {/* <Divider type="vertical" /> */}
-                    {/* <Dropdown overlay={bulkImportMenu}>
-                      <Button
-                        type="link"
-                        style={{ color: "rgb(130, 130, 130)" }}
-                      >
-                        Bulk import
-                        <Icon type="down" />
-                      </Button>
-                    </Dropdown> */}
-                  </div>
+                  <div style={{ float: "right", marginBottom: "6px" }}></div>
                   <div style={{ marginBottom: "2em" }}>
                     {/* for adding string indicators */}
                     <CreateIndicatorInput
@@ -153,10 +109,6 @@ export default inject(
                 visible={openModal === "ADD_TEXT_INDICATOR"}
                 handleClose={() => this.setState({ openModal: null })}
               />
-              {/* <ImportIndicatorsFromCSVModal
-                visible={openModal === "IMPORT_FROM_CSV"}
-                handleClose={() => this.setState({ openModal: null })}
-              /> */}
             </div>
           );
       }
