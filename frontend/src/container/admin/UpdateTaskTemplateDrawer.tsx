@@ -12,7 +12,7 @@ import TaskTemplateForm from "./TaskTemplateForm";
 
 interface DrawerProps {
   /* Whether to render this drawer. */
-  isOpen: boolean;
+  visible: boolean;
 
   /* Callback to close this drawer. */
   handleClose: () => void;
@@ -26,7 +26,7 @@ interface OneTemplateData {
 }
 
 function UpdateTaskTemplateDrawer(props: DrawerProps) {
-  const { isOpen, handleClose, templateId } = props;
+  const { visible, handleClose, templateId } = props;
 
   /* retrieve this template's existing information. */
   const { loading, error, data } = useQuery<OneTemplateData>(
@@ -86,7 +86,7 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
   return (
     <Drawer
       title={<h3>Update task template</h3>}
-      visible={isOpen}
+      visible={visible}
       onClose={handleClose}
       width={600}
       maskClosable={false}
