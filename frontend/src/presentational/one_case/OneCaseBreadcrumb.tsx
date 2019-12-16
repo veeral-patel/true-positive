@@ -8,7 +8,7 @@ import truncateString from "utils/truncateString";
 interface Props extends RouteComponentProps {
   caseId: number;
   caseName: string;
-  tabName: "Info" | "Indicators" | "Members" | "Tasks" | "Tree";
+  tabName: "Info" | "Indicators" | "Members" | "Tasks" | "Forms";
 }
 
 const OneCaseBreadcrumb: React.FC<Props> = ({ caseId, caseName, tabName }) => (

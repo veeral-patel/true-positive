@@ -1,6 +1,7 @@
 import { RouteComponentProps, Router } from "@reach/router";
 import { Empty, Layout, Typography } from "antd";
 import CaseSider from "container/one_case/CaseSider";
+import Forms from "container/one_case/Forms";
 import HandleErrorAndLoading from "container/one_case/HandleErrorAndLoading";
 import Indicators from "container/one_case/Indicators";
 import Info from "container/one_case/Info";
@@ -82,8 +83,8 @@ export default inject(
                       <OneCaseBreadcrumb
                         caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
-                        tabName="Members"
-                        path="/members"
+                        tabName="Tasks"
+                        path="/tasks"
                       />
                       <OneCaseBreadcrumb
                         caseId={activeCaseStore!.activeCase.id}
@@ -94,8 +95,14 @@ export default inject(
                       <OneCaseBreadcrumb
                         caseId={activeCaseStore!.activeCase.id}
                         caseName={activeCaseStore!.activeCase.name}
-                        tabName="Tasks"
-                        path="/tasks"
+                        tabName="Forms"
+                        path="/forms"
+                      />
+                      <OneCaseBreadcrumb
+                        caseId={activeCaseStore!.activeCase.id}
+                        caseName={activeCaseStore!.activeCase.name}
+                        tabName="Members"
+                        path="/members"
                       />
                       <OneTaskBreadcrumb path="/tasks/:taskId" />
                       <OneIndicatorBreadcrumb path="/indicators/:indicatorId" />
@@ -111,6 +118,7 @@ export default inject(
                       <Info path="/info" />
                       <Members path="/members" />
                       <Indicators path="/indicators" />
+                      <Forms path="/forms" />
                       <Tasks path="/tasks" />
                       <OneTask path="/tasks/:taskId" />
                       <OneIndicator path="/indicators/:indicatorId" />
