@@ -14,9 +14,9 @@ interface CaseTemplateData {
 
 function CustomizeCaseTemplates() {
   const { loading, data } = useQuery<CaseTemplateData>(GET_CASE_TEMPLATES);
-  const [openDrawer, setOpenDrawer] = useState<"CREATE_CASE_TEMPLATE" | null>(
-    null
-  );
+  const [openDrawer, setOpenDrawer] = useState<
+    "CREATE_CASE_TEMPLATE" | "UPDATE_CASE_TEMPLATE" | null
+  >(null);
 
   if (loading) return <Spin />;
   else if (data) {
@@ -54,7 +54,11 @@ function CustomizeCaseTemplates() {
               renderItem={template => (
                 <List.Item>
                   <List.Item.Meta
-                    title={<a>{template.name}</a>}
+                    title={
+                      <a onClick={() => setOpenDrawer("UPDATE_CASE_TEMPLATE")}>
+                        {template.name}
+                      </a>
+                    }
                     description={`Created by ${
                       template.createdBy.username
                     } on ${formatDateOnly(template.createdAt)} (UTC)`}
@@ -67,6 +71,16 @@ function CustomizeCaseTemplates() {
         <Drawer
           visible={openDrawer === "CREATE_CASE_TEMPLATE"}
           title={<h3>Create a case template</h3>}
+          width={600}
+          maskClosable={false}
+          keyboard={false}
+          onClose={() => setOpenDrawer(null)}
+        >
+          <CaseTemplateForm handleClose={() => setOpenDrawer(null)} />
+        </Drawer>
+        <Drawer
+          visible={openDrawer === "UPDATE_CASE_TEMPLATE"}
+          title={<h3>Update a case template</h3>}
           width={600}
           maskClosable={false}
           keyboard={false}
