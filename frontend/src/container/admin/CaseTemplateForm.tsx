@@ -23,7 +23,7 @@ function CaseTemplateForm({ handleClose, onFinish }: Props) {
           }
         ]}
       >
-        <Input placeholder="Your case's name" />
+        <Input placeholder="Default case name" />
       </Form.Item>
       <Form.Item
         label="Status"
