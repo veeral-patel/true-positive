@@ -18,6 +18,14 @@ class Types::CaseTemplateType < Types::BaseObject
         description "The user who created this template."
     end
 
+    field :status, Types::StatusType, null: false do
+        description "Default status for cases created with this template."
+    end
+
+    field :priority, Types::PriorityType, null: false do
+        description "Default priority for cases created with this template."
+    end
+
     # possibly null ---
     field :description, String, null: true do
         description "Default description for cases created with this template."
