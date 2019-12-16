@@ -2,11 +2,11 @@ class Mutations::DeleteTaskTemplate < Mutations::BaseMutation
     description "Delete a task template."
 
     argument :id, ID, required: true do
-        description "The ID of the template to delete."
+        description "The ID of the task template to delete."
     end
 
     field :id, ID, null: true do
-        description "The ID of the template that was just deleted."
+        description "The ID of the task template that was just deleted."
     end
 
     def resolve(id:)
