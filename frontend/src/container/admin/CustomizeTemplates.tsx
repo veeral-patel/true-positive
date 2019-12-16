@@ -1,6 +1,7 @@
 import { Tabs } from "antd";
 import CustomizeTaskTemplates from "container/admin/CustomizeTaskTemplates";
 import React from "react";
+import CustomizeCaseTemplates from "./CustomizeCaseTemplates";
 
 const { TabPane } = Tabs;
 
@@ -12,7 +13,9 @@ function CustomizeTemplates() {
         <TabPane key="task_templates" tab="Task Templates">
           <CustomizeTaskTemplates />
         </TabPane>
-        <TabPane key="case_templates" tab="Case Templates"></TabPane>
+        <TabPane key="case_templates" tab="Case Templates">
+          <CustomizeCaseTemplates />
+        </TabPane>
       </Tabs>
     </>
   );

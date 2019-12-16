@@ -7,7 +7,6 @@ import {
   message,
   notification,
   Spin,
-  Tabs,
   Typography
 } from "antd";
 import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
@@ -18,7 +17,6 @@ import React, { useState } from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 import TaskTemplateForm from "./TaskTemplateForm";
 
-const { TabPane } = Tabs;
 const { Paragraph } = Typography;
 
 // ---
