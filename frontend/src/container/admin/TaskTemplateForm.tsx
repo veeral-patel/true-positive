@@ -28,7 +28,7 @@ function TaskTemplateForm({ handleClose, handleFinish, initialValues }: Props) {
           }
         ]}
       >
-        <Input placeholder="Your task's name" />
+        <Input placeholder="Default task name" />
       </Form.Item>
       <Form.Item label="Description" name="description">
         <GenericEditor />
