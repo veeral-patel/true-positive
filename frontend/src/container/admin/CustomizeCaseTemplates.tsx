@@ -1,10 +1,11 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
-import { Button, Drawer, Empty, Spin } from "antd";
+import { Button, Drawer, Empty, List, Spin } from "antd";
 import Error from "presentational/shared/errors/Error";
 import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React, { useState } from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
+import { formatDateOnly } from "utils/formatISO8601";
 
 interface CaseTemplateData {
   caseTemplates: ICaseTemplate[];
@@ -44,6 +45,22 @@ function CustomizeCaseTemplates() {
               Create Template
             </Button>
             <div style={{ marginTop: "1em" }} />
+            <List
+              bordered
+              itemLayout="horizontal"
+              dataSource={data.caseTemplates}
+              pagination={{ position: "bottom" }}
+              renderItem={template => (
+                <List.Item>
+                  <List.Item.Meta
+                    title={<a>{template.name}</a>}
+                    description={`Created by ${
+                      template.createdBy.username
+                    } on ${formatDateOnly(template.createdAt)} (UTC)`}
+                  />
+                </List.Item>
+              )}
+            />
           </>
         )}
         <Drawer
