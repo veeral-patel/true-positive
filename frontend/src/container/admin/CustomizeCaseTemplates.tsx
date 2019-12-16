@@ -7,6 +7,7 @@ import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React, { useState } from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import { formatDateOnly } from "utils/formatISO8601";
+import UpdateTaskTemplateDrawer from "./UpdateTaskTemplateDrawer";
 
 interface CaseTemplateData {
   caseTemplates: ICaseTemplate[];
@@ -88,16 +89,10 @@ function CustomizeCaseTemplates() {
         >
           <CaseTemplateForm handleClose={() => setOpenDrawer(null)} />
         </Drawer>
-        <Drawer
+        <UpdateTaskTemplateDrawer
           visible={openDrawer === "UPDATE_CASE_TEMPLATE"}
-          title={<h3>Update a case template</h3>}
-          width={600}
-          maskClosable={false}
-          keyboard={false}
-          onClose={() => setOpenDrawer(null)}
-        >
-          <CaseTemplateForm handleClose={() => setOpenDrawer(null)} />
-        </Drawer>
+          handleClose={() => setOpenDrawer(null)}
+        />
       </>
     );
   } else {

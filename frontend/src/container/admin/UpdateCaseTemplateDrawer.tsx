@@ -5,7 +5,6 @@ import React from "react";
 interface Props {
   visible: boolean;
   handleClose: () => void;
-  templateId: number | null /* ID of the case template to show. */;
 }
 
 function UpdateCaseTemplateDrawer({ visible, handleClose }: Props) {
