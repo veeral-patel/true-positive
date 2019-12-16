@@ -1,6 +1,7 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Drawer, Empty, List, Spin } from "antd";
+import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import Error from "presentational/shared/errors/Error";
 import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React, { useState } from "react";
@@ -70,7 +71,9 @@ function CustomizeCaseTemplates() {
           maskClosable={false}
           keyboard={false}
           onClose={() => setOpenDrawer(null)}
-        ></Drawer>
+        >
+          <CaseTemplateForm />
+        </Drawer>
       </>
     );
   } else {
