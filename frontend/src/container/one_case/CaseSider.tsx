@@ -21,6 +21,7 @@ import {
 import {
   getPathToACase,
   getPathToACaseMembers,
+  getPathToCaseForms,
   getPathToCaseIndicators,
   getPathToCaseTasks
 } from "utils/pathHelpers";
@@ -154,7 +155,12 @@ export default inject(
               )}
             </span>
           </Menu.Item>
-          <Menu.Item key={CASE_SIDER_FORMS}>
+          <Menu.Item
+            key={CASE_SIDER_FORMS}
+            onClick={() =>
+              activeCase && navigate(getPathToCaseForms(activeCase.id))
+            }
+          >
             <ReconciliationFilled />
             <span>Forms (4)</span>
           </Menu.Item>

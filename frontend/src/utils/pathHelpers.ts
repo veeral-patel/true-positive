@@ -18,6 +18,11 @@ export function getPathToCaseIndicators(caseId: number) {
   return `${pathToCase}/indicators`;
 }
 
+export function getPathToCaseForms(caseId: number) {
+  const pathToCase = getPathToACase(caseId);
+  return `${pathToCase}/forms`;
+}
+
 export function getPathToACaseMembers(caseId: number) {
   const pathToCase = getPathToACase(caseId);
   return `${pathToCase}/members`;
