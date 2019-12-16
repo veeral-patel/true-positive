@@ -5,4 +5,6 @@ class CaseTemplate < ApplicationRecord
   validates :created_by, presence: true
 
   belongs_to :created_by, :class_name => 'User'
+  belongs_to :status
+  belongs_to :priority
 end
