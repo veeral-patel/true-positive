@@ -1,7 +1,7 @@
 import { Tabs } from "antd";
+import CustomizeCaseTemplates from "container/admin/CustomizeCaseTemplates";
 import CustomizeTaskTemplates from "container/admin/CustomizeTaskTemplates";
 import React from "react";
-import CustomizeCaseTemplates from "./CustomizeCaseTemplates";
 
 const { TabPane } = Tabs;
 
