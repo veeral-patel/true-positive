@@ -1,9 +1,12 @@
-import { Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
+import GenericEditor from "container/shared/markdown/GenericEditor";
 import React from "react";
 
-interface Props {}
+interface Props {
+  handleClose: () => void;
+}
 
-function CaseTemplateForm(props: Props) {
+function CaseTemplateForm({ handleClose }: Props) {
   return (
     <Form colon={false} layout="vertical">
       <Form.Item
@@ -18,6 +21,19 @@ function CaseTemplateForm(props: Props) {
         ]}
       >
         <Input placeholder="Your case's name" />
+      </Form.Item>
+      <Form.Item label="Description" name="description">
+        <GenericEditor />
+      </Form.Item>
+      <Form.Item>
+        <div style={{ float: "right", marginTop: "1em" }}>
+          <Button style={{ marginRight: "1em" }} onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Update Template
+          </Button>
+        </div>
       </Form.Item>
     </Form>
   );

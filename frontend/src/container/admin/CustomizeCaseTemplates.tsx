@@ -72,7 +72,7 @@ function CustomizeCaseTemplates() {
           keyboard={false}
           onClose={() => setOpenDrawer(null)}
         >
-          <CaseTemplateForm />
+          <CaseTemplateForm handleClose={() => setOpenDrawer(null)} />
         </Drawer>
       </>
     );
