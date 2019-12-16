@@ -121,7 +121,16 @@ module Types
         the_template
       end
 
-      # -------------------- API tokens -----------------------
+      # ---------------- Case Templates ------------------
+      field :case_templates, [Types::CaseTemplateType], null: false do
+        description "Lists all case templates."
+      end
+
+      def case_templates
+        CaseTemplate.all
+      end
+
+      # ------------- API Tokens ---------------------
       field :api_tokens, [Types::ApiTokenType], null: false do
         description "Lists the current user's API tokens."
       end

@@ -1,13 +1,13 @@
-class Types::TaskTemplateType < Types::BaseObject
-    description "A template you can initialize new tasks from."
+class Types::CaseTemplateType < Types::BaseObject
+    description "A template you can initialize new cases from."
 
     # never null ---
     field :id, ID, null: false do
-        description "An unique integer identifying this task template."
+        description "An unique integer identifying this case template."
     end
 
     field :name, String, null: false do
-        description "Default name for tasks created with this template."
+        description "Default name for cases created with this template."
     end
 
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
@@ -20,6 +20,6 @@ class Types::TaskTemplateType < Types::BaseObject
 
     # possibly null ---
     field :description, String, null: true do
-        description "Default description for tasks created with this template."
+        description "Default description for cases created with this template."
     end
 end
