@@ -10,7 +10,11 @@ interface Props {
 
 function CaseTemplateForm({ handleClose }: Props) {
   return (
-    <Form colon={false} layout="vertical">
+    <Form
+      colon={false}
+      layout="vertical"
+      onFinish={values => console.log(values)}
+    >
       <Form.Item
         label="Name"
         name="name"
@@ -18,7 +22,7 @@ function CaseTemplateForm({ handleClose }: Props) {
           {
             required: true,
             message:
-              "Please provide a default name for cases created with this template"
+              "Provide a default name for cases created with this template"
           }
         ]}
       >
@@ -31,7 +35,7 @@ function CaseTemplateForm({ handleClose }: Props) {
           {
             required: true,
             message:
-              "Please provide a default status for cases created with this template"
+              "Provide a default status for cases created with this template"
           }
         ]}
       >
@@ -44,7 +48,7 @@ function CaseTemplateForm({ handleClose }: Props) {
           {
             required: true,
             message:
-              "Please provide a default priority for cases created with this template"
+              "Provide a default priority for cases created with this template"
           }
         ]}
       >
