@@ -6,7 +6,8 @@ import StatusStore from "stores/StatusStore";
 const { Option } = Select;
 
 interface Props {
-  handleSelect: (statusName: any) => void;
+  value?: string;
+  onChange?: (statusName: any) => void;
   statusStore?: StatusStore;
 }
 
@@ -19,7 +20,7 @@ export default inject("statusStore")(
       }
 
       render() {
-        const { handleSelect, statusStore } = this.props;
+        const { onChange, statusStore, value } = this.props;
 
         if (statusStore!.statusesAreLoading) return <Spin />;
 
@@ -36,7 +37,8 @@ export default inject("statusStore")(
             showSearch
             placeholder="Choose a status"
             style={{ minWidth: "200px" }}
-            onSelect={statusName => handleSelect(statusName)}
+            onSelect={statusName => onChange && onChange(statusName)}
+            value={value}
           >
             {options}
           </Select>

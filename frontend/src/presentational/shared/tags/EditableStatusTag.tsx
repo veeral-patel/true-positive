@@ -15,7 +15,7 @@ const EditableStatusTag: React.FC<EditableStatusTagProps> = ({
   // need to add the {" "} below, or else the popover doesn't appear.
   <Popover
     title="Change Status"
-    content={<StatusSelect handleSelect={handleSelect} />}
+    content={<StatusSelect onChange={handleSelect} />}
   >
     <StatusTagP statusName={statusName} />{" "}
   </Popover>
