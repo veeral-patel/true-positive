@@ -18,7 +18,7 @@ import Helmet from "react-helmet";
 import AuthStore from "stores/AuthStore";
 import UIStore from "stores/UIStore";
 import { paths } from "utils/constants";
-import "./dark.css";
+import "./light.css";
 
 interface Props {
   authStore?: AuthStore;
