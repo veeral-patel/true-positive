@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_040723) do
+ActiveRecord::Schema.define(version: 2019_12_15_233311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 2019_12_05_040723) do
     t.datetime "updated_at", null: false
     t.index ["case_id"], name: "index_case_members_on_case_id"
     t.index ["user_id"], name: "index_case_members_on_user_id"
+  end
+
+  create_table "case_templates", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "status_id"
+    t.bigint "priority_id"
+    t.bigint "created_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_case_templates_on_created_by_id"
+    t.index ["priority_id"], name: "index_case_templates_on_priority_id"
+    t.index ["status_id"], name: "index_case_templates_on_status_id"
   end
 
   create_table "cases", force: :cascade do |t|
@@ -74,6 +87,15 @@ ActiveRecord::Schema.define(version: 2019_12_05_040723) do
     t.datetime "updated_at", null: false
     t.index ["case_id"], name: "index_indicators_on_case_id"
     t.index ["created_by_id"], name: "index_indicators_on_created_by_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "priorities", force: :cascade do |t|
@@ -124,9 +146,11 @@ ActiveRecord::Schema.define(version: 2019_12_05_040723) do
   create_table "task_templates", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.bigint "assigned_to_id"
     t.bigint "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["assigned_to_id"], name: "index_task_templates_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_task_templates_on_created_by_id"
   end
 
@@ -166,11 +190,15 @@ ActiveRecord::Schema.define(version: 2019_12_05_040723) do
     t.datetime "invitation_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "firebase_user_id"
   end
 
   add_foreign_key "api_tokens", "users"
   add_foreign_key "case_members", "cases"
   add_foreign_key "case_members", "users"
+  add_foreign_key "case_templates", "priorities"
+  add_foreign_key "case_templates", "statuses"
+  add_foreign_key "case_templates", "users", column: "created_by_id"
   add_foreign_key "cases", "priorities"
   add_foreign_key "cases", "statuses"
   add_foreign_key "cases", "users", column: "assigned_to_id"
@@ -179,6 +207,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_040723) do
   add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "task_groups", "cases"
+  add_foreign_key "task_templates", "users", column: "assigned_to_id"
   add_foreign_key "task_templates", "users", column: "created_by_id"
   add_foreign_key "tasks", "cases"
   add_foreign_key "tasks", "task_groups"
