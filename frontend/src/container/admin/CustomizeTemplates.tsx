@@ -9,12 +9,12 @@ function CustomizeTemplates() {
   return (
     <>
       <h3>Templates</h3>
-      <Tabs defaultActiveKey="task_templates">
-        <TabPane key="task_templates" tab="Task Templates">
-          <CustomizeTaskTemplates />
-        </TabPane>
+      <Tabs defaultActiveKey="case_templates">
         <TabPane key="case_templates" tab="Case Templates">
           <CustomizeCaseTemplates />
+        </TabPane>
+        <TabPane key="task_templates" tab="Task Templates">
+          <CustomizeTaskTemplates />
         </TabPane>
       </Tabs>
     </>

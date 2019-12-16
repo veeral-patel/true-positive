@@ -8,7 +8,8 @@ import {
   message,
   notification,
   Popconfirm,
-  Spin
+  Spin,
+  Typography
 } from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
@@ -20,6 +21,8 @@ import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React, { useState } from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import { formatDateOnly } from "utils/formatISO8601";
+
+const { Paragraph } = Typography;
 
 interface CaseTemplateData {
   caseTemplates: ICaseTemplate[];
@@ -67,6 +70,10 @@ function CustomizeCaseTemplates() {
             description={
               <div style={{ marginTop: "1em" }}>
                 <h3>No case templates</h3>
+                <Paragraph>
+                  Create case templates so you can quickly initialize cases from
+                  them later.
+                </Paragraph>
                 <Button
                   icon={<PlusOutlined />}
                   onClick={() => setOpenDrawer("CREATE_CASE_TEMPLATE")}
