@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import UIStore from "stores/UIStore";
@@ -20,7 +20,16 @@ function Forms({ uiStore }: Props) {
         minHeight: 280
       }}
     >
-      <h3>Forms (4)</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "1em"
+        }}
+      >
+        <h3>Forms (4)</h3>
+        <Button>Add Form</Button>
+      </div>
     </Content>
   );
 }
