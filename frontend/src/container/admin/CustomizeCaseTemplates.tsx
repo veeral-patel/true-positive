@@ -1,8 +1,19 @@
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { useQuery } from "@apollo/react-hooks";
-import { Button, Drawer, Empty, List, Popconfirm, Spin } from "antd";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import {
+  Button,
+  Drawer,
+  Empty,
+  List,
+  message,
+  notification,
+  Popconfirm,
+  Spin
+} from "antd";
+import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import UpdateCaseTemplateDrawer from "container/admin/UpdateCaseTemplateDrawer";
+import DELETE_A_CASE_TEMPLATE from "mutations/deleteCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React, { useState } from "react";
@@ -18,6 +29,18 @@ function CustomizeCaseTemplates() {
   const [openDrawer, setOpenDrawer] = useState<
     "CREATE_CASE_TEMPLATE" | "UPDATE_CASE_TEMPLATE" | null
   >(null);
+
+  const [deleteCaseTemplate] = useMutation(DELETE_A_CASE_TEMPLATE, {
+    onCompleted: function() {
+      message.success("Deleted the template");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not delete the template",
+        description: error.message
+      });
+    }
+  });
 
   if (loading) return <Spin />;
   else if (data) {
@@ -59,6 +82,15 @@ function CustomizeCaseTemplates() {
                       title="Delete this template?"
                       okText="Yes, Delete"
                       cancelText="No"
+                      onConfirm={() =>
+                        deleteCaseTemplate({
+                          variables: {
+                            input: {
+                              id: template.id
+                            }
+                          }
+                        })
+                      }
                     >
                       <Button type="link" icon={<DeleteOutlined />} />
                     </Popconfirm>
