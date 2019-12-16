@@ -36,7 +36,7 @@ class Mutations::CreateCaseTemplate < Mutations::BaseMutation
         )
 
         # authorize this action
-        unless CaseTemplatePolicy.new(context[:current_user], template).create_template?
+        unless CaseTemplatePolicy.new(context[:current_user], case_template).create_template?
             raise GraphQL::ExecutionError, "You are not authorized to create case templates."
         end
 

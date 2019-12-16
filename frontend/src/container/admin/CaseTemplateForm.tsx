@@ -6,15 +6,12 @@ import React from "react";
 
 interface Props {
   handleClose: () => void;
+  onFinish?: (values: any) => void;
 }
 
-function CaseTemplateForm({ handleClose }: Props) {
+function CaseTemplateForm({ handleClose, onFinish }: Props) {
   return (
-    <Form
-      colon={false}
-      layout="vertical"
-      onFinish={values => console.log(values)}
-    >
+    <Form colon={false} layout="vertical" onFinish={onFinish}>
       <Form.Item
         label="Name"
         name="name"

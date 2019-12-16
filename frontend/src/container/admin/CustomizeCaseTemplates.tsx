@@ -13,6 +13,7 @@ import {
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import UpdateCaseTemplateDrawer from "container/admin/UpdateCaseTemplateDrawer";
+import CREATE_A_CASE_TEMPLATE from "mutations/createCaseTemplate";
 import DELETE_A_CASE_TEMPLATE from "mutations/deleteCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
@@ -29,6 +30,21 @@ function CustomizeCaseTemplates() {
   const [openDrawer, setOpenDrawer] = useState<
     "CREATE_CASE_TEMPLATE" | "UPDATE_CASE_TEMPLATE" | null
   >(null);
+
+  const [createCaseTemplate] = useMutation(CREATE_A_CASE_TEMPLATE, {
+    onCompleted: () => {
+      message.success("Created case template");
+
+      // Close drawer after creating a C.T.
+      setOpenDrawer(null);
+    },
+    onError: error => {
+      notification.error({
+        message: "Failed to create case template",
+        description: error.message
+      });
+    }
+  });
 
   const [deleteCaseTemplate] = useMutation(DELETE_A_CASE_TEMPLATE, {
     onCompleted: function() {
@@ -120,7 +136,21 @@ function CustomizeCaseTemplates() {
           keyboard={false}
           onClose={() => setOpenDrawer(null)}
         >
-          <CaseTemplateForm handleClose={() => setOpenDrawer(null)} />
+          <CaseTemplateForm
+            handleClose={() => setOpenDrawer(null)}
+            onFinish={values =>
+              createCaseTemplate({
+                variables: {
+                  input: {
+                    name: values.name,
+                    status: values.status,
+                    priority: values.priority,
+                    description: values.description
+                  }
+                }
+              })
+            }
+          />
         </Drawer>
         <UpdateCaseTemplateDrawer
           visible={openDrawer === "UPDATE_CASE_TEMPLATE"}
