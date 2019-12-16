@@ -2,8 +2,7 @@ import {
   CASE_SIDER_INDICATORS,
   CASE_SIDER_INFO,
   CASE_SIDER_MEMBERS,
-  CASE_SIDER_TASKS,
-  CASE_SIDER_TREE
+  CASE_SIDER_TASKS
 } from "utils/constants";
 
 function getActiveSiderItem(path: string): string[] {
@@ -13,8 +12,6 @@ function getActiveSiderItem(path: string): string[] {
     return [CASE_SIDER_TASKS];
   } else if (path.endsWith("/indicators") || path.endsWith("/indicators/")) {
     return [CASE_SIDER_INDICATORS];
-  } else if (path.endsWith("/tree") || path.endsWith("/tree/")) {
-    return [CASE_SIDER_TREE];
   } else if (path.endsWith("/members") || path.endsWith("/members/")) {
     return [CASE_SIDER_MEMBERS];
   }

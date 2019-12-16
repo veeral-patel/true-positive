@@ -1,6 +1,7 @@
 import {
   CheckSquareOutlined,
   InfoCircleOutlined,
+  ReconciliationFilled,
   SecurityScanOutlined,
   UserOutlined
 } from "@ant-design/icons";
@@ -11,6 +12,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 import {
+  CASE_SIDER_FORMS,
   CASE_SIDER_INDICATORS,
   CASE_SIDER_INFO,
   CASE_SIDER_MEMBERS,
@@ -151,6 +153,10 @@ export default inject(
                 <span>({numberOfIndicators})</span>
               )}
             </span>
+          </Menu.Item>
+          <Menu.Item key={CASE_SIDER_FORMS}>
+            <ReconciliationFilled />
+            <span>Forms (4)</span>
           </Menu.Item>
           <Menu.Item
             key={CASE_SIDER_MEMBERS}
