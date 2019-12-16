@@ -88,7 +88,8 @@ function CustomizeCaseTemplates() {
                             input: {
                               id: template.id
                             }
-                          }
+                          },
+                          refetchQueries: [{ query: GET_CASE_TEMPLATES }]
                         })
                       }
                     >
