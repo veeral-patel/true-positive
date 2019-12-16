@@ -15,7 +15,7 @@ const EditablePriorityTag: React.FC<EditablePriorityTagProps> = ({
   // need to add the {" "} below, or else the popover doesn't appear.
   <Popover
     title="Change Priority"
-    content={<PrioritySelect handleSelect={handleSelect} />}
+    content={<PrioritySelect onChange={handleSelect} />}
   >
     <PriorityTagP priorityName={priorityName} />{" "}
   </Popover>

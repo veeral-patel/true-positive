@@ -6,7 +6,8 @@ import PriorityStore from "stores/PriorityStore";
 const { Option } = Select;
 
 interface Props {
-  handleSelect: (priorityName: any) => void;
+  value?: string;
+  onChange?: (priorityName: any) => void;
   priorityStore?: PriorityStore;
 }
 
@@ -19,7 +20,7 @@ export default inject("priorityStore")(
       }
 
       render() {
-        const { handleSelect, priorityStore } = this.props;
+        const { onChange, priorityStore, value } = this.props;
 
         if (priorityStore!.prioritiesAreLoading) return <Spin />;
 
@@ -36,7 +37,8 @@ export default inject("priorityStore")(
             showSearch
             placeholder="Choose a priority"
             style={{ minWidth: "200px" }}
-            onSelect={priorityName => handleSelect(priorityName)}
+            onSelect={priorityName => onChange && onChange(priorityName)}
+            value={value}
           >
             {options}
           </Select>

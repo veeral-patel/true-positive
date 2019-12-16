@@ -1,5 +1,6 @@
 import { Button, Form, Input } from "antd";
 import GenericEditor from "container/shared/markdown/GenericEditor";
+import PrioritySelect from "container/shared/priorities/PrioritySelect";
 import StatusSelect from "container/shared/statuses/StatusSelect";
 import React from "react";
 
@@ -35,6 +36,19 @@ function CaseTemplateForm({ handleClose }: Props) {
         ]}
       >
         <StatusSelect />
+      </Form.Item>
+      <Form.Item
+        label="Priority"
+        name="priority"
+        rules={[
+          {
+            required: true,
+            message:
+              "Please provide a default priority for cases created with this template"
+          }
+        ]}
+      >
+        <PrioritySelect />
       </Form.Item>
       <Form.Item label="Description" name="description">
         <GenericEditor />
