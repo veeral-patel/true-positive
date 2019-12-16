@@ -26,10 +26,6 @@ interface Props {
 }
 
 class App extends React.Component<Props> {
-  state = {
-    dark: true
-  };
-
   render() {
     const { authStore, uiStore } = this.props;
 
