@@ -26,7 +26,11 @@ function CustomizeForms() {
       >
         <Tabs defaultActiveKey="json_schema">
           <TabPane tab="JSON Schema" key="json_schema">
-            <Form colon={false} layout="vertical" style={{ marginTop: "1em" }}>
+            <Form
+              colon={false}
+              layout="vertical"
+              style={{ marginTop: "0.5em" }}
+            >
               <Form.Item
                 name="name"
                 label="Name"
