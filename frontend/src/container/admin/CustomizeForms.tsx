@@ -102,23 +102,15 @@ function CustomizeForms() {
         keyboard={false}
         onClose={() => setOpenDrawer(null)}
       >
-        <Tabs defaultActiveKey="json_schema">
-          <TabPane tab="JSON Schema" key="json_schema">
-            <Form
-              colon={false}
-              layout="vertical"
-              style={{ marginTop: "0.5em" }}
-            >
-              <Form.Item
-                name="name"
-                label="Name"
-                rules={[{ required: true, message: "Please name your form" }]}
-              >
-                <Input placeholder="Live response findings" />
-              </Form.Item>
-            </Form>
-          </TabPane>
-        </Tabs>
+        <Form colon={false} layout="vertical" style={{ marginTop: "0.5em" }}>
+          <Form.Item
+            name="name"
+            label="Name"
+            rules={[{ required: true, message: "Please name your form" }]}
+          >
+            <Input placeholder="Live response findings" />
+          </Form.Item>
+        </Form>
       </Drawer>
     </>
   );
