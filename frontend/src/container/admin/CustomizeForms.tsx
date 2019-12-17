@@ -48,7 +48,9 @@ function CustomizeForms() {
           description={
             <div style={{ marginTop: "1em" }}>
               <h3>No forms</h3>
-              <Paragraph>Use forms to structure data in cases.</Paragraph>
+              <Paragraph>
+                Define forms so you can structure data in your cases.
+              </Paragraph>
               <Button
                 icon={<PlusOutlined />}
                 onClick={() => setOpenDrawer("CREATE_FORM")}
