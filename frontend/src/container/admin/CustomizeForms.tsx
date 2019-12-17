@@ -6,6 +6,7 @@ import {
   Empty,
   Form,
   Input,
+  List,
   Spin,
   Tabs,
   Typography
@@ -14,6 +15,7 @@ import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
 import React, { useState } from "react";
 import IForm from "ts/interfaces/IForm";
+import { formatDateOnly } from "utils/formatISO8601";
 
 const { TabPane } = Tabs;
 const { Paragraph } = Typography;
@@ -59,6 +61,24 @@ function CustomizeForms() {
               </Button>
             </div>
           }
+        />
+      )}
+      {data && data.forms.length >= 1 && (
+        <List<IForm>
+          bordered
+          dataSource={data.forms}
+          itemLayout="horizontal"
+          pagination={{ position: "bottom" }}
+          renderItem={form => (
+            <List.Item>
+              <List.Item.Meta
+                title={<a>form.name</a>}
+                description={`Created by ${
+                  form.createdBy.username
+                } on ${formatDateOnly(form.createdAt)} (UTC)`}
+              />
+            </List.Item>
+          )}
         />
       )}
       {error && (
