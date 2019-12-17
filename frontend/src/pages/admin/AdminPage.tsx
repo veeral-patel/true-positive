@@ -1,5 +1,6 @@
 import { RouteComponentProps } from "@reach/router";
 import { Tabs } from "antd";
+import CustomizeForms from "container/admin/CustomizeForms";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
@@ -12,6 +13,9 @@ class AdminPage extends React.Component<RouteComponentProps> {
     return (
       <div style={{ width: "75%" }}>
         <Tabs tabPosition="left">
+          <TabPane tab="Forms" key="forms">
+            <CustomizeForms />
+          </TabPane>
           <TabPane tab="Templates" key="templates">
             <CustomizeTemplates />
           </TabPane>
