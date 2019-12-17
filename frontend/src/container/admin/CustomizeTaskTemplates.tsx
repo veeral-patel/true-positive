@@ -26,7 +26,9 @@ interface TaskTemplateData {
 }
 
 function CustomizeTaskTemplates() {
-  const { loading, data } = useQuery<TaskTemplateData>(GET_TASK_TEMPLATES);
+  const { loading, data, error } = useQuery<TaskTemplateData>(
+    GET_TASK_TEMPLATES
+  );
   const [openDrawer, setOpenDrawer] = useState<"CREATE_TASK_TEMPLATE" | null>(
     null
   );
@@ -105,14 +107,12 @@ function CustomizeTaskTemplates() {
         </Drawer>
       </>
     );
-  } else {
+  } else if (error) {
     return (
-      <Error
-        title="Couldn't fetch task templates"
-        subtitle="Please check your Internet connection"
-      />
+      <Error title="Couldn't fetch task templates" subtitle={error.message} />
     );
   }
+  return null;
 }
 
 export default CustomizeTaskTemplates;

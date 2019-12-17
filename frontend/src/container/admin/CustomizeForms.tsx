@@ -1,29 +1,43 @@
+import { PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
-import { Button, Drawer, Form, Input, Tabs } from "antd";
+import {
+  Button,
+  Drawer,
+  Empty,
+  Form,
+  Input,
+  Spin,
+  Tabs,
+  Typography
+} from "antd";
 import gql from "graphql-tag";
+import Error from "presentational/shared/errors/Error";
 import React, { useState } from "react";
 import IForm from "ts/interfaces/IForm";
 
 const { TabPane } = Tabs;
+const { Paragraph } = Typography;
 
 const GET_FORMS = gql`
-  query forms {
-    id
-    name
-    createdAt
-    createdBy {
-      username
+  query {
+    forms {
+      id
+      name
+      createdAt
+      createdBy {
+        username
+      }
     }
   }
 `;
 
 interface FormListData {
-  forms: IForm[]
+  forms: IForm[];
 }
 
 function CustomizeForms() {
   const [openDrawer, setOpenDrawer] = useState<"CREATE_FORM" | null>(null);
-  const { loading, data } = useQuery<FormListData>(GET_FORMS);
+  const { loading, data, error } = useQuery<FormListData>(GET_FORMS);
 
   return (
     <>
@@ -33,6 +47,21 @@ function CustomizeForms() {
           Create Form
         </Button>
       </div>
+      {loading && <Spin />}
+      {data && data.forms.length === 0 && (
+        <Empty
+          description={
+            <div style={{ marginTop: "1em" }}>
+              <h3>No forms</h3>
+              <Paragraph>Use forms to structure data in cases.</Paragraph>
+              <Button icon={<PlusOutlined />}>Create form</Button>
+            </div>
+          }
+        />
+      )}
+      {error && (
+        <Error title="Could not fetch forms" subtitle={error.message} />
+      )}
       <Drawer
         visible={openDrawer === "CREATE_FORM"}
         title={<h3>Create a form</h3>}
@@ -55,7 +84,7 @@ function CustomizeForms() {
               >
                 <Input placeholder="Live response findings" />
               </Form.Item>
-            </FormListData>
+            </Form>
           </TabPane>
         </Tabs>
       </Drawer>

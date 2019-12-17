@@ -55,10 +55,7 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
   if (loading) drawerContent = <Spin />;
   else if (error) {
     drawerContent = (
-      <Error
-        title="Couldn't retrieve template"
-        subtitle="Ensure your Internet connection is working"
-      />
+      <Error title="Couldn't retrieve template" subtitle={error.message} />
     );
   } else if (data) {
     drawerContent = (

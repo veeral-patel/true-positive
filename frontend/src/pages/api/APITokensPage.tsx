@@ -3,6 +3,7 @@ import { MutationResult } from "@apollo/react-common";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import {
+  Alert,
   Button,
   Empty,
   Form,
@@ -13,8 +14,7 @@ import {
   notification,
   Popconfirm,
   Spin,
-  Typography,
-  Alert
+  Typography
 } from "antd";
 import { ApolloError } from "apollo-client";
 import CREATE_AN_API_TOKEN from "mutations/createApiToken";
@@ -77,14 +77,15 @@ function APITokensPage(props: Props) {
         </Button>
       </div>
       <div style={{ marginTop: "2em" }} />
-      <Alert showIcon type="warning" message="Guard your tokens! They provide full access to your account." />
+      <Alert
+        showIcon
+        type="warning"
+        message="Guard your tokens! They provide full access to your account."
+      />
       <div style={{ marginTop: "2em" }} />
       {loading && <Spin size="large" />}
       {error && (
-        <Error
-          title="Failed to fetch API tokens"
-          subtitle="Please check your Internet connection"
-        />
+        <Error title="Failed to fetch API tokens" subtitle={error.message} />
       )}
       {data && data.apiTokens.length === 0 && (
         <Empty
@@ -97,40 +98,40 @@ function APITokensPage(props: Props) {
         />
       )}
       {data && data.apiTokens.length >= 1 && (
-          <List<IApiToken>
-            bordered
-            dataSource={data.apiTokens}
-            renderItem={apiToken => (
-              <List.Item
-                actions={[
-                  <Popconfirm
-                    title="Delete this API token?"
-                    okText="Yes, Delete"
-                    cancelText="No"
-                    onConfirm={() =>
-                      deleteApiToken({
-                        variables: {
-                          input: {
-                            id: apiToken.id
-                          }
-                        },
-                        refetchQueries: function(result: MutationResult) {
-                          return [{ query: GET_API_TOKENS }];
+        <List<IApiToken>
+          bordered
+          dataSource={data.apiTokens}
+          renderItem={apiToken => (
+            <List.Item
+              actions={[
+                <Popconfirm
+                  title="Delete this API token?"
+                  okText="Yes, Delete"
+                  cancelText="No"
+                  onConfirm={() =>
+                    deleteApiToken({
+                      variables: {
+                        input: {
+                          id: apiToken.id
                         }
-                      })
-                    }
-                  >
-                    <Button type="link" icon={<DeleteOutlined />} />
-                  </Popconfirm>
-                ]}
-              >
-                <List.Item.Meta
-                  title={apiToken.name}
-                  description={<Text copyable>{apiToken.apiToken}</Text>}
-                />
-              </List.Item>
-            )}
-          />
+                      },
+                      refetchQueries: function(result: MutationResult) {
+                        return [{ query: GET_API_TOKENS }];
+                      }
+                    })
+                  }
+                >
+                  <Button type="link" icon={<DeleteOutlined />} />
+                </Popconfirm>
+              ]}
+            >
+              <List.Item.Meta
+                title={apiToken.name}
+                description={<Text copyable>{apiToken.apiToken}</Text>}
+              />
+            </List.Item>
+          )}
+        />
       )}
       <Modal
         visible={openModal === "GENERATE_TOKEN"}

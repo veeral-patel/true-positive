@@ -29,7 +29,9 @@ interface CaseTemplateData {
 }
 
 function CustomizeCaseTemplates() {
-  const { loading, data } = useQuery<CaseTemplateData>(GET_CASE_TEMPLATES);
+  const { loading, data, error } = useQuery<CaseTemplateData>(
+    GET_CASE_TEMPLATES
+  );
   const [openDrawer, setOpenDrawer] = useState<
     "CREATE_CASE_TEMPLATE" | "UPDATE_CASE_TEMPLATE" | null
   >(null);
@@ -166,14 +168,12 @@ function CustomizeCaseTemplates() {
         />
       </>
     );
-  } else {
+  } else if (error) {
     return (
-      <Error
-        title="Couldn't fetch case templates"
-        subtitle="Please check your Internet connection"
-      />
+      <Error title="Couldn't fetch case templates" subtitle={error.message} />
     );
   }
+  return null;
 }
 
 export default CustomizeCaseTemplates;
