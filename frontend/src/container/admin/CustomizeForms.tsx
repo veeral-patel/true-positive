@@ -4,9 +4,7 @@ import React, { useState } from "react";
 const { TabPane } = Tabs;
 
 function CustomizeForms() {
-  const [openDrawer, setOpenDrawer] = useState<"CREATE_FORM" | null>(
-    "CREATE_FORM"
-  );
+  const [openDrawer, setOpenDrawer] = useState<"CREATE_FORM" | null>(null);
 
   return (
     <>
