@@ -41,12 +41,7 @@ function CustomizeForms() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h3>Forms</h3>
-        <Button onClick={() => setOpenDrawer("CREATE_FORM")}>
-          Create Form
-        </Button>
-      </div>
+      <h3>Forms</h3>
       {loading && <Spin />}
       {data && data.forms.length === 0 && (
         <Empty
@@ -54,7 +49,12 @@ function CustomizeForms() {
             <div style={{ marginTop: "1em" }}>
               <h3>No forms</h3>
               <Paragraph>Use forms to structure data in cases.</Paragraph>
-              <Button icon={<PlusOutlined />}>Create form</Button>
+              <Button
+                icon={<PlusOutlined />}
+                onClick={() => setOpenDrawer("CREATE_FORM")}
+              >
+                Create form
+              </Button>
             </div>
           }
         />
