@@ -2,7 +2,8 @@ import {
   DeploymentUnitOutlined,
   DownOutlined,
   KeyOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 import { navigate } from "@reach/router";
 import { Menu } from "antd";
@@ -96,6 +97,11 @@ export default inject(
               }
               style={{ float: "right" }}
             >
+              <Menu.Item>
+                <UserOutlined />
+                Profile
+              </Menu.Item>
+              <Menu.Divider />
               <Menu.Item onClick={() => authStore!.logout()}>
                 <LogoutOutlined />
                 Log Out
