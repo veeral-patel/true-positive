@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_233311) do
+ActiveRecord::Schema.define(version: 2019_12_17_043620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 2019_12_15_233311) do
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["created_by_id"], name: "index_comments_on_created_by_id"
+  end
+
+  create_table "forms", force: :cascade do |t|
+    t.string "name"
+    t.json "schema"
+    t.bigint "created_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_forms_on_created_by_id"
   end
 
   create_table "indicators", force: :cascade do |t|
@@ -204,6 +213,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_233311) do
   add_foreign_key "cases", "users", column: "assigned_to_id"
   add_foreign_key "cases", "users", column: "created_by_id"
   add_foreign_key "comments", "users", column: "created_by_id"
+  add_foreign_key "forms", "users", column: "created_by_id"
   add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "task_groups", "cases"
