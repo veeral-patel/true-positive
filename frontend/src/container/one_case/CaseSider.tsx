@@ -1,7 +1,6 @@
 import {
   CheckSquareOutlined,
   InfoCircleOutlined,
-  ReconciliationFilled,
   SecurityScanOutlined,
   UserOutlined
 } from "@ant-design/icons";
@@ -12,7 +11,6 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 import {
-  CASE_SIDER_FORMS,
   CASE_SIDER_INDICATORS,
   CASE_SIDER_INFO,
   CASE_SIDER_MEMBERS,
@@ -21,7 +19,6 @@ import {
 import {
   getPathToACase,
   getPathToACaseMembers,
-  getPathToCaseForms,
   getPathToCaseIndicators,
   getPathToCaseTasks
 } from "utils/pathHelpers";
@@ -155,7 +152,7 @@ export default inject(
               )}
             </span>
           </Menu.Item>
-          <Menu.Item
+          {/* <Menu.Item
             key={CASE_SIDER_FORMS}
             onClick={() =>
               activeCase && navigate(getPathToCaseForms(activeCase.id))
@@ -163,7 +160,7 @@ export default inject(
           >
             <ReconciliationFilled />
             <span>Forms (4)</span>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item
             key={CASE_SIDER_MEMBERS}
             onClick={() =>
