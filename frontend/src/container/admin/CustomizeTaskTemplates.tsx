@@ -56,8 +56,7 @@ function CustomizeTaskTemplates() {
               <div style={{ marginTop: "1em" }}>
                 <h3>No task templates</h3>
                 <Paragraph>
-                  Create task templates here so you can add them to a case
-                  template later on.
+                  Create task templates to scaffold tasks in case templates.
                 </Paragraph>
                 <Button
                   icon={<PlusOutlined />}
