@@ -1,9 +1,13 @@
+import { Button } from "antd";
 import React from "react";
 
 function CustomizeForms() {
   return (
     <>
-      <h3>Forms</h3>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h3>Forms</h3>
+        <Button>Create Form</Button>
+      </div>
     </>
   );
 }
