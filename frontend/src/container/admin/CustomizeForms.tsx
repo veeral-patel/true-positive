@@ -64,22 +64,32 @@ function CustomizeForms() {
         />
       )}
       {data && data.forms.length >= 1 && (
-        <List<IForm>
-          bordered
-          dataSource={data.forms}
-          itemLayout="horizontal"
-          pagination={{ position: "bottom" }}
-          renderItem={form => (
-            <List.Item>
-              <List.Item.Meta
-                title={<a>form.name</a>}
-                description={`Created by ${
-                  form.createdBy.username
-                } on ${formatDateOnly(form.createdAt)} (UTC)`}
-              />
-            </List.Item>
-          )}
-        />
+        <>
+          <Button
+            type="link"
+            style={{ paddingLeft: 0 }}
+            onClick={() => setOpenDrawer("CREATE_FORM")}
+          >
+            Create Form
+          </Button>
+          <div style={{ marginTop: "1em" }} />
+          <List<IForm>
+            bordered
+            dataSource={data.forms}
+            itemLayout="horizontal"
+            pagination={{ position: "bottom" }}
+            renderItem={form => (
+              <List.Item>
+                <List.Item.Meta
+                  title={<a>form.name</a>}
+                  description={`Created by ${
+                    form.createdBy.username
+                  } on ${formatDateOnly(form.createdAt)} (UTC)`}
+                />
+              </List.Item>
+            )}
+          />
+        </>
       )}
       {error && (
         <Error title="Could not fetch forms" subtitle={error.message} />
