@@ -138,5 +138,14 @@ module Types
       def api_tokens
         ApiTokenPolicy::Scope.new(context[:current_user]).resolve
       end
+
+      # -------------- Forms ----------------------
+      field :forms, [Types::FormType], null: false do
+        description "Lists all forms."
+      end
+
+      def forms
+        Form.all
+      end
   end
 end
