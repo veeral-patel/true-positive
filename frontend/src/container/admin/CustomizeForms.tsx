@@ -1,8 +1,12 @@
-import { Button, Drawer } from "antd";
+import { Button, Drawer, Form, Input, Tabs } from "antd";
 import React, { useState } from "react";
 
+const { TabPane } = Tabs;
+
 function CustomizeForms() {
-  const [openDrawer, setOpenDrawer] = useState<"CREATE_FORM" | null>(null);
+  const [openDrawer, setOpenDrawer] = useState<"CREATE_FORM" | null>(
+    "CREATE_FORM"
+  );
 
   return (
     <>
@@ -19,7 +23,21 @@ function CustomizeForms() {
         maskClosable={false}
         keyboard={false}
         onClose={() => setOpenDrawer(null)}
-      />
+      >
+        <Tabs defaultActiveKey="json_schema">
+          <TabPane tab="JSON Schema" key="json_schema">
+            <Form colon={false} layout="vertical" style={{ marginTop: "1em" }}>
+              <Form.Item
+                name="name"
+                label="Name"
+                rules={[{ required: true, message: "Please name your form" }]}
+              >
+                <Input placeholder="Live response findings" />
+              </Form.Item>
+            </Form>
+          </TabPane>
+        </Tabs>
+      </Drawer>
     </>
   );
 }
