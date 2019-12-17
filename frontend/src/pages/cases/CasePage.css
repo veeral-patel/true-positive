@@ -37,5 +37,9 @@
 }
 
 .dark.react-mde .mde-preview .mde-preview-content pre {
-  background-color: #262626 !important;
+  background-color: inherit !important;
+}
+
+.dark.react-mde .mde-text {
+  background-color: inherit !important;
 }
