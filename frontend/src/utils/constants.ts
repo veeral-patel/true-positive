@@ -4,7 +4,8 @@ export const paths = {
   MANAGE_PATH: "/manage",
   TASKS_PATH: "/tasks",
   SEARCH_PATH: "/search",
-  API_TOKENS_PATH: "/api-tokens"
+  API_TOKENS_PATH: "/api-tokens",
+  PROFILE_PATH: "/profile"
 };
 
 export const JWT_TOKEN_KEY = "JWT_TOKEN";

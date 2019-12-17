@@ -97,7 +97,7 @@ export default inject(
               }
               style={{ float: "right" }}
             >
-              <Menu.Item>
+              <Menu.Item onClick={() => navigate(paths.PROFILE_PATH)}>
                 <UserOutlined />
                 Profile
               </Menu.Item>

@@ -10,6 +10,7 @@ import APITokensPage from "pages/api/APITokensPage";
 import AllCasesPage from "pages/cases/AllCasesPage";
 import CasePage from "pages/cases/CasePage";
 import LoginPage from "pages/login/LoginPage";
+import ProfilePage from "pages/login/ProfilePage";
 import SearchPage from "pages/search/SearchPage";
 import AllTasksPage from "pages/tasks/AllTasksPage";
 import Page404 from "presentational/shared/errors/Error404P";
@@ -41,6 +42,7 @@ class App extends React.Component<Props> {
                 <AllTasksPage path={paths.TASKS_PATH} />
                 <AdminPage path={paths.MANAGE_PATH} />
                 <CasePage path="/cases/:caseId/*" />
+                <ProfilePage path={paths.PROFILE_PATH} />
                 <SearchPage path={paths.SEARCH_PATH} />
                 <APITokensPage path={paths.API_TOKENS_PATH} />
                 <Page404 default />
