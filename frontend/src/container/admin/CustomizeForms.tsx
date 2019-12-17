@@ -10,7 +10,9 @@ function CustomizeForms() {
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h3>Forms</h3>
-        <Button onClick={() => setOpenDrawer(null)}>Create Form</Button>
+        <Button onClick={() => setOpenDrawer("CREATE_FORM")}>
+          Create Form
+        </Button>
       </div>
       <Drawer
         visible={openDrawer === "CREATE_FORM"}
