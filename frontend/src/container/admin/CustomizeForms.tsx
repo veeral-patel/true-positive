@@ -1,10 +1,29 @@
+import { useQuery } from "@apollo/react-hooks";
 import { Button, Drawer, Form, Input, Tabs } from "antd";
+import gql from "graphql-tag";
 import React, { useState } from "react";
+import IForm from "ts/interfaces/IForm";
 
 const { TabPane } = Tabs;
 
+const GET_FORMS = gql`
+  query forms {
+    id
+    name
+    createdAt
+    createdBy {
+      username
+    }
+  }
+`;
+
+interface FormListData {
+  forms: IForm[]
+}
+
 function CustomizeForms() {
   const [openDrawer, setOpenDrawer] = useState<"CREATE_FORM" | null>(null);
+  const { loading, data } = useQuery<FormListData>(GET_FORMS);
 
   return (
     <>
@@ -36,7 +55,7 @@ function CustomizeForms() {
               >
                 <Input placeholder="Live response findings" />
               </Form.Item>
-            </Form>
+            </FormListData>
           </TabPane>
         </Tabs>
       </Drawer>
