@@ -7,9 +7,10 @@ import React from "react";
 interface Props {
   handleClose: () => void;
   onFinish?: (values: any) => void;
+  submitText: string;
 }
 
-function CaseTemplateForm({ handleClose, onFinish }: Props) {
+function CaseTemplateForm({ handleClose, onFinish, submitText }: Props) {
   return (
     <Form colon={false} layout="vertical" onFinish={onFinish}>
       <Form.Item
@@ -60,7 +61,7 @@ function CaseTemplateForm({ handleClose, onFinish }: Props) {
             Cancel
           </Button>
           <Button type="primary" htmlType="submit">
-            Update Template
+            {submitText}
           </Button>
         </div>
       </Form.Item>

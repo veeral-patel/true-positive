@@ -146,6 +146,7 @@ function CustomizeCaseTemplates() {
           onClose={() => setOpenDrawer(null)}
         >
           <CaseTemplateForm
+            submitText="Create Template"
             handleClose={() => setOpenDrawer(null)}
             onFinish={values =>
               createCaseTemplate({

@@ -17,7 +17,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose }: Props) {
       keyboard={false}
       onClose={handleClose}
     >
-      <CaseTemplateForm handleClose={handleClose} />
+      <CaseTemplateForm handleClose={handleClose} submitText="Update Template" />
     </Drawer>
   );
 }
