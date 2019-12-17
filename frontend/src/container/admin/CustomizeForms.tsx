@@ -81,7 +81,7 @@ function CustomizeForms() {
             renderItem={form => (
               <List.Item>
                 <List.Item.Meta
-                  title={<a>form.name</a>}
+                  title={<a>{form.name}</a>}
                   description={`Created by ${
                     form.createdBy.username
                   } on ${formatDateOnly(form.createdAt)} (UTC)`}
