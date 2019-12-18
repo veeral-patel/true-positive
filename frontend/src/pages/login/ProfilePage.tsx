@@ -42,9 +42,7 @@ function ProfilePage(props: Props) {
             </Form.Item>
             <Form.Item>
               <div style={{ float: "right" }}>
-                <Button type="primary" htmlType="submit">
-                  Update
-                </Button>
+                <Button htmlType="submit">Update</Button>
               </div>
             </Form.Item>
           </Form>
