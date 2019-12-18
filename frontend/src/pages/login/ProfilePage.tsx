@@ -25,7 +25,9 @@ function ProfilePage(props: Props) {
             <Form.Item
               name="username"
               label="Username"
-              rules={[{ required: true, message: "You must have an username" }]}
+              rules={[
+                { required: true, message: "You must provide an username" }
+              ]}
             >
               <Input placeholder="john_steinbeck" />
             </Form.Item>
