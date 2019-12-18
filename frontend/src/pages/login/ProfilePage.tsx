@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Col, Divider, Form, Input, Row, Typography } from "antd";
+import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 import React from "react";
 
 const { Paragraph } = Typography;
@@ -37,6 +37,13 @@ function ProfilePage(props: Props) {
               ]}
             >
               <Input placeholder="john@steinbeck.io" />
+            </Form.Item>
+            <Form.Item>
+              <div style={{ float: "right" }}>
+                <Button type="primary" htmlType="submit">
+                  Update
+                </Button>
+              </div>
             </Form.Item>
           </Form>
         </Col>
