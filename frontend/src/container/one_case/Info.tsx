@@ -199,13 +199,6 @@ function Info(props: InfoProps) {
               renderItem={childCase => (
                 <List.Item
                   actions={[
-                    <Tooltip title="Edit merge reason">
-                      <Button
-                        icon={<EditOutlined />}
-                        type="link"
-                        onClick={() => setOpenModal("EDIT_MERGE_REASON")}
-                      />
-                    </Tooltip>,
                     openModal && (
                       <Modal
                         footer={null}
@@ -247,6 +240,14 @@ function Info(props: InfoProps) {
                         </Form>
                       </Modal>
                     ),
+                    <Tooltip title="Edit merge reason">
+                      <Button
+                        icon={<EditOutlined />}
+                        type="link"
+                        onClick={() => setOpenModal("EDIT_MERGE_REASON")}
+                      />
+                    </Tooltip>,
+
                     <Popconfirm
                       title="Un-merge this case?"
                       onConfirm={() =>
@@ -273,7 +274,8 @@ function Info(props: InfoProps) {
                       </a>
                     }
                     description={
-                      childCase.reasonForMerging == null
+                      !childCase.reasonForMerging ||
+                      childCase.reasonForMerging === ""
                         ? "No reason for merging was given"
                         : childCase.reasonForMerging
                     }
