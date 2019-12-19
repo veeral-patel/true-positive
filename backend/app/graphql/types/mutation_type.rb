@@ -4,12 +4,12 @@ module Types
 
       # case ------------
       field :create_case, mutation: Mutations::CreateCase
+      field :update_case, mutation: Mutations::UpdateCase
       field :delete_case, mutation: Mutations::DeleteCase
       field :merge_case, mutation: Mutations::MergeCase
       field :add_member, mutation: Mutations::AddMember
       field :remove_member, mutation: Mutations::RemoveMember
       field :change_role, mutation: Mutations::ChangeRole
-      field :update_case, mutation: Mutations::UpdateCase
 
       # task -------
       field :create_task, mutation: Mutations::CreateTask
