@@ -22,7 +22,7 @@ class ApiTokenPolicy
         end
 
         def resolve
-            user.api_tokens
+            user.api_tokens.order('created_at DESC')
         end
     end
 end
