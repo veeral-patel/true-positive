@@ -64,186 +64,190 @@ function Info(props: InfoProps) {
   // our spinner above this, as a HOC
   if (activeCase)
     return (
-      <>
-        <Content
-          style={{
-            backgroundColor: uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
-            padding: 24,
-            margin: 0,
-            minHeight: 280
-          }}
-        >
-          <section>
-            <div style={{ display: "inline-block" }}>
-              <h3>Info</h3>
-            </div>
-            <div style={{ display: "inline-block", float: "right" }}>
-              <ActionsDropdown caseId={activeCase.id} />
-            </div>
-          </section>
+      <Content
+        style={{
+          backgroundColor: uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
+          padding: 24,
+          margin: 0,
+          minHeight: 280
+        }}
+      >
+        <section>
+          <div style={{ display: "inline-block" }}>
+            <h3>Info</h3>
+          </div>
+          <div style={{ display: "inline-block", float: "right" }}>
+            <ActionsDropdown caseId={activeCase.id} />
+          </div>
+        </section>
 
-          {/* Details section */}
-          <section style={{ lineHeight: 3 }}>
-            <Row>
-              <Col span={24}>
-                <Divider orientation="left">Details</Divider>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={4}>Status:</Col>
-              <Col span={8}>
-                <EditableStatusTag
-                  statusName={activeCase.status.name}
-                  handleSelect={statusName =>
-                    activeCaseStore!.changeCaseStatus(statusName)
-                  }
-                />
-              </Col>
-              <Col span={4} style={{ lineHeight: 2 }}>Created:</Col>
-              <Col span={8} style={{ lineHeight: 2 }}>
-                {`${formatISO8601(activeCase.createdAt)} UTC by ${
-                  activeCase.createdBy.username
-                }`}
-              </Col>
-            </Row>
-            <Row>
-              <Col span={4}>Priority:</Col>
-              <Col span={8}>
-                <EditablePriorityTag
-                  priorityName={activeCase.priority.name}
-                  handleSelect={priorityName =>
-                    activeCaseStore!.changeCasePriority(priorityName)
-                  }
-                />
-              </Col>
-              <Col span={4}>Assigned To:</Col>
-              <Col span={8}>
-                <EditableAssigneeTag
-                  user={activeCase.assignedTo}
-                  handleSelect={username =>
-                    activeCaseStore!.changeCaseAssignee(username)
-                  }
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col span={4}>Tags:</Col>
-              <Col span={20}>
-                <EditableTagList
-                  existingTags={activeCase.tags}
-                  type="CASE"
-                  objectId={activeCaseStore!.activeCaseId}
-                />
-              </Col>
-            </Row>
-          </section>
-
-          <section>
-            <Row>
-              <Col span={24}>
-                <Divider orientation="left">Description</Divider>
-                <DescriptionEditor
-                  initialValue={activeCase.description}
-                  updateValue={newDescription =>
-                    activeCaseStore!.changeDescription(
-                      activeCase.id,
-                      newDescription,
-                      "CASE"
-                    )
-                  }
-                />
-              </Col>
-            </Row>
-          </section>
-
-          <section>
-            <Row>
-              <Col span={24}>
-                <Divider orientation="left">
-                  Comments ({activeCase.comments.length})
-                </Divider>
-                {activeCase.comments.length > 0 && (
-                  <CommentList
-                    comments={sortCommentsByCreatedAt(activeCase.comments)}
-                  />
-                )}
-                <CreateComment objectId={activeCase.id} type="CASE" />
-              </Col>
-            </Row>
-          </section>
-
-          {activeCase.mergedCases.length > 0 && (
-            <section>
-              <Divider orientation="left">
-                Merged Cases ({activeCase.mergedCases.length})
-              </Divider>
-              <List
-                itemLayout="horizontal"
-                dataSource={activeCase.mergedCases}
-                renderItem={childCase => (
-                  <List.Item
-                    actions={[
-                      <Tooltip title="Edit merge reason">
-                        <Button
-                          icon={<EditOutlined />}
-                          type="link"
-                          onClick={() => setOpenModal("EDIT_MERGE_REASON")}
-                        />
-                      </Tooltip>,
-                      <Popconfirm
-                        title="Un-merge this case?"
-                        onConfirm={() =>
-                          unmergeCase({
-                            variables: {
-                              input: {
-                                childCaseId: childCase.id,
-                                parentCaseId: null
-                              }
-                            }
-                          })
-                        }
-                      >
-                        <Tooltip title="Un-merge case" placement="right">
-                          <Button icon={<CloseOutlined />} type="link" />
-                        </Tooltip>
-                      </Popconfirm>
-                    ]}
-                  >
-                    <List.Item.Meta
-                      title={
-                        <a href={getPathToACase(childCase.id)}>
-                          {childCase.name}
-                        </a>
-                      }
-                      description={
-                        childCase.reasonForMerging == null
-                          ? "No reason for merging was given"
-                          : childCase.reasonForMerging
-                      }
-                    />
-                  </List.Item>
-                )}
+        {/* Details section */}
+        <section style={{ lineHeight: 3 }}>
+          <Row>
+            <Col span={24}>
+              <Divider orientation="left">Details</Divider>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={4}>Status:</Col>
+            <Col span={8}>
+              <EditableStatusTag
+                statusName={activeCase.status.name}
+                handleSelect={statusName =>
+                  activeCaseStore!.changeCaseStatus(statusName)
+                }
               />
-            </section>
-          )}
-        </Content>
-        {openModal && (
-          <Modal
-            title="Edit reason for merging"
-            visible={openModal === "EDIT_MERGE_REASON"}
-            onCancel={() => setOpenModal(null)}
-          >
-            <Form colon={false} layout="vertical">
-              <Form.Item label="Reason" name="reason">
-                <TextArea
-                  placeholder="Describe how the two cases are related"
-                  rows={3}
+            </Col>
+            <Col span={4} style={{ lineHeight: 2 }}>
+              Created:
+            </Col>
+            <Col span={8} style={{ lineHeight: 2 }}>
+              {`${formatISO8601(activeCase.createdAt)} UTC by ${
+                activeCase.createdBy.username
+              }`}
+            </Col>
+          </Row>
+          <Row>
+            <Col span={4}>Priority:</Col>
+            <Col span={8}>
+              <EditablePriorityTag
+                priorityName={activeCase.priority.name}
+                handleSelect={priorityName =>
+                  activeCaseStore!.changeCasePriority(priorityName)
+                }
+              />
+            </Col>
+            <Col span={4}>Assigned To:</Col>
+            <Col span={8}>
+              <EditableAssigneeTag
+                user={activeCase.assignedTo}
+                handleSelect={username =>
+                  activeCaseStore!.changeCaseAssignee(username)
+                }
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col span={4}>Tags:</Col>
+            <Col span={20}>
+              <EditableTagList
+                existingTags={activeCase.tags}
+                type="CASE"
+                objectId={activeCaseStore!.activeCaseId}
+              />
+            </Col>
+          </Row>
+        </section>
+
+        <section>
+          <Row>
+            <Col span={24}>
+              <Divider orientation="left">Description</Divider>
+              <DescriptionEditor
+                initialValue={activeCase.description}
+                updateValue={newDescription =>
+                  activeCaseStore!.changeDescription(
+                    activeCase.id,
+                    newDescription,
+                    "CASE"
+                  )
+                }
+              />
+            </Col>
+          </Row>
+        </section>
+
+        <section>
+          <Row>
+            <Col span={24}>
+              <Divider orientation="left">
+                Comments ({activeCase.comments.length})
+              </Divider>
+              {activeCase.comments.length > 0 && (
+                <CommentList
+                  comments={sortCommentsByCreatedAt(activeCase.comments)}
                 />
-              </Form.Item>
-            </Form>
-          </Modal>
+              )}
+              <CreateComment objectId={activeCase.id} type="CASE" />
+            </Col>
+          </Row>
+        </section>
+
+        {activeCase.mergedCases.length > 0 && (
+          <section>
+            <Divider orientation="left">
+              Merged Cases ({activeCase.mergedCases.length})
+            </Divider>
+            <List
+              itemLayout="horizontal"
+              dataSource={activeCase.mergedCases}
+              renderItem={childCase => (
+                <List.Item
+                  actions={[
+                    <Tooltip title="Edit merge reason">
+                      <Button
+                        icon={<EditOutlined />}
+                        type="link"
+                        onClick={() => setOpenModal("EDIT_MERGE_REASON")}
+                      />
+                    </Tooltip>,
+                    openModal && (
+                      <Modal
+                        title="Edit reason for merging"
+                        visible={openModal === "EDIT_MERGE_REASON"}
+                        onCancel={() => setOpenModal(null)}
+                      >
+                        <Form
+                          colon={false}
+                          layout="vertical"
+                          initialValues={{ reason: childCase.reasonForMerging }}
+                        >
+                          <Form.Item label="Reason" name="reason">
+                            <TextArea
+                              placeholder="Describe how the two cases are related"
+                              rows={3}
+                            />
+                          </Form.Item>
+                        </Form>
+                      </Modal>
+                    ),
+                    <Popconfirm
+                      title="Un-merge this case?"
+                      onConfirm={() =>
+                        unmergeCase({
+                          variables: {
+                            input: {
+                              childCaseId: childCase.id,
+                              parentCaseId: null
+                            }
+                          }
+                        })
+                      }
+                    >
+                      <Tooltip title="Un-merge case" placement="right">
+                        <Button icon={<CloseOutlined />} type="link" />
+                      </Tooltip>
+                    </Popconfirm>
+                  ]}
+                >
+                  <List.Item.Meta
+                    title={
+                      <a href={getPathToACase(childCase.id)}>
+                        {childCase.name}
+                      </a>
+                    }
+                    description={
+                      childCase.reasonForMerging == null
+                        ? "No reason for merging was given"
+                        : childCase.reasonForMerging
+                    }
+                  />
+                </List.Item>
+              )}
+            />
+          </section>
         )}
-      </>
+      </Content>
     );
   return null;
 }
