@@ -50,8 +50,7 @@ module Types
       field :rename_priority, mutation: Mutations::RenamePriority
       
       # user -------
-      field :change_username, mutation: Mutations::ChangeUsername
-      field :change_email, mutation: Mutations::ChangeEmail
+      field :update_me, mutation: Mutations::UpdateMe
 
       # task templates -----
       field :create_task_template, mutation: Mutations::CreateTaskTemplate

@@ -1,6 +1,17 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
-import { Button, Col, Divider, Form, Input, Row, Spin, Typography } from "antd";
+import {
+  Button,
+  Col,
+  Divider,
+  Form,
+  Input,
+  message,
+  notification,
+  Row,
+  Spin,
+  Typography
+} from "antd";
 import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
 import React from "react";
@@ -9,6 +20,10 @@ import IUser from "ts/interfaces/IUser";
 const { Paragraph } = Typography;
 
 // ---
+
+interface MeData {
+  me: IUser;
+}
 
 const GET_ME = gql`
   query {
@@ -19,9 +34,18 @@ const GET_ME = gql`
   }
 `;
 
-interface MeData {
-  me: IUser;
-}
+// ---
+
+const UPDATE_ME = gql`
+  mutation updateMe($input: UpdateMeInput!) {
+    updateMe(input: $input) {
+      me {
+        username
+        email
+      }
+    }
+  }
+`;
 
 // ---
 
@@ -29,6 +53,17 @@ interface Props extends RouteComponentProps {}
 
 function ProfilePage(props: Props) {
   const { loading, error, data } = useQuery<MeData>(GET_ME);
+  const [updateMe] = useMutation(UPDATE_ME, {
+    onCompleted: function() {
+      message.success("Updated profile");
+    },
+    onError: function(error) {
+      notification.error({
+        message: "Failed to update profile",
+        description: error.message
+      });
+    }
+  });
 
   return (
     <>
@@ -56,6 +91,17 @@ function ProfilePage(props: Props) {
                 username: data.me.username,
                 email: data.me.email
               }}
+              onFinish={values =>
+                updateMe({
+                  variables: {
+                    input: {
+                      username: values.username,
+                      email: values.email
+                    }
+                  },
+                  refetchQueries: [{ query: GET_ME }]
+                })
+              }
             >
               <Form.Item
                 name="username"
