@@ -10,7 +10,6 @@ module Types
       field :add_member, mutation: Mutations::AddMember
       field :remove_member, mutation: Mutations::RemoveMember
       field :change_role, mutation: Mutations::ChangeRole
-      field :change_status, mutation: Mutations::ChangeStatus
       field :change_priority, mutation: Mutations::ChangePriority
       field :update_case, mutation: Mutations::UpdateCase
 

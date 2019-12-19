@@ -64,7 +64,7 @@ function Info(props: InfoProps) {
   const [updateCase] = useMutation(UPDATE_CASE, {
     onCompleted: function() {
       message.success("Updated the case");
-      setOpenModal(null);
+      setOpenModal(null); // Close any open modals
       activeCaseStore!.loadActiveCase();
     },
     onError: function(error: ApolloError) {
@@ -109,7 +109,14 @@ function Info(props: InfoProps) {
               <EditableStatusTag
                 statusName={activeCase.status.name}
                 handleSelect={statusName =>
-                  activeCaseStore!.changeCaseStatus(statusName)
+                  updateCase({
+                    variables: {
+                      input: {
+                        caseId: activeCase.id,
+                        status: statusName
+                      }
+                    }
+                  })
                 }
               />
             </Col>

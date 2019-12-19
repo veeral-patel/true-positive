@@ -9,7 +9,6 @@ import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_AN_INDICATOR from "mutations/changeIndicator";
 import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_ROLE from "mutations/changeRole";
-import CHANGE_STATUS from "mutations/changeStatus";
 import CHANGE_TAGS from "mutations/changeTags";
 import CREATE_A_COMMENT from "mutations/createComment";
 import CREATE_STRING_INDICATOR from "mutations/createStringIndicator";
@@ -334,42 +333,6 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while renaming the indicator",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
-  @action.bound
-  changeCaseStatus(statusName: string) {
-    if (!this.activeCase) {
-      notification.error({
-        message: "Could not change the case's status",
-        description: "No case is active"
-      });
-      return null;
-    }
-
-    client
-      .mutate<ICaseDatum>({
-        variables: {
-          input: {
-            caseId: this.activeCase.id,
-            status: statusName
-          }
-        },
-        mutation: CHANGE_STATUS
-      })
-      .then((response: FetchResult<ICaseDatum>) => {
-        message.success("Changed the status");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while changing the case's status",
           description: error.message
         });
       })
