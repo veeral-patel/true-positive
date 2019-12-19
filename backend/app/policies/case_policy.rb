@@ -22,6 +22,10 @@ class CasePolicy
         user_can_edit_specified_case?(@case)  
     end
 
+    def update_case?
+        user_can_edit_this_case?
+    end
+
     def add_member?
         user_can_edit_this_case?
     end

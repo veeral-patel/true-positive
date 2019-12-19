@@ -12,6 +12,7 @@ module Types
       field :change_role, mutation: Mutations::ChangeRole
       field :change_status, mutation: Mutations::ChangeStatus
       field :change_priority, mutation: Mutations::ChangePriority
+      field :update_case, mutation: Mutations::UpdateCase
 
       # task -------
       field :create_task, mutation: Mutations::CreateTask

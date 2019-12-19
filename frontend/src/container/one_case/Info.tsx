@@ -22,6 +22,7 @@ import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
 import { inject, observer } from "mobx-react";
 import MERGE_A_CASE from "mutations/mergeCase";
+import UPDATE_CASE from "mutations/updateCase";
 import CommentList from "presentational/shared/comments/CommentListP";
 import EditableAssigneeTag from "presentational/shared/tags/EditableAssigneeTag";
 import EditablePriorityTag from "presentational/shared/tags/EditablePriorityTag";
@@ -55,6 +56,20 @@ function Info(props: InfoProps) {
     onError: function(error: ApolloError) {
       notification.error({
         message: "Could not un-merge this case",
+        description: error.message
+      });
+    }
+  });
+
+  const [updateCase] = useMutation(UPDATE_CASE, {
+    onCompleted: function() {
+      message.success("Updated the case");
+      setOpenModal(null);
+      activeCaseStore!.loadActiveCase();
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not update this case",
         description: error.message
       });
     }
@@ -193,6 +208,7 @@ function Info(props: InfoProps) {
                     </Tooltip>,
                     openModal && (
                       <Modal
+                        footer={null}
                         title="Edit reason for merging"
                         visible={openModal === "EDIT_MERGE_REASON"}
                         onCancel={() => setOpenModal(null)}
@@ -201,12 +217,32 @@ function Info(props: InfoProps) {
                           colon={false}
                           layout="vertical"
                           initialValues={{ reason: childCase.reasonForMerging }}
+                          onFinish={values =>
+                            updateCase({
+                              variables: {
+                                input: {
+                                  caseId: childCase.id,
+                                  reasonForMerging: values.reason
+                                }
+                              }
+                            })
+                          }
                         >
                           <Form.Item label="Reason" name="reason">
                             <TextArea
                               placeholder="Describe how the two cases are related"
                               rows={3}
                             />
+                          </Form.Item>
+                          <Form.Item>
+                            <div style={{ float: "right" }}>
+                              <Button style={{ marginRight: "0.5em" }}>
+                                Cancel
+                              </Button>
+                              <Button type="primary" htmlType="submit">
+                                Update Reason
+                              </Button>
+                            </div>
                           </Form.Item>
                         </Form>
                       </Modal>
