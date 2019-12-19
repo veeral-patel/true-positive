@@ -4,7 +4,6 @@ import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import ADD_MEMBER from "mutations/addMember";
 import CHANGE_ASSIGNEE from "mutations/changeAssignee";
-import CHANGE_A_COMMENT from "mutations/changeComment";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_AN_INDICATOR from "mutations/changeIndicator";
 import CHANGE_ROLE from "mutations/changeRole";
@@ -20,6 +19,7 @@ import MARK_TASK_AS_DONE from "mutations/markTaskAsDone";
 import REMOVE_MEMBER from "mutations/removeMember";
 import RENAME_AN_INDICATOR from "mutations/renameIndicator";
 import RENAME_A_TASK from "mutations/renameTask";
+import UPDATE_A_COMMENT from "mutations/updateComment";
 import GET_ONE_CASE from "queries/getOneCase";
 import ICase from "ts/interfaces/ICase";
 import IIndicator from "ts/interfaces/IIndicator";
@@ -142,7 +142,7 @@ class ActiveCaseStore {
       );
   }
   @action.bound
-  changeComment(commentId: number, newComment: string) {
+  updateComment(commentId: number, newComment: string) {
     client
       .mutate({
         variables: {
@@ -151,7 +151,7 @@ class ActiveCaseStore {
             comment: newComment
           }
         },
-        mutation: CHANGE_A_COMMENT
+        mutation: UPDATE_A_COMMENT
       })
       .then(response => {
         message.success("Updated the comment");

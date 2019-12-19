@@ -27,7 +27,7 @@ const EditCommentForm = inject("activeCaseStore")(
             colon={false}
             layout="vertical"
             onFinish={values => {
-              activeCaseStore!.changeComment(commentId, values.comment);
+              activeCaseStore!.updateComment(commentId, values.comment);
             }}
             initialValues={{
               comment: initialComment

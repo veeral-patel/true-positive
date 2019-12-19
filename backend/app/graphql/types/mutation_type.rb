@@ -34,7 +34,7 @@ module Types
 
       # comment --------
       field :create_comment, mutation: Mutations::CreateComment
-      field :change_comment, mutation: Mutations::ChangeComment
+      field :update_comment, mutation: Mutations::UpdateComment
       field :delete_comment, mutation: Mutations::DeleteComment
 
       # status ----------
