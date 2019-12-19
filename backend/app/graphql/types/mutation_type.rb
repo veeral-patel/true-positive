@@ -23,7 +23,6 @@ module Types
 
       # indicator --------
       field :create_string_indicator, mutation: Mutations::CreateStringIndicator
-      field :create_text_indicator, mutation: Mutations::CreateTextIndicator
       field :delete_indicator, mutation: Mutations::DeleteIndicator
       field :rename_indicator, mutation: Mutations::RenameIndicator
       field :change_indicator, mutation: Mutations::ChangeIndicator
