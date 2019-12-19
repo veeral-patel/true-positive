@@ -4,9 +4,12 @@ import {
   SecurityScanOutlined,
   UserOutlined
 } from "@ant-design/icons";
+import { useMutation } from "@apollo/react-hooks";
 import { navigate } from "@reach/router";
-import { Layout, Menu, Typography } from "antd";
+import { Layout, Menu, message, notification, Typography } from "antd";
+import { ApolloError } from "apollo-boost";
 import { inject, observer } from "mobx-react";
+import UPDATE_CASE from "mutations/updateCase";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
@@ -39,6 +42,19 @@ export default inject(
   observer((props: CaseSiderProps) => {
     const { uiStore, activeCaseStore } = props;
 
+    const [updateCase] = useMutation(UPDATE_CASE, {
+      onCompleted: function() {
+        message.success("Updated the case");
+        activeCaseStore!.loadActiveCase();
+      },
+      onError: function(error: ApolloError) {
+        notification.error({
+          message: "Could not update this case",
+          description: error.message
+        });
+      }
+    });
+
     const isLoading = activeCaseStore!.activeCaseIsLoading;
     const activeCase = activeCaseStore!.activeCase;
 
@@ -47,7 +63,6 @@ export default inject(
     let numberOfDoneTasks: number | null;
     let numberOfTasks: number | null;
     let numberOfIndicators: number | null;
-
     if (isLoading) {
       caseName = "Loading";
       numberOfMembers = null;
@@ -72,6 +87,8 @@ export default inject(
 
     const collapsed = uiStore!.caseSiderStatus === "COLLAPSED";
 
+    if (!activeCase) return null;
+
     return (
       <Sider
         collapsible
@@ -93,9 +110,15 @@ export default inject(
               type="secondary"
               style={{ textTransform: "uppercase" }}
               editable={{
-                onChange: (newName: string) => {
-                  activeCaseStore!.renameActiveCase(newName);
-                }
+                onChange: (newName: string) =>
+                  updateCase({
+                    variables: {
+                      input: {
+                        caseId: activeCase.id,
+                        name: newName
+                      }
+                    }
+                  })
               }}
             >
               {truncateString(caseName, 90)}
@@ -152,15 +175,6 @@ export default inject(
               )}
             </span>
           </Menu.Item>
-          {/* <Menu.Item
-            key={CASE_SIDER_FORMS}
-            onClick={() =>
-              activeCase && navigate(getPathToCaseForms(activeCase.id))
-            }
-          >
-            <ReconciliationFilled />
-            <span>Forms (4)</span>
-          </Menu.Item> */}
           <Menu.Item
             key={CASE_SIDER_MEMBERS}
             onClick={() =>

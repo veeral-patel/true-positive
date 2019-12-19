@@ -19,7 +19,6 @@ import DELETE_AN_INDICATOR from "mutations/deleteIndicator";
 import DELETE_A_TASK from "mutations/deleteTask";
 import MARK_TASK_AS_DONE from "mutations/markTaskAsDone";
 import REMOVE_MEMBER from "mutations/removeMember";
-import RENAME_A_CASE from "mutations/renameCase";
 import RENAME_AN_INDICATOR from "mutations/renameIndicator";
 import RENAME_A_TASK from "mutations/renameTask";
 import GET_ONE_CASE from "queries/getOneCase";
@@ -109,42 +108,6 @@ class ActiveCaseStore {
     // if no tasks match, return null
     if (matchingIndicators.length === 0) return null;
     return matchingIndicators[0];
-  }
-
-  @action.bound
-  renameActiveCase(newName: string) {
-    if (!this.activeCase) {
-      notification.error({
-        message: "Could not rename case",
-        description: "No case is active"
-      });
-      return null;
-    }
-
-    client
-      .mutate<ICaseDatum>({
-        variables: {
-          input: {
-            id: this.activeCase.id,
-            name: newName
-          }
-        },
-        mutation: RENAME_A_CASE
-      })
-      .then((response: FetchResult<ICaseDatum>) => {
-        message.success("Renamed the case");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while renaming the case",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
   }
 
   @action.bound
