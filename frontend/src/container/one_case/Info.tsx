@@ -135,7 +135,14 @@ function Info(props: InfoProps) {
               <EditablePriorityTag
                 priorityName={activeCase.priority.name}
                 handleSelect={priorityName =>
-                  activeCaseStore!.changeCasePriority(priorityName)
+                  updateCase({
+                    variables: {
+                      input: {
+                        caseId: activeCase.id,
+                        priority: priorityName
+                      }
+                    }
+                  })
                 }
               />
             </Col>

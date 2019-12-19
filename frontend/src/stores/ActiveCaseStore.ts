@@ -7,7 +7,6 @@ import CHANGE_ASSIGNEE from "mutations/changeAssignee";
 import CHANGE_A_COMMENT from "mutations/changeComment";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_AN_INDICATOR from "mutations/changeIndicator";
-import CHANGE_PRIORITY from "mutations/changePriority";
 import CHANGE_ROLE from "mutations/changeRole";
 import CHANGE_TAGS from "mutations/changeTags";
 import CREATE_A_COMMENT from "mutations/createComment";
@@ -296,42 +295,6 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while renaming the indicator",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
-  @action.bound
-  changeCasePriority(priorityName: string) {
-    if (!this.activeCase) {
-      notification.error({
-        message: "Could not change the case's priority",
-        description: "No case is active"
-      });
-      return null;
-    }
-
-    client
-      .mutate<ICaseDatum>({
-        variables: {
-          input: {
-            caseId: this.activeCase.id,
-            priority: priorityName
-          }
-        },
-        mutation: CHANGE_PRIORITY
-      })
-      .then((response: FetchResult<ICaseDatum>) => {
-        message.success("Changed the priority");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while changing the case's priority",
           description: error.message
         });
       })
