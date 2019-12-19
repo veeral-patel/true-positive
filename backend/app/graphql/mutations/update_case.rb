@@ -9,12 +9,20 @@ class Mutations::UpdateCase < Mutations::BaseMutation
         description "New name for this case."
     end
 
+    argument :description, String, required: false do
+        description "New description for this case."
+    end
+
     argument :status, String, required: false do
         description "Name of the new status for this case."
     end
 
     argument :priority, String, required: false do
         description "Name of the new priority for this case."
+    end
+
+    argument :tags, [String], required: false do
+        description "New list of tags for this case."
     end
 
     argument :reason_for_merging, String, required: false do
@@ -25,7 +33,7 @@ class Mutations::UpdateCase < Mutations::BaseMutation
         description "The updated case"
     end
 
-    def resolve(case_id:, name: nil, status: nil, priority: nil, reason_for_merging: nil)
+    def resolve(case_id:, name: nil, description: nil, status: nil, priority: nil, tags: nil, reason_for_merging: nil)
         # find the case
         the_case = find_case_or_throw_execution_error(case_id: case_id)
 
@@ -36,9 +44,11 @@ class Mutations::UpdateCase < Mutations::BaseMutation
 
         # update the case in memory
         the_case.name = name if not name.nil?
-        the_case.reason_for_merging = reason_for_merging if not reason_for_merging.nil?
+        the_case.description = description if not description.nil?
         the_case.status = find_status_by_name_or_throw_execution_error(status_name: status) if not status.nil?
         the_case.priority = find_priority_by_name_or_throw_execution_error(priority_name: priority) if not priority.nil?
+        the_case.tags = tags if not tags.nil?
+        the_case.reason_for_merging = reason_for_merging if not reason_for_merging.nil?
 
         # save the case
         if the_case.save
