@@ -2,7 +2,7 @@ class Mutations::UpdateComment < Mutations::BaseMutation
     description "Update a comment."
 
     argument :id, ID, required: true do
-        description "The ID of the comment to delete."
+        description "The ID of the comment to update."
     end
 
     argument :comment, String, required: true do
