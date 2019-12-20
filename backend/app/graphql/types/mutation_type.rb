@@ -17,6 +17,7 @@ module Types
       field :mark_task_as_done, mutation: Mutations::MarkTaskAsDone
       field :delete_task, mutation: Mutations::DeleteTask
       field :change_task_position, mutation: Mutations::ChangeTaskPosition
+      field :update_task, mutation: Mutations::UpdateTask
 
       # case or task --------
       field :change_assignee, mutation: Mutations::ChangeAssignee
