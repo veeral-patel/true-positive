@@ -18,9 +18,11 @@ class Audit < ApplicationRecord
         ]
     end
 
-    def to_s
+    def readable_message
         if self.action == "CREATE_CASE"
             "#{self.created_by.username} created the case"
+        else
+            "This audit entry lacks a human-readable message."
         end
     end
 end
