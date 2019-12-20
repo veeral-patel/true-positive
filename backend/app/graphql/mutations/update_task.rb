@@ -17,7 +17,10 @@ class Mutations::UpdateTask < Mutations::BaseMutation
         # find the task
         the_task = find_task_or_throw_execution_error(task_id: task_id)
 
-        # TODO: authorize this operation
+        # authorize this operation
+        unless TaskPolicy.new(context[:current_user], the_task).update_task?
+            raise GraphQL::ExecutionError, "You are not authorized to update this task."
+        end
 
         # update the task in memory
         the_task.name = name if not name.nil?
