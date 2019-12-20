@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_043620) do
+ActiveRecord::Schema.define(version: 2019_12_20_041840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 2019_12_17_043620) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
+  end
+
+  create_table "audits", force: :cascade do |t|
+    t.string "action"
+    t.integer "associated_type"
+    t.integer "associated_id"
+    t.string "comment"
+    t.json "parameters"
+    t.bigint "created_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_audits_on_created_by_id"
   end
 
   create_table "case_members", force: :cascade do |t|
@@ -203,6 +215,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_043620) do
   end
 
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "audits", "users", column: "created_by_id"
   add_foreign_key "case_members", "cases"
   add_foreign_key "case_members", "users"
   add_foreign_key "case_templates", "priorities"
