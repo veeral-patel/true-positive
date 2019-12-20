@@ -13,7 +13,6 @@ module Types
 
       # task -------
       field :create_task, mutation: Mutations::CreateTask
-      field :rename_task, mutation: Mutations::RenameTask
       field :mark_task_as_done, mutation: Mutations::MarkTaskAsDone
       field :delete_task, mutation: Mutations::DeleteTask
       field :change_task_position, mutation: Mutations::ChangeTaskPosition

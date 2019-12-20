@@ -18,7 +18,6 @@ import DELETE_A_TASK from "mutations/deleteTask";
 import MARK_TASK_AS_DONE from "mutations/markTaskAsDone";
 import REMOVE_MEMBER from "mutations/removeMember";
 import RENAME_AN_INDICATOR from "mutations/renameIndicator";
-import RENAME_A_TASK from "mutations/renameTask";
 import UPDATE_A_COMMENT from "mutations/updateComment";
 import GET_ONE_CASE from "queries/getOneCase";
 import ICase from "ts/interfaces/ICase";
@@ -239,34 +238,6 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while deleting the indicator",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
-  @action.bound
-  renameTask(taskId: number, newName: string) {
-    client
-      .mutate<ITaskDatum>({
-        variables: {
-          input: {
-            id: taskId,
-            name: newName
-          }
-        },
-        mutation: RENAME_A_TASK
-      })
-      .then((response: FetchResult<ITaskDatum>) => {
-        message.success("Renamed the task");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while renaming the task",
           description: error.message
         });
       })
