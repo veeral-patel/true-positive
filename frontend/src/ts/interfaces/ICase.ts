@@ -1,3 +1,4 @@
+import IAudit from "ts/interfaces/IAudit";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import IComment from "ts/interfaces/IComment";
 import IIndicator from "ts/interfaces/IIndicator";
@@ -7,7 +8,6 @@ import ITag from "ts/interfaces/ITag";
 import ITask from "ts/interfaces/ITask";
 import ITaskGroup from "ts/interfaces/ITaskGroup";
 import IUser from "ts/interfaces/IUser";
-import IAudit from "./IAudit";
 
 interface ICase {
   id: number;
