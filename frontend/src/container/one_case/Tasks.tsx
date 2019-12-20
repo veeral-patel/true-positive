@@ -23,7 +23,7 @@ import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 
 const { Content } = Layout;
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
