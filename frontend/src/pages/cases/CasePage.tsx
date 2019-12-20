@@ -1,5 +1,5 @@
 import { RouteComponentProps, Router } from "@reach/router";
-import { Empty, Layout, Typography } from "antd";
+import { Divider, Empty, Layout, Typography } from "antd";
 import CaseSider from "container/one_case/CaseSider";
 import Forms from "container/one_case/Forms";
 import HandleErrorAndLoading from "container/one_case/HandleErrorAndLoading";
@@ -19,6 +19,7 @@ import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
+import formatISO8601 from "utils/formatISO8601";
 
 const { Text } = Typography;
 const { Content } = Layout;
@@ -130,7 +131,7 @@ export default inject(
                       style={{
                         backgroundColor:
                           uiStore!.theme === "LIGHT" ? "#fff" : "#141414",
-                        padding: 24,
+                        padding: 16,
                         marginLeft: 24,
                         height: "100%",
                         borderRadius: "8px"
@@ -156,11 +157,19 @@ export default inject(
                             }
                           />
                         ) : (
-                          <>
+                          <div style={{ marginTop: "1em" }}>
                             {activeCaseStore!.activeCase.audits.map(audit => (
-                              <div>{audit.readableMessage}</div>
+                              <div>
+                                <Text type="secondary">
+                                  {audit.readableMessage}
+                                </Text>
+                                <Divider type="vertical" />
+                                <Text disabled>
+                                  {formatISO8601(audit.createdAt)}
+                                </Text>
+                              </div>
                             ))}
-                          </>
+                          </div>
                         ))}
                     </Content>
                   </div>
