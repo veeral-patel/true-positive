@@ -9,11 +9,15 @@ class Mutations::UpdateTask < Mutations::BaseMutation
         description "New name for this task"
     end
 
-    field :task, Types::CaseType, null: true do
+    argument :done, Boolean, required: false do
+        description "Whether to mark this task as done or not."
+    end
+
+    field :task, Types::TaskType, null: true do
         description "The updated task"
     end
 
-    def resolve(task_id:, name: nil)
+    def resolve(task_id:, name: nil, done: nil)
         # find the task
         the_task = find_task_or_throw_execution_error(task_id: task_id)
 
@@ -24,6 +28,7 @@ class Mutations::UpdateTask < Mutations::BaseMutation
 
         # update the task in memory
         the_task.name = name if not name.nil?
+        the_task.done = done if not done.nil?
 
         # save the task
         if the_task.save
