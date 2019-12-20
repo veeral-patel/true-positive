@@ -140,15 +140,14 @@ export default inject(
                         type="secondary"
                         style={{ textTransform: "uppercase" }}
                       >
-                        Activity
+                        History
                       </Text>
                       <Empty
                         description={
                           <div>
-                            <p>No Activity</p>
+                            <p>No History</p>
                             <p style={{ color: "#bfbfbf" }}>
-                              Soon, you'll be able to follow case changes in
-                              real-time here.
+                              Changes you make to this case will appear here.
                             </p>
                           </div>
                         }
