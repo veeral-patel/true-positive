@@ -5,8 +5,16 @@ class Audit < ApplicationRecord
     }
 
     validates :action, presence: true
-    validates :associated_type, presence: true
     validates :associated_id, presence: true
     validates :created_by, presence: true
-    validates :created_at, presence: true
+
+    belongs_to :created_by, :class_name => 'User'
+
+    def self.case_audits
+        # Returns the list of audits that a case object cares about.
+        # Remember to update this whenever I add a new action!
+        [
+            "CREATE_CASE"
+        ]
+    end
 end

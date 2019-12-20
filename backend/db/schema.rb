@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 2019_12_20_041840) do
   create_table "audits", force: :cascade do |t|
     t.integer "action"
     t.integer "associated_id"
-    t.string "comment"
     t.json "parameters"
     t.bigint "created_by_id"
     t.datetime "created_at", null: false

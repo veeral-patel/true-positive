@@ -20,6 +20,7 @@ class Case < ApplicationRecord
   has_many :task_groups, dependent: :destroy
 
   after_create :add_creator_to_members
+  after_create :add_case_created_audit
 
   acts_as_taggable_on :tags
 
@@ -82,7 +83,7 @@ class Case < ApplicationRecord
   end
 
   def audits
-    Audit.where(associated_type: "CASE", associated_id: self.id)
+    Audit.where(associated_id: self.id)
   end
 
   def completed_task_count
@@ -99,5 +100,13 @@ class Case < ApplicationRecord
     def add_creator_to_members
       # Add the user who created this case to its list of members, so he/she can access it.
       self.case_members.create(user: self.created_by, role: "CAN_EDIT")
+    end
+
+    def add_case_created_audit
+      Audit.create(
+        action: "CREATE_CASE",
+        associated_id: self.id,
+        created_by: self.created_by
+      )
     end
 end
