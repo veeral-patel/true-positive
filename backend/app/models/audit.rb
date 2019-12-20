@@ -17,4 +17,10 @@ class Audit < ApplicationRecord
             "CREATE_CASE"
         ]
     end
+
+    def to_s
+        if self.action == "CREATE_CASE"
+            "#{self.created_by.username} created the case"
+        end
+    end
 end
