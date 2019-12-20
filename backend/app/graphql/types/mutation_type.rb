@@ -37,13 +37,13 @@ module Types
 
       # status ----------
       field :create_status, mutation: Mutations::CreateStatus
-      field :delete_status, mutation: Mutations::DeleteStatus
       field :rename_status, mutation: Mutations::RenameStatus
+      field :delete_status, mutation: Mutations::DeleteStatus
 
       # priority --------
       field :create_priority, mutation: Mutations::CreatePriority
-      field :delete_priority, mutation: Mutations::DeletePriority
       field :rename_priority, mutation: Mutations::RenamePriority
+      field :delete_priority, mutation: Mutations::DeletePriority
       
       # user -------
       field :update_me, mutation: Mutations::UpdateMe
