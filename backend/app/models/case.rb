@@ -81,6 +81,10 @@ class Case < ApplicationRecord
     self.parent
   end
 
+  def audits
+    Audit.where(associated_type: "CASE", associated_id: self.id)
+  end
+
   def completed_task_count
     # Number of completed tasks in this case
     completed_tasks = self.tasks.where(done: true)
