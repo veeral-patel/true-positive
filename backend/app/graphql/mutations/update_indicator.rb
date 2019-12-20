@@ -17,7 +17,10 @@ class Mutations::UpdateIndicator < Mutations::BaseMutation
         # find the indicator
         indicator = find_indicator_or_throw_execution_error(indicator_id: id)
 
-        # TODO: authorize this operation
+        # authorize this action
+        unless IndicatorPolicy.new(context[:current_user], indicator).update_indicator?
+            raise GraphQL::ExecutionError, "You are not authorized to update this indicator."
+        end
 
         # update the indicator in memory
         indicator.name = name if not name.nil?
