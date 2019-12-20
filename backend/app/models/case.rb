@@ -83,7 +83,18 @@ class Case < ApplicationRecord
   end
 
   def audits
-    Audit.where(associated_id: self.id, action: Audit.case_audits)
+    # Lists all the audit entries this case cares about
+
+    # Changes directly affecting this case
+    case_audits = Audit.where(associated_id: self.id, action: Audit.case_relevant_audits)
+
+    # Changes affected a task in this case
+    task_audits = Audit.where(associated_id: self.tasks.select(:id), action: Audit.case_relevant_audits)
+
+    # Combine all our audit entries
+    all_audits = case_audits.or(task_audits).order("created_at DESC")
+
+    all_audits
   end
 
   def completed_task_count

@@ -159,7 +159,7 @@ export default inject(
                         ) : (
                           <div style={{ marginTop: "1em" }}>
                             {activeCaseStore!.activeCase.audits.map(audit => (
-                              <div>
+                              <div style={{ marginBottom: "1.25em" }}>
                                 <Text type="secondary">
                                   {audit.readableMessage}
                                 </Text>
