@@ -83,7 +83,7 @@ class Case < ApplicationRecord
   end
 
   def audits
-    Audit.where(associated_id: self.id)
+    Audit.where(associated_id: self.id, action: Audit.case_audits)
   end
 
   def completed_task_count
