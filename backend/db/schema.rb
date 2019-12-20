@@ -25,8 +25,7 @@ ActiveRecord::Schema.define(version: 2019_12_20_041840) do
   end
 
   create_table "audits", force: :cascade do |t|
-    t.string "action"
-    t.integer "associated_type"
+    t.integer "action"
     t.integer "associated_id"
     t.string "comment"
     t.json "parameters"

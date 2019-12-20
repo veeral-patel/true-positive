@@ -87,8 +87,7 @@ class Case < ApplicationRecord
 
   def completed_task_count
     # Number of completed tasks in this case
-    completed_tasks = self.tasks.where(done: true)
-    completed_tasks.count
+    self.tasks.where(done: true).count
   end
 
   def total_task_count

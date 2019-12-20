@@ -1,5 +1,8 @@
 class Audit < ApplicationRecord
     enum associated_type: { CASE: 1 }
+    enum action: {
+        CREATE_CASE: 1
+    }
 
     validates :action, presence: true
     validates :associated_type, presence: true

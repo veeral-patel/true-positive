@@ -1,8 +1,7 @@
 class CreateAudits < ActiveRecord::Migration[5.2]
   def change
     create_table :audits do |t|
-      t.string :action
-      t.integer :associated_type
+      t.integer :action
       t.integer :associated_id
       t.string :comment
       t.json :parameters
