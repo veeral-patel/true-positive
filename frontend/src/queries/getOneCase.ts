@@ -110,6 +110,11 @@ const GET_ONE_CASE = gql`
           username
         }
       }
+      audits {
+        id
+        createdAt
+        friendlyMessage
+      }
     }
   }
 `;
