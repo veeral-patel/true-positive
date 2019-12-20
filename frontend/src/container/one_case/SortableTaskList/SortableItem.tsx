@@ -20,9 +20,7 @@ const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => (
           <Checkbox
             style={{ marginRight: "1.0em" }}
             defaultChecked={task.done}
-            onChange={event => {
-              markTaskAsDone(task.id, event.target.checked);
-            }}
+            onChange={event => markTaskAsDone(task.id, event.target.checked)}
           />
           <a onClick={() => navigate(getPathToATask(task.case.id, task.id))}>
             {truncateString(task.name, 75)}

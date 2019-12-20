@@ -5,6 +5,7 @@ import arrayMove from "array-move";
 import SortableList from "container/one_case/SortableTaskList/SortableList";
 import { inject, observer } from "mobx-react";
 import CHANGE_TASK_POSITION from "mutations/changeTaskPosition";
+import UPDATE_TASK from "mutations/updateTask";
 import React, { useState } from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITask from "ts/interfaces/ITask";
@@ -25,6 +26,20 @@ function SortableComponent({ existingTasks, activeCaseStore }: Props) {
     onError: function(error: ApolloError) {
       notification.error({
         message: "Failed to reorder tasks",
+        description: error.message
+      });
+      activeCaseStore!.loadActiveCase();
+    }
+  });
+
+  const [updateTask] = useMutation(UPDATE_TASK, {
+    onCompleted: function() {
+      message.success("Updated task");
+      activeCaseStore!.loadActiveCase();
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Failed to update task",
         description: error.message
       });
       activeCaseStore!.loadActiveCase();
@@ -53,7 +68,16 @@ function SortableComponent({ existingTasks, activeCaseStore }: Props) {
     <SortableList
       orderedTasks={orderedTasks}
       onSortEnd={onSortEnd}
-      markTaskAsDone={activeCaseStore!.markTaskAsDone}
+      markTaskAsDone={(taskId, done) =>
+        updateTask({
+          variables: {
+            input: {
+              taskId: taskId,
+              done: done
+            }
+          }
+        })
+      }
     />
   );
 }
