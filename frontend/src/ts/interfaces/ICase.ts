@@ -7,6 +7,7 @@ import ITag from "ts/interfaces/ITag";
 import ITask from "ts/interfaces/ITask";
 import ITaskGroup from "ts/interfaces/ITaskGroup";
 import IUser from "ts/interfaces/IUser";
+import IAudit from "./IAudit";
 
 interface ICase {
   id: number;
@@ -29,6 +30,7 @@ interface ICase {
   completedTaskCount: number;
   totalTaskCount: number;
   taskGroups: ITaskGroup[];
+  audits: IAudit[];
 }
 
 export default ICase;
