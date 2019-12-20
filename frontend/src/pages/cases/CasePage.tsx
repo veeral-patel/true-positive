@@ -111,7 +111,7 @@ export default inject(
                 </div>
                 <div style={{ display: "flex" }}>
                   <div
-                    style={{ flex: 7, overflow: "hidden", borderRadius: "8px" }}
+                    style={{ flex: 5, overflow: "hidden", borderRadius: "8px" }}
                   >
                     <Router>
                       <Info path="/" />
@@ -142,16 +142,26 @@ export default inject(
                       >
                         History
                       </Text>
-                      <Empty
-                        description={
-                          <div>
-                            <p>No History</p>
-                            <p style={{ color: "#bfbfbf" }}>
-                              Changes you make to this case will appear here.
-                            </p>
-                          </div>
-                        }
-                      />
+                      {activeCaseStore!.activeCase &&
+                        (activeCaseStore!.activeCase.audits.length === 0 ? (
+                          <Empty
+                            description={
+                              <div>
+                                <p>No History</p>
+                                <p style={{ color: "#bfbfbf" }}>
+                                  Changes you make to this case will appear
+                                  here.
+                                </p>
+                              </div>
+                            }
+                          />
+                        ) : (
+                          <>
+                            {activeCaseStore!.activeCase.audits.map(audit => (
+                              <div>{audit.readableMessage}</div>
+                            ))}
+                          </>
+                        ))}
                     </Content>
                   </div>
                 </div>

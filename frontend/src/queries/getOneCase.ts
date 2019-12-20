@@ -113,7 +113,7 @@ const GET_ONE_CASE = gql`
       audits {
         id
         createdAt
-        friendlyMessage
+        readableMessage
       }
     }
   }
