@@ -1,6 +1,7 @@
 {
   "docs": {
     "Work with Cases": [
+      "work_with_cases/overview",
       "work_with_cases/create_a_case",
       "work_with_cases/merge_cases",
       "work_with_cases/manage_tasks",
