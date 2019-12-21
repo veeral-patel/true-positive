@@ -2,6 +2,8 @@
   "docs": {
     "Work with Cases": [
       "work_with_cases/manage_tasks",
+      "work_with_cases/manage_indicators",
+      "work_with_cases/restrict_access",
       "work_with_cases/history"
     ],
     "Administer": [

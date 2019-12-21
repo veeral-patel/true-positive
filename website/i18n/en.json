@@ -45,9 +45,17 @@
         "title": "History",
         "sidebar_label": "History"
       },
+      "work_with_cases/manage_indicators": {
+        "title": "Manage Indicators",
+        "sidebar_label": "Manage Indicators"
+      },
       "work_with_cases/manage_tasks": {
         "title": "Manage Tasks",
         "sidebar_label": "Manage Tasks"
+      },
+      "work_with_cases/restrict_access": {
+        "title": "Restrict Access",
+        "sidebar_label": "Restrict Access"
       }
     },
     "links": {},
