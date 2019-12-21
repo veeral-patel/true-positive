@@ -1,5 +1,5 @@
 {
   "docs": {
-    "API": ["api/get_started"]
+    "API": ["api/get_started", "api/webhooks"]
   }
 }

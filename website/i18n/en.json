@@ -8,6 +8,10 @@
       "api/get_started": {
         "title": "Get Started",
         "sidebar_label": "Get Started"
+      },
+      "api/webhooks": {
+        "title": "Webhooks",
+        "sidebar_label": "Webhooks"
       }
     },
     "links": {},
