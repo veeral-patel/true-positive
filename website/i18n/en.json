@@ -45,6 +45,10 @@
         "title": "Create a Case",
         "sidebar_label": "Create a Case"
       },
+      "work_with_cases/delete_a_case": {
+        "title": "Delete a Case",
+        "sidebar_label": "Delete a Case"
+      },
       "work_with_cases/history": {
         "title": "History",
         "sidebar_label": "History"
@@ -56,6 +60,10 @@
       "work_with_cases/manage_tasks": {
         "title": "Manage Tasks",
         "sidebar_label": "Manage Tasks"
+      },
+      "work_with_cases/merge_cases": {
+        "title": "Merge Cases",
+        "sidebar_label": "Merge Cases"
       },
       "work_with_cases/restrict_access": {
         "title": "Restrict Access",

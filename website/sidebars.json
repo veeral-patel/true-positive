@@ -2,10 +2,12 @@
   "docs": {
     "Work with Cases": [
       "work_with_cases/create_a_case",
+      "work_with_cases/merge_cases",
       "work_with_cases/manage_tasks",
       "work_with_cases/manage_indicators",
       "work_with_cases/restrict_access",
-      "work_with_cases/history"
+      "work_with_cases/history",
+      "work_with_cases/delete_a_case"
     ],
     "Administer": [
       "administer/customize_statuses_and_priorities",
