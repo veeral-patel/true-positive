@@ -5,6 +5,18 @@
     "previous": "Previous",
     "tagline": "",
     "docs": {
+      "administer/customize_statuses_and_priorities": {
+        "title": "Customize Statuses/Priorities",
+        "sidebar_label": "Customize Statuses/Priorities"
+      },
+      "administer/manage_forms": {
+        "title": "Manage Forms",
+        "sidebar_label": "Manage Forms"
+      },
+      "administer/manage_templates": {
+        "title": "Manage Templates",
+        "sidebar_label": "Manage Templates"
+      },
       "api/errors": {
         "title": "Errors",
         "sidebar_label": "Errors"
@@ -29,31 +41,19 @@
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
       },
-      "manage/customize_statuses_and_priorities": {
-        "title": "Customize Statuses/Priorities",
-        "sidebar_label": "Customize Statuses/Priorities"
-      },
-      "manage/manage_forms": {
-        "title": "Forms",
-        "sidebar_label": "Forms"
-      },
-      "manage/manage_templates": {
-        "title": "Templates",
-        "sidebar_label": "Templates"
-      },
       "work_with_cases/history": {
         "title": "History",
         "sidebar_label": "History"
       },
-      "work_with_cases/tasks": {
-        "title": "Tasks",
-        "sidebar_label": "Tasks"
+      "work_with_cases/manage_tasks": {
+        "title": "Manage Tasks",
+        "sidebar_label": "Manage Tasks"
       }
     },
     "links": {},
     "categories": {
       "Work with Cases": "Work with Cases",
-      "Manage": "Manage",
+      "Administer": "Administer",
       "API": "API"
     }
   },
