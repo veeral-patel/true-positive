@@ -32,6 +32,14 @@
       "manage/customize_statuses_and_priorities": {
         "title": "Customize Statuses/Priorities",
         "sidebar_label": "Customize Statuses/Priorities"
+      },
+      "manage/manage_forms": {
+        "title": "Forms",
+        "sidebar_label": "Forms"
+      },
+      "manage/manage_templates": {
+        "title": "Templates",
+        "sidebar_label": "Templates"
       }
     },
     "links": {},

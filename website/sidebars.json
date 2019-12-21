@@ -1,6 +1,10 @@
 {
   "docs": {
-    "Manage": ["manage/customize_statuses_and_priorities"],
+    "Manage": [
+      "manage/customize_statuses_and_priorities",
+      "manage/manage_forms",
+      "manage/manage_templates"
+    ],
     "API": [
       "api/get_started",
       "api/pagination",
