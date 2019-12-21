@@ -25,7 +25,7 @@ const siteConfig = {
   //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
-  headerLinks: [{ doc: "doc1", label: "Docs" }],
+  headerLinks: [],
 
   /* path to images for header/footer */
   headerIcon: "",
