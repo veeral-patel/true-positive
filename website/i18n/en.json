@@ -53,9 +53,21 @@
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
       },
+      "integrations/custom": {
+        "title": "Custom",
+        "sidebar_label": "Custom"
+      },
       "integrations/elastalert": {
         "title": "ElastAlert",
         "sidebar_label": "ElastAlert"
+      },
+      "integrations/overview": {
+        "title": "Overview",
+        "sidebar_label": "Overview"
+      },
+      "integrations/splunk": {
+        "title": "Splunk",
+        "sidebar_label": "Splunk"
       },
       "work_with_cases/create_a_case": {
         "title": "Create a Case",

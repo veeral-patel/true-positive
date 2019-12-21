@@ -19,7 +19,12 @@
       "administer/manage_users",
       "administer/billing"
     ],
-    "Integrations": ["integrations/overview", "integrations/elastalert"],
+    "Integrations": [
+      "integrations/overview",
+      "integrations/elastalert",
+      "integrations/splunk",
+      "integrations/custom"
+    ],
     "API": [
       "api/get_started",
       "api/pagination",
