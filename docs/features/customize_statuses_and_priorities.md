@@ -28,3 +28,5 @@ your organization.
 Instead of `Low`/`Medium`/`High`, here are some other priority schemes you might use:
 
 - `P0`/`P1`/`P2` - see [this article](https://www.bluelabellabs.com/blog/a-primer-on-prioritization/)
+- `Low`/`Medium`/`High`/`Critical` - see [this article](https://www.atlassian.com/trust/security/security-severity-levels)
+- A custom scheme based on your risk assessment methodology
