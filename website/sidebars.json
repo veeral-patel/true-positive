@@ -2,6 +2,8 @@
   "docs": {
     "API": [
       "api/get_started",
+      "api/pagination",
+      "api/errors",
       "api/webhooks",
       "api/python_sdk",
       "api/playground"
