@@ -53,9 +53,13 @@
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
       },
-      "integrations/custom": {
-        "title": "Custom",
-        "sidebar_label": "Custom"
+      "get_started/quickstart": {
+        "title": "Quickstart",
+        "sidebar_label": "Quickstart"
+      },
+      "integrations/custom_webhooks": {
+        "title": "Custom Webhooks",
+        "sidebar_label": "Custom Webhooks"
       },
       "integrations/elastalert": {
         "title": "ElastAlert",
