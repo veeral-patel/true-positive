@@ -9,6 +9,10 @@
         "title": "Get Started",
         "sidebar_label": "Get Started"
       },
+      "api/python_sdk": {
+        "title": "Python SDK",
+        "sidebar_label": "Python SDK"
+      },
       "api/webhooks": {
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
