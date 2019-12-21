@@ -53,6 +53,10 @@
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
       },
+      "integrations/elastalert": {
+        "title": "ElastAlert",
+        "sidebar_label": "ElastAlert"
+      },
       "work_with_cases/create_a_case": {
         "title": "Create a Case",
         "sidebar_label": "Create a Case"
