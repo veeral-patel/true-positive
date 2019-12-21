@@ -21,9 +21,16 @@
     ],
     "Integrations": [
       "integrations/overview",
-      "integrations/elastalert",
-      "integrations/splunk",
-      "integrations/custom"
+      {
+        "type": "subcategory",
+        "label": "Create Cases",
+        "ids": [
+          "integrations/elastalert",
+          "integrations/splunk",
+          "integrations/email",
+          "integrations/custom_webhooks"
+        ]
+      }
     ],
     "API": [
       "api/get_started",

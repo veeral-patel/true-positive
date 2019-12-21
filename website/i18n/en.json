@@ -61,6 +61,10 @@
         "title": "ElastAlert",
         "sidebar_label": "ElastAlert"
       },
+      "integrations/email": {
+        "title": "Email",
+        "sidebar_label": "Email"
+      },
       "integrations/overview": {
         "title": "Overview",
         "sidebar_label": "Overview"
