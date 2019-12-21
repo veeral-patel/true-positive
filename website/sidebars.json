@@ -1,5 +1,6 @@
 {
   "docs": {
+    "Get Started": [],
     "Work with Cases": [
       "work_with_cases/overview",
       "work_with_cases/create_a_case",
@@ -18,6 +19,7 @@
       "administer/manage_users",
       "administer/billing"
     ],
+    "Integrations": [],
     "API": [
       "api/get_started",
       "api/pagination",

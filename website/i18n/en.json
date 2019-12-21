@@ -25,6 +25,10 @@
         "title": "Manage Users",
         "sidebar_label": "Manage Users"
       },
+      "administer/overview": {
+        "title": "Overview",
+        "sidebar_label": "Overview"
+      },
       "api/errors": {
         "title": "Errors",
         "sidebar_label": "Errors"
@@ -84,8 +88,10 @@
     },
     "links": {},
     "categories": {
+      "Get Started": "Get Started",
       "Work with Cases": "Work with Cases",
       "Administer": "Administer",
+      "Integrations": "Integrations",
       "API": "API"
     }
   },
