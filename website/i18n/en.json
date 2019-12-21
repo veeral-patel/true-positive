@@ -28,10 +28,15 @@
       "api/webhooks": {
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
+      },
+      "features/customize_statuses_and_priorities": {
+        "title": "Customize Statuses/Priorities",
+        "sidebar_label": "Customize Statuses/Priorities"
       }
     },
     "links": {},
     "categories": {
+      "Features": "Features",
       "API": "API"
     }
   },

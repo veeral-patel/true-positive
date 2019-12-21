@@ -6,7 +6,7 @@ sidebar_label: Customize Statuses/Priorities
 
 Every case in True Positive has a status and a priority.
 
-# Default statuses/priorities
+## Default statuses/priorities
 
 True Positive ships with these three statuses out of the box:
 
@@ -23,7 +23,7 @@ And these three priorities:
 However, you can add, rename, and delete the default statuses and priorities to fit
 your organization.
 
-# Customize priorities
+## Customize priorities
 
 Instead of `Low`/`Medium`/`High`, here are some other priority schemes you might use:
 
