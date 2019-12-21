@@ -5,14 +5,14 @@
     "previous": "Previous",
     "tagline": "",
     "docs": {
-      "doc1": {
-        "title": "Latin-ish",
-        "sidebar_label": "Example Page"
+      "api/get_started": {
+        "title": "Get Started",
+        "sidebar_label": "Get Started"
       }
     },
     "links": {},
     "categories": {
-      "Docusaurus": "Docusaurus"
+      "api": "api"
     }
   },
   "pages-strings": {
