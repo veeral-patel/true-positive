@@ -1,5 +1,6 @@
 {
   "docs": {
+    "Work with Cases": ["work_with_cases/tasks", "work_with_cases/history"],
     "Manage": [
       "manage/customize_statuses_and_priorities",
       "manage/manage_forms",

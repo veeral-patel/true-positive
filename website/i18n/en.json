@@ -40,10 +40,19 @@
       "manage/manage_templates": {
         "title": "Templates",
         "sidebar_label": "Templates"
+      },
+      "work_with_cases/history": {
+        "title": "History",
+        "sidebar_label": "History"
+      },
+      "work_with_cases/tasks": {
+        "title": "Tasks",
+        "sidebar_label": "Tasks"
       }
     },
     "links": {},
     "categories": {
+      "Work with Cases": "Work with Cases",
       "Manage": "Manage",
       "API": "API"
     }
