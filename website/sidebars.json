@@ -11,6 +11,7 @@
       "work_with_cases/delete_a_case"
     ],
     "Administer": [
+      "administer/overview",
       "administer/customize_statuses_and_priorities",
       "administer/manage_forms",
       "administer/manage_templates",
