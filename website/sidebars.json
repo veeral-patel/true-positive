@@ -13,7 +13,9 @@
     "Administer": [
       "administer/customize_statuses_and_priorities",
       "administer/manage_forms",
-      "administer/manage_templates"
+      "administer/manage_templates",
+      "administer/manage_users",
+      "administer/billing"
     ],
     "API": [
       "api/get_started",

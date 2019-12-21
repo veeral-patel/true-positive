@@ -5,6 +5,10 @@
     "previous": "Previous",
     "tagline": "",
     "docs": {
+      "administer/billing": {
+        "title": "Billing",
+        "sidebar_label": "Billing"
+      },
       "administer/customize_statuses_and_priorities": {
         "title": "Customize Statuses/Priorities",
         "sidebar_label": "Customize Statuses/Priorities"
@@ -16,6 +20,10 @@
       "administer/manage_templates": {
         "title": "Manage Templates",
         "sidebar_label": "Manage Templates"
+      },
+      "administer/manage_users": {
+        "title": "Manage Users",
+        "sidebar_label": "Manage Users"
       },
       "api/errors": {
         "title": "Errors",
@@ -64,6 +72,10 @@
       "work_with_cases/merge_cases": {
         "title": "Merge Cases",
         "sidebar_label": "Merge Cases"
+      },
+      "work_with_cases/overview": {
+        "title": "Overview",
+        "sidebar_label": "Overview"
       },
       "work_with_cases/restrict_access": {
         "title": "Restrict Access",
