@@ -5,9 +5,21 @@
     "previous": "Previous",
     "tagline": "",
     "docs": {
+      "api/errors": {
+        "title": "Errors",
+        "sidebar_label": "Errors"
+      },
       "api/get_started": {
         "title": "Get Started",
         "sidebar_label": "Get Started"
+      },
+      "api/pagination": {
+        "title": "Pagination",
+        "sidebar_label": "Pagination"
+      },
+      "api/playground": {
+        "title": "Playground",
+        "sidebar_label": "Playground"
       },
       "api/python_sdk": {
         "title": "Python SDK",

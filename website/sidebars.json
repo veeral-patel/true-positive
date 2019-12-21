@@ -1,5 +1,10 @@
 {
   "docs": {
-    "API": ["api/get_started", "api/webhooks", "api/python_sdk"]
+    "API": [
+      "api/get_started",
+      "api/webhooks",
+      "api/python_sdk",
+      "api/playground"
+    ]
   }
 }
