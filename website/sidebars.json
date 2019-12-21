@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Features": ["features/customize_statuses_and_priorities"],
+    "Manage": ["manage/customize_statuses_and_priorities"],
     "API": [
       "api/get_started",
       "api/pagination",
