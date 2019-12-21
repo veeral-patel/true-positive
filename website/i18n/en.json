@@ -22,13 +22,9 @@
         "title": "Fifth Document"
       }
     },
-    "links": {
-      "Docs": "Docs"
-    },
+    "links": {},
     "categories": {
-      "Docusaurus": "Docusaurus",
-      "First Category": "First Category",
-      "Second Category": "Second Category"
+      "Docusaurus": "Docusaurus"
     }
   },
   "pages-strings": {

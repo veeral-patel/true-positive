@@ -9,7 +9,7 @@
 // site configuration options.
 
 const siteConfig = {
-  title: "Test Site", // Title for your website.
+  title: "", // Title for your website.
   tagline: "A website for testing",
   url: "https://your-docusaurus-test-site.com", // Your website URL
   baseUrl: "/", // Base URL for your project */
@@ -28,13 +28,13 @@ const siteConfig = {
   headerLinks: [],
 
   /* path to images for header/footer */
-  headerIcon: "",
+  headerIcon: "img/tp_logo_white.png",
   footerIcon: "",
   favicon: "",
 
   /* Colors for website */
   colors: {
-    primaryColor: "#145368",
+    primaryColor: "#2B6CB0",
     secondaryColor: "#0e3a48"
   },
 
