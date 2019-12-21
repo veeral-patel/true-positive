@@ -41,6 +41,10 @@
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
       },
+      "work_with_cases/create_a_case": {
+        "title": "Create a Case",
+        "sidebar_label": "Create a Case"
+      },
       "work_with_cases/history": {
         "title": "History",
         "sidebar_label": "History"
