@@ -152,11 +152,14 @@ export default inject(
             <DescriptionEditor
               initialValue={activeTask.description}
               updateValue={newDescription =>
-                activeCaseStore!.changeDescription(
-                  activeTask.id,
-                  newDescription,
-                  "TASK"
-                )
+                updateTask({
+                  variables: {
+                    input: {
+                      taskId: activeTask.id,
+                      description: newDescription
+                    }
+                  }
+                })
               }
             />
           </section>
