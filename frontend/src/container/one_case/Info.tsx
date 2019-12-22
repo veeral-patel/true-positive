@@ -168,7 +168,16 @@ function Info(props: InfoProps) {
             <Col span={20}>
               <EditableTagList
                 existingTags={activeCase.tags}
-                handleFinish={() => void 0}
+                handleFinish={newTags =>
+                  updateCase({
+                    variables: {
+                      input: {
+                        caseId: activeCase.id,
+                        tags: newTags
+                      }
+                    }
+                  })
+                }
               />
             </Col>
           </Row>
