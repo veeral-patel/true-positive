@@ -4,4 +4,8 @@ title: History
 sidebar_label: History
 ---
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+True Positive records all the changes you make to a case. This is useful for:
+
+- Reporting: See how a case evolved over time.
+- Context: As someone who's just been added to a case, catch up on what's happened so far.
+- Security: Identify if someone maliciously tampered with a case.
