@@ -4,7 +4,6 @@ import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import ADD_MEMBER from "mutations/addMember";
 import CHANGE_ROLE from "mutations/changeRole";
-import CHANGE_TAGS from "mutations/changeTags";
 import CREATE_A_COMMENT from "mutations/createComment";
 import CREATE_STRING_INDICATOR from "mutations/createStringIndicator";
 import CREATE_A_TASK from "mutations/createTask";
@@ -327,39 +326,6 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while adding the member",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
-  @action.bound
-  changeTags(
-    tags: string[],
-    objectId: number,
-    type: "CASE" | "TASK" | "INDICATOR"
-  ) {
-    client
-      .mutate({
-        variables: {
-          input: {
-            tags,
-            objectId,
-            type
-          }
-        },
-        mutation: CHANGE_TAGS
-      })
-      .then((response: FetchResult) => {
-        message.success("Updated tags");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while updating tags",
           description: error.message
         });
       })

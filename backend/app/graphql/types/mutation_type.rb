@@ -22,9 +22,6 @@ module Types
       field :update_indicator, mutation: Mutations::UpdateIndicator
       field :delete_indicator, mutation: Mutations::DeleteIndicator
 
-      # case, indicator --------
-      field :change_tags, mutation: Mutations::ChangeTags
-
       # comment --------
       field :create_comment, mutation: Mutations::CreateComment
       field :update_comment, mutation: Mutations::UpdateComment
