@@ -22,7 +22,7 @@ module Types
       field :update_indicator, mutation: Mutations::UpdateIndicator
       field :delete_indicator, mutation: Mutations::DeleteIndicator
 
-      # case, task, or indicator --------
+      # case, indicator --------
       field :change_tags, mutation: Mutations::ChangeTags
 
       # comment --------
