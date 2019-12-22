@@ -61,23 +61,23 @@
         "title": "Quickstart",
         "sidebar_label": "Quickstart"
       },
-      "integrations/custom_webhooks": {
+      "integrations/create_cases/custom_webhooks": {
         "title": "Custom Webhooks",
         "sidebar_label": "Custom Webhooks"
       },
-      "integrations/elastalert": {
+      "integrations/create_cases/elastalert": {
         "title": "ElastAlert",
         "sidebar_label": "ElastAlert"
       },
-      "integrations/email": {
+      "integrations/create_cases/email": {
         "title": "Email",
         "sidebar_label": "Email"
       },
-      "integrations/overview": {
+      "integrations/create_cases/overview": {
         "title": "Overview",
         "sidebar_label": "Overview"
       },
-      "integrations/splunk": {
+      "integrations/create_cases/splunk": {
         "title": "Splunk",
         "sidebar_label": "Splunk"
       },

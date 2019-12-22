@@ -20,15 +20,15 @@
       "administer/billing"
     ],
     "Integrations": [
-      "integrations/overview",
       {
         "type": "subcategory",
         "label": "Create Cases",
         "ids": [
-          "integrations/elastalert",
-          "integrations/splunk",
-          "integrations/email",
-          "integrations/custom_webhooks"
+          "integrations/create_cases/overview",
+          "integrations/create_cases/elastalert",
+          "integrations/create_cases/splunk",
+          "integrations/create_cases/email",
+          "integrations/create_cases/custom_webhooks"
         ]
       }
     ],
