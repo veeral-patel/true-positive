@@ -133,7 +133,14 @@ export default inject(
                 <EditableAssigneeTag
                   user={activeTask.assignedTo}
                   handleSelect={username =>
-                    activeCaseStore!.changeTaskAssignee(activeTask.id, username)
+                    updateTask({
+                      variables: {
+                        input: {
+                          taskId: activeTask.id,
+                          assignedTo: username
+                        }
+                      }
+                    })
                   }
                 />
               </Col>

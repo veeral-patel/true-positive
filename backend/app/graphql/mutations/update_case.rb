@@ -53,6 +53,7 @@ class Mutations::UpdateCase < Mutations::BaseMutation
         the_case.priority = find_priority_by_name_or_throw_execution_error(priority_name: priority) if not priority.nil?
         the_case.tags = tags if not tags.nil?
         the_case.reason_for_merging = reason_for_merging if not reason_for_merging.nil?
+
         unless assigned_to.nil?
             if assigned_to === "NA"
                 the_case.assigned_to = nil

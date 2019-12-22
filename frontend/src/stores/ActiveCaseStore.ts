@@ -3,7 +3,6 @@ import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import ADD_MEMBER from "mutations/addMember";
-import CHANGE_ASSIGNEE from "mutations/changeAssignee";
 import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_AN_INDICATOR from "mutations/changeIndicator";
 import CHANGE_ROLE from "mutations/changeRole";
@@ -21,7 +20,6 @@ import GET_ONE_CASE from "queries/getOneCase";
 import ICase from "ts/interfaces/ICase";
 import IIndicator from "ts/interfaces/IIndicator";
 import ITask from "ts/interfaces/ITask";
-import { NO_ASSIGNED_USER } from "utils/constants";
 import getUsernameOfCurrentUser from "utils/currentUser";
 
 interface ICaseDatum {
@@ -245,38 +243,6 @@ class ActiveCaseStore {
         })
       );
   }
-
-  @action.bound
-  changeTaskAssignee(taskId: number, username: string | null) {
-    if (username === NO_ASSIGNED_USER) username = null;
-
-    client
-      .mutate({
-        variables: {
-          input: {
-            objectId: taskId,
-            username,
-            type: "TASK"
-          }
-        },
-        mutation: CHANGE_ASSIGNEE
-      })
-      .then((response: FetchResult) => {
-        message.success("Assigned the task");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while assigning the task",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
   @action.bound
   changeDescription(objectId: number, newDescription: string, type: string) {
     // if the user wants to make the description empty

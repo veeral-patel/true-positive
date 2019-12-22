@@ -9,6 +9,10 @@ class Mutations::UpdateTask < Mutations::BaseMutation
         description "New name for this task"
     end
 
+    argument :assigned_to, String, required: false do
+        description "Username of the user to assign to this task, or 'NA' to assign to no one."
+    end
+
     argument :done, Boolean, required: false do
         description "Whether to mark this task as done or not."
     end
@@ -17,7 +21,7 @@ class Mutations::UpdateTask < Mutations::BaseMutation
         description "The updated task"
     end
 
-    def resolve(task_id:, name: nil, done: nil)
+    def resolve(task_id:, name: nil, assigned_to: nil, done: nil)
         # find the task
         the_task = find_task_or_throw_execution_error(task_id: task_id)
 
@@ -29,6 +33,14 @@ class Mutations::UpdateTask < Mutations::BaseMutation
         # update the task in memory
         the_task.name = name if not name.nil?
         the_task.done = done if not done.nil?
+
+        unless assigned_to.nil?
+            if assigned_to === "NA"
+                the_task.assigned_to = nil
+            else
+                the_task.assigned_to = find_user_or_throw_execution_error(username: assigned_to)
+            end
+        end
 
         # save the task
         if the_task.save

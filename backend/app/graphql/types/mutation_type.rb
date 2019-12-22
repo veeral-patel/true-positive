@@ -17,9 +17,6 @@ module Types
       field :delete_task, mutation: Mutations::DeleteTask
       field :change_task_position, mutation: Mutations::ChangeTaskPosition
 
-      # case or task --------
-      field :change_assignee, mutation: Mutations::ChangeAssignee
-
       # indicator --------
       field :create_string_indicator, mutation: Mutations::CreateStringIndicator
       field :update_indicator, mutation: Mutations::UpdateIndicator
