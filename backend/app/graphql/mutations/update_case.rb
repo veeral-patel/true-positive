@@ -21,6 +21,10 @@ class Mutations::UpdateCase < Mutations::BaseMutation
         description "Name of the new priority for this case."
     end
 
+    argument :assigned_to, String, required: false do
+        description "Username of the user to assign to this case."
+    end
+
     argument :tags, [String], required: false do
         description "New list of tags for this case."
     end
@@ -33,7 +37,7 @@ class Mutations::UpdateCase < Mutations::BaseMutation
         description "The updated case"
     end
 
-    def resolve(case_id:, name: nil, description: nil, status: nil, priority: nil, tags: nil, reason_for_merging: nil)
+    def resolve(case_id:, name: nil, description: nil, status: nil, priority: nil, assigned_to: nil, tags: nil, reason_for_merging: nil)
         # find the case
         the_case = find_case_or_throw_execution_error(case_id: case_id)
 
@@ -49,6 +53,7 @@ class Mutations::UpdateCase < Mutations::BaseMutation
         the_case.priority = find_priority_by_name_or_throw_execution_error(priority_name: priority) if not priority.nil?
         the_case.tags = tags if not tags.nil?
         the_case.reason_for_merging = reason_for_merging if not reason_for_merging.nil?
+        the_case.assigned_to = find_user_or_throw_execution_error(username: assigned_to) if not assigned_to.nil?
 
         # save the case
         if the_case.save

@@ -247,37 +247,6 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeCaseAssignee(username: string | null) {
-    if (username === NO_ASSIGNED_USER) username = null;
-
-    client
-      .mutate<ICaseDatum>({
-        variables: {
-          input: {
-            objectId: this.activeCaseId,
-            username,
-            type: "CASE"
-          }
-        },
-        mutation: CHANGE_ASSIGNEE
-      })
-      .then((response: FetchResult<ICaseDatum>) => {
-        message.success("Assigned the case");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while assigning the case",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
-  @action.bound
   changeTaskAssignee(taskId: number, username: string | null) {
     if (username === NO_ASSIGNED_USER) username = null;
 
