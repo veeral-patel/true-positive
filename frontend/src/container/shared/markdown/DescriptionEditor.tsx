@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import converter from "container/shared/markdown/converter";
+import loadSuggestions from "container/shared/markdown/loadSuggestions";
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import ReactMde from "react-mde";
@@ -33,6 +34,7 @@ function DescriptionEditor({ initialValue, updateValue, uiStore }: Props) {
         generateMarkdownPreview={markdown =>
           Promise.resolve(converter.makeHtml(markdown))
         }
+        loadSuggestions={loadSuggestions}
       />
       <div style={{ marginTop: "1.5em" }} />
       {selectedTab === "write" && (
