@@ -9,11 +9,15 @@ class Mutations::UpdateIndicator < Mutations::BaseMutation
         description "New name for this indicator."
     end
 
+    argument :description, String, required: false do
+        description "New description for this indicator."
+    end
+
     field :indicator, Types::IndicatorType, null: true do
         description "The updated indicator."
     end
 
-    def resolve(id:, name: nil)
+    def resolve(id:, name: nil, description: nil)
         # find the indicator
         indicator = find_indicator_or_throw_execution_error(indicator_id: id)
 
@@ -24,6 +28,7 @@ class Mutations::UpdateIndicator < Mutations::BaseMutation
 
         # update the indicator in memory
         indicator.name = name if not name.nil?
+        indicator.description = description if not description.nil?
 
         # save the indicator
         if indicator.save

@@ -184,11 +184,14 @@ export default inject(
             <DescriptionEditor
               initialValue={activeIndicator.description}
               updateValue={newDescription =>
-                activeCaseStore!.changeDescription(
-                  activeIndicator.id,
-                  newDescription,
-                  "INDICATOR"
-                )
+                updateIndicator({
+                  variables: {
+                    input: {
+                      id: activeIndicator.id,
+                      description: newDescription
+                    }
+                  }
+                })
               }
             />
           </section>

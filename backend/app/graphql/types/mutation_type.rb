@@ -24,7 +24,6 @@ module Types
       field :change_indicator, mutation: Mutations::ChangeIndicator
 
       # case, task, or indicator --------
-      field :change_description, mutation: Mutations::ChangeDescription
       field :change_tags, mutation: Mutations::ChangeTags
 
       # comment --------

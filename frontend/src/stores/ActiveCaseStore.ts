@@ -3,7 +3,6 @@ import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import ADD_MEMBER from "mutations/addMember";
-import CHANGE_DESCRIPTION from "mutations/changeDescription";
 import CHANGE_AN_INDICATOR from "mutations/changeIndicator";
 import CHANGE_ROLE from "mutations/changeRole";
 import CHANGE_TAGS from "mutations/changeTags";
@@ -234,37 +233,6 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while deleting the indicator",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-  @action.bound
-  changeDescription(objectId: number, newDescription: string, type: string) {
-    // if the user wants to make the description empty
-    const description = newDescription ? newDescription : "";
-
-    client
-      .mutate({
-        variables: {
-          input: {
-            objectId,
-            type,
-            description
-          }
-        },
-        mutation: CHANGE_DESCRIPTION
-      })
-      .then((response: FetchResult) => {
-        message.success("Updated the description");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "Couldn't update the description",
           description: error.message
         });
       })
