@@ -4,7 +4,6 @@ import { inject, observer } from "mobx-react";
 import ListOfTagsP from "presentational/shared/tags/ListOfTagsP";
 import GET_TAGS from "queries/getTags";
 import React, { useState } from "react";
-import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITag from "ts/interfaces/ITag";
 
 const { Option } = Select;
@@ -15,14 +14,8 @@ interface FormProps {
   /* the list of existing tags this case/task/etc posseses */
   existingTags: ITag[];
 
-  /* used for the 'update tags' operation */
-  activeCaseStore?: ActiveCaseStore;
-
-  /* the ID of the task or case we're commenting on */
-  objectId: number | null;
-
-  /* the type of object we're commenting on */
-  type: "CASE" | "TASK" | "INDICATOR";
+  /* Called to update the list of tags on the server */
+  handleFinish: (tags: string[]) => void;
 
   /* function that's called when you click Cancel */
   handleCancel: () => void;
@@ -33,8 +26,11 @@ interface TagData {
 }
 
 const EditTagsForm = inject("activeCaseStore")(
-  observer(function InnerForm(props: FormProps) {
-    const { objectId, activeCaseStore, type, existingTags } = props;
+  observer(function InnerForm({
+    handleFinish,
+    existingTags,
+    handleCancel
+  }: FormProps) {
     const { loading, error, data } = useQuery<TagData>(GET_TAGS);
 
     let allTagOptions: React.ReactNode[] = [];
@@ -63,10 +59,7 @@ const EditTagsForm = inject("activeCaseStore")(
       <Form
         colon={false}
         layout="vertical"
-        onFinish={values => {
-          if (objectId)
-            activeCaseStore!.changeTags(values.tags, objectId, type);
-        }}
+        onFinish={values => handleFinish(values.tags)}
         initialValues={{
           tags: existingTags.map(tag => tag.name)
         }}
@@ -85,7 +78,7 @@ const EditTagsForm = inject("activeCaseStore")(
           <>
             <Button
               type="link"
-              onClick={props.handleCancel}
+              onClick={handleCancel}
               style={{ paddingLeft: 0 }}
             >
               Cancel
@@ -104,21 +97,17 @@ interface ListProps {
   /* the list of existing tags this case/task/etc posseses */
   existingTags: ITag[];
 
-  /* the ID of the task or case we're commenting on */
-  objectId: number | null;
-
-  /* the type of object we're commenting on */
-  type: "CASE" | "TASK" | "INDICATOR";
+  /* Called to update the list of tags on the server */
+  handleFinish: (tags: string[]) => void;
 }
 
-function EditableTagList({ existingTags, objectId, type }: ListProps) {
+function EditableTagList({ existingTags, handleFinish }: ListProps) {
   const [editing, setEditing] = useState(false);
   if (editing) {
     return (
       <EditTagsForm
         existingTags={existingTags}
-        objectId={objectId}
-        type={type}
+        handleFinish={handleFinish}
         handleCancel={() => setEditing(false)}
       />
     );

@@ -168,8 +168,7 @@ function Info(props: InfoProps) {
             <Col span={20}>
               <EditableTagList
                 existingTags={activeCase.tags}
-                type="CASE"
-                objectId={activeCaseStore!.activeCaseId}
+                handleFinish={() => void 0}
               />
             </Col>
           </Row>

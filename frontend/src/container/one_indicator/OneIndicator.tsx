@@ -163,8 +163,7 @@ export default inject(
               <Col span={20}>
                 <EditableTagList
                   existingTags={activeIndicator.tags}
-                  type="INDICATOR"
-                  objectId={activeIndicator.id}
+                  handleFinish={() => void 0}
                 />
               </Col>
             </Row>
