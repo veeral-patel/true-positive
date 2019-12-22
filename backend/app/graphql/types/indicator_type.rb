@@ -1,6 +1,6 @@
 module Types
     class IndicatorType < Types::BaseObject
-        description "A string-based, file-based, or text-based indicator in a case."
+        description "An indicator in a case."
 
         field :id, ID, null: false do
             description "An unique integer identifying this indicator."

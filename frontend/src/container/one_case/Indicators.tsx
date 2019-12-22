@@ -59,14 +59,9 @@ export default inject(
               >
                 <section>
                   <h3>Indicators ({activeCase.indicators.length})</h3>
-                  <Paragraph>
-                    An indicator can be a string (like a file hash), a file, or
-                    text.
-                  </Paragraph>
                 </section>
                 <section>
-                  <div style={{ float: "right", marginBottom: "6px" }}></div>
-                  <div style={{ marginBottom: "2em" }}>
+                  <div style={{ marginBottom: "2em", marginTop: "1.5em" }}>
                     {/* for adding string indicators */}
                     <CreateIndicatorInput
                       handleEnter={(
