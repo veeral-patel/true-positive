@@ -132,10 +132,14 @@ export default inject(
                       ellipsis
                       editable={{
                         onChange: (newValue: string) =>
-                          activeCaseStore!.changeIndicatorValue(
-                            activeIndicator.id,
-                            newValue
-                          )
+                          updateIndicator({
+                            variables: {
+                              input: {
+                                id: activeIndicator.id,
+                                indicator: newValue
+                              }
+                            }
+                          })
                       }}
                     >
                       {truncateString(activeIndicator.indicator, 50)}

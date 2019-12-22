@@ -3,7 +3,6 @@ import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import ADD_MEMBER from "mutations/addMember";
-import CHANGE_AN_INDICATOR from "mutations/changeIndicator";
 import CHANGE_ROLE from "mutations/changeRole";
 import CHANGE_TAGS from "mutations/changeTags";
 import CREATE_A_COMMENT from "mutations/createComment";
@@ -456,34 +455,6 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while adding the indicator",
-          description: error.message
-        });
-      })
-      .finally(() =>
-        runInAction(() => {
-          this.loadActiveCase();
-        })
-      );
-  }
-
-  @action.bound
-  changeIndicatorValue(indicatorId: number, newValue: string) {
-    client
-      .mutate<ITaskDatum>({
-        variables: {
-          input: {
-            id: indicatorId,
-            indicator: newValue
-          }
-        },
-        mutation: CHANGE_AN_INDICATOR
-      })
-      .then((response: FetchResult<ITaskDatum>) => {
-        message.success("Updated the indicator");
-      })
-      .catch((error: ApolloError) => {
-        notification.error({
-          message: "An error occurred while updating the indicator",
           description: error.message
         });
       })

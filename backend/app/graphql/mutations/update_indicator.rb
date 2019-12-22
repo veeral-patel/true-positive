@@ -13,30 +13,35 @@ class Mutations::UpdateIndicator < Mutations::BaseMutation
         description "New description for this indicator."
     end
 
+    argument :indicator, String, required: false do
+        description "New indicator value associated with this indicator."
+    end
+
     field :indicator, Types::IndicatorType, null: true do
         description "The updated indicator."
     end
 
-    def resolve(id:, name: nil, description: nil)
+    def resolve(id:, name: nil, description: nil, indicator: nil)
         # find the indicator
-        indicator = find_indicator_or_throw_execution_error(indicator_id: id)
+        the_indicator = find_indicator_or_throw_execution_error(indicator_id: id)
 
         # authorize this action
-        unless IndicatorPolicy.new(context[:current_user], indicator).update_indicator?
+        unless IndicatorPolicy.new(context[:current_user], the_indicator).update_indicator?
             raise GraphQL::ExecutionError, "You are not authorized to update this indicator."
         end
 
         # update the indicator in memory
-        indicator.name = name if not name.nil?
-        indicator.description = description if not description.nil?
+        the_indicator.name = name if not name.nil?
+        the_indicator.description = description if not description.nil?
+        the_indicator.indicator = indicator if not indicator.nil?
 
         # save the indicator
-        if indicator.save
+        if the_indicator.save
             {
-                "indicator": indicator
+                "indicator": the_indicator
             }
         else
-            raise GraphQL::ExecutionError, indicator.errors.full_messages.join(" | ")
+            raise GraphQL::ExecutionError, the_indicator.errors.full_messages.join(" | ")
         end
     end
 end

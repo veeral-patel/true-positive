@@ -22,9 +22,8 @@ const IndicatorForm = inject("activeCaseStore")(
             colon={false}
             layout="vertical"
             onFinish={values => {
-              activeCaseStore!.changeIndicatorValue(
-                activeIndicator.id,
-                values.indicatorValue
+              alert(
+                "Error: Please add an API to update string indicator values before continuing."
               );
             }}
             initialValues={{
