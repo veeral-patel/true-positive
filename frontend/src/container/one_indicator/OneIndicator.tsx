@@ -163,7 +163,16 @@ export default inject(
               <Col span={20}>
                 <EditableTagList
                   existingTags={activeIndicator.tags}
-                  handleFinish={() => void 0}
+                  handleFinish={newTags =>
+                    updateIndicator({
+                      variables: {
+                        input: {
+                          id: activeIndicator.id,
+                          tags: newTags
+                        }
+                      }
+                    })
+                  }
                 />
               </Col>
             </Row>

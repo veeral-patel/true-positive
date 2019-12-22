@@ -13,6 +13,10 @@ class Mutations::UpdateIndicator < Mutations::BaseMutation
         description "New description for this indicator."
     end
 
+    argument :tags, [String], required: false do
+        description "New list of tags for this indicator."
+    end
+
     argument :indicator, String, required: false do
         description "New indicator value associated with this indicator."
     end
@@ -21,7 +25,7 @@ class Mutations::UpdateIndicator < Mutations::BaseMutation
         description "The updated indicator."
     end
 
-    def resolve(id:, name: nil, description: nil, indicator: nil)
+    def resolve(id:, name: nil, description: nil, tags: nil, indicator: nil)
         # find the indicator
         the_indicator = find_indicator_or_throw_execution_error(indicator_id: id)
 
@@ -33,6 +37,7 @@ class Mutations::UpdateIndicator < Mutations::BaseMutation
         # update the indicator in memory
         the_indicator.name = name if not name.nil?
         the_indicator.description = description if not description.nil?
+        the_indicator.tag_list = tags if not tags.nil?
         the_indicator.indicator = indicator if not indicator.nil?
 
         # save the indicator
