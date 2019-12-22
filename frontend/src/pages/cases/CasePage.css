@@ -43,3 +43,13 @@
 .dark.react-mde .mde-text {
   background-color: inherit !important;
 }
+
+.dark .mde-suggestions {
+  background-color: #262626;
+  color: white;
+  border: none;
+}
+
+.dark .mde-suggestions li {
+  border: none;
+}
