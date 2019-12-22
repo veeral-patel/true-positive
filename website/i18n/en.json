@@ -53,6 +53,10 @@
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
       },
+      "get_started/concepts": {
+        "title": "Concepts",
+        "sidebar_label": "Concepts"
+      },
       "get_started/quickstart": {
         "title": "Quickstart",
         "sidebar_label": "Quickstart"

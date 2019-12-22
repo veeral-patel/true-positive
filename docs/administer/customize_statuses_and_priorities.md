@@ -20,9 +20,10 @@ And these three priorities:
 - Medium
 - High
 
-However, you can add, rename, and delete the default statuses and priorities to fit
-your organization.
+## Customize
 
-## Customize priorities
+That being said, you can add/remove/rename statuses and priorities to fit your organization.
 
-Instead of `Low`/`Medium`/`High`, you may want a `P0`/`P1`/`P2` scheme or a custom scheme mapped to your risk assessment methodology.
+For example, cases in your organization might follow this flow: `Unacknowledged` -> `Under Investigation` -> `Writing Report` -> `Closed`. Great! Simply replace the existing statuses with these four statuses.
+
+Or you may want a `P0`/`P1`/`P2` priority scheme--or a scheme mapped to your org's risk management methodology. No problem: replace the default priorities with your scheme's priorities.

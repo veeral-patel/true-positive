@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Get Started": ["get_started/quickstart"],
+    "Get Started": ["get_started/quickstart", "get_started/concepts"],
     "Work with Cases": [
       "work_with_cases/overview",
       "work_with_cases/create_a_case",
