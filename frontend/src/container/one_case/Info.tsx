@@ -1,7 +1,21 @@
 import { CloseOutlined, EditOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
-import { Button, Col, Divider, Form, Input, Layout, List, message, Modal, notification, Popconfirm, Row, Tooltip } from "antd";
+import {
+  Button,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Layout,
+  List,
+  message,
+  Modal,
+  notification,
+  Popconfirm,
+  Row,
+  Tooltip
+} from "antd";
 import { ApolloError } from "apollo-boost";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
@@ -168,11 +182,14 @@ function Info(props: InfoProps) {
               <DescriptionEditor
                 initialValue={activeCase.description}
                 updateValue={newDescription =>
-                  activeCaseStore!.changeDescription(
-                    activeCase.id,
-                    newDescription,
-                    "CASE"
-                  )
+                  updateCase({
+                    variables: {
+                      input: {
+                        caseId: activeCase.id,
+                        description: newDescription
+                      }
+                    }
+                  })
                 }
               />
             </Col>
