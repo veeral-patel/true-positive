@@ -1,6 +1,15 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { navigate } from "@reach/router";
-import { Button, Form, Input, message, Modal, notification, Select, Tabs } from "antd";
+import {
+  Button,
+  Form,
+  Input,
+  message,
+  Modal,
+  notification,
+  Select,
+  Tabs
+} from "antd";
 import { ApolloError } from "apollo-boost";
 import "container/shared/modals/FormInModal.css";
 import { inject, observer } from "mobx-react";
@@ -144,7 +153,9 @@ interface CaseTemplateData {
 }
 
 interface MutationData {
-  case: ICase | null;
+  createCaseFromTemplate: {
+    case: ICase | null;
+  };
 }
 
 const FromTemplateForm = inject("allCasesStore")(
@@ -156,31 +167,41 @@ const FromTemplateForm = inject("allCasesStore")(
       GET_CASE_TEMPLATES
     );
 
-    const [createCaseFromTemplate, { data: mutationData }] = useMutation<
-      MutationData
-    >(CREATE_CASE_FROM_TEMPLATE, {
-      onCompleted: function() {
-        // Show success message
-        message.success("Created case");
+    const [createCaseFromTemplate] = useMutation<MutationData>(
+      CREATE_CASE_FROM_TEMPLATE,
+      {
+        onCompleted: function(mutationData) {
+          // Show success message
+          message.success("Created case");
 
-        // Load the list of cases again
-        allCasesStore!.loadCases();
+          // Load the list of cases again
+          allCasesStore!.loadCases();
 
-        // Close the Create Case modal
-        closeModal();
+          // Close the Create Case modal
+          closeModal();
 
-        // Navigate to the newly created case
-        if (mutationData && mutationData.case) {
-          navigate(getPathToACase(mutationData.case.id));
+          // Navigate to the newly created case
+
+          console.log(mutationData);
+
+          if (
+            mutationData &&
+            mutationData.createCaseFromTemplate &&
+            mutationData.createCaseFromTemplate.case
+          ) {
+            navigate(
+              getPathToACase(mutationData.createCaseFromTemplate.case.id)
+            );
+          }
+        },
+        onError: function(error: ApolloError) {
+          notification.error({
+            message: "Could not create case",
+            description: error.message
+          });
         }
-      },
-      onError: function(error: ApolloError) {
-        notification.error({
-          message: "Could not create case",
-          description: error.message
-        });
       }
-    });
+    );
 
     var templateOptions = [];
     if (loading) {
