@@ -163,8 +163,17 @@ function FromTemplateForm({ closeModal }: FromTemplateFormProps) {
 
   return (
     <Form colon={false} layout="vertical">
-      <Form.Item label="Template" name="template">
-        <Select placeholder="Choose a case template" showSearch>
+      <Form.Item
+        label="Template"
+        name="template"
+        rules={[
+          {
+            required: true,
+            message: "Please choose a template to initialize this case from"
+          }
+        ]}
+      >
+        <Select showSearch placeholder="Choose a case template">
           {templateOptions}
         </Select>
       </Form.Item>
