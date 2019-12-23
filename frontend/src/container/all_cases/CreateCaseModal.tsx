@@ -1,14 +1,19 @@
-import { useQuery } from "@apollo/react-hooks";
-import { Button, Form, Input, Modal, Select, Tabs } from "antd";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { navigate } from "@reach/router";
+import { Button, Form, Input, message, Modal, notification, Select, Tabs } from "antd";
+import { ApolloError } from "apollo-boost";
 import "container/shared/modals/FormInModal.css";
 import { inject, observer } from "mobx-react";
+import CREATE_CASE_FROM_TEMPLATE from "mutations/createCaseFromTemplate";
 import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
+import ICase from "ts/interfaces/ICase";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
+import { getPathToACase } from "utils/pathHelpers";
 
 const { Option } = Select;
 
@@ -131,71 +136,119 @@ const CreateCaseForm = inject(
 
 interface FromTemplateFormProps {
   closeModal: () => void;
+  allCasesStore?: AllCasesStore;
 }
 
 interface CaseTemplateData {
   caseTemplates: ICaseTemplate[];
 }
 
-function FromTemplateForm({ closeModal }: FromTemplateFormProps) {
-  const { loading, error, data } = useQuery<CaseTemplateData>(
-    GET_CASE_TEMPLATES
-  );
-
-  var templateOptions = [];
-  if (loading) {
-    templateOptions = [
-      <Option key="loading" value="loading" disabled>
-        Loading...
-      </Option>
-    ];
-  } else if (error || !data) {
-    templateOptions = [
-      <Option key="error" value="error" disabled>
-        Failed to load templates
-      </Option>
-    ];
-  } else {
-    templateOptions = data.caseTemplates.map(caseTemplate => (
-      <Option key={caseTemplate.id} value={caseTemplate.name}>
-        {caseTemplate.name}
-      </Option>
-    ));
-  }
-
-  return (
-    <Form colon={false} layout="vertical">
-      <Form.Item
-        label="Template"
-        name="template"
-        rules={[
-          {
-            required: true,
-            message: "Please choose a template"
-          }
-        ]}
-      >
-        <Select
-          showSearch
-          placeholder="Choose a case template"
-          defaultActiveFirstOption
-        >
-          {templateOptions}
-        </Select>
-      </Form.Item>
-      <Form.Item>
-        <div style={{ float: "right" }}>
-          <Button style={{ marginRight: "0.5em" }} onClick={closeModal}>
-            Cancel
-          </Button>
-          <Button type="primary" htmlType="submit">
-            Create Case
-          </Button>
-        </div>
-      </Form.Item>
-    </Form>
-  );
+interface MutationData {
+  case: ICase | null;
 }
+
+const FromTemplateForm = inject("allCasesStore")(
+  observer(function InnerForm({
+    closeModal,
+    allCasesStore
+  }: FromTemplateFormProps) {
+    const { loading, error, data: queryData } = useQuery<CaseTemplateData>(
+      GET_CASE_TEMPLATES
+    );
+
+    const [createCaseFromTemplate, { data: mutationData }] = useMutation<
+      MutationData
+    >(CREATE_CASE_FROM_TEMPLATE, {
+      onCompleted: function() {
+        // Show success message
+        message.success("Created case");
+
+        // Load the list of cases again
+        allCasesStore!.loadCases();
+
+        // Close the Create Case modal
+        closeModal();
+
+        // Navigate to the newly created case
+        if (mutationData && mutationData.case) {
+          navigate(getPathToACase(mutationData.case.id));
+        }
+      },
+      onError: function(error: ApolloError) {
+        notification.error({
+          message: "Could not create case",
+          description: error.message
+        });
+      }
+    });
+
+    var templateOptions = [];
+    if (loading) {
+      templateOptions = [
+        <Option key="loading" value="loading" disabled>
+          Loading...
+        </Option>
+      ];
+    } else if (error || !queryData) {
+      templateOptions = [
+        <Option key="error" value="error" disabled>
+          Failed to load templates
+        </Option>
+      ];
+    } else {
+      templateOptions = queryData.caseTemplates.map(caseTemplate => (
+        <Option key={caseTemplate.id} value={caseTemplate.id}>
+          {caseTemplate.name}
+        </Option>
+      ));
+    }
+
+    return (
+      <Form
+        colon={false}
+        layout="vertical"
+        onFinish={values =>
+          createCaseFromTemplate({
+            variables: {
+              input: {
+                templateId: values.template
+              }
+            }
+          })
+        }
+      >
+        <Form.Item
+          label="Template"
+          name="template"
+          rules={[
+            {
+              required: true,
+              message: "Please choose a template"
+            }
+          ]}
+        >
+          <Select
+            showSearch
+            placeholder="Choose a case template"
+            defaultActiveFirstOption
+          >
+            {templateOptions}
+          </Select>
+        </Form.Item>
+        <Form.Item>
+          <div style={{ float: "right" }}>
+            <Button style={{ marginRight: "0.5em" }} onClick={closeModal}>
+              Cancel
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Create Case
+            </Button>
+          </div>
+        </Form.Item>
+      </Form>
+    );
+  })
+);
 
 // -----
 

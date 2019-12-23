@@ -13,7 +13,7 @@ import { matchesCaseFilter } from "utils/matchesFilter";
 import { getPathToACase } from "utils/pathHelpers";
 
 interface ICaseData {
-  cases: ICase[];
+  cases: ICase[] | null;
 }
 
 interface ICaseDatum {
@@ -38,7 +38,8 @@ class CaseStore {
       })
       .then((response: FetchResult<ICaseData>) => {
         runInAction(() => {
-          if (response.data) this.cases = response.data.cases;
+          if (response.data)
+            this.cases = response.data.cases ? response.data.cases : [];
         });
       })
       .catch((error: ApolloError) => {
