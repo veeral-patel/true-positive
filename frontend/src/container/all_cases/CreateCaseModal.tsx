@@ -86,6 +86,7 @@ const CreateCaseForm = inject(
             >
               <Select
                 showSearch
+                defaultActiveFirstOption
                 placeholder="Choose a status"
                 style={{ minWidth: "200px" }}
               >
@@ -99,6 +100,7 @@ const CreateCaseForm = inject(
             >
               <Select
                 showSearch
+                defaultActiveFirstOption
                 placeholder="Choose a priority"
                 style={{ minWidth: "200px" }}
               >
@@ -173,7 +175,11 @@ function FromTemplateForm({ closeModal }: FromTemplateFormProps) {
           }
         ]}
       >
-        <Select showSearch placeholder="Choose a case template">
+        <Select
+          showSearch
+          placeholder="Choose a case template"
+          defaultActiveFirstOption
+        >
           {templateOptions}
         </Select>
       </Form.Item>
