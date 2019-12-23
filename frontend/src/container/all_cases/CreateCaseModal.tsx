@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal, Select } from "antd";
+import { Button, Form, Input, Modal, Select, Tabs } from "antd";
 import "container/shared/modals/FormInModal.css";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -135,14 +135,41 @@ export default inject("uiStore")(
         const { uiStore } = this.props;
         return (
           <Modal
-            visible={uiStore!.openModal === "CREATE_CASE_MODAL"}
+            // visible={uiStore!.openModal === "CREATE_CASE_MODAL"}
+            visible={true}
             title="Create a Case"
             footer={null}
             onCancel={() => uiStore!.closeModal()}
             destroyOnClose={true}
             keyboard={false}
           >
-            <CreateCaseForm />
+            <Tabs>
+              <Tabs.TabPane tab="From Scratch" key="from_scratch">
+                <div style={{ marginTop: "8px" }} />
+                <CreateCaseForm />
+              </Tabs.TabPane>
+              <Tabs.TabPane tab="From a Template" key="from_a_template">
+                <div style={{ marginTop: "8px" }} />
+                <Form colon={false} layout="vertical">
+                  <Form.Item label="Template" name="template">
+                    <Select placeholder="Choose a case template" />
+                  </Form.Item>
+                  <Form.Item>
+                    <div style={{ float: "right" }}>
+                      <Button
+                        style={{ marginRight: "0.5em" }}
+                        onClick={() => uiStore!.closeModal()}
+                      >
+                        Cancel
+                      </Button>
+                      <Button type="primary" htmlType="submit">
+                        Create Case
+                      </Button>
+                    </div>
+                  </Form.Item>
+                </Form>
+              </Tabs.TabPane>
+            </Tabs>
           </Modal>
         );
       }
