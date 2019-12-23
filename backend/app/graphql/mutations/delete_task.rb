@@ -18,7 +18,7 @@ class Mutations::DeleteTask < Mutations::BaseMutation
         end
 
         # delete the task
-        if task.destroy
+        if task.destroy_bl(context[:current_user])
             {
                 "id": id
             }

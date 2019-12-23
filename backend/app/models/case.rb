@@ -111,10 +111,13 @@ class Case < ApplicationRecord
     task_audits = Audit.where(associated_id: self.tasks.select(:id), associated_type: "TASK")
 
     # Changes affecting a task in this case
+    task_group_audits = Audit.where(associated_id: self.task_groups.select(:id), associated_type: "TASK_GROUP")
+
+    # Changes affecting a task in this case
     indicator_audits = Audit.where(associated_id: self.indicators.select(:id), associated_type: "INDICATOR")
 
     # Combine all our audit entries
-    all_audits = case_audits.or(task_audits).or(indicator_audits).order("created_at DESC")
+    all_audits = case_audits.or(task_audits).or(task_group_audits).or(indicator_audits).order("created_at DESC")
 
     all_audits
   end

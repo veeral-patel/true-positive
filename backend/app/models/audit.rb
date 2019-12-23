@@ -2,7 +2,8 @@ class Audit < ApplicationRecord
     enum associated_type: {
         CASE: 1,
         TASK: 2,
-        INDICATOR: 3
+        INDICATOR: 3,
+        TASK_GROUP: 4
     }
 
     # Remember: if you change the name of an action in this enum, update the readable_message
@@ -12,7 +13,9 @@ class Audit < ApplicationRecord
         CREATE_TASK: 2,
         CREATE_INDICATOR: 3,
         ADD_MEMBER_TO_CASE: 4,
-        REMOVE_MEMBER_FROM_CASE: 5
+        REMOVE_MEMBER_FROM_CASE: 5,
+        DELETE_TASK: 6,
+        CREATE_TASK_GROUP: 7
     }
 
     validates :action, presence: true
@@ -33,6 +36,10 @@ class Audit < ApplicationRecord
             "#{self.created_by.username} added a member"
         elsif self.action == "REMOVE_MEMBER_FROM_CASE"
             "#{self.created_by.username} removed a member"
+        elsif self.action == "DELETE_TASK"
+            "#{self.created_by.username} deleted a task"
+        elsif self.action == "CREATE_TASK_GROUP"
+            "#{self.created_by.username} created a task group"
         else
             "This audit entry lacks a human-readable message."
         end

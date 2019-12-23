@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_033348) do
+ActiveRecord::Schema.define(version: 2019_12_23_040731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,7 +160,9 @@ ActiveRecord::Schema.define(version: 2019_12_23_033348) do
   create_table "task_groups", force: :cascade do |t|
     t.bigint "case_id"
     t.string "name"
+    t.bigint "created_by_id"
     t.index ["case_id"], name: "index_task_groups_on_case_id"
+    t.index ["created_by_id"], name: "index_task_groups_on_created_by_id"
   end
 
   create_table "task_templates", force: :cascade do |t|
@@ -229,6 +231,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_033348) do
   add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "task_groups", "cases"
+  add_foreign_key "task_groups", "users", column: "created_by_id"
   add_foreign_key "task_templates", "users", column: "assigned_to_id"
   add_foreign_key "task_templates", "users", column: "created_by_id"
   add_foreign_key "tasks", "cases"
