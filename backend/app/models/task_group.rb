@@ -9,12 +9,13 @@ class TaskGroup < ApplicationRecord
 
     after_create :add_task_group_created_audit
 
-    def add_task_group_created_audit
-        Audit.create(
-          action: "CREATE_TASK_GROUP",
-          associated_id: self.id,
-          associated_type: "TASK_GROUP",
-          created_by: self.created_by
-        )
-    end
+    private
+      def add_task_group_created_audit
+          Audit.create(
+            action: "CREATE_TASK_GROUP",
+            associated_id: self.id,
+            associated_type: "TASK_GROUP",
+            created_by: self.created_by
+          )
+      end
 end

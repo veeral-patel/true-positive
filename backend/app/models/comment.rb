@@ -5,4 +5,16 @@ class Comment < ApplicationRecord
     validates :comment, presence: true
     validates :created_by, presence: true
     validates :commentable, presence: true
+
+    after_create :add_comment_created_audit
+
+    private
+        def add_comment_created_audit
+            Audit.create(
+                action: "CREATE_COMMENT",
+                associated_id: self.id,
+                associated_type: "COMMENT",
+                created_by: self.created_by
+            )
+        end
 end

@@ -158,9 +158,9 @@ export default inject(
                           />
                         ) : (
                           <div style={{ marginTop: "1em" }}>
-                            {/* Only render the first 10 audits  */}
+                            {/* Only render the first 15 audits  */}
                             {activeCaseStore!.activeCase.audits
-                              .filter((_, index) => index < 10)
+                              .filter((_, index) => index < 15)
                               .map(audit => (
                                 <div style={{ marginBottom: "1.25em" }}>
                                   <Text type="secondary">
