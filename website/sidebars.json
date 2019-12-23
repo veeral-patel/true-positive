@@ -36,6 +36,7 @@
       "api/get_started",
       "api/pagination",
       "api/errors",
+      "api/file_uploads",
       "api/webhooks",
       "api/python_sdk",
       "api/playground"

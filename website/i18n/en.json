@@ -33,6 +33,10 @@
         "title": "Errors",
         "sidebar_label": "Errors"
       },
+      "api/file_uploads": {
+        "title": "File Uploads",
+        "sidebar_label": "File Uploads"
+      },
       "api/get_started": {
         "title": "Get Started",
         "sidebar_label": "Get Started"
