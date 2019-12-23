@@ -10,16 +10,14 @@ class Mutations::CreateCaseFromTemplate < Mutations::BaseMutation
     end
 
     def resolve(template_id:)
-        template = find_case_template_or_throw_execution_error(id: id)
+        template = find_case_template_or_throw_execution_error(id: template_id)
 
         # create a case in memory from the template
-        new_case = context[:current_user].cases.new(
+        new_case = context[:current_user].created_cases.new(
             name: template.name,
             status: template.status,
             priority: template.priority,
-            description: template.priority,
-            assigned_to: template.assigned_to,
-            tag_list: template.tag_list
+            description: template.description
         )
 
         # authorize this action
