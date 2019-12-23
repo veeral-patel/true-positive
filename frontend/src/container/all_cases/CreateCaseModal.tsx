@@ -169,7 +169,7 @@ function FromTemplateForm({ closeModal }: FromTemplateFormProps) {
         rules={[
           {
             required: true,
-            message: "Please choose a template to initialize this case from"
+            message: "Please choose a template"
           }
         ]}
       >

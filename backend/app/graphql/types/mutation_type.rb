@@ -4,6 +4,7 @@ module Types
 
       # case ------------
       field :create_case, mutation: Mutations::CreateCase
+      field :create_case_from_template, mutation: Mutations::CreateCaseFromTemplate
       field :update_case, mutation: Mutations::UpdateCase
       field :delete_case, mutation: Mutations::DeleteCase
       field :merge_case, mutation: Mutations::MergeCase

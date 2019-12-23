@@ -2,23 +2,23 @@ class Mutations::CreateCaseTemplate < Mutations::BaseMutation
     description "Creates a new case template."
 
     argument :name, String, required: true do
-        description "The name of the new case template."
+        description "Default name for cases created from this template."
     end
 
     argument :status, String, required: true do
-        description "The default status for cases created from this template."
+        description "Default status for cases created from this template."
     end
 
     argument :priority, String, required: true do
-        description "The default priority for cases created from this template."
+        description "Default priority for cases created from this template."
     end
 
     argument :description, String, required: false do
-        description "The default description for cases created from this template."
+        description "Default description for cases created from this template."
     end
 
     field :case_template, Types::CaseTemplateType, null: false do
-        description "The newly created case template."
+        description "Newly created case template."
     end
 
     def resolve(name:, status:, priority:, description: nil)
