@@ -1,11 +1,14 @@
+import { useQuery } from "@apollo/react-hooks";
 import { Button, Form, Input, Modal, Select, Tabs } from "antd";
 import "container/shared/modals/FormInModal.css";
 import { inject, observer } from "mobx-react";
+import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
+import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 
 const { Option } = Select;
 
@@ -124,6 +127,63 @@ const CreateCaseForm = inject(
 
 // -----
 
+interface FromTemplateFormProps {
+  closeModal: () => void;
+}
+
+interface CaseTemplateData {
+  caseTemplates: ICaseTemplate[];
+}
+
+function FromTemplateForm({ closeModal }: FromTemplateFormProps) {
+  const { loading, error, data } = useQuery<CaseTemplateData>(
+    GET_CASE_TEMPLATES
+  );
+
+  var templateOptions = [];
+  if (loading) {
+    templateOptions = [
+      <Option key="loading" value="loading" disabled>
+        Loading...
+      </Option>
+    ];
+  } else if (error || !data) {
+    templateOptions = [
+      <Option key="error" value="error" disabled>
+        Failed to load templates
+      </Option>
+    ];
+  } else {
+    templateOptions = data.caseTemplates.map(caseTemplate => (
+      <Option key={caseTemplate.id} value={caseTemplate.name}>
+        {caseTemplate.name}
+      </Option>
+    ));
+  }
+
+  return (
+    <Form colon={false} layout="vertical">
+      <Form.Item label="Template" name="template">
+        <Select placeholder="Choose a case template" showSearch>
+          {templateOptions}
+        </Select>
+      </Form.Item>
+      <Form.Item>
+        <div style={{ float: "right" }}>
+          <Button style={{ marginRight: "0.5em" }} onClick={closeModal}>
+            Cancel
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Create Case
+          </Button>
+        </div>
+      </Form.Item>
+    </Form>
+  );
+}
+
+// -----
+
 interface ModalProps {
   uiStore?: UIStore;
 }
@@ -150,24 +210,7 @@ export default inject("uiStore")(
               </Tabs.TabPane>
               <Tabs.TabPane tab="From a Template" key="from_a_template">
                 <div style={{ marginTop: "8px" }} />
-                <Form colon={false} layout="vertical">
-                  <Form.Item label="Template" name="template">
-                    <Select placeholder="Choose a case template" />
-                  </Form.Item>
-                  <Form.Item>
-                    <div style={{ float: "right" }}>
-                      <Button
-                        style={{ marginRight: "0.5em" }}
-                        onClick={() => uiStore!.closeModal()}
-                      >
-                        Cancel
-                      </Button>
-                      <Button type="primary" htmlType="submit">
-                        Create Case
-                      </Button>
-                    </div>
-                  </Form.Item>
-                </Form>
+                <FromTemplateForm closeModal={() => uiStore!.closeModal()} />
               </Tabs.TabPane>
             </Tabs>
           </Modal>
