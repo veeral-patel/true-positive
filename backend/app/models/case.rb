@@ -37,16 +37,26 @@ class Case < ApplicationRecord
     )
   end
 
-  def remove_member(user)
-    # Tries to remove an user from the case, and returns true iff the operation succeeded
+  # Tries to remove an user from the case, and returns true iff the operation succeeded
+  def remove_member(user, removed_by)
+    # Prevent user from removing the last user from a case
     if self.case_members.length == 1
       errors[:base] << "You cannot remove the last user from a case."
       return false
     end
 
     begin
-      member = CaseMember.find_by!(case: self, user: user)
-      member.destroy
+      # Remove the user from the case
+      CaseMember.find_by!(case: self, user: user).destroy
+
+      # Create an audit entry
+      Audit.create(
+        action: "REMOVE_MEMBER_FROM_CASE",
+        associated_id: self.id,
+        associated_type: "CASE",
+        created_by: removed_by
+      )
+
       return true
     rescue ActiveRecord::RecordNotFound => e
       errors[:base] << "The case does not have an user with username #{user.username}"

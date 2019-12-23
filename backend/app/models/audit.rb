@@ -11,7 +11,8 @@ class Audit < ApplicationRecord
         CREATE_CASE: 1,
         CREATE_TASK: 2,
         CREATE_INDICATOR: 3,
-        ADD_MEMBER_TO_CASE: 4
+        ADD_MEMBER_TO_CASE: 4,
+        REMOVE_MEMBER_FROM_CASE: 5
     }
 
     validates :action, presence: true
@@ -30,6 +31,8 @@ class Audit < ApplicationRecord
             "#{self.created_by.username} added an indicator"
         elsif self.action == "ADD_MEMBER_TO_CASE"
             "#{self.created_by.username} added a member"
+        elsif self.action == "REMOVE_MEMBER_FROM_CASE"
+            "#{self.created_by.username} removed a member"
         else
             "This audit entry lacks a human-readable message."
         end
