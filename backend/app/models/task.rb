@@ -30,6 +30,7 @@ class Task < ApplicationRecord
       Audit.create(
         action: "CREATE_TASK",
         associated_id: self.id,
+        associated_type: "TASK",
         created_by: self.created_by
       )
     end

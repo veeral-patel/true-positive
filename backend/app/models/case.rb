@@ -86,13 +86,13 @@ class Case < ApplicationRecord
     # Lists all the audit entries this case cares about
 
     # Changes directly affecting this case
-    case_audits = Audit.where(associated_id: self.id, action: Audit.case_relevant_audits)
+    case_audits = Audit.where(associated_id: self.id, associated_type: "CASE")
 
     # Changes affecting a task in this case
-    task_audits = Audit.where(associated_id: self.tasks.select(:id), action: Audit.task_relevant_audits)
+    task_audits = Audit.where(associated_id: self.tasks.select(:id), associated_type: "TASK")
 
     # Changes affecting a task in this case
-    indicator_audits = Audit.where(associated_id: self.indicators.select(:id), action: Audit.indicator_relevant_audits)
+    indicator_audits = Audit.where(associated_id: self.indicators.select(:id), associated_type: "INDICATOR")
 
     # Combine all our audit entries
     all_audits = case_audits.or(task_audits).or(indicator_audits).order("created_at DESC")
@@ -120,6 +120,7 @@ class Case < ApplicationRecord
       Audit.create(
         action: "CREATE_CASE",
         associated_id: self.id,
+        associated_type: "CASE",
         created_by: self.created_by
       )
     end
