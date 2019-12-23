@@ -158,17 +158,20 @@ export default inject(
                           />
                         ) : (
                           <div style={{ marginTop: "1em" }}>
-                            {activeCaseStore!.activeCase.audits.map(audit => (
-                              <div style={{ marginBottom: "1.25em" }}>
-                                <Text type="secondary">
-                                  {audit.readableMessage}
-                                </Text>
-                                &nbsp;&nbsp;
-                                <Text disabled>
-                                  {formatISO8601(audit.createdAt)}
-                                </Text>
-                              </div>
-                            ))}
+                            {/* Only render the first 10 audits  */}
+                            {activeCaseStore!.activeCase.audits
+                              .filter((_, index) => index < 10)
+                              .map(audit => (
+                                <div style={{ marginBottom: "1.25em" }}>
+                                  <Text type="secondary">
+                                    {audit.readableMessage}
+                                  </Text>
+                                  &nbsp;&nbsp;
+                                  <Text disabled>
+                                    {formatISO8601(audit.createdAt)}
+                                  </Text>
+                                </div>
+                              ))}
                           </div>
                         ))}
                     </Content>
