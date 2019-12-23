@@ -163,6 +163,7 @@ export default inject(
                                 <Text type="secondary">
                                   {audit.readableMessage}
                                 </Text>
+                                &nbsp;&nbsp;
                                 <Text disabled>
                                   {formatISO8601(audit.createdAt)}
                                 </Text>
