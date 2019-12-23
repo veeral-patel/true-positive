@@ -13,4 +13,15 @@ class Indicator < ApplicationRecord
     has_many :comments, as: :commentable
 
     acts_as_taggable_on :tags
+
+    after_create :add_indicator_created_audit
+
+    private
+    def add_indicator_created_audit
+      Audit.create(
+        action: "CREATE_INDICATOR",
+        associated_id: self.id,
+        created_by: self.created_by
+      )
+    end
 end

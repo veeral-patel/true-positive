@@ -2,7 +2,8 @@ class Audit < ApplicationRecord
     enum associated_type: { CASE: 1 }
     enum action: {
         CREATE_CASE: 1,
-        CREATE_TASK: 2
+        CREATE_TASK: 2,
+        CREATE_INDICATOR: 3
     }
 
     validates :action, presence: true
@@ -12,11 +13,20 @@ class Audit < ApplicationRecord
     belongs_to :created_by, :class_name => 'User'
 
     def self.case_relevant_audits
-        # Returns the list of audits that a case object cares about.
-        # Remember to update this whenever I add a new action!
         [
-            "CREATE_CASE",
+            "CREATE_CASE"
+        ]
+    end
+
+    def self.task_relevant_audits
+        [
             "CREATE_TASK"
+        ]
+    end
+
+    def self.indicator_relevant_audits
+        [
+            "CREATE_INDICATOR"
         ]
     end
 
@@ -25,6 +35,8 @@ class Audit < ApplicationRecord
             "#{self.created_by.username} created the case"
         elsif self.action == "CREATE_TASK"
             "#{self.created_by.username} added a task"
+        elsif self.action == "CREATE_INDICATOR"
+            "#{self.created_by.username} added an indicator"
         else
             "This audit entry lacks a human-readable message."
         end
