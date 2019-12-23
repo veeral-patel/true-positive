@@ -1,5 +1,5 @@
 import { RouteComponentProps, Router } from "@reach/router";
-import { Divider, Empty, Layout, Typography } from "antd";
+import { Empty, Layout, Typography } from "antd";
 import CaseSider from "container/one_case/CaseSider";
 import Forms from "container/one_case/Forms";
 import HandleErrorAndLoading from "container/one_case/HandleErrorAndLoading";
@@ -163,7 +163,6 @@ export default inject(
                                 <Text type="secondary">
                                   {audit.readableMessage}
                                 </Text>
-                                <Divider type="vertical" />
                                 <Text disabled>
                                   {formatISO8601(audit.createdAt)}
                                 </Text>
