@@ -12,27 +12,7 @@ class TaskPolicy
         user_can_edit_case?
     end
 
-    def rename_task?
-        user_can_edit_case? 
-    end
-
     def delete_task?
-        user_can_edit_case?
-    end
-
-    def change_status?
-        user_can_edit_case?
-    end
-
-    def change_priority?
-        user_can_edit_case?
-    end
-
-    def change_assignee?
-        user_can_edit_case?
-    end
-
-    def change_description?
         user_can_edit_case?
     end
 
@@ -41,10 +21,6 @@ class TaskPolicy
     end
 
     def change_comment?
-        user_can_edit_case?
-    end
-
-    def change_done?
         user_can_edit_case?
     end
 
