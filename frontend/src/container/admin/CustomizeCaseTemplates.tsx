@@ -36,12 +36,16 @@ function CustomizeCaseTemplates() {
     "CREATE_CASE_TEMPLATE" | "UPDATE_CASE_TEMPLATE" | null
   >(null);
 
+  // ID of the template to show in the drawer (for updating)
+  const [activeTemplateId, setActiveTemplateId] = useState<number | null>(null);
+
   const [createCaseTemplate] = useMutation(CREATE_A_CASE_TEMPLATE, {
     onCompleted: () => {
       message.success("Created case template");
 
       // Close drawer after creating a C.T.
       setOpenDrawer(null);
+      setActiveTemplateId(null);
     },
     onError: error => {
       notification.error({
@@ -124,7 +128,12 @@ function CustomizeCaseTemplates() {
                 >
                   <List.Item.Meta
                     title={
-                      <a onClick={() => setOpenDrawer("UPDATE_CASE_TEMPLATE")}>
+                      <a
+                        onClick={() => {
+                          setActiveTemplateId(null);
+                          setOpenDrawer("UPDATE_CASE_TEMPLATE");
+                        }}
+                      >
                         {template.name}
                       </a>
                     }
@@ -166,6 +175,7 @@ function CustomizeCaseTemplates() {
         <UpdateCaseTemplateDrawer
           visible={openDrawer === "UPDATE_CASE_TEMPLATE"}
           handleClose={() => setOpenDrawer(null)}
+          templateId={activeTemplateId}
         />
       </>
     );

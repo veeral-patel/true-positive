@@ -1,13 +1,49 @@
-import { Drawer } from "antd";
+import { useQuery } from "@apollo/react-hooks";
+import { Drawer, Spin } from "antd";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
+import Error from "presentational/shared/errors/Error";
+import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
 import React from "react";
+import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 
 interface Props {
   visible: boolean;
   handleClose: () => void;
+  templateId: number | null /* ID of the case template to show. */;
 }
 
-function UpdateCaseTemplateDrawer({ visible, handleClose }: Props) {
+interface OneTemplateData {
+  caseTemplate: ICaseTemplate;
+}
+
+function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
+  const { loading, error, data } = useQuery<OneTemplateData>(
+    GET_ONE_CASE_TEMPLATE,
+    {
+      variables: {
+        id: templateId
+      }
+    }
+  );
+
+  let drawerContent: React.ReactNode = null;
+  if (loading) drawerContent = <Spin />;
+  else if (error || templateId === null) {
+    drawerContent = (
+      <Error
+        title="Couldn't retrieve template"
+        subtitle={error ? error.message : ""}
+      />
+    );
+  } else if (data) {
+    drawerContent = (
+      <CaseTemplateForm
+        handleClose={handleClose}
+        submitText="Update Template"
+      />
+    );
+  }
+
   return (
     <Drawer
       visible={visible}
@@ -17,7 +53,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose }: Props) {
       keyboard={false}
       onClose={handleClose}
     >
-      <CaseTemplateForm handleClose={handleClose} submitText="Update Template" />
+      {drawerContent}
     </Drawer>
   );
 }

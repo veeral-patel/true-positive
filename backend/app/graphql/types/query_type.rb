@@ -130,6 +130,18 @@ module Types
         CaseTemplate.all
       end
 
+      field :case_template, Types::CaseTemplateType, null: false do
+        description "Retrieve a case template by its ID."
+
+        argument :id, ID, required: true do
+          description "The ID of the case template to retrieve."
+        end
+      end
+
+      def case_template(id:)
+        find_case_template_or_throw_execution_error(id: id)
+      end
+
       # ------------- API Tokens ---------------------
       field :api_tokens, [Types::ApiTokenType], null: false do
         description "Lists the current user's API tokens."
