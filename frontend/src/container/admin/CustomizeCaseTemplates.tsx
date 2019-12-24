@@ -164,6 +164,7 @@ function CustomizeCaseTemplates() {
                     name: values.name,
                     status: values.status,
                     priority: values.priority,
+                    tags: values.tags,
                     description: values.description
                   }
                 },
