@@ -1,17 +1,21 @@
 import { DownOutlined } from "@ant-design/icons";
-import { navigate } from "@reach/router";
-import { Button, Dropdown, Modal } from "antd";
+import { Button, Dropdown } from "antd";
 import Menu, { ClickParam } from "antd/lib/menu";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import UIStore from "stores/UIStore";
-import { DELETE_CASE, MERGE_CASE, paths } from "utils/constants";
+import { DELETE_CASE, MERGE_CASE } from "utils/constants";
+import DeleteCaseModal from "./DeleteCaseModal";
 
-interface ActionsDropdownProps {
+interface Props {
   allCasesStore?: AllCasesStore;
   uiStore?: UIStore;
   caseId: number;
+}
+
+interface State {
+  openModal: "DELETE_CASE_MODAL" | null;
 }
 
 export default inject(
@@ -19,7 +23,14 @@ export default inject(
   "uiStore"
 )(
   observer(
-    class ActionsDropdown extends React.Component<ActionsDropdownProps> {
+    class ActionsDropdown extends React.Component<Props, State> {
+      constructor(props: Props) {
+        super(props);
+        this.state = {
+          openModal: "DELETE_CASE_MODAL"
+        };
+      }
+
       render() {
         const menu = (
           <Menu onClick={this.handleMenuClick.bind(this)}>
@@ -30,12 +41,18 @@ export default inject(
             </Menu.Item>
           </Menu>
         );
+
+        const { openModal } = this.state;
+
         return (
-          <Dropdown overlay={menu}>
-            <Button>
-              Actions <DownOutlined />
-            </Button>
-          </Dropdown>
+          <>
+            <Dropdown overlay={menu}>
+              <Button>
+                Actions <DownOutlined />
+              </Button>
+            </Dropdown>
+            <DeleteCaseModal visible={openModal === "DELETE_CASE_MODAL"} />
+          </>
         );
       }
 
@@ -47,18 +64,7 @@ export default inject(
         }
       }
 
-      deleteCase() {
-        const { allCasesStore, caseId } = this.props;
-        Modal.confirm({
-          title: "Delete case?",
-          content:
-            "Delete this case? This will delete its indicators and tasks (but not its merged cases).",
-          onOk() {
-            allCasesStore!.deleteCase(caseId);
-            navigate(paths.CASES_PATH);
-          }
-        });
-      }
+      deleteCase() {}
 
       mergeCase() {
         const { uiStore } = this.props;
