@@ -103,8 +103,10 @@ export default inject(
             rowKey={record => record.id.toString()}
             onRow={(record, rowIndex) => {
               return {
-                onClick: event =>
-                  rowIndex && handleRowClick(record, rowIndex, event)
+                onClick: event => {
+                  rowIndex !== undefined &&
+                    handleRowClick(record, rowIndex, event);
+                }
               };
             }}
           >
