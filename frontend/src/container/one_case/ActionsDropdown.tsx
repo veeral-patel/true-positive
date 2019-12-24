@@ -27,7 +27,7 @@ export default inject(
       constructor(props: Props) {
         super(props);
         this.state = {
-          openModal: "DELETE_CASE_MODAL"
+          openModal: null
         };
       }
 
@@ -51,7 +51,10 @@ export default inject(
                 Actions <DownOutlined />
               </Button>
             </Dropdown>
-            <DeleteCaseModal visible={openModal === "DELETE_CASE_MODAL"} />
+            <DeleteCaseModal
+              visible={openModal === "DELETE_CASE_MODAL"}
+              onCancel={() => this.setState({ openModal: null })}
+            />
           </>
         );
       }
@@ -64,7 +67,9 @@ export default inject(
         }
       }
 
-      deleteCase() {}
+      deleteCase() {
+        this.setState({ openModal: "DELETE_CASE_MODAL" });
+      }
 
       mergeCase() {
         const { uiStore } = this.props;

@@ -3,11 +3,17 @@ import React from "react";
 
 interface Props {
   visible: boolean;
+  onCancel: () => void;
 }
 
-function DeleteCaseModal({ visible }: Props) {
+function DeleteCaseModal({ visible, onCancel }: Props) {
   return (
-    <Modal visible={visible} title="Delete this case" footer={null}>
+    <Modal
+      visible={visible}
+      onCancel={onCancel}
+      title="Delete this case"
+      footer={null}
+    >
       <div>
         Deleting this case will delete its indicators and tasks as well (but not
         any merged cases). This action cannot be undone.
