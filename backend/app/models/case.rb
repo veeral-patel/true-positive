@@ -13,11 +13,11 @@ class Case < ApplicationRecord
   belongs_to :status
   belongs_to :priority
 
-  has_many :tasks
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :indicators, dependent: :destroy
   has_many :case_members, dependent: :destroy
   has_many :task_groups, dependent: :destroy
+  has_many :tasks, through: :task_groups
 
   after_create :add_creator_to_members
   after_create :add_case_created_audit
