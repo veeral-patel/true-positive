@@ -179,7 +179,7 @@ export default inject(
           </Menu.Item>
           <Menu.Item key={CASE_SIDER_HISTORY}>
             <HistoryOutlined />
-            History
+            <span>History</span>
           </Menu.Item>
           <Menu.Item
             key={CASE_SIDER_MEMBERS}
