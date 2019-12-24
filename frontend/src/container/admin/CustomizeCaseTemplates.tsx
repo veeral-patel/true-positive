@@ -130,7 +130,7 @@ function CustomizeCaseTemplates() {
                     title={
                       <a
                         onClick={() => {
-                          setActiveTemplateId(null);
+                          setActiveTemplateId(template.id);
                           setOpenDrawer("UPDATE_CASE_TEMPLATE");
                         }}
                       >
@@ -173,7 +173,9 @@ function CustomizeCaseTemplates() {
           />
         </Drawer>
         <UpdateCaseTemplateDrawer
-          visible={openDrawer === "UPDATE_CASE_TEMPLATE"}
+          visible={
+            openDrawer === "UPDATE_CASE_TEMPLATE" && activeTemplateId !== null
+          }
           handleClose={() => setOpenDrawer(null)}
           templateId={activeTemplateId}
         />

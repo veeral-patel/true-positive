@@ -90,7 +90,7 @@ function ListofTaskTemplates({ taskTemplates }: Props) {
       />
       <UpdateTaskTemplateDrawer
         /* never render the drawer if we don't know the ID of the template to render. */
-        visible={drawerIsOpen && idOfVisibleTemplate != null}
+        visible={drawerIsOpen && idOfVisibleTemplate !== null}
         handleClose={() => toggleDrawer(false)}
         templateId={idOfVisibleTemplate}
       />

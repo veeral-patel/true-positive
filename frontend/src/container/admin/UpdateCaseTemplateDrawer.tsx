@@ -28,7 +28,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
 
   let drawerContent: React.ReactNode = null;
   if (loading) drawerContent = <Spin />;
-  else if (error || templateId === null) {
+  else if (error) {
     drawerContent = (
       <Error
         title="Couldn't retrieve template"
