@@ -1,5 +1,5 @@
 import { Button, Form, Input, Modal } from "antd";
-import React from "react";
+import React, { useState } from "react";
 
 interface Props {
   visible: boolean;
@@ -7,6 +7,8 @@ interface Props {
 }
 
 function DeleteCaseModal({ visible, onCancel }: Props) {
+  const [confirmationTextIsValid, setConfirmationTextIsValid] = useState(false);
+
   return (
     <Modal
       visible={visible}
@@ -20,14 +22,20 @@ function DeleteCaseModal({ visible, onCancel }: Props) {
       </div>
       <div style={{ marginTop: "1em" }}>Type "DELETE ME" below to confirm.</div>
       <div style={{ marginTop: "1em" }}>
-        <Form>
-          <Form.Item>
+        <Form colon={false} layout="vertical">
+          <Form.Item name="confirmation_text">
             <Input placeholder="DELETE ME" />
           </Form.Item>
           <Form.Item>
             <div style={{ float: "right" }}>
-              <Button style={{ marginRight: "0.5em" }}>Cancel</Button>
-              <Button type="danger" htmlType="submit" disabled>
+              <Button style={{ marginRight: "0.5em" }} onClick={onCancel}>
+                Cancel
+              </Button>
+              <Button
+                type="danger"
+                htmlType="submit"
+                disabled={!confirmationTextIsValid}
+              >
                 Delete Case
               </Button>
             </div>
