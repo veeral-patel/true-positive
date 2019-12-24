@@ -8,11 +8,27 @@ interface Props {
   handleClose: () => void;
   onFinish?: (values: any) => void;
   submitText: string;
+  initialValues?: {
+    name: string;
+    status: string;
+    priority: string;
+    description: string;
+  };
 }
 
-function CaseTemplateForm({ handleClose, onFinish, submitText }: Props) {
+function CaseTemplateForm({
+  handleClose,
+  onFinish,
+  submitText,
+  initialValues
+}: Props) {
   return (
-    <Form colon={false} layout="vertical" onFinish={onFinish}>
+    <Form
+      colon={false}
+      layout="vertical"
+      onFinish={onFinish}
+      initialValues={initialValues}
+    >
       <Form.Item
         label="Name"
         name="name"

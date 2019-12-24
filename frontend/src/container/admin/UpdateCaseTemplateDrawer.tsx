@@ -40,6 +40,12 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       <CaseTemplateForm
         handleClose={handleClose}
         submitText="Update Template"
+        initialValues={{
+          name: data.caseTemplate.name,
+          status: data.caseTemplate.status.name,
+          priority: data.caseTemplate.priority.name,
+          description: data.caseTemplate.description
+        }}
       />
     );
   }
