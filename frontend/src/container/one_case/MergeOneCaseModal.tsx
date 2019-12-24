@@ -115,12 +115,10 @@ const MergeCaseForm = inject(
               if (!option) return false;
               const caseName = option.props.children;
               if (caseName) {
-                return (
-                  caseName
-                    .toString()
-                    .toLowerCase()
-                    .indexOf(inputValue.toLowerCase()) !== -1
-                );
+                return caseName
+                  .toString()
+                  .toLowerCase()
+                  .includes(inputValue.toLowerCase());
               }
               return false;
             }}
