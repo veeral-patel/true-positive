@@ -52,7 +52,6 @@ class Mutations::CreateTask < Mutations::BaseMutation
         # create new task in memory
         new_task = Task.new(
             name: name,
-            case: the_case,
             created_by: context[:current_user],
             description: description,
             assigned_to: assigned_user,
