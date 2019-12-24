@@ -252,6 +252,7 @@ const FromTemplateForm = inject("allCasesStore")(
             showSearch
             placeholder="Choose a case template"
             defaultActiveFirstOption
+            optionFilterProp="children"
           >
             {templateOptions}
           </Select>
