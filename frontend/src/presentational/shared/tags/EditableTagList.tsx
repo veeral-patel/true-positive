@@ -10,6 +10,51 @@ const { Option } = Select;
 
 // -----
 
+interface TagFieldProps {
+  onChange?: (value: any) => void;
+  value?: any;
+}
+
+function TagField({ onChange, value }: TagFieldProps) {
+  const { loading, error, data } = useQuery<TagData>(GET_TAGS);
+
+  let allTagOptions: React.ReactNode[] = [];
+
+  if (loading) {
+    allTagOptions = [
+      <Option key="loading" value="loading">
+        Loading...
+      </Option>
+    ];
+  } else if (error) {
+    allTagOptions = [
+      <Option key="error" value="error">
+        Failed to fetch tags
+      </Option>
+    ];
+  } else if (data) {
+    allTagOptions = data.tags.map(tag => (
+      <Option key={tag.name} value={tag.name}>
+        {tag.name}
+      </Option>
+    ));
+  }
+  return (
+    <Select
+      mode="tags"
+      placeholder="Select tags"
+      tokenSeparators={[","]}
+      style={{ width: "100%" }}
+      onChange={onChange}
+      value={value}
+    >
+      {allTagOptions}
+    </Select>
+  );
+}
+
+// -----
+
 interface FormProps {
   /* the list of existing tags this case/task/etc posseses */
   existingTags: ITag[];
@@ -31,30 +76,6 @@ const EditTagsForm = inject("activeCaseStore")(
     existingTags,
     handleCancel
   }: FormProps) {
-    const { loading, error, data } = useQuery<TagData>(GET_TAGS);
-
-    let allTagOptions: React.ReactNode[] = [];
-
-    if (loading) {
-      allTagOptions = [
-        <Option key="loading" value="loading">
-          Loading...
-        </Option>
-      ];
-    } else if (error) {
-      allTagOptions = [
-        <Option key="error" value="error">
-          Failed to fetch tags
-        </Option>
-      ];
-    } else if (data) {
-      allTagOptions = data.tags.map(tag => (
-        <Option key={tag.name} value={tag.name}>
-          {tag.name}
-        </Option>
-      ));
-    }
-
     return (
       <Form
         colon={false}
@@ -65,14 +86,7 @@ const EditTagsForm = inject("activeCaseStore")(
         }}
       >
         <Form.Item name="tags">
-          <Select
-            mode="tags"
-            placeholder="Select tags"
-            tokenSeparators={[","]}
-            style={{ width: "100%" }}
-          >
-            {allTagOptions}
-          </Select>
+          <TagField />
         </Form.Item>
         <Form.Item>
           <>
@@ -127,4 +141,5 @@ function EditableTagList({ existingTags, handleFinish }: ListProps) {
   }
 }
 
+export { TagField };
 export default EditableTagList;

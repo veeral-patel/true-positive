@@ -2,6 +2,7 @@ import { Button, Form, Input } from "antd";
 import GenericEditor from "container/shared/markdown/GenericEditor";
 import PrioritySelect from "container/shared/priorities/PrioritySelect";
 import StatusSelect from "container/shared/statuses/StatusSelect";
+import { TagField } from "presentational/shared/tags/EditableTagList";
 import React from "react";
 
 interface Props {
@@ -69,6 +70,9 @@ function CaseTemplateForm({
         ]}
       >
         <PrioritySelect />
+      </Form.Item>
+      <Form.Item label="Tags" name="tags">
+        <TagField />
       </Form.Item>
       <Form.Item label="Description" name="description">
         <GenericEditor />
