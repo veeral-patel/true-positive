@@ -32,6 +32,9 @@ export default inject(
       }
 
       render() {
+        const { openModal } = this.state;
+        const { caseId } = this.props;
+
         const menu = (
           <Menu onClick={this.handleMenuClick.bind(this)}>
             <Menu.Item key={MERGE_CASE}>Merge</Menu.Item>
@@ -42,8 +45,6 @@ export default inject(
           </Menu>
         );
 
-        const { openModal } = this.state;
-
         return (
           <>
             <Dropdown overlay={menu}>
@@ -52,6 +53,7 @@ export default inject(
               </Button>
             </Dropdown>
             <DeleteCaseModal
+              caseId={caseId}
               visible={openModal === "DELETE_CASE_MODAL"}
               onCancel={() => this.setState({ openModal: null })}
             />
