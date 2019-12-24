@@ -24,7 +24,17 @@ function DeleteCaseModal({ visible, onCancel }: Props) {
       <div style={{ marginTop: "1em" }}>
         <Form colon={false} layout="vertical">
           <Form.Item name="confirmation_text">
-            <Input placeholder="DELETE ME" />
+            <Input
+              placeholder="DELETE ME"
+              onChange={event => {
+                const inputValue = event.currentTarget.value;
+                if (inputValue === "DELETE ME") {
+                  setConfirmationTextIsValid(true);
+                } else {
+                  setConfirmationTextIsValid(false);
+                }
+              }}
+            />
           </Form.Item>
           <Form.Item>
             <div style={{ float: "right" }}>
