@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_040731) do
+ActiveRecord::Schema.define(version: 2019_12_24_193621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,7 +180,6 @@ ActiveRecord::Schema.define(version: 2019_12_23_040731) do
     t.string "name"
     t.text "description"
     t.boolean "done", default: false, null: false
-    t.bigint "case_id"
     t.bigint "created_by_id"
     t.bigint "assigned_to_id"
     t.datetime "created_at", null: false
@@ -188,7 +187,6 @@ ActiveRecord::Schema.define(version: 2019_12_23_040731) do
     t.integer "position"
     t.bigint "task_group_id"
     t.index ["assigned_to_id"], name: "index_tasks_on_assigned_to_id"
-    t.index ["case_id"], name: "index_tasks_on_case_id"
     t.index ["created_by_id"], name: "index_tasks_on_created_by_id"
     t.index ["task_group_id"], name: "index_tasks_on_task_group_id"
   end
@@ -234,7 +232,6 @@ ActiveRecord::Schema.define(version: 2019_12_23_040731) do
   add_foreign_key "task_groups", "users", column: "created_by_id"
   add_foreign_key "task_templates", "users", column: "assigned_to_id"
   add_foreign_key "task_templates", "users", column: "created_by_id"
-  add_foreign_key "tasks", "cases"
   add_foreign_key "tasks", "task_groups"
   add_foreign_key "tasks", "users", column: "assigned_to_id"
   add_foreign_key "tasks", "users", column: "created_by_id"
