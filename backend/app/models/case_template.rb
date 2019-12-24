@@ -7,4 +7,6 @@ class CaseTemplate < ApplicationRecord
   belongs_to :created_by, :class_name => 'User'
   belongs_to :status
   belongs_to :priority
+
+  acts_as_taggable_on :tags
 end

@@ -26,6 +26,10 @@ class Types::CaseTemplateType < Types::BaseObject
         description "Default priority for cases created with this template."
     end
 
+    field :tags, [Types::TagType], null: false do
+        description "Default tags to add to cases created with this template."
+    end
+
     # possibly null ---
     field :description, String, null: true do
         description "Default description for cases created with this template."
