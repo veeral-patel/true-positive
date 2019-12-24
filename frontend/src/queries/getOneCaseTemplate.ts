@@ -12,6 +12,9 @@ const GET_ONE_CASE_TEMPLATE = gql`
         name
       }
       description
+      tags {
+        name
+      }
     }
   }
 `;

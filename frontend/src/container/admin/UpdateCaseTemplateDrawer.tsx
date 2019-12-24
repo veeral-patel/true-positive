@@ -59,6 +59,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
           name: data.caseTemplate.name,
           status: data.caseTemplate.status.name,
           priority: data.caseTemplate.priority.name,
+          tags: data.caseTemplate.tags.map(tag => tag.name),
           description: data.caseTemplate.description
         }}
         onFinish={values =>

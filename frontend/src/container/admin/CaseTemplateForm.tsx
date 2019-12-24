@@ -13,7 +13,8 @@ interface Props {
     name: string;
     status: string;
     priority: string;
-    description: string;
+    tags: string[];
+    description: string | null;
   };
 }
 

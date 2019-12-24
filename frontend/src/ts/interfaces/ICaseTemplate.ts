@@ -1,15 +1,17 @@
 import IUser from "ts/interfaces/IUser";
 import IPriority from "./IPriority";
 import IStatus from "./IStatus";
+import ITag from "./ITag";
 
 interface ICaseTemplate {
   id: number;
   name: string;
   createdAt: string;
   createdBy: IUser;
-  description: string;
   status: IStatus;
   priority: IPriority;
+  tags: ITag[];
+  description: string | null;
 }
 
 export default ICaseTemplate;
