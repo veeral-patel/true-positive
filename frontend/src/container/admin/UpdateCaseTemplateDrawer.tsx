@@ -1,6 +1,8 @@
-import { useQuery } from "@apollo/react-hooks";
-import { Drawer, Spin } from "antd";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { Drawer, message, notification, Spin } from "antd";
+import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
+import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
 import React from "react";
@@ -26,6 +28,19 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     }
   );
 
+  const [updateCaseTemplate] = useMutation(UPDATE_CASE_TEMPLATE, {
+    onCompleted: function() {
+      message.success("Updated the template");
+      handleClose();
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not update the template",
+        description: error.message
+      });
+    }
+  });
+
   let drawerContent: React.ReactNode = null;
   if (loading) drawerContent = <Spin />;
   else if (error) {
@@ -46,6 +61,19 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
           priority: data.caseTemplate.priority.name,
           description: data.caseTemplate.description
         }}
+        onFinish={values =>
+          updateCaseTemplate({
+            variables: {
+              input: {
+                id: data.caseTemplate.id,
+                name: values.name,
+                status: values.status,
+                priority: values.priority,
+                description: values.description
+              }
+            }
+          })
+        }
       />
     );
   }

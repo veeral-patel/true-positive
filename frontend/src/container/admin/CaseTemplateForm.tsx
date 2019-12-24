@@ -16,6 +16,8 @@ interface Props {
   };
 }
 
+// Note to self: Don't change the form items' names without updating the onFinish prop
+// of this component wherever it's rendered.
 function CaseTemplateForm({
   handleClose,
   onFinish,
