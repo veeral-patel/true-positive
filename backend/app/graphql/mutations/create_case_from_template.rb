@@ -17,7 +17,8 @@ class Mutations::CreateCaseFromTemplate < Mutations::BaseMutation
             name: template.name,
             status: template.status,
             priority: template.priority,
-            description: template.description
+            description: template.description,
+            tag_list: template.tag_list
         )
 
         # authorize this action
