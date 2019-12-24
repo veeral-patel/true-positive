@@ -24,7 +24,7 @@ class Mutations::CreateCase < Mutations::BaseMutation
     end
 
     argument :tags, [String], required: false do
-        description "A optional list of tags to add to this case."
+        description "Tags to add to this case."
     end
 
     field :case, Types::CaseType, null: true do

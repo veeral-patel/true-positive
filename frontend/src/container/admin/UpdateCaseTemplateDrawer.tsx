@@ -70,7 +70,8 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 name: values.name,
                 status: values.status,
                 priority: values.priority,
-                description: values.description
+                description: values.description,
+                tags: values.tags
               }
             }
           })
