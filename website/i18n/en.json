@@ -118,7 +118,9 @@
         "sidebar_label": "Restrict Access"
       }
     },
-    "links": {},
+    "links": {
+      "Blog": "Blog"
+    },
     "categories": {
       "Get Started": "Get Started",
       "Work with Cases": "Work with Cases",
