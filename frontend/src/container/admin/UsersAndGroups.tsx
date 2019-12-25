@@ -1,4 +1,5 @@
-import { Button, Tabs } from "antd";
+import { ArrowRightOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Tabs } from "antd";
 import ListOfUsers from "container/admin/ListOfUsers";
 import React from "react";
 
@@ -19,9 +20,15 @@ function UsersAndGroups() {
           <ListOfUsers />
         </TabPane>
         <TabPane key="groups" tab="Groups">
-          <Button type="link" style={{ padding: 0 }}>
-            Create a group
-          </Button>
+          <Form colon={false} layout="vertical">
+            <Form.Item name="name">
+              <Input
+                placeholder="Create a group"
+                prefix={<PlusOutlined />}
+                suffix={<ArrowRightOutlined />}
+              />
+            </Form.Item>
+          </Form>
         </TabPane>
       </Tabs>
     </>
