@@ -3,6 +3,10 @@ class Types::GroupType < Types::BaseObject
 
     # never null ---
 
+    field :id, ID, null: false do
+        description "A unique integer identifying this group."
+    end
+
     field :name, String, null: false do
         description "The group's name."    
     end
