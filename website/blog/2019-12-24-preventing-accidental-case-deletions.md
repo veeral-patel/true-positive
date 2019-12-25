@@ -14,3 +14,5 @@ Today, I'm happy to roll out several protections against deleting cases accident
 ## Type to confirm deletion
 
 You must type "DELETE ME" before you can delete a case:
+
+![](https://storage.googleapis.com/tp_landing_page_videos/delete_confirm_modal.png)
