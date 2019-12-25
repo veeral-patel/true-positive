@@ -165,7 +165,8 @@ function CustomizeCaseTemplates() {
                     status: values.status,
                     priority: values.priority,
                     tags: values.tags,
-                    description: values.description
+                    description: values.description,
+                    assignedTo: values.assignedTo
                   }
                 },
                 refetchQueries: [{ query: GET_CASE_TEMPLATES }]

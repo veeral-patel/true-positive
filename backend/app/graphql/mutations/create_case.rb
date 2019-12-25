@@ -3,6 +3,8 @@ require_relative '../helpers'
 class Mutations::CreateCase < Mutations::BaseMutation
     description "Creates a new case."
 
+    # required ---
+
     argument :name, String, required: true do
         description "The name of the new case."
     end
@@ -15,17 +17,21 @@ class Mutations::CreateCase < Mutations::BaseMutation
         description "The new case's priority's name."
     end
 
+    # not required ---
+
     argument :description, String, required: false do
-        description "Optional text describing this case."
+        description "This case's description."
     end
 
     argument :assigned_to, String, required: false do
-        description "The username of the user who this case is assigned to. Optional."
+        description "The username of the user who this case is assigned to"
     end
 
     argument :tags, [String], required: false do
         description "Tags to add to this case."
     end
+
+    # output ---
 
     field :case, Types::CaseType, null: true do
         description "The newly created case."
