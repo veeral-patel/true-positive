@@ -26,8 +26,8 @@ other way.
 
 ### Form to fill out to merge a case
 
-![Form to fill out to merge a case](https://storage.cloud.google.com/tp_landing_page_videos/merge_case_modal.png)
+![Form to fill out to merge a case](https://storage.googleapis.com/tp_landing_page_videos/merge_case_modal.png)
 
 ### A case after merging it
 
-![A case after merging it](https://storage.cloud.google.com/tp_landing_page_videos/merged_case_alert.png)
+![A case after merging it](https://storage.googleapis.com/tp_landing_page_videos/merged_case_alert.png)
