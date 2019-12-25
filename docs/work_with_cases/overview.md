@@ -4,4 +4,16 @@ title: Overview
 sidebar_label: Overview
 ---
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+A case represents an investigation in True Positive. For example, you may create a case for:
+
+- Reverse engineering a piece of malware
+- Triaging an IDS alert
+- Hunting through web proxy logs
+- Working on a large-scale data breach investigation
+
+Each case has:
+
+- A **status**, like "Open". True Positive ships with default statuses, but you can [customize the list of statuses](/docs/administer/customize_statuses_and_priorities) too.
+- A **priority**, like "Critical". Just like with statuses, True Positive ships with some default priorities [you can customize](/docs/administer/customize_statuses_and_priorities).
+- An **assignee**, or the user this case is assigned to. Can be empty.
+- **Tags**, which are just strings (like "phishing" or "ransomware"). Can be empty.
