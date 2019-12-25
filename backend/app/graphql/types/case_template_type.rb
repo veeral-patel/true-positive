@@ -31,6 +31,10 @@ class Types::CaseTemplateType < Types::BaseObject
     end
 
     # possibly null ---
+    field :assigned_to, Types::UserType, null: true do
+        description "Default user to assign to cases created with this template."
+    end
+
     field :description, String, null: true do
         description "Default description for cases created with this template."
     end
