@@ -44,7 +44,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
         # if the case has a task group already, add our new task to the first task group.
         # if it has no task groups, create a task group called "General" and add our new task to it
         if the_case.task_groups.size == 0
-            task_group = the_case.task_groups.create(name: "General")
+            task_group = the_case.task_groups.create(name: "General", created_by: context[:current_user])
         else
             task_group = the_case.task_groups.first
         end

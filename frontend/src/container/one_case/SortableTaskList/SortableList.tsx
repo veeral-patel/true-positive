@@ -34,7 +34,7 @@ const SortableList = SortableContainer(
                 <div>
                   <Paragraph>No tasks</Paragraph>
                   <Text type="secondary">
-                    You can drag/drop an existing task here to add it.
+                    <a>Add a task to this group</a>
                   </Text>
                 </div>
               }
