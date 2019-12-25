@@ -14,4 +14,6 @@ Now choose if you'd like to create a case from scratch or from an existing templ
 
 ### From scratch
 
+We suggest creating one-off cases from scratch. Simply provide a name, status, and priority for the case in the form above.
+
 ### From a template
