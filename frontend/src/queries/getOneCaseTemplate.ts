@@ -11,9 +11,12 @@ const GET_ONE_CASE_TEMPLATE = gql`
       priority {
         name
       }
-      description
       tags {
         name
+      }
+      description
+      assignedTo {
+        username
       }
     }
   }

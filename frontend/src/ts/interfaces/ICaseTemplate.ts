@@ -12,6 +12,7 @@ interface ICaseTemplate {
   priority: IPriority;
   tags: ITag[];
   description: string | null;
+  assignedTo: IUser | null;
 }
 
 export default ICaseTemplate;
