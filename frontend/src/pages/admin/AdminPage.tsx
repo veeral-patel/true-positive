@@ -3,6 +3,7 @@ import { Button, Tabs } from "antd";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
+import ListOfUsers from "container/admin/ListOfUsers";
 import React from "react";
 
 const { TabPane } = Tabs;
@@ -22,6 +23,8 @@ class AdminPage extends React.Component<RouteComponentProps> {
                 <Button type="link" style={{ padding: 0 }}>
                   Invite an user
                 </Button>
+                <br />
+                <ListOfUsers />
               </TabPane>
               <TabPane key="groups" tab="Groups">
                 <Button type="link" style={{ padding: 0 }}>
