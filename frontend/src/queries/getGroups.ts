@@ -4,6 +4,7 @@ const GET_GROUPS = gql`
   query {
     groups {
       name
+      userCount
     }
   }
 `;

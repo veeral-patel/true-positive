@@ -23,7 +23,10 @@ function ListOfGroups() {
         pagination={{ position: "bottom" }}
         renderItem={group => (
           <List.Item>
-            <List.Item.Meta title={group.name}></List.Item.Meta>
+            <List.Item.Meta
+              title={group.name}
+              description={`${group.userCount} users`}
+            ></List.Item.Meta>
           </List.Item>
         )}
       />
