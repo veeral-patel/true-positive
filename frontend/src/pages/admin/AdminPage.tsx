@@ -20,9 +20,11 @@ class AdminPage extends React.Component<RouteComponentProps> {
             <h3>Users & Groups</h3>
             <Tabs defaultActiveKey="users">
               <TabPane key="users" tab="Users">
-                <Button type="link" style={{ padding: 0 }}>
-                  Invite an user
-                </Button>
+                <div>
+                  <Button type="link" style={{ padding: 0 }}>
+                    Invite an user
+                  </Button>
+                </div>
                 <br />
                 <ListOfUsers />
               </TabPane>
