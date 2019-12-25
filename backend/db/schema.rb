@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_202947) do
+ActiveRecord::Schema.define(version: 2019_12_25_231104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2019_12_25_202947) do
     t.bigint "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "assigned_to_id"
+    t.index ["assigned_to_id"], name: "index_case_templates_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_case_templates_on_created_by_id"
     t.index ["priority_id"], name: "index_case_templates_on_priority_id"
     t.index ["status_id"], name: "index_case_templates_on_status_id"
@@ -231,6 +233,7 @@ ActiveRecord::Schema.define(version: 2019_12_25_202947) do
   add_foreign_key "case_members", "users"
   add_foreign_key "case_templates", "priorities"
   add_foreign_key "case_templates", "statuses"
+  add_foreign_key "case_templates", "users", column: "assigned_to_id"
   add_foreign_key "case_templates", "users", column: "created_by_id"
   add_foreign_key "cases", "priorities"
   add_foreign_key "cases", "statuses"
