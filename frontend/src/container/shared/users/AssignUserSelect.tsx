@@ -8,14 +8,16 @@ import { NO_ASSIGNED_USER } from "utils/constants";
 const { Option } = Select;
 
 interface Props {
-  handleSelect: (userId: any) => void;
+  handleSelect?: (userId: any) => void;
+  onChange?: (value: any) => void;
+  value?: any;
 }
 
 interface UserData {
   users: IUser[];
 }
 
-function AssignUserSelect({ handleSelect }: Props) {
+function AssignUserSelect({ handleSelect, onChange, value }: Props) {
   const { loading, error, data } = useQuery<UserData>(GET_USERS);
 
   // generate a list of options
@@ -52,7 +54,9 @@ function AssignUserSelect({ handleSelect }: Props) {
       showSearch
       placeholder="Choose a user"
       style={{ minWidth: "200px" }}
-      onSelect={userId => handleSelect(userId)}
+      onSelect={userId => handleSelect && handleSelect(userId)}
+      onChange={onChange}
+      value={value}
     >
       {options}
     </Select>
