@@ -41,8 +41,9 @@ module Types
       # user -------
       field :update_me, mutation: Mutations::UpdateMe
 
-      # group -------
+      # groups -------
       field :create_group, mutation: Mutations::CreateGroup
+      field :delete_group, mutation: Mutations::DeleteGroup
 
       # task templates -----
       field :create_task_template, mutation: Mutations::CreateTaskTemplate

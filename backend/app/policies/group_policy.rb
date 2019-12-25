@@ -8,4 +8,9 @@ class GroupPolicy
         # Any user can create a group (at the moment)
         true
     end
+
+    def delete_group?
+        # Any user can delete a group (at the moment)
+        true
+    end
 end

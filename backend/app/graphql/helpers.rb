@@ -85,3 +85,11 @@ def find_case_template_or_throw_execution_error(id:)
         raise GraphQL::ExecutionError, "Could not find a case template with id #{id}."
     end
 end
+
+def find_group_or_throw_execution_error(id:)
+    begin
+        Group.find(id)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find a group with id #{id}."
+    end
+end
