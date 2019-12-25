@@ -15,6 +15,13 @@ class AdminPage extends React.Component<RouteComponentProps> {
           {/* <TabPane tab="Forms" key="forms">
             <CustomizeForms />
           </TabPane> */}
+          <TabPane tab="Users" key="users">
+            <h3>Users</h3>
+            <Tabs defaultActiveKey="users">
+              <TabPane key="users" tab="Users"></TabPane>
+              <TabPane key="groups" tab="Groups"></TabPane>
+            </Tabs>
+          </TabPane>
           <TabPane tab="Templates" key="templates">
             <CustomizeTemplates />
           </TabPane>
