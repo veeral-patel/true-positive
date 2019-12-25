@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_193621) do
+ActiveRecord::Schema.define(version: 2019_12_25_200848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,12 @@ ActiveRecord::Schema.define(version: 2019_12_24_193621) do
     t.index ["created_by_id"], name: "index_forms_on_created_by_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "indicators", force: :cascade do |t|
     t.string "name"
     t.text "indicator"
@@ -107,15 +113,6 @@ ActiveRecord::Schema.define(version: 2019_12_24_193621) do
     t.datetime "updated_at", null: false
     t.index ["case_id"], name: "index_indicators_on_case_id"
     t.index ["created_by_id"], name: "index_indicators_on_created_by_id"
-  end
-
-  create_table "pg_search_documents", force: :cascade do |t|
-    t.text "content"
-    t.string "searchable_type"
-    t.bigint "searchable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "priorities", force: :cascade do |t|
@@ -168,11 +165,9 @@ ActiveRecord::Schema.define(version: 2019_12_24_193621) do
   create_table "task_templates", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "assigned_to_id"
     t.bigint "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["assigned_to_id"], name: "index_task_templates_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_task_templates_on_created_by_id"
   end
 
@@ -210,7 +205,6 @@ ActiveRecord::Schema.define(version: 2019_12_24_193621) do
     t.datetime "invitation_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "firebase_user_id"
   end
 
   add_foreign_key "api_tokens", "users"
@@ -230,7 +224,6 @@ ActiveRecord::Schema.define(version: 2019_12_24_193621) do
   add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "task_groups", "cases"
   add_foreign_key "task_groups", "users", column: "created_by_id"
-  add_foreign_key "task_templates", "users", column: "assigned_to_id"
   add_foreign_key "task_templates", "users", column: "created_by_id"
   add_foreign_key "tasks", "task_groups"
   add_foreign_key "tasks", "users", column: "assigned_to_id"
