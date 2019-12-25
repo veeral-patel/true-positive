@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Tabs } from "antd";
+import { Button, Tabs } from "antd";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
@@ -15,11 +15,19 @@ class AdminPage extends React.Component<RouteComponentProps> {
           {/* <TabPane tab="Forms" key="forms">
             <CustomizeForms />
           </TabPane> */}
-          <TabPane tab="Users" key="users">
-            <h3>Users</h3>
+          <TabPane tab="Users & Groups" key="users_and_groups">
+            <h3>Users & Groups</h3>
             <Tabs defaultActiveKey="users">
-              <TabPane key="users" tab="Users"></TabPane>
-              <TabPane key="groups" tab="Groups"></TabPane>
+              <TabPane key="users" tab="Users">
+                <Button type="link" style={{ padding: 0 }}>
+                  Invite an user
+                </Button>
+              </TabPane>
+              <TabPane key="groups" tab="Groups">
+                <Button type="link" style={{ padding: 0 }}>
+                  Create a group
+                </Button>
+              </TabPane>
             </Tabs>
           </TabPane>
           <TabPane tab="Templates" key="templates">
