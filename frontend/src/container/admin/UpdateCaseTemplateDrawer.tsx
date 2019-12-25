@@ -60,7 +60,11 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
           status: data.caseTemplate.status.name,
           priority: data.caseTemplate.priority.name,
           tags: data.caseTemplate.tags.map(tag => tag.name),
-          description: data.caseTemplate.description
+          description: data.caseTemplate.description,
+          assignedTo:
+            data.caseTemplate.assignedTo === null
+              ? null
+              : data.caseTemplate.assignedTo.username
         }}
         onFinish={values =>
           updateCaseTemplate({
@@ -70,8 +74,9 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 name: values.name,
                 status: values.status,
                 priority: values.priority,
+                tags: values.tags,
                 description: values.description,
-                tags: values.tags
+                assignedTo: values.assignedTo
               }
             }
           })

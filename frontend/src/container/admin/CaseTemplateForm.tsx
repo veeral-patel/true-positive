@@ -16,6 +16,7 @@ interface Props {
     priority: string;
     tags: string[];
     description: string | null;
+    assignedTo: string | null;
   };
 }
 
@@ -73,7 +74,7 @@ function CaseTemplateForm({
       >
         <PrioritySelect />
       </Form.Item>
-      <Form.Item label="Assigned To" name="assigned_to">
+      <Form.Item label="Assigned To" name="assignedTo">
         <AssignUserSelect />
       </Form.Item>
       <Form.Item label="Tags" name="tags">

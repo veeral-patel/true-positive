@@ -21,6 +21,10 @@ class Mutations::UpdateCaseTemplate < Mutations::BaseMutation
         description "Name of this case template's new priority."
     end
 
+    argument :assigned_to, String, required: false do
+        description "Username of the new user to assign to cases created from this template."
+    end
+
     argument :description, String, required: false do
         description "New description."
     end
@@ -35,7 +39,7 @@ class Mutations::UpdateCaseTemplate < Mutations::BaseMutation
         description "The updated case template."
     end
 
-    def resolve(id:, name: nil, status: nil, priority: nil, description: nil, tags: nil)
+    def resolve(id:, name: nil, status: nil, priority: nil, assigned_to: nil, description: nil, tags: nil)
         # find the case template in memory
         case_template = find_case_template_or_throw_execution_error(id: id)
 
@@ -45,6 +49,14 @@ class Mutations::UpdateCaseTemplate < Mutations::BaseMutation
         case_template.priority = find_priority_by_name_or_throw_execution_error(priority_name: priority) if not priority.nil?
         case_template.description = description if not description.nil?
         case_template.tag_list = tags if not tags.nil?
+
+        unless assigned_to.nil?
+            if assigned_to === "NA"
+                case_template.assigned_to = nil
+            else
+                case_template.assigned_to = find_user_or_throw_execution_error(username: assigned_to)
+            end
+        end
 
         # authorize this action
         unless CaseTemplatePolicy.new(context[:current_user], case_template).update_template?
