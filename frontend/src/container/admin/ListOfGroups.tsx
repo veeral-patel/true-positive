@@ -1,5 +1,6 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
-import { List, Spin } from "antd";
+import { Button, List, Popconfirm, Spin } from "antd";
 import Error from "presentational/shared/errors/Error";
 import GET_GROUPS from "queries/getGroups";
 import React from "react";
@@ -22,7 +23,17 @@ function ListOfGroups() {
         itemLayout="horizontal"
         pagination={{ position: "bottom" }}
         renderItem={group => (
-          <List.Item>
+          <List.Item
+            actions={[
+              <Popconfirm
+                title="Delete this group?"
+                okText="Yes, Delete"
+                cancelText="No"
+              >
+                <Button icon={<DeleteOutlined />} type="link" />
+              </Popconfirm>
+            ]}
+          >
             <List.Item.Meta
               title={group.name}
               description={`${group.userCount} users`}
