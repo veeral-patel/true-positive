@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { Button, List, Spin } from "antd";
+import { List, Spin } from "antd";
 import Error from "presentational/shared/errors/Error";
 import GET_USERS from "queries/getUsers";
 import React from "react";
@@ -22,7 +22,7 @@ function ListOfUsers() {
         itemLayout="horizontal"
         pagination={{ position: "bottom" }}
         renderItem={user => (
-          <List.Item actions={[<Button type="link">Disable</Button>]}>
+          <List.Item>
             <List.Item.Meta title={user.username} description={user.email} />
           </List.Item>
         )}
