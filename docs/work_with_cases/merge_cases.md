@@ -15,8 +15,10 @@ Merging a child case into a parent case simply marks the child case as "merged" 
 
 You can merge as many cases as you'd like into a single case.
 
-## Merging in the Web Console
+## Merging
 
 > To merge a case into another case, you must be a member of, and have edit access to, both cases.
 
 ## Un-merging
+
+## Editing a reason for merging
