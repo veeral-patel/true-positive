@@ -1,6 +1,6 @@
 module Types
     class UserType < Types::BaseObject
-        description "Represents an user"
+        description "Represents an user."
 
         field :username, String, null: false do
             description "The user's username."

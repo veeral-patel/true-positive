@@ -61,6 +61,16 @@ module Types
         User.all
       end
 
+      # --------------- Groups --------------------
+
+      field :groups, [Types::GroupType], null: false do
+        description "Lists all user groups."
+      end
+
+      def groups
+        Group.all
+      end
+
       # ------------------- Me ----------------------
 
       field :me, Types::UserType, null: true do
