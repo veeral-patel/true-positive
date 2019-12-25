@@ -5,5 +5,3 @@ sidebar_label: Delete a Case
 ---
 
 > To delete a case, you must be a member of the case with "Can Edit" access.
-
-![](https://storage.googleapis.com/tp_landing_page_videos/delete_confirm_modal.png)
