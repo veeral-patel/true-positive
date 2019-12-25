@@ -2,6 +2,7 @@ import { ArrowRightOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Tabs } from "antd";
 import ListOfUsers from "container/admin/ListOfUsers";
 import React from "react";
+import ListOfGroups from "./ListOfGroups";
 
 const { TabPane } = Tabs;
 
@@ -29,6 +30,7 @@ function UsersAndGroups() {
               />
             </Form.Item>
           </Form>
+          <ListOfGroups />
         </TabPane>
       </Tabs>
     </>
