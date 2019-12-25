@@ -10,6 +10,8 @@ class User < ApplicationRecord
     has_many :created_forms, foreign_key: "created_by_id", class_name: "Form"
     has_many :comments, foreign_key: "created_by_id", class_name: "Comment"
     has_many :api_tokens, foreign_key: "user_id", class_name: "ApiToken"
+    has_many :group_users
+    has_many :groups, through: :group_users
 
     validates :username, presence: true, uniqueness: true
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true

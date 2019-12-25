@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_200848) do
+ActiveRecord::Schema.define(version: 2019_12_25_202947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(version: 2019_12_25_200848) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_forms_on_created_by_id"
+  end
+
+  create_table "group_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_users_on_group_id"
+    t.index ["user_id"], name: "index_group_users_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -186,6 +195,15 @@ ActiveRecord::Schema.define(version: 2019_12_25_200848) do
     t.index ["task_group_id"], name: "index_tasks_on_task_group_id"
   end
 
+  create_table "user_groups", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_user_groups_on_group_id"
+    t.index ["user_id"], name: "index_user_groups_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -220,6 +238,8 @@ ActiveRecord::Schema.define(version: 2019_12_25_200848) do
   add_foreign_key "cases", "users", column: "created_by_id"
   add_foreign_key "comments", "users", column: "created_by_id"
   add_foreign_key "forms", "users", column: "created_by_id"
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
   add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "users", column: "created_by_id"
   add_foreign_key "task_groups", "cases"
@@ -228,4 +248,6 @@ ActiveRecord::Schema.define(version: 2019_12_25_200848) do
   add_foreign_key "tasks", "task_groups"
   add_foreign_key "tasks", "users", column: "assigned_to_id"
   add_foreign_key "tasks", "users", column: "created_by_id"
+  add_foreign_key "user_groups", "groups"
+  add_foreign_key "user_groups", "users"
 end
