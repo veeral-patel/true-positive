@@ -21,6 +21,8 @@ You must type "DELETE ME" before you can delete a case:
 
 Each case in True Positive has one or members, or users who are authorized to access it. Furthermore, each member can either have a "Can View" or a "Can Edit" role in the case.
 
-If you are not a member of a case with "Can Edit" access, you won't be able to delete it.
+If you are not a member of a case with "Can Edit" access, you will not be able to delete it.
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/case_members.png)
+
+I plan to add another role, `Owner`, soon. Each case has exactly one owner, by default the user who created the case. Only a case's owner can delete it.
