@@ -199,15 +199,6 @@ ActiveRecord::Schema.define(version: 2019_12_26_001405) do
     t.index ["task_group_id"], name: "index_tasks_on_task_group_id"
   end
 
-  create_table "user_groups", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_user_groups_on_group_id"
-    t.index ["user_id"], name: "index_user_groups_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -254,6 +245,4 @@ ActiveRecord::Schema.define(version: 2019_12_26_001405) do
   add_foreign_key "tasks", "task_groups"
   add_foreign_key "tasks", "users", column: "assigned_to_id"
   add_foreign_key "tasks", "users", column: "created_by_id"
-  add_foreign_key "user_groups", "groups"
-  add_foreign_key "user_groups", "users"
 end
