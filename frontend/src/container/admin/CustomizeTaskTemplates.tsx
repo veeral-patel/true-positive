@@ -97,7 +97,8 @@ function CustomizeTaskTemplates() {
                 variables: {
                   input: {
                     name: values.name,
-                    description: values.description
+                    description: values.description,
+                    assignedTo: values.assignedTo
                   }
                 },
                 refetchQueries: [{ query: GET_TASK_TEMPLATES }]

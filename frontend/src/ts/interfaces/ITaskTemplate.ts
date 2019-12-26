@@ -5,7 +5,8 @@ interface ITaskTemplate {
   name: string;
   createdAt: string;
   createdBy: IUser;
-  description: string;
+  description: string | null;
+  assignedTo: IUser | null;
 }
 
 export default ITaskTemplate;

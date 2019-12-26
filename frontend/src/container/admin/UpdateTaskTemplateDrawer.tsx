@@ -67,14 +67,19 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
               input: {
                 id: data.taskTemplate.id,
                 name: values.name,
-                description: values.description
+                description: values.description,
+                assignedTo: values.assignedTo
               }
             }
           })
         }
         initialValues={{
           name: data.taskTemplate.name,
-          description: data.taskTemplate.description
+          description: data.taskTemplate.description,
+          assignedTo:
+            data.taskTemplate.assignedTo === null
+              ? null
+              : data.taskTemplate.assignedTo.username
         }}
       />
     );

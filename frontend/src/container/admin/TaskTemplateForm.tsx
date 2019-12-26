@@ -6,7 +6,11 @@ import React from "react";
 interface Props {
   handleClose: () => void;
   handleFinish?: (values: any) => void;
-  initialValues?: any;
+  initialValues?: {
+    name: string;
+    description: string | null;
+    assignedTo: string | null;
+  };
 }
 
 // Form used for updating/creating a task template.
