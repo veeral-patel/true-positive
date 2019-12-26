@@ -1,4 +1,7 @@
 class Comment < ApplicationRecord
+    include PgSearch::Model
+    multisearchable against: [:comment, :created_by]
+
     belongs_to :commentable, polymorphic: true
     belongs_to :created_by, :class_name => 'User', optional: false
 
