@@ -19,6 +19,10 @@ class Types::TaskTemplateType < Types::BaseObject
     end
 
     # possibly null ---
+    field :assigned_to, Types::UserType, null: true do
+        description "Default user to assign to tasks created with this template."
+    end
+
     field :description, String, null: true do
         description "Default description for tasks created with this template."
     end
