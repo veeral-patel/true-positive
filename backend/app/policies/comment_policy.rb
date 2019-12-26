@@ -46,4 +46,18 @@ class CommentPolicy
         # Only a comment's creator can delete it
         @comment.created_by == @user
     end
+
+    class Scope
+        attr_reader :user
+
+        def initialize(user, comments)
+            @user  = user
+            @comments = comments
+        end
+
+        def resolve
+            # Lists all the comments user @user is authorized to view.
+            @comments.select { |comment| CommentPolicy.new(@user, comment).view_comment? }
+        end
+    end
 end

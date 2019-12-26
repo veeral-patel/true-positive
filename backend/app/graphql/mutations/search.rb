@@ -11,7 +11,7 @@ class Mutations::Search < Mutations::BaseMutation
 
     def resolve(query:)
         matching_comments = PgSearch.multisearch(query).where(searchable_type: "Comment").map { |document| document.searchable }
-        filtered_comments = matching_comments.select { |comment| CommentPolicy.new(context[:current_user], comment).view_comment? }
+        filtered_comments = CommentPolicy::Scope.new(context[:current_user], matching_comments).resolve
 
         {
             "comments": filtered_comments
