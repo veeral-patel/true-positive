@@ -1,6 +1,8 @@
 import { classNames } from "container/shared/markdown/classNames";
+import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { GenerateMarkdownPreview } from "react-mde/lib/definitions/types";
+import UIStore from "stores/UIStore";
 
 export interface ReactMdePreviewProps {
   className?: string;
@@ -8,6 +10,7 @@ export interface ReactMdePreviewProps {
   loadingPreview?: React.ReactNode;
   generateMarkdownPreview: GenerateMarkdownPreview;
   markdown: string;
+  uiStore?: UIStore;
 }
 
 export interface ReactMdePreviewState {
@@ -15,7 +18,7 @@ export interface ReactMdePreviewState {
   preview?: React.ReactNode;
 }
 
-export class MdePreview extends React.Component<
+class MdePreview extends React.Component<
   ReactMdePreviewProps,
   ReactMdePreviewState
 > {
@@ -39,7 +42,7 @@ export class MdePreview extends React.Component<
   }
 
   render() {
-    const { className, loadingPreview } = this.props;
+    const { className, loadingPreview, uiStore } = this.props;
     const { preview, loading } = this.state;
     const finalHtml = loading ? loadingPreview : preview;
 
@@ -58,12 +61,16 @@ export class MdePreview extends React.Component<
     }
 
     return (
-      <div
-        className={classNames("mde-preview", { className, loading })}
-        data-testid="mde-preview"
-      >
-        {content}
+      <div className={uiStore!.theme === "LIGHT" ? "" : "dark"}>
+        <div
+          className={classNames("mde-preview", { className, loading })}
+          data-testid="mde-preview"
+        >
+          {content}
+        </div>
       </div>
     );
   }
 }
+
+export default inject("uiStore")(observer(MdePreview));

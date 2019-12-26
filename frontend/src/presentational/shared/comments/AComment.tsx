@@ -2,7 +2,7 @@ import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Comment } from "antd";
 import DeleteCommentButton from "container/shared/comments/DeleteCommentButton";
 import converter from "container/shared/markdown/converter";
-import { MdePreview } from "container/shared/markdown/MdePreview";
+import MdePreview from "container/shared/markdown/MdePreview";
 import EditCommentForm from "presentational/shared/comments/EditCommentForm";
 import React from "react";
 import IComment from "ts/interfaces/IComment";
