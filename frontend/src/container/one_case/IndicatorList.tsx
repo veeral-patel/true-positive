@@ -31,7 +31,7 @@ class IndicatorList extends React.Component<Props> {
             <List.Item.Meta
               title={
                 <div>
-                  <Text>{truncateString(indicator.name, 50)}</Text>
+                  <Text>{truncateString(indicator.name, 35)}</Text>
                   <Button
                     icon={<CopyOutlined />}
                     type="link"
