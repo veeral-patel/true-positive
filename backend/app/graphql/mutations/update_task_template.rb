@@ -1,9 +1,13 @@
 class Mutations::UpdateTaskTemplate < Mutations::BaseMutation
     description "Update a task template."
 
+    # required ---
+
     argument :id, ID, required: true do
         description "ID of the task template to update."
     end
+
+    # not required ---
 
     argument :name, String, required: false do
         description "New name."
@@ -13,21 +17,30 @@ class Mutations::UpdateTaskTemplate < Mutations::BaseMutation
         description "New description."
     end
 
+    argument :assigned_to, String, required: false do
+        description "Username of the new user to assign to tasks created from this template."
+    end
+
+    # output ---
+
     field :task_template, Types::TaskTemplateType, null: true do
         description "The updated task template."
     end
 
-    def resolve(id:, name: nil, description: nil)
+    def resolve(id:, name: nil, description: nil, assigned_to: nil)
         # find the task template in memory
         template = find_task_template_or_throw_execution_error(template_id: id)
 
         # update it in memory
-        if not name.nil?
-            template.name = name
-        end
+        template.name = name if not name.nil?
+        template.description = description if not name.nil?
 
-        if not description.nil?
-            template.description = description
+        unless assigned_to.nil?
+            if assigned_to === "NA"
+                template.assigned_to = nil
+            else
+                template.assigned_to = find_user_or_throw_execution_error(username: assigned_to)
+            end
         end
 
         # authorize this action
