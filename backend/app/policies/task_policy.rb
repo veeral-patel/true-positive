@@ -8,6 +8,10 @@ class TaskPolicy
         CaseMember.where(case: @task.case, user: @user, role: "CAN_EDIT").exists?
     end
 
+    def view_comment?
+        @task.case.has_member(@user)
+    end
+
     def update_task?
         user_can_edit_case?
     end

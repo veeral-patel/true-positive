@@ -14,6 +14,11 @@ class CasePolicy
         @case.has_member(@user)
     end
 
+    def view_comment?
+        # Only a case's members can view its comments
+        @case.has_member(@user)
+    end
+
     def user_can_edit_specified_case?(the_case)
         CaseMember.where(case: the_case, user: @user, role: "CAN_EDIT").exists?
     end

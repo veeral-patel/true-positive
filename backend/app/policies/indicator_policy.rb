@@ -12,15 +12,11 @@ class IndicatorPolicy
         user_can_edit_case?
     end
 
+    def view_comment?
+        @indicator.case.has_member(@user)
+    end
+
     def update_indicator?
-        user_can_edit_case?
-    end
-
-    def change_description?
-        user_can_edit_case?
-    end
-
-    def change_tags?
         user_can_edit_case?
     end
 
