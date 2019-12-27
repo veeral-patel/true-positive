@@ -7,7 +7,7 @@ sidebar_label: Merge Cases
 You can merge a case into another case in True Positive. You may find this useful when:
 
 - You notice two cases you're working on are part of the same attack.
-- You're working on a large investigation, and you want to create separate cases for smaller analyses your team works on--such as reverse engineering a malware sample or timelining an infected host
+- You're working on a large investigation, and you want to create separate cases for smaller analyses your team works on, like a case for reverse engineering a malware sample or for timelining an infected host
 
 ## How Merging Works
 
