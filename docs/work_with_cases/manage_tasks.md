@@ -13,4 +13,6 @@ For example, you may create tasks for:
 
 ## Task Groups
 
-Each task belongs to a group. A case may have task groups for `Triage`, `Containment`, `Remediation`, and `Reporting`, for example. Task groups let you organize your tasks and help you remember additional tasks that you need to do.
+Each task belongs to a group. A case may have task groups for `Triage`, `Containment`, `Remediation`, and `Reporting`, for example.
+
+Task groups let you organize your tasks and help you remember additional tasks that you need to do.
