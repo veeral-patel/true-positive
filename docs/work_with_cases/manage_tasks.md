@@ -4,4 +4,13 @@ title: Manage Tasks
 sidebar_label: Manage Tasks
 ---
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+Add tasks to a case to track and assign the work that needs to be done for the case.
+For example, you may create tasks for:
+
+- Removing adware from an infected laptop
+- Blocking an IP address in your firewall
+- Gathering more information about the sender of a spearphishing email
+
+## Task Groups
+
+Each task belongs to a group. A case may have task groups for `Triage`, `Containment`, `Remediation`, and `Reporting`, for example. Task groups let you organize your tasks and help you remember additional tasks that you need to do.
