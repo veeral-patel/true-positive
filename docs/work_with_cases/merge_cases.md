@@ -21,4 +21,10 @@ You can merge as many cases as you'd like into a single case.
 
 ## Un-merging
 
+![](https://storage.googleapis.com/tp_landing_page_videos/unmerge_case.png)
+
+To un-merge a case, visit the case it's merged into, scroll down to the "Merged Cases" section, and click the "X" button next to the case to un-merge.
+
 ## Editing a reason for merging
+
+Similarly, to edit the reason you merged a case into another, visit the "Merged Cases" section of the parent case and click the "pencil" button next to the appropriate case. (See the screenshot above.)
