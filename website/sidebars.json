@@ -8,38 +8,14 @@
       "work_with_cases/manage_tasks",
       "work_with_cases/manage_indicators",
       "work_with_cases/restrict_access",
-      "work_with_cases/history",
       "work_with_cases/delete_a_case"
     ],
     "Administer": [
       "administer/overview",
       "administer/customize_statuses_and_priorities",
-      "administer/manage_forms",
       "administer/manage_templates",
-      "administer/manage_users",
-      "administer/billing"
+      "administer/manage_users"
     ],
-    "Integrations": [
-      {
-        "type": "subcategory",
-        "label": "Create Cases",
-        "ids": [
-          "integrations/create_cases/overview",
-          "integrations/create_cases/elastalert",
-          "integrations/create_cases/splunk",
-          "integrations/create_cases/email",
-          "integrations/create_cases/custom_webhooks"
-        ]
-      }
-    ],
-    "API": [
-      "api/get_started",
-      "api/pagination",
-      "api/errors",
-      "api/file_uploads",
-      "api/webhooks",
-      "api/python_sdk",
-      "api/playground"
-    ]
+    "API": ["api/get_started"]
   }
 }
