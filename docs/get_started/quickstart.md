@@ -11,3 +11,4 @@ You may like True Positive if:
 - You're using Jira, SharePoint, Google Docs, or a service desk tool for managing your security-related cases, and are looking for a more appropriate product.
 - You've checked out TheHive, RTIR, or existing tools and found that they don't meet
   all your needs.
+- You're a hobbyist who likes experimenting with new DFIR tools.
