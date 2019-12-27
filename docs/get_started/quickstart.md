@@ -12,4 +12,4 @@ You may like True Positive if:
 - You've checked out TheHive, RTIR, or existing tools and found that they don't meet
   all your needs.
 - You're a hobbyist who likes experimenting with new DFIR tools for free :).
-- You work on an internal detection/response team, a SOC, a MSSP, or an incident response firm.
+- You work at an internal detection/response team, a SOC, a MSSP, or an incident response firm.
