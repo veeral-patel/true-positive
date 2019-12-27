@@ -10,6 +10,7 @@ However, you likely don't want to grant every user access to every case.
 
 - You likely want to minimize the number of people with knowledge of ongoing insider threat investigations.
 - Unnecessary personnel shouldn't have access to cases involving personal or sensitive data.
+- By enforcing least privilege, you can limit the exposure if a True Positive user's account is compromised.
 
 ## Permission model
 
