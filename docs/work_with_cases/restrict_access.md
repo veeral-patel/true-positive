@@ -4,7 +4,7 @@ title: Restrict Access
 sidebar_label: Restrict Access
 ---
 
-In addition to members of your security team, your company's IT staff, management, MSSPs, consultants, and many other individuals may have access to your True Positive tenant.
+In addition to members of your security team, your company's IT staff, management, MSSPs, consultants, and many other individuals all may have access to your True Positive tenant.
 
 However, you likely don't want to grant every user access to every case.
 
