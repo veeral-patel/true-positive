@@ -4,7 +4,9 @@ title: Restrict Access
 sidebar_label: Restrict Access
 ---
 
-In addition to members of your security team, your company's IT staff, management, MSSPs, consultants, and many other individuals may have access to your True Positive tenant. However, you likely don't want to grant every user access to every case.
+In addition to members of your security team, your company's IT staff, management, MSSPs, consultants, and many other individuals may have access to your True Positive tenant.
+
+However, you likely don't want to grant every user access to every case.
 
 - You likely want to minimize the number of people with knowledge of ongoing insider threat investigations.
 - Unnecessary personnel shouldn't have access to cases involving personal or sensitive data.
@@ -17,6 +19,8 @@ Cases in True Positive follow a simple permission model:
 2. A member of a case can have a role of either "Can View" or "Can Edit" in the case
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/case_members.png)
+
+When a case is created, its creator is automatically added as a member with a "Can Edit" role. The case's creator can then add additional members.
 
 ## Manage members
 
