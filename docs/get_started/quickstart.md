@@ -4,7 +4,7 @@ title: Quickstart
 sidebar_label: Quickstart
 ---
 
-True Positive is a collaborative, web-based case management tool for organizing information about security investigations.
+True Positive is a collaborative, web-based case management tool for organizing information about security investigations. It is closed source and delivered as SaaS.
 
 You may like True Positive if:
 
