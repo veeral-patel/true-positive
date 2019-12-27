@@ -19,12 +19,27 @@ You can merge as many cases as you'd like into a single case.
 
 > To merge a case into another case, you must be a member of, and have edit access to, both cases.
 
+![](https://storage.googleapis.com/tp_landing_page_videos/merge_case_modal_dark.png)
+
+To merge a case into another case:
+
+1. Open the child case.
+2. Go to the Info tab, find the Actions dropdown at the top, and click "Merge".
+3. Fill out the form above.
+
 ## Un-merging
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/unmerge_case.png)
 
-To un-merge a case, visit the case it's merged into, scroll down to the "Merged Cases" section, and click the "X" button next to the case to un-merge.
+To un-merge a case:
+
+1. Visit the case it's merged into
+2. Scroll down to the "Merged Cases" section
+3. Click the "X" button next to the case to un-merge.
 
 ## Editing a reason for merging
 
-Similarly, to edit the reason you merged a case into another, visit the "Merged Cases" section of the parent case and click the "pencil" button next to the appropriate case. (See the screenshot above.)
+Similarly, to edit the reason you merged a case into another:
+
+1. Visit the "Merged Cases" section of the parent case
+2. Click the "pencil" button next to the appropriate case. (See the screenshot above.)
