@@ -65,6 +65,6 @@ module Types
       field :delete_api_token, mutation: Mutations::DeleteApiToken
 
       # search -----
-      field :search, mutation: Mutations::Search
+      # field :search, mutation: Mutations::Search
   end
 end
