@@ -103,7 +103,8 @@ export default inject(
             style={{
               marginBottom: "0.5em",
               paddingTop: uiStore!.theme === "LIGHT" ? "0em" : "1.5em",
-              paddingLeft: "1.5em"
+              paddingLeft: "1.5em",
+              paddingRight: "1.5em"
             }}
           >
             <Text
