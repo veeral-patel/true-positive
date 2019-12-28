@@ -22,12 +22,13 @@ And these three priorities:
 
 ## Customize statuses/priorities
 
-That being said, you can add/remove/rename statuses and priorities to fit your organization.
+That being said, you may want to customize the default statuses/priorities:
 
 - For example, cases in your organization might follow this flow: `Unacknowledged` -> `Under Investigation` -> `Writing Report` -> `Closed`.
 - Or you may want a `P0`/`P1`/`P2` priority scheme--or a scheme mapped to your org's risk management methodology.
 
-To do this, click Manage in the top navigation > Customize Statuses.
+To do this, click Manage in the top navigation > Customize Statuses (or Customize Priorities). You can easily add/remove/rename
+statuses/priorities on this page:
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/customize_statuses.png)
 
