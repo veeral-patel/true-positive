@@ -3,7 +3,7 @@ import { Tabs } from "antd";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
-import UsersAndGroups from "container/admin/UsersAndGroups";
+import { UsersTab } from "container/admin/UsersAndGroups";
 import React from "react";
 
 const { TabPane } = Tabs;
@@ -13,8 +13,10 @@ class AdminPage extends React.Component<RouteComponentProps> {
     return (
       <div style={{ width: "75%" }}>
         <Tabs tabPosition="left">
-          <TabPane tab="Users & Groups" key="users_and_groups">
-            <UsersAndGroups />
+          <TabPane tab="Users" key="users">
+            <h3>Users</h3>
+            <div style={{ marginTop: "2em" }} />
+            <UsersTab />
           </TabPane>
           <TabPane tab="Templates" key="templates">
             <CustomizeTemplates />
