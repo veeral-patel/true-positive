@@ -14,7 +14,19 @@ function UsersTab() {
   return (
     <>
       <Form colon={false} layout="vertical">
-        <Form.Item name="email_address_of_new_user">
+        <Form.Item
+          name="email_address_of_new_user"
+          rules={[
+            {
+              required: true,
+              message: "Please enter an email address"
+            },
+            {
+              type: "email",
+              message: "This doesn't look like a valid email address"
+            }
+          ]}
+        >
           <Input
             placeholder="Enter the email address of a user to invite"
             prefix={<PlusOutlined />}
@@ -56,7 +68,10 @@ function GroupsTab() {
           })
         }
       >
-        <Form.Item name="name">
+        <Form.Item
+          name="name"
+          rules={[{ required: true, message: "Please name your new group" }]}
+        >
           <Input
             placeholder="Create a group"
             prefix={<PlusOutlined />}
