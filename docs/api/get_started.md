@@ -24,3 +24,28 @@ Before using the API, you need to generate an API token. Do this by visiting API
 ![](https://storage.googleapis.com/tp_landing_page_videos/list_of_tokens.png)
 
 Then click "Generate Token" and provide a brief, descriptive name for your token.
+
+## Explore the playground
+
+Now, visit API > Playground in the top navigation.
+
+You'll get a page like this, with a "Server cannot be reached" error:
+
+![](https://storage.googleapis.com/tp_landing_page_videos/playground-not-reachable.png)
+
+This is normal! To fix it, click "HTTP headers" and add an Authorization header with your API token, like this:
+
+![](https://storage.googleapis.com/tp_landing_page_videos/query_me.png)
+
+Then, copy the query in the screenshot above into your explorer. Here it is, for ease of copyability:
+
+```graphql
+query {
+  me {
+    username
+    email
+  }
+}
+```
+
+You should see your username and email address on the right.
