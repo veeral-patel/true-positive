@@ -1,6 +1,5 @@
 import {
   CheckSquareOutlined,
-  HistoryOutlined,
   InfoCircleOutlined,
   SecurityScanOutlined,
   UserOutlined
@@ -15,7 +14,6 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 import {
-  CASE_SIDER_HISTORY,
   CASE_SIDER_INDICATORS,
   CASE_SIDER_INFO,
   CASE_SIDER_MEMBERS,
@@ -177,10 +175,10 @@ export default inject(
               )}
             </span>
           </Menu.Item>
-          <Menu.Item key={CASE_SIDER_HISTORY}>
+          {/* <Menu.Item key={CASE_SIDER_HISTORY}>
             <HistoryOutlined />
             <span>History</span>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item
             key={CASE_SIDER_MEMBERS}
             onClick={() =>
