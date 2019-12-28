@@ -37,7 +37,7 @@ To un-merge a case:
 2. Scroll down to the "Merged Cases" section
 3. Click the "X" button next to the case to un-merge.
 
-## Editing a reason for merging
+## Editing the reason for merging a case
 
 Similarly, to edit the reason you merged a case into another:
 
