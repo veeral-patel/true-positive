@@ -18,3 +18,9 @@ In this guide, you'll make your first call to our
 ## Generate an API token
 
 > Guard your tokens! They provide full access to your account.
+
+Before using the API, you need to generate an API token. Do this by visiting API > Tokens in the top navigation:
+
+![](https://storage.googleapis.com/tp_landing_page_videos/list_of_tokens.png)
+
+Then click "Generate Token" and provide a brief, descriptive name for your token.
