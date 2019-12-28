@@ -1,6 +1,6 @@
 import { ArrowRightOutlined, PlusOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
-import { Button, Form, Input, message, notification, Tabs } from "antd";
+import { Form, Input, message, notification, Tabs } from "antd";
 import { ApolloError } from "apollo-boost";
 import ListOfUsers from "container/admin/ListOfUsers";
 import CREATE_A_GROUP from "mutations/createGroup";
@@ -29,12 +29,15 @@ function UsersAndGroups() {
       <h3>Users & Groups</h3>
       <Tabs defaultActiveKey="users">
         <TabPane key="users" tab="Users">
-          <div>
-            <Button type="link" style={{ padding: 0 }}>
-              Invite an user
-            </Button>
-          </div>
-          <br />
+          <Form colon={false} layout="vertical">
+            <Form.Item name="email_address_of_new_user">
+              <Input
+                placeholder="Enter the email address of a user to invite"
+                prefix={<PlusOutlined />}
+                suffix={<ArrowRightOutlined />}
+              />
+            </Form.Item>
+          </Form>
           <ListOfUsers />
         </TabPane>
         <TabPane key="groups" tab="Groups">
