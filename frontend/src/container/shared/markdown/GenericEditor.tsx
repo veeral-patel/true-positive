@@ -1,5 +1,4 @@
 import converter from "container/shared/markdown/converter";
-import loadSuggestions from "container/shared/markdown/loadSuggestions";
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import ReactMde from "react-mde";
@@ -25,10 +24,10 @@ function GenericEditor({ value, onChange, uiStore }: Props) {
       onChange={onChange}
       selectedTab={selectedTab}
       onTabChange={setSelectedTab}
-      loadSuggestions={loadSuggestions}
       generateMarkdownPreview={markdown =>
         Promise.resolve(converter.makeHtml(markdown))
       }
+      // loadSuggestions={loadSuggestions}
     />
   );
 }
