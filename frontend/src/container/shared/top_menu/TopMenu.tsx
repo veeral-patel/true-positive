@@ -7,7 +7,6 @@ import {
 } from "@ant-design/icons";
 import { navigate } from "@reach/router";
 import { Menu } from "antd";
-import GlobalAutocomplete from "container/shared/top_menu/GlobalAutocomplete";
 import logo from "logo/tp_logo_lightblue.png";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -84,9 +83,9 @@ export default inject(
                 Playground
               </Menu.Item>
             </SubMenu>
-            <Menu.Item style={{ float: "left" }}>
+            {/* <Menu.Item style={{ float: "left" }}>
               <GlobalAutocomplete />
-            </Menu.Item>
+            </Menu.Item> */}
             <SubMenu
               title={
                 <div>
