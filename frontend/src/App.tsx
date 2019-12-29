@@ -34,7 +34,7 @@ class App extends React.Component<Props> {
       <>
         <ApolloProvider client={client}>
           {authStore!.loggedIn() ? (
-            <div>
+            <>
               <TopMenu />
               <Router style={{ margin: "3%", marginTop: "2%" }}>
                 <AllCasesPage path={paths.ROOT_PATH} />
@@ -49,7 +49,7 @@ class App extends React.Component<Props> {
               </Router>
               <CreateCaseModal />
               <MergeOneCaseModal />
-            </div>
+            </>
           ) : (
             <LoginPage />
           )}
