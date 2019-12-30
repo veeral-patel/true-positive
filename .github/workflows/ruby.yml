@@ -26,6 +26,8 @@ jobs:
         gem install bundler
         bundle update --bundler
         bundle install --jobs 4 --retry 3
-    - name: Run gcloud info
-      run: gcloud info
+    - name: Deploy to GAE
+      run: |
+        cd backend
+        gcloud app deploy
          
