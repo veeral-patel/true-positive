@@ -22,6 +22,6 @@ jobs:
     - name: Deploy to GAE
       run: |
         cd backend
-        gcloud config set project tp-landing-page-video
+        gcloud config set project ${{ secrets.GCP_PROJECT }}
         gcloud app deploy --quiet
          
