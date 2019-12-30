@@ -23,5 +23,5 @@ jobs:
       run: |
         cd backend
         gcloud config set project tp-landing-page-video
-        gcloud app deploy
+        gcloud app deploy --quiet
          
