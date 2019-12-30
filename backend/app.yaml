@@ -1,5 +1,5 @@
 runtime: ruby
-entrypoint: RAILS_ENV=production bundle exec rackup --port $PORT
+entrypoint: bundle exec rackup --port $PORT
 env: flex
 env_variables:
-    RAILS_ENV: production 
+  RAILS_ENV: production
