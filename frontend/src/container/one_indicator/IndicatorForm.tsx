@@ -15,7 +15,7 @@ const IndicatorForm = inject("activeCaseStore")(
   observer(
     class InnerForm extends React.Component<Props> {
       render() {
-        const { activeIndicator, activeCaseStore } = this.props;
+        const { activeIndicator } = this.props;
 
         return (
           <Form
