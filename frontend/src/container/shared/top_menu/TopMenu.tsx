@@ -13,6 +13,7 @@ import React from "react";
 import AuthStore from "stores/AuthStore";
 import { paths } from "utils/constants";
 import getUsernameOfCurrentUser from "utils/currentUser";
+import { getApiEndpoint } from "utils/getApiEndpoint";
 
 const { SubMenu } = Menu;
 
@@ -73,12 +74,7 @@ export default inject(
                 <KeyOutlined />
                 Tokens
               </Menu.Item>
-              <Menu.Item
-                onClick={() =>
-                  process.env.REACT_APP_API_ENDPOINT &&
-                  navigate(process.env.REACT_APP_API_ENDPOINT)
-                }
-              >
+              <Menu.Item onClick={() => navigate(getApiEndpoint())}>
                 <DeploymentUnitOutlined />
                 Playground
               </Menu.Item>

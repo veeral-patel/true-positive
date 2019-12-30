@@ -4,6 +4,7 @@ import client from "createApolloClient";
 import jwt from "jsonwebtoken";
 import { action } from "mobx";
 import { JWT_TOKEN_KEY, USERNAME_KEY } from "utils/constants";
+import { getApiEndpoint } from "utils/getApiEndpoint";
 
 interface Response {
   session: SessionData;
@@ -23,7 +24,7 @@ class AuthStore {
   @action.bound
   login(username: string, password: string) {
     axios
-      .post<Response>(`${process.env.REACT_APP_API_ENDPOINT}/session/`, {
+      .post<Response>(`${getApiEndpoint()}/session/`, {
         session: {
           username,
           password

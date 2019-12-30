@@ -23,7 +23,7 @@ const IndicatorForm = inject("activeCaseStore")(
             layout="vertical"
             onFinish={values => {
               alert(
-                "Error: Please add an API to update string indicator values before continuing."
+                "Error: Please add an API to update text indicator values before continuing."
               );
             }}
             initialValues={{

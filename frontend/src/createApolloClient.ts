@@ -3,6 +3,7 @@ import ApolloClient, { DefaultOptions } from "apollo-client";
 import { setContext } from "apollo-link-context";
 import { HttpLink } from "apollo-link-http";
 import store from "stores";
+import { getApiEndpoint } from "utils/getApiEndpoint";
 
 const cache = new InMemoryCache();
 
@@ -13,7 +14,7 @@ const defaultOptions: DefaultOptions = {
 };
 
 const httpLink = new HttpLink({
-  uri: `${process.env.REACT_APP_API_ENDPOINT}/graphql`
+  uri: `${getApiEndpoint()}/graphql`
 });
 
 const authLink = setContext((_, { headers }) => {
