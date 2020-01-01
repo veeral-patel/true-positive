@@ -24,19 +24,6 @@ class Case < ApplicationRecord
 
   acts_as_taggable_on :tags
 
-  def add_member(user, role, added_by)
-    # add the user to the case
-    CaseMember.create(case: self, user: user, role: role)
-
-    # generate an audit entry to record this event
-    Audit.create(
-      action: "ADD_MEMBER_TO_CASE",
-      associated_id: self.id,
-      associated_type: "CASE",
-      created_by: added_by
-    )
-  end
-
   # Tries to remove an user from the case, and returns true iff the operation succeeded
   def remove_member(user, removed_by)
     # Prevent user from removing the last user from a case

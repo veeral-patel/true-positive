@@ -28,7 +28,7 @@ class Mutations::AddMember < Mutations::BaseMutation
         end
 
         # try to add the user to the case
-        if the_case.add_member(user, role, context[:current_user])
+        if CaseService::AddMember.run(the_case, user, role, context[:current_user])
             {
                 "case": the_case
             }
