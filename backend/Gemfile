@@ -16,7 +16,6 @@ gem 'pundit'
 gem 'active_interaction', '~> 3.7'
 gem 'acts_as_list'
 gem 'pg_search'
-gem "sentry-raven"
 gem 'acts_as_tenant'
 
 gem 'bootsnap', '>= 1.1.0', require: false

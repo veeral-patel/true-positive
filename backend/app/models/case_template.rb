@@ -1,4 +1,6 @@
 class CaseTemplate < ApplicationRecord
+  acts_as_tenant :tenant
+
   validates :name, presence: true
   validates :status, presence: true
   validates :priority, presence: true

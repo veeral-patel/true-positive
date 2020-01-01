@@ -1,4 +1,6 @@
 class Indicator < ApplicationRecord
+    acts_as_tenant :tenant
+
     enum indicator_type: { STRING: 1, TEXT: 2, FILE: 3 }
 
     validates :name, presence: true

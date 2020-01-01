@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
             return
         else
             begin
-                tenant = Tenant.find!(tenant_id)
+                tenant = Tenant.find(tenant_id)
                 set_current_tenant(tenant)
             rescue ActiveRecord::RecordNotFound
                 render json: { "message": "No tenant has the ID provided in your Tenant_ID header." }

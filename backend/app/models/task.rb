@@ -1,6 +1,8 @@
 require 'acts_as_list'
 
 class Task < ApplicationRecord
+  acts_as_tenant :tenant
+
   validates :name, presence: true
   validates :task_group, presence: true
   validates :created_by, presence: true

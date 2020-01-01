@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+    acts_as_tenant :tenant
+
     include PgSearch::Model
     multisearchable against: [:comment, :created_by]
 

@@ -1,4 +1,6 @@
 class TaskGroup < ApplicationRecord
+    acts_as_tenant :tenant
+
     validates :case, presence: true
     validates :name, presence: true
     validates :created_by, presence: true
