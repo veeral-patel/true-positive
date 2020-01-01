@@ -22,7 +22,7 @@ class Mutations::RemoveMember < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You are not authorized to remove users from this case."
         end
 
-        if the_case.remove_member(user, context[:current_user])
+        if CaseService::RemoveMember.run(the_case, user, context[:current_user])
             { "case": the_case }
         else
             raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")

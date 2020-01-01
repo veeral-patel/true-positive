@@ -24,33 +24,6 @@ class Case < ApplicationRecord
 
   acts_as_taggable_on :tags
 
-  # Tries to remove an user from the case, and returns true iff the operation succeeded
-  def remove_member(user, removed_by)
-    # Prevent user from removing the last user from a case
-    if self.case_members.length == 1
-      errors[:base] << "You cannot remove the last user from a case."
-      return false
-    end
-
-    begin
-      # Remove the user from the case
-      CaseMember.find_by!(case: self, user: user).destroy
-
-      # Create an audit entry
-      Audit.create(
-        action: "REMOVE_MEMBER_FROM_CASE",
-        associated_id: self.id,
-        associated_type: "CASE",
-        created_by: removed_by
-      )
-
-      return true
-    rescue ActiveRecord::RecordNotFound => e
-      errors[:base] << "The case does not have an user with username #{user.username}"
-      return false
-    end
-  end
-
   def has_member(user)
     # Returns true iff the specified user is a member of this case.
     CaseMember.where(case: self, user: user).exists?
