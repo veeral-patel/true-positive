@@ -4,6 +4,10 @@ class CreatePgSearchDocuments < ActiveRecord::Migration[5.2]
       create_table :pg_search_documents do |t|
         t.text :content
         t.belongs_to :searchable, polymorphic: true, index: true
+
+        # Added by Veeral
+        t.references :tenant, foreign_key: true
+
         t.timestamps null: false
       end
     end

@@ -3,6 +3,7 @@ class CreateGroupUsers < ActiveRecord::Migration[5.2]
     create_table :group_users do |t|
       t.references :user, foreign_key: true
       t.references :group, foreign_key: true
+      t.references :tenant, foreign_key: true
 
       t.timestamps
     end
