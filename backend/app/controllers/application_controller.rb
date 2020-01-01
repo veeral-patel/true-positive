@@ -9,14 +9,14 @@ class ApplicationController < ActionController::API
         tenant_identifier = request.env['HTTP_TENANT_IDENTIFIER']
 
         if tenant_identifier.nil?
-            render json: { "error": "Please include a Tenant_Identifier header with your tenant's identifier." }
+            render json: { "message": "Please include a Tenant_Identifier header with your tenant's identifier." }
             return
         else
             begin
                 tenant = Tenant.find_by!(identifier: tenant_identifier)
                 set_current_tenant(tenant)
             rescue ActiveRecord::RecordNotFound
-                render json: { "error": "The identifier in your Tenant_Identifier header is not valid" }
+                render json: { "message": "No tenant has the identifier provided in your Tenant_Identifier header." }
                 return
             end
         end
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::API
         token_from_request = request.env['HTTP_AUTHORIZATION']&.split&.last
 
         if token_from_request.nil?
-            render json: { "error": "Please provide an API token in your request's Authorization header." }, status: 401
+            render json: { "message": "Please provide an API token in your request's Authorization header." }, status: 401
         else
             # Hack: If the provided token is 40 characters, then assume
             # the user is authenticating via the API, the UI otherwise.
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::API
         begin
             self.authenticate!
         rescue RailsJwtAuth::NotAuthorized
-            render json: { "error": "You are not authenticated." }, status: 401
+            render json: { "message": "You are not authenticated." }, status: 401
         end
     end
 
@@ -59,7 +59,7 @@ class ApplicationController < ActionController::API
         rescue ActiveRecord::RecordNotFound
             # if the provided API token doesn't exist in the database,
             # then return a 401 HTTP response
-            render json: { "error": "API token is invalid" }, status: 401
+            render json: { "message": "API token is invalid" }, status: 401
         end
     end
 end
