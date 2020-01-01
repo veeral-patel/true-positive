@@ -60,12 +60,6 @@ class Case < ApplicationRecord
     self.name
   end
 
-  def merge_case_into(parent_case, reason)
-    self.parent = parent_case
-    self.reason_for_merging = reason
-    self.save
-  end
-
   def is_merged
     # Whether or not this case has been merged into another case
     not self.parent.nil?

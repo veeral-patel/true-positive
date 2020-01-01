@@ -51,7 +51,7 @@ class Mutations::MergeCase < Mutations::BaseMutation
             end
         else
             # otherwise, merge the child case into the parent case
-            if child_case.merge_case_into(parent_case, reason)
+            if CaseService::Merge.run(child_case, parent_case, reason)
                 {
                     "child_case": child_case,
                     "parent_case": parent_case
