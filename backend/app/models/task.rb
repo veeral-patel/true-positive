@@ -27,21 +27,6 @@ class Task < ApplicationRecord
     self.comments.count
   end
 
-  # Destroys this task and also publishes an audit entry afterwards.
-  # Use this method instead of .destroy or .delete
-  def destroy_bl(destroyed_by)
-    # Destroy the task
-    self.destroy
-
-    # Publish an audit entry
-    Audit.create(
-      action: "DELETE_TASK",
-      associated_id: self.id,
-      associated_type: "TASK",
-      created_by: destroyed_by
-    )
-  end
-
   private
     def add_task_created_audit
       Audit.create(
