@@ -13,7 +13,7 @@ module CaseService
             )
 
             # email the case's new member
-            CaseMailer.with(user: user).added_member.deliver_later
+            # CaseMailer.with(user: user).added_member.deliver_later
         end
     end
 end

@@ -20,7 +20,7 @@ module CaseService
                 )
 
                 # Email the user who was just removed
-                CaseMailer.with(user: user).removed_member.deliver_later
+                # CaseMailer.with(user: user).removed_member.deliver_later
         
                 return true
             rescue ActiveRecord::RecordNotFound => e
