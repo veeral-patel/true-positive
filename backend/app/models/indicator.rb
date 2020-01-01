@@ -17,12 +17,12 @@ class Indicator < ApplicationRecord
     after_create :add_indicator_created_audit
 
     private
-    def add_indicator_created_audit
-      Audit.create(
-        action: "CREATE_INDICATOR",
-        associated_id: self.id,
-        associated_type: "INDICATOR",
-        created_by: self.created_by
-      )
-    end
+      def add_indicator_created_audit
+        Audit.create(
+          action: "CREATE_INDICATOR",
+          associated_id: self.id,
+          associated_type: "INDICATOR",
+          created_by: self.created_by
+        )
+      end
 end
