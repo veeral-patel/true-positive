@@ -1,13 +1,5 @@
-import parseDomain from "parse-domain";
-
 function getApiEndpointInDev(): string {
-  const apiDomain = process.env.REACT_APP_API_DOMAIN;
-  const parsed = parseDomain(window.location.href);
-
-  var subdomain = "";
-  if (parsed !== null) subdomain = parsed.subdomain;
-
-  return `http://${subdomain}.${apiDomain}`;
+  return "http://localhost:4000";
 }
 
 function getApiEndpoint(): string {
