@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    acts_as_tenant :tenant
+
     include RailsJwtAuth::Authenticatable
 
     has_many :created_cases, foreign_key: "created_by_id", class_name: "Case"
