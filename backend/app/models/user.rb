@@ -15,10 +15,8 @@ class User < ApplicationRecord
     has_many :group_users
     has_many :groups, through: :group_users
 
-    validates :username, presence: true
-    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true
-
-    validates_uniqueness_to_tenant :username
+    validates :username, presence: true, uniqueness: true
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
 
     def to_s
         self.username
