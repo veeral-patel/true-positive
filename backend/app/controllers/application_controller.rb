@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+    set_current_tenant_through_filter
+
     include RailsJwtAuth::AuthenticableHelper
     include Pundit
 
