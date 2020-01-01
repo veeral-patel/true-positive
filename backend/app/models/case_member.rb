@@ -1,5 +1,5 @@
 class CaseMember < ApplicationRecord
-  validates_uniqueness_of :user_id, :scope => :case_id, :message => "Cannot have duplicate members in a case."
+  validates_uniqueness_to_tenant :user_id, :scope => :case_id, :message => "Cannot have duplicate members in a case."
   validates :role, presence: true
 
   belongs_to :case
