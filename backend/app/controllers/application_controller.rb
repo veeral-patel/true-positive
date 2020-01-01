@@ -8,17 +8,17 @@ class ApplicationController < ActionController::API
     before_action :set_tenant
 
     def set_tenant
-        tenant_identifier = request.env['HTTP_TENANT_IDENTIFIER']
+        tenant_id = request.env['HTTP_TENANT_ID']
 
-        if tenant_identifier.nil?
-            render json: { "message": "Please include a Tenant_Identifier header with your tenant's identifier." }
+        if tenant_id.nil?
+            render json: { "message": "Please include a Tenant_ID header with your tenant's ID." }
             return
         else
             begin
-                tenant = Tenant.find_by!(identifier: tenant_identifier)
+                tenant = Tenant.find!(tenant_id)
                 set_current_tenant(tenant)
             rescue ActiveRecord::RecordNotFound
-                render json: { "message": "No tenant has the identifier provided in your Tenant_Identifier header." }
+                render json: { "message": "No tenant has the ID provided in your Tenant_ID header." }
                 return
             end
         end
