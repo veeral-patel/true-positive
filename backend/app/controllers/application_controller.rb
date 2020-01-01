@@ -3,23 +3,24 @@ class ApplicationController < ActionController::API
     include Pundit
 
     before_action :authenticate_user
-    # before_action :set_tenant
+    before_action :set_tenant
 
-    # def set_tenant
-    #     tenant_identifier = request.env['HTTP_TENANT_IDENTIFIER']
+    def set_tenant
+        tenant_identifier = request.env['HTTP_TENANT_IDENTIFIER']
 
-    #     if tenant_identifier.nil?
-    #         render json: { "error": "Please include a tenant_identifier header with your tenant's identifier." }
-    #         return
-    #     else
-    #         begin
-    #             tenant = Tenant.find_by!(identifier: tenant_identifier)
-    #             set_current_tenant(tenant)
-    #         rescue ActiveRecord::RecordNotFound
-    #             render json: { "error": "The identifier in your tenant_identifier header is not valid" }
-    #         end
-    #     end
-    # end
+        if tenant_identifier.nil?
+            render json: { "error": "Please include a Tenant_Identifier header with your tenant's identifier." }
+            return
+        else
+            begin
+                tenant = Tenant.find_by!(identifier: tenant_identifier)
+                set_current_tenant(tenant)
+            rescue ActiveRecord::RecordNotFound
+                render json: { "error": "The identifier in your Tenant_Identifier header is not valid" }
+                return
+            end
+        end
+    end
 
     def authenticate_user
         token_from_request = request.env['HTTP_AUTHORIZATION']&.split&.last
