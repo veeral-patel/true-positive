@@ -41,7 +41,7 @@ class Mutations::MergeCase < Mutations::BaseMutation
 
         # if we weren't provided a parent_case_id, then unmerge the child case
         if parent_case_id.nil? 
-            if child_case.unmerge
+            if CaseService::Unmerge.run(child_case, context[:current_user])
                 {
                     "child_case": child_case,
                     "parent_case": nil

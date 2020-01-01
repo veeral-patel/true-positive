@@ -66,13 +66,6 @@ class Case < ApplicationRecord
     self.save
   end
 
-  def unmerge
-    # Un-merges this case from the case it's merged into.
-    self.parent = nil
-    self.reason_for_merging = nil
-    self.save
-  end
-
   def is_merged
     # Whether or not this case has been merged into another case
     not self.parent.nil?
