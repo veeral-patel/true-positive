@@ -1,5 +1,5 @@
 class Status < ApplicationRecord
-    acts_as_tenant(:tenant)
+    acts_as_tenant :tenant
 
     validates :name, presence: true, uniqueness: true
 
