@@ -11,6 +11,9 @@ module CaseService
                 associated_type: "CASE",
                 created_by: added_by
             )
+
+            # email the case's new member
+            UserMailer.with(user: user).added_member.deliver_later
         end
     end
 end
