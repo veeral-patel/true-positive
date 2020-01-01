@@ -4,8 +4,8 @@ class ApplicationController < ActionController::API
     include RailsJwtAuth::AuthenticableHelper
     include Pundit
 
-    before_action :authenticate_user
     before_action :set_tenant
+    before_action :authenticate_user
 
     def set_tenant
         tenant_id = request.env['HTTP_TENANT_ID']
