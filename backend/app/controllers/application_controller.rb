@@ -4,25 +4,7 @@ class ApplicationController < ActionController::API
     include RailsJwtAuth::AuthenticableHelper
     include Pundit
 
-    before_action :set_tenant
     before_action :authenticate_user
-
-    def set_tenant
-        tenant_id = request.env['HTTP_TENANT_ID']
-
-        if tenant_id.nil?
-            render json: { "message": "Please include a Tenant_ID header with your tenant's ID." }
-            return
-        else
-            begin
-                tenant = Tenant.find(tenant_id)
-                set_current_tenant(tenant)
-            rescue ActiveRecord::RecordNotFound
-                render json: { "message": "No tenant has the ID that's provided in your Tenant_ID header." }
-                return
-            end
-        end
-    end
 
     def authenticate_user
         token_from_request = request.env['HTTP_AUTHORIZATION']&.split&.last
@@ -45,6 +27,8 @@ class ApplicationController < ActionController::API
         # (aka with a JWT).
         begin
             self.authenticate!
+
+            set_current_tenant(@current_user.tenant)
         rescue RailsJwtAuth::NotAuthorized
             render json: { "message": "You are not authenticated." }, status: 401
         end
@@ -58,6 +42,9 @@ class ApplicationController < ActionController::API
 
             # if it exists, set `current_user` to the user who created it
             @current_user = existing_token.user
+
+            # set the tenant as well
+            set_current_tenant(@current_user.tenant)
         rescue ActiveRecord::RecordNotFound
             # if the provided API token doesn't exist in the database,
             # then return a 401 HTTP response
