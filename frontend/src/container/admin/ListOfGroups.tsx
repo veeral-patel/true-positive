@@ -84,7 +84,7 @@ function ListOfGroups() {
             ]}
           >
             <List.Item.Meta
-              title={group.name}
+              title={<a>{group.name}</a>}
               description={`${group.userCount} users`}
             ></List.Item.Meta>
           </List.Item>

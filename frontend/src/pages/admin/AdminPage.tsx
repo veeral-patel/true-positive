@@ -14,8 +14,6 @@ class AdminPage extends React.Component<RouteComponentProps> {
       <div style={{ width: "75%" }}>
         <Tabs tabPosition="left">
           <TabPane tab="Users" key="users">
-            <h3>Users</h3>
-            <div style={{ marginTop: "2em" }} />
             <UsersAndGroups />
           </TabPane>
           <TabPane tab="Templates" key="templates">
