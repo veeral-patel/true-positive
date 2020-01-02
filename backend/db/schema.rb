@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_01_021747) do
+ActiveRecord::Schema.define(version: 2020_01_02_054040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,11 +104,13 @@ ActiveRecord::Schema.define(version: 2020_01_01_021747) do
     t.bigint "assigned_to_id"
     t.string "ancestry"
     t.text "reason_for_merging"
+    t.bigint "tenant_id"
     t.index ["ancestry"], name: "index_cases_on_ancestry"
     t.index ["assigned_to_id"], name: "index_cases_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_cases_on_created_by_id"
     t.index ["priority_id"], name: "index_cases_on_priority_id"
     t.index ["status_id"], name: "index_cases_on_status_id"
+    t.index ["tenant_id"], name: "index_cases_on_tenant_id"
   end
 
   create_table "comments", force: :cascade do |t|
