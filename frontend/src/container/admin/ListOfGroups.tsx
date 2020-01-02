@@ -2,6 +2,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
+  Drawer,
   Empty,
   List,
   message,
@@ -14,7 +15,7 @@ import { ApolloError } from "apollo-boost";
 import DELETE_A_GROUP from "mutations/deleteGroup";
 import Error from "presentational/shared/errors/Error";
 import GET_GROUPS from "queries/getGroups";
-import React from "react";
+import React, { useState } from "react";
 import IGroup from "ts/interfaces/IGroup";
 
 interface GroupData {
@@ -23,6 +24,7 @@ interface GroupData {
 
 function ListOfGroups() {
   const { loading, error, data } = useQuery<GroupData>(GET_GROUPS);
+
   const [deleteGroup] = useMutation(DELETE_A_GROUP, {
     onCompleted: function() {
       message.success("Deleted the group");
@@ -35,6 +37,9 @@ function ListOfGroups() {
     },
     refetchQueries: [{ query: GET_GROUPS }]
   });
+
+  // Used to render a drawer listing a group's users after clicking on a group
+  const [idOfActiveGroup, setIdOfActiveGroup] = useState<number | null>(null);
 
   if (loading) return <Spin />;
   else if (error) {
@@ -57,39 +62,49 @@ function ListOfGroups() {
       );
     }
     return (
-      <List
-        bordered
-        dataSource={data.groups}
-        itemLayout="horizontal"
-        pagination={{ position: "bottom" }}
-        renderItem={group => (
-          <List.Item
-            actions={[
-              <Popconfirm
-                title="Delete this group?"
-                okText="Yes, Delete"
-                cancelText="No"
-                onConfirm={() =>
-                  deleteGroup({
-                    variables: {
-                      input: {
-                        id: group.id
+      <>
+        <List
+          bordered
+          dataSource={data.groups}
+          itemLayout="horizontal"
+          pagination={{ position: "bottom" }}
+          renderItem={group => (
+            <List.Item
+              actions={[
+                <Popconfirm
+                  title="Delete this group?"
+                  okText="Yes, Delete"
+                  cancelText="No"
+                  onConfirm={() =>
+                    deleteGroup({
+                      variables: {
+                        input: {
+                          id: group.id
+                        }
                       }
-                    }
-                  })
+                    })
+                  }
+                >
+                  <Button icon={<DeleteOutlined />} type="link" />
+                </Popconfirm>
+              ]}
+            >
+              <List.Item.Meta
+                title={
+                  <a onClick={() => setIdOfActiveGroup(group.id)}>
+                    {group.name}
+                  </a>
                 }
-              >
-                <Button icon={<DeleteOutlined />} type="link" />
-              </Popconfirm>
-            ]}
-          >
-            <List.Item.Meta
-              title={<a>{group.name}</a>}
-              description={`${group.userCount} users`}
-            ></List.Item.Meta>
-          </List.Item>
-        )}
-      />
+                description={`${group.userCount} users`}
+              ></List.Item.Meta>
+            </List.Item>
+          )}
+        />
+        <Drawer
+          visible={idOfActiveGroup !== null}
+          onClose={() => setIdOfActiveGroup(null)}
+        />
+      </>
     );
   }
   return null;
