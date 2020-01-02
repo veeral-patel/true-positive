@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { Drawer, Spin } from "antd";
+import { Drawer, Form, Input, Spin } from "antd";
 import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
 import React from "react";
@@ -35,7 +35,13 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
       <Error title="Could not retrieve case" subtitle={error.message} />
     );
   } else if (data) {
-    drawerContent = null;
+    drawerContent = (
+      <Form colon={false} layout="vertical">
+        <Form.Item label="Name" name="name">
+          <Input placeholder="AppSec" />
+        </Form.Item>
+      </Form>
+    );
   }
 
   return (
