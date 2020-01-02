@@ -1,6 +1,15 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { Button, List, message, notification, Popconfirm, Spin } from "antd";
+import {
+  Button,
+  Empty,
+  List,
+  message,
+  notification,
+  Popconfirm,
+  Spin
+} from "antd";
+import Paragraph from "antd/lib/typography/Paragraph";
 import { ApolloError } from "apollo-boost";
 import DELETE_A_GROUP from "mutations/deleteGroup";
 import Error from "presentational/shared/errors/Error";
@@ -31,6 +40,22 @@ function ListOfGroups() {
   else if (error) {
     return <Error title="Could not fetch users" subtitle={error.message} />;
   } else if (data) {
+    const numberOfGroups = data.groups.length;
+    if (numberOfGroups === 0) {
+      return (
+        <Empty
+          description={
+            <div>
+              <h3>No groups</h3>
+              <Paragraph>
+                Organize your users into groups, like "AppSec" or "Malware
+                Analysts"
+              </Paragraph>
+            </div>
+          }
+        />
+      );
+    }
     return (
       <List
         bordered
