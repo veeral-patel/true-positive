@@ -71,6 +71,18 @@ module Types
         Group.all
       end
 
+      field :group, Types::GroupType, null: false do
+        description "Retrieve a group by its ID."
+
+        argument :id, ID, required: true do
+          description "The ID of the group to retrieve."
+        end
+      end
+
+      def group(id:)
+        find_group_or_throw_execution_error(id: id)
+      end
+
       # ------------------- Me ----------------------
 
       field :me, Types::UserType, null: true do
