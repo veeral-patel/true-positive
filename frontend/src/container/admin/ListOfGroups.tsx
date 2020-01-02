@@ -2,7 +2,6 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
-  Drawer,
   Empty,
   List,
   message,
@@ -17,6 +16,7 @@ import Error from "presentational/shared/errors/Error";
 import GET_GROUPS from "queries/getGroups";
 import React, { useState } from "react";
 import IGroup from "ts/interfaces/IGroup";
+import GroupDrawer from "./GroupDrawer";
 
 interface GroupData {
   groups: IGroup[];
@@ -100,9 +100,10 @@ function ListOfGroups() {
             </List.Item>
           )}
         />
-        <Drawer
+        <GroupDrawer
           visible={idOfActiveGroup !== null}
           onClose={() => setIdOfActiveGroup(null)}
+          groupId={idOfActiveGroup}
         />
       </>
     );
