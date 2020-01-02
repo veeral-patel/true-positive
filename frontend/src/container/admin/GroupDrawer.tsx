@@ -14,6 +14,10 @@ const GET_ONE_GROUP = gql`
   }
 `;
 
+interface Response {
+  group: IGroup;
+}
+
 interface Props {
   visible: boolean;
   onClose: () => void;
@@ -21,7 +25,7 @@ interface Props {
 }
 
 function GroupDrawer({ visible, onClose, groupId }: Props) {
-  const { loading, error, data } = useQuery<IGroup>(GET_ONE_GROUP, {
+  const { loading, error, data } = useQuery<Response>(GET_ONE_GROUP, {
     variables: {
       id: groupId
     }
@@ -36,7 +40,11 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
     );
   } else if (data) {
     drawerContent = (
-      <Form colon={false} layout="vertical">
+      <Form
+        colon={false}
+        layout="vertical"
+        initialValues={{ name: data.group.name }}
+      >
         <Form.Item label="Name" name="name">
           <Input placeholder="AppSec" />
         </Form.Item>
