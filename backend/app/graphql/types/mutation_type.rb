@@ -45,6 +45,7 @@ module Types
       field :create_group, mutation: Mutations::CreateGroup
       field :update_group, mutation: Mutations::UpdateGroup
       field :delete_group, mutation: Mutations::DeleteGroup
+      field :add_user_to_group, mutation: Mutations::AddUserToGroup
 
       # task templates -----
       field :create_task_template, mutation: Mutations::CreateTaskTemplate
@@ -64,8 +65,5 @@ module Types
       # api tokens ------
       field :create_api_token, mutation: Mutations::CreateApiToken
       field :delete_api_token, mutation: Mutations::DeleteApiToken
-
-      # search -----
-      # field :search, mutation: Mutations::Search
   end
 end

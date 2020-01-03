@@ -57,6 +57,7 @@ class Mutations::CreateCase < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You are not authorized to create cases."
         end
 
+        # and save the case
         if new_case.save
             {
                 "case": new_case

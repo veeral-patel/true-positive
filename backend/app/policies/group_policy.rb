@@ -10,7 +10,7 @@ class GroupPolicy
     end
 
     def update_group?
-        # Any user can create any group (at the moment)
+        # Any user can update any group (at the moment)
         true
     end
 
