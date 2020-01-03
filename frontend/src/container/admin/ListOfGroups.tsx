@@ -13,6 +13,7 @@ import {
 import Paragraph from "antd/lib/typography/Paragraph";
 import { ApolloError } from "apollo-boost";
 import DELETE_A_GROUP from "mutations/deleteGroup";
+import UPDATE_A_GROUP from "mutations/updateGroup";
 import Error from "presentational/shared/errors/Error";
 import GET_GROUPS from "queries/getGroups";
 import React, { useState } from "react";
@@ -41,6 +42,19 @@ function ListOfGroups() {
     refetchQueries: [{ query: GET_GROUPS }]
   });
 
+  const [updateGroup] = useMutation(UPDATE_A_GROUP, {
+    onCompleted: function() {
+      message.success("Updated the group");
+    },
+    onError(error: ApolloError) {
+      notification.error({
+        message: "Could not update the group",
+        description: error.message
+      });
+    },
+    refetchQueries: [{ query: GET_GROUPS }]
+  });
+
   // Used to render a drawer listing a group's users after clicking on a group
   const [idOfActiveGroup, setIdOfActiveGroup] = useState<number | null>(null);
 
@@ -56,8 +70,7 @@ function ListOfGroups() {
             <div>
               <h3>No groups</h3>
               <Paragraph>
-                Organize your users into groups, like "AppSec" or "Malware
-                Analysts"
+                Organize your users into groups, like "AppSec" or "Red Team"
               </Paragraph>
             </div>
           }
@@ -94,7 +107,19 @@ function ListOfGroups() {
             >
               <List.Item.Meta
                 title={
-                  <Text editable>
+                  <Text
+                    editable={{
+                      onChange: newName =>
+                        updateGroup({
+                          variables: {
+                            input: {
+                              id: group.id,
+                              name: newName
+                            }
+                          }
+                        })
+                    }}
+                  >
                     <a onClick={() => setIdOfActiveGroup(group.id)}>
                       {group.name}
                     </a>
