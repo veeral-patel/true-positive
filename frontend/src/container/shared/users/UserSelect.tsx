@@ -17,6 +17,9 @@ interface Props {
 
   /* Whether to allow choosing multiple users. */
   multiple?: boolean;
+
+  /* To override the select component's placeholder. */
+  placeholder?: string;
 }
 
 interface UserData {
@@ -28,7 +31,8 @@ function UserSelect({
   onChange,
   value,
   forAssigning = false,
-  multiple = false
+  multiple = false,
+  placeholder = "Choose a user"
 }: Props) {
   const { loading, data } = useQuery<UserData>(GET_USERS);
 
@@ -65,7 +69,7 @@ function UserSelect({
   return (
     <Select
       showSearch
-      placeholder="Choose a user"
+      placeholder={placeholder}
       style={{ minWidth: "200px" }}
       onSelect={userId => handleSelect && handleSelect(userId)}
       onChange={onChange}

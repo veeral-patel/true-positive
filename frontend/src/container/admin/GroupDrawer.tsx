@@ -1,5 +1,15 @@
+import { CloseOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
-import { Drawer, Empty, Form, Input, List, Spin } from "antd";
+import {
+  Button,
+  Drawer,
+  Empty,
+  Form,
+  Input,
+  List,
+  Popconfirm,
+  Spin
+} from "antd";
 import Paragraph from "antd/lib/typography/Paragraph";
 import UserSelect from "container/shared/users/UserSelect";
 import Error from "presentational/shared/errors/Error";
@@ -47,9 +57,18 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
         </div>
         <div>
           <Paragraph>Users ({data.group.userCount})</Paragraph>
-          <Form colon={false} layout="vertical">
-            <Form.Item name="userToAdd">
-              <UserSelect multiple />
+          <Form colon={false} layout="vertical" style={{ display: "flex" }}>
+            <Form.Item
+              style={{ flex: "80%" }}
+              name="usernamesOfNewUsers"
+              rules={[
+                { required: true, message: "Please select at least one user" }
+              ]}
+            >
+              <UserSelect multiple placeholder="Choose users to add" />
+            </Form.Item>
+            <Form.Item>
+              <Button htmlType="submit">Add Users</Button>
             </Form.Item>
           </Form>
           {data.group.userCount === 0 ? (
@@ -68,7 +87,17 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
               itemLayout="horizontal"
               pagination={{ position: "bottom" }}
               renderItem={user => (
-                <List.Item>
+                <List.Item
+                  actions={[
+                    <Popconfirm
+                      title="Remove this user?"
+                      okText="Yes, Remove"
+                      cancelText="No"
+                    >
+                      <Button icon={<CloseOutlined />} type="link" />
+                    </Popconfirm>
+                  ]}
+                >
                   <List.Item.Meta
                     title={user.username}
                     description={user.email}
