@@ -19,6 +19,10 @@ class Mutations::AddUserToGroup < Mutations::BaseMutation
         group = find_group_or_throw_execution_error(id: group_id)
 
         # add the user to the group in memory
+        if group.users.include? user
+            raise GraphQL::ExecutionError, "You cannot add a user twice to the same group."
+        end
+
         group.users << user
 
         # authorize this action
