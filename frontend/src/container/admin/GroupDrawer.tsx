@@ -42,7 +42,7 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
 
   const [addUserToGroup] = useMutation(ADD_USER_TO_GROUP, {
     onCompleted: () => {
-      message.success("Added user to the group");
+      message.success("Added user");
     },
     onError: (error: ApolloError) => {
       notification.error({
