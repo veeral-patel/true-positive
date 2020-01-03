@@ -1,5 +1,5 @@
 import { CloseOutlined } from "@ant-design/icons";
-import { useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
   Drawer,
@@ -7,15 +7,21 @@ import {
   Form,
   Input,
   List,
+  message,
+  notification,
   Popconfirm,
-  Spin
+  Spin,
+  Typography
 } from "antd";
-import Paragraph from "antd/lib/typography/Paragraph";
+import { ApolloError } from "apollo-boost";
 import UserSelect from "container/shared/users/UserSelect";
+import ADD_USER_TO_GROUP from "mutations/addUserToGroup";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_GROUP from "queries/getOneGroup";
 import React from "react";
 import IGroup from "ts/interfaces/IGroup";
+
+const { Paragraph } = Typography;
 
 interface Response {
   group: IGroup;
@@ -31,6 +37,18 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
   const { loading, error, data } = useQuery<Response>(GET_ONE_GROUP, {
     variables: {
       id: groupId
+    }
+  });
+
+  const [addUserToGroup] = useMutation(ADD_USER_TO_GROUP, {
+    onCompleted: () => {
+      message.success("Added user to the group");
+    },
+    onError: (error: ApolloError) => {
+      notification.error({
+        message: "Could not add user to the group",
+        description: error.message
+      });
     }
   });
 
@@ -57,10 +75,26 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
         </div>
         <div>
           <Paragraph>Users ({data.group.userCount})</Paragraph>
-          <Form colon={false} layout="vertical" style={{ display: "flex" }}>
+          <Form
+            colon={false}
+            layout="vertical"
+            style={{ display: "flex" }}
+            onFinish={values => {
+              values.usernames.forEach((username: string) => {
+                addUserToGroup({
+                  variables: {
+                    input: {
+                      username,
+                      groupId: groupId
+                    }
+                  }
+                });
+              });
+            }}
+          >
             <Form.Item
               style={{ flex: "80%" }}
-              name="usernamesOfNewUsers"
+              name="usernames"
               rules={[
                 {
                   required: true,
