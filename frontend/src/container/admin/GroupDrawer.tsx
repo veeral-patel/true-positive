@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
-import { Drawer, Empty, Form, Input, List, Select, Spin } from "antd";
+import { Drawer, Empty, Form, Input, List, Spin } from "antd";
 import Paragraph from "antd/lib/typography/Paragraph";
+import UserSelect from "container/shared/users/UserSelect";
 import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
 import React from "react";
@@ -61,8 +62,8 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
         <div>
           <Paragraph>Users ({data.group.userCount})</Paragraph>
           <Form colon={false} layout="vertical">
-            <Form.Item name="username">
-              <Select mode="multiple" placeholder="Add users to the group" />
+            <Form.Item name="userToAdd">
+              <UserSelect />
             </Form.Item>
           </Form>
           {data.group.userCount === 0 ? (

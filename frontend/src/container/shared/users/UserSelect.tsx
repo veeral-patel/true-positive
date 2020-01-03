@@ -11,14 +11,20 @@ interface Props {
   handleSelect?: (userId: any) => void;
   onChange?: (value: any) => void;
   value?: any;
+  forAssigning?: boolean;
 }
 
 interface UserData {
   users: IUser[];
 }
 
-function AssignUserSelect({ handleSelect, onChange, value }: Props) {
-  const { loading, error, data } = useQuery<UserData>(GET_USERS);
+function UserSelect({
+  handleSelect,
+  onChange,
+  value,
+  forAssigning = false
+}: Props) {
+  const { loading, data } = useQuery<UserData>(GET_USERS);
 
   // generate a list of options
   var options: Object[] = [];
@@ -29,17 +35,18 @@ function AssignUserSelect({ handleSelect, onChange, value }: Props) {
       </Option>
     ];
   } else if (data) {
-    options = data.users
-      .map(user => (
-        <Option key={user.username} value={user.username}>
-          {user.username}
-        </Option>
-      ))
-      .concat(
+    options = data.users.map(user => (
+      <Option key={user.username} value={user.username}>
+        {user.username}
+      </Option>
+    ));
+    if (forAssigning) {
+      options = options.concat(
         <Option key={NO_ASSIGNED_USER} value={NO_ASSIGNED_USER}>
           N/A
         </Option>
       );
+    }
   } else {
     options = [
       <Option key="error" value="error">
@@ -63,4 +70,4 @@ function AssignUserSelect({ handleSelect, onChange, value }: Props) {
   );
 }
 
-export default AssignUserSelect;
+export default UserSelect;

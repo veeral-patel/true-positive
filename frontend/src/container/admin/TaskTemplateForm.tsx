@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import GenericEditor from "container/shared/markdown/GenericEditor";
-import AssignUserSelect from "container/shared/users/AssignUserSelect";
+import UserSelect from "container/shared/users/UserSelect";
 import React from "react";
 
 interface Props {
@@ -36,7 +36,7 @@ function TaskTemplateForm({ handleClose, handleFinish, initialValues }: Props) {
         <Input placeholder="Default task name" />
       </Form.Item>
       <Form.Item label="Assigned To" name="assignedTo">
-        <AssignUserSelect />
+        <UserSelect forAssigning={true} />
       </Form.Item>
       <Form.Item label="Description" name="description">
         <GenericEditor />
