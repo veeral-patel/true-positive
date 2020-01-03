@@ -43,6 +43,7 @@ module Types
 
       # groups -------
       field :create_group, mutation: Mutations::CreateGroup
+      field :update_group, mutation: Mutations::UpdateGroup
       field :delete_group, mutation: Mutations::DeleteGroup
 
       # task templates -----
