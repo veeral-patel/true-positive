@@ -62,7 +62,10 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
               style={{ flex: "80%" }}
               name="usernamesOfNewUsers"
               rules={[
-                { required: true, message: "Please select at least one user" }
+                {
+                  required: true,
+                  message: "Please select at least one user to add"
+                }
               ]}
             >
               <UserSelect multiple placeholder="Choose users to add" />
