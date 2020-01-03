@@ -11,7 +11,12 @@ interface Props {
   handleSelect?: (userId: any) => void;
   onChange?: (value: any) => void;
   value?: any;
+
+  /* Whether this select is for assigning a user to something. If so, we include a N/A option. */
   forAssigning?: boolean;
+
+  /* Whether to allow choosing multiple users. */
+  multiple?: boolean;
 }
 
 interface UserData {
@@ -22,7 +27,8 @@ function UserSelect({
   handleSelect,
   onChange,
   value,
-  forAssigning = false
+  forAssigning = false,
+  multiple = false
 }: Props) {
   const { loading, data } = useQuery<UserData>(GET_USERS);
 
@@ -64,6 +70,7 @@ function UserSelect({
       onSelect={userId => handleSelect && handleSelect(userId)}
       onChange={onChange}
       value={value}
+      mode={multiple ? "multiple" : undefined}
     >
       {options}
     </Select>

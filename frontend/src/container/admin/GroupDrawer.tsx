@@ -2,24 +2,10 @@ import { useQuery } from "@apollo/react-hooks";
 import { Drawer, Empty, Form, Input, List, Spin } from "antd";
 import Paragraph from "antd/lib/typography/Paragraph";
 import UserSelect from "container/shared/users/UserSelect";
-import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
+import GET_ONE_GROUP from "queries/getOneGroup";
 import React from "react";
 import IGroup from "ts/interfaces/IGroup";
-
-const GET_ONE_GROUP = gql`
-  query getOneGroup($id: ID!) {
-    group(id: $id) {
-      id
-      name
-      userCount
-      users {
-        username
-        email
-      }
-    }
-  }
-`;
 
 interface Response {
   group: IGroup;
@@ -63,7 +49,7 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
           <Paragraph>Users ({data.group.userCount})</Paragraph>
           <Form colon={false} layout="vertical">
             <Form.Item name="userToAdd">
-              <UserSelect />
+              <UserSelect multiple />
             </Form.Item>
           </Form>
           {data.group.userCount === 0 ? (
