@@ -1,6 +1,6 @@
 import { ArrowRightOutlined, PlusOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
-import { Form, Input, message, notification, Tabs } from "antd";
+import { Form, Input, message, notification, Tabs, Typography } from "antd";
 import { ApolloError } from "apollo-boost";
 import ListOfUsers from "container/admin/ListOfUsers";
 import CREATE_A_GROUP from "mutations/createGroup";
@@ -9,6 +9,7 @@ import React from "react";
 import ListOfGroups from "./ListOfGroups";
 
 const { TabPane } = Tabs;
+const { Text } = Typography;
 
 function UsersTab() {
   return (
@@ -88,6 +89,7 @@ function UsersAndGroups() {
   return (
     <>
       <h3>Users & Groups</h3>
+      <Text>Manage users and organize them into groups.</Text>
       <Tabs defaultActiveKey="users">
         <TabPane key="users" tab="Users">
           <UsersTab />
