@@ -16,6 +16,7 @@ import {
 import { ApolloError } from "apollo-boost";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_USER_TO_GROUP from "mutations/addUserToGroup";
+import REMOVE_USER_FROM_GROUP from "mutations/removeUserFromGroup";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_GROUP from "queries/getOneGroup";
 import React from "react";
@@ -47,6 +48,19 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
     onError: (error: ApolloError) => {
       notification.error({
         message: "Could not add user to the group",
+        description: error.message
+      });
+    },
+    refetchQueries: [{ query: GET_ONE_GROUP, variables: { id: groupId } }]
+  });
+
+  const [removeUserFromGroup] = useMutation(REMOVE_USER_FROM_GROUP, {
+    onCompleted: () => {
+      message.success("Removed user");
+    },
+    onError: (error: ApolloError) => {
+      notification.error({
+        message: "Could not remove user from the group",
         description: error.message
       });
     },
@@ -131,6 +145,16 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
                       title="Remove this user?"
                       okText="Yes, Remove"
                       cancelText="No"
+                      onConfirm={() =>
+                        removeUserFromGroup({
+                          variables: {
+                            input: {
+                              username: user.username,
+                              groupId: groupId
+                            }
+                          }
+                        })
+                      }
                     >
                       <Button icon={<CloseOutlined />} type="link" />
                     </Popconfirm>
