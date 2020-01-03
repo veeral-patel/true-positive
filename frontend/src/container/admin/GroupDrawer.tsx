@@ -49,7 +49,8 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
         message: "Could not add user to the group",
         description: error.message
       });
-    }
+    },
+    refetchQueries: [{ query: GET_ONE_GROUP, variables: { id: groupId } }]
   });
 
   let drawerContent: React.ReactNode = null;
