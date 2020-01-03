@@ -7,7 +7,8 @@ import {
   message,
   notification,
   Popconfirm,
-  Spin
+  Spin,
+  Typography
 } from "antd";
 import Paragraph from "antd/lib/typography/Paragraph";
 import { ApolloError } from "apollo-boost";
@@ -17,6 +18,8 @@ import GET_GROUPS from "queries/getGroups";
 import React, { useState } from "react";
 import IGroup from "ts/interfaces/IGroup";
 import GroupDrawer from "./GroupDrawer";
+
+const { Text } = Typography;
 
 interface GroupData {
   groups: IGroup[];
@@ -91,9 +94,11 @@ function ListOfGroups() {
             >
               <List.Item.Meta
                 title={
-                  <a onClick={() => setIdOfActiveGroup(group.id)}>
-                    {group.name}
-                  </a>
+                  <Text editable>
+                    <a onClick={() => setIdOfActiveGroup(group.id)}>
+                      {group.name}
+                    </a>
+                  </Text>
                 }
                 description={`${group.userCount} users`}
               ></List.Item.Meta>
