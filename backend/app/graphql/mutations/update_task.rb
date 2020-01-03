@@ -2,11 +2,11 @@ class Mutations::UpdateTask < Mutations::BaseMutation
     description "Update a task."
 
     argument :task_id, ID, required: true do
-        description "The ID of the task to update"    
+        description "The ID of the task to update."    
     end
 
     argument :name, String, required: false do
-        description "New name for this task"
+        description "New name for this task."
     end
 
     argument :description, String, required: false do

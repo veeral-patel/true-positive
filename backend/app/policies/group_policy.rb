@@ -9,6 +9,11 @@ class GroupPolicy
         true
     end
 
+    def update_group?
+        # Any user can create any group (at the moment)
+        true
+    end
+
     def delete_group?
         # Any user can delete a group (at the moment)
         true
