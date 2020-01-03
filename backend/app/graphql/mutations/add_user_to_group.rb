@@ -1,7 +1,7 @@
 class Mutations::AddUserToGroup < Mutations::BaseMutation
     description "Add a user to a group."
 
-    argument :username, ID, required: true do
+    argument :username, String, required: true do
         description "Username of the user to add."
     end
 
@@ -20,7 +20,7 @@ class Mutations::AddUserToGroup < Mutations::BaseMutation
 
         # add the user to the group in memory
         if group.users.include? user
-            raise GraphQL::ExecutionError, "#{user.username} is already in this group"
+            raise GraphQL::ExecutionError, "#{user.username} is already in this group."
         end
 
         group.users << user
