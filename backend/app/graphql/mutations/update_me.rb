@@ -19,6 +19,8 @@ class Mutations::UpdateMe < Mutations::BaseMutation
         me.username = username if not username.nil?
         me.email = email if not email.nil?
 
+        # authz not needed; any user can update his own info
+
         # save to the database
         if me.save
             {

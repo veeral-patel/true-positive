@@ -14,5 +14,25 @@ class Mutations::UpdatePassword < Mutations::BaseMutation
     end
 
     def resolve(current_password:, new_password:)
+        me = context[:current_user]
+
+        # raise error if current_password isn't correct
+        if not me.authentication?(current_password)
+            raise GraphQL::ExecutionError, "The current password you provided is invalid."
+        end
+
+        # change the user's password to new_password in memory
+        me.password = new_password
+
+        # authz not needed; any user can update his own info
+
+        # save the user
+        if me.save
+            {
+                "me": me
+            }
+        else
+            raise GraphQL::ExecutionError, me.errors.full_messages.join(" | ")
+        end
     end
 end
