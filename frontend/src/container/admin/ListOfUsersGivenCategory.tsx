@@ -1,6 +1,15 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { useQuery } from "@apollo/react-hooks";
-import { Button, Empty, List, Popconfirm, Spin } from "antd";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import {
+  Button,
+  Empty,
+  List,
+  message,
+  notification,
+  Popconfirm,
+  Spin
+} from "antd";
+import DISABLE_USER from "mutations/disableUser";
 import Error from "presentational/shared/errors/Error";
 import GET_USERS from "queries/getUsers";
 import React from "react";
@@ -16,6 +25,20 @@ interface Props {
 
 function ListOfUsersGivenCategory({ category }: Props) {
   const { loading, error, data } = useQuery<UserData>(GET_USERS);
+
+  const [disableUser] = useMutation(DISABLE_USER, {
+    onCompleted: function() {
+      message.success("Disabled the user");
+    },
+    onError: function(error) {
+      notification.error({
+        message: "Could not disable the user",
+        description: error.message
+      });
+    },
+    refetchQueries: [{ query: GET_USERS }]
+  });
+
   if (loading) return <Spin />;
   else if (error) {
     return <Error title="Could not fetch users" subtitle={error.message} />;
@@ -57,6 +80,15 @@ function ListOfUsersGivenCategory({ category }: Props) {
                   title="Disable this user?"
                   okText="Yes, Disable"
                   cancelText="No"
+                  onConfirm={() =>
+                    disableUser({
+                      variables: {
+                        input: {
+                          username: user.username
+                        }
+                      }
+                    })
+                  }
                 >
                   <Button icon={<DeleteOutlined />} type="link" />
                 </Popconfirm>
