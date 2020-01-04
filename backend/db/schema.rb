@@ -65,13 +65,14 @@ ActiveRecord::Schema.define(version: 2020_01_04_054223) do
   end
 
   create_table "case_members", force: :cascade do |t|
-    t.bigint "case_id"
+    t.string "caseable_type"
+    t.bigint "caseable_id"
     t.bigint "user_id"
     t.integer "role"
     t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_case_members_on_case_id"
+    t.index ["caseable_type", "caseable_id"], name: "index_case_members_on_caseable_type_and_caseable_id"
     t.index ["tenant_id"], name: "index_case_members_on_tenant_id"
     t.index ["user_id"], name: "index_case_members_on_user_id"
   end
@@ -315,7 +316,6 @@ ActiveRecord::Schema.define(version: 2020_01_04_054223) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "audits", "tenants"
   add_foreign_key "audits", "users", column: "created_by_id"
-  add_foreign_key "case_members", "cases"
   add_foreign_key "case_members", "tenants"
   add_foreign_key "case_members", "users"
   add_foreign_key "case_template_users", "case_templates"
@@ -328,6 +328,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_054223) do
   add_foreign_key "case_templates", "users", column: "created_by_id"
   add_foreign_key "cases", "priorities"
   add_foreign_key "cases", "statuses"
+  add_foreign_key "cases", "tenants"
   add_foreign_key "cases", "users", column: "assigned_to_id"
   add_foreign_key "cases", "users", column: "created_by_id"
   add_foreign_key "comments", "tenants"

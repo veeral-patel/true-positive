@@ -11,7 +11,7 @@ class CaseTemplate < ApplicationRecord
   belongs_to :status
   belongs_to :priority
 
-  has_many :case_template_users
+  has_many :case_members, as: :caseable
 
   acts_as_taggable_on :tags
 end

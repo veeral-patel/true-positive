@@ -17,7 +17,7 @@ class Case < ApplicationRecord
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :indicators, dependent: :destroy
-  has_many :case_members, dependent: :destroy
+  has_many :case_members, as: :caseable, dependent: :destroy
   has_many :task_groups, dependent: :destroy
   has_many :tasks, through: :task_groups
 
