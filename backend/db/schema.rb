@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_02_054040) do
+ActiveRecord::Schema.define(version: 2020_01_04_054223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,18 @@ ActiveRecord::Schema.define(version: 2020_01_02_054040) do
     t.index ["case_id"], name: "index_case_members_on_case_id"
     t.index ["tenant_id"], name: "index_case_members_on_tenant_id"
     t.index ["user_id"], name: "index_case_members_on_user_id"
+  end
+
+  create_table "case_template_users", force: :cascade do |t|
+    t.bigint "case_template_id"
+    t.bigint "user_id"
+    t.integer "role"
+    t.bigint "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_template_id"], name: "index_case_template_users_on_case_template_id"
+    t.index ["tenant_id"], name: "index_case_template_users_on_tenant_id"
+    t.index ["user_id"], name: "index_case_template_users_on_user_id"
   end
 
   create_table "case_templates", force: :cascade do |t|
@@ -306,6 +318,9 @@ ActiveRecord::Schema.define(version: 2020_01_02_054040) do
   add_foreign_key "case_members", "cases"
   add_foreign_key "case_members", "tenants"
   add_foreign_key "case_members", "users"
+  add_foreign_key "case_template_users", "case_templates"
+  add_foreign_key "case_template_users", "tenants"
+  add_foreign_key "case_template_users", "users"
   add_foreign_key "case_templates", "priorities"
   add_foreign_key "case_templates", "statuses"
   add_foreign_key "case_templates", "tenants"
