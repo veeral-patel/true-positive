@@ -13,6 +13,7 @@ interface ICaseTemplate {
   tags: ITag[];
   description: string | null;
   assignedTo: IUser | null;
+  defaultUserCount: number;
 }
 
 export default ICaseTemplate;

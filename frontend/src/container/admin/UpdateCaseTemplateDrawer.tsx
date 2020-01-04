@@ -9,7 +9,7 @@ import React from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 
 const { TabPane } = Tabs;
-const { Text, Paragraph } = Typography;
+const { Paragraph } = Typography;
 
 interface Props {
   visible: boolean;
@@ -93,7 +93,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             The users and groups below will be added to cases created from this
             template.
           </Paragraph>
-          <h4>Users</h4>
+          <h4>Users ({data.caseTemplate.defaultUserCount})</h4>
         </TabPane>
       </Tabs>
     );

@@ -14,4 +14,8 @@ class CaseTemplate < ApplicationRecord
   has_many :default_users, foreign_key: "caseable_id", class_name: "CaseMember", as: :caseable
 
   acts_as_taggable_on :tags
+
+  def default_user_count
+    self.default_users.count
+  end
 end

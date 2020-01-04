@@ -5,6 +5,7 @@ const GET_ONE_CASE_TEMPLATE = gql`
     caseTemplate(id: $id) {
       id
       name
+      description
       status {
         name
       }
@@ -14,10 +15,10 @@ const GET_ONE_CASE_TEMPLATE = gql`
       tags {
         name
       }
-      description
       assignedTo {
         username
       }
+      defaultUserCount
     }
   }
 `;
