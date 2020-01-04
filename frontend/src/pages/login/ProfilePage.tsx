@@ -49,6 +49,19 @@ const UPDATE_ME = gql`
 
 // ---
 
+const UPDATE_PASSWORD = gql`
+  mutation updatePassword($input: UpdatePasswordInput!) {
+    updatePassword(input: $input) {
+      me {
+        username
+        email
+      }
+    }
+  }
+`;
+
+// ---
+
 interface Props extends RouteComponentProps {}
 
 function ProfilePage(props: Props) {
@@ -56,6 +69,19 @@ function ProfilePage(props: Props) {
   const [updateMe] = useMutation(UPDATE_ME, {
     onCompleted: function() {
       message.success("Updated profile");
+    },
+    onError: function(error) {
+      notification.error({
+        message: "Failed to change your password",
+        description: error.message
+      });
+    },
+    refetchQueries: [{ query: GET_ME }]
+  });
+
+  const [updatePassword] = useMutation(UPDATE_PASSWORD, {
+    onCompleted: function() {
+      message.success("Successfully changed your password");
     },
     onError: function(error) {
       notification.error({
@@ -98,8 +124,7 @@ function ProfilePage(props: Props) {
                       username: values.username,
                       email: values.email
                     }
-                  },
-                  refetchQueries: [{ query: GET_ME }]
+                  }
                 })
               }
             >
@@ -137,7 +162,20 @@ function ProfilePage(props: Props) {
             <Paragraph type="secondary">Change your password</Paragraph>
           </Col>
           <Col span={10}>
-            <Form layout="vertical" colon={false}>
+            <Form
+              layout="vertical"
+              colon={false}
+              onFinish={values =>
+                updatePassword({
+                  variables: {
+                    input: {
+                      currentPassword: values.current_password,
+                      newPassword: values.new_password
+                    }
+                  }
+                })
+              }
+            >
               <Form.Item
                 label="Current password"
                 name="current_password"
