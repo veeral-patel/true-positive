@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { List, Spin } from "antd";
+import { Empty, List, Spin } from "antd";
 import Error from "presentational/shared/errors/Error";
 import GET_USERS from "queries/getUsers";
 import React from "react";
@@ -9,16 +9,43 @@ interface UserData {
   users: IUser[];
 }
 
-function ListOfUsers() {
+interface Props {
+  category: "ACTIVE" | "DISABLED";
+}
+
+function ListOfUsers({ category }: Props) {
   const { loading, error, data } = useQuery<UserData>(GET_USERS);
   if (loading) return <Spin />;
   else if (error) {
     return <Error title="Could not fetch users" subtitle={error.message} />;
   } else if (data) {
+    // Filter the users based on the category provided in props
+    var filteredUsers: IUser[] = [];
+
+    if (category === "ACTIVE") {
+      filteredUsers = data.users.filter(user => !user.disabled);
+    } else if (category === "DISABLED") {
+      filteredUsers = data.users.filter(user => user.disabled);
+    }
+
+    if (filteredUsers.length === 0)
+      return (
+        <Empty
+          description={
+            <div>
+              <h4>No users</h4>
+              {category === "ACTIVE"
+                ? "Invite users above."
+                : "You can disable users above. Disabled users cannot log in."}
+            </div>
+          }
+        />
+      );
+
     return (
       <List
         bordered
-        dataSource={data.users}
+        dataSource={filteredUsers}
         itemLayout="horizontal"
         pagination={{ position: "bottom" }}
         renderItem={user => (

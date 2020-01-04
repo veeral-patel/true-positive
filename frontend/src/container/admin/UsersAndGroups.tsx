@@ -9,7 +9,7 @@ import React from "react";
 import ListOfGroups from "./ListOfGroups";
 
 const { TabPane } = Tabs;
-const { Text } = Typography;
+const { Text, Paragraph } = Typography;
 
 function UsersTab() {
   return (
@@ -35,7 +35,11 @@ function UsersTab() {
           />
         </Form.Item>
       </Form>
-      <ListOfUsers />
+      <Paragraph>Active</Paragraph>
+      <ListOfUsers category="ACTIVE" />
+      <br />
+      <Paragraph>Disabled</Paragraph>
+      <ListOfUsers category="DISABLED" />
     </>
   );
 }
