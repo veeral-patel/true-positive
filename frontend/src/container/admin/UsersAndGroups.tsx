@@ -39,6 +39,7 @@ function UsersTab() {
       <ListOfUsersGivenCategory category="ACTIVE" />
       <br />
       <Paragraph>Disabled</Paragraph>
+      <Paragraph type="secondary">Disabled users cannot log in.</Paragraph>
       <ListOfUsersGivenCategory category="DISABLED" />
     </>
   );
