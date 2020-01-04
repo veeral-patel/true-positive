@@ -5,7 +5,6 @@ const GET_USERS = gql`
     users {
       username
       email
-      disabled
     }
   }
 `;

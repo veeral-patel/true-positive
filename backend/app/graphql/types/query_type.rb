@@ -54,10 +54,18 @@ module Types
 
       # --------------- Users --------------------
       field :users, [Types::UserType], null: false do
-        description "Lists all users."
+        description "Lists all active users."
       end
 
       def users
+        User.select { |user| not user.disabled }
+      end
+
+      field :all_users, [Types::UserType], null: false do
+        description "Lists all users, including disabled users."
+      end
+
+      def all_users
         User.all
       end
 

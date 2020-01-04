@@ -11,12 +11,12 @@ import {
 } from "antd";
 import DISABLE_USER from "mutations/disableUser";
 import Error from "presentational/shared/errors/Error";
-import GET_USERS from "queries/getUsers";
+import GET_ALL_USERS from "queries/getAllUsers";
 import React from "react";
 import IUser from "ts/interfaces/IUser";
 
 interface UserData {
-  users: IUser[];
+  allUsers: IUser[];
 }
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
 }
 
 function ListOfUsersGivenCategory({ category }: Props) {
-  const { loading, error, data } = useQuery<UserData>(GET_USERS);
+  const { loading, error, data } = useQuery<UserData>(GET_ALL_USERS);
 
   const [disableUser] = useMutation(DISABLE_USER, {
     onCompleted: function() {
@@ -36,7 +36,7 @@ function ListOfUsersGivenCategory({ category }: Props) {
         description: error.message
       });
     },
-    refetchQueries: [{ query: GET_USERS }]
+    refetchQueries: [{ query: GET_ALL_USERS }]
   });
 
   if (loading) return <Spin />;
@@ -47,9 +47,9 @@ function ListOfUsersGivenCategory({ category }: Props) {
     var filteredUsers: IUser[] = [];
 
     if (category === "ACTIVE") {
-      filteredUsers = data.users.filter(user => !user.disabled);
+      filteredUsers = data.allUsers.filter(user => !user.disabled);
     } else if (category === "DISABLED") {
-      filteredUsers = data.users.filter(user => user.disabled);
+      filteredUsers = data.allUsers.filter(user => user.disabled);
     }
 
     if (filteredUsers.length === 0)
