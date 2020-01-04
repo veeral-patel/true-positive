@@ -16,14 +16,8 @@ class Mutations::UpdateMe < Mutations::BaseMutation
     def resolve(username: nil, email: nil)
         # update me in memory
         me = context[:current_user]
-
-        if not username.nil?
-            me.username = username
-        end
-
-        if not email.nil?
-            me.email = email
-        end
+        me.username = username if not username.nil?
+        me.email = email if not email.nil?
 
         # save to the database
         if me.save

@@ -40,6 +40,7 @@ module Types
       
       # user -------
       field :update_me, mutation: Mutations::UpdateMe
+      field :update_password, mutation: Mutations::UpdatePassword
 
       # groups -------
       field :create_group, mutation: Mutations::CreateGroup
