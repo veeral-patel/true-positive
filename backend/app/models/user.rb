@@ -31,6 +31,20 @@ class User < ApplicationRecord
         self.save
     end
 
+    def enable
+        self.disabled_at = nil
+        self.save
+    end
+
+    def change_enabled(enabled)
+        # If enabled is true, enable this user. If false, disable him
+        if enabled
+            self.enable
+        else
+            self.disable
+        end
+    end
+
     # Lists the cases this user is a member of
     def joined_cases
         # get the CaseMember records involving this user

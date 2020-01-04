@@ -125,7 +125,7 @@ function ListOfGroups() {
                     </a>
                   </Text>
                 }
-                description={`${group.userCount} users`}
+                description={`${group.userCount} user(s)`}
               ></List.Item.Meta>
             </List.Item>
           )}

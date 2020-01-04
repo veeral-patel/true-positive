@@ -41,7 +41,7 @@ module Types
       # user -------
       field :update_me, mutation: Mutations::UpdateMe
       field :update_password, mutation: Mutations::UpdatePassword
-      field :disable_user, mutation: Mutations::DisableUser
+      field :enable_user, mutation: Mutations::EnableUser
 
       # groups -------
       field :create_group, mutation: Mutations::CreateGroup

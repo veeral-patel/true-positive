@@ -3,8 +3,8 @@ class UserPolicy
     @user = user
   end
 
-  def disable?
-    # A user can disable any other user
+  def update_enabled?
+    # A user can disable/enabled any other user for now
     true
   end
 end

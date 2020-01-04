@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-const DISABLE_USER = gql`
-  mutation disableUser($input: DisableUserInput!) {
-    disableUser(input: $input) {
+const ENABLE_USER = gql`
+  mutation enableUser($input: EnableUserInput!) {
+    enableUser(input: $input) {
       user {
         username
       }
@@ -10,4 +10,4 @@ const DISABLE_USER = gql`
   }
 `;
 
-export default DISABLE_USER;
+export default ENABLE_USER;

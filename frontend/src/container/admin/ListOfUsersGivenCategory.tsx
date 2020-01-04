@@ -1,4 +1,4 @@
-import { DeleteOutlined } from "@ant-design/icons";
+import { LockOutlined, UnlockOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   Popconfirm,
   Spin
 } from "antd";
-import DISABLE_USER from "mutations/disableUser";
+import ENABLE_USER from "mutations/disableUser";
 import Error from "presentational/shared/errors/Error";
 import GET_ALL_USERS from "queries/getAllUsers";
 import React from "react";
@@ -26,13 +26,13 @@ interface Props {
 function ListOfUsersGivenCategory({ category }: Props) {
   const { loading, error, data } = useQuery<UserData>(GET_ALL_USERS);
 
-  const [disableUser] = useMutation(DISABLE_USER, {
+  const [enableUser] = useMutation(ENABLE_USER, {
     onCompleted: function() {
-      message.success("Disabled the user");
+      message.success("Updated the user");
     },
     onError: function(error) {
       notification.error({
-        message: "Could not disable the user",
+        message: "Could not enable/disable the user",
         description: error.message
       });
     },
@@ -81,16 +81,36 @@ function ListOfUsersGivenCategory({ category }: Props) {
                   okText="Yes, Disable"
                   cancelText="No"
                   onConfirm={() =>
-                    disableUser({
+                    enableUser({
                       variables: {
                         input: {
-                          username: user.username
+                          username: user.username,
+                          enabled: false
                         }
                       }
                     })
                   }
                 >
-                  <Button icon={<DeleteOutlined />} type="link" />
+                  <Button icon={<LockOutlined />} type="link" />
+                </Popconfirm>
+              ),
+              category === "DISABLED" && (
+                <Popconfirm
+                  title="Enable this user?"
+                  okText="Yes, Enable"
+                  cancelText="No"
+                  onConfirm={() =>
+                    enableUser({
+                      variables: {
+                        input: {
+                          username: user.username,
+                          enabled: true
+                        }
+                      }
+                    })
+                  }
+                >
+                  <Button icon={<UnlockOutlined />} type="link" />
                 </Popconfirm>
               )
             ]}
