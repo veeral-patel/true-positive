@@ -30,6 +30,10 @@ class Types::CaseTemplateType < Types::BaseObject
         description "Default tags to add to cases created with this template."
     end
 
+    field :default_users, [Types::CaseMemberType], null: false do
+        description "Users to add to cases created with this template."
+    end
+
     # possibly null ---
     field :assigned_to, Types::UserType, null: true do
         description "Default user to assign to cases created with this template."
