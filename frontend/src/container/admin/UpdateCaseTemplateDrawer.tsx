@@ -54,6 +54,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       />
     );
   } else if (data) {
+    const caseTemplate = data.caseTemplate;
     drawerContent = (
       <Tabs key="info">
         <TabPane tab="Info" key="info">
@@ -61,21 +62,21 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             handleClose={handleClose}
             submitText="Update Template"
             initialValues={{
-              name: data.caseTemplate.name,
-              status: data.caseTemplate.status.name,
-              priority: data.caseTemplate.priority.name,
-              tags: data.caseTemplate.tags.map(tag => tag.name),
-              description: data.caseTemplate.description,
+              name: caseTemplate.name,
+              status: caseTemplate.status.name,
+              priority: caseTemplate.priority.name,
+              tags: caseTemplate.tags.map(tag => tag.name),
+              description: caseTemplate.description,
               assignedTo:
-                data.caseTemplate.assignedTo === null
+                caseTemplate.assignedTo === null
                   ? null
-                  : data.caseTemplate.assignedTo.username
+                  : caseTemplate.assignedTo.username
             }}
             onFinish={values =>
               updateCaseTemplate({
                 variables: {
                   input: {
-                    id: data.caseTemplate.id,
+                    id: caseTemplate.id,
                     name: values.name,
                     status: values.status,
                     priority: values.priority,
@@ -93,7 +94,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             The users and groups below will be added to cases created from this
             template.
           </Paragraph>
-          <h4>Users ({data.caseTemplate.defaultUserCount})</h4>
+          <h4>Users ({caseTemplate.defaultUserCount})</h4>
         </TabPane>
       </Tabs>
     );
