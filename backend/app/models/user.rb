@@ -36,7 +36,7 @@ class User < ApplicationRecord
         self.save
     end
 
-    def change_enabled(enabled)
+    def update_enabled(enabled)
         # If enabled is true, enable this user. If false, disable him
         if enabled
             self.enable

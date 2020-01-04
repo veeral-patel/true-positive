@@ -23,7 +23,7 @@ class Mutations::EnableUser < Mutations::BaseMutation
         end
 
         # enable/disable him
-        if user.change_enabled(enabled)
+        if user.update_enabled(enabled)
             {
                 "user": user
             }
