@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { Drawer, message, notification, Spin } from "antd";
+import { Drawer, message, notification, Spin, Tabs, Typography } from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
@@ -7,6 +7,9 @@ import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
 import React from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
+
+const { TabPane } = Tabs;
+const { Text, Paragraph } = Typography;
 
 interface Props {
   visible: boolean;
@@ -52,36 +55,47 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     );
   } else if (data) {
     drawerContent = (
-      <CaseTemplateForm
-        handleClose={handleClose}
-        submitText="Update Template"
-        initialValues={{
-          name: data.caseTemplate.name,
-          status: data.caseTemplate.status.name,
-          priority: data.caseTemplate.priority.name,
-          tags: data.caseTemplate.tags.map(tag => tag.name),
-          description: data.caseTemplate.description,
-          assignedTo:
-            data.caseTemplate.assignedTo === null
-              ? null
-              : data.caseTemplate.assignedTo.username
-        }}
-        onFinish={values =>
-          updateCaseTemplate({
-            variables: {
-              input: {
-                id: data.caseTemplate.id,
-                name: values.name,
-                status: values.status,
-                priority: values.priority,
-                tags: values.tags,
-                description: values.description,
-                assignedTo: values.assignedTo
-              }
+      <Tabs key="info">
+        <TabPane tab="Info" key="info">
+          <CaseTemplateForm
+            handleClose={handleClose}
+            submitText="Update Template"
+            initialValues={{
+              name: data.caseTemplate.name,
+              status: data.caseTemplate.status.name,
+              priority: data.caseTemplate.priority.name,
+              tags: data.caseTemplate.tags.map(tag => tag.name),
+              description: data.caseTemplate.description,
+              assignedTo:
+                data.caseTemplate.assignedTo === null
+                  ? null
+                  : data.caseTemplate.assignedTo.username
+            }}
+            onFinish={values =>
+              updateCaseTemplate({
+                variables: {
+                  input: {
+                    id: data.caseTemplate.id,
+                    name: values.name,
+                    status: values.status,
+                    priority: values.priority,
+                    tags: values.tags,
+                    description: values.description,
+                    assignedTo: values.assignedTo
+                  }
+                }
+              })
             }
-          })
-        }
-      />
+          />
+        </TabPane>
+        <TabPane tab="Members" key="members">
+          <Paragraph type="secondary">
+            The users and groups below will be added to cases created from this
+            template.
+          </Paragraph>
+          <h4>Users</h4>
+        </TabPane>
+      </Tabs>
     );
   }
 
