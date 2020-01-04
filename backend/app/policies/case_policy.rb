@@ -20,7 +20,7 @@ class CasePolicy
     end
 
     def user_can_edit_specified_case?(the_case)
-        CaseMember.where(case: the_case, user: @user, role: "CAN_EDIT").exists?
+        the_case.case_members.where(user: @user, role: "CAN_EDIT").exists?
     end
 
     def user_can_edit_this_case?

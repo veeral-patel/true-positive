@@ -28,7 +28,7 @@ class Case < ApplicationRecord
 
   def has_member(user)
     # Returns true iff the specified user is a member of this case.
-    CaseMember.where(case: self, user: user).exists?
+    self.case_members.where(user: user).exists?
   end
 
   def to_s

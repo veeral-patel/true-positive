@@ -25,9 +25,9 @@ class User < ApplicationRecord
     # Lists the cases this user is a member of
     def joined_cases
         # get the CaseMember records involving this user
-        members = CaseMember.select { |member| member.user == self }
+        members = CaseMember.select { |member| member.user == self && member.caseable_type === "Case" }
 
         # and return the case for each CaseMember record
-        return members.map { |member| member.case }
+        return members.map { |member| member.caseable }
     end
 end
