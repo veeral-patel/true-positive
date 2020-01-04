@@ -1,5 +1,13 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { Drawer, message, notification, Spin, Tabs, Typography } from "antd";
+import {
+  Drawer,
+  Empty,
+  message,
+  notification,
+  Spin,
+  Tabs,
+  Typography
+} from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
@@ -96,6 +104,18 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             template.
           </Paragraph>
           <h4>Users ({caseTemplate.defaultUserCount})</h4>
+          {caseTemplate.defaultUserCount === 0 ? (
+            <Empty
+              description={
+                <div>
+                  <h4>No users</h4>
+                  <Paragraph>Add users to this template above</Paragraph>
+                </div>
+              }
+            />
+          ) : (
+            <span />
+          )}
         </TabPane>
       </Tabs>
     );
