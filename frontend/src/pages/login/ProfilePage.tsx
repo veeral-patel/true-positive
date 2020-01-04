@@ -131,9 +131,39 @@ function ProfilePage(props: Props) {
               </Form.Item>
             </Form>
           </Col>
+          <Divider />
+          <Col span={8}>
+            <Paragraph strong>Password</Paragraph>
+            <Paragraph type="secondary">Change your password</Paragraph>
+          </Col>
+          <Col span={10}>
+            <Form layout="vertical" colon={false}>
+              <Form.Item
+                label="Current password"
+                name="current_password"
+                rules={[
+                  { required: true, message: "Enter your current password" }
+                ]}
+              >
+                <Input.Password placeholder="Your current password" />
+              </Form.Item>
+              <Form.Item
+                label="New password"
+                name="new_password"
+                rules={[{ required: true, message: "Enter your new password" }]}
+              >
+                <Input.Password placeholder="Your new password" />
+              </Form.Item>
+              <Form.Item>
+                <div style={{ float: "right" }}>
+                  <Button htmlType="submit">Change Password</Button>
+                </div>
+              </Form.Item>
+            </Form>
+          </Col>
+          <Divider />
         </Row>
       )}
-      <Divider />
     </>
   );
 }
