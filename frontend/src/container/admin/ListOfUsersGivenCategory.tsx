@@ -1,5 +1,6 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
-import { Empty, List, Spin } from "antd";
+import { Button, Empty, List, Popconfirm, Spin } from "antd";
 import Error from "presentational/shared/errors/Error";
 import GET_USERS from "queries/getUsers";
 import React from "react";
@@ -13,7 +14,7 @@ interface Props {
   category: "ACTIVE" | "DISABLED";
 }
 
-function ListOfUsers({ category }: Props) {
+function ListOfUsersGivenCategory({ category }: Props) {
   const { loading, error, data } = useQuery<UserData>(GET_USERS);
   if (loading) return <Spin />;
   else if (error) {
@@ -49,7 +50,19 @@ function ListOfUsers({ category }: Props) {
         itemLayout="horizontal"
         pagination={{ position: "bottom" }}
         renderItem={user => (
-          <List.Item>
+          <List.Item
+            actions={[
+              category === "ACTIVE" && (
+                <Popconfirm
+                  title="Disable this user?"
+                  okText="Yes, Disable"
+                  cancelText="No"
+                >
+                  <Button icon={<DeleteOutlined />} type="link" />
+                </Popconfirm>
+              )
+            ]}
+          >
             <List.Item.Meta title={user.username} description={user.email} />
           </List.Item>
         )}
@@ -59,4 +72,4 @@ function ListOfUsers({ category }: Props) {
   return null;
 }
 
-export default ListOfUsers;
+export default ListOfUsersGivenCategory;

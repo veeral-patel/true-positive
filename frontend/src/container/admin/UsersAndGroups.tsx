@@ -2,11 +2,11 @@ import { ArrowRightOutlined, PlusOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
 import { Form, Input, message, notification, Tabs, Typography } from "antd";
 import { ApolloError } from "apollo-boost";
-import ListOfUsers from "container/admin/ListOfUsers";
 import CREATE_A_GROUP from "mutations/createGroup";
 import GET_GROUPS from "queries/getGroups";
 import React from "react";
 import ListOfGroups from "./ListOfGroups";
+import ListOfUsersGivenCategory from "./ListOfUsersGivenCategory";
 
 const { TabPane } = Tabs;
 const { Text, Paragraph } = Typography;
@@ -36,10 +36,10 @@ function UsersTab() {
         </Form.Item>
       </Form>
       <Paragraph>Active</Paragraph>
-      <ListOfUsers category="ACTIVE" />
+      <ListOfUsersGivenCategory category="ACTIVE" />
       <br />
       <Paragraph>Disabled</Paragraph>
-      <ListOfUsers category="DISABLED" />
+      <ListOfUsersGivenCategory category="DISABLED" />
     </>
   );
 }
