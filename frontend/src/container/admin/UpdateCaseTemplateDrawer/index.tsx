@@ -7,6 +7,7 @@ import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
 import React from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
+import "./styles.css";
 
 const { TabPane } = Tabs;
 const { Paragraph } = Typography;
