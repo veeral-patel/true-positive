@@ -26,6 +26,11 @@ class User < ApplicationRecord
         not self.disabled_at.nil?
     end
 
+    def disable
+        self.disabled_at = Time.now
+        self.save
+    end
+
     # Lists the cases this user is a member of
     def joined_cases
         # get the CaseMember records involving this user
