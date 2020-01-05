@@ -19,6 +19,12 @@ const GET_ONE_CASE_TEMPLATE = gql`
         username
       }
       defaultUserCount
+      defaultMembers {
+        user {
+          username
+          email
+        }
+      }
     }
   }
 `;

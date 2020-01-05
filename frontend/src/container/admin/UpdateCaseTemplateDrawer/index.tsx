@@ -4,6 +4,7 @@ import {
   Drawer,
   Empty,
   Form,
+  List,
   message,
   notification,
   Spin,
@@ -18,6 +19,7 @@ import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
 import React from "react";
+import ICaseMember from "ts/interfaces/ICaseMember";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import "./styles.css";
 
@@ -122,7 +124,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
           <Form
             colon={false}
             layout="vertical"
-            style={{ display: "flex", marginTop: "1em" }}
+            style={{ display: "flex", marginTop: "2em" }}
             onFinish={values =>
               values.usernames.forEach((username: string) =>
                 addUserToCaseTemplate({
@@ -150,18 +152,35 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
               <Button htmlType="submit">Add Users</Button>
             </Form.Item>
           </Form>
-          {caseTemplate.defaultUserCount === 0 ? (
-            <Empty
-              description={
-                <div>
-                  <h4>No users</h4>
-                  <Paragraph>Add users to this template above</Paragraph>
-                </div>
-              }
-            />
-          ) : (
-            <span />
-          )}
+          <div>
+            {caseTemplate.defaultUserCount === 0 ? (
+              <Empty
+                description={
+                  <div>
+                    <h4>No users</h4>
+                    <Paragraph>Add users to this template above</Paragraph>
+                  </div>
+                }
+              />
+            ) : (
+              <List<ICaseMember>
+                bordered
+                itemLayout="horizontal"
+                dataSource={caseTemplate.defaultMembers}
+                renderItem={member => (
+                  <List.Item>
+                    <List.Item.Meta
+                      title={member.user.username}
+                      description={member.user.email}
+                    />
+                  </List.Item>
+                )}
+              />
+            )}
+          </div>
+          <div style={{ marginTop: "2em" }}>
+            <h4>Groups</h4>
+          </div>
         </TabPane>
       </Tabs>
     );
