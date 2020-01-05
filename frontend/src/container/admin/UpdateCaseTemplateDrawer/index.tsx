@@ -17,6 +17,7 @@ import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
+import REMOVE_USER_FROM_CASE_TEMPLATE from "mutations/removeUserFromCaseTemplate";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
@@ -62,7 +63,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
 
   const [addUserToCaseTemplate] = useMutation(ADD_USER_TO_CASE_TEMPLATE, {
     onCompleted: function() {
-      message.success("Added user to the template");
+      message.success("Added user");
     },
     onError: function(error: ApolloError) {
       notification.error({
@@ -74,6 +75,24 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
     ]
   });
+
+  const [removeUserFromCaseTemplate] = useMutation(
+    REMOVE_USER_FROM_CASE_TEMPLATE,
+    {
+      onCompleted: function() {
+        message.success("Removed user");
+      },
+      onError: function(error: ApolloError) {
+        notification.error({
+          message: "Could not add user from the template",
+          description: error.message
+        });
+      },
+      refetchQueries: [
+        { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+      ]
+    }
+  );
 
   let drawerContent: React.ReactNode = null;
   if (loading) drawerContent = <Spin />;
@@ -177,7 +196,19 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 renderItem={member => (
                   <List.Item
                     actions={[
-                      <Popconfirm title="Remove this user?">
+                      <Popconfirm
+                        title="Remove this user?"
+                        onConfirm={() =>
+                          removeUserFromCaseTemplate({
+                            variables: {
+                              input: {
+                                username: member.user.username,
+                                caseTemplateId: caseTemplate.id
+                              }
+                            }
+                          })
+                        }
+                      >
                         <Button type="link" icon={<CloseOutlined />} />
                       </Popconfirm>
                     ]}

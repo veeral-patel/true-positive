@@ -60,6 +60,7 @@ module Types
       field :update_case_template, mutation: Mutations::UpdateCaseTemplate
       field :delete_case_template, mutation: Mutations::DeleteCaseTemplate
       field :add_user_to_case_template, mutation: Mutations::AddUserToCaseTemplate
+      field :remove_user_from_case_template, mutation: Mutations::RemoveUserFromCaseTemplate
 
       # task groups ------
       field :create_task_group, mutation: Mutations::CreateTaskGroup
