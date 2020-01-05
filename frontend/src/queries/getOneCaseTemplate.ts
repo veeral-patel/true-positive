@@ -24,6 +24,7 @@ const GET_ONE_CASE_TEMPLATE = gql`
           username
           email
         }
+        role
       }
     }
   }

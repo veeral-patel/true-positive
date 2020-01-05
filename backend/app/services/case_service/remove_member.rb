@@ -9,7 +9,7 @@ module CaseService
         
             begin
                 # Remove the user from the case
-                CaseMember.find_by!(case: the_case, user: user).destroy
+                CaseMember.find_by!(caseable: the_case, user: user).destroy
         
                 # Create an audit entry
                 Audit.create(
