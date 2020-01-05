@@ -28,12 +28,12 @@ class Mutations::AddUserToCaseTemplate < Mutations::BaseMutation
         end
 
         # ensure the CT doesn't already have the user
-        if case_template.default_users.map { |member| member.user }.include? user
+        if case_template.default_members.map { |member| member.user }.include? user
             raise GraphQL::ExecutionError, "#{user.username} is already in this group."
         end
 
         # add the user to the CT in memory
-        if case_template.default_users.create(user: user, role: role)
+        if case_template.default_members.create(user: user, role: role)
             { case_template: case_template }
         else
             raise GraphQL::ExecutionError, case_template.errors.full_messages.join(" | ") 
