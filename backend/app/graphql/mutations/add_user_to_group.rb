@@ -23,7 +23,6 @@ class Mutations::AddUserToGroup < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "#{user.username} is already in this group."
         end
 
-        group.users << user
 
         # authorize this action
         unless GroupPolicy.new(context[:current_user], group).update_group?
@@ -31,7 +30,7 @@ class Mutations::AddUserToGroup < Mutations::BaseMutation
         end
 
         # save the group
-        if group.save
+        if group.users << user
             { "group": group }
         else
             raise GraphQL::ExecutionError, group.errors.full_messages.join(" | ") 

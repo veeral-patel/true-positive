@@ -10,7 +10,7 @@ class Mutations::AddMember < Mutations::BaseMutation
     end
 
     argument :role, Types::CaseRoleEnum, required: true do
-        description "The level of permissions we want the user to have in the case."
+        description "The level of permission we want the user to have in the case."
     end
 
     field :case, Types::CaseType, null: true do
