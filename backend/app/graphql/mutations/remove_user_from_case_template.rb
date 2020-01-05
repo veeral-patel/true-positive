@@ -27,5 +27,12 @@ class Mutations::RemoveUserFromCaseTemplate < Mutations::BaseMutation
         if not case_template.default_members.map { |member| member.user }.include? user
             raise GraphQL::ExecutionError, "#{user.username} is not in this case template."
         end
+
+        # remove the user
+        if case_template.default_members.find_by!(user: user).destroy
+            { case_template: case_template }
+        else
+            raise GraphQL::ExecutionError, case_template.errors.full_messages.join(" | ") 
+        end
     end
 end

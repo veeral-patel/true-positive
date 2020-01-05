@@ -28,7 +28,7 @@ class Mutations::RemoveUserFromGroup < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You are not authorized to update this group."
         end
 
-        # delete the user
+        # remove the user
         if group.users.destroy(user)
             { "group": group }
         else
