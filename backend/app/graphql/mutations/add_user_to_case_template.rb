@@ -1,4 +1,4 @@
-class AddUserToCaseTemplate < Mutations::BaseMutation
+class Mutations::AddUserToCaseTemplate < Mutations::BaseMutation
     description "Add a default user to a case template."
 
     argument :username, String, required: true do
@@ -6,7 +6,7 @@ class AddUserToCaseTemplate < Mutations::BaseMutation
     end
 
     argument :role, Types::CaseRoleEnum, required: true do
-        description "The level of permission we want the user to have."
+        description "The level of permission the user has in cases created from this template."
     end
 
     argument :case_template_id, ID, required: true do
@@ -28,12 +28,12 @@ class AddUserToCaseTemplate < Mutations::BaseMutation
         end
 
         # ensure the CT doesn't already have the user
-        if case_template.default_users.include? user
+        if case_template.default_users.map { |member| member.user }.include? user
             raise GraphQL::ExecutionError, "#{user.username} is already in this group."
         end
 
         # add the user to the CT in memory
-        if case_template.default_users << user
+        if case_template.default_users.create(user: user, role: role)
             { case_template: case_template }
         else
             raise GraphQL::ExecutionError, case_template.errors.full_messages.join(" | ") 

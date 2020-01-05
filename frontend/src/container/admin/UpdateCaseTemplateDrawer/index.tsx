@@ -13,6 +13,7 @@ import {
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import UserSelect from "container/shared/users/UserSelect";
+import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
@@ -46,11 +47,22 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
   const [updateCaseTemplate] = useMutation(UPDATE_CASE_TEMPLATE, {
     onCompleted: function() {
       message.success("Updated the template");
-      handleClose();
     },
     onError: function(error: ApolloError) {
       notification.error({
         message: "Could not update the template",
+        description: error.message
+      });
+    }
+  });
+
+  const [addUserToCaseTemplate] = useMutation(ADD_USER_TO_CASE_TEMPLATE, {
+    onCompleted: function() {
+      message.success("Added user to the template");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not add user to the template",
         description: error.message
       });
     }
@@ -111,6 +123,19 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             colon={false}
             layout="vertical"
             style={{ display: "flex", marginTop: "1em" }}
+            onFinish={values =>
+              values.usernames.forEach((username: string) =>
+                addUserToCaseTemplate({
+                  variables: {
+                    input: {
+                      username: username,
+                      role: "CAN_EDIT",
+                      caseTemplateId: caseTemplate.id
+                    }
+                  }
+                })
+              )
+            }
           >
             <Form.Item
               name="usernames"
