@@ -29,7 +29,7 @@ class Mutations::AddUserToCaseTemplate < Mutations::BaseMutation
 
         # ensure the CT doesn't already have the user
         if case_template.default_members.map { |member| member.user }.include? user
-            raise GraphQL::ExecutionError, "#{user.username} is already in this group."
+            raise GraphQL::ExecutionError, "#{user.username} is already in this case template."
         end
 
         # add the user to the CT in memory

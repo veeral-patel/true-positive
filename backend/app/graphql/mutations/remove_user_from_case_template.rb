@@ -22,5 +22,10 @@ class Mutations::RemoveUserFromCaseTemplate < Mutations::BaseMutation
         unless CaseTemplatePolicy.new(context[:current_user], case_template).update_template?
             raise GraphQL::ExecutionError, "You are not authorized to update this template."
         end
+
+        # ensure the CT already has the user
+        if not case_template.default_members.map { |member| member.user }.include? user
+            raise GraphQL::ExecutionError, "#{user.username} is not in this case template."
+        end
     end
 end
