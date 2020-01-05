@@ -8,6 +8,7 @@ import {
   List,
   message,
   notification,
+  Popconfirm,
   Spin,
   Tabs,
   Typography
@@ -68,7 +69,10 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
         message: "Could not add user to the template",
         description: error.message
       });
-    }
+    },
+    refetchQueries: [
+      { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+    ]
   });
 
   let drawerContent: React.ReactNode = null;
@@ -172,7 +176,11 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 dataSource={caseTemplate.defaultMembers}
                 renderItem={member => (
                   <List.Item
-                    actions={[<Button type="link" icon={<CloseOutlined />} />]}
+                    actions={[
+                      <Popconfirm title="Remove this user?">
+                        <Button type="link" icon={<CloseOutlined />} />
+                      </Popconfirm>
+                    ]}
                   >
                     <List.Item.Meta
                       title={member.user.username}
