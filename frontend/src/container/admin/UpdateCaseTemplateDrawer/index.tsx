@@ -1,7 +1,9 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
+  Button,
   Drawer,
   Empty,
+  Form,
   message,
   notification,
   Spin,
@@ -10,6 +12,7 @@ import {
 } from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
+import UserSelect from "container/shared/users/UserSelect";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
@@ -104,6 +107,24 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             below will be added to the case.
           </Paragraph>
           <h4>Users ({caseTemplate.defaultUserCount})</h4>
+          <Form
+            colon={false}
+            layout="vertical"
+            style={{ display: "flex", marginTop: "1em" }}
+          >
+            <Form.Item
+              name="usernames"
+              style={{ flex: "80%" }}
+              rules={[
+                { required: true, message: "Please choose at least one user" }
+              ]}
+            >
+              <UserSelect placeholder="Choose users" multiple />
+            </Form.Item>
+            <Form.Item>
+              <Button htmlType="submit">Add Users</Button>
+            </Form.Item>
+          </Form>
           {caseTemplate.defaultUserCount === 0 ? (
             <Empty
               description={
