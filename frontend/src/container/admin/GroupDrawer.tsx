@@ -137,7 +137,6 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
               bordered
               dataSource={data.group.users}
               itemLayout="horizontal"
-              pagination={{ position: "bottom" }}
               renderItem={user => (
                 <List.Item
                   actions={[

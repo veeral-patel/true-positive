@@ -1,3 +1,4 @@
+import { CloseOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
@@ -120,38 +121,40 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             Whenever a case is created from this template, the users and groups
             below will be added to the case.
           </Paragraph>
-          <h4>Users ({caseTemplate.defaultUserCount})</h4>
-          <Form
-            colon={false}
-            layout="vertical"
-            style={{ display: "flex", marginTop: "2em" }}
-            onFinish={values =>
-              values.usernames.forEach((username: string) =>
-                addUserToCaseTemplate({
-                  variables: {
-                    input: {
-                      username: username,
-                      role: "CAN_EDIT",
-                      caseTemplateId: caseTemplate.id
+          <div style={{ marginTop: "2em" }}>
+            <h4>Users ({caseTemplate.defaultUserCount})</h4>
+            <Form
+              colon={false}
+              layout="vertical"
+              style={{ display: "flex", marginTop: "1em" }}
+              onFinish={values =>
+                values.usernames.forEach((username: string) =>
+                  addUserToCaseTemplate({
+                    variables: {
+                      input: {
+                        username: username,
+                        role: "CAN_EDIT",
+                        caseTemplateId: caseTemplate.id
+                      }
                     }
-                  }
-                })
-              )
-            }
-          >
-            <Form.Item
-              name="usernames"
-              style={{ flex: "80%" }}
-              rules={[
-                { required: true, message: "Please choose at least one user" }
-              ]}
+                  })
+                )
+              }
             >
-              <UserSelect placeholder="Choose users" multiple />
-            </Form.Item>
-            <Form.Item>
-              <Button htmlType="submit">Add Users</Button>
-            </Form.Item>
-          </Form>
+              <Form.Item
+                name="usernames"
+                style={{ flex: "80%" }}
+                rules={[
+                  { required: true, message: "Please choose at least one user" }
+                ]}
+              >
+                <UserSelect placeholder="Choose users" multiple />
+              </Form.Item>
+              <Form.Item>
+                <Button htmlType="submit">Add Users</Button>
+              </Form.Item>
+            </Form>
+          </div>
           <div>
             {caseTemplate.defaultUserCount === 0 ? (
               <Empty
@@ -168,7 +171,9 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 itemLayout="horizontal"
                 dataSource={caseTemplate.defaultMembers}
                 renderItem={member => (
-                  <List.Item>
+                  <List.Item
+                    actions={[<Button type="link" icon={<CloseOutlined />} />]}
+                  >
                     <List.Item.Meta
                       title={member.user.username}
                       description={member.user.email}

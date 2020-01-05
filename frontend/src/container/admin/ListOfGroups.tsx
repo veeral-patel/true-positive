@@ -83,7 +83,6 @@ function ListOfGroups() {
           bordered
           dataSource={data.groups}
           itemLayout="horizontal"
-          pagination={{ position: "bottom" }}
           renderItem={group => (
             <List.Item
               actions={[

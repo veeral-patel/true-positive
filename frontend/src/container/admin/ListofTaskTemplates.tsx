@@ -42,9 +42,6 @@ function ListofTaskTemplates({ taskTemplates }: Props) {
         itemLayout="horizontal"
         dataSource={taskTemplates}
         bordered
-        pagination={{
-          position: "bottom"
-        }}
         renderItem={template => (
           <List.Item
             actions={[

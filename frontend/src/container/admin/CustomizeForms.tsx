@@ -77,7 +77,6 @@ function CustomizeForms() {
             bordered
             dataSource={data.forms}
             itemLayout="horizontal"
-            pagination={{ position: "bottom" }}
             renderItem={form => (
               <List.Item>
                 <List.Item.Meta

@@ -71,7 +71,6 @@ function ListOfUsersGivenCategory({ category }: Props) {
         bordered
         dataSource={filteredUsers}
         itemLayout="horizontal"
-        pagination={{ position: "bottom" }}
         renderItem={user => (
           <List.Item
             actions={[

@@ -103,7 +103,6 @@ function CustomizeCaseTemplates() {
               bordered
               itemLayout="horizontal"
               dataSource={data.caseTemplates}
-              pagination={{ position: "bottom" }}
               renderItem={template => (
                 <List.Item
                   actions={[
