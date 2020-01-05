@@ -100,8 +100,8 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
         </TabPane>
         <TabPane tab="Members" key="members">
           <Paragraph type="secondary">
-            The users and groups below will be added to cases created from this
-            template.
+            Whenever a case is created from this template, the users and groups
+            below will be added to the case.
           </Paragraph>
           <h4>Users ({caseTemplate.defaultUserCount})</h4>
           {caseTemplate.defaultUserCount === 0 ? (
