@@ -1,5 +1,5 @@
 class Mutations::AddUserToCaseTemplate < Mutations::BaseMutation
-    description "Add a default user to a case template."
+    description "Add an user to a case template."
 
     argument :username, String, required: true do
         description "Username of the user to add."
