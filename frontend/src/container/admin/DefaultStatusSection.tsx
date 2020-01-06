@@ -2,12 +2,15 @@ import { useQuery } from "@apollo/react-hooks";
 import { Button, Form, Spin, Typography } from "antd";
 import StatusSelect from "container/shared/statuses/StatusSelect";
 import Error from "presentational/shared/errors/Error";
-import GET_DEFAULT_STATUS, {
-  DefaultStatusResponse
-} from "queries/getDefaultStatus";
+import GET_DEFAULT_STATUS from "queries/getDefaultStatus";
 import React from "react";
+import IStatus from "ts/interfaces/IStatus";
 
 const { Paragraph } = Typography;
+
+interface DefaultStatusResponse {
+  defaultStatus: IStatus;
+}
 
 function DefaultStatusSection() {
   const { data, loading, error } = useQuery<DefaultStatusResponse>(
