@@ -104,8 +104,10 @@ function Info(props: InfoProps) {
             </Col>
           </Row>
           <Row>
-            <Col span={4}>Status:</Col>
-            <Col span={8}>
+            <Col xs={8} md={4}>
+              Status:
+            </Col>
+            <Col xs={16} md={8}>
               <EditableStatusTag
                 statusName={activeCase.status.name}
                 handleSelect={statusName =>
@@ -120,18 +122,20 @@ function Info(props: InfoProps) {
                 }
               />
             </Col>
-            <Col span={4} style={{ lineHeight: 2 }}>
+            <Col xs={8} md={4} style={{ lineHeight: 2 }}>
               Created:
             </Col>
-            <Col span={8} style={{ lineHeight: 2 }}>
+            <Col xs={16} md={8} style={{ lineHeight: 2 }}>
               {`${formatISO8601(activeCase.createdAt)} UTC by ${
                 activeCase.createdBy.username
               }`}
             </Col>
           </Row>
           <Row>
-            <Col span={4}>Priority:</Col>
-            <Col span={8}>
+            <Col xs={8} md={4}>
+              Priority:
+            </Col>
+            <Col xs={16} md={8}>
               <EditablePriorityTag
                 priorityName={activeCase.priority.name}
                 handleSelect={priorityName =>
@@ -146,8 +150,10 @@ function Info(props: InfoProps) {
                 }
               />
             </Col>
-            <Col span={4}>Assigned To:</Col>
-            <Col span={8}>
+            <Col xs={8} md={4}>
+              Assigned To:
+            </Col>
+            <Col xs={16} md={8}>
               <EditableAssigneeTag
                 user={activeCase.assignedTo}
                 handleSelect={username =>
@@ -164,8 +170,10 @@ function Info(props: InfoProps) {
             </Col>
           </Row>
           <Row>
-            <Col span={4}>Tags:</Col>
-            <Col span={20}>
+            <Col xs={8} md={4}>
+              Tags:
+            </Col>
+            <Col xs={16} md={20}>
               <EditableTagList
                 existingTags={activeCase.tags}
                 handleFinish={newTags =>
