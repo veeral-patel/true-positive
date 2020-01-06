@@ -60,7 +60,7 @@ export default inject(
         return (
           <Layout>
             <CaseSider />
-            <Layout style={{ padding: "0px 24px 24px", marginRight: "64px" }}>
+            <Layout style={{ padding: "0px 24px 24px", marginRight: "2%" }}>
               <HandleErrorAndLoading>
                 <div style={{ marginTop: "20px", marginBottom: "20px" }}>
                   <ThisCaseHasBeenMergedAlert />
