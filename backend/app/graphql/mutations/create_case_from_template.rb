@@ -22,6 +22,14 @@ class Mutations::CreateCaseFromTemplate < Mutations::BaseMutation
             assigned_to: template.assigned_to
         )
 
+        # add each of the template's members to the case
+        template.default_members.each do |member|
+            # skip template members who are already in the case
+            if not new_case.case_members.include? member
+                new_case.case_members << member
+            end
+        end
+
         # authorize this action
         unless CasePolicy.new(context[:current_user], new_case).create_case?
             raise GraphQL::ExecutionError, "You are not authorized to create cases."
