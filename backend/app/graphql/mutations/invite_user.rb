@@ -5,29 +5,20 @@ class Mutations::InviteUser < Mutations::BaseMutation
         description "Email address of the user to invite."
     end
 
-    field :user, Types::UserType, null: true do
-        description "The invited user."
+    field :email, String, null: true do
+        description "Email address of the invited user."
     end
 
     def resolve(email:)
-        # validate the email address
-        if not email =~ URI::MailTo::EMAIL_REGEXP
-            raise GraphQL::ExecutionError, "The email you provided doesn't look valid."
-        end
-
-        # create the user in memory
-        username = email.split("@").first
-        user = User.new(username: username, email: email)
-
         # authorize this action
         unless UserPolicy.new(context[:current_user]).invite?
             raise GraphQL::ExecutionError, "You are not authorized to invite users."
         end
 
-        # return the new user
-        if user.invite!
+        # invite the user
+        if UserService::Invite.run(email: email)
             {
-                "user": user
+                "email": email
             }
         else
             raise GraphQL::ExecutionError, user.errors.full_messages.join(" | ")

@@ -3,9 +3,9 @@ RailsJwtAuth.setup do |config|
 
     config.simultaneous_sessions = 1000
 
-    if Rails.env === "development"
+    if Rails.env == "development"
         config.invitations_url = "http://localhost:3000"
-    elsif Rails.env === "production"
+    elsif Rails.env == "production"
         config.invitations_url = "https://console.truepositive.app"
     end
 end
