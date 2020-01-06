@@ -3,11 +3,12 @@ import {
   LoadingOutlined,
   PlusOutlined
 } from "@ant-design/icons";
-import { Input, Typography } from "antd";
+import { Divider, Input, Typography } from "antd";
 import ListofStatuses from "container/admin/ListofStatuses";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import StatusStore from "stores/StatusStore";
+import DefaultStatusSection from "./DefaultStatusSection";
 
 const { Paragraph } = Typography;
 
@@ -76,10 +77,10 @@ export default inject("statusStore")(
             <div>
               <ListofStatuses />
             </div>
-            {/* <Divider />
+            <Divider />
             <div style={{ marginTop: "1em" }}>
               <DefaultStatusSection />
-            </div> */}
+            </div>
           </div>
         );
       }
