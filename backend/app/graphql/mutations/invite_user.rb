@@ -19,7 +19,10 @@ class Mutations::InviteUser < Mutations::BaseMutation
         username = email.split("@").first
         user = User.new(username: username, email: email)
 
-        # TODO: authorize this action
+        # authorize this action
+        unless UserPolicy.new(context[:current_user]).invite?
+            raise GraphQL::ExecutionError, "You are not authorized to invite users."
+        end
 
         # return the new user
         if user.invite!
