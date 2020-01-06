@@ -32,6 +32,7 @@ function UsersTab() {
         colon={false}
         layout="vertical"
         onFinish={values =>
+          values.emailAddressOfNewUser &&
           inviteUser({
             variables: {
               input: {
@@ -44,10 +45,6 @@ function UsersTab() {
         <Form.Item
           name="emailAddressOfNewUser"
           rules={[
-            {
-              required: true,
-              message: "Please enter an email address"
-            },
             {
               type: "email",
               message: "This doesn't look like a valid email address"
@@ -91,6 +88,7 @@ function GroupsTab() {
         colon={false}
         layout="vertical"
         onFinish={values =>
+          values.name &&
           createGroup({
             variables: {
               input: {
@@ -100,10 +98,7 @@ function GroupsTab() {
           })
         }
       >
-        <Form.Item
-          name="name"
-          rules={[{ required: true, message: "Please name your new group" }]}
-        >
+        <Form.Item name="name">
           <Input
             placeholder="Create a group"
             prefix={<PlusOutlined />}
