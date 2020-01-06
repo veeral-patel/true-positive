@@ -28,13 +28,11 @@ const CreateCaseForm = inject("activeCaseStore")(
             colon={false}
             layout="vertical"
             onFinish={values => {
-              activeCaseStore!.createComment(type, objectId, values.comment);
+              values.comment &&
+                activeCaseStore!.createComment(type, objectId, values.comment);
             }}
           >
-            <Form.Item
-              name="comment"
-              rules={[{ required: true, message: "Please enter a comment" }]}
-            >
+            <Form.Item name="comment">
               <CommentEditor />
             </Form.Item>
             <Form.Item style={{ float: "right" }}>

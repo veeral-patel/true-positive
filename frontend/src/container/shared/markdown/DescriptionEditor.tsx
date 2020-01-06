@@ -23,7 +23,7 @@ function DescriptionEditor({ initialValue, updateValue, uiStore }: Props) {
   );
 
   return (
-    <>
+    <div style={{ maxWidth: "750px" }}>
       <ReactMde
         value={currentValue}
         onChange={setValue}
@@ -50,7 +50,7 @@ function DescriptionEditor({ initialValue, updateValue, uiStore }: Props) {
           <Button onClick={() => updateValue(currentValue)}>Update</Button>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

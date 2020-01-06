@@ -16,19 +16,21 @@ function GenericEditor({ value, onChange, uiStore }: Props) {
   );
 
   return (
-    <ReactMde
-      minEditorHeight={125}
-      minPreviewHeight={125}
-      value={value}
-      className={uiStore!.theme === "LIGHT" ? "" : "dark"}
-      onChange={onChange}
-      selectedTab={selectedTab}
-      onTabChange={setSelectedTab}
-      generateMarkdownPreview={markdown =>
-        Promise.resolve(converter.makeHtml(markdown))
-      }
-      // loadSuggestions={loadSuggestions}
-    />
+    <div style={{ maxWidth: "750px" }}>
+      <ReactMde
+        minEditorHeight={125}
+        minPreviewHeight={125}
+        value={value}
+        className={uiStore!.theme === "LIGHT" ? "" : "dark"}
+        onChange={onChange}
+        selectedTab={selectedTab}
+        onTabChange={setSelectedTab}
+        generateMarkdownPreview={markdown =>
+          Promise.resolve(converter.makeHtml(markdown))
+        }
+        // loadSuggestions={loadSuggestions}
+      />
+    </div>
   );
 }
 
