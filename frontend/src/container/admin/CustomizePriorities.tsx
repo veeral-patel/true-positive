@@ -69,6 +69,7 @@ export default inject("priorityStore")(
                     this.setState({ inputValue: event.currentTarget.value })
                   }
                   onPressEnter={() => {
+                    if (!inputValue) return; // ignore empty input
                     priorityStore!.createPriority(inputValue);
                     this.setState({ inputValue: "" });
                   }}

@@ -67,6 +67,7 @@ export default inject("statusStore")(
                   this.setState({ inputValue: event.currentTarget.value })
                 }
                 onPressEnter={() => {
+                  if (!inputValue) return; // ignore empty input
                   statusStore!.createStatus(inputValue);
                   this.setState({ inputValue: "" });
                 }}
