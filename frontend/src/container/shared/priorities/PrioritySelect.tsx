@@ -2,6 +2,7 @@ import { Select, Spin } from "antd";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import PriorityStore from "stores/PriorityStore";
+import { NA } from "utils/constants";
 
 const { Option } = Select;
 
@@ -9,6 +10,7 @@ interface Props {
   value?: string;
   onChange?: (priorityName: any) => void;
   priorityStore?: PriorityStore;
+  includeNone?: boolean;
 }
 
 export default inject("priorityStore")(
@@ -20,16 +22,29 @@ export default inject("priorityStore")(
       }
 
       render() {
-        const { onChange, priorityStore, value } = this.props;
+        const {
+          onChange,
+          priorityStore,
+          value,
+          includeNone = false
+        } = this.props;
 
         if (priorityStore!.prioritiesAreLoading) return <Spin />;
 
         // generate a list of options
-        const options = priorityStore!.priorities.map(priority => (
+        var options = priorityStore!.priorities.map(priority => (
           <Option key={priority.name} value={priority.name}>
             {priority.name}
           </Option>
         ));
+
+        if (includeNone) {
+          options = options.concat(
+            <Option key={NA} value={NA}>
+              N/A
+            </Option>
+          );
+        }
 
         // render our component
         return (

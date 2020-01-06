@@ -3,7 +3,7 @@ import { Select } from "antd";
 import GET_USERS from "queries/getUsers";
 import React from "react";
 import IUser from "ts/interfaces/IUser";
-import { NO_ASSIGNED_USER } from "utils/constants";
+import { NA } from "utils/constants";
 
 const { Option } = Select;
 
@@ -52,7 +52,7 @@ function UserSelect({
     ));
     if (forAssigning) {
       options = options.concat(
-        <Option key={NO_ASSIGNED_USER} value={NO_ASSIGNED_USER}>
+        <Option key={NA} value={NA}>
           N/A
         </Option>
       );

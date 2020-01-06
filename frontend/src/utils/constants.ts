@@ -20,7 +20,7 @@ export const DELETE_TASK = "DELETE_TASK";
 export const DELETE_INDICATOR = "DELETE_INDICATOR";
 export const DELETE_CASE = "DELETE_CASE";
 export const MERGE_CASE = "MERGE_CASE";
-export const NO_ASSIGNED_USER = "NA";
+export const NA = "NA";
 
 export const VIEW_ALL_RESULTS = "VIEW_ALL_RESULTS";
 
