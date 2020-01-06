@@ -3,8 +3,7 @@ import {
   LoadingOutlined,
   PlusOutlined
 } from "@ant-design/icons";
-import { Divider, Input, Typography } from "antd";
-import DefaultPrioritySection from "container/admin/DefaultPrioritySection";
+import { Input, Typography } from "antd";
 import ListofPriorities from "container/admin/ListofPriorities";
 import { inject, observer } from "mobx-react";
 import React from "react";
@@ -79,10 +78,10 @@ export default inject("priorityStore")(
               <div>
                 <ListofPriorities />
               </div>
-              <Divider />
+              {/* <Divider />
               <div style={{ marginTop: "1em" }}>
                 <DefaultPrioritySection />
-              </div>
+              </div> */}
             </div>
           </div>
         );
