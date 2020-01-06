@@ -18,7 +18,7 @@ class User < ApplicationRecord
     validates :username, presence: true, uniqueness: true
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
 
-    # Refactoring idea: replace with a scope
+    # refactoring: replace with a scope
     def self.active_users
         User.all.select { |user| not user.disabled }
     end
@@ -47,6 +47,7 @@ class User < ApplicationRecord
         self.save
     end
 
+    # refactoring: this is business logic and should go into a service
     def update_enabled(enabled)
         # If enabled is true, enable this user. If false, disable him
         if enabled
