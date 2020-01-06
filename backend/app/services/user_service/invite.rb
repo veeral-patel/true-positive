@@ -20,13 +20,13 @@ module UserService
 
             # get login URL depending on environment
             if Rails.env == "development"
-                login_url = "http://localhost:3000"
+                tp_url = "http://localhost:3000"
             else
-                login_url = "https://console.truepositive.app"
+                tp_url = "https://console.truepositive.app"
             end
 
             # email the user with his username and password
-            UserMailer.with(user: user, password: password, login_url: login_url).invited_user.deliver_later
+            UserMailer.with(user: user, password: password, tp_url: tp_url).invited_user.deliver_later
         end
 
         private
