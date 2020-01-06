@@ -18,6 +18,11 @@ class User < ApplicationRecord
     validates :username, presence: true, uniqueness: true
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
 
+    # Refactoring idea: replace with a scope
+    def self.active_users
+        User.all.select { |user| not user.disabled }
+    end
+
     def to_s
         self.username
     end
@@ -27,6 +32,12 @@ class User < ApplicationRecord
     end
 
     def disable
+        # prevent user from disabling the last user in a tenant
+        if User.active_users.count <= 1
+            self.errors[:base] << "You cannot disable the last user in a tenant."
+            return false
+        end
+
         self.disabled_at = Time.now
         self.save
     end
