@@ -141,6 +141,12 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             }
           />
         </TabPane>
+        <TabPane tab="Tasks" key="tasks">
+          <Paragraph type="secondary">
+            Cases created from this template will be populated with the tasks
+            below.
+          </Paragraph>
+        </TabPane>
         <TabPane tab="Members" key="members">
           <Paragraph type="secondary">
             Whenever a case is created from this template, the users below will
