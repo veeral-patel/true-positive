@@ -27,6 +27,7 @@ const CreateCaseForm = inject("activeCaseStore")(
           <Form
             colon={false}
             layout="vertical"
+            style={{ maxWidth: "650px" }}
             onFinish={values => {
               values.comment &&
                 activeCaseStore!.createComment(type, objectId, values.comment);

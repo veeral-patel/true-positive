@@ -16,7 +16,7 @@ function GenericEditor({ value, onChange, uiStore }: Props) {
   );
 
   return (
-    <div style={{ maxWidth: "750px" }}>
+    <div>
       <ReactMde
         minEditorHeight={125}
         minPreviewHeight={125}

@@ -56,11 +56,11 @@ export default inject(
       }
 
       render() {
-        const { activeCaseStore, uiStore } = this.props;
+        const { activeCaseStore } = this.props;
         return (
           <Layout>
             <CaseSider />
-            <Layout style={{ padding: "0 24px 24px" }}>
+            <Layout style={{ padding: "0px 24px 24px", marginRight: "64px" }}>
               <HandleErrorAndLoading>
                 <div style={{ marginTop: "20px", marginBottom: "20px" }}>
                   <ThisCaseHasBeenMergedAlert />
