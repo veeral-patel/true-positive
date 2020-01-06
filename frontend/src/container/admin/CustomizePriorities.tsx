@@ -99,7 +99,7 @@ export default inject("priorityStore")(
                     name="default_priority"
                     style={{ width: "300px", marginRight: "0.5em" }}
                   >
-                    <PrioritySelect />
+                    <PrioritySelect includeNone={true} />
                   </Form.Item>
                   <Form.Item>
                     <Button htmlType="submit">Update</Button>

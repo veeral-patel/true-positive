@@ -38,6 +38,7 @@ export default inject("priorityStore")(
           </Option>
         ));
 
+        // include N/A option if our props dictate
         if (includeNone) {
           options = options.concat(
             <Option key={NA} value={NA}>

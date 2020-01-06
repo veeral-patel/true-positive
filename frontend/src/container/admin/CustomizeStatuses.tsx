@@ -97,7 +97,7 @@ export default inject("statusStore")(
                   name="default_status"
                   style={{ width: "300px", marginRight: "0.5em" }}
                 >
-                  <StatusSelect />
+                  <StatusSelect includeNone={true} />
                 </Form.Item>
                 <Form.Item>
                   <Button htmlType="submit">Update</Button>
