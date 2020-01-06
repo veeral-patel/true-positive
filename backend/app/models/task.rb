@@ -17,8 +17,6 @@ class Task < ApplicationRecord
 
   after_create :add_task_created_audit
 
-  has_many_attached :files
-
   def to_s
     self.name
   end
