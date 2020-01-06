@@ -40,7 +40,7 @@ function DefaultStatusSection() {
           colon={false}
           layout="horizontal"
           style={{ display: "flex" }}
-          initialValues={{ defaultStatus: data.defaultStatus }}
+          initialValues={{ defaultStatus: data.defaultStatus.name }}
         >
           <Form.Item
             name="defaultStatus"

@@ -23,14 +23,14 @@ interface Props {
 }
 
 function Heading({ heading, activeCaseStore, id }: Props) {
-  const [renameTaskGroup] = useMutation(UPDATE_TASK_GROUP, {
+  const [updateTaskGroup] = useMutation(UPDATE_TASK_GROUP, {
     onCompleted: function() {
-      message.success("Renamed task group");
+      message.success("Updated the task group");
       activeCaseStore!.loadActiveCase();
     },
     onError: function(error: ApolloError) {
       notification.error({
-        message: "An error occurred while renaming the task group",
+        message: "An error occurred while updating the task group",
         description: error
       });
     }
@@ -56,7 +56,7 @@ function Heading({ heading, activeCaseStore, id }: Props) {
         style={{ textTransform: "uppercase" }}
         editable={{
           onChange: newName => {
-            renameTaskGroup({
+            updateTaskGroup({
               variables: {
                 input: {
                   id,
