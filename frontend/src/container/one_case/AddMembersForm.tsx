@@ -20,18 +20,13 @@ const AddMembersForm = inject("activeCaseStore")(
             layout="vertical"
             style={{ display: "flex" }}
             onFinish={values => {
+              if (!values.members) return; // ignore empty input
               values.members.forEach((username: string) => {
                 activeCaseStore!.addCaseMember(username);
               });
             }}
           >
-            <Form.Item
-              style={{ flex: "80%" }}
-              name="members"
-              rules={[
-                { required: true, message: "Please select at least one user" }
-              ]}
-            >
+            <Form.Item style={{ flex: "80%" }} name="members">
               <Select
                 style={{ width: "100%" }}
                 mode="multiple"

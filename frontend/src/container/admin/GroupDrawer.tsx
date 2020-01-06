@@ -95,6 +95,7 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
             layout="vertical"
             style={{ display: "flex" }}
             onFinish={values => {
+              if (!values.usernames) return; // do nothing if empty input
               values.usernames.forEach((username: string) => {
                 addUserToGroup({
                   variables: {
@@ -107,16 +108,7 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
               });
             }}
           >
-            <Form.Item
-              style={{ flex: "80%" }}
-              name="usernames"
-              rules={[
-                {
-                  required: true,
-                  message: "Please select at least one user to add"
-                }
-              ]}
-            >
+            <Form.Item style={{ flex: "80%" }} name="usernames">
               <UserSelect multiple placeholder="Choose users to add" />
             </Form.Item>
             <Form.Item>
