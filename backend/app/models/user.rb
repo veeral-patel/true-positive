@@ -2,6 +2,7 @@ class User < ApplicationRecord
     acts_as_tenant :tenant
 
     include RailsJwtAuth::Authenticatable
+    include RailsJwtAuth::Invitable
 
     has_many :created_cases, foreign_key: "created_by_id", class_name: "Case"
     has_many :created_task_groups, foreign_key: "created_by_id", class_name: "TaskGroup"
