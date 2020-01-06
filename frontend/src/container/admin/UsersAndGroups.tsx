@@ -3,6 +3,8 @@ import { useMutation } from "@apollo/react-hooks";
 import { Form, Input, message, notification, Tabs, Typography } from "antd";
 import { ApolloError } from "apollo-boost";
 import CREATE_A_GROUP from "mutations/createGroup";
+import INVITE_USER from "mutations/inviteUser";
+import GET_ALL_USERS from "queries/getAllUsers";
 import GET_GROUPS from "queries/getGroups";
 import React from "react";
 import ListOfGroups from "./ListOfGroups";
@@ -12,11 +14,35 @@ const { TabPane } = Tabs;
 const { Text, Paragraph } = Typography;
 
 function UsersTab() {
+  const [inviteUser] = useMutation(INVITE_USER, {
+    onCompleted: function() {
+      message.success("Invited the user");
+    },
+    onError: function(error) {
+      notification.error({
+        message: "Failed to invite the user",
+        description: error.message
+      });
+    },
+    refetchQueries: [{ query: GET_ALL_USERS }]
+  });
   return (
     <>
-      <Form colon={false} layout="vertical">
+      <Form
+        colon={false}
+        layout="vertical"
+        onFinish={values =>
+          inviteUser({
+            variables: {
+              input: {
+                email: values.emailAddressOfNewUser
+              }
+            }
+          })
+        }
+      >
         <Form.Item
-          name="email_address_of_new_user"
+          name="emailAddressOfNewUser"
           rules={[
             {
               required: true,
