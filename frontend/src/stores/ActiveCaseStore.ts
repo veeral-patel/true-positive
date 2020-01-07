@@ -2,6 +2,7 @@ import { message, notification } from "antd";
 import { ApolloError, FetchResult } from "apollo-boost";
 import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
+import ADD_GROUP_TO_CASE from "mutations/addGroupToCase";
 import ADD_MEMBER from "mutations/addMember";
 import CHANGE_ROLE from "mutations/changeRole";
 import CREATE_A_COMMENT from "mutations/createComment";
@@ -326,6 +327,35 @@ class ActiveCaseStore {
       .catch((error: ApolloError) => {
         notification.error({
           message: "An error occurred while adding the member",
+          description: error.message
+        });
+      })
+      .finally(() =>
+        runInAction(() => {
+          this.loadActiveCase();
+        })
+      );
+  }
+
+  @action.bound
+  addGroupToCase(groupId: string) {
+    if (!this.activeCase) return;
+    client
+      .mutate({
+        variables: {
+          input: {
+            groupId,
+            caseId: this.activeCase.id
+          }
+        },
+        mutation: ADD_GROUP_TO_CASE
+      })
+      .then((response: FetchResult) => {
+        message.success(`Added group`);
+      })
+      .catch((error: ApolloError) => {
+        notification.error({
+          message: "An error occurred while adding group",
           description: error.message
         });
       })

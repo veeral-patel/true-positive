@@ -89,6 +89,9 @@ export default inject(
                     );
 
                     // add each group to the case
+                    groupIds.map(groupId => {
+                      activeCaseStore!.addGroupToCase(groupId);
+                    });
                   }}
                 />
               </div>
