@@ -68,6 +68,7 @@ function SortableComponent({ existingTasks, activeCaseStore }: Props) {
     <SortableList
       orderedTasks={orderedTasks}
       onSortEnd={onSortEnd}
+      distance={3}
       markTaskAsDone={(taskId, done) =>
         updateTask({
           variables: {
