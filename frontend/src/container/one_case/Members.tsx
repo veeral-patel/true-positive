@@ -81,7 +81,16 @@ export default inject(
                 Only members of a case are authorized to view it.
               </Paragraph>
               <div style={{ marginBottom: "1em" }}>
-                <AddMembersForm2 />
+                <AddMembersForm2
+                  handleFinish={(usernames, groupIds) => {
+                    // add each user to the case
+                    usernames.map(username =>
+                      activeCaseStore!.addCaseMember(username)
+                    );
+
+                    // add each group to the case
+                  }}
+                />
               </div>
               <List<ICaseMember>
                 itemLayout="horizontal"

@@ -16,7 +16,11 @@ interface GroupData {
   groups: IGroup[];
 }
 
-function AddMembersForm2() {
+interface Props {
+  handleFinish: (usernames: string[], groupIds: string[]) => void;
+}
+
+function AddMembersForm2({ handleFinish }: Props) {
   const userPrefix = "user234";
   const groupPrefix = "group236";
   const delimiter = "+*()(@)";
@@ -103,8 +107,7 @@ function AddMembersForm2() {
           }
         });
 
-        console.log(listOfUsernames);
-        console.log(listOfGroupIds);
+        handleFinish(listOfUsernames, listOfGroupIds);
       }}
     >
       <Form.Item style={{ flex: "80%" }} name="members">
