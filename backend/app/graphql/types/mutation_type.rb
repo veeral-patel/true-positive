@@ -11,6 +11,7 @@ module Types
       field :add_member, mutation: Mutations::AddMember
       field :remove_member, mutation: Mutations::RemoveMember
       field :change_role, mutation: Mutations::ChangeRole
+      field :add_group_to_case, mutation: Mutations::AddGroupToCase
 
       # task -------
       field :create_task, mutation: Mutations::CreateTask
