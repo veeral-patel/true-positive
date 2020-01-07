@@ -11,7 +11,6 @@ import {
   Tag,
   Typography
 } from "antd";
-import AddMembersForm from "container/one_case/AddMembersForm";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -20,6 +19,7 @@ import UserStore from "stores/UserStore";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import { paths } from "utils/constants";
 import getUsernameOfCurrentUser from "utils/currentUser";
+import AddMembersForm2 from "./AddMembersForm2";
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -81,11 +81,7 @@ export default inject(
                 Only members of a case are authorized to view it.
               </Paragraph>
               <div style={{ marginBottom: "1em" }}>
-                {userStore!.usersAreLoading ? (
-                  "Loading..."
-                ) : (
-                  <AddMembersForm userOptions={userOptions} />
-                )}
+                <AddMembersForm2 />
               </div>
               <List<ICaseMember>
                 itemLayout="horizontal"
