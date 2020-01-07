@@ -139,30 +139,16 @@ export default inject(
             />
             {includeExtraColumns && (
               <Column
-                title="Created By"
-                key="created_by"
-                render={(text, task: ITask, index: number) => {
-                  return task.createdBy.username;
-                }}
-                // sorter={(a: ITask, b: ITask) =>
-                //   compareUsers(a.createdBy, b.createdBy)
-                // }
-                // filters={userFilters}
-                // onFilter={(filterWord, record) =>
-                //   createdByMatches(filterWord, record.createdBy)
-                // }
-              />
-            )}
-            {includeExtraColumns && (
-              <Column
-                title="Created At (UTC)"
-                dataIndex="createdAt"
-                key="created_at"
+                title="Created (UTC)"
+                dataIndex="created"
+                key="created"
                 // sorter={(a: ITask, b: ITask) =>
                 //   a.createdAt.localeCompare(b.createdAt)
                 // }
                 render={(text, task: ITask, index) =>
-                  formatISO8601(task.createdAt)
+                  `${formatISO8601(task.createdAt)} by  ${
+                    task.createdBy.username
+                  }`
                 }
               />
             )}
