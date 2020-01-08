@@ -6,8 +6,8 @@ module Types
             description "This priority's name (such as 'Critical')."
         end
 
-        field :description, String, null: true do
-            description "Some optional text describing this priority."
-        end
+        # field :description, String, null: true do
+        #     description "Some optional text describing this priority."
+        # end
     end
 end

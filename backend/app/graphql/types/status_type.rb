@@ -6,8 +6,8 @@ module Types
             description "This status's name (such as 'Open')."
         end
 
-        field :description, String, null: true do
-            description "Some optional text describing this status."
-        end
+        # field :description, String, null: true do
+        #     description "Some optional text describing this status."
+        # end
     end
 end
