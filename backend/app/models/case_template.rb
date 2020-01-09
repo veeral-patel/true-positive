@@ -12,6 +12,7 @@ class CaseTemplate < ApplicationRecord
   belongs_to :priority
 
   has_many :default_members, foreign_key: "caseable_id", class_name: "CaseMember", as: :caseable
+  has_many :default_groups, foreign_key: "caseable_id", class_name: "CaseGroup", as: :caseable
 
   acts_as_taggable_on :tags
 
