@@ -19,6 +19,7 @@ const GET_ONE_CASE_TEMPLATE = gql`
         username
       }
       defaultUserCount
+      defaultGroupCount
       defaultMembers {
         user {
           username

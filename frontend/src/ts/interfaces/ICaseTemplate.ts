@@ -15,9 +15,10 @@ interface ICaseTemplate {
   tags: ITag[];
   description: string | null;
   assignedTo: IUser | null;
-  defaultUserCount: number;
   defaultMembers: ICaseMember[];
   defaultGroups: ICaseGroup[];
+  defaultUserCount: number;
+  defaultGroupCount: number;
 }
 
 export default ICaseTemplate;

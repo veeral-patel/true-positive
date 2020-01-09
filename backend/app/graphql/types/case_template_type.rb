@@ -42,6 +42,10 @@ class Types::CaseTemplateType < Types::BaseObject
         description "The number of default users in this template."
     end
 
+    field :default_group_count, Int, null: false do
+        description "The number of default groups in this template."
+    end
+
     # possibly null ---
     field :assigned_to, Types::UserType, null: true do
         description "Default user to assign to cases created with this template."

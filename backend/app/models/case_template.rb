@@ -19,4 +19,8 @@ class CaseTemplate < ApplicationRecord
   def default_user_count
     self.default_members.count
   end
+
+  def default_group_count
+    self.default_groups.count
+  end
 end
