@@ -20,11 +20,11 @@ class Mutations::CreateTask < Mutations::BaseMutation
     end
 
     argument :description, String, required: false do
-        description "Optional text describing this task."
+        description "This task's description."
     end
 
     argument :assigned_to, String, required: false do
-        description "The username of the user who this task is assigned to. Optional."
+        description "The username of the user who this task is assigned to, or 'N/A'"
     end
 
     field :task, Types::TaskType, null: true do
@@ -34,7 +34,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
     def resolve(name:, case_id:, done: false, description: nil, assigned_to: nil)
         # find case, assigned user for this new task
         the_case = find_case_or_throw_execution_error(case_id: case_id)
-        assigned_user = assigned_to.nil? ? nil : find_user_or_throw_execution_error(username: assigned_to)
+        assigned_user = assigned_to.nil? || assigned_to == "N/A" ? nil : find_user_or_throw_execution_error(username: assigned_to)
 
         # authorize this action
         unless CasePolicy.new(context[:current_user], the_case).create_task?

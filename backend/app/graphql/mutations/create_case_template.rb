@@ -37,7 +37,7 @@ class Mutations::CreateCaseTemplate < Mutations::BaseMutation
         # find the status and priority
         status_record = find_status_by_name_or_throw_execution_error(status_name: status)
         priority_record = find_priority_by_name_or_throw_execution_error(priority_name: priority)
-        assigned_user = assigned_to.nil? ? nil : find_user_or_throw_execution_error(username: assigned_to)
+        assigned_user = assigned_to.nil? || assigned_to == "N/A" ? nil : find_user_or_throw_execution_error(username: assigned_to)
 
         # create a case template in memory
         case_template = CaseTemplate.new(

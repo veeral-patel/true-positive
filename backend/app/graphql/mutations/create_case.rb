@@ -24,7 +24,7 @@ class Mutations::CreateCase < Mutations::BaseMutation
     end
 
     argument :assigned_to, String, required: false do
-        description "The username of the user who this case is assigned to"
+        description "The username of the user who this case is assigned to, or 'N/A'."
     end
 
     argument :tags, [String], required: false do
