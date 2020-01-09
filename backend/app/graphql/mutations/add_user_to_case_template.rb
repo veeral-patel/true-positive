@@ -32,7 +32,7 @@ class Mutations::AddUserToCaseTemplate < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "#{user.username} is already in this case template."
         end
 
-        # add the user to the CT in memory
+        # add the user to the CT
         if case_template.default_members.create(user: user, role: role)
             { case_template: case_template }
         else
