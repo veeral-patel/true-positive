@@ -11,7 +11,7 @@ const { TabPane } = Tabs;
 class AdminPage extends React.Component<RouteComponentProps> {
   render() {
     return (
-      <div style={{ width: "75%" }}>
+      <div style={{ maxWidth: "900px" }}>
         <Tabs tabPosition="left">
           <TabPane tab="Users" key="users">
             <UsersAndGroups />
