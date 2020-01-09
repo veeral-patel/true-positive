@@ -34,6 +34,10 @@ class Types::CaseTemplateType < Types::BaseObject
         description "Users to add to cases created with this template."
     end
 
+    field :default_groups, [Types::CaseGroupType], null: false do
+        description "Groups whose members to add to cases created with this template."
+    end
+
     field :default_user_count, Int, null: false do
         description "The number of default users in this template."
     end
