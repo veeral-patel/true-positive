@@ -14,7 +14,7 @@ class Mutations::UpdateTask < Mutations::BaseMutation
     end
 
     argument :assigned_to, String, required: false do
-        description "Username of the user to assign to this task, or 'NA' to assign to no one."
+        description "Username of the user to assign to this task, or 'N/A' to assign to no one."
     end
 
     argument :done, Boolean, required: false do
@@ -40,7 +40,7 @@ class Mutations::UpdateTask < Mutations::BaseMutation
         the_task.done = done if not done.nil?
 
         unless assigned_to.nil?
-            if assigned_to === "NA"
+            if assigned_to === "N/A"
                 the_task.assigned_to = nil
             else
                 the_task.assigned_to = find_user_or_throw_execution_error(username: assigned_to)
