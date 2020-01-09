@@ -22,7 +22,7 @@ class Mutations::UpdateCaseTemplate < Mutations::BaseMutation
     end
 
     argument :assigned_to, String, required: false do
-        description "Username of the new user to assign to cases created from this template."
+        description "Username of the user to assign to cases created from this template, or 'N/A' if not applicable."
     end
 
     argument :description, String, required: false do
@@ -51,7 +51,7 @@ class Mutations::UpdateCaseTemplate < Mutations::BaseMutation
         case_template.tag_list = tags if not tags.nil?
 
         unless assigned_to.nil?
-            if assigned_to === "NA"
+            if assigned_to === "N/A"
                 case_template.assigned_to = nil
             else
                 case_template.assigned_to = find_user_or_throw_execution_error(username: assigned_to)

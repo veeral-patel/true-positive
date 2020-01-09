@@ -18,7 +18,7 @@ class Mutations::UpdateTaskTemplate < Mutations::BaseMutation
     end
 
     argument :assigned_to, String, required: false do
-        description "Username of the new user to assign to tasks created from this template."
+        description "Username of the user to assign to tasks created from this template. 'N/A' if not applicable."
     end
 
     # output ---
@@ -36,7 +36,7 @@ class Mutations::UpdateTaskTemplate < Mutations::BaseMutation
         template.description = description if not name.nil?
 
         unless assigned_to.nil?
-            if assigned_to === "NA"
+            if assigned_to === "N/A"
                 template.assigned_to = nil
             else
                 template.assigned_to = find_user_or_throw_execution_error(username: assigned_to)
