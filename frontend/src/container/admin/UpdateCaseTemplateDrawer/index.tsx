@@ -16,6 +16,7 @@ import {
 } from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
+import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
 import REMOVE_USER_FROM_CASE_TEMPLATE from "mutations/removeUserFromCaseTemplate";
@@ -233,6 +234,21 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
           </div>
           <div style={{ marginTop: "2em" }}>
             <h4>Groups ({caseTemplate.defaultGroupCount})</h4>
+            <Form
+              colon={false}
+              layout="vertical"
+              style={{ display: "flex", marginTop: "1em" }}
+              onFinish={values => {
+                if (!values.groupIds) return;
+              }}
+            >
+              <Form.Item name="groupIds" style={{ flex: "80%" }}>
+                <GroupSelect placeholder="Choose groups" multiple />
+              </Form.Item>
+              <Form.Item>
+                <Button htmlType="submit">Add Groups</Button>
+              </Form.Item>
+            </Form>
           </div>
           <div>
             {caseTemplate.defaultGroupCount === 0 ? (
