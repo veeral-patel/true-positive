@@ -29,7 +29,9 @@ const GET_ONE_CASE_TEMPLATE = gql`
       }
       defaultGroups {
         group {
+          id
           name
+          userCount
         }
       }
     }
