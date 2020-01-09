@@ -1,4 +1,4 @@
-class Mutations::AddGroupToCaseTemplate < Mutation::BaseMutation
+class Mutations::AddGroupToCaseTemplate < Mutations::BaseMutation
     description "Add a group to a case template."
 
     argument :group_id, ID, required: true do
@@ -21,6 +21,11 @@ class Mutations::AddGroupToCaseTemplate < Mutation::BaseMutation
         # authorize this action
         unless CaseTemplatePolicy.new(context[:current_user], case_template).update_template?
             raise GraphQL::ExecutionError, "You are not authorized to update this template."
+        end
+
+        # ensure the CT doesn't already have the group
+        if case_template.default_groups.map { |cgroup| cgroup.group }.include? group
+            raise GraphQL::ExecutionError, "Group #{group.name} is already in this case template."
         end
 
         # add the group to the CT
