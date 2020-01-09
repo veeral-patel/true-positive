@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_06_073340) do
+ActiveRecord::Schema.define(version: 2020_01_09_064440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,18 @@ ActiveRecord::Schema.define(version: 2020_01_06_073340) do
     t.integer "associated_type"
     t.index ["created_by_id"], name: "index_audits_on_created_by_id"
     t.index ["tenant_id"], name: "index_audits_on_tenant_id"
+  end
+
+  create_table "case_groups", force: :cascade do |t|
+    t.string "caseable_type"
+    t.bigint "caseable_id"
+    t.bigint "group_id"
+    t.bigint "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["caseable_type", "caseable_id"], name: "index_case_groups_on_caseable_type_and_caseable_id"
+    t.index ["group_id"], name: "index_case_groups_on_group_id"
+    t.index ["tenant_id"], name: "index_case_groups_on_tenant_id"
   end
 
   create_table "case_members", force: :cascade do |t|
@@ -318,6 +330,8 @@ ActiveRecord::Schema.define(version: 2020_01_06_073340) do
   add_foreign_key "api_tokens", "users"
   add_foreign_key "audits", "tenants"
   add_foreign_key "audits", "users", column: "created_by_id"
+  add_foreign_key "case_groups", "groups"
+  add_foreign_key "case_groups", "tenants"
   add_foreign_key "case_members", "tenants"
   add_foreign_key "case_members", "users"
   add_foreign_key "case_template_users", "case_templates"
