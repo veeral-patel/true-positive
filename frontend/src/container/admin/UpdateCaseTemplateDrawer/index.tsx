@@ -204,13 +204,6 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 renderItem={member => (
                   <List.Item
                     actions={[
-                      <Select<"CAN_VIEW" | "CAN_EDIT">
-                        value={member.role}
-                        style={{ width: "120px" }}
-                      >
-                        <Option value="CAN_VIEW">Can View</Option>
-                        <Option value="CAN_EDIT">Can Edit</Option>
-                      </Select>,
                       <Popconfirm
                         title="Remove this user?"
                         onConfirm={() =>

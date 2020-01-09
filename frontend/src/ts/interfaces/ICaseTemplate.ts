@@ -1,4 +1,5 @@
 import IUser from "ts/interfaces/IUser";
+import ICaseGroup from "./ICaseGroup";
 import ICaseMember from "./ICaseMember";
 import IPriority from "./IPriority";
 import IStatus from "./IStatus";
@@ -16,6 +17,7 @@ interface ICaseTemplate {
   assignedTo: IUser | null;
   defaultUserCount: number;
   defaultMembers: ICaseMember[];
+  defaultGroups: ICaseGroup[];
 }
 
 export default ICaseTemplate;

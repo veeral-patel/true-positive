@@ -26,6 +26,11 @@ const GET_ONE_CASE_TEMPLATE = gql`
         }
         role
       }
+      defaultGroups {
+        group {
+          name
+        }
+      }
     }
   }
 `;
