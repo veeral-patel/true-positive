@@ -23,6 +23,7 @@ import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
 import React from "react";
+import ICaseGroup from "ts/interfaces/ICaseGroup";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import "./styles.css";
@@ -244,7 +245,19 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 }
               />
             ) : (
-              <div />
+              <List<ICaseGroup>
+                bordered
+                itemLayout="horizontal"
+                dataSource={caseTemplate.defaultGroups}
+                renderItem={group => (
+                  <List.Item>
+                    <List.Item.Meta
+                      title={group.group.name}
+                      description={`${group.group.userCount} users`}
+                    />
+                  </List.Item>
+                )}
+              />
             )}
           </div>
         </TabPane>
