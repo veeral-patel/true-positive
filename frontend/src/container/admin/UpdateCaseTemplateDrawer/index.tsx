@@ -18,6 +18,7 @@ import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
+import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
 import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
 import REMOVE_USER_FROM_CASE_TEMPLATE from "mutations/removeUserFromCaseTemplate";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
@@ -88,7 +89,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       },
       onError: function(error: ApolloError) {
         notification.error({
-          message: "Could not add user from the template",
+          message: "Could not remove user from the template",
           description: error.message
         });
       },
@@ -97,6 +98,21 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       ]
     }
   );
+
+  const [addGroupToCaseTemplate] = useMutation(ADD_GROUP_TO_CASE_TEMPLATE, {
+    onCompleted: function() {
+      message.success("Added group");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Could not add group to the template",
+        description: error.message
+      });
+    },
+    refetchQueries: [
+      { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+    ]
+  });
 
   let drawerContent: React.ReactNode = null;
   if (loading) drawerContent = <Spin />;
@@ -240,6 +256,16 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
               style={{ display: "flex", marginTop: "1em" }}
               onFinish={values => {
                 if (!values.groupIds) return;
+                values.groupIds.forEach((groupId: string) => {
+                  addGroupToCaseTemplate({
+                    variables: {
+                      input: {
+                        groupId,
+                        caseTemplateId: caseTemplate.id
+                      }
+                    }
+                  });
+                });
               }}
             >
               <Form.Item name="groupIds" style={{ flex: "80%" }}>
