@@ -72,7 +72,7 @@ const MergeCaseForm = inject(
     } else if (error) {
       caseOptions = [
         <Option key="error" value="error">
-          Failed to fetch tags
+          Failed to fetch cases
         </Option>
       ];
     } else if (data) {
@@ -110,18 +110,7 @@ const MergeCaseForm = inject(
           <AutoComplete
             dataSource={caseOptions}
             defaultActiveFirstOption={true}
-            filterOption={(inputValue, option) => {
-              // filter options based on the name of the case
-              if (!option) return false;
-              const caseName = option.props.children;
-              if (caseName) {
-                return caseName
-                  .toString()
-                  .toLowerCase()
-                  .includes(inputValue.toLowerCase());
-              }
-              return false;
-            }}
+            optionFilterProp="children"
           >
             <Input prefix={<UserOutlined />} placeholder="Filter cases" />
           </AutoComplete>
