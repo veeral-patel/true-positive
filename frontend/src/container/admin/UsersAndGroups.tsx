@@ -69,9 +69,12 @@ function UsersTab() {
 }
 
 function GroupsTab() {
+  const [groupForm] = Form.useForm();
+
   const [createGroup] = useMutation(CREATE_A_GROUP, {
     onCompleted: function() {
       message.success("Created the group");
+      groupForm.resetFields();
     },
     onError: function(error: ApolloError) {
       notification.error({
@@ -87,16 +90,17 @@ function GroupsTab() {
       <Form
         colon={false}
         layout="vertical"
-        onFinish={values =>
-          values.name &&
+        form={groupForm}
+        onFinish={values => {
+          if (!values.name) return;
           createGroup({
             variables: {
               input: {
                 name: values.name
               }
             }
-          })
-        }
+          });
+        }}
       >
         <Form.Item name="name">
           <Input
