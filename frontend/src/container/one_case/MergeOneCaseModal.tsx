@@ -8,8 +8,7 @@ import {
   Input,
   message,
   Modal,
-  notification,
-  Select
+  notification
 } from "antd";
 import { ApolloError } from "apollo-boost";
 import { inject, observer } from "mobx-react";
@@ -20,7 +19,7 @@ import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 import ICase from "ts/interfaces/ICase";
 
-const { Option } = Select;
+const { Option } = AutoComplete;
 const { TextArea } = Input;
 
 interface FormProps {
