@@ -139,7 +139,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       },
       refetchQueries: [
         {
-          query: REMOVE_GROUP_FROM_CASE_TEMPLATE,
+          query: GET_ONE_CASE_TEMPLATE,
           variables: { id: templateId }
         }
       ]
