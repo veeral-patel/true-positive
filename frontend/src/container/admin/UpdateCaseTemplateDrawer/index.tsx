@@ -20,6 +20,7 @@ import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
 import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
+import REMOVE_GROUP_FROM_CASE_TEMPLATE from "mutations/removeGroupFromCaseTemplate";
 import REMOVE_USER_FROM_CASE_TEMPLATE from "mutations/removeUserFromCaseTemplate";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import Error from "presentational/shared/errors/Error";
@@ -113,6 +114,27 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
     ]
   });
+
+  const [removeGroupFromCaseTemplate] = useMutation(
+    REMOVE_GROUP_FROM_CASE_TEMPLATE,
+    {
+      onCompleted: function() {
+        message.success("Removed group");
+      },
+      onError: function(error) {
+        notification.error({
+          message: "Could not remove group from the template",
+          description: error.message
+        });
+      },
+      refetchQueries: [
+        {
+          query: REMOVE_GROUP_FROM_CASE_TEMPLATE,
+          variables: { id: templateId }
+        }
+      ]
+    }
+  );
 
   let drawerContent: React.ReactNode = null;
   if (loading) drawerContent = <Spin />;
@@ -291,11 +313,29 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 bordered
                 itemLayout="horizontal"
                 dataSource={caseTemplate.defaultGroups}
-                renderItem={group => (
-                  <List.Item>
+                renderItem={dgroup => (
+                  <List.Item
+                    actions={[
+                      <Popconfirm
+                        title="Remove this group?"
+                        onConfirm={() =>
+                          removeGroupFromCaseTemplate({
+                            variables: {
+                              input: {
+                                groupId: dgroup.group.id,
+                                caseTemplateId: caseTemplate.id
+                              }
+                            }
+                          })
+                        }
+                      >
+                        <Button icon={<CloseOutlined />} type="link" />
+                      </Popconfirm>
+                    ]}
+                  >
                     <List.Item.Meta
-                      title={group.group.name}
-                      description={`${group.group.userCount} users`}
+                      title={dgroup.group.name}
+                      description={`${dgroup.group.userCount} users`}
                     />
                   </List.Item>
                 )}
