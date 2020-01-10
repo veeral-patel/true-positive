@@ -198,7 +198,8 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
               colon={false}
               layout="vertical"
               style={{ display: "flex", marginTop: "1em" }}
-              onFinish={values =>
+              onFinish={values => {
+                if (!values.usernames) return;
                 values.usernames.forEach((username: string) =>
                   addUserToCaseTemplate({
                     variables: {
@@ -209,16 +210,10 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
                       }
                     }
                   })
-                )
-              }
+                );
+              }}
             >
-              <Form.Item
-                name="usernames"
-                style={{ flex: "80%" }}
-                rules={[
-                  { required: true, message: "Please choose at least one user" }
-                ]}
-              >
+              <Form.Item name="usernames" style={{ flex: "80%" }}>
                 <UserSelect placeholder="Choose users" multiple />
               </Form.Item>
               <Form.Item>
