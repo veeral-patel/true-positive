@@ -15,7 +15,7 @@
     "@types/react-dom": "16.8.5",
     "@types/react-helmet": "^5.0.14",
     "@types/showdown": "^1.9.3",
-    "antd": "4.0.0-rc.0",
+    "antd": "4.0.0-alpha.14",
     "apollo-boost": "^0.4.4",
     "apollo-link-context": "^1.0.19",
     "array-move": "^2.2.1",
