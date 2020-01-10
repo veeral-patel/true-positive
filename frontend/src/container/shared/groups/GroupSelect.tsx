@@ -58,6 +58,7 @@ function GroupSelect({
     <Select
       showSearch
       placeholder={placeholder}
+      optionFilterProp="children"
       style={{ minWidth: "200px" }}
       onSelect={groupId => handleSelect && handleSelect(groupId)}
       onChange={onChange}
