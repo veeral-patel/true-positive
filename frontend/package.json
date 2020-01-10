@@ -15,6 +15,7 @@
     "@types/react-dom": "16.8.5",
     "@types/react-helmet": "^5.0.14",
     "@types/showdown": "^1.9.3",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
     "antd": "4.0.0-alpha.14",
     "apollo-boost": "^0.4.4",
     "apollo-link-context": "^1.0.19",
@@ -33,7 +34,7 @@
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
     "react-mde": "^8.0.1",
-    "react-scripts": "3.1.1",
+    "react-scripts": "3.1.2",
     "react-sortable-hoc": "^1.10.1",
     "showdown": "^1.9.1",
     "typescript": "3.5.3"
