@@ -67,9 +67,14 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     }
   });
 
+  // ---
+
+  const [userForm] = Form.useForm();
+
   const [addUserToCaseTemplate] = useMutation(ADD_USER_TO_CASE_TEMPLATE, {
     onCompleted: function() {
       message.success("Added user");
+      userForm.resetFields();
     },
     onError: function(error: ApolloError) {
       notification.error({
@@ -100,9 +105,14 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     }
   );
 
+  // ---
+
+  const [groupForm] = Form.useForm();
+
   const [addGroupToCaseTemplate] = useMutation(ADD_GROUP_TO_CASE_TEMPLATE, {
     onCompleted: function() {
       message.success("Added group");
+      groupForm.resetFields();
     },
     onError: function(error: ApolloError) {
       notification.error({
@@ -195,6 +205,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
           <div style={{ marginTop: "2em" }}>
             <h4>Users ({caseTemplate.defaultUserCount})</h4>
             <Form
+              form={userForm}
               colon={false}
               layout="vertical"
               style={{ display: "flex", marginTop: "1em" }}
@@ -269,6 +280,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             <h4>Groups ({caseTemplate.defaultGroupCount})</h4>
             <Form
               colon={false}
+              form={groupForm}
               layout="vertical"
               style={{ display: "flex", marginTop: "1em" }}
               onFinish={values => {
