@@ -12,7 +12,6 @@ import {
   notification,
   Typography
 } from "antd";
-import CreateTaskInput from "container/one_case/CreateTaskInput";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TaskGroup from "container/one_case/TaskGroup";
 import TaskProgress from "container/shared/tasks/TaskProgress";
@@ -94,8 +93,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
-                  marginBottom: "1em"
+                  justifyContent: "space-between"
                 }}
               >
                 <h3>
@@ -107,21 +105,13 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
                   totalTaskCount={activeCase.totalTaskCount}
                 />
               </div>
-              <CreateTaskInput
-                handleEnter={event => {
-                  const newTask = event.currentTarget.value;
-                  activeCaseStore!.createTask(newTask, activeCase.id);
-                }}
-              />
-              <div style={{ float: "right" }}>
-                <Button
-                  type="link"
-                  onClick={() => setOpenModal("CREATE_TASK_GROUP")}
-                  style={{ padding: 0, marginTop: "0.5em" }}
-                >
-                  Create a task group
-                </Button>
-              </div>
+              <Button
+                type="link"
+                onClick={() => setOpenModal("CREATE_TASK_GROUP")}
+                style={{ padding: 0, marginBottom: "1em" }}
+              >
+                Create a task group
+              </Button>
               <div>{taskGroups}</div>
             </>
           )}

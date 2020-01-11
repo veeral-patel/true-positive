@@ -1,3 +1,4 @@
+import CreateTaskInput from "container/one_case/CreateTaskInput";
 import SortableTaskList from "container/one_case/SortableTaskList";
 import Heading from "container/one_case/TaskGroup/Heading";
 import React from "react";
@@ -11,10 +12,17 @@ interface Props {
 
 function TaskGroup({ name, tasks, id }: Props) {
   return (
-    <>
-      <Heading heading={name} id={id} />
-      <SortableTaskList existingTasks={tasks} />
-    </>
+    <div style={{ marginBottom: "2.5em" }}>
+      <div>
+        <Heading heading={name} id={id} />
+      </div>
+      <div style={{ marginTop: "0.5em" }}>
+        <CreateTaskInput handleEnter={() => void 0} />
+      </div>
+      <div style={{ marginTop: "1em" }}>
+        <SortableTaskList existingTasks={tasks} />
+      </div>
+    </div>
   );
 }
 

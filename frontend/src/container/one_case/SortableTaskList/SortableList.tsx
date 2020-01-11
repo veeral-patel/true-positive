@@ -33,9 +33,7 @@ const SortableList = SortableContainer(
               description={
                 <div>
                   <Paragraph>No tasks</Paragraph>
-                  <Text type="secondary">
-                    <a>Add a task to this group</a>
-                  </Text>
+                  <Text type="secondary">Add a task to this group above</Text>
                 </div>
               }
             />
