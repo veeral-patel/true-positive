@@ -35,6 +35,7 @@ function TaskGroup({ name, tasks, id }: Props) {
         <CreateTaskInput
           handleEnter={event => {
             const nameOfNewTask = event.currentTarget.value;
+            if (!nameOfNewTask) return; // do nothing if the name is empty
             createTask({
               variables: {
                 input: {

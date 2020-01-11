@@ -9,8 +9,8 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "The name of the new task."
     end
 
-    argument :case_id, ID, required: true do
-        description "The ID of the case to add this task to."
+    argument :task_group_id, ID, required: true do
+        description "The ID of the task group to add this task to."
     end
 
     # not required ----
@@ -31,22 +31,14 @@ class Mutations::CreateTask < Mutations::BaseMutation
         description "The newly created task."
     end
 
-    def resolve(name:, case_id:, done: false, description: nil, assigned_to: nil)
-        # find case, assigned user for this new task
-        the_case = find_case_or_throw_execution_error(case_id: case_id)
+    def resolve(name:, task_group_id:, done: false, description: nil, assigned_to: nil)
+        # find task group, assigned user for this new task
+        task_group = find_task_group_or_throw_execution_error(id: task_group_id)
         assigned_user = assigned_to.nil? || assigned_to == "N/A" ? nil : find_user_or_throw_execution_error(username: assigned_to)
 
         # authorize this action
-        unless CasePolicy.new(context[:current_user], the_case).create_task?
+        unless CasePolicy.new(context[:current_user], task_group.case).create_task?
             raise GraphQL::ExecutionError, "You are not authorized to add tasks to this case."
-        end
-
-        # if the case has a task group already, add our new task to the first task group.
-        # if it has no task groups, create a task group called "General" and add our new task to it
-        if the_case.task_groups.size == 0
-            task_group = the_case.task_groups.create(name: "General", created_by: context[:current_user])
-        else
-            task_group = the_case.task_groups.first
         end
 
         # create new task in memory
