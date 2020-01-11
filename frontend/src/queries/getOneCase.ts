@@ -36,6 +36,7 @@ const GET_ONE_CASE = gql`
         tasks {
           id
           name
+          description
           done
           assignedTo {
             username

@@ -14,12 +14,20 @@ interface Props {
 
   // style component based on whether we're in dark theme
   uiStore?: UIStore;
+
+  // which tab to select by default
+  defaultTab?: "write" | "preview";
 }
 
-function DescriptionEditor({ initialValue, updateValue, uiStore }: Props) {
+function DescriptionEditor({
+  initialValue,
+  updateValue,
+  uiStore,
+  defaultTab = "preview"
+}: Props) {
   const [currentValue, setValue] = React.useState(initialValue);
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-    "preview"
+    defaultTab
   );
 
   return (
