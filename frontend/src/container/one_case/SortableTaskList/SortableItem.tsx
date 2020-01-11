@@ -15,7 +15,8 @@ import {
   notification,
   Popconfirm,
   Popover,
-  Tooltip
+  Tooltip,
+  Typography
 } from "antd";
 import { ApolloError } from "apollo-boost";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
@@ -29,6 +30,8 @@ import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITask from "ts/interfaces/ITask";
 import { getPathToATask } from "utils/pathHelpers";
 import truncateString from "utils/truncateString";
+
+const { Text } = Typography;
 
 interface Props {
   task: ITask;
@@ -133,22 +136,29 @@ const SortableItem = SortableElement(
         >
           <List.Item.Meta
             title={
-              <>
-                <Checkbox
-                  style={{ marginRight: "1.0em" }}
-                  defaultChecked={task.done}
-                  onChange={event =>
-                    markTaskAsDone(task.id, event.target.checked)
-                  }
-                />
-                <a
-                  onClick={() =>
-                    navigate(getPathToATask(task.case.id, task.id))
-                  }
-                >
-                  {truncateString(task.name, 75)}
-                </a>
-              </>
+              <div style={{ display: "flex" }}>
+                <div>
+                  <Checkbox
+                    style={{ marginRight: "1.0em" }}
+                    defaultChecked={task.done}
+                    onChange={event =>
+                      markTaskAsDone(task.id, event.target.checked)
+                    }
+                  />
+                </div>
+                <div>
+                  <Text editable>
+                    <a
+                      onClick={() =>
+                        navigate(getPathToATask(task.case.id, task.id))
+                      }
+                      style={{ color: "inherit" }}
+                    >
+                      {truncateString(task.name, 75)}
+                    </a>
+                  </Text>
+                </div>
+              </div>
             }
             description={
               task.assignedTo && `Assigned to ${task.assignedTo.username}`
