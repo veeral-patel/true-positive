@@ -72,7 +72,7 @@ function Heading({ heading, activeCaseStore, id }: Props) {
         {heading}
       </Text>
       <Popover
-        title="Assign all this group's tasks"
+        title="Assign all of this group's tasks"
         content={<UserSelect forAssigning={true} />}
       >
         <Button icon={<UserAddOutlined />} type="link" />
