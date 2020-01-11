@@ -9,27 +9,6 @@ const GET_ONE_CASE = gql`
       completedTaskCount
       totalTaskCount
       taskGroupCount
-      tasks {
-        id
-        name
-        done
-        assignedTo {
-          username
-        }
-        createdBy {
-          username
-        }
-        createdAt
-        description
-        comments {
-          id
-          comment
-          createdAt
-          createdBy {
-            username
-          }
-        }
-      }
       taskGroups {
         id
         name
