@@ -19,10 +19,6 @@ function SortableComponent({ existingTasks, activeCaseStore }: Props) {
   const [orderedTasks, setOrderedTasks] = useState(existingTasks);
 
   const [changeTaskPosition] = useMutation(CHANGE_TASK_POSITION, {
-    onCompleted: function() {
-      message.success("Reordered tasks");
-      activeCaseStore!.loadActiveCase();
-    },
     onError: function(error: ApolloError) {
       notification.error({
         message: "Failed to reorder tasks",
@@ -46,7 +42,13 @@ function SortableComponent({ existingTasks, activeCaseStore }: Props) {
     }
   });
 
-  const onSortEnd = ({ oldIndex, newIndex }: any) => {
+  const onSortEnd = ({
+    oldIndex,
+    newIndex
+  }: {
+    oldIndex: number;
+    newIndex: number;
+  }) => {
     // exit if the "moved" task doesn't actually move
     if (oldIndex === newIndex) return;
 
