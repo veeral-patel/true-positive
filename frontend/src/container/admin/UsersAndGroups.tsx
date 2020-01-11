@@ -119,7 +119,10 @@ function UsersAndGroups() {
   return (
     <>
       <h3>Users & Groups</h3>
-      <Text>Manage users and organize them into groups.</Text>
+      <Paragraph>Manage users and organize them into groups.</Paragraph>
+      <Paragraph type="secondary">
+        Then, you can add entire groups to case templates and cases at once.
+      </Paragraph>
       <Tabs defaultActiveKey="users">
         <TabPane key="users" tab="Users">
           <UsersTab />

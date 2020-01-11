@@ -17,6 +17,14 @@ class AdminPage extends React.Component<RouteComponentProps> {
           <TabPane tab="Integrations" key="integrations">
             <h3>Integrations</h3>
             <Paragraph>Create cases from inbound email</Paragraph>
+            <Paragraph type="secondary">
+              True Positive can ingest and create cases from emails sent to a
+              mailbox, such as phishing@ecorp.com.
+            </Paragraph>
+            <Paragraph type="secondary">
+              Simply generate a random @tp.app email address and forward email
+              from your existing mailbox to this address.
+            </Paragraph>
           </TabPane>
           <TabPane tab="Users" key="users">
             <UsersAndGroups />
