@@ -165,7 +165,16 @@ const SortableItem = SortableElement(
           >
             <DescriptionEditor
               initialValue={task.description}
-              updateValue={() => void 0}
+              updateValue={newDescription =>
+                updateTask({
+                  variables: {
+                    input: {
+                      taskId: task.id,
+                      description: newDescription
+                    }
+                  }
+                })
+              }
             />
           </div>
         )}
