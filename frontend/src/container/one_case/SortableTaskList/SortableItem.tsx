@@ -1,6 +1,6 @@
-import { EllipsisOutlined, MessageOutlined } from "@ant-design/icons";
+import { DeleteOutlined, MessageOutlined } from "@ant-design/icons";
 import { navigate } from "@reach/router";
-import { Checkbox, Divider, List, Tooltip } from "antd";
+import { Button, Checkbox, Divider, List, Popconfirm, Tooltip } from "antd";
 import React from "react";
 import { SortableElement } from "react-sortable-hoc";
 import ITask from "ts/interfaces/ITask";
@@ -33,7 +33,9 @@ const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => (
       <MessageOutlined /> {task.commentCount}
     </Tooltip>
     <Divider type="vertical" />
-    <EllipsisOutlined />
+    <Popconfirm title="Delete this task?">
+      <Button icon={<DeleteOutlined />} style={{ border: "none" }} />
+    </Popconfirm>
   </List.Item>
 ));
 export default SortableItem;
