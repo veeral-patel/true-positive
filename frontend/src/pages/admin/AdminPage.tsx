@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Tabs, Typography } from "antd";
+import { Button, Modal, Tabs, Typography } from "antd";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
@@ -25,6 +25,10 @@ class AdminPage extends React.Component<RouteComponentProps> {
               Simply generate a random @tp.app email address and forward email
               from your existing mailbox to this address.
             </Paragraph>
+            <Button type="link" style={{ padding: "0px" }}>
+              Set up a mailbox
+            </Button>
+            <Modal visible={false} title="Set up a mailbox"></Modal>
           </TabPane>
           <TabPane tab="Users" key="users">
             <UsersAndGroups />
