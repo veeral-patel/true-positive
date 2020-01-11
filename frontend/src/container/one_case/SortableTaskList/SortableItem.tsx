@@ -2,7 +2,8 @@ import {
   DeleteOutlined,
   MessageOutlined,
   MinusSquareOutlined,
-  PlusSquareOutlined
+  PlusSquareOutlined,
+  UserAddOutlined
 } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
 import { navigate } from "@reach/router";
@@ -13,10 +14,13 @@ import {
   message,
   notification,
   Popconfirm,
+  Popover,
   Tooltip
 } from "antd";
 import { ApolloError } from "apollo-boost";
+import UserSelect from "container/shared/users/UserSelect";
 import DELETE_A_TASK from "mutations/deleteTask";
+import UPDATE_TASK from "mutations/updateTask";
 import React, { useState } from "react";
 import { SortableElement } from "react-sortable-hoc";
 import ITask from "ts/interfaces/ITask";
@@ -38,6 +42,18 @@ const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => {
     onError: function(error: ApolloError) {
       notification.error({
         message: "Could not delete the task",
+        description: error.message
+      });
+    }
+  });
+
+  const [updateTask] = useMutation(UPDATE_TASK, {
+    onCompleted: function() {
+      message.success("Updated task");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Failed to update task",
         description: error.message
       });
     }
@@ -69,6 +85,26 @@ const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => {
         <Tooltip title={`${task.commentCount} comment(s)`}>
           <MessageOutlined /> {task.commentCount}
         </Tooltip>,
+        <Popover
+          title="Assign task"
+          content={
+            <UserSelect
+              forAssigning={true}
+              onChange={username =>
+                updateTask({
+                  variables: {
+                    input: {
+                      taskId: task.id,
+                      assignedTo: username
+                    }
+                  }
+                })
+              }
+            />
+          }
+        >
+          <Button style={{ border: "none" }} icon={<UserAddOutlined />} />
+        </Popover>,
         <Popconfirm
           title="Delete this task?"
           onConfirm={() =>
