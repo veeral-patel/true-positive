@@ -3,21 +3,24 @@ import { message, notification } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import SortableTaskList from "container/one_case/SortableTaskList";
 import Heading from "container/one_case/TaskGroup/Heading";
+import { inject, observer } from "mobx-react";
 import CREATE_A_TASK from "mutations/createTask";
 import React from "react";
+import ActiveCaseStore from "stores/ActiveCaseStore";
 import ITask from "ts/interfaces/ITask";
 
 interface Props {
   name: string;
   tasks: ITask[];
   taskGroupId: number;
-  caseId: number;
+  activeCaseStore?: ActiveCaseStore;
 }
 
-function TaskGroup({ name, tasks, taskGroupId, caseId }: Props) {
+function TaskGroup({ name, tasks, taskGroupId, activeCaseStore }: Props) {
   const [createTask] = useMutation(CREATE_A_TASK, {
     onCompleted: function() {
       message.success("Created the task");
+      activeCaseStore!.loadActiveCase();
     },
     onError: function(error) {
       notification.error({
@@ -55,4 +58,4 @@ function TaskGroup({ name, tasks, taskGroupId, caseId }: Props) {
   );
 }
 
-export default TaskGroup;
+export default inject("activeCaseStore")(observer(TaskGroup));
