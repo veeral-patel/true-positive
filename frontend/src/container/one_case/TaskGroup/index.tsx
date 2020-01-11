@@ -10,10 +10,11 @@ import ITask from "ts/interfaces/ITask";
 interface Props {
   name: string;
   tasks: ITask[];
-  id: number;
+  taskGroupId: number;
+  caseId: number;
 }
 
-function TaskGroup({ name, tasks, id }: Props) {
+function TaskGroup({ name, tasks, taskGroupId, caseId }: Props) {
   const [createTask] = useMutation(CREATE_A_TASK, {
     onCompleted: function() {
       message.success("Created the task");
@@ -29,7 +30,7 @@ function TaskGroup({ name, tasks, id }: Props) {
   return (
     <div style={{ marginBottom: "3em" }}>
       <div>
-        <Heading heading={name} id={id} />
+        <Heading heading={name} id={taskGroupId} />
       </div>
       <div style={{ marginTop: "0.5em" }}>
         <CreateTaskInput
@@ -39,7 +40,7 @@ function TaskGroup({ name, tasks, id }: Props) {
             createTask({
               variables: {
                 input: {
-                  taskGroupId: id,
+                  taskGroupId,
                   name: nameOfNewTask
                 }
               }

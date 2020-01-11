@@ -57,7 +57,8 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
         name={group.name}
         tasks={group.tasks}
         key={group.id}
-        id={group.id}
+        taskGroupId={group.id}
+        caseId={activeCase.id}
       />
     ));
 
