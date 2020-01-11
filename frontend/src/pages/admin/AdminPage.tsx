@@ -1,5 +1,5 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Modal, Tabs, Typography } from "antd";
+import { Button, Modal, Steps, Tabs, Typography } from "antd";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
@@ -28,7 +28,13 @@ class AdminPage extends React.Component<RouteComponentProps> {
             <Button type="link" style={{ padding: "0px" }}>
               Set up a mailbox
             </Button>
-            <Modal visible={false} title="Set up a mailbox"></Modal>
+            <Modal visible={true} title="Set up a mailbox" footer={null}>
+              <Steps size="small" progressDot>
+                <Steps.Step title="Generate an inbound email address"></Steps.Step>
+                <Steps.Step title="Choose a case template"></Steps.Step>
+                <Steps.Step title="Forward email from an existing mailbox"></Steps.Step>
+              </Steps>
+            </Modal>
           </TabPane>
           <TabPane tab="Users" key="users">
             <UsersAndGroups />
