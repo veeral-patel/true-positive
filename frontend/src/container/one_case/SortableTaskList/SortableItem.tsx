@@ -160,6 +160,7 @@ const SortableItem = SortableElement(
             style={{
               marginLeft: "24px",
               marginRight: "24px",
+              marginTop: "8px",
               marginBottom: "24px"
             }}
           >
