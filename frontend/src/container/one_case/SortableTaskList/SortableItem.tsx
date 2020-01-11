@@ -147,7 +147,21 @@ const SortableItem = SortableElement(
                   />
                 </div>
                 <div>
-                  <Text editable>
+                  <Text
+                    editable={{
+                      onChange: newName => {
+                        if (!newName) return;
+                        updateTask({
+                          variables: {
+                            input: {
+                              taskId: task.id,
+                              name: newName
+                            }
+                          }
+                        });
+                      }
+                    }}
+                  >
                     <a
                       onClick={() =>
                         navigate(getPathToATask(task.case.id, task.id))
