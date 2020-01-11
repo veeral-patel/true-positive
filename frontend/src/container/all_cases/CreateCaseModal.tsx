@@ -181,9 +181,6 @@ const FromTemplateForm = inject("allCasesStore")(
           closeModal();
 
           // Navigate to the newly created case
-
-          console.log(mutationData);
-
           if (
             mutationData &&
             mutationData.createCaseFromTemplate &&
