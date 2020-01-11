@@ -154,7 +154,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
                 { required: true, message: "Please name your task group" }
               ]}
             >
-              <Input placeholder="Containment" />
+              <Input placeholder="Containment" autoFocus />
             </Form.Item>
             <Form.Item>
               <div style={{ float: "right" }}>

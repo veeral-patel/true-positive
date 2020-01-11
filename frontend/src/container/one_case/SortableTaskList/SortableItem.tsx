@@ -1,4 +1,8 @@
-import { DeleteOutlined, MessageOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  MessageOutlined,
+  PlusSquareOutlined
+} from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
 import { navigate } from "@reach/router";
 import {
@@ -56,6 +60,10 @@ const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => {
           task.assignedTo && `Assigned to ${task.assignedTo.username}`
         }
       />
+      <Tooltip title="Expand row">
+        <Button icon={<PlusSquareOutlined />} style={{ border: "none" }} />
+      </Tooltip>
+      <Divider type="vertical" />
       <Tooltip title={`${task.commentCount} comment(s)`}>
         <MessageOutlined /> {task.commentCount}
       </Tooltip>
