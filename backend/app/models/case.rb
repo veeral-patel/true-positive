@@ -84,6 +84,11 @@ class Case < ApplicationRecord
     self.tasks.count
   end
 
+  def task_group_count
+    # Number of task groups in this case
+    self.task_groups.count
+  end
+
   private
     def add_creator_to_members
       # Add the user who created this case to its list of members, so he/she can access it.

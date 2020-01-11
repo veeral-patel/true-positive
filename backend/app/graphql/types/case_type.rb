@@ -68,7 +68,11 @@ module Types
         end
 
         field :total_task_count, Int, null: false do
-            description "The number of total tasks in this case."
+            description "The total number of tasks in this case."
+        end
+
+        field :task_group_count, Int, null: false do
+            description "The number of task groups in this case."
         end
 
         # possibly null

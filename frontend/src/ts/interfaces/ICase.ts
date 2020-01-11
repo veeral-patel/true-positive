@@ -31,6 +31,7 @@ interface ICase {
   totalTaskCount: number;
   taskGroups: ITaskGroup[];
   audits: IAudit[];
+  taskGroupCount: number;
 }
 
 export default ICase;

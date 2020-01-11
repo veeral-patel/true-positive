@@ -13,10 +13,17 @@ interface Props {
   name: string;
   tasks: ITask[];
   taskGroupId: number;
+  caseId: number;
   activeCaseStore?: ActiveCaseStore;
 }
 
-function TaskGroup({ name, tasks, taskGroupId, activeCaseStore }: Props) {
+function TaskGroup({
+  name,
+  tasks,
+  taskGroupId,
+  activeCaseStore,
+  caseId
+}: Props) {
   const [createTask] = useMutation(CREATE_A_TASK, {
     onCompleted: function() {
       message.success("Created the task");
@@ -43,8 +50,9 @@ function TaskGroup({ name, tasks, taskGroupId, activeCaseStore }: Props) {
             createTask({
               variables: {
                 input: {
+                  name: nameOfNewTask,
                   taskGroupId,
-                  name: nameOfNewTask
+                  caseId
                 }
               }
             });

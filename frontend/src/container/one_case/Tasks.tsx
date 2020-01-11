@@ -58,6 +58,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
         tasks={group.tasks}
         key={group.id}
         taskGroupId={group.id}
+        caseId={activeCase.id}
       />
     ));
 
@@ -71,7 +72,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
             minHeight: 280
           }}
         >
-          {activeCase.totalTaskCount === 0 ? (
+          {activeCase.taskGroupCount === 0 ? (
             <Empty
               description={
                 <div style={{ marginTop: "1em" }}>
