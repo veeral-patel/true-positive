@@ -90,6 +90,7 @@ const SortableItem = SortableElement(({ task, markTaskAsDone }: Props) => {
           content={
             <UserSelect
               forAssigning={true}
+              value={task.assignedTo && task.assignedTo.username}
               onChange={username =>
                 updateTask({
                   variables: {
