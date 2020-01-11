@@ -12,7 +12,7 @@ interface Props {
 
 function TaskGroup({ name, tasks, id }: Props) {
   return (
-    <div style={{ marginBottom: "2.5em" }}>
+    <div style={{ marginBottom: "3em" }}>
       <div>
         <Heading heading={name} id={id} />
       </div>
