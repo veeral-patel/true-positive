@@ -14,14 +14,6 @@ module Types
           Status.all
       end
 
-      # field :default_status, Types::StatusType, null: true do
-      #   description "Retrieves the default status, which is used to populate the status field when creating a new case in the UI."
-      # end
-
-      # def default_status
-      #   Status.default_status
-      # end
-
       # ---------- Priorities -------------------
 
       field :priorities, [Types::PriorityType], null: false do
