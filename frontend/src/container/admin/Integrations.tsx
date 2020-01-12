@@ -40,12 +40,12 @@ function Integrations() {
       />
       <Modal
         visible={visibleModal === "CREATE_INBOUND_ADDRESS"}
-        title="Set up a mailbox"
+        title="Generate an inbound email address"
         footer={null}
         onCancel={() => setVisibleModal(null)}
       >
         <Steps size="small" progressDot>
-          <Steps.Step title="Generate an inbound email address"></Steps.Step>
+          <Steps.Step title="Generate address"></Steps.Step>
           <Steps.Step title="Choose a case template"></Steps.Step>
           <Steps.Step title="Forward email from an existing mailbox"></Steps.Step>
         </Steps>
