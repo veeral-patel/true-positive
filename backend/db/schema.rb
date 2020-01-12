@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_045206) do
+ActiveRecord::Schema.define(version: 2020_01_12_054616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,14 @@ ActiveRecord::Schema.define(version: 2020_01_12_045206) do
     t.index ["tenant_id"], name: "index_groups_on_tenant_id"
   end
 
+  create_table "inbound_email_addresses", force: :cascade do |t|
+    t.string "email"
+    t.bigint "tenant_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tenant_id"], name: "index_inbound_email_addresses_on_tenant_id"
+  end
+
   create_table "indicators", force: :cascade do |t|
     t.string "name"
     t.text "indicator"
@@ -361,6 +369,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_045206) do
   add_foreign_key "group_users", "tenants"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "tenants"
+  add_foreign_key "inbound_email_addresses", "tenants"
   add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "tenants"
   add_foreign_key "indicators", "users", column: "created_by_id"
