@@ -17,9 +17,10 @@ function Integrations() {
         such as phishing@ecorp.com.
       </Paragraph>
       <Paragraph type="secondary">
-        Simply generate a random @tp.app email address below and forward emails
-        from your existing mailbox to this address. We'll create a case for
-        every email we receive and attach the original email.
+        Simply generate a random @truepositive.app email address below and
+        forward emails from your existing mailbox to this address. We'll create
+        a case for every email the generated email address receives and we'll
+        attach the original email to it.
       </Paragraph>
       <Button
         type="link"
