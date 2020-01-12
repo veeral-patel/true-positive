@@ -19,7 +19,7 @@ function Integrations() {
       <Paragraph type="secondary">
         Simply generate a random @truepositive.app email address below and
         forward emails from your existing mailbox to this address. We'll create
-        a case for every email we receive and attach the original email.
+        a case for every email received and attach the original email as a file.
       </Paragraph>
       <Button
         type="link"
