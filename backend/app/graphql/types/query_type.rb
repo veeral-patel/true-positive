@@ -190,12 +190,12 @@ module Types
       end
 
       # ------------- Inbound Email Address -------
-      # field :inbound_email_addresses, [Types::InboundEmailAddressType], null: false do
-      #   description "Lists the email addresses that create cases from emails sent to them."
-      # end
+      field :inbound_email_addresses, [Types::InboundEmailAddressType], null: false do
+        description "Lists the email addresses you've set up that create cases from emails sent to them."
+      end
 
-      # def inbound_email_addresses
-      #   InboundEmailAddress.all
-      # end
+      def inbound_email_addresses
+        InboundEmailAddress.all
+      end
   end
 end
