@@ -1,12 +1,12 @@
-import { Button, Modal, Steps, Typography } from "antd";
+import { Button, Empty, Modal, Steps, Typography } from "antd";
 import React, { useState } from "react";
 
 const { Paragraph } = Typography;
 
 function Integrations() {
-  const [visibleModal, setVisibleModal] = useState<"SET_UP_MAILBOX" | null>(
-    null
-  );
+  const [visibleModal, setVisibleModal] = useState<
+    "CREATE_INBOUND_ADDRESS" | null
+  >(null);
 
   return (
     <>
@@ -17,19 +17,29 @@ function Integrations() {
         such as phishing@ecorp.com.
       </Paragraph>
       <Paragraph type="secondary">
-        Simply generate a random @truepositive.app email address below and
+        Simply generate an inbound @truepositive.app email address below and
         forward emails from your existing mailbox to this address. We'll create
         a case for every email received and attach the original email as a file.
       </Paragraph>
       <Button
         type="link"
         style={{ padding: "0px" }}
-        onClick={() => setVisibleModal("SET_UP_MAILBOX")}
+        onClick={() => setVisibleModal("CREATE_INBOUND_ADDRESS")}
       >
-        Set up a mailbox
+        Create an inbound email address
       </Button>
+      <Empty
+        description={
+          <div>
+            <h4>No inbound email addresses</h4>
+            <Paragraph>
+              Generate one above to start creating cases via email
+            </Paragraph>
+          </div>
+        }
+      />
       <Modal
-        visible={visibleModal === "SET_UP_MAILBOX"}
+        visible={visibleModal === "CREATE_INBOUND_ADDRESS"}
         title="Set up a mailbox"
         footer={null}
         onCancel={() => setVisibleModal(null)}
