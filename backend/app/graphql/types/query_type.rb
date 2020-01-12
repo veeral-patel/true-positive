@@ -189,13 +189,13 @@ module Types
         ApiTokenPolicy::Scope.new(context[:current_user]).resolve
       end
 
-      # -------------- Forms ----------------------
-      # field :forms, [Types::FormType], null: false do
-      #   description "Lists all forms."
+      # ------------- Inbound Email Address -------
+      # field :inbound_email_addresses, [Types::InboundEmailAddressType], null: false do
+      #   description "Lists the email addresses that create cases from emails sent to them."
       # end
 
-      # def forms
-      #   Form.all
+      # def inbound_email_addresses
+      #   InboundEmailAddress.all
       # end
   end
 end

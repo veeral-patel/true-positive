@@ -1,3 +1,6 @@
+class Helpers
+end
+
 def find_status_by_name_or_throw_execution_error(status_name:)
     begin
         Status.find_by!(name: status_name)
