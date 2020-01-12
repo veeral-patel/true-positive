@@ -26,7 +26,7 @@ function Integrations() {
         style={{ padding: "0px" }}
         onClick={() => setVisibleModal("CREATE_INBOUND_ADDRESS")}
       >
-        Create an inbound email address
+        Generate an inbound email address
       </Button>
       <Empty
         description={
