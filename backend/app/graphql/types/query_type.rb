@@ -181,13 +181,13 @@ module Types
         ApiTokenPolicy::Scope.new(context[:current_user]).resolve
       end
 
-      # ------------- Inbound Email Address -------
-      field :inbound_email_addresses, [Types::InboundEmailAddressType], null: false do
+      # ------------- Create Case Email Addresses -------
+      field :create_case_email_addresses, [Types::CreateCaseEmailAddressType], null: false do
         description "Lists the email addresses you've set up that create cases from emails sent to them."
       end
 
-      def inbound_email_addresses
-        InboundEmailAddress.all
+      def create_case_email_addresses
+        CreateCaseEmailAddress.all
       end
   end
 end

@@ -32,8 +32,10 @@ ActiveRecord::Schema.define(version: 2020_01_12_054616) do
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.bigint "tenant_id"
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+    t.index ["tenant_id"], name: "index_active_storage_attachments_on_tenant_id"
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
@@ -44,7 +46,9 @@ ActiveRecord::Schema.define(version: 2020_01_12_054616) do
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
     t.datetime "created_at", null: false
+    t.bigint "tenant_id"
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+    t.index ["tenant_id"], name: "index_active_storage_blobs_on_tenant_id"
   end
 
   create_table "api_tokens", force: :cascade do |t|
@@ -158,6 +162,16 @@ ActiveRecord::Schema.define(version: 2020_01_12_054616) do
     t.index ["tenant_id"], name: "index_comments_on_tenant_id"
   end
 
+  create_table "create_case_email_addresses", force: :cascade do |t|
+    t.string "email"
+    t.bigint "tenant_id"
+    t.bigint "case_template_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["case_template_id"], name: "index_create_case_email_addresses_on_case_template_id"
+    t.index ["tenant_id"], name: "index_create_case_email_addresses_on_tenant_id"
+  end
+
   create_table "forms", force: :cascade do |t|
     t.string "name"
     t.json "schema"
@@ -186,14 +200,6 @@ ActiveRecord::Schema.define(version: 2020_01_12_054616) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tenant_id"], name: "index_groups_on_tenant_id"
-  end
-
-  create_table "inbound_email_addresses", force: :cascade do |t|
-    t.string "email"
-    t.bigint "tenant_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["tenant_id"], name: "index_inbound_email_addresses_on_tenant_id"
   end
 
   create_table "indicators", force: :cascade do |t|
@@ -340,6 +346,8 @@ ActiveRecord::Schema.define(version: 2020_01_12_054616) do
 
   add_foreign_key "action_mailbox_inbound_emails", "tenants"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_attachments", "tenants"
+  add_foreign_key "active_storage_blobs", "tenants"
   add_foreign_key "api_tokens", "tenants"
   add_foreign_key "api_tokens", "users"
   add_foreign_key "audits", "tenants"
@@ -363,13 +371,14 @@ ActiveRecord::Schema.define(version: 2020_01_12_054616) do
   add_foreign_key "cases", "users", column: "created_by_id"
   add_foreign_key "comments", "tenants"
   add_foreign_key "comments", "users", column: "created_by_id"
+  add_foreign_key "create_case_email_addresses", "case_templates"
+  add_foreign_key "create_case_email_addresses", "tenants"
   add_foreign_key "forms", "tenants"
   add_foreign_key "forms", "users", column: "created_by_id"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "tenants"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "tenants"
-  add_foreign_key "inbound_email_addresses", "tenants"
   add_foreign_key "indicators", "cases"
   add_foreign_key "indicators", "tenants"
   add_foreign_key "indicators", "users", column: "created_by_id"
