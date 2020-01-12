@@ -1,5 +1,6 @@
 class CreateCaseMailbox < ApplicationMailbox
   def process
+    binding.pry
     # get the recipient of the email
 
     # look for the recipient in our inbound_addresses database table
@@ -12,6 +13,8 @@ class CreateCaseMailbox < ApplicationMailbox
       # create a new case
 
       # attach the raw email to the case
+
+      # get a link to the case
 
       # reply to the email saying thank you for your email, here is the
       # link to the case that's been created, and add a line saying "Powered by True Positive"
