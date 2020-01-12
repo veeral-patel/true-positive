@@ -71,12 +71,12 @@ function Heading({ heading, activeCaseStore, id }: Props) {
       >
         {heading}
       </Text>
-      <Popover
+      {/* <Popover
         title="Assign all of this group's tasks"
         content={<UserSelect forAssigning={true} />}
       >
         <Button icon={<UserAddOutlined />} type="link" />
-      </Popover>
+      </Popover> */}
       <Tooltip title="Delete">
         <Button
           icon={<DeleteOutlined />}
