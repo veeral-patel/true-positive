@@ -12,36 +12,16 @@ class Mutations::CreateCaseFromTemplate < Mutations::BaseMutation
     def resolve(template_id:)
         template = find_case_template_or_throw_execution_error(id: template_id)
 
-        # create a case in memory from the template
-        new_case = context[:current_user].created_cases.new(
-            name: template.name,
-            status: template.status,
-            priority: template.priority,
-            description: template.description,
-            tag_list: template.tag_list,
-            assigned_to: template.assigned_to
-        )
-
-        # add each of the template's members to the case
-        template.default_members.each do |member|
-            # skip template members who are already in the case
-            if not new_case.case_members.include? member
-                new_case.case_members << member
-            end
-        end
-
         # authorize this action
-        unless CasePolicy.new(context[:current_user], new_case).create_case?
+        unless CasePolicy.new(context[:current_user], nil).create_case?
             raise GraphQL::ExecutionError, "You are not authorized to create cases."
         end
 
-        # save to the database
-        if new_case.save
-            {
-                "case": new_case
-            }
-        else
-            raise GraphQL::ExecutionError, new_case.errors.full_messages.join(" | ") 
-        end
+        # actually create the case
+        new_case = CaseService::CreateCaseFromTemplate.run(template: template, created_by: context[:current_user])
+
+        {
+            "case": new_case
+        }
     end
 end
