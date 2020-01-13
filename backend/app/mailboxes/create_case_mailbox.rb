@@ -11,6 +11,11 @@ class CreateCaseMailbox < ApplicationMailbox
         # Then create a case from the template associated with the inbound address
         # Note that created_by is set to the creator of the template
         CaseService::CreateCaseFromTemplate.run(template: inbound_address.case_template, created_by: inbound_address.case_template.created_by)
+
+        # Email the email's sender after the case is created
+        mail.from.each do |email_address_of_sender|
+          CaseMailer.with(email_address_of_sender: email_address_of_sender).created_case_from_email.deliver_later
+        end
       end
     end
   end

@@ -6,7 +6,7 @@ import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses
 import React from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
 
-const { Paragraph } = Typography;
+const { Paragraph, Text } = Typography;
 
 interface Response {
   createCaseEmailAddresses: ICreateCaseEmailAddress[];
@@ -55,7 +55,9 @@ function ListOfCreateCaseEmailAddresses() {
                   </Popconfirm>
                 ]}
               >
-                <List.Item.Meta title={emailAddress.email} />
+                <List.Item.Meta
+                  title={<Text copyable>{emailAddress.email}</Text>}
+                />
               </List.Item>
             )}
           />

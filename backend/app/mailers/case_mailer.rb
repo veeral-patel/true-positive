@@ -12,7 +12,7 @@ class CaseMailer < ApplicationMailer
     end
 
     def created_case_from_email
-        @user, @case = params[:user], params[:case]
-        mail(to: @user.email, subject: "Successfully created case from email")
+        email_address_of_sender, @case = params[:email_address_of_sender], params[:case]
+        mail(to: email_address_of_sender, subject: "Successfully created case from email")
     end
 end
