@@ -1,5 +1,6 @@
-import { Button, Empty, Modal, Steps, Typography } from "antd";
+import { Button, Modal, Steps, Typography } from "antd";
 import React, { useState } from "react";
+import ListOfCreateCaseEmailAddresses from "./ListOfCreateCaseEmailAddresses";
 
 const { Paragraph } = Typography;
 
@@ -28,16 +29,9 @@ function Integrations() {
       >
         Generate an inbound email address
       </Button>
-      <Empty
-        description={
-          <div>
-            <h4>No inbound email addresses</h4>
-            <Paragraph>
-              Generate one above to start creating cases via email
-            </Paragraph>
-          </div>
-        }
-      />
+      <div style={{ marginTop: "1em" }}>
+        <ListOfCreateCaseEmailAddresses />
+      </div>
       <Modal
         visible={visibleModal === "CREATE_INBOUND_ADDRESS"}
         title="Generate an inbound email address"
