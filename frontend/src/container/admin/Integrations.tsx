@@ -18,9 +18,9 @@ function Integrations() {
         such as phishing@ecorp.com.
       </Paragraph>
       <Paragraph type="secondary">
-        Simply generate an inbound @truepositive.app email address below and
-        forward emails from your existing mailbox to this address. We'll create
-        a case for every email received and attach the original email as a file.
+        Simply generate an inbound email address below and forward emails from
+        your existing mailbox to this address. We'll create a case for every
+        email received and attach the original email as a file.
       </Paragraph>
       <Button
         type="link"
