@@ -12,7 +12,13 @@ class CreateCaseMailbox < ApplicationMailbox
         # Note that created_by is set to the creator of the template
         new_case = CaseService::CreateCaseFromTemplate.run(template: inbound_address.case_template, created_by: inbound_address.case_template.created_by)
 
-        # Email the email's sender after the case is created
+        # Add a comment to the case indicating it was created via email
+        new_case.comments.create(
+          created_by: inbound_address.case_template.created_by
+          comment: "This email was created from an inbound email received by #{inbound_address.email} at #{Time.now}."
+        )
+
+        # Email the email's sender(s) after the case is created with a link to the case
         mail.from.each do |email_address_of_sender|
           CaseMailer.with(email_address_of_sender: email_address_of_sender, case: new_case).created_case_from_email.deliver_later
         end
