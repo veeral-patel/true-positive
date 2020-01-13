@@ -10,4 +10,10 @@ class CaseMailer < ApplicationMailer
         @user = params[:user]
         mail(to: @user.email, subject: "You've been removed from a case")
     end
+
+    def created_case_from_email
+        @user = params[:user]
+        @case = params[:case]
+        mail(to: @user.email, subject: "Successfully created case from email")
+    end
 end
