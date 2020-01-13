@@ -26,6 +26,16 @@ class Case < ApplicationRecord
 
   acts_as_taggable_on :tags
 
+  def link_to_case
+    if Rails.env.development?
+      "http://localhost:3000/cases/#{self.id}"
+    elsif Rails.env.production?
+      "https://console.truepositive.app/cases/#{self.id}"
+    else
+      raise "Your environment must be either development or production to get a link to a case."
+    end
+  end
+
   def has_member(user)
     # Returns true iff the specified user is a member of this case.
     self.case_members.where(user: user).exists?
