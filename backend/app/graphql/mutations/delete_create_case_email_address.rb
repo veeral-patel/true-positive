@@ -10,10 +10,15 @@ class Mutations::DeleteCreateCaseEmailAddress < Mutations::BaseMutation
     end
 
     def resolve(id:)
+        # find the address to destroy
         inbound_address = find_create_case_email_address_or_throw_execution_error(id: id)
 
-        # TODO: authorize this action
+        # authorize this action
+        unless CreateCaseEmailAddressPolicy.new(context[:current_user], inbound_address).delete?
+            raise GraphQL::ExecutionError, "You are not authorized to delete inbound addresses."
+        end
 
+        # actually destroy it
         if inbound_address.destroy
             {
                 "id": inbound_address.id
