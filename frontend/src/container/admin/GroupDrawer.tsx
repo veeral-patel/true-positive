@@ -84,7 +84,7 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
             initialValues={{ name: data.group.name }}
           >
             <Form.Item label="Name" name="name">
-              <Input placeholder="AppSec" disabled />
+              <Input disabled />
             </Form.Item>
           </Form>
         </div>

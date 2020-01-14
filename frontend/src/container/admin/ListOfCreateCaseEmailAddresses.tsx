@@ -4,6 +4,8 @@ import {
   Button,
   Drawer,
   Empty,
+  Form,
+  Input,
   List,
   message,
   notification,
@@ -124,7 +126,11 @@ function ListOfCreateCaseEmailAddresses() {
             title={<h3>Update inbound address</h3>}
             width={600}
           >
-            <div />
+            <Form colon={false} layout="vertical">
+              <Form.Item label="Inbound Address" name="inbound_address">
+                <Input disabled />
+              </Form.Item>
+            </Form>
           </Drawer>
         </>
       );
