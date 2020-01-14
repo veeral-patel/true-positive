@@ -15,7 +15,9 @@ class CreateCaseMailbox < ApplicationMailbox
         # Add a comment to the case indicating it was created via email
         new_case.comments.create(
           created_by: inbound_address.case_template.created_by,
-          comment: "This email was created from an inbound email received by #{inbound_address.email} at #{Time.now}."
+          comment: "This case was created from an inbound email received by #{inbound_address.email} at #{Time.now.strftime("%m/%d/%Y %I:%M %p")}."\
+                   "\n\n"\
+                   "(True Positive added this comment automatically when the case was created.)"
         )
 
         # Email the email's sender(s) after the case is created with a link to the case
