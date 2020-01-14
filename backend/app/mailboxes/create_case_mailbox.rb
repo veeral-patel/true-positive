@@ -14,7 +14,7 @@ class CreateCaseMailbox < ApplicationMailbox
 
         # Add a comment to the case indicating it was created via email
         new_case.comments.create(
-          created_by: inbound_address.case_template.created_by
+          created_by: inbound_address.case_template.created_by,
           comment: "This email was created from an inbound email received by #{inbound_address.email} at #{Time.now}."
         )
 
