@@ -96,3 +96,11 @@ def find_group_or_throw_execution_error(id:)
         raise GraphQL::ExecutionError, "Could not find a group with id #{id}."
     end
 end
+
+def find_create_case_email_address_or_throw_execution_error(id:)
+    begin
+        CreateCaseEmailAddress.find(id)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find an inbound address with id #{id}."
+    end
+end
