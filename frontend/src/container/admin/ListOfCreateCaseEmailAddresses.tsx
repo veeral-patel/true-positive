@@ -121,6 +121,7 @@ function ListOfCreateCaseEmailAddresses() {
           <UpdateCCEmailAddressDrawer
             visible={idOfOpenDrawer !== null}
             onClose={() => setIdOfOpenDrawer(null)}
+            ccEmailAddressId={idOfOpenDrawer}
           />
         </>
       );
