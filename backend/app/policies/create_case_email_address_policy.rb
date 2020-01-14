@@ -1,4 +1,4 @@
-class CreateCaseEmailAddressPolicy < ApplicationPolicy
+class CreateCaseEmailAddressPolicy
   def initialize(user, inbound_address)
     @user = user
     @inbound_address = inbound_address
