@@ -2,10 +2,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
-  Drawer,
   Empty,
-  Form,
-  Input,
   List,
   message,
   notification,
@@ -18,6 +15,7 @@ import Error from "presentational/shared/errors/Error";
 import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses";
 import React, { useState } from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
+import UpdateCCEmailAddressDrawer from "./UpdateCCEmailAddressDrawer";
 
 const { Paragraph, Text } = Typography;
 
@@ -120,18 +118,10 @@ function ListOfCreateCaseEmailAddresses() {
               </List.Item>
             )}
           />
-          <Drawer
+          <UpdateCCEmailAddressDrawer
             visible={idOfOpenDrawer !== null}
             onClose={() => setIdOfOpenDrawer(null)}
-            title={<h3>Update inbound address</h3>}
-            width={600}
-          >
-            <Form colon={false} layout="vertical">
-              <Form.Item label="Inbound Address" name="inbound_address">
-                <Input disabled />
-              </Form.Item>
-            </Form>
-          </Drawer>
+          />
         </>
       );
     }
