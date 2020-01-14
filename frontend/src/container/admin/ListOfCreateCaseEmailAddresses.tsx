@@ -2,6 +2,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
+  Drawer,
   Empty,
   List,
   message,
@@ -13,7 +14,7 @@ import {
 import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
 import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses";
-import React from "react";
+import React, { useState } from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
 
 const { Paragraph, Text } = Typography;
@@ -49,6 +50,8 @@ function ListOfCreateCaseEmailAddresses() {
     },
     refetchQueries: [{ query: GET_CREATE_CASE_EMAIL_ADDRESSES }]
   });
+
+  const [idOfOpenDrawer, setIdOfOpenDrawer] = useState<number | null>(null);
 
   if (loading) return <Spin />;
   else if (error) {
@@ -101,11 +104,28 @@ function ListOfCreateCaseEmailAddresses() {
                 ]}
               >
                 <List.Item.Meta
-                  title={<Text copyable>{emailAddress.email}</Text>}
+                  title={
+                    <Text copyable>
+                      <a
+                        onClick={() => setIdOfOpenDrawer(emailAddress.id)}
+                        style={{ color: "inherit" }}
+                      >
+                        {emailAddress.email}
+                      </a>
+                    </Text>
+                  }
                 />
               </List.Item>
             )}
           />
+          <Drawer
+            visible={idOfOpenDrawer !== null}
+            onClose={() => setIdOfOpenDrawer(null)}
+            title={<h3>Update inbound address</h3>}
+            width={600}
+          >
+            <div />
+          </Drawer>
         </>
       );
     }
