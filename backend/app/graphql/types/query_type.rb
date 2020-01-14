@@ -189,5 +189,17 @@ module Types
       def create_case_email_addresses
         CreateCaseEmailAddress.all
       end
+
+      field :create_case_email_address, Types::CreateCaseEmailAddressType, null: false do
+        description "Retrieve a single inbound address by its ID."
+
+        argument :id, ID, required: true do
+          description "ID of the address to retrieve."
+        end
+      end
+
+      def create_case_email_address(id:)
+        find_create_case_email_address_or_throw_execution_error(id: id)
+      end
   end
 end
