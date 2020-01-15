@@ -21,9 +21,9 @@
         "title": "Manage Templates",
         "sidebar_label": "Manage Templates"
       },
-      "administer/manage_users": {
-        "title": "Manage Users",
-        "sidebar_label": "Manage Users"
+      "administer/users_and_groups": {
+        "title": "Users & Groups",
+        "sidebar_label": "Users & Groups"
       },
       "administer/overview": {
         "title": "Overview",

@@ -14,7 +14,7 @@
       "administer/overview",
       "administer/customize_statuses_and_priorities",
       "administer/manage_templates",
-      "administer/manage_users"
+      "administer/users_and_groups"
     ],
     "API": ["api/get_started"]
   }
