@@ -11,6 +11,7 @@ class CreateCaseEmailAddress < ApplicationRecord
   def email_ends_with_correct_address
     # A custom validator to ensure that we don't generate inbound addresses whose emails Sendgrid
     # won't pick up. Update this method if I change my inbound address in Sendgrid!
+
     if not email.ends_with? "@inbound-cases.truepositive.app"
       errors.add(:email, "must end with @inbound-cases.truepositive.app")
     end
