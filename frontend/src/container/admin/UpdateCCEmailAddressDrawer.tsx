@@ -59,7 +59,12 @@ function UpdateCCEmailAddressDrawer({
         <Form.Item label="Email" name="email">
           <Input disabled />
         </Form.Item>
-        <Form.Item label="Case Template" name="case_template">
+        <Form.Item
+          label="Case Template"
+          name="case_template"
+          rules={[{ required: true, message: "Please choose a case template" }]}
+          extra="We'll use this case template to initialize cases from emails to this address"
+        >
           <CaseTemplateSelect />
         </Form.Item>
       </Form>
