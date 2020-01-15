@@ -26,4 +26,14 @@ do so in the API.
 
 ## Create a group
 
+We recommend organizing your users into groups. For example, your security division may be divided
+into groups for AppSec,CorpSec, InfraSec, and Management. A user can be in multiple groups in True Positive.
+
+Creating a group lets you add all the users in a group to a case at once. You can also add a group to a
+case template, so that whenever a case is created from that template, all the users in the group will be
+able to access the case.
+
+To create a group, just enter the name of your group in the input box above. Then, click on the
+name of your new group in the list to add users to it.
+
 ## Delete a group
