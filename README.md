@@ -45,6 +45,13 @@ yarn build
 netlify deploy --prod
 ```
 
+### Documentation
+
+```
+cd website
+yarn start
+```
+
 ### Tips
 
 - Remember to set the SECRET_KEY_BASE environment variable in Heroku.
