@@ -1,3 +1,5 @@
 class ApplicationMailbox < ActionMailbox::Base
-  routing :all => :create_case
+  routing /inbound-cases.truepositive.app$/ => :create_case
 end
+
+# CreateCaseEmailAddress.create(email: "l3amar23@inbound-cases.truepositive.app", case_template: CaseTemplate.first)
