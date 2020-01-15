@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
 import React from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
+import CaseTemplateSelect from "./CaseTemplateSelect";
 
 interface Props {
   visible: boolean;
@@ -57,6 +58,9 @@ function UpdateCCEmailAddressDrawer({
       >
         <Form.Item label="Email" name="email">
           <Input disabled />
+        </Form.Item>
+        <Form.Item label="Case Template" name="case_template">
+          <CaseTemplateSelect />
         </Form.Item>
       </Form>
     );

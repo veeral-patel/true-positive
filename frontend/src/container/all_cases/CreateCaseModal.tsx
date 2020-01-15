@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { navigate } from "@reach/router";
 import {
   Button,
@@ -11,17 +11,16 @@ import {
   Tabs
 } from "antd";
 import { ApolloError } from "apollo-boost";
+import CaseTemplateSelect from "container/admin/CaseTemplateSelect";
 import "container/shared/modals/FormInModal.css";
 import { inject, observer } from "mobx-react";
 import CREATE_CASE_FROM_TEMPLATE from "mutations/createCaseFromTemplate";
-import GET_CASE_TEMPLATES from "queries/getCaseTemplates";
 import React from "react";
 import AllCasesStore from "stores/AllCasesStore";
 import PriorityStore from "stores/PriorityStore";
 import StatusStore from "stores/StatusStore";
 import UIStore from "stores/UIStore";
 import ICase from "ts/interfaces/ICase";
-import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import { getPathToACase } from "utils/pathHelpers";
 
 const { Option } = Select;
@@ -148,10 +147,6 @@ interface FromTemplateFormProps {
   allCasesStore?: AllCasesStore;
 }
 
-interface CaseTemplateData {
-  caseTemplates: ICaseTemplate[];
-}
-
 interface MutationData {
   createCaseFromTemplate: {
     case: ICase | null;
@@ -163,10 +158,6 @@ const FromTemplateForm = inject("allCasesStore")(
     closeModal,
     allCasesStore
   }: FromTemplateFormProps) {
-    const { loading, error, data: queryData } = useQuery<CaseTemplateData>(
-      GET_CASE_TEMPLATES
-    );
-
     const [createCaseFromTemplate] = useMutation<MutationData>(
       CREATE_CASE_FROM_TEMPLATE,
       {
@@ -200,27 +191,6 @@ const FromTemplateForm = inject("allCasesStore")(
       }
     );
 
-    var templateOptions = [];
-    if (loading) {
-      templateOptions = [
-        <Option key="loading" value="loading" disabled>
-          Loading...
-        </Option>
-      ];
-    } else if (error || !queryData) {
-      templateOptions = [
-        <Option key="error" value="error" disabled>
-          Failed to load templates
-        </Option>
-      ];
-    } else {
-      templateOptions = queryData.caseTemplates.map(caseTemplate => (
-        <Option key={caseTemplate.id} value={caseTemplate.id}>
-          {caseTemplate.name}
-        </Option>
-      ));
-    }
-
     return (
       <Form
         colon={false}
@@ -245,14 +215,7 @@ const FromTemplateForm = inject("allCasesStore")(
             }
           ]}
         >
-          <Select
-            showSearch
-            placeholder="Choose a case template"
-            defaultActiveFirstOption
-            optionFilterProp="children"
-          >
-            {templateOptions}
-          </Select>
+          <CaseTemplateSelect />
         </Form.Item>
         <Form.Item>
           <div style={{ float: "right" }}>
