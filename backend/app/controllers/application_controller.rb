@@ -24,15 +24,19 @@ class ApplicationController < ActionController::API
     end
 
     def handle_disabled
-        if @current_user.disabled
-            render json: {
-                "errors": [
-                    {
-                        "message": "Your user account has been disabled.",
-                    }
-                ]
-            }
-            return
+        # If the current user is disabled, show an error message and immediately
+        # respond to the request.
+        unless @current_user.nil?
+            if @current_user.disabled
+                render json: {
+                    "errors": [
+                        {
+                            "message": "Your user account has been disabled.",
+                        }
+                    ]
+                }
+                return
+            end
         end
     end
 
