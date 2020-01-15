@@ -37,3 +37,5 @@ To create a group, just enter the name of your group in the input box above. The
 name of your new group in the list to add users to it.
 
 ## Delete a group
+
+To delete a group, click the trash can icon next to the group to delete.
