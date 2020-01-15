@@ -4,4 +4,12 @@ title: Manage Templates
 sidebar_label: Manage Templates
 ---
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+Think about the last couple cases you've worked on. Chances are, they fell into a few reoccurring categories,
+and moreover, you followed a similar set of steps to resolve the cases of each category.
+
+True Positive lets you define case templates for this very purpose, so that every case created from a
+particular template:
+
+- Is given an initial status, priority, assignee, description, and set of tags
+- Is given a set of users and groups who can access it
+- Is populated with a set of tasks for analysts to follow
