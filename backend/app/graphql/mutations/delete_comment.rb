@@ -10,6 +10,7 @@ class Mutations::DeleteComment < Mutations::BaseMutation
     end
 
     def resolve(id:)
+        # find the comment to destroy
         comment = find_comment_or_throw_execution_error(comment_id: id)
 
         # authorize this action
@@ -17,6 +18,7 @@ class Mutations::DeleteComment < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You can only delete comments that you've created."
         end
 
+        # destroy the comment
         if comment.destroy
             {
                 "id": id

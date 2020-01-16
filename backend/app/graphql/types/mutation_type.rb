@@ -75,6 +75,9 @@ module Types
       field :create_api_token, mutation: Mutations::CreateApiToken
       field :delete_api_token, mutation: Mutations::DeleteApiToken
 
+      # attachments -----
+      field :delete_attachment, mutation: Mutations::DeleteAttachment
+
       # inbound email addresses for creating cases
       field :delete_create_case_email_address, mutation: Mutations::DeleteCreateCaseEmailAddress
   end
