@@ -287,11 +287,12 @@ ActiveRecord::Schema.define(version: 2020_01_16_022449) do
   end
 
   create_table "task_groups", force: :cascade do |t|
-    t.bigint "case_id"
+    t.string "caseable_type"
+    t.bigint "caseable_id"
     t.string "name"
     t.bigint "tenant_id"
     t.bigint "created_by_id"
-    t.index ["case_id"], name: "index_task_groups_on_case_id"
+    t.index ["caseable_type", "caseable_id"], name: "index_task_groups_on_caseable_type_and_caseable_id"
     t.index ["created_by_id"], name: "index_task_groups_on_created_by_id"
     t.index ["tenant_id"], name: "index_task_groups_on_tenant_id"
   end
@@ -401,7 +402,6 @@ ActiveRecord::Schema.define(version: 2020_01_16_022449) do
   add_foreign_key "statuses", "tenants"
   add_foreign_key "taggings", "tenants"
   add_foreign_key "tags", "tenants"
-  add_foreign_key "task_groups", "cases"
   add_foreign_key "task_groups", "tenants"
   add_foreign_key "task_groups", "users", column: "created_by_id"
   add_foreign_key "task_templates", "tenants"
