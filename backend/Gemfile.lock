@@ -37,6 +37,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_storage_validations (0.8.5)
+      rails (>= 5.2.0)
     activejob (6.0.2.1)
       activesupport (= 6.0.2.1)
       globalid (>= 0.3.6)
@@ -250,6 +252,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_storage_validations
   acts-as-taggable-on (~> 6.5.0)
   acts_as_list
   acts_as_tenant

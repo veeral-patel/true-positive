@@ -20,6 +20,7 @@ class Case < ApplicationRecord
   has_many :case_members, as: :caseable, dependent: :destroy
   has_many :task_groups, dependent: :destroy
   has_many :tasks, through: :task_groups
+  has_many :attachments, as: :attachable, dependent: :destroy
 
   after_create :add_creator_to_members
   after_create :add_case_created_audit
