@@ -9,4 +9,12 @@ class Types::AttachmentType < Types::BaseObject
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
         description "When this attachment was uploaded."
     end
+
+    field :size, Int, null: false do
+        description "This attachment's file size (in bytes)"
+    end
+
+    field :friendly_size, String, null: false do
+        description "This attachment's file size, formatted to be human readable."
+    end 
 end

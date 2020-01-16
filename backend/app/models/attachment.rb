@@ -1,6 +1,8 @@
 class Attachment < ApplicationRecord
   acts_as_tenant :tenant
 
+  include ActionView::Helpers::NumberHelper
+
   belongs_to :attachable, polymorphic: true
   belongs_to :created_by, :class_name => 'User', optional: false
   
@@ -9,4 +11,14 @@ class Attachment < ApplicationRecord
   validates :file, attached: true
 
   has_one_attached :file
+
+  def size
+    # The file size (in bytes) of this attachment
+    self.file.blob.byte_size
+  end
+
+  def friendly_size
+    # The file size of this attachment, formatted to be human-readable (such as "3 KB")
+    number_to_human_size(self.size)
+  end
 end

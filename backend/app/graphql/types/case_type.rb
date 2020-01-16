@@ -39,6 +39,10 @@ module Types
             description "This case's tasks."
         end
 
+        field :attachments, [Types::AttachmentType], null: false do
+            description "The files attached to this case."
+        end
+
         field :tags, [Types::TagType], null: false do
             description "This case's tags."
         end
