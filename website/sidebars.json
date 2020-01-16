@@ -16,6 +16,6 @@
       "administer/manage_templates",
       "administer/users_and_groups"
     ],
-    "API": ["api/get_started"]
+    "API": ["api/get_started", "api/examples"]
   }
 }

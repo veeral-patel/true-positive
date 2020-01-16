@@ -33,6 +33,10 @@
         "title": "Errors",
         "sidebar_label": "Errors"
       },
+      "api/examples": {
+        "title": "Examples",
+        "sidebar_label": "Examples"
+      },
       "api/file_uploads": {
         "title": "File Uploads",
         "sidebar_label": "File Uploads"
