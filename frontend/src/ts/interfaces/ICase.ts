@@ -29,6 +29,7 @@ interface ICase {
   caseMembers: ICaseMember[];
   indicators: IIndicator[];
   attachments: IAttachment[];
+  attachmentCount: number;
   completedTaskCount: number;
   totalTaskCount: number;
   taskGroups: ITaskGroup[];

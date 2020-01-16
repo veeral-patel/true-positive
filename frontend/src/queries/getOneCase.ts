@@ -30,6 +30,7 @@ const GET_ONE_CASE = gql`
           }
         }
       }
+      attachmentCount
       attachments {
         id
         name

@@ -43,6 +43,10 @@ module Types
             description "The files attached to this case."
         end
 
+        field :attachment_count, Int, null: false do
+            description "Number of files attached to this case."
+        end
+
         field :tags, [Types::TagType], null: false do
             description "This case's tags."
         end

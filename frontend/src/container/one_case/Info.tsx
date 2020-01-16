@@ -228,7 +228,9 @@ function Info(props: InfoProps) {
         </section>
 
         <section>
-          <Divider orientation="left">Attachments</Divider>
+          <Divider orientation="left">
+            Attachments ({activeCase.attachmentCount})
+          </Divider>
           <Dragger multiple defaultFileList={defaultFileList}>
             <UploadOutlined style={{ fontSize: 36 }} />
             <div style={{ marginTop: "1em" }}>
