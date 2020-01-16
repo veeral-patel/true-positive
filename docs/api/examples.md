@@ -94,6 +94,8 @@ query {
 
 ## Create a case
 
+Create a new case.
+
 ```graphql
 mutation {
   createCase(
@@ -161,11 +163,14 @@ mutation {
 
 ## Update a case
 
+Update an existing case by ID.
+
 ```graphql
 mutation {
   updateCase(
     input: {
       caseId: 9
+      # optional ---
       name: "Ryuk infection"
       status: "Closed"
       priority: "High"
