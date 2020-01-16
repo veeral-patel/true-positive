@@ -11,7 +11,7 @@ class Types::AttachmentType < Types::BaseObject
     end
 
     field :size, Int, null: false do
-        description "This attachment's file size (in bytes)"
+        description "This attachment's file size, in bytes."
     end
 
     field :friendly_size, String, null: false do
