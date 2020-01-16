@@ -6,6 +6,10 @@ class Types::AttachmentType < Types::BaseObject
         description "A unique integer identifying this attachment."
     end
 
+    field :name, String, null: false do
+        description "This attachment's name."
+    end
+
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
         description "When this attachment was uploaded."
     end

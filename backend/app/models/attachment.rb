@@ -12,6 +12,11 @@ class Attachment < ApplicationRecord
 
   has_one_attached :file
 
+  def name
+    # This attachment's name
+    self.file.blob.filename
+  end
+
   def size
     # The file size (in bytes) of this attachment
     self.file.blob.byte_size
