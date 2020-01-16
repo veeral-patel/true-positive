@@ -21,7 +21,7 @@ query {
 }
 ```
 
-### Example response
+#### Example response
 
 ```json
 {
@@ -65,7 +65,7 @@ query {
 }
 ```
 
-### Example response
+#### Example response
 
 ```json
 {
@@ -129,7 +129,7 @@ mutation {
 }
 ```
 
-### Example response
+#### Example response
 
 ```json
 {
@@ -153,6 +153,58 @@ mutation {
         "assignedTo": {
           "username": "gennie.mertz"
         }
+      }
+    }
+  }
+}
+```
+
+## Update a case
+
+```graphql
+mutation {
+  updateCase(
+    input: {
+      caseId: 9
+      name: "Ryuk infection"
+      status: "Closed"
+      priority: "High"
+      assignedTo: "N/A"
+    }
+  ) {
+    case {
+      id
+      name
+      status {
+        name
+      }
+      priority {
+        name
+      }
+      assignedTo {
+        username
+      }
+    }
+  }
+}
+```
+
+##### Example response
+
+```json
+{
+  "data": {
+    "updateCase": {
+      "case": {
+        "id": "9",
+        "name": "Ryuk infection",
+        "status": {
+          "name": "Closed"
+        },
+        "priority": {
+          "name": "High"
+        },
+        "assignedTo": null
       }
     }
   }
