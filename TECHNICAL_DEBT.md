@@ -1,7 +1,7 @@
 ## Backend
 
 - `user_mailer.rb` -- don't hard-code `/profile`
-- `comment_policy.rb` -- code is messy
+- `comment_policy.rb`, `attachment_policy.rb` -- code is messy
 
 ## Frontend
 
