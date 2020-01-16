@@ -30,6 +30,13 @@ const GET_ONE_CASE = gql`
           }
         }
       }
+      attachments {
+        id
+        name
+        createdAt
+        size
+        friendlySize
+      }
       taskGroups {
         id
         name
