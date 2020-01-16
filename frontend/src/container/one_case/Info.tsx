@@ -82,6 +82,7 @@ function Info(props: InfoProps) {
   // should always render, since we're catching errors and showing
   // our spinner above this, as a HOC
   if (activeCase) {
+    // prepare a list of files that are already attached to this case
     var defaultFileList: UploadFile[] = [];
     activeCase.attachments.forEach(attachment => {
       defaultFileList.push({
