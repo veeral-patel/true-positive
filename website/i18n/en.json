@@ -21,13 +21,13 @@
         "title": "Manage Templates",
         "sidebar_label": "Manage Templates"
       },
-      "administer/users_and_groups": {
-        "title": "Users & Groups",
-        "sidebar_label": "Users & Groups"
-      },
       "administer/overview": {
         "title": "Overview",
         "sidebar_label": "Overview"
+      },
+      "administer/users_and_groups": {
+        "title": "Users & Groups",
+        "sidebar_label": "Users & Groups"
       },
       "api/errors": {
         "title": "Errors",
