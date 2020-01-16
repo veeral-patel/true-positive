@@ -215,3 +215,27 @@ mutation {
   }
 }
 ```
+
+## Delete a case
+
+Delete an existing case by ID.
+
+```graphql
+mutation {
+  deleteCase(input: { id: 9 }) {
+    id
+  }
+}
+```
+
+#### Example response
+
+```json
+{
+  "data": {
+    "deleteCase": {
+      "id": "9"
+    }
+  }
+}
+```
