@@ -1,4 +1,4 @@
-import { CloseOutlined, EditOutlined } from "@ant-design/icons";
+import { CloseOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import {
@@ -14,8 +14,10 @@ import {
   notification,
   Popconfirm,
   Row,
-  Tooltip
+  Tooltip,
+  Upload
 } from "antd";
+import Paragraph from "antd/lib/typography/Paragraph";
 import { ApolloError } from "apollo-boost";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
@@ -37,6 +39,7 @@ import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
 const { Content } = Layout;
 const { TextArea } = Input;
+const { Dragger } = Upload;
 
 interface InfoProps extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -213,6 +216,18 @@ function Info(props: InfoProps) {
         </section>
 
         <section>
+          <Divider orientation="left">Attachments</Divider>
+          <Dragger multiple>
+            <UploadOutlined style={{ fontSize: 36 }} />
+            <div style={{ marginTop: "1em" }}>
+              <Paragraph>
+                Click or drag file(s) to this area to upload
+              </Paragraph>
+            </div>
+          </Dragger>
+        </section>
+
+        <section style={{ marginTop: "2em" }}>
           <Row>
             <Col span={24}>
               <Divider orientation="left">
