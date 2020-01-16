@@ -61,9 +61,9 @@
         "title": "Concepts",
         "sidebar_label": "Concepts"
       },
-      "get_started/quickstart": {
-        "title": "Quickstart",
-        "sidebar_label": "Quickstart"
+      "get_started/what_is_true_positive": {
+        "title": "What is True Positive?",
+        "sidebar_label": "What is True Positive?"
       },
       "integrations/create_cases/custom_webhooks": {
         "title": "Custom Webhooks",
