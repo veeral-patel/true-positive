@@ -38,4 +38,4 @@ name of your new group in the list to add users to it.
 
 ## Delete a group
 
-To delete a group, click the trash can icon next to the group to delete.
+To delete a group, click the trash can icon next to the appropriate group.
