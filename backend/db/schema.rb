@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_054616) do
+ActiveRecord::Schema.define(version: 2020_01_16_022449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,18 @@ ActiveRecord::Schema.define(version: 2020_01_12_054616) do
     t.datetime "updated_at", null: false
     t.index ["tenant_id"], name: "index_api_tokens_on_tenant_id"
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.bigint "created_by_id"
+    t.bigint "tenant_id"
+    t.string "attachable_type"
+    t.bigint "attachable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
+    t.index ["created_by_id"], name: "index_attachments_on_created_by_id"
+    t.index ["tenant_id"], name: "index_attachments_on_tenant_id"
   end
 
   create_table "audits", force: :cascade do |t|
@@ -350,6 +362,8 @@ ActiveRecord::Schema.define(version: 2020_01_12_054616) do
   add_foreign_key "active_storage_blobs", "tenants"
   add_foreign_key "api_tokens", "tenants"
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "attachments", "tenants"
+  add_foreign_key "attachments", "users", column: "created_by_id"
   add_foreign_key "audits", "tenants"
   add_foreign_key "audits", "users", column: "created_by_id"
   add_foreign_key "case_groups", "groups"
