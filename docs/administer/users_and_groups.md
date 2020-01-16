@@ -6,6 +6,8 @@ sidebar_label: Users & Groups
 
 Visit Manage > Users and Groups before doing any of the steps below.
 
+![](https://storage.googleapis.com/tp_landing_page_videos/manage_page2.png)
+
 ## Invite a user
 
 To invite a user to your True Positive tenant, simply enter the new user's email address
@@ -26,6 +28,8 @@ do so in the API.
 
 ## Create a group
 
+![](https://storage.googleapis.com/tp_landing_page_videos/list_of_groups.png)
+
 We recommend organizing your users into groups. For example, your security division may be divided
 into groups for AppSec,CorpSec, InfraSec, and Management. A user can be in multiple groups in True Positive.
 
@@ -38,4 +42,4 @@ name of your new group in the list to add users to it.
 
 ## Delete a group
 
-To delete a group, click the trash can icon next to the appropriate group.
+To delete a group, click the trash can icon next to the appropriate group above.
