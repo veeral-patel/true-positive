@@ -1,3 +1,4 @@
+import IAttachment from "ts/interfaces/IAttachment";
 import IAudit from "ts/interfaces/IAudit";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import IComment from "ts/interfaces/IComment";
@@ -27,6 +28,7 @@ interface ICase {
   reasonForMerging: string | null;
   caseMembers: ICaseMember[];
   indicators: IIndicator[];
+  attachments: IAttachment[];
   completedTaskCount: number;
   totalTaskCount: number;
   taskGroups: ITaskGroup[];

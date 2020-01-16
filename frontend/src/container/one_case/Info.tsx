@@ -18,6 +18,7 @@ import {
   Upload
 } from "antd";
 import Paragraph from "antd/lib/typography/Paragraph";
+import { UploadFile } from "antd/lib/upload/interface";
 import { ApolloError } from "apollo-boost";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
@@ -80,7 +81,18 @@ function Info(props: InfoProps) {
 
   // should always render, since we're catching errors and showing
   // our spinner above this, as a HOC
-  if (activeCase)
+  if (activeCase) {
+    var defaultFileList: UploadFile[] = [];
+    activeCase.attachments.forEach(attachment => {
+      defaultFileList.push({
+        uid: attachment.id.toString(),
+        name: attachment.name,
+        status: "done",
+        size: attachment.size,
+        type: "application/octet-stream"
+      });
+    });
+
     return (
       <Content
         style={{
@@ -217,7 +229,7 @@ function Info(props: InfoProps) {
 
         <section>
           <Divider orientation="left">Attachments</Divider>
-          <Dragger multiple>
+          <Dragger multiple defaultFileList={defaultFileList}>
             <UploadOutlined style={{ fontSize: 36 }} />
             <div style={{ marginTop: "1em" }}>
               <Paragraph>
@@ -342,6 +354,7 @@ function Info(props: InfoProps) {
         )}
       </Content>
     );
+  }
   return null;
 }
 
