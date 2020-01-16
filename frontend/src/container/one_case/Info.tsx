@@ -24,6 +24,7 @@ import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
 import { inject, observer } from "mobx-react";
+import DELETE_ATTACHMENT from "mutations/deleteAttachment";
 import MERGE_A_CASE from "mutations/mergeCase";
 import UPDATE_CASE from "mutations/updateCase";
 import CommentList from "presentational/shared/comments/CommentListP";
@@ -74,6 +75,19 @@ function Info(props: InfoProps) {
     onError: function(error: ApolloError) {
       notification.error({
         message: "Could not update this case",
+        description: error.message
+      });
+    }
+  });
+
+  const [deleteAttachment] = useMutation(DELETE_ATTACHMENT, {
+    onCompleted: function() {
+      message.success("Deleted the attachment");
+      activeCaseStore!.loadActiveCase();
+    },
+    onError: function(error) {
+      notification.error({
+        message: "Could not delete the attachment",
         description: error.message
       });
     }
@@ -237,6 +251,13 @@ function Info(props: InfoProps) {
             multiple
             defaultFileList={defaultFileList}
             onRemove={file => {
+              deleteAttachment({
+                variables: {
+                  input: {
+                    id: file.uid
+                  }
+                }
+              });
               return false;
             }}
           >

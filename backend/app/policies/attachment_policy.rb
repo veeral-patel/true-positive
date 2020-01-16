@@ -5,9 +5,10 @@ class AttachmentPolicy
     end
 
     def delete?
-        if @attachment.attachable_type === "Case"
-            CasePolicy.new(@user, @comment.commentable).update_case?
+        if @attachment.attachable_type == "Case"
+            CasePolicy.new(@user, @attachment.attachable).update_case?
+        else
+            false
         end
-        false
     end
 end
