@@ -48,7 +48,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
         task_group = nil
         if task_group_id.nil?
             # if no task group was specified, create a task group
-            task_group = context[:current_user].created_task_groups.create(name: "General", case: the_case)
+            task_group = context[:current_user].created_task_groups.create(name: "General", caseable: the_case)
         else
             # add to the appropriate task group if specified
             task_group = find_task_group_or_throw_execution_error(id: task_group_id)
