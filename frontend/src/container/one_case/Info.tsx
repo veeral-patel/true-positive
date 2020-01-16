@@ -88,6 +88,7 @@ function Info(props: InfoProps) {
       defaultFileList.push({
         uid: attachment.id.toString(),
         name: `${attachment.name} [${attachment.friendlySize}]`,
+        url: attachment.url,
         status: "done",
         size: attachment.size,
         type: "application/octet-stream"

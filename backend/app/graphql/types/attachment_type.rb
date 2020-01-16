@@ -10,6 +10,10 @@ class Types::AttachmentType < Types::BaseObject
         description "This attachment's name."
     end
 
+    field :url, String, null: false do
+        description "The URL to access this attachment."
+    end
+
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
         description "When this attachment was uploaded."
     end

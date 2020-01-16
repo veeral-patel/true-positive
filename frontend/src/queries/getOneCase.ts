@@ -34,6 +34,7 @@ const GET_ONE_CASE = gql`
       attachments {
         id
         name
+        url
         createdAt
         size
         friendlySize
