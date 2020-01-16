@@ -91,3 +91,70 @@ query {
   }
 }
 ```
+
+## Create a case
+
+```graphql
+mutation {
+  createCase(
+    input: {
+      # required ---
+      name: "Ryuk sighting"
+      status: "Open"
+      priority: "Low"
+      # optional ---
+      tags: ["ransomware"]
+      description: "A HR employee opened a malicious download link"
+      assignedTo: "gennie.mertz"
+    }
+  ) {
+    case {
+      id
+      name
+      status {
+        name
+      }
+      priority {
+        name
+      }
+      tags {
+        name
+      }
+      description
+      assignedTo {
+        username
+      }
+    }
+  }
+}
+```
+
+### Example response
+
+```json
+{
+  "data": {
+    "createCase": {
+      "case": {
+        "id": "9",
+        "name": "Ryuk sighting",
+        "status": {
+          "name": "Open"
+        },
+        "priority": {
+          "name": "Low"
+        },
+        "tags": [
+          {
+            "name": "ransomware"
+          }
+        ],
+        "description": "A HR employee opened a malicious download link",
+        "assignedTo": {
+          "username": "gennie.mertz"
+        }
+      }
+    }
+  }
+}
+```
