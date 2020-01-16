@@ -86,7 +86,7 @@ function Info(props: InfoProps) {
     activeCase.attachments.forEach(attachment => {
       defaultFileList.push({
         uid: attachment.id.toString(),
-        name: attachment.name,
+        name: `${attachment.name} [${attachment.friendlySize}]`,
         status: "done",
         size: attachment.size,
         type: "application/octet-stream"
