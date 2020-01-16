@@ -17,6 +17,11 @@ class Attachment < ApplicationRecord
     self.file.blob.filename
   end
 
+  def url
+    # A URL you can use to access this attachment
+    Rails.application.routes.url_helpers.url_for self.file
+  end
+
   def size
     # The file size (in bytes) of this attachment
     self.file.blob.byte_size
