@@ -233,7 +233,13 @@ function Info(props: InfoProps) {
           <Divider orientation="left">
             Attachments ({activeCase.attachmentCount})
           </Divider>
-          <Dragger multiple defaultFileList={defaultFileList}>
+          <Dragger
+            multiple
+            defaultFileList={defaultFileList}
+            onRemove={file => {
+              return false;
+            }}
+          >
             <UploadOutlined style={{ fontSize: 36 }} />
             <div style={{ marginTop: "1em" }}>
               <Paragraph>
