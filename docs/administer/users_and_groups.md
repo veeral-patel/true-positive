@@ -19,8 +19,10 @@ his/her Profile page.
 
 ## Disable a user
 
-For data integrity, True Positive does not let you delete users. You can , however, disable a user to prevent
+For data integrity, True Positive does not let you delete users. You can, however, disable a user to prevent
 him/her from logging in.
+
+Just click the lock icon next to a user to disable his account.
 
 The UI will typically only list active users in input fields. However, the API makes no distinction between
 active and disabled users: if you would like to assign a case to a disabled user (as an example), you can
