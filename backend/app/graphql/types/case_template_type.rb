@@ -38,7 +38,7 @@ class Types::CaseTemplateType < Types::BaseObject
         description "Groups whose members to add to cases created with this template."
     end
 
-    field :default_user_count, Int, null: false do
+    field :default_member_count, Int, null: false do
         description "The number of default users in this template."
     end
 

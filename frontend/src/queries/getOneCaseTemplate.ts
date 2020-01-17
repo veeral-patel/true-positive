@@ -18,7 +18,7 @@ const GET_ONE_CASE_TEMPLATE = gql`
       assignedTo {
         username
       }
-      defaultUserCount
+      defaultMemberCount
       defaultGroupCount
       defaultMembers {
         user {

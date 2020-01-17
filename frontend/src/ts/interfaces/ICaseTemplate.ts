@@ -17,7 +17,7 @@ interface ICaseTemplate {
   assignedTo: IUser | null;
   defaultMembers: ICaseMember[];
   defaultGroups: ICaseGroup[];
-  defaultUserCount: number;
+  defaultMemberCount: number;
   defaultGroupCount: number;
 }
 

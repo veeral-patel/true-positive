@@ -203,7 +203,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             members of the groups below will be added to it.
           </Paragraph>
           <div style={{ marginTop: "2em" }}>
-            <h4>Users ({caseTemplate.defaultUserCount})</h4>
+            <h4>Users ({caseTemplate.defaultMemberCount})</h4>
             <Form
               form={userForm}
               colon={false}
@@ -233,7 +233,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             </Form>
           </div>
           <div>
-            {caseTemplate.defaultUserCount === 0 ? (
+            {caseTemplate.defaultMemberCount === 0 ? (
               <Empty
                 description={
                   <div>

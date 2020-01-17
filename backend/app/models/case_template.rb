@@ -16,7 +16,7 @@ class CaseTemplate < ApplicationRecord
 
   acts_as_taggable_on :tags
 
-  def default_user_count
+  def default_member_count
     self.default_members.count
   end
 
