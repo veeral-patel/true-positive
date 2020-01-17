@@ -76,7 +76,9 @@ function CreateTaskGroupModal({
         </Form.Item>
         <Form.Item>
           <div style={{ float: "right" }}>
-            <Button style={{ marginRight: "0.5em" }}>Cancel</Button>
+            <Button style={{ marginRight: "0.5em" }} onClick={handleClose}>
+              Cancel
+            </Button>
             <Button type="primary" htmlType="submit">
               Create
             </Button>
