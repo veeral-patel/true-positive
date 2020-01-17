@@ -1,44 +1,15 @@
-import { useMutation } from "@apollo/react-hooks";
-import {
-  Button,
-  Form,
-  Input,
-  message,
-  Modal,
-  notification,
-  Typography
-} from "antd";
-import { inject, observer } from "mobx-react";
-import CREATE_A_TASK_GROUP from "mutations/createTaskGroup";
+import { Button, Form, Input, Modal, Typography } from "antd";
 import React from "react";
-import ActiveCaseStore from "stores/ActiveCaseStore";
 
 const { Paragraph } = Typography;
 
 interface Props {
   visible: boolean;
   handleClose: () => void;
-  activeCaseStore?: ActiveCaseStore;
+  handleFinish: (taskGroupName: string) => void;
 }
 
-function CreateTaskGroupModal({
-  visible,
-  handleClose,
-  activeCaseStore
-}: Props) {
-  const [createTaskGroup] = useMutation(CREATE_A_TASK_GROUP, {
-    onCompleted: () => {
-      message.success("Created task group");
-      activeCaseStore!.loadActiveCase();
-    },
-    onError: error => {
-      notification.error({
-        message: "Failed to create task group",
-        description: error.message
-      });
-    }
-  });
-
+function CreateTaskGroupModal({ visible, handleClose, handleFinish }: Props) {
   return (
     <Modal
       footer={null}
@@ -55,17 +26,7 @@ function CreateTaskGroupModal({
       <Form
         layout="vertical"
         colon={false}
-        onFinish={values =>
-          activeCaseStore!.activeCase &&
-          createTaskGroup({
-            variables: {
-              input: {
-                name: values.name,
-                caseId: activeCaseStore!.activeCase.id
-              }
-            }
-          })
-        }
+        onFinish={values => values.name && handleFinish(values.name)}
       >
         <Form.Item
           label="Name"
@@ -89,4 +50,4 @@ function CreateTaskGroupModal({
   );
 }
 
-export default inject("activeCaseStore")(observer(CreateTaskGroupModal));
+export default CreateTaskGroupModal;

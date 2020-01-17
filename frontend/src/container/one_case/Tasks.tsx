@@ -1,11 +1,13 @@
 import { PlusOutlined } from "@ant-design/icons";
+import { useMutation } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
-import { Button, Empty, Layout, Typography } from "antd";
+import { Button, Empty, Layout, message, notification, Typography } from "antd";
 import CreateTaskGroupModal from "container/admin/CreateTaskGroupModal";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
 import TaskGroup from "container/one_case/TaskGroup";
 import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
+import CREATE_A_TASK_GROUP from "mutations/createTaskGroup";
 import React, { useState } from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
@@ -22,6 +24,19 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
   const [openModal, setOpenModal] = useState<
     "CREATE_TASK" | "CREATE_TASK_GROUP" | null
   >(null);
+
+  const [createTaskGroup] = useMutation(CREATE_A_TASK_GROUP, {
+    onCompleted: () => {
+      message.success("Created task group");
+      activeCaseStore!.loadActiveCase();
+    },
+    onError: error => {
+      notification.error({
+        message: "Failed to create task group",
+        description: error.message
+      });
+    }
+  });
 
   const activeCase = activeCaseStore!.activeCase;
 
@@ -96,6 +111,17 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
         <CreateTaskGroupModal
           visible={openModal === "CREATE_TASK_GROUP"}
           handleClose={() => setOpenModal(null)}
+          handleFinish={taskGroupName => {
+            activeCaseStore!.activeCase &&
+              createTaskGroup({
+                variables: {
+                  input: {
+                    name: taskGroupName,
+                    caseId: activeCaseStore!.activeCase.id
+                  }
+                }
+              });
+          }}
         />
         <CreateTaskModal
           visible={openModal === "CREATE_TASK"}

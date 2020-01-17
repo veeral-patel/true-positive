@@ -211,6 +211,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
           <CreateTaskGroupModal
             visible={openModal === "CREATE_TASK_GROUP"}
             handleClose={() => setOpenModal(null)}
+            handleFinish={() => void 0}
           />
         </TabPane>
         <TabPane tab="Members" key="members">
