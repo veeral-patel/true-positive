@@ -18,7 +18,7 @@ class Mutations::CreateTaskGroup < Mutations::BaseMutation
         the_case = find_case_or_throw_execution_error(case_id: case_id)
 
         # create a new task group in memory
-        new_task_group = context[:current_user].created_task_groups.new(name: name, case: the_case)
+        new_task_group = context[:current_user].created_task_groups.new(name: name, caseable: the_case)
 
         # authorize this action
         unless TaskGroupPolicy.new(context[:current_user], new_task_group).create?
