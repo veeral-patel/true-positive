@@ -63,6 +63,9 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
   const [createTaskGroup] = useMutation(CREATE_A_TASK_GROUP, {
     onCompleted: () => {
       message.success("Created task group");
+
+      // Close the modal if the task group is created successfully
+      setOpenModal(null);
     },
     onError: error => {
       notification.error({
