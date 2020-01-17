@@ -11,6 +11,8 @@ class TaskGroupPolicy
     def create?
         if @task_group.caseable_type == "Case"
             user_can_edit_case?
+        elsif @task_group.caseable_type == "CaseTemplate"
+            CaseTemplatePolicy.new(@user, @task_group.caseable).update_template?
         else
             false
         end
@@ -19,6 +21,8 @@ class TaskGroupPolicy
     def update?
         if @task_group.caseable_type == "Case"
             user_can_edit_case?
+        elsif @task_group.caseable_type == "CaseTemplate"
+            CaseTemplatePolicy.new(@user, @task_group.caseable).update_template?
         else
             false
         end
@@ -27,6 +31,8 @@ class TaskGroupPolicy
     def delete?
         if @task_group.caseable_type == "Case"
             user_can_edit_case?
+        elsif @task_group.caseable_type == "CaseTemplate"
+            CaseTemplatePolicy.new(@user, @task_group.caseable).update_template?
         else
             false
         end

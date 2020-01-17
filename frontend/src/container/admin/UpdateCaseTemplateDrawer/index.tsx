@@ -1,19 +1,6 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import {
-  Button,
-  Drawer,
-  Empty,
-  Form,
-  List,
-  message,
-  notification,
-  Popconfirm,
-  Select,
-  Spin,
-  Tabs,
-  Typography
-} from "antd";
+import { Button, Drawer, Empty, Form, List, message, notification, Popconfirm, Select, Spin, Tabs, Typography } from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import CreateTaskGroupModal from "container/admin/CreateTaskGroupModal";
@@ -21,6 +8,7 @@ import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
 import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
+import CREATE_A_TASK_GROUP from "mutations/createTaskGroup";
 import REMOVE_GROUP_FROM_CASE_TEMPLATE from "mutations/removeGroupFromCaseTemplate";
 import REMOVE_USER_FROM_CASE_TEMPLATE from "mutations/removeUserFromCaseTemplate";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
@@ -58,6 +46,21 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     }
   );
 
+  const [createTaskGroup] = useMutation(CREATE_A_TASK_GROUP, {
+    onCompleted: () => {
+      message.success("Created task group");
+    },
+    onError: error => {
+      notification.error({
+        message: "Failed to create task group",
+        description: error.message
+      });
+    },
+    refetchQueries: [
+      { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+    ]
+  });
+
   const [updateCaseTemplate] = useMutation(UPDATE_CASE_TEMPLATE, {
     onCompleted: function() {
       message.success("Updated the template");
@@ -67,7 +70,10 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
         message: "Could not update the template",
         description: error.message
       });
-    }
+    },
+    refetchQueries: [
+      { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+    ]
   });
 
   // ---
@@ -211,7 +217,14 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
           <CreateTaskGroupModal
             visible={openModal === "CREATE_TASK_GROUP"}
             handleClose={() => setOpenModal(null)}
-            handleFinish={() => void 0}
+            handleFinish={(newTaskGroupName) => createTaskGroup({
+              variables: {
+                input: {
+                  name: newTaskGroupName,
+                  caseTemplateId: caseTemplate.id
+                }
+              }
+            })}
           />
         </TabPane>
         <TabPane tab="Members" key="members">
