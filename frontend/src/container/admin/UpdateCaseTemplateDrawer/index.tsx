@@ -1,9 +1,23 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { Button, Drawer, Empty, Form, List, message, notification, Popconfirm, Select, Spin, Tabs, Typography } from "antd";
+import {
+  Button,
+  Drawer,
+  Empty,
+  Form,
+  List,
+  message,
+  notification,
+  Popconfirm,
+  Select,
+  Spin,
+  Tabs,
+  Typography
+} from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import CreateTaskGroupModal from "container/admin/CreateTaskGroupModal";
+import TaskGroup from "container/one_case/TaskGroup";
 import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
@@ -166,6 +180,17 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     );
   } else if (data) {
     const caseTemplate = data.caseTemplate;
+
+    const taskGroups = caseTemplate.taskGroups.map(group => (
+      <TaskGroup
+        name={group.name}
+        tasks={group.tasks}
+        key={group.id}
+        taskGroupId={group.id}
+        caseId={0}
+      />
+    ));
+
     drawerContent = (
       <Tabs key="info">
         <TabPane tab="Info" key="info">
@@ -214,17 +239,20 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
               Create a task group
             </Button>
           </div>
+          <div style={{ marginTop: "1em" }}>{taskGroups}</div>
           <CreateTaskGroupModal
             visible={openModal === "CREATE_TASK_GROUP"}
             handleClose={() => setOpenModal(null)}
-            handleFinish={(newTaskGroupName) => createTaskGroup({
-              variables: {
-                input: {
-                  name: newTaskGroupName,
-                  caseTemplateId: caseTemplate.id
+            handleFinish={newTaskGroupName =>
+              createTaskGroup({
+                variables: {
+                  input: {
+                    name: newTaskGroupName,
+                    caseTemplateId: caseTemplate.id
+                  }
                 }
-              }
-            })}
+              })
+            }
           />
         </TabPane>
         <TabPane tab="Members" key="members">

@@ -4,6 +4,7 @@ import ICaseMember from "./ICaseMember";
 import IPriority from "./IPriority";
 import IStatus from "./IStatus";
 import ITag from "./ITag";
+import ITaskGroup from "./ITaskGroup";
 
 interface ICaseTemplate {
   id: number;
@@ -19,6 +20,7 @@ interface ICaseTemplate {
   defaultGroups: ICaseGroup[];
   defaultMemberCount: number;
   defaultGroupCount: number;
+  taskGroups: ITaskGroup[];
 }
 
 export default ICaseTemplate;

@@ -34,6 +34,23 @@ const GET_ONE_CASE_TEMPLATE = gql`
           userCount
         }
       }
+      taskGroups {
+        id
+        name
+        tasks {
+          id
+          name
+          description
+          done
+          assignedTo {
+            username
+          }
+          case {
+            id
+          }
+          commentCount
+        }
+      }
     }
   }
 `;
