@@ -45,9 +45,6 @@ const GET_ONE_CASE_TEMPLATE = gql`
           assignedTo {
             username
           }
-          case {
-            id
-          }
           commentCount
         }
       }

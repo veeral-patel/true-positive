@@ -20,13 +20,20 @@ interface Props {
   heading: string;
   activeCaseStore?: ActiveCaseStore;
   id: number; // id of the task group
+  // whether this task group is to be displayed in a case template (not a case)
+  forCaseTemplate?: boolean;
 }
 
-function Heading({ heading, activeCaseStore, id }: Props) {
+function Heading({
+  heading,
+  activeCaseStore,
+  id,
+  forCaseTemplate = false
+}: Props) {
   const [updateTaskGroup] = useMutation(UPDATE_TASK_GROUP, {
     onCompleted: function() {
       message.success("Updated the task group");
-      activeCaseStore!.loadActiveCase();
+      if (!forCaseTemplate) activeCaseStore!.loadActiveCase();
     },
     onError: function(error: ApolloError) {
       notification.error({
@@ -39,7 +46,7 @@ function Heading({ heading, activeCaseStore, id }: Props) {
   const [deleteTaskGroup] = useMutation(DELETE_A_TASK_GROUP, {
     onCompleted: function() {
       message.success("Deleted task group");
-      activeCaseStore!.loadActiveCase();
+      if (!forCaseTemplate) activeCaseStore!.loadActiveCase();
     },
     onError: function(error: ApolloError) {
       notification.error({
@@ -69,12 +76,6 @@ function Heading({ heading, activeCaseStore, id }: Props) {
       >
         {heading}
       </Text>
-      {/* <Popover
-        title="Assign all of this group's tasks"
-        content={<UserSelect forAssigning={true} />}
-      >
-        <Button icon={<UserAddOutlined />} type="link" />
-      </Popover> */}
       <Tooltip title="Delete">
         <Button
           icon={<DeleteOutlined />}

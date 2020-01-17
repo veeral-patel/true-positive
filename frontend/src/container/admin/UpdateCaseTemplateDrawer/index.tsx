@@ -191,6 +191,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
         key={group.id}
         taskGroupId={group.id}
         caseId={0}
+        forCaseTemplate={true}
       />
     ));
 

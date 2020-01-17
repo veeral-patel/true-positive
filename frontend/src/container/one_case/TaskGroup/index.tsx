@@ -15,6 +15,8 @@ interface Props {
   taskGroupId: number;
   caseId: number;
   activeCaseStore?: ActiveCaseStore;
+  // whether this task group is to be displayed in a case template (not a case)
+  forCaseTemplate?: boolean;
 }
 
 function TaskGroup({
@@ -22,12 +24,13 @@ function TaskGroup({
   tasks,
   taskGroupId,
   activeCaseStore,
-  caseId
+  caseId,
+  forCaseTemplate = false
 }: Props) {
   const [createTask] = useMutation(CREATE_A_TASK, {
     onCompleted: function() {
       message.success("Created the task");
-      activeCaseStore!.loadActiveCase();
+      if (!forCaseTemplate) activeCaseStore!.loadActiveCase();
     },
     onError: function(error) {
       notification.error({
@@ -40,7 +43,11 @@ function TaskGroup({
   return (
     <div style={{ marginBottom: "3em" }}>
       <div>
-        <Heading heading={name} id={taskGroupId} />
+        <Heading
+          heading={name}
+          id={taskGroupId}
+          forCaseTemplate={forCaseTemplate}
+        />
       </div>
       <div style={{ marginTop: "0.5em" }}>
         <CreateTaskInput
