@@ -16,6 +16,7 @@ import {
 } from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
+import CreateTaskGroupModal from "container/admin/CreateTaskGroupModal";
 import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
@@ -25,7 +26,7 @@ import REMOVE_USER_FROM_CASE_TEMPLATE from "mutations/removeUserFromCaseTemplate
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
-import React from "react";
+import React, { useState } from "react";
 import ICaseGroup from "ts/interfaces/ICaseGroup";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
@@ -46,6 +47,8 @@ interface OneTemplateData {
 }
 
 function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
+  const [openModal, setOpenModal] = useState<"CREATE_TASK_GROUP" | null>(null);
+
   const { loading, error, data } = useQuery<OneTemplateData>(
     GET_ONE_CASE_TEMPLATE,
     {
@@ -197,10 +200,18 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             below.
           </Paragraph>
           <div>
-            <Button type="link" style={{ padding: 0 }}>
+            <Button
+              type="link"
+              style={{ padding: 0 }}
+              onClick={() => setOpenModal("CREATE_TASK_GROUP")}
+            >
               Create a task group
             </Button>
           </div>
+          <CreateTaskGroupModal
+            visible={openModal === "CREATE_TASK_GROUP"}
+            handleClose={() => setOpenModal(null)}
+          />
         </TabPane>
         <TabPane tab="Members" key="members">
           <Paragraph type="secondary">
