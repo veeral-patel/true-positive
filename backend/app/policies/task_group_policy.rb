@@ -5,18 +5,30 @@ class TaskGroupPolicy
     end
 
     def user_can_edit_case?
-        @task_group.case.case_members.where(user: @user, role: "CAN_EDIT").exists?
+        @task_group.caseable.case_members.where(user: @user, role: "CAN_EDIT").exists?
     end
 
     def create?
-        user_can_edit_case?
+        if @task_group.caseable_type == "Case"
+            user_can_edit_case?
+        else
+            false
+        end
     end
 
     def update?
-        user_can_edit_case?
+        if @task_group.caseable_type == "Case"
+            user_can_edit_case?
+        else
+            false
+        end
     end
 
     def delete?
-        user_can_edit_case?
+        if @task_group.caseable_type == "Case"
+            user_can_edit_case?
+        else
+            false
+        end
     end
 end

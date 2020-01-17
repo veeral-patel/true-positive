@@ -22,7 +22,11 @@ class Task < ApplicationRecord
   end
 
   def case
-    self.task_group.case
+    if self.task_group.caseable_type == "Case"
+      self.task_group.caseable
+    else
+      nil
+    end
   end
 
   def comment_count
