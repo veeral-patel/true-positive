@@ -18,6 +18,10 @@ class Types::CaseTemplateType < Types::BaseObject
         description "The user who created this template."
     end
 
+    field :task_groups, [Types::TaskGroupType], null: false do
+        description "Task groups that are added to cases created with this template."
+    end
+
     field :status, Types::StatusType, null: false do
         description "Default status for cases created with this template."
     end
