@@ -196,6 +196,11 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             Cases created from this template will be populated with the tasks
             below.
           </Paragraph>
+          <div>
+            <Button type="link" style={{ padding: 0 }}>
+              Create a task group
+            </Button>
+          </div>
         </TabPane>
         <TabPane tab="Members" key="members">
           <Paragraph type="secondary">
