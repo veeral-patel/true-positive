@@ -260,6 +260,7 @@ function Info(props: InfoProps) {
               });
               return false;
             }}
+            style={{ maxWidth: "750px" }}
           >
             <UploadOutlined style={{ fontSize: 36 }} />
             <div style={{ marginTop: "1em" }}>
