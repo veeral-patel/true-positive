@@ -10,6 +10,8 @@ class Attachment < ApplicationRecord
   validates :attachable, presence: true
   validates :file, attached: true
 
+  has_many :attachments, as: :attachable, dependent: :destroy
+
   has_one_attached :file
 
   def name

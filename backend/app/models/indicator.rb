@@ -12,11 +12,17 @@ class Indicator < ApplicationRecord
     belongs_to :created_by, :class_name => 'User'
     belongs_to :case
 
-    has_many :comments, as: :commentable
+    has_many :comments, as: :commentable, dependent: :destroy
+    has_many :attachments, as: :attachable, dependent: :destroy
 
     acts_as_taggable_on :tags
 
     after_create :add_indicator_created_audit
+
+    def attachment_count
+      # Number of attachments in this task
+      self.attachments.count
+    end
 
     private
       def add_indicator_created_audit

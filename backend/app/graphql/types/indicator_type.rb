@@ -18,6 +18,14 @@ module Types
             description "What kind of indicator this is."
         end
 
+        field :attachments, [Types::AttachmentType], null: false do
+            description "The files attached to this task."
+        end
+
+        field :attachment_count, Int, null: false do
+            description "Number of files attached to this task."
+        end
+
         field :description, String, null: true do
             description "A description for this indicator."
         end
