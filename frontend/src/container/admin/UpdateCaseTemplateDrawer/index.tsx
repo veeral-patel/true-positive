@@ -9,7 +9,6 @@ import {
   message,
   notification,
   Popconfirm,
-  Select,
   Spin,
   Tabs,
   Typography
@@ -38,7 +37,6 @@ import "./styles.css";
 
 const { TabPane } = Tabs;
 const { Paragraph } = Typography;
-const { Option } = Select;
 
 interface Props {
   visible: boolean;
