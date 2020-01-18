@@ -297,7 +297,23 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
               Create a task group
             </Button>
           </div>
-          <div style={{ marginTop: "1em" }}>{taskGroups}</div>
+          <div style={{ marginTop: "1em" }}>
+            {taskGroups.length === 0 ? (
+              <Empty
+                description={
+                  <div>
+                    <h4>No task groups</h4>
+                    <p>
+                      You must create a task group above before you can add any
+                      tasks
+                    </p>
+                  </div>
+                }
+              />
+            ) : (
+              <div>{taskGroups}</div>
+            )}
+          </div>
           <CreateTaskGroupModal
             visible={openModal === "CREATE_TASK_GROUP"}
             handleClose={() => setOpenModal(null)}
