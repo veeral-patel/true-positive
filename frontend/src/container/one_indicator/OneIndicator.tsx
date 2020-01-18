@@ -1,4 +1,4 @@
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, UploadOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
 import { navigate, RouteComponentProps } from "@reach/router";
 import {
@@ -11,11 +11,13 @@ import {
   Row,
   Typography
 } from "antd";
+import Dragger from "antd/lib/upload/Dragger";
+import { UploadFile } from "antd/lib/upload/interface";
 import { ApolloError } from "apollo-boost";
-import IndicatorForm from "container/one_indicator/IndicatorForm";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
 import { inject, observer } from "mobx-react";
+import DELETE_ATTACHMENT from "mutations/deleteAttachment";
 import UPDATE_INDICATOR from "mutations/updateIndicator";
 import CommentListP from "presentational/shared/comments/CommentListP";
 import Error from "presentational/shared/errors/Error";
@@ -30,7 +32,7 @@ import truncateString from "utils/truncateString";
 import ActionsDropdown from "./ActionsDropdown";
 
 const { Content } = Layout;
-const { Text } = Typography;
+const { Text, Paragraph } = Typography;
 
 interface Props extends RouteComponentProps {
   activeCaseStore?: ActiveCaseStore;
@@ -59,6 +61,19 @@ export default inject(
       }
     });
 
+    const [deleteAttachment] = useMutation(DELETE_ATTACHMENT, {
+      onCompleted: function() {
+        message.success("Deleted the attachment");
+        activeCaseStore!.loadActiveCase();
+      },
+      onError: function(error) {
+        notification.error({
+          message: "Could not delete the attachment",
+          description: error.message
+        });
+      }
+    });
+
     if (!indicatorId) {
       return (
         <Error
@@ -80,6 +95,18 @@ export default inject(
     }
 
     if (activeCase) {
+      var defaultFileList: UploadFile[] = [];
+      activeIndicator.attachments.forEach(attachment => {
+        defaultFileList.push({
+          uid: attachment.id.toString(),
+          name: `${attachment.name} [${attachment.friendlySize}]`,
+          url: attachment.url,
+          status: "done",
+          size: attachment.size,
+          type: "application/octet-stream"
+        });
+      });
+
       return (
         <Content
           style={{
@@ -178,7 +205,7 @@ export default inject(
             </Row>
           </section>
 
-          {activeIndicator.type === "TEXT" && (
+          {/* {activeIndicator.type === "TEXT" && (
             <section>
               <Row>
                 <Col span={24}>
@@ -189,7 +216,7 @@ export default inject(
                 <IndicatorForm activeIndicator={activeIndicator} />
               </Row>
             </section>
-          )}
+          )} */}
 
           <section>
             <Divider orientation="left">Description</Divider>
@@ -207,6 +234,35 @@ export default inject(
               }
             />
           </section>
+
+          <section style={{ marginTop: "2em" }}>
+            <Divider orientation="left">
+              Attachments ({activeCase.attachmentCount})
+            </Divider>
+            <Dragger
+              multiple
+              defaultFileList={defaultFileList}
+              onRemove={file => {
+                deleteAttachment({
+                  variables: {
+                    input: {
+                      id: file.uid
+                    }
+                  }
+                });
+                return false;
+              }}
+              style={{ maxWidth: "750px" }}
+            >
+              <UploadOutlined style={{ fontSize: 36 }} />
+              <div style={{ marginTop: "1em" }}>
+                <Paragraph>
+                  Click or drag file(s) to this area to upload
+                </Paragraph>
+              </div>
+            </Dragger>
+          </section>
+
           <section>
             <Divider orientation="left">
               Comments ({activeIndicator.comments.length})
