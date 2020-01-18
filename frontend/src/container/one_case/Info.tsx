@@ -222,7 +222,7 @@ function Info(props: InfoProps) {
           </Row>
         </section>
 
-        <section>
+        <section style={{ marginTop: "1em" }}>
           <Row>
             <Col span={24}>
               <Divider orientation="left">Description</Divider>
@@ -243,7 +243,7 @@ function Info(props: InfoProps) {
           </Row>
         </section>
 
-        <section>
+        <section style={{ marginTop: "2em" }}>
           <Divider orientation="left">
             Attachments ({activeCase.attachmentCount})
           </Divider>
