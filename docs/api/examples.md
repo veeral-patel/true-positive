@@ -70,24 +70,26 @@ query {
 ```json
 {
   "data": {
-    "cases": [
-      {
-        "id": "8",
-        "name": "Ryuk sighting",
-        "status": {
-          "name": "Open"
-        },
-        "priority": {
-          "name": "Low"
-        },
-        "description": null,
-        "assignedTo": {
-          "username": "gennie.mertz"
-        },
-        "tasks": [],
-        "indicators": []
-      }
-    ]
+    "case": {
+      "id": "2",
+      "name": "Malware outbreak",
+      "status": {
+        "name": "Open"
+      },
+      "priority": {
+        "name": "High"
+      },
+      "description": null,
+      "assignedTo": {
+        "username": "israel"
+      },
+      "tasks": [
+        {
+          "name": "Image hard drive"
+        }
+      ],
+      "indicators": []
+    }
   }
 }
 ```
