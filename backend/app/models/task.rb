@@ -11,7 +11,8 @@ class Task < ApplicationRecord
   belongs_to :assigned_to, :class_name => 'User', optional: true
   belongs_to :task_group
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :attachments, as: :attachable, dependent: :destroy
 
   acts_as_list scope: :task_group, top_of_list: 0
 

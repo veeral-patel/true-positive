@@ -15,6 +15,10 @@ module Types
             description "Whether this task has been completed."
         end
 
+        field :attachments, [Types::AttachmentType], null: false do
+            description "The files attached to this task."
+        end
+
         field :position, Int, null: false do
             description "The UI lists tasks in ascending order of their position."
         end
