@@ -1,5 +1,6 @@
 import IComment from "ts/interfaces/IComment";
 import IUser from "ts/interfaces/IUser";
+import IAttachment from "./IAttachment";
 import ICase from "./ICase";
 import IIndicator from "./IIndicator";
 
@@ -15,6 +16,7 @@ interface ITask {
   case: ICase;
   done: boolean;
   commentCount: number;
+  attachments: IAttachment[];
 }
 
 export default ITask;

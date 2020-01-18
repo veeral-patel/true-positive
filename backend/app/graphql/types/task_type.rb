@@ -19,6 +19,10 @@ module Types
             description "The files attached to this task."
         end
 
+        field :attachment_count, Int, null: false do
+            description "Number of files attached to this task."
+        end
+
         field :position, Int, null: false do
             description "The UI lists tasks in ascending order of their position."
         end

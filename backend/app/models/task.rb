@@ -22,6 +22,11 @@ class Task < ApplicationRecord
     self.name
   end
 
+  def attachment_count
+    # Number of attachments in this task
+    self.attachments.count
+  end
+
   def case
     if self.task_group.caseable_type == "Case"
       self.task_group.caseable

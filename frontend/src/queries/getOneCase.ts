@@ -29,6 +29,15 @@ const GET_ONE_CASE = gql`
             username
           }
         }
+        attachmentCount
+        attachments {
+          id
+          name
+          url
+          createdAt
+          size
+          friendlySize
+        }
       }
       attachmentCount
       attachments {
