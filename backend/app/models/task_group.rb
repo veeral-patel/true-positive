@@ -1,5 +1,6 @@
 class TaskGroup < ApplicationRecord
     has_many :tasks, -> { order(position: :asc) }, dependent: :destroy
+
     belongs_to :caseable, polymorphic: true
     belongs_to :created_by, :class_name => 'User'
 
