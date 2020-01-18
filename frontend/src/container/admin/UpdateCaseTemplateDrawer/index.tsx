@@ -27,6 +27,7 @@ import DELETE_A_TASK_GROUP from "mutations/deleteTaskGroup";
 import REMOVE_GROUP_FROM_CASE_TEMPLATE from "mutations/removeGroupFromCaseTemplate";
 import REMOVE_USER_FROM_CASE_TEMPLATE from "mutations/removeUserFromCaseTemplate";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
+import UPDATE_TASK_GROUP from "mutations/updateTaskGroup";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
 import React, { useState } from "react";
@@ -175,6 +176,24 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
 
   // ---
 
+  const [updateTaskGroup] = useMutation(UPDATE_TASK_GROUP, {
+    onCompleted: function() {
+      message.success("Updated the task group");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "An error occurred while updating the task group",
+        description: error
+      });
+    },
+    refetchQueries: [
+      {
+        query: GET_ONE_CASE_TEMPLATE,
+        variables: { id: templateId }
+      }
+    ]
+  });
+
   const [deleteTaskGroup] = useMutation(DELETE_A_TASK_GROUP, {
     onCompleted: function() {
       message.success("Deleted task group");
@@ -209,8 +228,17 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       <TaskGroup2
         key={tgroup.id}
         taskGroup={tgroup}
-        createTask={name => void 0}
-        renameTaskGroup={name => void 0}
+        createTask={newName => void 0}
+        renameTaskGroup={newName =>
+          updateTaskGroup({
+            variables: {
+              input: {
+                id: tgroup.id,
+                name: newName
+              }
+            }
+          })
+        }
         deleteTaskGroup={() =>
           deleteTaskGroup({
             variables: {
