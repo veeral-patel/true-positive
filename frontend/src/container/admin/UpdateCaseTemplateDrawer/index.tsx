@@ -17,7 +17,7 @@ import {
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import CreateTaskGroupModal from "container/admin/CreateTaskGroupModal";
-import TaskGroup from "container/one_case/TaskGroup";
+import TaskGroup2 from "container/one_case/TaskGroup2";
 import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
@@ -184,14 +184,13 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
   } else if (data) {
     const caseTemplate = data.caseTemplate;
 
-    const taskGroups = caseTemplate.taskGroups.map(group => (
-      <TaskGroup
-        name={group.name}
-        tasks={group.tasks}
-        key={group.id}
-        taskGroupId={group.id}
-        caseId={0}
-        forCaseTemplate={true}
+    const taskGroups = caseTemplate.taskGroups.map(tgroup => (
+      <TaskGroup2
+        key={tgroup.id}
+        taskGroup={tgroup}
+        createTask={name => void 0}
+        renameTaskGroup={name => void 0}
+        deleteTaskGroup={() => void 0}
       />
     ));
 

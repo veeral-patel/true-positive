@@ -10,8 +10,8 @@ const { Text } = Typography;
 interface Props {
   taskGroup: ITaskGroup;
   createTask: (name: string) => void;
-  renameTaskGroup: (taskGroupId: number, newName: string) => void;
-  deleteTaskGroup: (taskGroupId: number) => void;
+  renameTaskGroup: (newName: string) => void;
+  deleteTaskGroup: () => void;
 }
 
 function TaskGroup2({
@@ -26,12 +26,10 @@ function TaskGroup2({
         type="secondary"
         style={{ textTransform: "uppercase" }}
         editable={{
-          onChange: newName => {
-            renameTaskGroup(taskGroup.id, newName);
-          }
+          onChange: newName => renameTaskGroup(newName)
         }}
       >
-        {name}
+        {taskGroup.name}
       </Text>
       <Tooltip title="Delete">
         <Button
@@ -43,7 +41,7 @@ function TaskGroup2({
               content:
                 "This will also delete all the tasks in this task group.",
               onOk: () => {
-                deleteTaskGroup(taskGroup.id);
+                deleteTaskGroup();
               }
             });
           }}
