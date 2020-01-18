@@ -91,6 +91,7 @@ function CustomizeTaskTemplates() {
           onClose={() => setOpenDrawer(null)}
         >
           <TaskTemplateForm
+            submitButtonText="Create Template"
             handleClose={() => setOpenDrawer(null)}
             handleFinish={values =>
               createTaskTemplate({

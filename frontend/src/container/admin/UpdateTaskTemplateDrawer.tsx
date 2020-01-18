@@ -60,6 +60,7 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
   } else if (data) {
     drawerContent = (
       <TaskTemplateForm
+        submitButtonText="Update Template"
         handleClose={handleClose}
         handleFinish={values =>
           updateTaskTemplate({

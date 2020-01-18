@@ -11,10 +11,16 @@ interface Props {
     description: string | null;
     assignedTo: string | null;
   };
+  submitButtonText: string;
 }
 
 // Form used for updating/creating a task template.
-function TaskTemplateForm({ handleClose, handleFinish, initialValues }: Props) {
+function TaskTemplateForm({
+  handleClose,
+  handleFinish,
+  initialValues,
+  submitButtonText
+}: Props) {
   return (
     <Form
       colon={false}
@@ -47,7 +53,7 @@ function TaskTemplateForm({ handleClose, handleFinish, initialValues }: Props) {
             Cancel
           </Button>
           <Button type="primary" htmlType="submit">
-            Update Template
+            {submitButtonText}
           </Button>
         </div>
       </Form.Item>
