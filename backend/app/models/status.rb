@@ -1,6 +1,4 @@
 class Status < ApplicationRecord
-    acts_as_tenant :tenant
-
     include SetAsPrimary
     set_as_primary :default_status, owner_key: :tenant, force_primary: false
 

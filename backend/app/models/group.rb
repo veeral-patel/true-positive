@@ -1,6 +1,4 @@
 class Group < ApplicationRecord
-    acts_as_tenant :tenant
-
     validates :name, presence: true
 
     has_many :group_users, dependent: :destroy

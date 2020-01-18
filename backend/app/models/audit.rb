@@ -1,6 +1,4 @@
 class Audit < ApplicationRecord
-    acts_as_tenant :tenant
-
     enum associated_type: {
         CASE: 1,
         TASK: 2,

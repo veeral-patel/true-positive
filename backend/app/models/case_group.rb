@@ -1,6 +1,4 @@
 class CaseGroup < ApplicationRecord
-  acts_as_tenant :tenant
-
   validates_uniqueness_to_tenant :group_id, :scope => :caseable_id, :message => "Cannot have duplicate groups in a case."
 
   belongs_to :caseable, polymorphic: true

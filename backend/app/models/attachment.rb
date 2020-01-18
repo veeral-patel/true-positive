@@ -1,6 +1,4 @@
 class Attachment < ApplicationRecord
-  acts_as_tenant :tenant
-
   include ActionView::Helpers::NumberHelper
 
   belongs_to :attachable, polymorphic: true

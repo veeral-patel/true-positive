@@ -1,6 +1,4 @@
 class Form < ApplicationRecord
-    acts_as_tenant :tenant
-
     validates :name, presence: true
     validates :schema, presence: true
     validates :created_by, presence: true

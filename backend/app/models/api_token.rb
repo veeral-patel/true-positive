@@ -1,6 +1,4 @@
 class ApiToken < ApplicationRecord
-    acts_as_tenant :tenant
-
     validates :name, presence: true
     validates :api_token, presence: true, length: { is: 40 }, uniqueness: true
     validates :user, presence: true

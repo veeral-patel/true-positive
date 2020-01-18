@@ -1,8 +1,6 @@
 require 'ancestry'
 
 class Case < ApplicationRecord
-  acts_as_tenant :tenant
-
   has_ancestry :orphan_strategy => :rootify 
 
   validates :name, presence: true

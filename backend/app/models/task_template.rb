@@ -1,6 +1,4 @@
 class TaskTemplate < ApplicationRecord
-    acts_as_tenant :tenant
-
     validates :name, presence: true
     validates :created_by, presence: true
 
