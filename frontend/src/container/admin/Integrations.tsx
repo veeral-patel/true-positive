@@ -64,6 +64,21 @@ function Integrations() {
           >
             <UserSelect />
           </Form.Item>
+          <Form.Item
+            style={{ position: "absolute", bottom: "1em", right: "2em" }}
+          >
+            <>
+              <Button
+                style={{ marginRight: "1em" }}
+                onClick={() => setOpenDrawer(null)}
+              >
+                Cancel
+              </Button>
+              <Button type="primary" htmlType="submit">
+                Create address
+              </Button>
+            </>
+          </Form.Item>
         </Form>
       </Drawer>
     </>
