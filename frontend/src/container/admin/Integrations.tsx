@@ -1,13 +1,14 @@
-import { Button, Modal, Steps, Typography } from "antd";
+import { Button, Drawer, Form, Typography } from "antd";
 import React, { useState } from "react";
+import CaseTemplateSelect from "./CaseTemplateSelect";
 import ListOfCreateCaseEmailAddresses from "./ListOfCreateCaseEmailAddresses";
 
 const { Paragraph } = Typography;
 
 function Integrations() {
-  const [visibleModal, setVisibleModal] = useState<
-    "CREATE_INBOUND_ADDRESS" | null
-  >(null);
+  const [openDrawer, setOpenDrawer] = useState<"CREATE_INBOUND_ADDRESS" | null>(
+    null
+  );
 
   return (
     <>
@@ -17,33 +18,41 @@ function Integrations() {
         True Positive can ingest and create cases from emails sent to a mailbox,
         such as phishing@ecorp.com.
       </Paragraph>
-      <Paragraph type="secondary">
-        Simply generate an inbound email address below and forward emails from
-        your existing mailbox to this address. We'll create a case for every
-        email received and attach the original email as a file.
-      </Paragraph>
       <Button
         type="link"
         style={{ padding: "0px" }}
-        onClick={() => setVisibleModal("CREATE_INBOUND_ADDRESS")}
+        onClick={() => setOpenDrawer("CREATE_INBOUND_ADDRESS")}
       >
-        Generate an inbound email address
+        Set up an inbound address
       </Button>
       <div style={{ marginTop: "1em" }}>
         <ListOfCreateCaseEmailAddresses />
       </div>
-      <Modal
-        visible={visibleModal === "CREATE_INBOUND_ADDRESS"}
-        title="Generate an inbound email address"
-        footer={null}
-        onCancel={() => setVisibleModal(null)}
+      <Drawer
+        visible={openDrawer === "CREATE_INBOUND_ADDRESS"}
+        onClose={() => setOpenDrawer(null)}
+        title={<h3>Set up an inbound address</h3>}
+        width={600}
       >
-        <Steps size="small" progressDot>
-          <Steps.Step title="Generate address"></Steps.Step>
-          <Steps.Step title="Choose a case template"></Steps.Step>
-          <Steps.Step title="Forward email from an existing mailbox"></Steps.Step>
-        </Steps>
-      </Modal>
+        <h4>Configure</h4>
+        <Form layout="vertical" colon={false} style={{ marginTop: "1em" }}>
+          <Form.Item
+            label="Case Template"
+            name="case_template"
+            rules={[
+              { required: true, message: "Please choose a case template" }
+            ]}
+            extra={
+              <div style={{ marginTop: "0.5em" }}>
+                Cases created from emails sent to this address will be
+                initialized from the template above.
+              </div>
+            }
+          >
+            <CaseTemplateSelect />
+          </Form.Item>
+        </Form>
+      </Drawer>
     </>
   );
 }
