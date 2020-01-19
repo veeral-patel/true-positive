@@ -5,6 +5,10 @@ const GET_CREATE_CASE_EMAIL_ADDRESSES = gql`
     createCaseEmailAddresses {
       id
       email
+      createdAt
+      createdBy {
+        username
+      }
     }
   }
 `;

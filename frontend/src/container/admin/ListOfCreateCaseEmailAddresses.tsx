@@ -15,6 +15,7 @@ import Error from "presentational/shared/errors/Error";
 import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses";
 import React, { useState } from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
+import { formatDateOnly } from "utils/formatISO8601";
 
 const { Paragraph, Text } = Typography;
 
@@ -103,6 +104,9 @@ function ListOfCreateCaseEmailAddresses() {
                       </a>
                     </Text>
                   }
+                  description={`Created by ${
+                    emailAddress.createdBy.username
+                  } on ${formatDateOnly(emailAddress.createdAt)} (UTC)`}
                 />
               </List.Item>
             )}
