@@ -94,16 +94,7 @@ function ListOfCreateCaseEmailAddresses() {
                 ]}
               >
                 <List.Item.Meta
-                  title={
-                    <Text copyable>
-                      <a
-                        onClick={() => setIdOfOpenDrawer(emailAddress.id)}
-                        style={{ color: "inherit" }}
-                      >
-                        {emailAddress.email}
-                      </a>
-                    </Text>
-                  }
+                  title={<Text copyable>{emailAddress.email}</Text>}
                   description={`Created by ${
                     emailAddress.createdBy.username
                   } on ${formatDateOnly(emailAddress.createdAt)} (UTC)`}
