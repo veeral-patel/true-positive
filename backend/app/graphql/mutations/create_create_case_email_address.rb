@@ -12,7 +12,11 @@ class Mutations::CreateCreateCaseEmailAddress < Mutations::BaseMutation
     def resolve(case_template_id:)
         # create the address in memory
         case_template = find_case_template_or_throw_execution_error(id: case_template_id)
-        address = CreateCaseEmailAddress.new(email: "#{SecureRandom.alphanumeric(20)}@inbound-cases.truepositive.app", case_template: case_template)
+        address = CreateCaseEmailAddress.new(
+            email: "#{SecureRandom.alphanumeric(20)}@inbound-cases.truepositive.app",
+            case_template: case_template,
+            created_by: context[:current_user]
+        )
 
         # authorize this action
         unless CreateCaseEmailAddressPolicy.new(context[:current_user], address).create?
