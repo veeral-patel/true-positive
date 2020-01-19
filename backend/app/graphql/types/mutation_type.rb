@@ -79,6 +79,7 @@ module Types
       field :delete_attachment, mutation: Mutations::DeleteAttachment
 
       # inbound email addresses for creating cases
+      field :create_create_case_email_address, mutation: Mutations::CreateCreateCaseEmailAddress
       field :delete_create_case_email_address, mutation: Mutations::DeleteCreateCaseEmailAddress
   end
 end
