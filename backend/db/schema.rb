@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_022449) do
+ActiveRecord::Schema.define(version: 2020_01_19_230806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,7 +180,9 @@ ActiveRecord::Schema.define(version: 2020_01_16_022449) do
     t.bigint "case_template_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
     t.index ["case_template_id"], name: "index_create_case_email_addresses_on_case_template_id"
+    t.index ["created_by_id"], name: "index_create_case_email_addresses_on_created_by_id"
     t.index ["tenant_id"], name: "index_create_case_email_addresses_on_tenant_id"
   end
 
@@ -305,8 +307,10 @@ ActiveRecord::Schema.define(version: 2020_01_16_022449) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "assigned_to_id"
+    t.bigint "task_group_id"
     t.index ["assigned_to_id"], name: "index_task_templates_on_assigned_to_id"
     t.index ["created_by_id"], name: "index_task_templates_on_created_by_id"
+    t.index ["task_group_id"], name: "index_task_templates_on_task_group_id"
     t.index ["tenant_id"], name: "index_task_templates_on_tenant_id"
   end
 
@@ -388,6 +392,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_022449) do
   add_foreign_key "comments", "users", column: "created_by_id"
   add_foreign_key "create_case_email_addresses", "case_templates"
   add_foreign_key "create_case_email_addresses", "tenants"
+  add_foreign_key "create_case_email_addresses", "users", column: "created_by_id"
   add_foreign_key "forms", "tenants"
   add_foreign_key "forms", "users", column: "created_by_id"
   add_foreign_key "group_users", "groups"
@@ -404,6 +409,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_022449) do
   add_foreign_key "tags", "tenants"
   add_foreign_key "task_groups", "tenants"
   add_foreign_key "task_groups", "users", column: "created_by_id"
+  add_foreign_key "task_templates", "task_groups"
   add_foreign_key "task_templates", "tenants"
   add_foreign_key "task_templates", "users", column: "assigned_to_id"
   add_foreign_key "task_templates", "users", column: "created_by_id"
