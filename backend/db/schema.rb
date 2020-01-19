@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_230806) do
+ActiveRecord::Schema.define(version: 2020_01_19_234028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,8 +181,10 @@ ActiveRecord::Schema.define(version: 2020_01_19_230806) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "created_by_id"
+    t.bigint "default_creator_id"
     t.index ["case_template_id"], name: "index_create_case_email_addresses_on_case_template_id"
     t.index ["created_by_id"], name: "index_create_case_email_addresses_on_created_by_id"
+    t.index ["default_creator_id"], name: "index_create_case_email_addresses_on_default_creator_id"
     t.index ["tenant_id"], name: "index_create_case_email_addresses_on_tenant_id"
   end
 
@@ -393,6 +395,7 @@ ActiveRecord::Schema.define(version: 2020_01_19_230806) do
   add_foreign_key "create_case_email_addresses", "case_templates"
   add_foreign_key "create_case_email_addresses", "tenants"
   add_foreign_key "create_case_email_addresses", "users", column: "created_by_id"
+  add_foreign_key "create_case_email_addresses", "users", column: "default_creator_id"
   add_foreign_key "forms", "tenants"
   add_foreign_key "forms", "users", column: "created_by_id"
   add_foreign_key "group_users", "groups"

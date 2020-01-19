@@ -3,8 +3,10 @@ class CreateCaseEmailAddress < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
   validates :case_template, presence: true
   validates :created_by, presence: true
+  validates :default_creator, presence: true
 
   belongs_to :created_by, :class_name => 'User'
+  belongs_to :default_creator, :class_name => 'User'
   belongs_to :case_template
 
   def email_ends_with_correct_address
