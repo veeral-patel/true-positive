@@ -10,28 +10,18 @@ import {
   Spin,
   Typography
 } from "antd";
-import gql from "graphql-tag";
+import UpdateCCEmailAddressDrawer from "container/admin/UpdateCCEmailAddressDrawer";
+import DELETE_CREATE_CASE_EMAIL_ADDRESS from "mutations/deleteCreateCaseEmailAddress";
 import Error from "presentational/shared/errors/Error";
 import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses";
 import React, { useState } from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
-import UpdateCCEmailAddressDrawer from "./UpdateCCEmailAddressDrawer";
 
 const { Paragraph, Text } = Typography;
 
 interface Response {
   createCaseEmailAddresses: ICreateCaseEmailAddress[];
 }
-
-const DELETE_CREATE_CASE_EMAIL_ADDRESS = gql`
-  mutation deleteCreateCaseEmailAddress(
-    $input: DeleteCreateCaseEmailAddressInput!
-  ) {
-    deleteCreateCaseEmailAddress(input: $input) {
-      id
-    }
-  }
-`;
 
 function ListOfCreateCaseEmailAddresses() {
   const { loading, error, data } = useQuery<Response>(
