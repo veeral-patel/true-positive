@@ -1,4 +1,5 @@
 import { Button, Drawer, Form, Typography } from "antd";
+import UserSelect from "container/shared/users/UserSelect";
 import React, { useState } from "react";
 import CaseTemplateSelect from "./CaseTemplateSelect";
 import ListOfCreateCaseEmailAddresses from "./ListOfCreateCaseEmailAddresses";
@@ -50,6 +51,19 @@ function Integrations() {
             }
           >
             <CaseTemplateSelect />
+          </Form.Item>
+          <Form.Item
+            label="Creator"
+            name="creator"
+            rules={[{ required: true, message: "Please choose a user" }]}
+            extra={
+              <div style={{ marginTop: "0.5em" }}>
+                The user above will be marked as the creator of, and have edit
+                access to, cases created from emails sent to this address.
+              </div>
+            }
+          >
+            <UserSelect />
           </Form.Item>
         </Form>
       </Drawer>
