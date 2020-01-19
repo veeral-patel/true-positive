@@ -1,11 +1,11 @@
 import { useMutation } from "@apollo/react-hooks";
 import { Button, Drawer, Form, message, notification, Typography } from "antd";
+import CaseTemplateSelect from "container/admin/CaseTemplateSelect";
+import ListOfCreateCaseEmailAddresses from "container/admin/ListOfCreateCaseEmailAddresses";
 import UserSelect from "container/shared/users/UserSelect";
 import CREATE_CREATE_CASE_EMAIL_ADDRESS from "mutations/createCreateCaseEmailAddress";
 import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses";
 import React, { useState } from "react";
-import CaseTemplateSelect from "./CaseTemplateSelect";
-import ListOfCreateCaseEmailAddresses from "./ListOfCreateCaseEmailAddresses";
 
 const { Paragraph } = Typography;
 
