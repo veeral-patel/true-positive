@@ -10,5 +10,13 @@ module Types
         field :email, String, null: false do
             description "The email address itself."
         end
+
+        field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
+            description "When this inbound address was created."
+        end
+
+        field :created_by, Types::UserType, null: false do
+          description "The user who created this inbound address."  
+        end
     end
 end
