@@ -1,5 +1,8 @@
-import { Button, Drawer, Form, Typography } from "antd";
+import { useMutation } from "@apollo/react-hooks";
+import { Button, Drawer, Form, message, notification, Typography } from "antd";
 import UserSelect from "container/shared/users/UserSelect";
+import CREATE_CREATE_CASE_EMAIL_ADDRESS from "mutations/createCreateCaseEmailAddress";
+import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses";
 import React, { useState } from "react";
 import CaseTemplateSelect from "./CaseTemplateSelect";
 import ListOfCreateCaseEmailAddresses from "./ListOfCreateCaseEmailAddresses";
@@ -10,6 +13,20 @@ function Integrations() {
   const [openDrawer, setOpenDrawer] = useState<"CREATE_INBOUND_ADDRESS" | null>(
     null
   );
+
+  const [createInboundAddress] = useMutation(CREATE_CREATE_CASE_EMAIL_ADDRESS, {
+    onCompleted: function() {
+      message.success("Created inbound address");
+      setOpenDrawer(null);
+    },
+    onError: function(error) {
+      notification.error({
+        message: "Failed to create inbound address",
+        description: error.message
+      });
+    },
+    refetchQueries: [{ query: GET_CREATE_CASE_EMAIL_ADDRESSES }]
+  });
 
   return (
     <>
@@ -35,10 +52,23 @@ function Integrations() {
         title={<h3>Create an inbound address</h3>}
         width={600}
       >
-        <Form layout="vertical" colon={false} style={{ marginTop: "1em" }}>
+        <Form
+          layout="vertical"
+          colon={false}
+          style={{ marginTop: "1em" }}
+          onFinish={values =>
+            createInboundAddress({
+              variables: {
+                input: {
+                  caseTemplateId: values.case_template_id
+                }
+              }
+            })
+          }
+        >
           <Form.Item
             label="Case Template"
-            name="case_template"
+            name="case_template_id"
             rules={[
               { required: true, message: "Please choose a case template" }
             ]}

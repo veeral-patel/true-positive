@@ -10,7 +10,6 @@ import {
   Spin,
   Typography
 } from "antd";
-import CREATE_CREATE_CASE_EMAIL_ADDRESS from "mutations/createCreateCaseEmailAddress";
 import DELETE_CREATE_CASE_EMAIL_ADDRESS from "mutations/deleteCreateCaseEmailAddress";
 import Error from "presentational/shared/errors/Error";
 import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses";
@@ -27,20 +26,6 @@ function ListOfCreateCaseEmailAddresses() {
   const { loading, error, data } = useQuery<Response>(
     GET_CREATE_CASE_EMAIL_ADDRESSES
   );
-
-  const [createInboundAddress] = useMutation(CREATE_CREATE_CASE_EMAIL_ADDRESS, {
-    onCompleted: function() {
-      notification.success({
-        message: "Created inbound address"
-      });
-    },
-    onError: function(error) {
-      notification.error({
-        message: "Failed to create inbound address",
-        description: error.message
-      });
-    }
-  });
 
   const [deleteInboundAddress] = useMutation(DELETE_CREATE_CASE_EMAIL_ADDRESS, {
     onCompleted: function() {
