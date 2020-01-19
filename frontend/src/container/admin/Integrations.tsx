@@ -24,7 +24,7 @@ function Integrations() {
         style={{ padding: "0px" }}
         onClick={() => setOpenDrawer("CREATE_INBOUND_ADDRESS")}
       >
-        Set up an inbound address
+        Create an inbound address
       </Button>
       <div style={{ marginTop: "1em" }}>
         <ListOfCreateCaseEmailAddresses />
@@ -32,10 +32,9 @@ function Integrations() {
       <Drawer
         visible={openDrawer === "CREATE_INBOUND_ADDRESS"}
         onClose={() => setOpenDrawer(null)}
-        title={<h3>Set up an inbound address</h3>}
+        title={<h3>Create an inbound address</h3>}
         width={600}
       >
-        <h4>Configure</h4>
         <Form layout="vertical" colon={false} style={{ marginTop: "1em" }}>
           <Form.Item
             label="Case Template"

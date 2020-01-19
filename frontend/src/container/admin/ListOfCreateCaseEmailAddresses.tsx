@@ -70,7 +70,7 @@ function ListOfCreateCaseEmailAddresses() {
             <div>
               <h4>No inbound email addresses</h4>
               <Paragraph>
-                Generate one above to start creating cases via email
+                Create one above to start creating cases via email
               </Paragraph>
             </div>
           }
