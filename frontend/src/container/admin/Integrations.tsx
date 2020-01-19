@@ -60,7 +60,8 @@ function Integrations() {
             createInboundAddress({
               variables: {
                 input: {
-                  caseTemplateId: values.case_template_id
+                  caseTemplateId: values.case_template_id,
+                  defaultCreator: values.default_creator
                 }
               }
             })
@@ -83,7 +84,7 @@ function Integrations() {
           </Form.Item>
           <Form.Item
             label="Default Creator"
-            name="creator"
+            name="default_creator"
             rules={[{ required: true, message: "Please choose a user" }]}
             extra={
               <div style={{ marginTop: "0.5em" }}>
