@@ -82,7 +82,7 @@ function Integrations() {
             <CaseTemplateSelect />
           </Form.Item>
           <Form.Item
-            label="Creator"
+            label="Default Creator"
             name="creator"
             rules={[{ required: true, message: "Please choose a user" }]}
             extra={
