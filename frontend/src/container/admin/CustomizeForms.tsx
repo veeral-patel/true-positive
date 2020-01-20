@@ -1,4 +1,4 @@
-import { PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
 import {
   Button,
@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   List,
+  Popconfirm,
   Spin,
   Typography
 } from "antd";
@@ -66,7 +67,17 @@ function CustomizeForms() {
             dataSource={data.forms}
             itemLayout="horizontal"
             renderItem={form => (
-              <List.Item>
+              <List.Item
+                actions={[
+                  <Popconfirm
+                    title="Delete this form?"
+                    okText="Yes, Delete"
+                    cancelText="No"
+                  >
+                    <Button icon={<DeleteOutlined />} type="link" />
+                  </Popconfirm>
+                ]}
+              >
                 <List.Item.Meta
                   title={<a>{form.name}</a>}
                   description={`Created by ${

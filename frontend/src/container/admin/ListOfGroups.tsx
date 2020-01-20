@@ -10,7 +10,6 @@ import {
   Spin,
   Typography
 } from "antd";
-import Paragraph from "antd/lib/typography/Paragraph";
 import { ApolloError } from "apollo-boost";
 import DELETE_A_GROUP from "mutations/deleteGroup";
 import UPDATE_A_GROUP from "mutations/updateGroup";
@@ -20,7 +19,7 @@ import React, { useState } from "react";
 import IGroup from "ts/interfaces/IGroup";
 import GroupDrawer from "./GroupDrawer";
 
-const { Text } = Typography;
+const { Text, Paragraph } = Typography;
 
 interface GroupData {
   groups: IGroup[];
