@@ -18,7 +18,11 @@ class Types::FormType < Types::BaseObject
         description "The form who created this task."
     end
 
-    field :schema, GraphQL::Types::JSON, null: false do
-        description "The JSON schema for this form."
+    field :form_schema, GraphQL::Types::JSON, null: false do
+        description "JSON describing this form's structure."
+    end
+
+    field :ui_schema, GraphQL::Types::JSON, null: false do
+        description "JSON describing this form's appearance."
     end
 end
