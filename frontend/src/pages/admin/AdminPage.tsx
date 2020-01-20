@@ -3,7 +3,6 @@ import { Tabs } from "antd";
 import CustomizeCaseTemplates from "container/admin/CustomizeCaseTemplates";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
-import Integrations from "container/admin/Integrations";
 import UsersAndGroups from "container/admin/UsersAndGroups";
 import React from "react";
 
