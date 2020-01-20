@@ -112,3 +112,11 @@ def find_attachment_or_throw_execution_error(id:)
         raise GraphQL::ExecutionError, "Could not find an attachment with id #{id}."
     end
 end
+
+def find_form_or_throw_execution_error(id:)
+    begin
+        Form.find(id)
+    rescue
+        raise GraphQL::ExecutionError, "Could not find a form with id #{id}."
+    end
+end
