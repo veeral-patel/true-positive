@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_234028) do
+ActiveRecord::Schema.define(version: 2020_01_20_060105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,11 +190,12 @@ ActiveRecord::Schema.define(version: 2020_01_19_234028) do
 
   create_table "forms", force: :cascade do |t|
     t.string "name"
-    t.json "schema"
     t.bigint "created_by_id"
     t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "form_schema"
+    t.json "ui_schema"
     t.index ["created_by_id"], name: "index_forms_on_created_by_id"
     t.index ["tenant_id"], name: "index_forms_on_tenant_id"
   end
