@@ -8,37 +8,25 @@ import {
   Input,
   List,
   Spin,
-  Tabs,
   Typography
 } from "antd";
-import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
+import GET_FORMS from "queries/getForms";
 import React, { useState } from "react";
 import IForm from "ts/interfaces/IForm";
 import { formatDateOnly } from "utils/formatISO8601";
 
-const { TabPane } = Tabs;
 const { Paragraph } = Typography;
-
-const GET_FORMS = gql`
-  query {
-    forms {
-      id
-      name
-      createdAt
-      createdBy {
-        username
-      }
-    }
-  }
-`;
 
 interface FormListData {
   forms: IForm[];
 }
 
 function CustomizeForms() {
-  const [openDrawer, setOpenDrawer] = useState<"CREATE_FORM" | null>(null);
+  const [createFormDrawerIsOpen, toggleCreateFormDrawer] = useState<boolean>(
+    false
+  );
+
   const { loading, data, error } = useQuery<FormListData>(GET_FORMS);
 
   return (
@@ -55,7 +43,7 @@ function CustomizeForms() {
               </Paragraph>
               <Button
                 icon={<PlusOutlined />}
-                onClick={() => setOpenDrawer("CREATE_FORM")}
+                onClick={() => toggleCreateFormDrawer(true)}
               >
                 Create form
               </Button>
@@ -68,7 +56,7 @@ function CustomizeForms() {
           <Button
             type="link"
             style={{ paddingLeft: 0 }}
-            onClick={() => setOpenDrawer("CREATE_FORM")}
+            onClick={() => toggleCreateFormDrawer(true)}
           >
             Create Form
           </Button>
@@ -94,12 +82,12 @@ function CustomizeForms() {
         <Error title="Could not fetch forms" subtitle={error.message} />
       )}
       <Drawer
-        visible={openDrawer === "CREATE_FORM"}
+        visible={createFormDrawerIsOpen}
         title={<h3>Create a form</h3>}
         width={600}
         maskClosable={false}
         keyboard={false}
-        onClose={() => setOpenDrawer(null)}
+        onClose={() => toggleCreateFormDrawer(true)}
       >
         <Form colon={false} layout="vertical" style={{ marginTop: "0.5em" }}>
           <Form.Item
