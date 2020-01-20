@@ -7,8 +7,8 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  # Set host in development to be console.truepositive.app
-  Rails.application.routes.default_url_options[:host] = 'console.truepositive.app'
+  # Set host in production to be api.truepositive.app
+  Rails.application.routes.default_url_options[:host] = 'api.truepositive.app'
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
