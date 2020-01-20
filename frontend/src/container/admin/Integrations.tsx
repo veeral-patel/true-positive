@@ -1,7 +1,7 @@
 import { Button, Typography } from "antd";
 import ListOfCreateCaseEmailAddresses from "container/admin/ListOfCreateCaseEmailAddresses";
 import React, { useState } from "react";
-import CreateInboundAddressDrawer from "./CreateInboundAddressDrawer";
+import CreateCCEmailAddressDrawer from "./CreateCCEmailAddressDrawer";
 
 const { Paragraph } = Typography;
 
@@ -28,7 +28,7 @@ function Integrations() {
       <div style={{ marginTop: "1em" }}>
         <ListOfCreateCaseEmailAddresses />
       </div>
-      <CreateInboundAddressDrawer
+      <CreateCCEmailAddressDrawer
         visible={openDrawer === "CREATE_INBOUND_ADDRESS"}
         onClose={() => setOpenDrawer(null)}
       />

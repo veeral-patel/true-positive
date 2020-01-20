@@ -11,7 +11,7 @@ interface Props {
   onClose: () => void;
 }
 
-function CreateInboundAddressDrawer({ visible, onClose }: Props) {
+function CreateCCEmailAddressDrawer({ visible, onClose }: Props) {
   const [createInboundAddress] = useMutation(CREATE_CREATE_CASE_EMAIL_ADDRESS, {
     onCompleted: function() {
       message.success("Created inbound address");
@@ -91,4 +91,4 @@ function CreateInboundAddressDrawer({ visible, onClose }: Props) {
   );
 }
 
-export default CreateInboundAddressDrawer;
+export default CreateCCEmailAddressDrawer;
