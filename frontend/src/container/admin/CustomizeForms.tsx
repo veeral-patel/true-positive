@@ -87,7 +87,7 @@ function CustomizeForms() {
         width={600}
         maskClosable={false}
         keyboard={false}
-        onClose={() => toggleCreateFormDrawer(true)}
+        onClose={() => toggleCreateFormDrawer(false)}
       >
         <Form colon={false} layout="vertical" style={{ marginTop: "0.5em" }}>
           <Form.Item
