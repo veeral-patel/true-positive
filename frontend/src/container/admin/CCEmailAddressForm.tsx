@@ -12,9 +12,15 @@ interface Props {
   onFinish: (values: Values) => void;
   onClose: () => void;
   initialValues: Values | null;
+  submitText: string;
 }
 
-function CCEmailAddressForm({ onFinish, onClose, initialValues }: Props) {
+function CCEmailAddressForm({
+  onFinish,
+  onClose,
+  initialValues,
+  submitText
+}: Props) {
   return (
     <Form
       layout="vertical"
@@ -54,7 +60,7 @@ function CCEmailAddressForm({ onFinish, onClose, initialValues }: Props) {
             Cancel
           </Button>
           <Button type="primary" htmlType="submit">
-            Create address
+            {submitText}
           </Button>
         </>
       </Form.Item>

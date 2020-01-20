@@ -52,6 +52,7 @@ function UpdateCCEmailAddressDrawer({
           case_template_id: data.createCaseEmailAddress.caseTemplate.id,
           default_creator: data.createCaseEmailAddress.createdBy.username
         }}
+        submitText="Update Address"
       />
     );
   }
