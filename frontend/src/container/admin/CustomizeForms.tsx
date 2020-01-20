@@ -1,5 +1,5 @@
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
   Drawer,
@@ -7,10 +7,13 @@ import {
   Form,
   Input,
   List,
+  message,
+  notification,
   Popconfirm,
   Spin,
   Typography
 } from "antd";
+import DELETE_A_FORM from "mutations/deleteForm";
 import Error from "presentational/shared/errors/Error";
 import GET_FORMS from "queries/getForms";
 import React, { useState } from "react";
@@ -29,6 +32,19 @@ function CustomizeForms() {
   );
 
   const { loading, data, error } = useQuery<FormListData>(GET_FORMS);
+
+  const [deleteForm] = useMutation(DELETE_A_FORM, {
+    onCompleted() {
+      message.success("Deleted form");
+    },
+    onError(error) {
+      notification.error({
+        message: "Failed to delete form",
+        description: error.message
+      });
+    },
+    refetchQueries: [{ query: GET_FORMS }]
+  });
 
   return (
     <>
@@ -73,6 +89,15 @@ function CustomizeForms() {
                     title="Delete this form?"
                     okText="Yes, Delete"
                     cancelText="No"
+                    onConfirm={() =>
+                      deleteForm({
+                        variables: {
+                          input: {
+                            id: form.id
+                          }
+                        }
+                      })
+                    }
                   >
                     <Button icon={<DeleteOutlined />} type="link" />
                   </Popconfirm>
