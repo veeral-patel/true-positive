@@ -77,6 +77,7 @@ function ListOfCreateCaseEmailAddresses() {
             renderItem={emailAddress => (
               <List.Item
                 key={emailAddress.id}
+                onClick={() => setIdOfOpenDrawer(emailAddress.id)}
                 actions={[
                   <Popconfirm
                     title="Delete this inbound address?"
