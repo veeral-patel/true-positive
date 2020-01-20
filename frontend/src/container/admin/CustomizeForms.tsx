@@ -2,10 +2,7 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
-  Drawer,
   Empty,
-  Form,
-  Input,
   List,
   message,
   notification,
@@ -19,6 +16,7 @@ import GET_FORMS from "queries/getForms";
 import React, { useState } from "react";
 import IForm from "ts/interfaces/IForm";
 import { formatDateOnly } from "utils/formatISO8601";
+import CreateFormDrawer from "./CreateFormDrawer";
 
 const { Paragraph } = Typography;
 
@@ -117,24 +115,10 @@ function CustomizeForms() {
       {error && (
         <Error title="Could not fetch forms" subtitle={error.message} />
       )}
-      <Drawer
+      <CreateFormDrawer
         visible={createFormDrawerIsOpen}
-        title={<h3>Create a form</h3>}
-        width={600}
-        maskClosable={false}
-        keyboard={false}
         onClose={() => toggleCreateFormDrawer(false)}
-      >
-        <Form colon={false} layout="vertical" style={{ marginTop: "0.5em" }}>
-          <Form.Item
-            name="name"
-            label="Name"
-            rules={[{ required: true, message: "Please name your form" }]}
-          >
-            <Input placeholder="Live response findings" />
-          </Form.Item>
-        </Form>
-      </Drawer>
+      />
     </>
   );
 }
