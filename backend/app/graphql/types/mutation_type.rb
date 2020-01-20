@@ -81,5 +81,7 @@ module Types
       # inbound email addresses for creating cases
       field :create_create_case_email_address, mutation: Mutations::CreateCreateCaseEmailAddress
       field :delete_create_case_email_address, mutation: Mutations::DeleteCreateCaseEmailAddress
+
+      # forms
   end
 end
