@@ -51,7 +51,7 @@ function CustomizeForms() {
             <div style={{ marginTop: "1em" }}>
               <h3>No forms</h3>
               <Paragraph>
-                Define forms so you can structure data in your cases.
+                Define forms so you can structure the data in your cases.
               </Paragraph>
               <Button
                 icon={<PlusOutlined />}

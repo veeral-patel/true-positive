@@ -151,6 +151,15 @@ module Types
       #   the_template
       # end
 
+      # ----------------- Forms --------------------
+      field :forms, [Types::FormType], null: false do
+        description "Lists all forms."
+      end
+
+      def forms
+        Form.all
+      end
+
       # ---------------- Case Templates ------------------
       field :case_templates, [Types::CaseTemplateType], null: false do
         description "Lists all case templates."
