@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/react-hooks";
-import { Drawer, Form, Input, Spin } from "antd";
+import { Drawer, Spin } from "antd";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CC_EMAIL_ADDRESS from "queries/getOneCreateCaseEmailAddress";
 import React from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
-import CaseTemplateSelect from "./CaseTemplateSelect";
+import CCEmailAddressForm from "./CCEmailAddressForm";
 
 interface Props {
   visible: boolean;
@@ -42,26 +42,17 @@ function UpdateCCEmailAddressDrawer({
     );
   } else if (data) {
     drawerContent = (
-      <Form
-        colon={false}
-        layout="vertical"
+      // initialValues={{
+      // }}
+      <CCEmailAddressForm
+        onClose={onClose}
+        onFinish={() => void 0}
         initialValues={{
-          email: data.createCaseEmailAddress.email,
-          case_template_id: data.createCaseEmailAddress.caseTemplate.id
+          // email: data.createCaseEmailAddress.email,
+          case_template_id: data.createCaseEmailAddress.caseTemplate.id,
+          default_creator: data.createCaseEmailAddress.createdBy.username
         }}
-      >
-        <Form.Item label="Email" name="email">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item
-          label="Case Template"
-          name="case_template_id"
-          rules={[{ required: true, message: "Please choose a case template" }]}
-          extra="Cases created from emails sent to this address will be initialized from the template above."
-        >
-          <CaseTemplateSelect />
-        </Form.Item>
-      </Form>
+      />
     );
   }
 

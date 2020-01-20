@@ -5,6 +5,10 @@ const GET_ONE_CC_EMAIL_ADDRESS = gql`
     createCaseEmailAddress(id: $id) {
       id
       email
+      createdAt
+      createdBy {
+        username
+      }
       caseTemplate {
         id
       }
