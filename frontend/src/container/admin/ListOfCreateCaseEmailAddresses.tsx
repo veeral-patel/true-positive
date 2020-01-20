@@ -16,6 +16,7 @@ import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses
 import React, { useState } from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
 import { formatDateOnly } from "utils/formatISO8601";
+import UpdateCCEmailAddressDrawer from "./UpdateCCEmailAddressDrawer";
 
 const { Paragraph, Text } = Typography;
 
@@ -102,11 +103,11 @@ function ListOfCreateCaseEmailAddresses() {
               </List.Item>
             )}
           />
-          {/* <UpdateCCEmailAddressDrawer
+          <UpdateCCEmailAddressDrawer
             visible={idOfOpenDrawer !== null}
             onClose={() => setIdOfOpenDrawer(null)}
             ccEmailAddressId={idOfOpenDrawer}
-          /> */}
+          />
         </>
       );
     }
