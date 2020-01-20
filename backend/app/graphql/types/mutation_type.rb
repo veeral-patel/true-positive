@@ -83,5 +83,6 @@ module Types
       field :delete_create_case_email_address, mutation: Mutations::DeleteCreateCaseEmailAddress
 
       # forms
+      field :delete_form, mutation: Mutations::DeleteForm
   end
 end
