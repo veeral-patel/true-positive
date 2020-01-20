@@ -42,13 +42,10 @@ function UpdateCCEmailAddressDrawer({
     );
   } else if (data) {
     drawerContent = (
-      // initialValues={{
-      // }}
       <CCEmailAddressForm
         onClose={onClose}
         onFinish={() => void 0}
         initialValues={{
-          // email: data.createCaseEmailAddress.email,
           case_template_id: data.createCaseEmailAddress.caseTemplate.id,
           default_creator: data.createCaseEmailAddress.createdBy.username
         }}
