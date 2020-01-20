@@ -4,14 +4,15 @@ import UserSelect from "container/shared/users/UserSelect";
 import React from "react";
 
 interface Values {
+  // don't change the keys below without searching through the codebase for them
   default_creator: string;
   case_template_id: number;
 }
 
 interface Props {
-  onFinish: (values: Values) => void;
+  onFinish: (values: any) => void;
   onClose: () => void;
-  initialValues: Values | null;
+  initialValues?: Values;
   submitText: string;
 }
 
@@ -26,7 +27,8 @@ function CCEmailAddressForm({
       layout="vertical"
       colon={false}
       style={{ marginTop: "1em" }}
-      initialValues={initialValues ? initialValues : undefined}
+      initialValues={initialValues}
+      onFinish={onFinish}
     >
       <Form.Item
         label="Case Template"
