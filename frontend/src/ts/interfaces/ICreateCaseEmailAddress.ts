@@ -4,7 +4,7 @@ import IUser from "./IUser";
 interface ICreateCaseEmailAddress {
   id: number;
   email: string;
-  template: ICaseTemplate;
+  caseTemplate: ICaseTemplate;
   createdAt: string;
   createdBy: IUser;
 }

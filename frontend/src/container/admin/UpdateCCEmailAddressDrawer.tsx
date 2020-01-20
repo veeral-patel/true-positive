@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import { Drawer, Form, Input, Spin } from "antd";
-import gql from "graphql-tag";
 import Error from "presentational/shared/errors/Error";
+import GET_ONE_CC_EMAIL_ADDRESS from "queries/getOneCreateCaseEmailAddress";
 import React from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
 import CaseTemplateSelect from "./CaseTemplateSelect";
@@ -15,15 +15,6 @@ interface Props {
 interface Response {
   createCaseEmailAddress: ICreateCaseEmailAddress;
 }
-
-const GET_ONE_CC_EMAIL_ADDRESS = gql`
-  query createCaseEmailAddress($id: ID!) {
-    createCaseEmailAddress(id: $id) {
-      id
-      email
-    }
-  }
-`;
 
 function UpdateCCEmailAddressDrawer({
   visible,
@@ -54,14 +45,17 @@ function UpdateCCEmailAddressDrawer({
       <Form
         colon={false}
         layout="vertical"
-        initialValues={{ email: data.createCaseEmailAddress.email }}
+        initialValues={{
+          email: data.createCaseEmailAddress.email,
+          case_template_id: data.createCaseEmailAddress.caseTemplate.id
+        }}
       >
         <Form.Item label="Email" name="email">
           <Input disabled />
         </Form.Item>
         <Form.Item
           label="Case Template"
-          name="case_template"
+          name="case_template_id"
           rules={[{ required: true, message: "Please choose a case template" }]}
           extra="We'll use this case template to initialize cases from emails sent to this address"
         >

@@ -11,6 +11,10 @@ module Types
             description "The email address itself."
         end
 
+        field :case_template, Types::CreateCaseEmailAddressType, null: false do
+            description "The case template to use to initialize cases from emails sent to this inbound address."
+        end
+
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false do
             description "When this inbound address was created."
         end
