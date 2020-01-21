@@ -265,8 +265,11 @@ function Info(props: InfoProps) {
             defaultFileList={defaultFileList}
             style={{ maxWidth: "750px" }}
             action={file => {
+              // read the contents of the file
               const reader = new FileReader();
               reader.readAsBinaryString(file);
+
+              // once done, invoke createAttachment with the file's base64-encoded contents
               reader.onload = e => {
                 createAttachment({
                   variables: {
@@ -278,6 +281,8 @@ function Info(props: InfoProps) {
                   }
                 });
               };
+
+              // TODO: delete me
               return "empty";
             }}
             onRemove={file => {
