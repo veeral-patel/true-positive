@@ -264,6 +264,22 @@ function Info(props: InfoProps) {
             multiple
             defaultFileList={defaultFileList}
             style={{ maxWidth: "750px" }}
+            action={file => {
+              const reader = new FileReader();
+              reader.readAsBinaryString(file);
+              reader.onload = e => {
+                createAttachment({
+                  variables: {
+                    input: {
+                      blob: btoa(reader.result as string),
+                      filename: file.name,
+                      caseId: activeCase.id
+                    }
+                  }
+                });
+              };
+              return "empty";
+            }}
             onRemove={file => {
               deleteAttachment({
                 variables: {
