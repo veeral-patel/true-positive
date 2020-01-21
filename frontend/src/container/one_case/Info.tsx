@@ -264,7 +264,7 @@ function Info(props: InfoProps) {
             multiple
             defaultFileList={defaultFileList}
             style={{ maxWidth: "750px" }}
-            action={file => {
+            beforeUpload={file => {
               // read the contents of the file
               const reader = new FileReader();
               reader.readAsBinaryString(file);
@@ -282,8 +282,8 @@ function Info(props: InfoProps) {
                 });
               };
 
-              // TODO: delete me
-              return "empty";
+              // Tell antd to not attempt to upload the file
+              return false;
             }}
             onRemove={file => {
               deleteAttachment({
