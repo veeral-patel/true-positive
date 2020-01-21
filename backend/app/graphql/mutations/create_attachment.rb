@@ -21,7 +21,11 @@ class Mutations::CreateAttachment < Mutations::BaseMutation
         # find the case to add this attachment to
         the_case = find_case_or_throw_execution_error(case_id: case_id)
 
-        # TODO: authorize this action
+        # authorize this action
+        # TODO: when I allow file uploads to tasks and indicators, this call needs to change
+        unless CasePolicy.new(context[:current_user], the_case).update_case?
+            raise GraphQL::ExecutionError, "You are not authorized to add an attachment to this case."
+        end
 
         # create a new attachment in memory
         new_attachment = the_case.attachments.new(
