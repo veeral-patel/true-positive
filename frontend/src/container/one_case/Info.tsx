@@ -24,6 +24,7 @@ import ActionsDropdown from "container/one_case/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
 import { inject, observer } from "mobx-react";
+import CREATE_ATTACHMENT from "mutations/createAttachment";
 import DELETE_ATTACHMENT from "mutations/deleteAttachment";
 import MERGE_A_CASE from "mutations/mergeCase";
 import UPDATE_CASE from "mutations/updateCase";
@@ -75,6 +76,18 @@ function Info(props: InfoProps) {
     onError: function(error: ApolloError) {
       notification.error({
         message: "Could not update this case",
+        description: error.message
+      });
+    }
+  });
+
+  const [createAttachment] = useMutation(CREATE_ATTACHMENT, {
+    onCompleted: function() {
+      message.success("Added attachment");
+    },
+    onError: function(error) {
+      notification.error({
+        message: "Could not add attachment",
         description: error.message
       });
     }
@@ -250,6 +263,7 @@ function Info(props: InfoProps) {
           <Dragger
             multiple
             defaultFileList={defaultFileList}
+            style={{ maxWidth: "750px" }}
             onRemove={file => {
               deleteAttachment({
                 variables: {
@@ -260,7 +274,6 @@ function Info(props: InfoProps) {
               });
               return false;
             }}
-            style={{ maxWidth: "750px" }}
           >
             <UploadOutlined style={{ fontSize: 36 }} />
             <div style={{ marginTop: "1em" }}>
