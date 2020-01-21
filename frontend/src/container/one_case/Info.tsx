@@ -84,6 +84,7 @@ function Info(props: InfoProps) {
   const [createAttachment] = useMutation(CREATE_ATTACHMENT, {
     onCompleted: function() {
       message.success("Added attachment");
+      activeCaseStore!.loadActiveCase();
     },
     onError: function(error) {
       notification.error({
