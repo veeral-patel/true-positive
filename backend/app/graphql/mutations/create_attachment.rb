@@ -1,5 +1,5 @@
 class Mutations::CreateAttachment < Mutations::BaseMutation
-    # TODO: add a description here
+    description "Attach a file to a case, task, indicator, or another object."
 
     argument :blob, String, required: true do
         description "The file, base64-encoded."
