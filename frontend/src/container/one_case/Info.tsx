@@ -15,9 +15,9 @@ import {
   Popconfirm,
   Row,
   Tooltip,
+  Typography,
   Upload
 } from "antd";
-import Paragraph from "antd/lib/typography/Paragraph";
 import { UploadFile } from "antd/lib/upload/interface";
 import { ApolloError } from "apollo-boost";
 import ActionsDropdown from "container/one_case/ActionsDropdown";
@@ -40,6 +40,7 @@ import formatISO8601 from "utils/formatISO8601";
 import { getPathToACase } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 
+const { Paragraph } = Typography;
 const { Content } = Layout;
 const { TextArea } = Input;
 const { Dragger } = Upload;
