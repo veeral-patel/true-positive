@@ -13,23 +13,29 @@ class Mutations::CreateAttachment < Mutations::BaseMutation
         description "ID of the case to add this attachment to."
     end
 
-    # TODO: remove the URL field
-    field :url, String, null: true do
-        description "A URL to access the newly uploaded file."
+    field :attachment, Types::AttachmentType, null: true do
+        description "The newly created attachment."
     end
 
     def resolve(blob:, filename:, case_id:)
+        # find the case to add this attachment to
         the_case = find_case_or_throw_execution_error(case_id: case_id)
 
-        decoded = Base64.decode64(blob)
+        # TODO: authorize this action
 
-        at = the_case.attachments.create(file: {
-            io: StringIO.new(decoded),
-            filename: filename
-        }, created_by: context[:current_user])
+        # create a new attachment in memory
+        new_attachment = the_case.attachments.new(
+            file: { io: StringIO.new(Base64.decode64(blob)), filename: filename },
+            created_by: context[:current_user]
+        )
 
-        {
-            "url": at.url
-        }
+        # and save it to the database
+        if new_attachment.save
+            {
+                "attachment": new_attachment
+            }
+        else
+            raise GraphQL::ExecutionError, attachment.errors.full_messages.join(" | ")
+        end
     end
 end
