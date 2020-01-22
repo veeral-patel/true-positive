@@ -59,7 +59,7 @@ end
 
 def find_task_template_or_throw_execution_error(id:)
     begin
-        TaskTemplate.find(template_id)
+        TaskTemplate.find(id)
     rescue
         raise GraphQL::ExecutionError, "Could not find a task template with id #{id}."
     end
