@@ -19,5 +19,12 @@ class Mutations::RemoveTaskTemplateFromTaskGroup < Mutations::BaseMutation
         # find the task template and task group
         task_template = find_task_template_or_throw_execution_error(id: task_template_id)
         task_group = find_task_group_or_throw_execution_error(id: task_group_id)
+
+        # raise an exception if the TT is not in the group
+        if not task_group.task_templates.include? task_template
+            raise GraphQL::ExecutionError, "#{task_template.name} is not part of this task group."
+        end
+
+        # authorize this action
     end
 end
