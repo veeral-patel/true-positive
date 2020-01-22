@@ -521,7 +521,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
   return (
     <Drawer
       visible={visible}
-      title={<h3>Update a case template</h3>}
+      title={<h3>Update case template</h3>}
       width={700}
       maskClosable={false}
       keyboard={false}
