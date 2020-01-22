@@ -53,7 +53,11 @@ class Mutations::AddTaskTemplateToTaskGroup < Mutations::BaseMutation
         end
 
         # attempt to create a new association between the task group and the task template we found
+        if TaskGroupTaskTemplate.create(task_group: task_group, task_template: task_template)
+            { case_template: case_template }
+        else
+            raise GraphQL::ExecutionError, case_template.errors.full_messages.join(" | ") 
+        end
 
-        # if we fail, then raise a GraphQL execution error
     end
 end
