@@ -1,6 +1,18 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { Button, Drawer, Empty, Form, List, message, notification, Popconfirm, Spin, Tabs, Typography } from "antd";
+import {
+  Button,
+  Drawer,
+  Empty,
+  Form,
+  List,
+  message,
+  notification,
+  Popconfirm,
+  Spin,
+  Tabs,
+  Typography
+} from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import CreateTaskGroupModal from "container/admin/CreateTaskGroupModal";
@@ -8,6 +20,7 @@ import TTGroup from "container/one_case/TTGroup";
 import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
+import ADD_TASK_TEMPLATE_TO_TASK_GROUP from "mutations/addTaskTemplateToTaskGroup";
 import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
 import CREATE_A_TASK_GROUP from "mutations/createTaskGroup";
 import DELETE_A_TASK_GROUP from "mutations/deleteTaskGroup";
@@ -197,6 +210,31 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       }
     ]
   });
+
+  // ---
+
+  const addTaskTemplateToTaskGroup = useMutation(
+    ADD_TASK_TEMPLATE_TO_TASK_GROUP,
+    {
+      onCompleted: function() {
+        message.success("Added task template");
+      },
+      onError: function(error) {
+        notification.error({
+          message: "Could not add task template",
+          description: error.message
+        });
+      },
+      refetchQueries: [
+        {
+          query: GET_ONE_CASE_TEMPLATE,
+          variables: { id: templateId }
+        }
+      ]
+    }
+  );
+
+  // ---
 
   let drawerContent: React.ReactNode = null;
   if (loading) drawerContent = <Spin />;
