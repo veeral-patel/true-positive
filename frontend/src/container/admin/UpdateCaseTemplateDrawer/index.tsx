@@ -283,7 +283,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
             }
           />
         </TabPane>
-        <TabPane tab="Tasks" key="tasks">
+        <TabPane tab="Task Templates" key="task_templates">
           <Paragraph type="secondary">
             Cases created from this template will be populated with the tasks
             below.
