@@ -14,7 +14,7 @@ interface Props {
   deleteTaskGroup: () => void;
 }
 
-function TaskGroup2({
+function TTGroup({
   taskGroup,
   createTask,
   renameTaskGroup,
@@ -64,4 +64,4 @@ function TaskGroup2({
   );
 }
 
-export default TaskGroup2;
+export default TTGroup;
