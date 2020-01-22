@@ -1,18 +1,6 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import {
-  Button,
-  Drawer,
-  Empty,
-  Form,
-  List,
-  message,
-  notification,
-  Popconfirm,
-  Spin,
-  Tabs,
-  Typography
-} from "antd";
+import { Button, Drawer, Empty, Form, List, message, notification, Popconfirm, Spin, Tabs, Typography } from "antd";
 import { ApolloError } from "apollo-boost";
 import CaseTemplateForm from "container/admin/CaseTemplateForm";
 import CreateTaskGroupModal from "container/admin/CreateTaskGroupModal";
@@ -256,7 +244,8 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       <TTGroup
         key={tgroup.id}
         taskGroup={tgroup}
-        createTask={newName => void 0}
+        createTT={newName => void 0}
+        handleTTClicked={id => setIdOfActiveTT(id)}
         renameTaskGroup={newName =>
           updateTaskGroup({
             variables: {

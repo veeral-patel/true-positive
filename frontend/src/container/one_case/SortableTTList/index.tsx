@@ -5,9 +5,10 @@ import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 interface Props {
   existingTTs: ITaskTemplate[];
+  handleTTClicked: (id: number) => void;
 }
 
-function SortableComponent({ existingTTs }: Props) {
+function SortableComponent({ existingTTs, handleTTClicked }: Props) {
   const [orderedTTs, setOrderedTTs] = useState(existingTTs);
 
   const onSortEnd = ({
@@ -28,7 +29,12 @@ function SortableComponent({ existingTTs }: Props) {
   };
 
   return (
-    <SortableList orderedTTs={orderedTTs} onSortEnd={onSortEnd} distance={3} />
+    <SortableList
+      orderedTTs={orderedTTs}
+      onSortEnd={onSortEnd}
+      distance={3}
+      handleTTClicked={handleTTClicked}
+    />
   );
 }
 

@@ -25,9 +25,11 @@ interface OneTemplateData {
   taskTemplate: ITaskTemplate;
 }
 
-function UpdateTaskTemplateDrawer(props: DrawerProps) {
-  const { visible, handleClose, templateId } = props;
-
+function UpdateTaskTemplateDrawer({
+  visible,
+  handleClose,
+  templateId
+}: DrawerProps) {
   /* retrieve this template's existing information. */
   const { loading, error, data } = useQuery<OneTemplateData>(
     GET_ONE_TASK_TEMPLATE,
@@ -41,7 +43,6 @@ function UpdateTaskTemplateDrawer(props: DrawerProps) {
   const [updateTaskTemplate] = useMutation(UPDATE_TASK_TEMPLATE, {
     onCompleted: function() {
       message.success("Updated the template");
-      handleClose();
     },
     onError: function(error: ApolloError) {
       notification.error({

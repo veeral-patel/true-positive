@@ -9,16 +9,18 @@ const { Text } = Typography;
 
 interface Props {
   taskGroup: ITaskGroup;
-  createTask: (name: string) => void;
+  createTT: (name: string) => void;
   renameTaskGroup: (newName: string) => void;
   deleteTaskGroup: () => void;
+  handleTTClicked: (id: number) => void;
 }
 
 function TTGroup({
   taskGroup,
-  createTask,
+  createTT,
   renameTaskGroup,
-  deleteTaskGroup
+  deleteTaskGroup,
+  handleTTClicked
 }: Props) {
   return (
     <div style={{ marginBottom: "3em" }}>
@@ -53,12 +55,15 @@ function TTGroup({
           handleEnter={event => {
             const nameOfNewTask = event.currentTarget.value;
             if (!nameOfNewTask) return; // do nothing if the name is empty
-            createTask(nameOfNewTask);
+            createTT(nameOfNewTask);
           }}
         />
       </div>
       <div style={{ marginTop: "1em" }}>
-        <SortableTTList existingTTs={taskGroup.taskTemplates} />
+        <SortableTTList
+          existingTTs={taskGroup.taskTemplates}
+          handleTTClicked={handleTTClicked}
+        />
       </div>
     </div>
   );
