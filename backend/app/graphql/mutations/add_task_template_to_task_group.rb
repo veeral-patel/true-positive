@@ -33,11 +33,24 @@ class Mutations::AddTaskTemplateToTaskGroup < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You are not authorized to update this case template."
         end
 
-        # if a task_group_id is provided, then find the task group corresponding to that ID
+        task_group = nil
+
+        if task_group_id.nil?
+            # if a task_group_id is not provided, then create a new task group in the case template
+            task_group = TaskGroup.create(
+                created_by: context[:current_user],
+                name: "General",
+                caseable: case_template
+            )
+        else
+            # if a task_group_id is provided, then find the task group corresponding to that ID
+            task_group = find_task_group_or_throw_execution_error(id: task_group_id)
 
             # also ensure that the task group we found is in the case template we found
-        
-        # if a task_group_id is not provided, then create a new task group in the case template
+            if not case_template.task_groups.include? task_group
+                raise GraphQL::ExecutionError, "The case template you specified does not have a task group with ID #{task_group_id}"
+            end
+        end
 
         # attempt to create a new association between the task group and the task template we found
 
