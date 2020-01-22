@@ -24,5 +24,18 @@ class Mutations::AddTaskTemplateToTaskGroup < Mutations::BaseMutation
     end
 
     def resolve(task_template_id:, case_template_id:, task_group_id: nil)
+        # find the task_template and case template
+
+        # authorize this action
+
+        # if a task_group_id is provided, then find the task group corresponding to that ID
+
+            # also ensure that the task group we found is in the case template we found
+        
+        # if a task_group_id is not provided, then create a new task group in the case template
+
+        # attempt to create a new association between the task group and the task template we found
+
+        # if we fail, then raise a GraphQL execution error
     end
 end
