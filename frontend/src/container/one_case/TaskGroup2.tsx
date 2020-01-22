@@ -49,6 +49,7 @@ function TaskGroup2({
       </Tooltip>
       <div style={{ marginTop: "0.5em" }}>
         <CreateTaskInput
+          placeholder="Create a task template"
           handleEnter={event => {
             const nameOfNewTask = event.currentTarget.value;
             if (!nameOfNewTask) return; // do nothing if the name is empty
