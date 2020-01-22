@@ -1,4 +1,5 @@
-import { List } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, List, Popconfirm } from "antd";
 import React from "react";
 import { SortableElement } from "react-sortable-hoc";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
@@ -15,6 +16,11 @@ const SortableItem = SortableElement(
       <List.Item
         key={taskTemplate.id}
         style={{ cursor: "grab", borderBottom: "none" }}
+        actions={[
+          <Popconfirm title="Delete this task template?">
+            <Button type="link" icon={<DeleteOutlined />} />
+          </Popconfirm>
+        ]}
       >
         <List.Item.Meta
           title={
