@@ -1,12 +1,12 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Drawer, message, notification, Spin } from "antd";
 import { ApolloError } from "apollo-boost";
+import TaskTemplateForm from "container/admin/TaskTemplateForm";
 import UPDATE_TASK_TEMPLATE from "mutations/updateTaskTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_TASK_TEMPLATE from "queries/getOneTaskTemplate";
 import React from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
-import TaskTemplateForm from "./TaskTemplateForm";
 
 // ---
 
