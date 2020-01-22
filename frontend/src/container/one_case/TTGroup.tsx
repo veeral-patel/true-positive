@@ -3,12 +3,14 @@ import { Button, Modal, Tooltip, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
 import SortableTTList from "container/one_case/SortableTTList";
 import React from "react";
+import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import ITaskGroup from "ts/interfaces/ITaskGroup";
 
 const { Text } = Typography;
 
 interface Props {
   taskGroup: ITaskGroup;
+  caseTemplate: ICaseTemplate;
   createTT: (name: string) => void;
   renameTaskGroup: (newName: string) => void;
   deleteTaskGroup: () => void;
@@ -17,6 +19,7 @@ interface Props {
 
 function TTGroup({
   taskGroup,
+  caseTemplate,
   createTT,
   renameTaskGroup,
   deleteTaskGroup,
@@ -63,6 +66,8 @@ function TTGroup({
         <SortableTTList
           existingTTs={taskGroup.taskTemplates}
           handleTTClicked={handleTTClicked}
+          taskGroup={taskGroup}
+          caseTemplate={caseTemplate}
         />
       </div>
     </div>

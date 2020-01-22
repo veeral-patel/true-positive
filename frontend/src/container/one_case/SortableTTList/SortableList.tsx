@@ -2,17 +2,21 @@ import { Empty, List, Typography } from "antd";
 import SortableItem from "container/one_case/SortableTTList/SortableItem";
 import React from "react";
 import { SortableContainer } from "react-sortable-hoc";
+import ICaseTemplate from "ts/interfaces/ICaseTemplate";
+import ITaskGroup from "ts/interfaces/ITaskGroup";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 const { Paragraph, Text } = Typography;
 
 interface Props {
+  taskGroup: ITaskGroup;
+  caseTemplate: ICaseTemplate;
   orderedTTs: ITaskTemplate[];
   handleTTClicked: (id: number) => void;
 }
 
 const SortableList = SortableContainer(
-  ({ orderedTTs, handleTTClicked }: Props) => {
+  ({ orderedTTs, handleTTClicked, taskGroup, caseTemplate }: Props) => {
     return (
       <List<ITaskTemplate>
         itemLayout="horizontal"
@@ -23,6 +27,8 @@ const SortableList = SortableContainer(
             key={taskTemplate.id}
             index={index}
             taskTemplate={taskTemplate}
+            taskGroup={taskGroup}
+            caseTemplate={caseTemplate}
             handleTTClicked={handleTTClicked}
           />
         )}
