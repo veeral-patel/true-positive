@@ -58,6 +58,5 @@ class Mutations::AddTaskTemplateToTaskGroup < Mutations::BaseMutation
         else
             raise GraphQL::ExecutionError, case_template.errors.full_messages.join(" | ") 
         end
-
     end
 end

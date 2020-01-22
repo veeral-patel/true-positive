@@ -53,9 +53,10 @@ module Types
       field :remove_user_from_group, mutation: Mutations::RemoveUserFromGroup
 
       # task templates -----
-      # field :create_task_template, mutation: Mutations::CreateTaskTemplate
-      # field :update_task_template, mutation: Mutations::UpdateTaskTemplate
-      # field :delete_task_template, mutation: Mutations::DeleteTaskTemplate
+      field :create_task_template, mutation: Mutations::CreateTaskTemplate
+      field :update_task_template, mutation: Mutations::UpdateTaskTemplate
+      field :delete_task_template, mutation: Mutations::DeleteTaskTemplate
+      field :add_task_template_to_task_group, mutation: Mutations::AddTaskTemplateToTaskGroup
 
       # case templates -----
       field :create_case_template, mutation: Mutations::CreateCaseTemplate
