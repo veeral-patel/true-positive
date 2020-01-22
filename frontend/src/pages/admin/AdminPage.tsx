@@ -1,8 +1,8 @@
 import { RouteComponentProps } from "@reach/router";
 import { Tabs } from "antd";
-import CustomizeCaseTemplates from "container/admin/CustomizeCaseTemplates";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
+import CustomizeTemplates from "container/admin/CustomizeTemplates";
 import UsersAndGroups from "container/admin/UsersAndGroups";
 import React from "react";
 
@@ -13,17 +13,11 @@ class AdminPage extends React.Component<RouteComponentProps> {
     return (
       <div style={{ maxWidth: "900px" }}>
         <Tabs tabPosition="left">
-          {/* <TabPane tab="Integrations" key="integrations">
-            <Integrations />
-          </TabPane> */}
-          {/* <TabPane tab="Forms" key="forms">
-            <CustomizeForms />
-          </TabPane> */}
           <TabPane tab="Users" key="users">
             <UsersAndGroups />
           </TabPane>
-          <TabPane tab="Case Templates" key="case_templates">
-            <CustomizeCaseTemplates />
+          <TabPane tab="Templates" key="templates">
+            <CustomizeTemplates />
           </TabPane>
           <TabPane tab="Customize Statuses" key="statuses">
             <CustomizeStatuses />

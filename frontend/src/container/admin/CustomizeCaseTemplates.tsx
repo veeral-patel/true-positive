@@ -71,7 +71,6 @@ function CustomizeCaseTemplates() {
   else if (data) {
     return (
       <>
-        <h3>Case Templates</h3>
         {data.caseTemplates.length === 0 ? (
           <Empty
             description={
@@ -93,8 +92,8 @@ function CustomizeCaseTemplates() {
         ) : (
           <>
             <Paragraph style={{ marginBottom: "0.5em" }}>
-              Create case templates so you can quickly initialize cases from
-              them later.
+              Create case templates so you can easily initialize cases from them
+              later.
             </Paragraph>
             <Button
               type="link"

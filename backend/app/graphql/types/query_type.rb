@@ -129,27 +129,27 @@ module Types
       end
 
       # ------------- Task Templates ------------------
-      # field :task_templates, [Types::TaskTemplateType], null: false do
-      #   description "Lists all task templates."
-      # end
+      field :task_templates, [Types::TaskTemplateType], null: false do
+        description "Lists all task templates."
+      end
 
-      # def task_templates
-      #   TaskTemplate.all
-      # end
+      def task_templates
+        TaskTemplate.all
+      end
 
-      # field :task_template, Types::TaskTemplateType, null: false do
-      #   description "Retrieve a task template by its ID."
+      field :task_template, Types::TaskTemplateType, null: false do
+        description "Retrieve a task template by its ID."
 
-      #   argument :id, ID, required: true do
-      #     description "The ID of the task template to retrieve."
-      #   end
-      # end
+        argument :id, ID, required: true do
+          description "The ID of the task template to retrieve."
+        end
+      end
 
-      # def task_template(id:)
-      #   the_template = find_task_template_or_throw_execution_error(template_id: id)
+      def task_template(id:)
+        the_template = find_task_template_or_throw_execution_error(template_id: id)
 
-      #   the_template
-      # end
+        the_template
+      end
 
       # ----------------- Forms --------------------
       field :forms, [Types::FormType], null: false do

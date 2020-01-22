@@ -71,6 +71,9 @@ function CustomizeTaskTemplates() {
           />
         ) : (
           <>
+            <Paragraph style={{ marginBottom: "0.5em" }}>
+              Create task templates to scaffold tasks in case templates.
+            </Paragraph>
             <Button
               type="link"
               style={{ paddingLeft: 0 }}
