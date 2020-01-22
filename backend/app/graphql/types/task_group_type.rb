@@ -1,6 +1,6 @@
 module Types
     class TaskGroupType < Types::BaseObject
-        description "A category of tasks in a case. You might categorize tasks into Triage and Remediate, for example."
+        description "A group of tasks (in a case) or task templates (in a case template)."
 
         # never null
         field :id, ID, null: false do
@@ -13,6 +13,10 @@ module Types
 
         field :tasks, [Types::TaskType], null: false do
             description "The tasks in this group."
+        end
+
+        field :task_templates, [Types::TaskTemplateType], null: false do
+            description "The task templates in this group."
         end
     end
 end
