@@ -17,8 +17,8 @@ class Mutations::RemoveTaskTemplateFromTaskGroup < Mutations::BaseMutation
 
     # output ---
 
-    field :task_group, Types::TaskGroupType, null: true do
-        description "The updated task group."
+    field :case_template, Types::CaseTemplateType, null: true do
+        description "The updated case template."
     end
 
     def resolve(task_template_id:, case_template_id:, task_group_id:)
@@ -44,7 +44,7 @@ class Mutations::RemoveTaskTemplateFromTaskGroup < Mutations::BaseMutation
 
         # remove the TT
         if task_group.task_templates.destroy(task_template)
-            { task_group: task_group }
+            { case_template: case_template }
         else
             raise GraphQL::ExecutionError, task_group.errors.full_messages.join(" | ")
         end
