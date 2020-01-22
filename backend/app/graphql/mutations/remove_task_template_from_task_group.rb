@@ -25,7 +25,7 @@ class Mutations::RemoveTaskTemplateFromTaskGroup < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "#{task_template.name} is not part of this task group."
         end
 
-        # authorize this action
+        # TODO: authorize this action
 
         # remove the TT
         if task_group.task_templates.destroy(task_template)
