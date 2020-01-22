@@ -34,6 +34,7 @@ import React, { useState } from "react";
 import ICaseGroup from "ts/interfaces/ICaseGroup";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
+import UpdateTaskTemplateDrawer from "../UpdateTaskTemplateDrawer";
 import "./styles.css";
 
 const { TabPane } = Tabs;
@@ -51,6 +52,9 @@ interface OneTemplateData {
 
 function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
   const [openModal, setOpenModal] = useState<"CREATE_TASK_GROUP" | null>(null);
+
+  // used to render a drawer if the user clicks on one of this CT's task templates
+  const [idOfActiveTT, setIdOfActiveTT] = useState<number | null>(null);
 
   const { loading, error, data } = useQuery<OneTemplateData>(
     GET_ONE_CASE_TEMPLATE,
@@ -521,7 +525,14 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       keyboard={false}
       onClose={handleClose}
     >
-      {drawerContent}
+      <>
+        {drawerContent}
+        <UpdateTaskTemplateDrawer
+          visible={idOfActiveTT !== null}
+          handleClose={() => setIdOfActiveTT(null)}
+          templateId={idOfActiveTT}
+        />
+      </>
     </Drawer>
   );
 }
