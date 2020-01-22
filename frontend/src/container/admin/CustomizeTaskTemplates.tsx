@@ -10,12 +10,12 @@ import {
   Typography
 } from "antd";
 import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
+import TaskTemplateForm from "container/admin/TaskTemplateForm";
 import CREATE_A_TASK_TEMPLATE from "mutations/createTaskTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React, { useState } from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
-import TaskTemplateForm from "./TaskTemplateForm";
 
 const { Paragraph } = Typography;
 
