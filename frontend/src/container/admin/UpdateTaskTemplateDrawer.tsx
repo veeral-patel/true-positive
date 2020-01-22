@@ -10,7 +10,7 @@ import ITaskTemplate from "ts/interfaces/ITaskTemplate";
 
 // ---
 
-interface DrawerProps {
+interface Props {
   /* Whether to render this drawer. */
   visible: boolean;
 
@@ -25,11 +25,7 @@ interface OneTemplateData {
   taskTemplate: ITaskTemplate;
 }
 
-function UpdateTaskTemplateDrawer({
-  visible,
-  handleClose,
-  templateId
-}: DrawerProps) {
+function UpdateTaskTemplateDrawer({ visible, handleClose, templateId }: Props) {
   /* retrieve this template's existing information. */
   const { loading, error, data } = useQuery<OneTemplateData>(
     GET_ONE_TASK_TEMPLATE,
