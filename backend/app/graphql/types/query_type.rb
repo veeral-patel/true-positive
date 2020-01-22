@@ -146,7 +146,7 @@ module Types
       end
 
       def task_template(id:)
-        the_template = find_task_template_or_throw_execution_error(template_id: id)
+        the_template = find_task_template_or_throw_execution_error(id: id)
 
         the_template
       end

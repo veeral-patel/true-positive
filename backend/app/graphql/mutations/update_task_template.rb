@@ -29,7 +29,7 @@ class Mutations::UpdateTaskTemplate < Mutations::BaseMutation
 
     def resolve(id:, name: nil, description: nil, assigned_to: nil)
         # find the task template in memory
-        template = find_task_template_or_throw_execution_error(template_id: id)
+        template = find_task_template_or_throw_execution_error(id: id)
 
         # update it in memory
         template.name = name if not name.nil?

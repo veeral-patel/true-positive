@@ -25,7 +25,7 @@ class Mutations::AddTaskTemplateToTaskGroup < Mutations::BaseMutation
 
     def resolve(task_template_id:, case_template_id:, task_group_id: nil)
         # find the task_template and case template
-        task_template = find_task_template_or_throw_execution_error(template_id: task_template_id)
+        task_template = find_task_template_or_throw_execution_error(id: task_template_id)
         case_template = find_case_template_or_throw_execution_error(id: case_template_id)
 
         # authorize this action

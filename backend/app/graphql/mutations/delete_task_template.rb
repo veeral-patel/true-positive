@@ -10,7 +10,7 @@ class Mutations::DeleteTaskTemplate < Mutations::BaseMutation
     end
 
     def resolve(id:)
-        template = find_task_template_or_throw_execution_error(template_id: id)
+        template = find_task_template_or_throw_execution_error(id: id)
 
         # authorize this action
         unless TaskTemplatePolicy.new(context[:current_user], template).delete_template?
