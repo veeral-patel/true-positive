@@ -37,15 +37,12 @@ const GET_ONE_CASE_TEMPLATE = gql`
       taskGroups {
         id
         name
-        tasks {
+        taskTemplates {
           id
           name
-          description
-          done
           assignedTo {
             username
           }
-          commentCount
         }
       }
     }

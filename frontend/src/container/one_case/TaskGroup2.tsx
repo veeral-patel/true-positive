@@ -1,7 +1,7 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Button, Modal, Tooltip, Typography } from "antd";
 import CreateTaskInput from "container/one_case/CreateTaskInput";
-import SortableTaskList from "container/one_case/SortableTaskList";
+import SortableTTList from "container/one_case/SortableTTList";
 import React from "react";
 import ITaskGroup from "ts/interfaces/ITaskGroup";
 
@@ -57,7 +57,7 @@ function TaskGroup2({
         />
       </div>
       <div style={{ marginTop: "1em" }}>
-        <SortableTaskList existingTasks={taskGroup.tasks} />
+        <SortableTTList existingTTs={taskGroup.taskTemplates} />
       </div>
     </div>
   );
