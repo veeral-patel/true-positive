@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_040351) do
+ActiveRecord::Schema.define(version: 2020_01_22_041220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -296,8 +296,10 @@ ActiveRecord::Schema.define(version: 2020_01_22_040351) do
     t.bigint "task_template_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tenant_id"
     t.index ["task_group_id"], name: "index_task_group_task_templates_on_task_group_id"
     t.index ["task_template_id"], name: "index_task_group_task_templates_on_task_template_id"
+    t.index ["tenant_id"], name: "index_task_group_task_templates_on_tenant_id"
   end
 
   create_table "task_groups", force: :cascade do |t|
@@ -420,6 +422,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_040351) do
   add_foreign_key "tags", "tenants"
   add_foreign_key "task_group_task_templates", "task_groups"
   add_foreign_key "task_group_task_templates", "task_templates"
+  add_foreign_key "task_group_task_templates", "tenants"
   add_foreign_key "task_groups", "tenants"
   add_foreign_key "task_groups", "users", column: "created_by_id"
   add_foreign_key "task_templates", "tenants"
