@@ -26,5 +26,12 @@ class Mutations::RemoveTaskTemplateFromTaskGroup < Mutations::BaseMutation
         end
 
         # authorize this action
+
+        # remove the TT
+        if task_group.task_templates.destroy(task_template)
+            { task_group: task_group }
+        else
+            raise GraphQL::ExecutionError, task_group.errors.full_messages.join(" | ")
+        end
     end
 end

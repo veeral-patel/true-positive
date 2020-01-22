@@ -30,7 +30,7 @@ class Mutations::RemoveUserFromGroup < Mutations::BaseMutation
 
         # remove the user
         if group.users.destroy(user)
-            { "group": group }
+            { group: group }
         else
             raise GraphQL::ExecutionError, group.errors.full_messages.join(" | ") 
         end
