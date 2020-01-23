@@ -1,4 +1,4 @@
-import { DeleteOutlined } from "@ant-design/icons";
+import { CopyOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Button,
@@ -10,6 +10,7 @@ import {
   Spin,
   Typography
 } from "antd";
+import copy from "copy-to-clipboard";
 import DELETE_CREATE_CASE_EMAIL_ADDRESS from "mutations/deleteCreateCaseEmailAddress";
 import Error from "presentational/shared/errors/Error";
 import GET_CREATE_CASE_EMAIL_ADDRESSES from "queries/getCreateCaseEmailAddresses";
@@ -77,7 +78,6 @@ function ListOfCreateCaseEmailAddresses() {
             renderItem={emailAddress => (
               <List.Item
                 key={emailAddress.id}
-                onClick={() => setIdOfOpenDrawer(emailAddress.id)}
                 actions={[
                   <Popconfirm
                     title="Delete this inbound address?"
@@ -96,7 +96,23 @@ function ListOfCreateCaseEmailAddresses() {
                 ]}
               >
                 <List.Item.Meta
-                  title={<Text copyable>{emailAddress.email}</Text>}
+                  title={
+                    <>
+                      <a onClick={() => setIdOfOpenDrawer(emailAddress.id)}>
+                        {emailAddress.email}
+                      </a>
+                      <Button
+                        icon={<CopyOutlined />}
+                        type="link"
+                        size="small"
+                        onClick={event => {
+                          event.stopPropagation();
+                          copy(emailAddress.email);
+                          message.success("Copied email address");
+                        }}
+                      />
+                    </>
+                  }
                   description={`Created by ${
                     emailAddress.createdBy.username
                   } on ${formatDateOnly(emailAddress.createdAt)} (UTC)`}
