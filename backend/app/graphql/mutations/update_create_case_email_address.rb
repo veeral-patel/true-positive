@@ -21,5 +21,16 @@ class Mutations::UpdateCreateCaseEmailAddress < Mutations::BaseMutation
     end
 
     def resolve(id:, case_template_id: nil, default_creator: nil)
+        # find the inbound address
+        inbound_address = find_create_case_email_address_or_throw_execution_error(id: id)
+
+        # authorize this action
+        unless CreateCaseEmailAddressPolicy.new(context[:current_user], inbound_address).update?
+            raise GraphQL::ExecutionError, "You are not authorized to update this inbound address."
+        end
+
+        # update the inbound address in memory
+
+        # and save the inbound address
     end
 end

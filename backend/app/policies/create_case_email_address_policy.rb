@@ -9,6 +9,11 @@ class CreateCaseEmailAddressPolicy
     true
   end
 
+  def update?
+    # Anyone can update an inbound address
+    true
+  end
+
   def delete?
     # Anyone can delete an inbound address
     true
