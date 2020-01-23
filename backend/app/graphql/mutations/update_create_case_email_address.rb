@@ -11,7 +11,7 @@ class Mutations::UpdateCreateCaseEmailAddress < Mutations::BaseMutation
         description "ID of the new case template to use to initialize cases created from emails sent to this inbound address."
     end
 
-    argument :default_creator, String, required: true do
+    argument :default_creator, String, required: false do
         description "Username of the new user to mark as the creator of cases created from emails to this inbound address."
     end
 
