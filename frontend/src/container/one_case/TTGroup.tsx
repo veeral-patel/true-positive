@@ -1,5 +1,6 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Modal, Select, Tooltip, Typography } from "antd";
+import { Button, Modal, Tooltip, Typography } from "antd";
+import TaskTemplateSelect from "container/admin/TaskTemplateSelect";
 import SortableTTList from "container/one_case/SortableTTList";
 import React from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
@@ -52,12 +53,7 @@ function TTGroup({
         />
       </Tooltip>
       <div style={{ marginTop: "0.5em" }}>
-        <Select
-          placeholder="Choose task templates to add"
-          mode="multiple"
-          options={[]}
-          style={{ width: "100%" }}
-        />
+        <TaskTemplateSelect placeholder="Choose task templates to add" />
       </div>
       <div style={{ marginTop: "1em" }}>
         <SortableTTList
