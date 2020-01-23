@@ -1,7 +1,18 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Form, Modal, Tooltip, Typography } from "antd";
+import { useMutation } from "@apollo/react-hooks";
+import {
+  Button,
+  Form,
+  message,
+  Modal,
+  notification,
+  Tooltip,
+  Typography
+} from "antd";
 import TaskTemplateSelect from "container/admin/TaskTemplateSelect";
 import SortableTTList from "container/one_case/SortableTTList";
+import ADD_TASK_TEMPLATE_TO_TASK_GROUP from "mutations/addTaskTemplateToTaskGroup";
+import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
 import React from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import ITaskGroup from "ts/interfaces/ITaskGroup";
@@ -23,6 +34,29 @@ function TTGroup({
   deleteTaskGroup,
   handleTTClicked
 }: Props) {
+  const [addTaskTemplateToTaskGroup] = useMutation(
+    ADD_TASK_TEMPLATE_TO_TASK_GROUP,
+    {
+      onCompleted() {
+        message.success("Added task template");
+      },
+      onError(error) {
+        notification.error({
+          message: "Failed to add task template",
+          description: error.message
+        });
+      },
+      refetchQueries: [
+        {
+          query: GET_ONE_CASE_TEMPLATE,
+          variables: {
+            id: caseTemplate.id
+          }
+        }
+      ]
+    }
+  );
+
   return (
     <div style={{ marginBottom: "3em" }}>
       <Text
@@ -50,8 +84,24 @@ function TTGroup({
           }}
         />
       </Tooltip>
-      <Form style={{ display: "flex" }}>
-        <Form.Item style={{ width: "95%" }}>
+      <Form
+        style={{ display: "flex" }}
+        onFinish={values => {
+          if (!values.idsOfTaskTemplates) return;
+          values.idsOfTaskTemplates.forEach((taskTemplateId: number) => {
+            addTaskTemplateToTaskGroup({
+              variables: {
+                input: {
+                  taskTemplateId,
+                  caseTemplateId: caseTemplate.id,
+                  taskGroupId: taskGroup.id
+                }
+              }
+            });
+          });
+        }}
+      >
+        <Form.Item style={{ width: "95%" }} name="idsOfTaskTemplates">
           <TaskTemplateSelect placeholder="Choose task templates to add" />
         </Form.Item>
         <Form.Item>
