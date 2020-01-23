@@ -44,7 +44,6 @@ function TaskTemplateSelect({ placeholder, onChange, value }: Props) {
     <Select
       placeholder={placeholder}
       mode="multiple"
-      style={{ width: "100%" }}
       optionFilterProp="children"
       onChange={onChange}
       value={value}
