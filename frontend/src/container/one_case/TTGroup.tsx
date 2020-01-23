@@ -52,8 +52,9 @@ function TTGroup({
           }}
         />
       </Tooltip>
-      <div style={{ marginTop: "0.5em" }}>
+      <div style={{ marginTop: "0.5em", display: "flex" }}>
         <TaskTemplateSelect placeholder="Choose task templates to add" />
+        <Button>Add</Button>
       </div>
       <div style={{ marginTop: "1em" }}>
         <SortableTTList
