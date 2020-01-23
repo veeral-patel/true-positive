@@ -9,7 +9,9 @@ const { Option } = Select;
 
 interface Props {
   handleSelect?: (userId: any) => void;
+
   onChange?: (value: any) => void;
+
   value?: any;
 
   /* Whether this select is for assigning a user to something. If so, we include a N/A option. */

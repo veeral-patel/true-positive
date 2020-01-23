@@ -12,9 +12,11 @@ interface TaskTemplateData {
 
 interface Props {
   placeholder: string;
+  onChange?: (value: any) => void;
+  value?: any;
 }
 
-function TaskTemplateSelect({ placeholder }: Props) {
+function TaskTemplateSelect({ placeholder, onChange, value }: Props) {
   const { loading, data } = useQuery<TaskTemplateData>(GET_TASK_TEMPLATES);
 
   var options: Object[] = [];
@@ -44,6 +46,8 @@ function TaskTemplateSelect({ placeholder }: Props) {
       mode="multiple"
       style={{ width: "100%" }}
       optionFilterProp="children"
+      onChange={onChange}
+      value={value}
     >
       {options}
     </Select>
