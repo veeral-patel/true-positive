@@ -11,7 +11,6 @@ const { Text } = Typography;
 interface Props {
   taskGroup: ITaskGroup;
   caseTemplate: ICaseTemplate;
-  createTT: (name: string) => void;
   renameTaskGroup: (newName: string) => void;
   deleteTaskGroup: () => void;
   handleTTClicked: (id: number) => void;
@@ -20,7 +19,6 @@ interface Props {
 function TTGroup({
   taskGroup,
   caseTemplate,
-  createTT,
   renameTaskGroup,
   deleteTaskGroup,
   handleTTClicked

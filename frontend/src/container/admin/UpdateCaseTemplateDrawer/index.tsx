@@ -257,7 +257,6 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
         key={tgroup.id}
         taskGroup={tgroup}
         caseTemplate={caseTemplate}
-        createTT={newName => void 0}
         handleTTClicked={id => setIdOfActiveTT(id)}
         renameTaskGroup={newName =>
           updateTaskGroup({
