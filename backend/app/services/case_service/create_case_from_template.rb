@@ -11,11 +11,30 @@ module CaseService
                 assigned_to: template.assigned_to
             )
 
-            # add each of the template's members to the case
+            # add each of the case template's members to the case
             template.default_members.each do |member|
                 # skip template members who are already in the case
                 if not new_case.case_members.include? member
                     new_case.case_members << member
+                end
+            end
+
+            # for each task group in the case template...
+            template.task_groups.each do |template_task_group|
+                # add a corresponding task group to the case
+                case_task_group = new_case.task_groups.create(
+                    name: template_task_group.name,
+                    created_by: created_by
+                )
+
+                # and add corresponding tasks for every task template in the template's task group
+                template_task_group.task_templates.each do |task_template|
+                    case_task_group.tasks.create(
+                        name: task_template.name,
+                        description: task_template.description,
+                        assigned_to: task_template.assigned_to,
+                        created_by: created_by
+                    )
                 end
             end
 
