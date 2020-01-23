@@ -30,7 +30,19 @@ class Mutations::UpdateCreateCaseEmailAddress < Mutations::BaseMutation
         end
 
         # update the inbound address in memory
+        inbound_address.case_template_id = case_template_id if not case_template_id.nil?
+
+        unless default_creator.nil?
+            inbound_address.default_creator = find_user_or_throw_execution_error(username: default_creator)
+        end
 
         # and save the inbound address
+        if inbound_address.save
+            {
+                "create_case_email_address": inbound_address
+            }
+        else
+            raise GraphQL::ExecutionError, inbound_address.errors.full_messages.join(" | ")
+        end
     end
 end
