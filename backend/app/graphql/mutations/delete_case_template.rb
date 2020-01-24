@@ -12,6 +12,12 @@ class Mutations::DeleteCaseTemplate < Mutations::BaseMutation
     def resolve(id:)
         template = find_case_template_or_throw_execution_error(id: id)
 
+        # show an error if the case template to delete has cc email addresses that use it to create cases
+        if template.create_case_email_addresses.count > 0
+            first_cc_email_address = template.create_case_email_addresses.first
+            raise GraphQL::ExecutionError, "Inbound address #{first_cc_email_address.email} uses this template to create cases. Please delete it before deleting this template."
+        end
+
         # authorize this action
         unless CaseTemplatePolicy.new(context[:current_user], template).delete_template?
             raise GraphQL::ExecutionError, "You are not authorized to delete this template."
