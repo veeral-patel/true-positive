@@ -7,6 +7,7 @@ interface ICreateCaseEmailAddress {
   caseTemplate: ICaseTemplate;
   createdAt: string;
   createdBy: IUser;
+  defaultCreator: IUser;
 }
 
 export default ICreateCaseEmailAddress;

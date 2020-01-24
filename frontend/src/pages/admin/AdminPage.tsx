@@ -14,7 +14,7 @@ class AdminPage extends React.Component<RouteComponentProps> {
     return (
       <div style={{ maxWidth: "900px" }}>
         <Tabs tabPosition="left">
-          <TabPane tab="integrations" key="Integrations">
+          <TabPane tab="Integrations" key="integrations">
             <Integrations />
           </TabPane>
           <TabPane tab="Users" key="users">

@@ -1,10 +1,11 @@
-import { useQuery } from "@apollo/react-hooks";
-import { Drawer, Spin } from "antd";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { Drawer, message, notification, Spin } from "antd";
+import CCEmailAddressForm from "container/admin/CCEmailAddressForm";
+import UPDATE_CREATE_CASE_EMAIL_ADDRESS from "mutations/updateCreateCaseEmailAddress";
 import Error from "presentational/shared/errors/Error";
 import GET_ONE_CC_EMAIL_ADDRESS from "queries/getOneCreateCaseEmailAddress";
 import React from "react";
 import ICreateCaseEmailAddress from "ts/interfaces/ICreateCaseEmailAddress";
-import CCEmailAddressForm from "./CCEmailAddressForm";
 
 interface Props {
   visible: boolean;
@@ -30,6 +31,21 @@ function UpdateCCEmailAddressDrawer({
     }
   );
 
+  const [updateCreateCaseEmailAddress] = useMutation(
+    UPDATE_CREATE_CASE_EMAIL_ADDRESS,
+    {
+      onCompleted() {
+        message.success("Updated inbound address");
+      },
+      onError(error) {
+        notification.error({
+          message: "Failed to update inbound address",
+          description: error.message
+        });
+      }
+    }
+  );
+
   let drawerContent: React.ReactNode = null;
 
   if (loading) drawerContent = <Spin />;
@@ -44,10 +60,20 @@ function UpdateCCEmailAddressDrawer({
     drawerContent = (
       <CCEmailAddressForm
         onClose={onClose}
-        onFinish={() => void 0}
+        onFinish={values =>
+          updateCreateCaseEmailAddress({
+            variables: {
+              input: {
+                id: ccEmailAddressId,
+                caseTemplateId: values.case_template_id,
+                defaultCreator: values.default_creator
+              }
+            }
+          })
+        }
         initialValues={{
           case_template_id: data.createCaseEmailAddress.caseTemplate.id,
-          default_creator: data.createCaseEmailAddress.createdBy.username
+          default_creator: data.createCaseEmailAddress.defaultCreator.username
         }}
         submitText="Update Address"
       />

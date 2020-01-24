@@ -23,6 +23,8 @@ function CCEmailAddressForm({
   submitText
 }: Props) {
   return (
+    // Don't change the names of the form items below without ensuring that all the components
+    // that use this form still work.
     <Form
       layout="vertical"
       colon={false}

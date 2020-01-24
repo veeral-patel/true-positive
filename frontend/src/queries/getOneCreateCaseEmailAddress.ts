@@ -9,6 +9,9 @@ const GET_ONE_CC_EMAIL_ADDRESS = gql`
       createdBy {
         username
       }
+      defaultCreator {
+        username
+      }
       caseTemplate {
         id
       }
