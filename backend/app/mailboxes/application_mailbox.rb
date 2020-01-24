@@ -9,7 +9,7 @@ class ApplicationMailbox < ActionMailbox::Base
       if inbound_email.mail['X-Forwarded-To'].nil?
         false
       else
-        inbound_email.mail['X-Forwarded-To'].value) =~ /inbound-cases.truepositive.app$/
+        inbound_email.mail['X-Forwarded-To'].value =~ /inbound-cases.truepositive.app$/
       end
     end
 end
