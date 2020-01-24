@@ -69,25 +69,9 @@
         "title": "What is True Positive?",
         "sidebar_label": "What is True Positive?"
       },
-      "integrations/create_cases/custom_webhooks": {
-        "title": "Custom Webhooks",
-        "sidebar_label": "Custom Webhooks"
-      },
-      "integrations/create_cases/elastalert": {
-        "title": "ElastAlert",
-        "sidebar_label": "ElastAlert"
-      },
-      "integrations/create_cases/email": {
-        "title": "Email",
-        "sidebar_label": "Email"
-      },
-      "integrations/create_cases/overview": {
-        "title": "Overview",
-        "sidebar_label": "Overview"
-      },
-      "integrations/create_cases/splunk": {
-        "title": "Splunk",
-        "sidebar_label": "Splunk"
+      "integrations/create_cases_from_email": {
+        "title": "Create Cases from Email",
+        "sidebar_label": "Create Cases from Email"
       },
       "work_with_cases/create_a_case": {
         "title": "Create a Case",
@@ -129,6 +113,7 @@
       "Get Started": "Get Started",
       "Work with Cases": "Work with Cases",
       "Administer": "Administer",
+      "Integrations": "Integrations",
       "API": "API"
     }
   },

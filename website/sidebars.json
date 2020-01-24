@@ -16,6 +16,7 @@
       "administer/manage_templates",
       "administer/users_and_groups"
     ],
+    "Integrations": ["integrations/create_cases_from_email"],
     "API": ["api/get_started", "api/examples"]
   }
 }

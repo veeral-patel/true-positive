@@ -21,3 +21,11 @@ For types of cases you encounter often, however, like phishing or commodity malw
 Then, you can initialize a case from a template in one click:
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/create_case_from_template_modal.png)
+
+## From emails
+
+Finally, you can create cases from inbound emails.
+
+For example, you might want to create a case in True Positive from your phishing case template for every email that's sent to phishing@company.com
+
+See [this link](/docs/integrations/create_cases_from_email) to set this up.
