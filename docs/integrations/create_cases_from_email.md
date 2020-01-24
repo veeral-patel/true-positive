@@ -19,3 +19,5 @@ For example, you might want to create a case from your "phishing" case template 
 ## Update an inbound address
 
 ## Delete an inbound address
+
+Simply click the trash icon next to the appropriate inbound address in the screenshot above to delete it.
