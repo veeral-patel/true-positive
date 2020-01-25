@@ -9,14 +9,4 @@ class TaskGroup < ApplicationRecord
     validates :caseable, presence: true
     validates :name, presence: true
     validates :created_by, presence: true
-
-    after_create :add_task_group_created_audit
-
-    private
-      def add_task_group_created_audit
-          CaseAudit.create(
-            action: "CREATE_TASK_GROUP",
-            created_by: self.created_by
-          )
-      end
 end

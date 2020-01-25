@@ -3,12 +3,6 @@ module TaskService
         def self.run(task, destroyed_by)
             # Destroy the task
             task.destroy
-
-            # Publish an audit entry
-            CaseAudit.create(
-                action: "DELETE_TASK",
-                created_by: destroyed_by
-            )
         end
     end
 end

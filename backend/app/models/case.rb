@@ -21,7 +21,6 @@ class Case < ApplicationRecord
   has_many :attachments, as: :attachable, dependent: :destroy
 
   after_create :add_creator_to_members
-  after_create :add_case_created_audit
 
   acts_as_taggable_on :tags
 
@@ -83,12 +82,5 @@ class Case < ApplicationRecord
     def add_creator_to_members
       # Add the user who created this case to its list of members, so he/she can access it.
       self.case_members.create(user: self.created_by, role: "CAN_EDIT")
-    end
-
-    def add_case_created_audit
-      CaseAudit.create(
-        action: "CREATE_CASE",
-        created_by: self.created_by
-      )
     end
 end

@@ -14,8 +14,6 @@ class Task < ApplicationRecord
 
   acts_as_list scope: :task_group, top_of_list: 0
 
-  after_create :add_task_created_audit
-
   def to_s
     self.name
   end
@@ -36,12 +34,4 @@ class Task < ApplicationRecord
   def comment_count
     self.comments.count
   end
-
-  private
-    def add_task_created_audit
-      CaseAudit.create(
-        action: "CREATE_TASK",
-        created_by: self.created_by
-      )
-    end
 end

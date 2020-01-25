@@ -8,14 +8,4 @@ class Comment < ApplicationRecord
     validates :comment, presence: true
     validates :created_by, presence: true
     validates :commentable, presence: true
-
-    after_create :add_comment_created_audit
-
-    private
-        def add_comment_created_audit
-            CaseAudit.create(
-                action: "CREATE_COMMENT",
-                created_by: self.created_by
-            )
-        end
 end

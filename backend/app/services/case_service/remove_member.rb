@@ -11,12 +11,6 @@ module CaseService
                 # Remove the user from the case
                 CaseMember.find_by!(caseable: the_case, user: user).destroy
         
-                # Create an audit entry
-                CaseAudit.create(
-                    action: "REMOVE_MEMBER_FROM_CASE",
-                    created_by: removed_by
-                )
-
                 # Email the user who was just removed
                 # CaseMailer.with(user: user).removed_member.deliver_later
         
