@@ -15,6 +15,7 @@ interface Props {
   deleteTaskGroup: () => void;
   handleTTClicked: (id: number) => void;
   addTaskTemplate: (taskTemplateId: number) => void;
+  removeTaskTemplate: (taskTemplateId: number) => void;
 }
 
 function TTGroup({
@@ -23,7 +24,8 @@ function TTGroup({
   renameTaskGroup,
   deleteTaskGroup,
   handleTTClicked,
-  addTaskTemplate
+  addTaskTemplate,
+  removeTaskTemplate
 }: Props) {
   return (
     <div style={{ marginBottom: "3em" }}>
@@ -73,6 +75,7 @@ function TTGroup({
         handleTTClicked={handleTTClicked}
         taskGroup={taskGroup}
         caseTemplate={caseTemplate}
+        removeTaskTemplate={removeTaskTemplate}
       />
     </div>
   );

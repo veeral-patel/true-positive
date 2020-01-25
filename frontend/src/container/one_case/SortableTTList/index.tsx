@@ -10,13 +10,15 @@ interface Props {
   caseTemplate: ICaseTemplate;
   existingTTs: ITaskTemplate[];
   handleTTClicked: (id: number) => void;
+  removeTaskTemplate: (taskTemplateId: number) => void;
 }
 
 function SortableComponent({
   existingTTs,
   handleTTClicked,
   taskGroup,
-  caseTemplate
+  caseTemplate,
+  removeTaskTemplate
 }: Props) {
   const [orderedTTs, setOrderedTTs] = useState(existingTTs);
 
@@ -45,6 +47,7 @@ function SortableComponent({
       handleTTClicked={handleTTClicked}
       taskGroup={taskGroup}
       caseTemplate={caseTemplate}
+      removeTaskTemplate={removeTaskTemplate}
     />
   );
 }

@@ -1,8 +1,5 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { useMutation } from "@apollo/react-hooks";
-import { Button, List, message, notification, Popconfirm } from "antd";
-import REMOVE_TASK_TEMPLATE_FROM_TASK_GROUP from "mutations/removeTaskTemplateFromTaskGroup";
-import GET_ONE_CASE_TEMPLATE from "queries/getOneCaseTemplate";
+import { Button, List, Popconfirm } from "antd";
 import React from "react";
 import { SortableElement } from "react-sortable-hoc";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
@@ -15,31 +12,11 @@ interface Props {
   caseTemplate: ICaseTemplate;
   taskTemplate: ITaskTemplate;
   handleTTClicked: (id: number) => void;
+  removeTaskTemplate: (taskTemplateId: number) => void;
 }
 
 const SortableItem = SortableElement(
-  ({ taskTemplate, handleTTClicked, caseTemplate, taskGroup }: Props) => {
-    const [removeTaskTemplateFromTaskGroup] = useMutation(
-      REMOVE_TASK_TEMPLATE_FROM_TASK_GROUP,
-      {
-        onCompleted: function() {
-          message.success("Removed task template");
-        },
-        onError: function(error) {
-          notification.error({
-            message: "Failed to remove task template",
-            description: error.message
-          });
-        },
-        refetchQueries: [
-          {
-            query: GET_ONE_CASE_TEMPLATE,
-            variables: { id: caseTemplate.id }
-          }
-        ]
-      }
-    );
-
+  ({ taskTemplate, handleTTClicked, removeTaskTemplate }: Props) => {
     return (
       <div style={{ borderBottom: "1px solid #1f1f1f" }}>
         <List.Item
@@ -48,17 +25,7 @@ const SortableItem = SortableElement(
           actions={[
             <Popconfirm
               title="Delete this task template?"
-              onConfirm={() =>
-                removeTaskTemplateFromTaskGroup({
-                  variables: {
-                    input: {
-                      taskTemplateId: taskTemplate.id,
-                      caseTemplateId: caseTemplate.id,
-                      taskGroupId: taskGroup.id
-                    }
-                  }
-                })
-              }
+              onConfirm={() => removeTaskTemplate(taskTemplate.id)}
             >
               <Button type="link" icon={<DeleteOutlined />} />
             </Popconfirm>

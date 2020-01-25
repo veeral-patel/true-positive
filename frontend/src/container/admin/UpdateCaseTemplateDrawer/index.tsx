@@ -25,6 +25,7 @@ import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
 import CREATE_A_TASK_GROUP from "mutations/createTaskGroup";
 import DELETE_A_TASK_GROUP from "mutations/deleteTaskGroup";
 import REMOVE_GROUP_FROM_CASE_TEMPLATE from "mutations/removeGroupFromCaseTemplate";
+import REMOVE_TASK_TEMPLATE_FROM_TASK_GROUP from "mutations/removeTaskTemplateFromTaskGroup";
 import REMOVE_USER_FROM_CASE_TEMPLATE from "mutations/removeUserFromCaseTemplate";
 import UPDATE_CASE_TEMPLATE from "mutations/updateCaseTemplate";
 import UPDATE_TASK_GROUP from "mutations/updateTaskGroup";
@@ -241,6 +242,24 @@ function UpdateCaseTemplateDrawer({
     }
   );
 
+  const [removeTaskTemplateFromTaskGroup] = useMutation(
+    REMOVE_TASK_TEMPLATE_FROM_TASK_GROUP,
+    {
+      onCompleted: function() {
+        message.success("Removed task template");
+
+        // refresh our drawer and set our active tab to "Tasks"
+        refetchCaseTemplate().then(() => setActiveTab("tasks"));
+      },
+      onError: function(error) {
+        notification.error({
+          message: "Failed to remove task template",
+          description: error.message
+        });
+      }
+    }
+  );
+
   // ---
 
   let drawerContent: React.ReactNode = null;
@@ -263,6 +282,17 @@ function UpdateCaseTemplateDrawer({
         handleTTClicked={id => setIdOfActiveTT(id)}
         addTaskTemplate={taskTemplateId =>
           addTaskTemplateToTaskGroup({
+            variables: {
+              input: {
+                taskTemplateId,
+                caseTemplateId: caseTemplate.id,
+                taskGroupId: tgroup.id
+              }
+            }
+          })
+        }
+        removeTaskTemplate={taskTemplateId =>
+          removeTaskTemplateFromTaskGroup({
             variables: {
               input: {
                 taskTemplateId,

@@ -13,10 +13,17 @@ interface Props {
   caseTemplate: ICaseTemplate;
   orderedTTs: ITaskTemplate[];
   handleTTClicked: (id: number) => void;
+  removeTaskTemplate: (taskTemplateId: number) => void;
 }
 
 const SortableList = SortableContainer(
-  ({ orderedTTs, handleTTClicked, taskGroup, caseTemplate }: Props) => {
+  ({
+    orderedTTs,
+    handleTTClicked,
+    taskGroup,
+    caseTemplate,
+    removeTaskTemplate
+  }: Props) => {
     return (
       <List<ITaskTemplate>
         itemLayout="horizontal"
@@ -30,6 +37,7 @@ const SortableList = SortableContainer(
             taskGroup={taskGroup}
             caseTemplate={caseTemplate}
             handleTTClicked={handleTTClicked}
+            removeTaskTemplate={removeTaskTemplate}
           />
         )}
         locale={{
