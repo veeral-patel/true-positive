@@ -46,4 +46,4 @@ Click an inbound address's title to open a drawer, like in the screenshot above,
 
 ## Delete an inbound address
 
-Simply click the trash icon next to the appropriate inbound address in the screenshot above to delete it.
+Simply click the trash icon next to the appropriate inbound address to delete it.
