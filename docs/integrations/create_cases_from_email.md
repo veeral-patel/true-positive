@@ -61,6 +61,18 @@ Your rules should look something like this once you're done:
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/outlook_forwarding_rules.png)
 
+#### Another email provider
+
+You can use any other email provider, just as well as Gmail and Outlook -- just find and follow the
+instructions for setting up forwarding rules for your specific provider.
+
+> Caveat: Your email provider must attach a `X-Forwarded-To` header to emails that it forwards.<br /><br />
+> For example, say you set up a forwarding rule from `phishing@company.com` to an `123@inbound-cases.truepositive.app`.<br /><br />
+> Then all emails sent to `123@inbound-cases.truepositive.app` must include a `X-Forwarded-To` header which contains `123@inbound-cases.truepositive.app`.
+
+If your email provider doesn't do this, [email us](mailto:hi@truepositive.app) -- we'll add support
+for your provider.
+
 ## Update an inbound address
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/update_inbound_address_drawer.png)
