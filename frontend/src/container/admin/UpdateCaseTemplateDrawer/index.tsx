@@ -231,14 +231,6 @@ function UpdateCaseTemplateDrawer({
           message: "Failed to add task template",
           description: error.message
         });
-      },
-      refetchQueries() {
-        return [
-          {
-            query: GET_ONE_CASE_TEMPLATE,
-            variables: { id: caseTemplateId, v: Math.random() }
-          }
-        ];
       }
     }
   );
