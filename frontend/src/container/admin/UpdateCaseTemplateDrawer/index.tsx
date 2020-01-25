@@ -60,14 +60,14 @@ function UpdateCaseTemplateDrawer({
   // used to render a drawer if the user clicks on one of this CT's task templates
   const [idOfActiveTT, setIdOfActiveTT] = useState<number | null>(null);
 
-  const { loading, error, data } = useQuery<OneTemplateData>(
-    GET_ONE_CASE_TEMPLATE,
-    {
-      variables: {
-        id: caseTemplateId
-      }
-    }
-  );
+  const { loading, error, data, refetch: refetchCaseTemplate } = useQuery<
+    OneTemplateData
+  >(GET_ONE_CASE_TEMPLATE, {
+    variables: {
+      id: caseTemplateId
+    },
+    fetchPolicy: "cache-and-network"
+  });
 
   const [createTaskGroup] = useMutation(CREATE_A_TASK_GROUP, {
     onCompleted: () => {
@@ -224,6 +224,7 @@ function UpdateCaseTemplateDrawer({
     {
       onCompleted() {
         message.success("Added task template");
+        refetchCaseTemplate();
       },
       onError(error) {
         notification.error({
@@ -231,12 +232,14 @@ function UpdateCaseTemplateDrawer({
           description: error.message
         });
       },
-      refetchQueries: [
-        {
-          query: GET_ONE_CASE_TEMPLATE,
-          variables: { id: caseTemplateId }
-        }
-      ]
+      refetchQueries() {
+        return [
+          {
+            query: GET_ONE_CASE_TEMPLATE,
+            variables: { id: caseTemplateId, v: Math.random() }
+          }
+        ];
+      }
     }
   );
 
