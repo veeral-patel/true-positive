@@ -48,6 +48,14 @@ email as a file to the created case, and add a comment to the case, indicating i
 [Add a forwarding rule](https://support.google.com/mail/answer/10957?hl=en) to forward emails
 from your corporate mailbox to your generated inbound address.
 
+#### Outlook
+
+Similarly, here's [how you add a forwarding rule with Outlook](https://support.office.com/en-us/article/use-rules-to-automatically-forward-messages-45aa9664-4911-4f96-9663-ece42816d746) (using the web app).
+
+Your rules should look something like this once you're done:
+
+![](https://storage.googleapis.com/tp_landing_page_videos/outlook_forwarding_rules.png)
+
 ## Update an inbound address
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/update_inbound_address_drawer.png)
