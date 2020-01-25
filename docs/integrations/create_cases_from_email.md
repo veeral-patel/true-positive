@@ -42,6 +42,8 @@ email as a file to the created case, and add a comment to the case, indicating i
 
 ## Update an inbound address
 
+![](https://storage.googleapis.com/tp_landing_page_videos/update_inbound_address_drawer.png)
+
 Click an inbound address's title to open a drawer, like in the screenshot above, where you can update the inbound address.
 
 ## Delete an inbound address
