@@ -92,6 +92,7 @@ function CustomizeTaskTemplates() {
           maskClosable={false}
           keyboard={false}
           onClose={() => setOpenDrawer(null)}
+          destroyOnClose={true}
         >
           <TaskTemplateForm
             submitButtonText="Create Template"
