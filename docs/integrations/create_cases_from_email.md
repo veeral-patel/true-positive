@@ -40,6 +40,9 @@ email as a file to the created case, and add a comment to the case, indicating i
 
 ### Forward emails from an existing mailbox
 
+> We don't recommend, and haven't tested, aliasing a corporate address to a generated inbound address,
+> because doing so prevents you from replying to emails you receive.
+
 ## Update an inbound address
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/update_inbound_address_drawer.png)
