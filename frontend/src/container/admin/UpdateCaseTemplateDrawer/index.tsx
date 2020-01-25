@@ -20,6 +20,7 @@ import TTGroup from "container/one_case/TTGroup";
 import GroupSelect from "container/shared/groups/GroupSelect";
 import UserSelect from "container/shared/users/UserSelect";
 import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
+import ADD_TASK_TEMPLATE_TO_TASK_GROUP from "mutations/addTaskTemplateToTaskGroup";
 import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
 import CREATE_A_TASK_GROUP from "mutations/createTaskGroup";
 import DELETE_A_TASK_GROUP from "mutations/deleteTaskGroup";
@@ -42,14 +43,18 @@ const { Paragraph } = Typography;
 interface Props {
   visible: boolean;
   handleClose: () => void;
-  templateId: number | null /* ID of the case template to show. */;
+  caseTemplateId: number | null /* ID of the case template to show. */;
 }
 
 interface OneTemplateData {
   caseTemplate: ICaseTemplate;
 }
 
-function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
+function UpdateCaseTemplateDrawer({
+  visible,
+  handleClose,
+  caseTemplateId
+}: Props) {
   const [openModal, setOpenModal] = useState<"CREATE_TASK_GROUP" | null>(null);
 
   // used to render a drawer if the user clicks on one of this CT's task templates
@@ -59,7 +64,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     GET_ONE_CASE_TEMPLATE,
     {
       variables: {
-        id: templateId
+        id: caseTemplateId
       }
     }
   );
@@ -78,7 +83,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       });
     },
     refetchQueries: [
-      { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+      { query: GET_ONE_CASE_TEMPLATE, variables: { id: caseTemplateId } }
     ]
   });
 
@@ -93,7 +98,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       });
     },
     refetchQueries: [
-      { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+      { query: GET_ONE_CASE_TEMPLATE, variables: { id: caseTemplateId } }
     ]
   });
 
@@ -113,7 +118,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       });
     },
     refetchQueries: [
-      { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+      { query: GET_ONE_CASE_TEMPLATE, variables: { id: caseTemplateId } }
     ]
   });
 
@@ -130,7 +135,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
         });
       },
       refetchQueries: [
-        { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+        { query: GET_ONE_CASE_TEMPLATE, variables: { id: caseTemplateId } }
       ]
     }
   );
@@ -151,7 +156,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       });
     },
     refetchQueries: [
-      { query: GET_ONE_CASE_TEMPLATE, variables: { id: templateId } }
+      { query: GET_ONE_CASE_TEMPLATE, variables: { id: caseTemplateId } }
     ]
   });
 
@@ -170,7 +175,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
       refetchQueries: [
         {
           query: GET_ONE_CASE_TEMPLATE,
-          variables: { id: templateId }
+          variables: { id: caseTemplateId }
         }
       ]
     }
@@ -191,7 +196,7 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     refetchQueries: [
       {
         query: GET_ONE_CASE_TEMPLATE,
-        variables: { id: templateId }
+        variables: { id: caseTemplateId }
       }
     ]
   });
@@ -209,10 +214,31 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
     refetchQueries: [
       {
         query: GET_ONE_CASE_TEMPLATE,
-        variables: { id: templateId }
+        variables: { id: caseTemplateId }
       }
     ]
   });
+
+  const [addTaskTemplateToTaskGroup] = useMutation(
+    ADD_TASK_TEMPLATE_TO_TASK_GROUP,
+    {
+      onCompleted() {
+        message.success("Added task template");
+      },
+      onError(error) {
+        notification.error({
+          message: "Failed to add task template",
+          description: error.message
+        });
+      },
+      refetchQueries: [
+        {
+          query: GET_ONE_CASE_TEMPLATE,
+          variables: { id: caseTemplateId }
+        }
+      ]
+    }
+  );
 
   // ---
 
@@ -234,6 +260,17 @@ function UpdateCaseTemplateDrawer({ visible, handleClose, templateId }: Props) {
         taskGroup={tgroup}
         caseTemplate={caseTemplate}
         handleTTClicked={id => setIdOfActiveTT(id)}
+        addTaskTemplate={taskTemplateId =>
+          addTaskTemplateToTaskGroup({
+            variables: {
+              input: {
+                taskTemplateId,
+                caseTemplateId: caseTemplate.id,
+                taskGroupId: tgroup.id
+              }
+            }
+          })
+        }
         renameTaskGroup={newName =>
           updateTaskGroup({
             variables: {

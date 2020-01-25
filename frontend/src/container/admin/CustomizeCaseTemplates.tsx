@@ -182,7 +182,7 @@ function CustomizeCaseTemplates() {
             openDrawer === "UPDATE_CASE_TEMPLATE" && activeTemplateId !== null
           }
           handleClose={() => setOpenDrawer(null)}
-          templateId={activeTemplateId}
+          caseTemplateId={activeTemplateId}
         />
       </>
     );
