@@ -35,7 +35,7 @@ email as a file to the created case, and add a comment to the case, indicating i
 
 > You won't be able to access the created case unless you're:<br />  
 > (1) the inbound address's default creator  
-> (2) one of the inbound address's case template's default users  
+> (2) or one of the inbound address's case template's default users  
 > (3) or a member of one of the inbound address's case template's default groups
 
 ### Forward emails from an existing mailbox
