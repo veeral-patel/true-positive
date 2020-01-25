@@ -12,7 +12,7 @@ module CaseService
                 CaseMember.find_by!(caseable: the_case, user: user).destroy
         
                 # Create an audit entry
-                Audit.create(
+                CaseAudit.create(
                     action: "REMOVE_MEMBER_FROM_CASE",
                     associated_id: the_case.id,
                     associated_type: "CASE",

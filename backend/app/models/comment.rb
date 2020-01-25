@@ -13,7 +13,7 @@ class Comment < ApplicationRecord
 
     private
         def add_comment_created_audit
-            Audit.create(
+            CaseAudit.create(
                 action: "CREATE_COMMENT",
                 associated_id: self.id,
                 associated_type: "COMMENT",

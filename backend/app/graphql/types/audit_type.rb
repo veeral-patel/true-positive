@@ -1,4 +1,4 @@
-class Types::AuditType < Types::BaseObject
+class Types::CaseAuditType < Types::BaseObject
     description "An entry recording a change to a case, task, indicator, or other object."
 
     # never null

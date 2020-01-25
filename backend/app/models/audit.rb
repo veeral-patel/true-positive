@@ -1,4 +1,4 @@
-class Audit < ApplicationRecord
+class CaseAudit < ApplicationRecord
     enum associated_type: {
         CASE: 1,
         TASK: 2,

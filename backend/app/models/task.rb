@@ -39,7 +39,7 @@ class Task < ApplicationRecord
 
   private
     def add_task_created_audit
-      Audit.create(
+      CaseAudit.create(
         action: "CREATE_TASK",
         associated_id: self.id,
         associated_type: "TASK",
