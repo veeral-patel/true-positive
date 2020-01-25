@@ -43,14 +43,19 @@ email as a file to the created case, and add a comment to the case, indicating i
 > We don't recommend, and haven't tested, aliasing a corporate email to a generated inbound
 > address, as doing this will prevent you from replying to emails you receive.
 
+Now, you probably don't want to tell your employees to forward phishing emails to `IcvpWN7Ek5nFR7rd9NTz@inbound-cases.truepositive.app`. You want to have them send emails to `phishing@company.com`,
+for example.
+
+To accomplish this, simply set up a forwarding rule to forward emails from your
+`phishing@company.com` mailbox to your generated inbound address.
+
 #### Gmail
 
-[Add a forwarding rule](https://support.google.com/mail/answer/10957?hl=en) to forward emails
-from your corporate mailbox to your generated inbound address.
+[Here's how you set up a forwarding rule with Gmail](https://support.google.com/mail/answer/10957?hl=en).
 
 #### Outlook
 
-Similarly, here's [how you add a forwarding rule with Outlook](https://support.office.com/en-us/article/use-rules-to-automatically-forward-messages-45aa9664-4911-4f96-9663-ece42816d746) (using the web app).
+And here's [how you set up a forwarding rule with Outlook](https://support.office.com/en-us/article/use-rules-to-automatically-forward-messages-45aa9664-4911-4f96-9663-ece42816d746) (using the web app).
 
 Your rules should look something like this once you're done:
 
