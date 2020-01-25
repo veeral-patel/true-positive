@@ -40,8 +40,13 @@ email as a file to the created case, and add a comment to the case, indicating i
 
 ### Forward emails from an existing mailbox
 
-> We don't recommend, and haven't tested, aliasing a corporate address to a generated inbound address,
-> because doing so prevents you from replying to emails you receive.
+> We don't recommend, and haven't tested, aliasing a corporate email to a generated inbound
+> address, as doing this will prevent you from replying to emails you receive.
+
+#### Gmail
+
+[Follow these instructions](https://support.google.com/mail/answer/10957?hl=en) to add a forwarding rule
+to forward emails to your generated inbound address.
 
 ## Update an inbound address
 
