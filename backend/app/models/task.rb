@@ -24,6 +24,7 @@ class Task < ApplicationRecord
   end
 
   def case
+    # The case this task is associated with, if it's associated with a case
     if self.task_group.caseable_type == "Case"
       self.task_group.caseable
     else
