@@ -15,8 +15,6 @@ class Comment < ApplicationRecord
         def add_comment_created_audit
             CaseAudit.create(
                 action: "CREATE_COMMENT",
-                associated_id: self.id,
-                associated_type: "COMMENT",
                 created_by: self.created_by
             )
         end

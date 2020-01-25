@@ -59,30 +59,6 @@ class Case < ApplicationRecord
     self.parent
   end
 
-  def audits
-    # Lists all the audit entries this case cares about
-
-    # Changes directly affecting this case
-    case_audits = CaseAudit.where(associated_id: self.id, associated_type: "CASE")
-
-    # Changes affecting a task in this case
-    task_audits = CaseAudit.where(associated_id: self.tasks.select(:id), associated_type: "TASK")
-
-    # Changes affecting a task group in this case
-    task_group_audits = CaseAudit.where(associated_id: self.task_groups.select(:id), associated_type: "TASK_GROUP")
-
-    # Changes affecting a comment in this case
-    comment_audits = CaseAudit.where(associated_id: self.comments.select(:id), associated_type: "COMMENT")
-
-    # Changes affecting an indicator in this case
-    indicator_audits = CaseAudit.where(associated_id: self.indicators.select(:id), associated_type: "INDICATOR")
-
-    # Combine all our audit entries
-    all_audits = case_audits.or(task_audits).or(task_group_audits).or(comment_audits).or(indicator_audits).order("created_at DESC")
-
-    all_audits
-  end
-
   def completed_task_count
     # Number of completed tasks in this case
     self.tasks.where(done: true).count
@@ -112,8 +88,6 @@ class Case < ApplicationRecord
     def add_case_created_audit
       CaseAudit.create(
         action: "CREATE_CASE",
-        associated_id: self.id,
-        associated_type: "CASE",
         created_by: self.created_by
       )
     end

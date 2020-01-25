@@ -16,8 +16,6 @@ class TaskGroup < ApplicationRecord
       def add_task_group_created_audit
           CaseAudit.create(
             action: "CREATE_TASK_GROUP",
-            associated_id: self.id,
-            associated_type: "TASK_GROUP",
             created_by: self.created_by
           )
       end

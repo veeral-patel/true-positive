@@ -26,8 +26,6 @@ class Indicator < ApplicationRecord
       def add_indicator_created_audit
         CaseAudit.create(
           action: "CREATE_INDICATOR",
-          associated_id: self.id,
-          associated_type: "INDICATOR",
           created_by: self.created_by
         )
       end

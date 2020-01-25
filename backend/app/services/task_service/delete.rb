@@ -7,8 +7,6 @@ module TaskService
             # Publish an audit entry
             CaseAudit.create(
                 action: "DELETE_TASK",
-                associated_id: task.id,
-                associated_type: "TASK",
                 created_by: destroyed_by
             )
         end

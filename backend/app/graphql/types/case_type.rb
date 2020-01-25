@@ -67,10 +67,6 @@ module Types
             description "This case's indicators."
         end
 
-        # field :audits, [Types::CaseAuditType], null: false do
-        #     description "The list of audit entries related to this case."
-        # end
-
         field :completed_task_count, Int, null: false do
             description "The number of completed tasks in this case."
         end

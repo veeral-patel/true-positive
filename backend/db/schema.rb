@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_080249) do
+ActiveRecord::Schema.define(version: 2020_01_25_082058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,13 +76,11 @@ ActiveRecord::Schema.define(version: 2020_01_25_080249) do
 
   create_table "case_audits", force: :cascade do |t|
     t.integer "action"
-    t.integer "associated_id"
     t.json "parameters"
     t.bigint "created_by_id"
     t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "associated_type"
     t.index ["created_by_id"], name: "index_case_audits_on_created_by_id"
     t.index ["tenant_id"], name: "index_case_audits_on_tenant_id"
   end

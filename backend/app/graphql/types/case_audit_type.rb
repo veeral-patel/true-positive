@@ -18,10 +18,6 @@ class Types::CaseAuditType < Types::BaseObject
         description "Additional data describing the audit entry."
     end
 
-    field :associated_id, ID, null: false do
-        description "ID of the object that was changed."
-    end
-
     field :action, String, null: false do
         description "The category of change that was made."
     end

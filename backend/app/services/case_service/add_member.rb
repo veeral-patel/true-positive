@@ -7,8 +7,6 @@ module CaseService
             # generate an audit entry to record this event
             CaseAudit.create(
                 action: "ADD_MEMBER_TO_CASE",
-                associated_id: the_case.id,
-                associated_type: "CASE",
                 created_by: added_by
             )
 

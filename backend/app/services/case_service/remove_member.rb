@@ -14,8 +14,6 @@ module CaseService
                 # Create an audit entry
                 CaseAudit.create(
                     action: "REMOVE_MEMBER_FROM_CASE",
-                    associated_id: the_case.id,
-                    associated_type: "CASE",
                     created_by: removed_by
                 )
 

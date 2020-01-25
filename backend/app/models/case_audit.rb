@@ -1,12 +1,4 @@
 class CaseAudit < ApplicationRecord
-    enum associated_type: {
-        CASE: 1,
-        TASK: 2,
-        INDICATOR: 3,
-        TASK_GROUP: 4,
-        COMMENT: 5
-    }
-
     # Remember: if you change the name of an action in this enum, update the readable_message
     # function below as well.
     enum action: {
@@ -21,8 +13,6 @@ class CaseAudit < ApplicationRecord
     }
 
     validates :action, presence: true
-    validates :associated_id, presence: true
-    validates :associated_type, presence: true
     validates :created_by, presence: true
 
     belongs_to :created_by, :class_name => 'User'
