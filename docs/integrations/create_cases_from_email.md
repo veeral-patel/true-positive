@@ -6,15 +6,22 @@ sidebar_label: Create Cases from Email
 
 True Positive makes it easy to create cases from inbound emails.
 
-For example, you might want to create a case from your "phishing" case template for every email that's sent to phishing@company.com. True Positive supports exactly this.
+For example, you might want to create a case from your phishing case template for every email that's sent to phishing@company.com.
 
-## How it works
+The way it works is that you generate an random inbound email address, ending in `inbound-cases@truepositive.app`, in the web console. Whenever you send an email to this inbound address, we create a case in your True Positive tenant and attach the original email.
 
 ## Set up an inbound address
 
-### Generate an address
+To get started, visit Manage > Integrations.
 
-### Forward emails from your existing address
+![](https://storage.googleapis.com/tp_landing_page_videos/integrations_page.png)
+
+Now, click "Create an inbound address".
+
+![](https://storage.googleapis.com/tp_landing_page_videos/create_an_inbound_address_drawer.png)
+
+Cases created from emails sent to your inbound address will be initialized with the case template you choose
+and will be marked as created by the default creator you choose.
 
 ## Update an inbound address
 
