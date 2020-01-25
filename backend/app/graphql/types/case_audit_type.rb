@@ -21,8 +21,4 @@ class Types::CaseAuditType < Types::BaseObject
     field :action, String, null: false do
         description "The category of change that was made."
     end
-
-    field :readable_message, String, null: false do
-        description "A human-readable message describing this audit entry."
-    end
 end
