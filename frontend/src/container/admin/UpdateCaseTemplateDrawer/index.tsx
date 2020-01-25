@@ -60,6 +60,10 @@ function UpdateCaseTemplateDrawer({
   // used to render a drawer if the user clicks on one of this CT's task templates
   const [idOfActiveTT, setIdOfActiveTT] = useState<number | null>(null);
 
+  const [activeTab, setActiveTab] = useState<"info" | "tasks" | "members">(
+    "info"
+  );
+
   const { loading, error, data, refetch: refetchCaseTemplate } = useQuery<
     OneTemplateData
   >(GET_ONE_CASE_TEMPLATE, {
@@ -224,7 +228,9 @@ function UpdateCaseTemplateDrawer({
     {
       onCompleted() {
         message.success("Added task template");
-        refetchCaseTemplate();
+
+        // refresh our drawer and set our active tab to "Tasks"
+        refetchCaseTemplate().then(() => setActiveTab("tasks"));
       },
       onError(error) {
         notification.error({
@@ -289,7 +295,12 @@ function UpdateCaseTemplateDrawer({
     ));
 
     drawerContent = (
-      <Tabs key="info">
+      // Note to self: don't change the keys for any of the tab pane below.
+      // If I do, then search this file for the key and update all occurrences.
+      <Tabs
+        activeKey={activeTab}
+        onChange={(newActiveTab: any) => setActiveTab(newActiveTab)}
+      >
         <TabPane tab="Info" key="info">
           <CaseTemplateForm
             handleClose={handleClose}
