@@ -45,8 +45,8 @@ email as a file to the created case, and add a comment to the case, indicating i
 
 #### Gmail
 
-[Follow these instructions](https://support.google.com/mail/answer/10957?hl=en) to add a forwarding rule
-to forward emails to your generated inbound address.
+[Add a forwarding rule](https://support.google.com/mail/answer/10957?hl=en) to forward emails
+from your corporate mailbox to your generated inbound address.
 
 ## Update an inbound address
 
