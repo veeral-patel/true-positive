@@ -10,8 +10,10 @@ class CaseAudit < ApplicationRecord
         CREATE_COMMENT: 8
     }
 
+    belongs_to :created_by, :class_name => 'User'
+    belongs_to :auditable, polymorphic: true
+
     validates :action, presence: true
     validates :created_by, presence: true
-
-    belongs_to :created_by, :class_name => 'User'
+    validates :auditable, presence: true
 end
