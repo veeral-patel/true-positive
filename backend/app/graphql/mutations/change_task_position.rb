@@ -22,7 +22,7 @@ class Mutations::ChangeTaskPosition < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You are not authorized to move this task."
         end
 
-        # and try to update its position
+        # and update its position
         if task.insert_at(position)
             {
                 "task": task
