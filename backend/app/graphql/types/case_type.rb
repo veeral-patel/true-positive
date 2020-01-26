@@ -60,7 +60,11 @@ module Types
         end
 
         field :case_members, [Types::CaseMemberType], null: false do
-            description "This case's members. Only the users who are members of this case can access or change it."
+            description "Users who can access this case."
+        end
+
+        field :case_groups, [Types::CaseGroupType], null: false do
+            description "Groups which can access this case."
         end
 
         field :indicators, [Types::IndicatorType], null: false do
