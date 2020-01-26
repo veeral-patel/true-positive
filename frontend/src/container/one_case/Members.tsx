@@ -81,7 +81,9 @@ export default inject(
                   }}
                 />
               </div>
-              <Divider orientation="left">Users</Divider>
+              <Divider orientation="left">
+                Users ({activeCase.caseMemberCount})
+              </Divider>
               <List<ICaseMember>
                 itemLayout="horizontal"
                 dataSource={activeCase.caseMembers}
@@ -172,7 +174,9 @@ export default inject(
                 )}
               />
               <br />
-              <Divider orientation="left">Groups</Divider>
+              <Divider orientation="left">
+                Groups ({activeCase.caseGroupCount})
+              </Divider>
               <List<ICaseGroup>
                 itemLayout="horizontal"
                 dataSource={activeCase.caseGroups}

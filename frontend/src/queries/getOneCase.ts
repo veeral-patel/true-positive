@@ -74,6 +74,8 @@ const GET_ONE_CASE = gql`
         name
         reasonForMerging
       }
+      caseMemberCount
+      caseGroupCount
       caseMembers {
         role
         user {

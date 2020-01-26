@@ -28,7 +28,9 @@ interface ICase {
   mergedCases: ICase[];
   reasonForMerging: string | null;
   caseMembers: ICaseMember[];
+  caseMemberCount: number;
   caseGroups: ICaseGroup[];
+  caseGroupCount: number;
   indicators: IIndicator[];
   attachments: IAttachment[];
   attachmentCount: number;
