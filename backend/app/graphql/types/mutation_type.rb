@@ -17,7 +17,6 @@ module Types
       field :create_task, mutation: Mutations::CreateTask
       field :update_task, mutation: Mutations::UpdateTask
       field :delete_task, mutation: Mutations::DeleteTask
-      field :change_task_position, mutation: Mutations::ChangeTaskPosition
 
       # indicator --------
       field :create_string_indicator, mutation: Mutations::CreateStringIndicator
@@ -58,7 +57,7 @@ module Types
       field :delete_task_template, mutation: Mutations::DeleteTaskTemplate
       field :add_task_template_to_task_group, mutation: Mutations::AddTaskTemplateToTaskGroup
       field :remove_task_template_from_task_group, mutation: Mutations::RemoveTaskTemplateFromTaskGroup
-      field :change_task_template_position, mutation: Mutations::ChangeTaskTemplatePosition
+
 
       # case templates -----
       field :create_case_template, mutation: Mutations::CreateCaseTemplate
@@ -82,12 +81,16 @@ module Types
       field :create_attachment, mutation: Mutations::CreateAttachment
       field :delete_attachment, mutation: Mutations::DeleteAttachment
 
-      # inbound email addresses for creating cases
+      # inbound email addresses for creating cases -----
       field :create_create_case_email_address, mutation: Mutations::CreateCreateCaseEmailAddress
       field :update_create_case_email_address, mutation: Mutations::UpdateCreateCaseEmailAddress
       field :delete_create_case_email_address, mutation: Mutations::DeleteCreateCaseEmailAddress
 
-      # forms
-      field :delete_form, mutation: Mutations::DeleteForm
+      # forms -----
+      # field :delete_form, mutation: Mutations::DeleteForm
+
+      # reorder -----
+      field :change_task_position, mutation: Mutations::ChangeTaskPosition
+      field :change_task_template_position, mutation: Mutations::ChangeTaskTemplatePosition
   end
 end
