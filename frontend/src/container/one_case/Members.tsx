@@ -46,13 +46,8 @@ export default inject(
       }
 
       render() {
-        const { activeCaseStore, userStore, uiStore } = this.props;
+        const { activeCaseStore, uiStore } = this.props;
         const activeCase = activeCaseStore!.activeCase;
-
-        // make a list of the usernames of existing members
-        const usernamesOfMembers = activeCase!.caseMembers.map(
-          member => member.user.username
-        );
 
         // should always render, since we're handling error/loading states above this component (as a HOC)
         if (activeCase) {
