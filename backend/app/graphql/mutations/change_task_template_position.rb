@@ -39,7 +39,7 @@ class Mutations::ChangeTaskTemplatePosition < Mutations::BaseMutation
         if task_group_task_template.insert_at(position)
             { task_template: task_template }
         else
-            raise GraphQL::ExecutionError, task_template.errors.full_messages.join(" | ")
+            raise GraphQL::ExecutionError, task_group_task_template.errors.full_messages.join(" | ")
         end
     end
 end

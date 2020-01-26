@@ -1,5 +1,8 @@
+import { useMutation } from "@apollo/react-hooks";
+import { notification } from "antd";
 import arrayMove from "array-move";
 import SortableList from "container/one_case/SortableTTList/SortableList";
+import CHANGE_TASK_TEMPLATE_POSITION from "mutations/changeTaskTemplatePosition";
 import React, { useState } from "react";
 import ICaseTemplate from "ts/interfaces/ICaseTemplate";
 import ITaskGroup from "ts/interfaces/ITaskGroup";
@@ -22,6 +25,18 @@ function SortableComponent({
 }: Props) {
   const [orderedTTs, setOrderedTTs] = useState(existingTTs);
 
+  const [changeTaskTemplatePosition] = useMutation(
+    CHANGE_TASK_TEMPLATE_POSITION,
+    {
+      onError: function(error) {
+        notification.error({
+          message: "Failed to reorder task templates",
+          description: error.message
+        });
+      }
+    }
+  );
+
   const onSortEnd = ({
     oldIndex,
     newIndex
@@ -36,7 +51,15 @@ function SortableComponent({
     setOrderedTTs(arrayMove(orderedTTs, oldIndex, newIndex));
 
     // reorder on the server
-    alert("You cannot reorder task templates at the moment");
+    changeTaskTemplatePosition({
+      variables: {
+        input: {
+          taskTemplateId: orderedTTs[oldIndex].id,
+          taskGroupId: taskGroup.id,
+          position: newIndex
+        }
+      }
+    });
   };
 
   return (
