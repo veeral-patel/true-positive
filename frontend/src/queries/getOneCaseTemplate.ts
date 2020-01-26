@@ -40,6 +40,7 @@ const GET_ONE_CASE_TEMPLATE = gql`
         taskTemplates {
           id
           name
+          description
           assignedTo {
             username
           }
