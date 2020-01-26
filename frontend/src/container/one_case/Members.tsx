@@ -63,7 +63,8 @@ export default inject(
             >
               <h3>Members</h3>
               <Paragraph>
-                Only members of a case are authorized to view it.
+                Only the users and the members of the groups below can access
+                this case.
               </Paragraph>
               <div style={{ marginBottom: "1em" }}>
                 <AddMembersForm2
