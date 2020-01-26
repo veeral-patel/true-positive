@@ -177,7 +177,20 @@ export default inject(
                 itemLayout="horizontal"
                 dataSource={activeCase.caseGroups}
                 renderItem={caseGroup => (
-                  <List.Item>
+                  <List.Item
+                    extra={[
+                      <Popconfirm
+                        title="Remove this group?"
+                        okText="Yes, Remove"
+                        cancelText="No"
+                      >
+                        <Button
+                          icon={<CloseOutlined />}
+                          style={{ border: "none" }}
+                        />
+                      </Popconfirm>
+                    ]}
+                  >
                     <List.Item.Meta
                       avatar={<Avatar icon={<TeamOutlined />} />}
                       title={caseGroup.group.name}

@@ -1,5 +1,5 @@
 class Mutations::AddGroupToCase < Mutations::BaseMutation
-    description "Add all the members of a group to a case."
+    description "Add a group to a case so the group's members can access the case."
 
     argument :group_id, ID, required: true do
         description "ID of the group whose members we're adding."
