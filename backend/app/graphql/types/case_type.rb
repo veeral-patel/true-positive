@@ -83,6 +83,10 @@ module Types
             description "The number of task groups in this case."
         end
 
+        field :created_by_viewer, Boolean, null: false do
+            description "Whether the current user created this case."
+        end
+
         # possibly null
         field :description, String, null: true do
             description "This case's description."

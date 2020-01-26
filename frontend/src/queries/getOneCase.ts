@@ -81,6 +81,13 @@ const GET_ONE_CASE = gql`
           email
         }
       }
+      caseGroups {
+        group {
+          id
+          name
+          userCount
+        }
+      }
       description
       createdAt
       priority {

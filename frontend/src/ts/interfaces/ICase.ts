@@ -9,6 +9,7 @@ import ITag from "ts/interfaces/ITag";
 import ITask from "ts/interfaces/ITask";
 import ITaskGroup from "ts/interfaces/ITaskGroup";
 import IUser from "ts/interfaces/IUser";
+import ICaseGroup from "./ICaseGroup";
 
 interface ICase {
   id: number;
@@ -27,6 +28,7 @@ interface ICase {
   mergedCases: ICase[];
   reasonForMerging: string | null;
   caseMembers: ICaseMember[];
+  caseGroups: ICaseGroup[];
   indicators: IIndicator[];
   attachments: IAttachment[];
   attachmentCount: number;

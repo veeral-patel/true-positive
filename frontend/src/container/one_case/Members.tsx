@@ -3,6 +3,7 @@ import { navigate, RouteComponentProps } from "@reach/router";
 import {
   Avatar,
   Button,
+  Divider,
   Layout,
   List,
   Modal,
@@ -16,6 +17,7 @@ import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
 import UserStore from "stores/UserStore";
+import ICaseGroup from "ts/interfaces/ICaseGroup";
 import ICaseMember from "ts/interfaces/ICaseMember";
 import { paths } from "utils/constants";
 import getUsernameOfCurrentUser from "utils/currentUser";
@@ -52,20 +54,8 @@ export default inject(
           member => member.user.username
         );
 
-        // only show non-members in our dropdown
-        const userOptions = userStore!.users.map(user => {
-          if (!usernamesOfMembers.includes(user.username)) {
-            return (
-              <Option key={user.username} value={user.username}>
-                {user.username}
-              </Option>
-            );
-          }
-        });
-
         // should always render, since we're handling error/loading states above this component (as a HOC)
         if (activeCase) {
-          const members = activeCase.caseMembers;
           return (
             <Content
               style={{
@@ -95,9 +85,10 @@ export default inject(
                   }}
                 />
               </div>
+              <Divider orientation="left">Users</Divider>
               <List<ICaseMember>
                 itemLayout="horizontal"
-                dataSource={members}
+                dataSource={activeCase.caseMembers}
                 renderItem={member => (
                   <List.Item>
                     <List.Item.Meta
@@ -174,13 +165,27 @@ export default inject(
                         }
                       }}
                     >
-                      {members.length > 1 && (
+                      {activeCase.caseMembers.length > 1 && (
                         <Button
                           icon={<CloseOutlined />}
                           style={{ border: "none", marginLeft: "1em" }}
                         />
                       )}
                     </Popconfirm>
+                  </List.Item>
+                )}
+              />
+              <br />
+              <Divider orientation="left">Groups</Divider>
+              <List<ICaseGroup>
+                itemLayout="horizontal"
+                dataSource={activeCase.caseGroups}
+                renderItem={caseGroup => (
+                  <List.Item>
+                    <List.Item.Meta
+                      title={caseGroup.group.name}
+                      description={`${caseGroup.group.userCount} users`}
+                    />
                   </List.Item>
                 )}
               />
