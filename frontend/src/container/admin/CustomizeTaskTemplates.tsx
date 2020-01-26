@@ -1,12 +1,12 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/react-hooks";
 import { Button, Empty, Spin, Typography } from "antd";
+import CreateTaskTemplateDrawer from "container/admin/CreateTaskTemplateDrawer";
 import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
 import Error from "presentational/shared/errors/Error";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React, { useState } from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
-import CreateTaskTemplateDrawer from "./CreateTaskTemplateDrawer";
 
 const { Paragraph } = Typography;
 
