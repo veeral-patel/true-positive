@@ -24,7 +24,7 @@ class Mutations::ChangeTaskTemplatePosition < Mutations::BaseMutation
 
         # authorize this action
         unless TaskTemplatePolicy.new(context[:current_user], task_template).update_template?
-            raise GraphQL::ExecutionError, "You are not authorized to update this template."
+            raise GraphQL::ExecutionError, "You are not authorized to update this task template."
         end
 
         # find the TaskGroupTaskTemplate with the provided TT and TG. and raise an error
