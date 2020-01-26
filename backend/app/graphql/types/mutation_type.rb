@@ -89,7 +89,7 @@ module Types
       # forms -----
       # field :delete_form, mutation: Mutations::DeleteForm
 
-      # reorder -----
+      # for reordering (to be deprecated) -----
       field :change_task_position, mutation: Mutations::ChangeTaskPosition
       field :change_task_template_position, mutation: Mutations::ChangeTaskTemplatePosition
   end
