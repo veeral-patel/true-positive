@@ -19,13 +19,21 @@ interface Props {
 
   /* ID of the task template to show. */
   templateId: number | null;
+
+  /* a function that's run after the user hits the Update button */
+  afterFinish?: () => void;
 }
 
 interface OneTemplateData {
   taskTemplate: ITaskTemplate;
 }
 
-function UpdateTaskTemplateDrawer({ visible, handleClose, templateId }: Props) {
+function UpdateTaskTemplateDrawer({
+  visible,
+  handleClose,
+  templateId,
+  afterFinish
+}: Props) {
   /* retrieve this template's existing information. */
   const { loading, error, data } = useQuery<OneTemplateData>(
     GET_ONE_TASK_TEMPLATE,
@@ -59,7 +67,8 @@ function UpdateTaskTemplateDrawer({ visible, handleClose, templateId }: Props) {
       <TaskTemplateForm
         submitButtonText="Update Template"
         handleClose={handleClose}
-        handleFinish={values =>
+        handleFinish={values => {
+          // Update the task template on the server
           updateTaskTemplate({
             variables: {
               input: {
@@ -69,8 +78,11 @@ function UpdateTaskTemplateDrawer({ visible, handleClose, templateId }: Props) {
                 assignedTo: values.assignedTo
               }
             }
-          })
-        }
+          });
+
+          // Run our afterFinish callback if it's provided
+          if (afterFinish) afterFinish();
+        }}
         initialValues={{
           name: data.taskTemplate.name,
           description: data.taskTemplate.description,

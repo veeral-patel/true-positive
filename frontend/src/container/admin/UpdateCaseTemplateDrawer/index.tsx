@@ -581,6 +581,7 @@ function UpdateCaseTemplateDrawer({
           visible={idOfActiveTT !== null}
           handleClose={() => setIdOfActiveTT(null)}
           templateId={idOfActiveTT}
+          afterFinish={() => refetchCaseTemplate()}
         />
       </>
     </Drawer>
