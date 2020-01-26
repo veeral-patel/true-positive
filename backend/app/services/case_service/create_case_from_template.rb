@@ -19,6 +19,15 @@ module CaseService
                 end
             end
 
+            # add each of the case template's groups to the case
+            template.default_groups.each do |group|
+                # skip CT groups who already can access the case (but no groups should be
+                # skipped, since we're creating a new case)
+                if not new_case.case_groups.include? group
+                    new_case.case_groups << group
+                end
+            end
+
             # for each task group in the case template...
             template.task_groups.each do |template_task_group|
                 # add a corresponding task group to the case
