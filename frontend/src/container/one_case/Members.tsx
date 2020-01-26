@@ -1,4 +1,4 @@
-import { CloseOutlined, UserOutlined } from "@ant-design/icons";
+import { CloseOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import { navigate, RouteComponentProps } from "@reach/router";
 import {
   Avatar,
@@ -183,6 +183,7 @@ export default inject(
                 renderItem={caseGroup => (
                   <List.Item>
                     <List.Item.Meta
+                      avatar={<Avatar icon={<TeamOutlined />} />}
                       title={caseGroup.group.name}
                       description={`${caseGroup.group.userCount} users`}
                     />
