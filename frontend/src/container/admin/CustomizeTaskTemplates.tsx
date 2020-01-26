@@ -1,21 +1,12 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { useMutation, useQuery } from "@apollo/react-hooks";
-import {
-  Button,
-  Drawer,
-  Empty,
-  message,
-  notification,
-  Spin,
-  Typography
-} from "antd";
+import { useQuery } from "@apollo/react-hooks";
+import { Button, Empty, Spin, Typography } from "antd";
 import ListofTaskTemplates from "container/admin/ListofTaskTemplates";
-import TaskTemplateForm from "container/admin/TaskTemplateForm";
-import CREATE_A_TASK_TEMPLATE from "mutations/createTaskTemplate";
 import Error from "presentational/shared/errors/Error";
 import GET_TASK_TEMPLATES from "queries/getTaskTemplates";
 import React, { useState } from "react";
 import ITaskTemplate from "ts/interfaces/ITaskTemplate";
+import CreateTaskTemplateDrawer from "./CreateTaskTemplateDrawer";
 
 const { Paragraph } = Typography;
 
@@ -32,21 +23,6 @@ function CustomizeTaskTemplates() {
   const [openDrawer, setOpenDrawer] = useState<"CREATE_TASK_TEMPLATE" | null>(
     null
   );
-
-  const [createTaskTemplate] = useMutation(CREATE_A_TASK_TEMPLATE, {
-    onCompleted: () => {
-      message.success("Created task template");
-
-      // Close drawer after creating a T.T.
-      setOpenDrawer(null);
-    },
-    onError: error => {
-      notification.error({
-        message: "Failed to create task template",
-        description: error.message
-      });
-    }
-  });
 
   if (loading) return <Spin />;
   else if (data) {
@@ -85,32 +61,10 @@ function CustomizeTaskTemplates() {
             <ListofTaskTemplates taskTemplates={data.taskTemplates} />
           </>
         )}
-        <Drawer
+        <CreateTaskTemplateDrawer
           visible={openDrawer === "CREATE_TASK_TEMPLATE"}
-          title={<h3>Create a task template</h3>}
-          width={600}
-          maskClosable={false}
-          keyboard={false}
           onClose={() => setOpenDrawer(null)}
-          destroyOnClose={true}
-        >
-          <TaskTemplateForm
-            submitButtonText="Create Template"
-            handleClose={() => setOpenDrawer(null)}
-            handleFinish={values =>
-              createTaskTemplate({
-                variables: {
-                  input: {
-                    name: values.name,
-                    description: values.description,
-                    assignedTo: values.assignedTo
-                  }
-                },
-                refetchQueries: [{ query: GET_TASK_TEMPLATES }]
-              })
-            }
-          />
-        </Drawer>
+        />
       </>
     );
   } else if (error) {
