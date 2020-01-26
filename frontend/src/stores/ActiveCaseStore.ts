@@ -351,7 +351,7 @@ class ActiveCaseStore {
         mutation: ADD_GROUP_TO_CASE
       })
       .then((response: FetchResult) => {
-        message.success(`Added group members`);
+        message.success(`Added the group`);
       })
       .catch((error: ApolloError) => {
         notification.error({

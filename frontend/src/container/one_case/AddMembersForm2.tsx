@@ -121,7 +121,7 @@ function AddMembersForm2({ handleFinish }: Props) {
         </Select>
       </Form.Item>
       <Form.Item>
-        <Button htmlType="submit">Add Members</Button>
+        <Button htmlType="submit">Add</Button>
       </Form.Item>
     </Form>
   );

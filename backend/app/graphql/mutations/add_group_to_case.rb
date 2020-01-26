@@ -23,16 +23,18 @@ class Mutations::AddGroupToCase < Mutations::BaseMutation
             raise GraphQL::ExecutionError, "You are not authorized to update this case."
         end
 
-        # add each of the group's users to the case
-        group.users.each do |user|
-            # skip users who are already in the case
-            if not the_case.has_member(user)
-                the_case.case_members.create(user: user, role: "CAN_EDIT")
-            end
-        end
+        # ensure the case doesn't already have the group
+        if the_case.case_groups.map { |case_group| case_group.group }.include? group
+            raise GraphQL::ExecutionError, "This case already has group #{group.name}."
+        end 
 
-        {
-            "case": the_case
-        }
+        # add the group to the case
+        if the_case.case_groups.create(group: group)
+            {
+                "case": the_case
+            }
+        else
+            raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
+        end
     end
 end
