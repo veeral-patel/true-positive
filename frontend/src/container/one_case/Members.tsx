@@ -76,7 +76,7 @@ export default inject(
                 minHeight: 280
               }}
             >
-              <h3>Members ({members.length})</h3>
+              <h3>Members</h3>
               <Paragraph>
                 Only members of a case are authorized to view it.
               </Paragraph>

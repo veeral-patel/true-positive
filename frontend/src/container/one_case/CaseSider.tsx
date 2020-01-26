@@ -176,10 +176,6 @@ export default inject(
               )}
             </span>
           </Menu.Item>
-          {/* <Menu.Item key={CASE_SIDER_HISTORY}>
-            <HistoryOutlined />
-            <span>History</span>
-          </Menu.Item> */}
           <Menu.Item
             key={CASE_SIDER_MEMBERS}
             onClick={() =>
@@ -187,10 +183,7 @@ export default inject(
             }
           >
             <UserOutlined />
-            <span>
-              Members{" "}
-              {numberOfMembers !== null && <span>({numberOfMembers})</span>}
-            </span>
+            Members
           </Menu.Item>
         </Menu>
       </Sider>
