@@ -59,6 +59,14 @@ class Case < ApplicationRecord
     self.parent
   end
 
+  def case_member_count
+    self.case_members.count
+  end
+
+  def case_group_count
+    self.case_groups.count
+  end
+
   def completed_task_count
     # Number of completed tasks in this case
     self.tasks.where(done: true).count

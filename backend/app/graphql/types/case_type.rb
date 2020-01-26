@@ -63,8 +63,16 @@ module Types
             description "Users who can access this case."
         end
 
+        field :case_member_count, Int, null: false do
+            description "The number of users who can access this case. Does not count the users who are in groups which can access this case."
+        end
+
         field :case_groups, [Types::CaseGroupType], null: false do
             description "Groups which can access this case."
+        end
+
+        field :case_group_count, Int, null: false do
+            description "The number of groups who can access this case."
         end
 
         field :indicators, [Types::IndicatorType], null: false do
