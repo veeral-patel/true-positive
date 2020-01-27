@@ -15,7 +15,8 @@
       "administer/customize_statuses_and_priorities",
       "administer/case_templates",
       "administer/task_templates",
-      "administer/users_and_groups"
+      "administer/users",
+      "administer/groups"
     ],
     "Integrations": ["integrations/create_cases_from_email"],
     "API": ["api/get_started", "api/examples"]

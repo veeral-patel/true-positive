@@ -17,6 +17,10 @@
         "title": "Customize Statuses/Priorities",
         "sidebar_label": "Customize Statuses/Priorities"
       },
+      "administer/groups": {
+        "title": "Groups",
+        "sidebar_label": "Groups"
+      },
       "administer/manage_forms": {
         "title": "Manage Forms",
         "sidebar_label": "Manage Forms"
@@ -29,9 +33,9 @@
         "title": "Task Templates",
         "sidebar_label": "Task Templates"
       },
-      "administer/users_and_groups": {
-        "title": "Users & Groups",
-        "sidebar_label": "Users & Groups"
+      "administer/users": {
+        "title": "Users",
+        "sidebar_label": "Users"
       },
       "api/errors": {
         "title": "Errors",
