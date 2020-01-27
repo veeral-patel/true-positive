@@ -5,10 +5,6 @@
     "previous": "Previous",
     "tagline": "",
     "docs": {
-      "administer/billing": {
-        "title": "Billing",
-        "sidebar_label": "Billing"
-      },
       "administer/case_templates": {
         "title": "Case Templates",
         "sidebar_label": "Case Templates"
@@ -20,10 +16,6 @@
       "administer/groups": {
         "title": "Groups",
         "sidebar_label": "Groups"
-      },
-      "administer/manage_forms": {
-        "title": "Manage Forms",
-        "sidebar_label": "Manage Forms"
       },
       "administer/overview": {
         "title": "Overview",
@@ -69,10 +61,6 @@
         "title": "Webhooks",
         "sidebar_label": "Webhooks"
       },
-      "get_started/concepts": {
-        "title": "Concepts",
-        "sidebar_label": "Concepts"
-      },
       "get_started/what_is_true_positive": {
         "title": "What is True Positive?",
         "sidebar_label": "What is True Positive?"
@@ -88,10 +76,6 @@
       "work_with_cases/delete_a_case": {
         "title": "Delete a Case",
         "sidebar_label": "Delete a Case"
-      },
-      "work_with_cases/history": {
-        "title": "History",
-        "sidebar_label": "History"
       },
       "work_with_cases/manage_indicators": {
         "title": "Manage Indicators",
