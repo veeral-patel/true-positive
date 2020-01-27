@@ -4,7 +4,8 @@ title: Case Templates
 sidebar_label: Case Templates
 ---
 
-Think about the last couple cases you worked on -- chances are, they fell into a couple major categories.
+Think about the last couple cases you worked on. Chances are, they fell into a couple major
+categories: phishing, malware, IDS/SIEM alerts, etc.
 
 And moreover, you probably followed a similar set of steps to resolve the cases of each category.
 
@@ -28,9 +29,20 @@ assignee, tags, and description for cases created from this template:
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/create_case_template.png)
 
-## Manage tasks
+Now, click the title of the case template you just created and follow the instructions below
+to start adding tasks to it!
 
-## Manage users and groups
+## Update a template
+
+### Basic info
+
+![](https://storage.googleapis.com/tp_landing_page_videos/update_case_template_basic_info.png)
+
+### Tasks
+
+![](https://storage.googleapis.com/tp_landing_page_videos/update_case_template_tasks.png)
+
+### Users and groups
 
 ## Delete a template
 
