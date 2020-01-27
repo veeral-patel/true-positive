@@ -1,18 +1,24 @@
 import { CloseOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { useMutation } from "@apollo/react-hooks";
 import { navigate, RouteComponentProps } from "@reach/router";
 import {
   Avatar,
   Button,
   Divider,
+  Empty,
   Layout,
   List,
+  message,
   Modal,
+  notification,
   Popconfirm,
   Select,
   Tag,
   Typography
 } from "antd";
+import { ApolloError } from "apollo-boost";
 import { inject, observer } from "mobx-react";
+import REMOVE_GROUP_FROM_CASE from "mutations/removeGroupFromCase";
 import React from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
@@ -48,6 +54,19 @@ export default inject(
       render() {
         const { activeCaseStore, uiStore } = this.props;
         const activeCase = activeCaseStore!.activeCase;
+
+        const [removeGroupFromCase] = useMutation(REMOVE_GROUP_FROM_CASE, {
+          onCompleted: function() {
+            message.success("Removed group");
+            activeCaseStore!.loadActiveCase();
+          },
+          onError: function(error: ApolloError) {
+            notification.error({
+              message: "Failed to remove group",
+              description: error.message
+            });
+          }
+        });
 
         // should always render, since we're handling error/loading states above this component (as a HOC)
         if (activeCase) {
@@ -180,6 +199,21 @@ export default inject(
               <List<ICaseGroup>
                 itemLayout="horizontal"
                 dataSource={activeCase.caseGroups}
+                locale={{
+                  emptyText: (
+                    <Empty
+                      description={
+                        <div>
+                          <Paragraph>No groups</Paragraph>
+                          <Paragraph type="secondary">
+                            Grant a group access to this case above
+                          </Paragraph>
+                        </div>
+                      }
+                      image={Empty.PRESENTED_IMAGE_SIMPLE}
+                    />
+                  )
+                }}
                 renderItem={caseGroup => (
                   <List.Item
                     extra={[
@@ -187,6 +221,16 @@ export default inject(
                         title="Remove this group?"
                         okText="Yes, Remove"
                         cancelText="No"
+                        onConfirm={() =>
+                          removeGroupFromCase({
+                            variables: {
+                              input: {
+                                groupId: caseGroup.group.id,
+                                caseId: activeCase.id
+                              }
+                            }
+                          })
+                        }
                       >
                         <Button
                           icon={<CloseOutlined />}
