@@ -16,7 +16,7 @@ particular template:
 
 ## Create a template
 
-Visit Manage > Templates:
+Visit `Manage > Templates`:
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/list_of_case_templates.png)
 
