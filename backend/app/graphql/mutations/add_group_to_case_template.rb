@@ -9,11 +9,15 @@ class Mutations::AddGroupToCaseTemplate < Mutations::BaseMutation
         description "ID of the case template to add this group to."
     end
 
+    argument :role, Types::CaseRoleEnum, required: true do
+        description "The permission level this group should have."
+    end
+
     field :case_template, Types::CaseTemplateType, null: true do
         description "The updated case template."
     end
 
-    def resolve(group_id:, case_template_id:)
+    def resolve(group_id:, case_template_id:, role:)
         # find the group and case template
         group = find_group_or_throw_execution_error(id: group_id)
         case_template = find_case_template_or_throw_execution_error(id: case_template_id)
@@ -29,7 +33,7 @@ class Mutations::AddGroupToCaseTemplate < Mutations::BaseMutation
         end
 
         # add the group to the CT
-        if case_template.default_groups.create(group: group)
+        if case_template.default_groups.create(group: group, role: role)
             { case_template: case_template }
         else
             raise GraphQL::ExecutionError, case_template.errors.full_messages.join(" | ") 

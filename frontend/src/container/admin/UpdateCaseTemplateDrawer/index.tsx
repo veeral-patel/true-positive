@@ -9,6 +9,7 @@ import {
   message,
   notification,
   Popconfirm,
+  Select,
   Spin,
   Tabs,
   Typography
@@ -40,6 +41,7 @@ import "./styles.css";
 
 const { TabPane } = Tabs;
 const { Paragraph } = Typography;
+const { Option } = Select;
 
 interface Props {
   visible: boolean;
@@ -502,7 +504,8 @@ function UpdateCaseTemplateDrawer({
                     variables: {
                       input: {
                         groupId,
-                        caseTemplateId: caseTemplate.id
+                        caseTemplateId: caseTemplate.id,
+                        role: "CAN_EDIT"
                       }
                     }
                   });
@@ -535,6 +538,13 @@ function UpdateCaseTemplateDrawer({
                 renderItem={dgroup => (
                   <List.Item
                     actions={[
+                      <Select<"CAN_VIEW" | "CAN_EDIT">
+                        value={dgroup.role}
+                        style={{ width: "120px", marginRight: "1em" }}
+                      >
+                        <Option value="CAN_VIEW">Can View</Option>
+                        <Option value="CAN_EDIT">Can Edit</Option>
+                      </Select>,
                       <Popconfirm
                         title="Remove this group?"
                         onConfirm={() =>

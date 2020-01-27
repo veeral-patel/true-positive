@@ -28,6 +28,7 @@ const GET_ONE_CASE_TEMPLATE = gql`
         role
       }
       defaultGroups {
+        role
         group {
           id
           name
