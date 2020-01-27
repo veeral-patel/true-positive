@@ -22,3 +22,6 @@ assignee, tags, and description for cases created from this template:
 ## Manage users and groups
 
 ## Delete a template
+
+To delete a case template, click the trash icon next to the case template you'd like
+to delete.
