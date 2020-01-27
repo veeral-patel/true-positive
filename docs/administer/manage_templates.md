@@ -22,3 +22,5 @@ particular template:
 
 > You cannot delete a case template if there's an [inbound address](/docs/integrations/create_cases_from_email) that uses it.<br /><br />
 > Delete the inbound address, or change the case template associated with it, before deleting the case template.
+
+To delete a case template, click the trash can icon next to the appropriate case template.
