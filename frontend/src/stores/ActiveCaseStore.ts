@@ -345,7 +345,8 @@ class ActiveCaseStore {
         variables: {
           input: {
             groupId,
-            caseId: this.activeCase.id
+            caseId: this.activeCase.id,
+            role: "CAN_EDIT"
           }
         },
         mutation: ADD_GROUP_TO_CASE
