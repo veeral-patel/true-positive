@@ -63,7 +63,7 @@ Your rules should look something like this once you're done:
 
 #### Another email provider
 
-You can use any other email provider, just as well as Gmail and Outlook -- just find and follow the
+You can use any other email provider, not just Gmail and Outlook -- just find and follow the
 instructions for setting up forwarding rules for your specific provider.
 
 > Caveat: Your email provider must attach a `X-Forwarded-To` header to emails that it forwards.<br /><br />
