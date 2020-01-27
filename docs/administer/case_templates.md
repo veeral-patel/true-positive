@@ -44,6 +44,8 @@ to start adding tasks to it!
 
 ### Users and groups
 
+## Create a case from a template
+
 ## Delete a template
 
 To delete a case template, click the trash icon next to the case template you'd like
