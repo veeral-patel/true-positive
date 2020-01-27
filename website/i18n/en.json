@@ -9,6 +9,10 @@
         "title": "Billing",
         "sidebar_label": "Billing"
       },
+      "administer/case_templates": {
+        "title": "Case Templates",
+        "sidebar_label": "Case Templates"
+      },
       "administer/customize_statuses_and_priorities": {
         "title": "Customize Statuses/Priorities",
         "sidebar_label": "Customize Statuses/Priorities"
@@ -17,13 +21,13 @@
         "title": "Manage Forms",
         "sidebar_label": "Manage Forms"
       },
-      "administer/case_templates": {
-        "title": "Case Templates",
-        "sidebar_label": "Case Templates"
-      },
       "administer/overview": {
         "title": "Overview",
         "sidebar_label": "Overview"
+      },
+      "administer/task_templates": {
+        "title": "Task Templates",
+        "sidebar_label": "Task Templates"
       },
       "administer/users_and_groups": {
         "title": "Users & Groups",
