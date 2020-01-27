@@ -17,9 +17,9 @@
         "title": "Manage Forms",
         "sidebar_label": "Manage Forms"
       },
-      "administer/manage_templates": {
-        "title": "Manage Templates",
-        "sidebar_label": "Manage Templates"
+      "administer/case_templates": {
+        "title": "Case Templates",
+        "sidebar_label": "Case Templates"
       },
       "administer/overview": {
         "title": "Overview",
