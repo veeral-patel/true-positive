@@ -204,30 +204,7 @@ function Members({ activeCaseStore, uiStore, userStore }: Props) {
               )
             }}
             renderItem={caseGroup => (
-              <List.Item
-                extra={[
-                  <Popconfirm
-                    title="Remove this group?"
-                    okText="Yes, Remove"
-                    cancelText="No"
-                    onConfirm={() =>
-                      removeGroupFromCase({
-                        variables: {
-                          input: {
-                            groupId: caseGroup.group.id,
-                            caseId: activeCase.id
-                          }
-                        }
-                      })
-                    }
-                  >
-                    <Button
-                      icon={<CloseOutlined />}
-                      style={{ border: "none" }}
-                    />
-                  </Popconfirm>
-                ]}
-              >
+              <List.Item>
                 <List.Item.Meta
                   avatar={<Avatar icon={<TeamOutlined />} />}
                   title={
@@ -237,6 +214,33 @@ function Members({ activeCaseStore, uiStore, userStore }: Props) {
                   }
                   description={`${caseGroup.group.userCount} users`}
                 />
+                <Select<"CAN_VIEW" | "CAN_EDIT">
+                  value={caseGroup.role}
+                  style={{ width: "120px" }}
+                >
+                  <Option value="CAN_VIEW">Can View</Option>
+                  <Option value="CAN_EDIT">Can Edit</Option>
+                </Select>
+                <Popconfirm
+                  title="Remove this group?"
+                  okText="Yes, Remove"
+                  cancelText="No"
+                  onConfirm={() =>
+                    removeGroupFromCase({
+                      variables: {
+                        input: {
+                          groupId: caseGroup.group.id,
+                          caseId: activeCase.id
+                        }
+                      }
+                    })
+                  }
+                >
+                  <Button
+                    icon={<CloseOutlined />}
+                    style={{ border: "none", marginLeft: "1em" }}
+                  />
+                </Popconfirm>
               </List.Item>
             )}
           />

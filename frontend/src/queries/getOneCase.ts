@@ -84,6 +84,7 @@ const GET_ONE_CASE = gql`
         }
       }
       caseGroups {
+        role
         group {
           id
           name
