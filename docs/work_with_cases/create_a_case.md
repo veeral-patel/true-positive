@@ -16,7 +16,7 @@ We suggest creating one-off cases from scratch. Simply provide a name, status, a
 
 ## From a template
 
-For types of cases you encounter often, however, like phishing or commodity malware, you should [create case templates](/docs/administer/manage_templates) for them.
+For types of cases you encounter often, however, like phishing or commodity malware, you should [create case templates](/docs/administer/case_templates) for them.
 
 Then, you can initialize a case from a template in one click:
 
