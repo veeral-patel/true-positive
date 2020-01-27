@@ -12,20 +12,22 @@ module CaseService
             )
 
             # add each of the case template's members to the case
-            template.default_members.each do |member|
-                # skip template members who are already in the case
-                if not new_case.case_members.include? member
-                    new_case.case_members << member
+            template.default_members.each do |cmember|
+                # ignore users who are already in the case
+                if not new_case.has_member(cmember.user)
+                    new_case.case_members.create(
+                        user: cmember.user,
+                        role: cmember.role
+                    )
                 end
             end
 
             # add each of the case template's groups to the case
-            template.default_groups.each do |group|
-                # skip CT groups who already can access the case (but no groups should be
-                # skipped, since we're creating a new case)
-                if not new_case.case_groups.include? group
-                    new_case.case_groups << group
-                end
+            template.default_groups.each do |cgroup|
+                new_case.case_groups.create(
+                    group: cgroup.group,
+                    role: cgroup.role
+                )
             end
 
             # for each task group in the case template...
