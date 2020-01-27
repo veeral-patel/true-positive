@@ -32,9 +32,17 @@ interface Props {
   visible: boolean;
   onClose: () => void;
   groupId: number | null;
+
+  /* Whether this drawer is only for viewing the group, and not for editing it. */
+  forViewingOnly?: boolean;
 }
 
-function GroupDrawer({ visible, onClose, groupId }: Props) {
+function GroupDrawer({
+  visible,
+  onClose,
+  groupId,
+  forViewingOnly = false
+}: Props) {
   const { loading, error, data } = useQuery<Response>(GET_ONE_GROUP, {
     variables: {
       id: groupId
@@ -90,31 +98,33 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
         </div>
         <div>
           <Paragraph>Users ({data.group.userCount})</Paragraph>
-          <Form
-            colon={false}
-            layout="vertical"
-            style={{ display: "flex" }}
-            onFinish={values => {
-              if (!values.usernames) return; // do nothing if empty input
-              values.usernames.forEach((username: string) => {
-                addUserToGroup({
-                  variables: {
-                    input: {
-                      username,
-                      groupId: groupId
+          {!forViewingOnly && (
+            <Form
+              colon={false}
+              layout="vertical"
+              style={{ display: "flex" }}
+              onFinish={values => {
+                if (!values.usernames) return; // do nothing if empty input
+                values.usernames.forEach((username: string) => {
+                  addUserToGroup({
+                    variables: {
+                      input: {
+                        username,
+                        groupId: groupId
+                      }
                     }
-                  }
+                  });
                 });
-              });
-            }}
-          >
-            <Form.Item style={{ flex: "80%" }} name="usernames">
-              <UserSelect multiple placeholder="Choose users to add" />
-            </Form.Item>
-            <Form.Item>
-              <Button htmlType="submit">Add Users</Button>
-            </Form.Item>
-          </Form>
+              }}
+            >
+              <Form.Item style={{ flex: "80%" }} name="usernames">
+                <UserSelect multiple placeholder="Choose users to add" />
+              </Form.Item>
+              <Form.Item>
+                <Button htmlType="submit">Add Users</Button>
+              </Form.Item>
+            </Form>
+          )}
           {data.group.userCount === 0 ? (
             <Empty
               description={
@@ -132,23 +142,25 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
               renderItem={user => (
                 <List.Item
                   actions={[
-                    <Popconfirm
-                      title="Remove this user?"
-                      okText="Yes, Remove"
-                      cancelText="No"
-                      onConfirm={() =>
-                        removeUserFromGroup({
-                          variables: {
-                            input: {
-                              username: user.username,
-                              groupId: groupId
+                    !forViewingOnly && (
+                      <Popconfirm
+                        title="Remove this user?"
+                        okText="Yes, Remove"
+                        cancelText="No"
+                        onConfirm={() =>
+                          removeUserFromGroup({
+                            variables: {
+                              input: {
+                                username: user.username,
+                                groupId: groupId
+                              }
                             }
-                          }
-                        })
-                      }
-                    >
-                      <Button icon={<CloseOutlined />} type="link" />
-                    </Popconfirm>
+                          })
+                        }
+                      >
+                        <Button icon={<CloseOutlined />} type="link" />
+                      </Popconfirm>
+                    )
                   ]}
                 >
                   <List.Item.Meta
@@ -169,7 +181,7 @@ function GroupDrawer({ visible, onClose, groupId }: Props) {
       visible={visible}
       onClose={onClose}
       width={600}
-      title={<h3>Update group</h3>}
+      title={forViewingOnly ? <h3>Group details</h3> : <h3>Update group</h3>}
     >
       {drawerContent}
     </Drawer>

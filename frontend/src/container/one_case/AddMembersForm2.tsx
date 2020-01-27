@@ -115,6 +115,7 @@ function AddMembersForm2({ handleFinish }: Props) {
           style={{ width: "100%" }}
           mode="multiple"
           placeholder="Select users and groups to add"
+          optionFilterProp="children"
         >
           <OptGroup label="Users">{userOptions}</OptGroup>
           <OptGroup label="Groups">{groupOptions}</OptGroup>
