@@ -14,9 +14,11 @@ import {
 import Dragger from "antd/lib/upload/Dragger";
 import { UploadFile } from "antd/lib/upload/interface";
 import { ApolloError } from "apollo-boost";
+import ActionsDropdown from "container/one_indicator/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
 import { inject, observer } from "mobx-react";
+import CREATE_ATTACHMENT from "mutations/createAttachment";
 import DELETE_ATTACHMENT from "mutations/deleteAttachment";
 import UPDATE_INDICATOR from "mutations/updateIndicator";
 import CommentListP from "presentational/shared/comments/CommentListP";
@@ -29,7 +31,6 @@ import formatISO8601 from "utils/formatISO8601";
 import { getPathToCaseIndicators } from "utils/pathHelpers";
 import sortCommentsByCreatedAt from "utils/sortCommentsByCreatedAt";
 import truncateString from "utils/truncateString";
-import ActionsDropdown from "./ActionsDropdown";
 
 const { Content } = Layout;
 const { Text, Paragraph } = Typography;
@@ -56,6 +57,19 @@ export default inject(
       onError: function(error: ApolloError) {
         notification.error({
           message: "Could not update the indicator",
+          description: error.message
+        });
+      }
+    });
+
+    const [createAttachment] = useMutation(CREATE_ATTACHMENT, {
+      onCompleted: function() {
+        message.success("Added attachment");
+        activeCaseStore!.loadActiveCase();
+      },
+      onError: function(error) {
+        notification.error({
+          message: "Could not add attachment",
           description: error.message
         });
       }
@@ -205,19 +219,6 @@ export default inject(
             </Row>
           </section>
 
-          {/* {activeIndicator.type === "TEXT" && (
-            <section>
-              <Row>
-                <Col span={24}>
-                  <Divider orientation="left">Indicator</Divider>
-                </Col>
-              </Row>
-              <Row>
-                <IndicatorForm activeIndicator={activeIndicator} />
-              </Row>
-            </section>
-          )} */}
-
           <section>
             <Divider orientation="left">Description</Divider>
             <DescriptionEditor
@@ -242,6 +243,28 @@ export default inject(
             <Dragger
               multiple
               defaultFileList={defaultFileList}
+              style={{ maxWidth: "750px" }}
+              beforeUpload={file => {
+                // read the contents of the file
+                const reader = new FileReader();
+                reader.readAsBinaryString(file);
+
+                // once done, invoke createAttachment with the file's base64-encoded contents
+                reader.onload = e => {
+                  createAttachment({
+                    variables: {
+                      input: {
+                        blob: btoa(reader.result as string),
+                        filename: file.name,
+                        indicatorId: activeIndicator.id
+                      }
+                    }
+                  });
+                };
+
+                // Tell antd to not attempt to upload the file
+                return false;
+              }}
               onRemove={file => {
                 deleteAttachment({
                   variables: {
@@ -252,7 +275,6 @@ export default inject(
                 });
                 return false;
               }}
-              style={{ maxWidth: "750px" }}
             >
               <UploadOutlined style={{ fontSize: 36 }} />
               <div style={{ marginTop: "1em" }}>

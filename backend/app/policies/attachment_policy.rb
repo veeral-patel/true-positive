@@ -9,6 +9,8 @@ class AttachmentPolicy
             CasePolicy.new(@user, @attachment.attachable).update_case?
         elsif @attachment.attachable_type == "Task"
             TaskPolicy.new(@user, @attachment.attachable).update_task?
+        elsif @attachment.attachable_type == "Indicator"
+            IndicatorPolicy.new(@user, @attachment.attachable).update_indicator?
         else
             false
         end

@@ -22,6 +22,10 @@ class Mutations::CreateAttachment < Mutations::BaseMutation
         description "ID of the task to add this attachment to."
     end
 
+    argument :indicator_id, ID, required: false do
+        description "ID of the indicator to add this attachment to."
+    end
+
     # output ---
 
     field :attachment, Types::AttachmentType, null: true do
@@ -31,10 +35,10 @@ class Mutations::CreateAttachment < Mutations::BaseMutation
     # code ---
 
     
-    def resolve(blob:, filename:, case_id: nil, task_id: nil)
+    def resolve(blob:, filename:, case_id: nil, task_id: nil, indicator_id: nil)
         # ensure exactly one of case_id and task_id is provided
-        if not [case_id, task_id].one? { |id| not id.nil? } 
-            raise GraphQL::ExecutionError, "Please provide a caseId or a taskId argument, but not both."
+        if not [case_id, task_id, indicator_id].one? { |id| not id.nil? } 
+            raise GraphQL::ExecutionError, "Please provide exactly one of these arguments: caseId, taskId, indicatorId."
         end
 
         if not case_id.nil?
@@ -43,6 +47,9 @@ class Mutations::CreateAttachment < Mutations::BaseMutation
         elsif not task_id.nil?
             # similarly, if task_id is provided, attach the file to the corresponding task
             attach_file_to_a_task(blob: blob, filename: filename, task_id: task_id)
+        elsif not indicator_id.nil?
+            # similarly, if task_id is provided, attach the file to the corresponding task
+            attach_file_to_an_indicator(blob: blob, filename: filename, indicator_id: indicator_id)
         end
     end
 
@@ -59,6 +66,30 @@ class Mutations::CreateAttachment < Mutations::BaseMutation
 
             # create a new attachment in memory
             new_attachment = the_task.attachments.new(
+                file: { io: StringIO.new(Base64.decode64(blob)), filename: filename },
+                created_by: context[:current_user]
+            )
+
+            # and save it to the database
+            if new_attachment.save
+                { attachment: new_attachment }
+            else
+                raise GraphQL::ExecutionError, attachment.errors.full_messages.join(" | ")
+            end
+        end
+
+        # Called to attach a file to an indicator
+        def attach_file_to_an_indicator(blob:, filename:, indicator_id:)
+            # find the indicator to add this attachment to
+            the_indicator = find_indicator_or_throw_execution_error(indicator_id: indicator_id)
+
+            # authorize this action
+            unless IndicatorPolicy.new(context[:current_user], the_indicator).update_indicator?
+                raise GraphQL::ExecutionError, "You are not authorized to add an attachment to this indicator."
+            end
+
+            # create a new attachment in memory
+            new_attachment = the_indicator.attachments.new(
                 file: { io: StringIO.new(Base64.decode64(blob)), filename: filename },
                 created_by: context[:current_user]
             )
