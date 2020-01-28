@@ -93,5 +93,6 @@ module Types
       # for reordering (to be deprecated) -----
       field :change_task_position, mutation: Mutations::ChangeTaskPosition
       field :change_task_template_position, mutation: Mutations::ChangeTaskTemplatePosition
+      field :change_task_group_position, mutation: Mutations::ChangeTaskGroupPosition
   end
 end

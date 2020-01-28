@@ -43,7 +43,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
   // should always render, since we're catching errors and showing
   // our spinner above this, as a HOC
   if (activeCase) {
-    const taskGroups = <SortableTGList theCase={activeCase} />;
+    const taskGroups = <SortableTGList existingTGs={activeCase.taskGroups} />;
 
     return (
       <>
