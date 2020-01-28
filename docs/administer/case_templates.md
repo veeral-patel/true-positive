@@ -42,7 +42,25 @@ The Info tab lets you update basic info about the case template:
 
 ### Tasks
 
+Use the "Tasks" tab to populate cases created from your template with a set of tasks.
+
 ![](https://storage.googleapis.com/tp_landing_page_videos/update_case_template_tasks.png)
+
+#### Create a task group
+
+In True Positive, each task in a case are grouped into a [task group](/docs/work_with_casesTo/manage_tasks#task-groups).
+Before you can add a task, you must create a task group.
+
+Do this by clicking the "Create a task group" button in the screenshot above, which will open a modal like this:
+
+![](https://storage.googleapis.com/tp_landing_page_videos/create_a_task_group_dos.png)
+
+#### Add task templates
+
+First, you must define [task templates](/docs/administer/task_templates) for each task you'd like to add.
+This is so you can re-use a task in multiple case templates.
+
+Then, simply select the task templates you'd like to add in the input box under the task group you'd like to them and click "Add".
 
 ### Users and groups
 
