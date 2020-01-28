@@ -15,6 +15,10 @@ module Types
             description "The tasks in this group."
         end
 
+        field :position, Int, null: false do
+            description "The UI lists task groups in ascending order of their position."
+        end
+
         field :task_templates, [Types::TaskTemplateType], null: false do
             description "The task templates in this group."
         end
