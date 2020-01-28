@@ -36,6 +36,8 @@ to start adding tasks to it!
 
 ### Basic info
 
+The Info tab lets you update basic info about the case template:
+
 ![](https://storage.googleapis.com/tp_landing_page_videos/update_case_template_basic_info.png)
 
 ### Tasks
@@ -43,6 +45,8 @@ to start adding tasks to it!
 ![](https://storage.googleapis.com/tp_landing_page_videos/update_case_template_tasks.png)
 
 ### Users and groups
+
+In True Positive, only certain users and groups are allowed to access each case.
 
 ## Create a case from a template
 
