@@ -183,7 +183,7 @@ export default inject(
             }
           >
             <UserOutlined />
-            Members
+            <span>Members</span>
           </Menu.Item>
         </Menu>
       </Sider>
