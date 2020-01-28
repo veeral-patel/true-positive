@@ -27,8 +27,6 @@ interface Props {
   taskGroupId: number;
   caseId: number;
   activeCaseStore?: ActiveCaseStore;
-  // whether this task group is to be displayed in a case template (not a case)
-  forCaseTemplate?: boolean;
 }
 
 function TaskGroup({
@@ -36,13 +34,12 @@ function TaskGroup({
   tasks,
   taskGroupId,
   activeCaseStore,
-  caseId,
-  forCaseTemplate = false
+  caseId
 }: Props) {
   const [createTask] = useMutation(CREATE_A_TASK, {
     onCompleted: function() {
       message.success("Created the task");
-      if (!forCaseTemplate) activeCaseStore!.loadActiveCase();
+      activeCaseStore!.loadActiveCase();
     },
     onError: function(error) {
       notification.error({
@@ -55,7 +52,7 @@ function TaskGroup({
   const [updateTaskGroup] = useMutation(UPDATE_TASK_GROUP, {
     onCompleted: function() {
       message.success("Updated the task group");
-      if (!forCaseTemplate) activeCaseStore!.loadActiveCase();
+      activeCaseStore!.loadActiveCase();
     },
     onError: function(error: ApolloError) {
       notification.error({
@@ -68,7 +65,7 @@ function TaskGroup({
   const [deleteTaskGroup] = useMutation(DELETE_A_TASK_GROUP, {
     onCompleted: function() {
       message.success("Deleted task group");
-      if (!forCaseTemplate) activeCaseStore!.loadActiveCase();
+      activeCaseStore!.loadActiveCase();
     },
     onError: function(error: ApolloError) {
       notification.error({

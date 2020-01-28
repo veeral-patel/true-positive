@@ -5,6 +5,7 @@ import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
 import Integrations from "container/admin/Integrations";
 import UsersAndGroups from "container/admin/UsersAndGroups";
+import SortableTGList from "container/one_case/SortableTGList";
 import React from "react";
 
 const { TabPane } = Tabs;
@@ -14,6 +15,9 @@ class AdminPage extends React.Component<RouteComponentProps> {
     return (
       <div style={{ maxWidth: "900px" }}>
         <Tabs tabPosition="left">
+          <TabPane tab="POC" key="poc">
+            <SortableTGList />
+          </TabPane>
           <TabPane tab="Integrations" key="integrations">
             <Integrations />
           </TabPane>
