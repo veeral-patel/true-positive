@@ -18,6 +18,7 @@ interface IIndicator {
   type: "STRING" | "TEXT" | "FILE";
   indicator: string /* the indicator itself */;
   attachments: IAttachment[];
+  attachmentCount: number;
 }
 
 export default IIndicator;

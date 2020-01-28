@@ -18,6 +18,7 @@ import ActionsDropdown from "container/one_task/ActionsDropdown";
 import CreateComment from "container/shared/comments/CreateComment";
 import DescriptionEditor from "container/shared/markdown/DescriptionEditor";
 import { inject, observer } from "mobx-react";
+import CREATE_ATTACHMENT from "mutations/createAttachment";
 import DELETE_ATTACHMENT from "mutations/deleteAttachment";
 import UPDATE_TASK from "mutations/updateTask";
 import CommentListP from "presentational/shared/comments/CommentListP";
@@ -54,6 +55,19 @@ export default inject(
       onError: function(error: ApolloError) {
         notification.error({
           message: "Could not update the task",
+          description: error.message
+        });
+      }
+    });
+
+    const [createAttachment] = useMutation(CREATE_ATTACHMENT, {
+      onCompleted: function() {
+        message.success("Added attachment");
+        activeCaseStore!.loadActiveCase();
+      },
+      onError: function(error) {
+        notification.error({
+          message: "Could not add attachment",
           description: error.message
         });
       }
@@ -192,13 +206,35 @@ export default inject(
             />
           </section>
 
-          <section style={{ marginTop: "3em" }}>
+          <section style={{ marginTop: "2em" }}>
             <Divider orientation="left">
-              Attachments ({activeCase.attachmentCount})
+              Attachments ({activeTask.attachmentCount})
             </Divider>
             <Dragger
               multiple
               defaultFileList={defaultFileList}
+              style={{ maxWidth: "750px" }}
+              beforeUpload={file => {
+                // read the contents of the file
+                const reader = new FileReader();
+                reader.readAsBinaryString(file);
+
+                // once done, invoke createAttachment with the file's base64-encoded contents
+                reader.onload = e => {
+                  createAttachment({
+                    variables: {
+                      input: {
+                        blob: btoa(reader.result as string),
+                        filename: file.name,
+                        taskId: activeTask.id
+                      }
+                    }
+                  });
+                };
+
+                // Tell antd to not attempt to upload the file
+                return false;
+              }}
               onRemove={file => {
                 deleteAttachment({
                   variables: {
@@ -209,7 +245,6 @@ export default inject(
                 });
                 return false;
               }}
-              style={{ maxWidth: "750px" }}
             >
               <UploadOutlined style={{ fontSize: 36 }} />
               <div style={{ marginTop: "1em" }}>

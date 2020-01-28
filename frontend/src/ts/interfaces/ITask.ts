@@ -17,6 +17,7 @@ interface ITask {
   done: boolean;
   commentCount: number;
   attachments: IAttachment[];
+  attachmentCount: number;
 }
 
 export default ITask;

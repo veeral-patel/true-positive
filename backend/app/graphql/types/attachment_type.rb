@@ -25,4 +25,8 @@ class Types::AttachmentType < Types::BaseObject
     field :friendly_size, String, null: false do
         description "This attachment's file size, formatted to be human readable."
     end 
+
+    field :attachment_count, Int, null: false do
+        description "Number of files attached to this indicator."
+    end
 end

@@ -16,7 +16,7 @@ class Indicator < ApplicationRecord
     acts_as_taggable_on :tags
 
     def attachment_count
-      # Number of attachments in this task
+      # Number of attachments in this indicator
       self.attachments.count
     end
 end

@@ -237,7 +237,7 @@ export default inject(
 
           <section style={{ marginTop: "2em" }}>
             <Divider orientation="left">
-              Attachments ({activeCase.attachmentCount})
+              Attachments ({activeIndicator.attachmentCount})
             </Divider>
             <Dragger
               multiple

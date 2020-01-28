@@ -55,6 +55,7 @@ const GET_ONE_CASE = gql`
           id
           name
           description
+          attachmentCount
           done
           assignedTo {
             username
@@ -114,6 +115,7 @@ const GET_ONE_CASE = gql`
         indicator
         description
         type
+        attachmentCount
         tags {
           name
         }
