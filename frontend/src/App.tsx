@@ -2,6 +2,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { Router } from "@reach/router";
 import CreateCaseModal from "container/all_cases/CreateCaseModal";
 import MergeOneCaseModal from "container/one_case/MergeOneCaseModal";
+import "container/shared/markdown/MDE.css";
 import TopMenu from "container/shared/top_menu/TopMenu";
 import client from "createApolloClient";
 import { inject, observer } from "mobx-react";

@@ -33,11 +33,17 @@
 }
 
 .dark .mde-suggestions {
-  background-color: #262626;
-  color: white;
-  border: none;
+  background-color: #262626 !important;
+  color: white !important;
+  border: none !important;
 }
 
 .dark .mde-suggestions li {
-  border: none;
+  border: none !important;
+}
+
+.mde-preview .mde-preview-content h1,
+.mde-preview .mde-preview-content h2,
+.mde-preview .mde-preview-content h3 {
+  border-bottom: none !important;
 }

@@ -13,7 +13,6 @@ import OneIndicatorBreadcrumb from "container/one_indicator/OneIndicatorBreadcru
 import OneTask from "container/one_task/OneTask";
 import OneTaskBreadcrumb from "container/one_task/OneTaskBreadcrumb";
 import { inject, observer } from "mobx-react";
-import "pages/cases/CasePage.css"; // for responsiveness
 import OneCaseBreadcrumb from "presentational/one_case/OneCaseBreadcrumb";
 import Page404 from "presentational/shared/errors/Error404P";
 import React from "react";
