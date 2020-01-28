@@ -69,8 +69,9 @@ Then, select the task templates you'd like to add in the input box under the tas
 In True Positive, only certain users and groups are allowed to access each case. Learn more about the permission model
 for a case [here](/docs/work_with_cases/restrict_access).
 
-In the "Members" tab, you can specify users and groups in your case template that should be granted access to cases
-that are created from this template, and choose what each user/group's permission level should be.
+In the "Members" tab, you can specify the initial users and groups in your case template that should be granted access to cases that are created from this template, and choose what each user/group's permission level should be.
+
+You can always add/remove users/groups from a case later.
 
 ## Create a case from a template
 
