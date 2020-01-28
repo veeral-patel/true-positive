@@ -60,7 +60,7 @@ Do this by clicking the "Create a task group" button in the screenshot above, wh
 First, you must define [task templates](/docs/administer/task_templates) for each task you'd like to add.
 This is so you can re-use a task in multiple case templates.
 
-Then, simply select the task templates you'd like to add in the input box under the task group you'd like to them and click "Add".
+Then, select the task templates you'd like to add in the input box under the task group you'd like to add them to, and click "Add".
 
 ### Default members
 
