@@ -62,11 +62,19 @@ This is so you can re-use a task in multiple case templates.
 
 Then, simply select the task templates you'd like to add in the input box under the task group you'd like to them and click "Add".
 
-### Users and groups
+### Default members
 
-In True Positive, only certain users and groups are allowed to access each case.
+![](https://storage.googleapis.com/tp_landing_page_videos/ct_members.png)
+
+In True Positive, only certain users and groups are allowed to access each case. Learn more about the permission model
+for a case [here](/docs/work_with_cases/restrict_access).
+
+In the "Members" tab, you can specify users and groups in your case template that should be granted access to cases
+that are created from this template, and choose what each user/group's permission level should be.
 
 ## Create a case from a template
+
+[Follow these instructions](/docs/work_with_cases/create_a_case#from-a-template) to create a case from a template. It's easy :)
 
 ## Delete a template
 
