@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_012425) do
+ActiveRecord::Schema.define(version: 2020_01_28_075422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -311,6 +311,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_012425) do
     t.string "name"
     t.bigint "tenant_id"
     t.bigint "created_by_id"
+    t.integer "position"
     t.index ["caseable_type", "caseable_id"], name: "index_task_groups_on_caseable_type_and_caseable_id"
     t.index ["created_by_id"], name: "index_task_groups_on_created_by_id"
     t.index ["tenant_id"], name: "index_task_groups_on_tenant_id"

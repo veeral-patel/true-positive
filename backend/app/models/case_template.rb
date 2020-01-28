@@ -11,7 +11,7 @@ class CaseTemplate < ApplicationRecord
 
   has_many :default_members, class_name: "CaseMember", as: :caseable, dependent: :destroy
   has_many :default_groups, class_name: "CaseGroup", as: :caseable, dependent: :destroy
-  has_many :task_groups, as: :caseable, dependent: :destroy
+  has_many :task_groups, -> { order(position: :asc) }, as: :caseable, dependent: :destroy
   has_many :create_case_email_addresses
 
   acts_as_taggable_on :tags

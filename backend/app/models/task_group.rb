@@ -9,4 +9,6 @@ class TaskGroup < ApplicationRecord
     validates :caseable, presence: true
     validates :name, presence: true
     validates :created_by, presence: true
+
+    acts_as_list scope: [:caseable_id, :caseable_type], top_of_list: 0
 end
