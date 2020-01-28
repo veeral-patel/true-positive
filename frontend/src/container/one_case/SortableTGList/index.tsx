@@ -7,7 +7,6 @@ import CHANGE_TASK_GROUP_POSITION from "mutations/changeTaskGroupPosition";
 import React, { useState } from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import ActiveCaseStore from "stores/ActiveCaseStore";
-import ICase from "ts/interfaces/ICase";
 import ITaskGroup from "ts/interfaces/ITaskGroup";
 
 // ---
@@ -31,12 +30,13 @@ const SItem = SortableElement(({ taskGroup, caseId }: SItemProps) => {
 // ---
 
 interface SListProps {
-  theCase: ICase;
+  orderedTGs: ITaskGroup[];
+  caseId: number;
 }
 
-const SList = SortableContainer(({ theCase }: SListProps) => {
-  const items = theCase.taskGroups.map((taskGroup, index) => (
-    <SItem index={index} taskGroup={taskGroup} caseId={theCase.id} />
+const SList = SortableContainer(({ orderedTGs, caseId }: SListProps) => {
+  const items = orderedTGs.map((taskGroup, index) => (
+    <SItem index={index} taskGroup={taskGroup} caseId={caseId} />
   ));
   return <div>{items}</div>;
 });
@@ -85,12 +85,14 @@ function SortableTGList({ existingTGs, activeCaseStore }: Props) {
     });
   };
 
-  if (activeCaseStore!.activeCase) {
+  const activeCase = activeCaseStore!.activeCase;
+  if (activeCase) {
     return (
       <SList
         distance={3}
         onSortEnd={onSortEnd}
-        theCase={activeCaseStore!.activeCase}
+        orderedTGs={orderedTGs}
+        caseId={activeCase.id}
       />
     );
   }
