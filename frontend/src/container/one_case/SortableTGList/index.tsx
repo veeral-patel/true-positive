@@ -1,20 +1,34 @@
+import TaskGroup from "container/one_case/TaskGroup";
 import React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import TaskGroup from "../TaskGroup";
+import ICase from "ts/interfaces/ICase";
+import ITaskGroup from "ts/interfaces/ITaskGroup";
 
-interface Props {
-  char: string;
+interface ItemProps {
+  caseId: number;
+  taskGroup: ITaskGroup;
 }
 
-const SortableItem = SortableElement(({ char }: Props) => {
-  return <TaskGroup caseId={20} taskGroupId={71} name={char} tasks={[]} />;
+const SortableTGItem = SortableElement(({ taskGroup, caseId }: ItemProps) => {
+  return (
+    <TaskGroup
+      caseId={caseId}
+      taskGroupId={taskGroup.id}
+      name={taskGroup.name}
+      tasks={taskGroup.tasks}
+    />
+  );
 });
 
-const SortableTGList = SortableContainer(() => {
-  const items = ["A", "B", "C"].map((char, index) => (
-    <SortableItem index={index} char={char} />
+interface ListProps {
+  theCase: ICase;
+}
+
+const SortableTGList = SortableContainer(({ theCase }: ListProps) => {
+  const items = theCase.taskGroups.map((taskGroup, index) => (
+    <SortableTGItem index={index} taskGroup={taskGroup} caseId={theCase.id} />
   ));
-  return <ul>{items}</ul>;
+  return <div>{items}</div>;
 });
 
 export default SortableTGList;

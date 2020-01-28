@@ -4,13 +4,13 @@ import { RouteComponentProps } from "@reach/router";
 import { Button, Empty, Layout, message, notification, Typography } from "antd";
 import CreateTaskGroupModal from "container/admin/CreateTaskGroupModal";
 import CreateTaskModal from "container/one_case/CreateTaskModal";
-import TaskGroup from "container/one_case/TaskGroup";
 import TaskProgress from "container/shared/tasks/TaskProgress";
 import { inject, observer } from "mobx-react";
 import CREATE_A_TASK_GROUP from "mutations/createTaskGroup";
 import React, { useState } from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
 import UIStore from "stores/UIStore";
+import SortableTGList from "./SortableTGList";
 
 const { Content } = Layout;
 const { Paragraph } = Typography;
@@ -43,15 +43,7 @@ function Tasks({ activeCaseStore, uiStore }: Props) {
   // should always render, since we're catching errors and showing
   // our spinner above this, as a HOC
   if (activeCase) {
-    const taskGroups = activeCase.taskGroups.map(group => (
-      <TaskGroup
-        name={group.name}
-        tasks={group.tasks}
-        key={group.id}
-        taskGroupId={group.id}
-        caseId={activeCase.id}
-      />
-    ));
+    const taskGroups = <SortableTGList theCase={activeCase} />;
 
     return (
       <>
