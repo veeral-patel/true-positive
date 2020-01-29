@@ -163,7 +163,8 @@ function GlobalAutocomplete() {
         if (!option) return false;
         // filter options based on the name of the task/indicator/case
         if (option.value) {
-          if (option.value === VIEW_ALL_RESULTS) return true;
+          // change false to true below to show the "View all results" link whenever you search
+          if (option.value === VIEW_ALL_RESULTS) return false;
           else {
             return option.value
               .toString()
