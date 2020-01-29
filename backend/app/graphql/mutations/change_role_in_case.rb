@@ -29,38 +29,49 @@ class Mutations::ChangeRoleInCase  < Mutations::BaseMutation
     end
 
     def resolve(case_id:, role:, username: nil, group_id: nil)
-        # find the case and the user in question
-        the_case = find_case_or_throw_execution_error(case_id: case_id)
-        user = find_user_or_throw_execution_error(username: username)
-
-        # authorize this action
-        unless CasePolicy.new(context[:current_user], the_case).change_role?
-            raise GraphQL::ExecutionError, "You are not authorized to change a case member's role."
+        # ensure exactly one of username and group_id is provided
+        if not [username, group_id].one? { |id| not id.nil? } 
+            raise GraphQL::ExecutionError, "Please provide exactly one of these arguments: username, groupId."
         end
 
-        # find the case member to update
-        begin
-            member = the_case.case_members.find_by!(user: user)
-        rescue ActiveRecord::RecordNotFound
-            raise GraphQL::ExecutionError, "#{username} is not a member of the specified case."
-        end
-
-        # if this is the last CAN_EDIT member in the case, you cannot make him CAN_VIEW
-        number_of_editors = the_case.case_members.where(role: "CAN_EDIT").count
-        if number_of_editors == 1 && member.role == "CAN_EDIT"  && role == "CAN_VIEW"
-            raise GraphQL::ExecutionError, "Each case must have at least one user with edit access."
-        end
-
-        # update the case member in memory
-        member.role = role
-
-        # and save to the database
-        if member.save
-            {
-                "case": the_case
-            }
-        else
-            raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
+        if not username.nil?
+            # if username is provided, then change the role of the corresponding user
+            change_role_of_a_user(case_id: case_id, role: role, username: username)
         end
     end
+
+    private
+        def change_role_of_a_user(case_id:, role:, username:)
+            # find the case and the user in question
+            the_case = find_case_or_throw_execution_error(case_id: case_id)
+            user = find_user_or_throw_execution_error(username: username)
+
+            # authorize this action
+            unless CasePolicy.new(context[:current_user], the_case).change_role?
+                raise GraphQL::ExecutionError, "You are not authorized to change a case member's role."
+            end
+
+            # find the case member to update
+            begin
+                member = the_case.case_members.find_by!(user: user)
+            rescue ActiveRecord::RecordNotFound
+                raise GraphQL::ExecutionError, "#{username} is not a member of the specified case."
+            end
+
+            # if this is the last CAN_EDIT member in the case, you cannot make him CAN_VIEW
+            number_of_editors = the_case.case_members.where(role: "CAN_EDIT").count
+            if number_of_editors == 1 && member.role == "CAN_EDIT"  && role == "CAN_VIEW"
+                raise GraphQL::ExecutionError, "Each case must have at least one user with edit access."
+            end
+
+            # update the case member in memory
+            member.role = role
+
+            # and save to the database
+            if member.save
+                { case: the_case }
+            else
+                raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
+            end
+        end
 end
