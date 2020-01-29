@@ -16,7 +16,14 @@ function Integrations() {
       <Paragraph>Create cases from inbound email</Paragraph>
       <Paragraph type="secondary">
         True Positive can ingest and create cases from emails sent to a mailbox,
-        such as phishing@ecorp.com.
+        such as phishing@ecorp.com.{" "}
+        <a
+          href="https://docs.truepositive.app/docs/integrations/create_cases_from_email"
+          target="_blank"
+          style={{ color: "inherit", textDecoration: "underline" }}
+        >
+          See the docs
+        </a>
       </Paragraph>
       <Button
         type="link"
