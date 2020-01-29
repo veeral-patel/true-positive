@@ -8,7 +8,7 @@ class Mutations::ChangeRoleInCase  < Mutations::BaseMutation
     end
 
     argument :role, Types::CaseRoleEnum, required: true do
-        description "The case member's new role."
+        description "The new role for the user or group."
     end
 
     # not required ---
