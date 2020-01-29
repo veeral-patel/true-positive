@@ -368,7 +368,11 @@ class ActiveCaseStore {
   }
 
   @action.bound
-  changeRole(caseId: number, username: string, role: "CAN_VIEW" | "CAN_EDIT") {
+  changeRoleInCase(
+    caseId: number,
+    username: string,
+    role: "CAN_VIEW" | "CAN_EDIT"
+  ) {
     client
       .mutate({
         variables: {

@@ -18,7 +18,7 @@ class Mutations::ChangeRoleInCase  < Mutations::BaseMutation
         description "The username of the user whose role we're changing."
     end
 
-    field :group_id, ID, required: false do
+    argument :group_id, ID, required: false do
         description "ID of the group whose role we're changing."
     end
 

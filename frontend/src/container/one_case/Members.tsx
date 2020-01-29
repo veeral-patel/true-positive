@@ -125,7 +125,7 @@ function Members({ activeCaseStore, uiStore, userStore }: Props) {
                         content:
                           "Are you sure you want to change your role to 'Can View' in this case?",
                         onOk() {
-                          activeCaseStore!.changeRole(
+                          activeCaseStore!.changeRoleInCase(
                             activeCase.id,
                             member.user.username,
                             newRole
@@ -135,7 +135,7 @@ function Members({ activeCaseStore, uiStore, userStore }: Props) {
                         okText: "Yes, Change My Role"
                       });
                     } else {
-                      activeCaseStore!.changeRole(
+                      activeCaseStore!.changeRoleInCase(
                         activeCase.id,
                         member.user.username,
                         newRole

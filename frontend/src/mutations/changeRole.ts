@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-const CHANGE_ROLE = gql`
-  mutation changeRole($input: ChangeRoleInput!) {
-    changeRole(input: $input) {
+const CHANGE_ROLE_IN_CASE = gql`
+  mutation changeRoleInCase($input: ChangeRoleInCaseInput!) {
+    changeRoleInCase(input: $input) {
       case {
         id
       }
@@ -10,4 +10,4 @@ const CHANGE_ROLE = gql`
   }
 `;
 
-export default CHANGE_ROLE;
+export default CHANGE_ROLE_IN_CASE;
