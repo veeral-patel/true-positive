@@ -10,8 +10,8 @@ class CasePolicy
     end
 
     def show_case?
-        # Only a case's members can view it
-        @case.has_member(@user)
+        # Only a case's members, or users in a group with access to the case, can view it
+        @case.has_member(@user) || @case.is_a_member_of_a_group_with_access(@user)
     end
 
     def view_comment?
@@ -20,7 +20,11 @@ class CasePolicy
     end
 
     def user_can_edit_specified_case?(the_case)
-        the_case.case_members.where(user: @user, role: "CAN_EDIT").exists?
+        user_is_a_member_with_edit_access = the_case.case_members.where(user: @user, role: "CAN_EDIT").exists?
+
+        user_is_a_member_of_a_group_with_edit_access = the_case.case_groups.select { |cgroup| cgroup.role == "CAN_EDIT" && cgroup.group.users.include?(@user) }.count >= 1
+
+        user_is_a_member_with_edit_access || user_is_a_member_of_a_group_with_edit_access
     end
 
     def user_can_edit_this_case?

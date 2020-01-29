@@ -40,6 +40,11 @@ class Case < ApplicationRecord
     self.case_members.where(user: user).exists?
   end
 
+  def is_a_member_of_a_group_with_access(user)
+    # Returns true iff the specified user is a member of a group with access to this case
+    self.case_groups.select { |cgroup| cgroup.group.users.include? user }.count >= 1
+  end
+
   def to_s
     self.name
   end
