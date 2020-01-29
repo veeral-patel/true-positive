@@ -13,7 +13,7 @@ class Mutations::DeleteCase < Mutations::BaseMutation
         the_case = find_case_or_throw_execution_error(case_id: id)
 
         # authorize this action
-        unless CasePolicy.new(context[:current_user], the_case).delete_case?
+        unless CasePolicy.new(context[:current_user], the_case).update_case?
             raise GraphQL::ExecutionError, "You are not authorized to delete this case."
         end
 

@@ -41,7 +41,7 @@ class Mutations::CreateTask < Mutations::BaseMutation
         assigned_user = assigned_to.nil? || assigned_to == "N/A" ? nil : find_user_or_throw_execution_error(username: assigned_to)
 
         # authorize this action
-        unless CasePolicy.new(context[:current_user], the_case).create_task?
+        unless CasePolicy.new(context[:current_user], the_case).update_case?
             raise GraphQL::ExecutionError, "You are not authorized to add tasks to this case."
         end
 

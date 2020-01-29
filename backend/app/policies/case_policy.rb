@@ -31,46 +31,6 @@ class CasePolicy
         user_can_edit_this_case?
     end
 
-    def add_member?
-        user_can_edit_this_case?
-    end
-
-    def remove_member?
-        user_can_edit_this_case? 
-    end
-
-    def create_task?
-        user_can_edit_this_case? 
-    end
-
-    def rename_case?
-        user_can_edit_this_case? 
-    end
-
-    def change_status?
-        user_can_edit_this_case? 
-    end
-
-    def change_priority?
-        user_can_edit_this_case? 
-    end
-
-    def change_assignee?
-        user_can_edit_this_case?
-    end
-
-    def change_description?
-        user_can_edit_this_case?
-    end
-
-    def change_tags?
-        user_can_edit_this_case?
-    end
-
-    def delete_case?
-        user_can_edit_this_case?
-    end
-
     def can_merge_into?(parent_case: nil)
         # You can merge this case into PARENT_CASE if you can edit both cases.
         can_edit_child_case =  user_can_edit_this_case?

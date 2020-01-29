@@ -18,7 +18,7 @@ class Mutations::RemoveMember < Mutations::BaseMutation
         user = find_user_or_throw_execution_error(username: username)
 
         # authorize this action
-        unless CasePolicy.new(context[:current_user], the_case).remove_member?
+        unless CasePolicy.new(context[:current_user], the_case).update_case?
             raise GraphQL::ExecutionError, "You are not authorized to remove users from this case."
         end
 
