@@ -13,8 +13,10 @@ import {
   Typography
 } from "antd";
 import gql from "graphql-tag";
+import { inject, observer } from "mobx-react";
 import Error from "presentational/shared/errors/Error";
 import React from "react";
+import AuthStore from "stores/AuthStore";
 import IUser from "ts/interfaces/IUser";
 
 const { Paragraph } = Typography;
@@ -41,11 +43,18 @@ const UPDATE_ME = gql`
     updateMe(input: $input) {
       me {
         username
-        email
       }
     }
   }
 `;
+
+interface UpdateMeResponse {
+  updateMe: {
+    me: {
+      username: string;
+    };
+  };
+}
 
 // ---
 
@@ -60,15 +69,23 @@ const UPDATE_PASSWORD = gql`
   }
 `;
 
+interface Props extends RouteComponentProps {
+  authStore?: AuthStore;
+}
+
 // ---
 
-interface Props extends RouteComponentProps {}
-
-function ProfilePage(props: Props) {
+function ProfilePage({ authStore }: Props) {
   const { loading, error, data } = useQuery<MeData>(GET_ME);
-  const [updateMe] = useMutation(UPDATE_ME, {
-    onCompleted: function() {
+  const [updateMe] = useMutation<UpdateMeResponse>(UPDATE_ME, {
+    onCompleted: function({ updateMe }) {
       message.success("Updated profile");
+
+      // Update the user's username in the UI
+      authStore!.setUsername(updateMe.me.username);
+
+      // refresh the page
+      window.location.reload();
     },
     onError: function(error) {
       notification.error({
@@ -206,4 +223,4 @@ function ProfilePage(props: Props) {
   );
 }
 
-export default ProfilePage;
+export default inject("authStore")(observer(ProfilePage));
