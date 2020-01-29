@@ -578,6 +578,17 @@ function UpdateCaseTemplateDrawer({
                       <Select<"CAN_VIEW" | "CAN_EDIT">
                         value={dgroup.role}
                         style={{ width: "120px", marginRight: "1em" }}
+                        onChange={newRole =>
+                          changeRoleInCaseTemplate({
+                            variables: {
+                              input: {
+                                role: newRole,
+                                caseTemplateId: caseTemplate.id,
+                                groupId: dgroup.group.id
+                              }
+                            }
+                          })
+                        }
                       >
                         <Option value="CAN_VIEW">Can View</Option>
                         <Option value="CAN_EDIT">Can Edit</Option>
