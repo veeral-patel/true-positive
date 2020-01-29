@@ -86,12 +86,14 @@ function GlobalAutocomplete() {
         value={indicator.name}
         title="INDICATOR"
       >
-        {truncateString(indicator.name, 40)}
-        <span style={{ position: "absolute", right: "16px" }}>
-          <Text type="secondary">
-            {truncateString(indicator.case.name, 20)}
-          </Text>
-        </span>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div>{truncateString(indicator.name, 40)}</div>
+          <div>
+            <Text type="secondary">
+              {truncateString(indicator.case.name, 20)}
+            </Text>
+          </div>
+        </div>
       </Option>
     ));
   }
