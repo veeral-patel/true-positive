@@ -1,23 +1,34 @@
-class Mutations::ChangeRole  < Mutations::BaseMutation
-    description "Change the role of a user in a case, either to grant him edit access or make him view only."
+class Mutations::ChangeRoleInCase  < Mutations::BaseMutation
+    description "Change the role of a user or a group in a case."
+
+    # required ---
 
     argument :case_id, ID, required: true do
-        description "The ID of the case in which we're changing a member's role."
-    end
-
-    argument :username, String, required: true do
-        description "The username of the user whose role we're changing."
+        description "ID of the case we're updating"
     end
 
     argument :role, Types::CaseRoleEnum, required: true do
         description "The case member's new role."
     end
 
+    # not required ---
+
+    # one of the two arguments below is required
+    argument :username, String, required: false do
+        description "The username of the user whose role we're changing."
+    end
+
+    field :group_id, ID, required: false do
+        description "ID of the group whose role we're changing."
+    end
+
+    # output ---
+
     field :case, Types::CaseType, null: true do
         description "The updated case."
     end
 
-    def resolve(case_id:, username:, role:)
+    def resolve(case_id:, role:, username: nil, group_id: nil)
         # find the case and the user in question
         the_case = find_case_or_throw_execution_error(case_id: case_id)
         user = find_user_or_throw_execution_error(username: username)

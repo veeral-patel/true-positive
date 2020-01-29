@@ -10,7 +10,7 @@ module Types
       field :merge_case, mutation: Mutations::MergeCase
       field :add_member, mutation: Mutations::AddMember
       field :remove_member, mutation: Mutations::RemoveMember
-      field :change_role, mutation: Mutations::ChangeRole
+      field :change_role_in_case, mutation: Mutations::ChangeRoleInCase
       field :add_group_to_case, mutation: Mutations::AddGroupToCase
       field :remove_group_from_case, mutation: Mutations::RemoveGroupFromCase
 
