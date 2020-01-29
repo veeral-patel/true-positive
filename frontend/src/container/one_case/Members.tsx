@@ -19,6 +19,7 @@ import {
 import { ApolloError } from "apollo-boost";
 import GroupDrawer from "container/admin/GroupDrawer";
 import { inject, observer } from "mobx-react";
+import CHANGE_ROLE_IN_CASE from "mutations/changeRole";
 import REMOVE_GROUP_FROM_CASE from "mutations/removeGroupFromCase";
 import React, { useEffect, useState } from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";
@@ -54,6 +55,19 @@ function Members({ activeCaseStore, uiStore, userStore }: Props) {
     onError: function(error: ApolloError) {
       notification.error({
         message: "Failed to remove group",
+        description: error.message
+      });
+    }
+  });
+
+  const [changeRoleInCase] = useMutation(CHANGE_ROLE_IN_CASE, {
+    onCompleted: function() {
+      message.success("Changed role");
+      activeCaseStore!.loadActiveCase();
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Failed to change role",
         description: error.message
       });
     }
@@ -217,6 +231,17 @@ function Members({ activeCaseStore, uiStore, userStore }: Props) {
                 <Select<"CAN_VIEW" | "CAN_EDIT">
                   value={caseGroup.role}
                   style={{ width: "120px" }}
+                  onChange={newRole => {
+                    changeRoleInCase({
+                      variables: {
+                        input: {
+                          role: newRole,
+                          caseId: activeCase.id,
+                          groupId: caseGroup.group.id
+                        }
+                      }
+                    });
+                  }}
                 >
                   <Option value="CAN_VIEW">Can View</Option>
                   <Option value="CAN_EDIT">Can Edit</Option>
