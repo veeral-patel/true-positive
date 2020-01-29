@@ -21,11 +21,11 @@ const GET_ONE_CASE_TEMPLATE = gql`
       defaultMemberCount
       defaultGroupCount
       defaultMembers {
+        role
         user {
           username
           email
         }
-        role
       }
       defaultGroups {
         role
