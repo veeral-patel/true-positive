@@ -5,7 +5,11 @@ class TaskGroupPolicy
     end
 
     def user_can_edit_case?
-        @task_group.caseable.case_members.where(user: @user, role: "CAN_EDIT").exists?
+        if @task_group.caseable_type == "Case"
+            CasePolicy.new(@user, @task_group.caseable).update_case?
+        elsif @task_group.caseable_type == "CaseTemplate"
+            CaseTemplatePolicy.new(@user, @task_group.caseable).update_template?
+        end
     end
 
     def create?
