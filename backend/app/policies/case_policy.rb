@@ -15,8 +15,7 @@ class CasePolicy
     end
 
     def view_comment?
-        # Only a case's members can view its comments
-        @case.has_member(@user)
+        show_case?
     end
 
     def user_can_edit_specified_case?(the_case)
