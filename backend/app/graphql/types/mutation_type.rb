@@ -10,9 +10,9 @@ module Types
       field :merge_case, mutation: Mutations::MergeCase
       field :add_member, mutation: Mutations::AddMember
       field :remove_member, mutation: Mutations::RemoveMember
-      field :change_role_in_case, mutation: Mutations::ChangeRoleInCase
       field :add_group_to_case, mutation: Mutations::AddGroupToCase
       field :remove_group_from_case, mutation: Mutations::RemoveGroupFromCase
+      field :change_role_in_case, mutation: Mutations::ChangeRoleInCase
 
       # task -------
       field :create_task, mutation: Mutations::CreateTask
@@ -68,6 +68,7 @@ module Types
       field :remove_user_from_case_template, mutation: Mutations::RemoveUserFromCaseTemplate
       field :add_group_to_case_template, mutation: Mutations::AddGroupToCaseTemplate
       field :remove_group_from_case_template, mutation: Mutations::RemoveGroupFromCaseTemplate
+      field :change_role_in_case_template, mutation: Mutations::ChangeRoleInCaseTemplate
 
       # task groups ------
       field :create_task_group, mutation: Mutations::CreateTaskGroup
