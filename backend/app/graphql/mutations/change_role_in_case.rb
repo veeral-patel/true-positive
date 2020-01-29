@@ -37,18 +37,49 @@ class Mutations::ChangeRoleInCase  < Mutations::BaseMutation
         if not username.nil?
             # if username is provided, then change the role of the corresponding user
             change_role_of_a_user(case_id: case_id, role: role, username: username)
+        elsif not group_id.nil?
+            # similarly, if groupId is provided, change the role of the corresponding user
+            change_role_of_a_group(case_id: case_id, role: role, group_id: group_id)
         end
     end
 
     private
+        def change_role_of_a_group(case_id:, role:, group_id:)
+            # find the case and the group in question
+            the_case = find_case_or_throw_execution_error(case_id: case_id)
+            group = find_group_or_throw_execution_error(id: group_id)
+
+            # authorize this action
+            unless CasePolicy.new(context[:current_user], the_case).update_case?
+                raise GraphQL::ExecutionError, "You are not authorized to update this case."
+            end
+
+            # ensure the case has the group we're updating
+            begin
+                case_group = the_case.case_groups.find_by!(group: group)
+            rescue ActiveRecord::RecordNotFound
+                raise GraphQL::ExecutionError, "This case doesn't have group #{group.name}."
+            end
+
+            # update the case group in memory
+            case_group.role = role
+
+            # and save the case group to the database
+            if case_group.save
+                { case: the_case }
+            else
+                raise GraphQL::ExecutionError, the_case.errors.full_messages.join(" | ")
+            end
+        end
+
         def change_role_of_a_user(case_id:, role:, username:)
             # find the case and the user in question
             the_case = find_case_or_throw_execution_error(case_id: case_id)
             user = find_user_or_throw_execution_error(username: username)
 
             # authorize this action
-            unless CasePolicy.new(context[:current_user], the_case).change_role?
-                raise GraphQL::ExecutionError, "You are not authorized to change a case member's role."
+            unless CasePolicy.new(context[:current_user], the_case).update_case?
+                raise GraphQL::ExecutionError, "You are not authorized to update this case."
             end
 
             # find the case member to update

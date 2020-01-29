@@ -47,10 +47,6 @@ class CasePolicy
         user_can_edit_this_case? 
     end
 
-    def change_role?
-        user_can_edit_this_case? 
-    end
-
     def change_status?
         user_can_edit_this_case? 
     end
