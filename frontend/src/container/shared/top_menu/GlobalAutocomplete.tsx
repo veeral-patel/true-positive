@@ -2,9 +2,13 @@ import { useQuery } from "@apollo/react-hooks";
 import { navigate } from "@reach/router";
 import { AutoComplete, Input, Typography } from "antd";
 import GET_CASES from "queries/getCases";
+import GET_INDICATORS from "queries/getIndicators";
+import GET_TASKS from "queries/getTasks";
 import { OptGroup } from "rc-select";
 import React, { useState } from "react";
 import ICase from "ts/interfaces/ICase";
+import IIndicator from "ts/interfaces/IIndicator";
+import ITask from "ts/interfaces/ITask";
 import { paths, VIEW_ALL_RESULTS } from "utils/constants";
 import { formatDateOnly } from "utils/formatISO8601";
 import {
@@ -21,6 +25,14 @@ interface AllCasesResponse {
   cases: ICase[];
 }
 
+interface AllTasksResponse {
+  tasks: ITask[];
+}
+
+interface AllIndicatorsResponse {
+  indicators: IIndicator[];
+}
+
 function GlobalAutocomplete() {
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -28,6 +40,14 @@ function GlobalAutocomplete() {
   const { data: allCasesData, loading: allCasesLoading } = useQuery<
     AllCasesResponse
   >(GET_CASES);
+
+  const { data: allTasksData, loading: allTasksLoading } = useQuery<
+    AllTasksResponse
+  >(GET_TASKS);
+
+  const { data: allIndicatorsData, loading: allIndicatorsLoading } = useQuery<
+    AllIndicatorsResponse
+  >(GET_INDICATORS);
 
   // case options
   let caseOptions: Object[] = [];
@@ -53,47 +73,49 @@ function GlobalAutocomplete() {
 
   let indicatorOptions: Object[] = [];
 
-  // if (indicatorStore!.indicatorsAreLoading) {
-  //   indicatorOptions = [
-  //     <Option disabled key="loading" value="loading">
-  //       Loading...
-  //     </Option>
-  //   ];
-  // } else {
-  //   indicatorOptions = indicatorStore!.indicators.map(indicator => (
-  //     <Option
-  //       key={`${indicator.case.id}-${indicator.id}`}
-  //       value={indicator.name}
-  //       title="INDICATOR"
-  //     >
-  //       {truncateString(indicator.name, 22)}
-  //       <span style={{ position: "absolute", right: "16px" }}>
-  //         <Text type="secondary">
-  //           {truncateString(indicator.case.name, 15)}
-  //         </Text>
-  //       </span>
-  //     </Option>
-  //   ));
-  // }
+  if (allIndicatorsLoading) {
+    indicatorOptions = [
+      <Option disabled key="loading" value="loading">
+        Loading...
+      </Option>
+    ];
+  } else if (allIndicatorsData) {
+    indicatorOptions = allIndicatorsData.indicators.map(indicator => (
+      <Option
+        key={`${indicator.case.id}-${indicator.id}`}
+        value={indicator.name}
+        title="INDICATOR"
+      >
+        {truncateString(indicator.name, 40)}
+        <span style={{ position: "absolute", right: "16px" }}>
+          <Text type="secondary">
+            {truncateString(indicator.case.name, 20)}
+          </Text>
+        </span>
+      </Option>
+    ));
+  }
 
   let taskOptions: Object[] = [];
 
-  // if (allTasksStore!.tasksAreLoading) {
-  //   taskOptions = [
-  //     <Option disabled key="loading" value="loading">
-  //       Loading...
-  //     </Option>
-  //   ];
-  // } else {
-  //   taskOptions = allTasksStore!.tasks.map(task => (
-  //     <Option key={`${task.case.id}-${task.id}`} value={task.name} title="TASK">
-  //       {truncateString(task.name, 22)}
-  //       <span style={{ position: "absolute", right: "16px" }}>
-  //         <Text type="secondary">{truncateString(task.case.name, 15)}</Text>
-  //       </span>
-  //     </Option>
-  //   ));
-  // }
+  if (allTasksLoading) {
+    taskOptions = [
+      <Option disabled key="loading" value="loading">
+        Loading...
+      </Option>
+    ];
+  } else if (allTasksData) {
+    taskOptions = allTasksData.tasks.map(task => (
+      <Option key={`${task.case.id}-${task.id}`} value={task.name} title="TASK">
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div> {truncateString(task.name, 40)}</div>
+          <div>
+            <Text type="secondary">{truncateString(task.case.name, 20)}</Text>
+          </div>
+        </div>
+      </Option>
+    ));
+  }
 
   return (
     <AutoComplete
@@ -139,15 +161,12 @@ function GlobalAutocomplete() {
         if (!option) return false;
         // filter options based on the name of the task/indicator/case
         if (option.value) {
-          // change to true to always show View all Results
           if (option.value === VIEW_ALL_RESULTS) return true;
           else {
-            return (
-              option.value
-                .toString()
-                .toLowerCase()
-                .indexOf(inputValue.toLowerCase()) !== -1
-            );
+            return option.value
+              .toString()
+              .toLowerCase()
+              .includes(inputValue.toLowerCase());
           }
         }
         return false;
