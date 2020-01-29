@@ -23,6 +23,7 @@ import UserSelect from "container/shared/users/UserSelect";
 import ADD_GROUP_TO_CASE_TEMPLATE from "mutations/addGroupToCaseTemplate";
 import ADD_TASK_TEMPLATE_TO_TASK_GROUP from "mutations/addTaskTemplateToTaskGroup";
 import ADD_USER_TO_CASE_TEMPLATE from "mutations/addUserToCaseTemplate";
+import CHANGE_ROLE_IN_CASE_TEMPLATE from "mutations/changeRoleInCaseTemplate";
 import CREATE_A_TASK_GROUP from "mutations/createTaskGroup";
 import DELETE_A_TASK_GROUP from "mutations/deleteTaskGroup";
 import REMOVE_GROUP_FROM_CASE_TEMPLATE from "mutations/removeGroupFromCaseTemplate";
@@ -262,6 +263,24 @@ function UpdateCaseTemplateDrawer({
     }
   );
 
+  const [changeRoleInCaseTemplate] = useMutation(CHANGE_ROLE_IN_CASE_TEMPLATE, {
+    onCompleted: function() {
+      message.success("Changed role");
+    },
+    onError: function(error: ApolloError) {
+      notification.error({
+        message: "Failed to change role",
+        description: error.message
+      });
+    },
+    refetchQueries: [
+      {
+        query: GET_ONE_CASE_TEMPLATE,
+        variables: { id: caseTemplateId }
+      }
+    ]
+  });
+
   // ---
 
   let drawerContent: React.ReactNode = null;
@@ -467,6 +486,17 @@ function UpdateCaseTemplateDrawer({
                       <Select<"CAN_VIEW" | "CAN_EDIT">
                         value={member.role}
                         style={{ width: "120px", marginRight: "1em" }}
+                        onChange={newRole =>
+                          changeRoleInCaseTemplate({
+                            variables: {
+                              input: {
+                                role: newRole,
+                                caseTemplateId: caseTemplate.id,
+                                username: member.user.username
+                              }
+                            }
+                          })
+                        }
                       >
                         <Option value="CAN_VIEW">Can View</Option>
                         <Option value="CAN_EDIT">Can Edit</Option>

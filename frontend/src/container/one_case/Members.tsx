@@ -19,7 +19,7 @@ import {
 import { ApolloError } from "apollo-boost";
 import GroupDrawer from "container/admin/GroupDrawer";
 import { inject, observer } from "mobx-react";
-import CHANGE_ROLE_IN_CASE from "mutations/changeRole";
+import CHANGE_ROLE_IN_CASE from "mutations/changeRoleInCase";
 import REMOVE_GROUP_FROM_CASE from "mutations/removeGroupFromCase";
 import React, { useEffect, useState } from "react";
 import ActiveCaseStore from "stores/ActiveCaseStore";

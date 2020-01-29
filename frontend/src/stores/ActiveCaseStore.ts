@@ -4,7 +4,7 @@ import client from "createApolloClient";
 import { action, autorun, observable, runInAction } from "mobx";
 import ADD_GROUP_TO_CASE from "mutations/addGroupToCase";
 import ADD_MEMBER from "mutations/addMember";
-import CHANGE_ROLE from "mutations/changeRole";
+import CHANGE_ROLE from "mutations/changeRoleInCase";
 import CREATE_A_COMMENT from "mutations/createComment";
 import CREATE_STRING_INDICATOR from "mutations/createStringIndicator";
 import CREATE_A_TASK from "mutations/createTask";
