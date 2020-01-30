@@ -18,7 +18,7 @@ class Mutations::ChangeTaskPosition < Mutations::BaseMutation
         task = find_task_or_throw_execution_error(task_id: id)
 
         # authorize this action
-        unless TaskPolicy.new(context[:current_user], task).change_position?
+        unless TaskPolicy.new(context[:current_user], task).update_task?
             raise GraphQL::ExecutionError, "You are not authorized to move this task."
         end
 
