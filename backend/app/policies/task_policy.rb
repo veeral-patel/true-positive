@@ -8,6 +8,10 @@ class TaskPolicy
         CasePolicy.new(@user, @task.case).update_case?
     end
 
+    def show_task?
+        CasePolicy.new(@user, @task.case).show_case?
+    end
+
     def view_comment?
         @task.case.has_member(@user)
     end
@@ -37,8 +41,7 @@ class TaskPolicy
 
         def resolve
             # an user can only see the tasks in cases he's a member of
-            # this will get very slow as the number of tasks increases
-            Task.select { |task| @user.joined_cases.include? task.case }
+            Task.all.select { |task| TaskPolicy.new(@user, task).show_task? }
         end
     end
 end

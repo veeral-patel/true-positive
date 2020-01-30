@@ -8,6 +8,10 @@ class IndicatorPolicy
         CasePolicy.new(@user, @indicator.case).update_case?
     end
 
+    def show_indicator?
+        CasePolicy.new(@user, @indicator.case).show_case?
+    end
+
     def create_indicator?
         user_can_edit_case?
     end
@@ -41,7 +45,7 @@ class IndicatorPolicy
 
         def resolve
             # an user can only see the tasks in cases he's a member of
-            Indicator.where(case: @user.joined_cases)
+            Indicator.all.select { |indicator| IndicatorPolicy.new(@user, indicator).show_indicator? }
         end
     end
 end
