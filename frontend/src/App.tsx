@@ -20,11 +20,15 @@ import AuthStore from "stores/AuthStore";
 import UIStore from "stores/UIStore";
 import { paths } from "utils/constants";
 import "./dark.css";
+import LogRocket from 'logrocket';
 
 interface Props {
   authStore?: AuthStore;
   uiStore?: UIStore;
 }
+
+// initialize LogRocket
+LogRocket.init('tp-wp1jo/tp');
 
 class App extends React.Component<Props> {
   render() {
