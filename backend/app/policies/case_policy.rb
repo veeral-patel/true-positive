@@ -62,8 +62,7 @@ class CasePolicy
         end
 
         def resolve
-            # An user can see the cases he's a member of.
-            @user.joined_cases
+            Case.all.select { |the_case| CasePolicy.new(@user, the_case).show_case? } 
         end
     end
 end
