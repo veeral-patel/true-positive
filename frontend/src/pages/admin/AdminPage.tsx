@@ -17,7 +17,7 @@ class AdminPage extends React.Component<RouteComponentProps> {
           <TabPane tab="Integrations" key="integrations">
             <Integrations />
           </TabPane>
-          <TabPane tab="Users" key="users">
+          <TabPane tab="Users & Groups" key="users_and_groups">
             <UsersAndGroups />
           </TabPane>
           <TabPane tab="Templates" key="templates">
