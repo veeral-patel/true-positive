@@ -70,10 +70,10 @@ const SortableItem = SortableElement(
     });
 
     return (
-      <div style={{ borderBottom: "1px solid #1f1f1f" }}>
+      <>
         <List.Item
           key={task.id}
-          style={{ cursor: "grab", borderBottom: "none" }}
+          style={{ cursor: "grab" }}
           actions={[
             <div>
               {expanded ? (
@@ -203,7 +203,7 @@ const SortableItem = SortableElement(
             />
           </div>
         )}
-      </div>
+      </>
     );
   }
 );

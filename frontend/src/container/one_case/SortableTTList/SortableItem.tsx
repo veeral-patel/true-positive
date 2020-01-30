@@ -18,35 +18,33 @@ interface Props {
 const SortableItem = SortableElement(
   ({ taskTemplate, handleTTClicked, removeTaskTemplate }: Props) => {
     return (
-      <div style={{ borderBottom: "1px solid #1f1f1f" }}>
-        <List.Item
-          key={taskTemplate.id}
-          style={{ cursor: "grab", borderBottom: "none" }}
-          actions={[
-            <Popconfirm
-              title="Delete this task template?"
-              onConfirm={() => removeTaskTemplate(taskTemplate.id)}
+      <List.Item
+        key={taskTemplate.id}
+        style={{ cursor: "grab" }}
+        actions={[
+          <Popconfirm
+            title="Delete this task template?"
+            onConfirm={() => removeTaskTemplate(taskTemplate.id)}
+          >
+            <Button type="link" icon={<DeleteOutlined />} />
+          </Popconfirm>
+        ]}
+      >
+        <List.Item.Meta
+          title={
+            <a
+              onClick={() => handleTTClicked(taskTemplate.id)}
+              style={{ cursor: "pointer" }}
             >
-              <Button type="link" icon={<DeleteOutlined />} />
-            </Popconfirm>
-          ]}
-        >
-          <List.Item.Meta
-            title={
-              <a
-                onClick={() => handleTTClicked(taskTemplate.id)}
-                style={{ cursor: "pointer" }}
-              >
-                {truncateString(taskTemplate.name, 75)}
-              </a>
-            }
-            description={
-              taskTemplate.assignedTo &&
-              `Assigned to ${taskTemplate.assignedTo.username}`
-            }
-          />
-        </List.Item>
-      </div>
+              {truncateString(taskTemplate.name, 75)}
+            </a>
+          }
+          description={
+            taskTemplate.assignedTo &&
+            `Assigned to ${taskTemplate.assignedTo.username}`
+          }
+        />
+      </List.Item>
     );
   }
 );
