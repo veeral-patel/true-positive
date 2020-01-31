@@ -21,7 +21,7 @@ import AuthStore from "stores/AuthStore";
 import UIStore from "stores/UIStore";
 import { paths } from "utils/constants";
 import getUsernameOfCurrentUser from "utils/currentUser";
-import "./dark.css";
+import "./light.css";
 
 interface Props {
   authStore?: AuthStore;
