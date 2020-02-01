@@ -1,4 +1,3 @@
-import { UserOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   Alert,
@@ -8,7 +7,8 @@ import {
   Input,
   message,
   Modal,
-  notification
+  notification,
+  Select
 } from "antd";
 import { ApolloError } from "apollo-boost";
 import { inject, observer } from "mobx-react";
@@ -106,13 +106,14 @@ const MergeCaseForm = inject(
           name="parentCase"
           rules={[{ required: true, message: "Please select a case" }]}
         >
-          <AutoComplete
-            dataSource={caseOptions}
-            defaultActiveFirstOption={true}
+          <Select
+            showSearch
+            placeholder="Filter cases"
             optionFilterProp="children"
+            style={{ minWidth: "200px" }}
           >
-            <Input prefix={<UserOutlined />} placeholder="Filter cases" />
-          </AutoComplete>
+            {caseOptions}
+          </Select>
         </Form.Item>
         <Form.Item label="Reason" name="reason">
           <TextArea placeholder="Describe how the two cases are related" />
