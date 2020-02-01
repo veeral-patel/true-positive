@@ -30,6 +30,7 @@ function CreateCCEmailAddressDrawer({ visible, onClose }: Props) {
       visible={visible}
       onClose={onClose}
       title={<h3>Create an inbound address</h3>}
+      destroyOnClose={true}
       width={600}
     >
       <CCEmailAddressForm
