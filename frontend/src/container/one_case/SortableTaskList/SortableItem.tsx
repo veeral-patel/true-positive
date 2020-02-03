@@ -73,7 +73,7 @@ const SortableItem = SortableElement(
       <>
         <List.Item
           key={task.id}
-          style={{ cursor: "grab" }}
+          style={{ cursor: "grab", borderBottom: "none" }}
           actions={[
             <div>
               {expanded ? (
@@ -182,10 +182,8 @@ const SortableItem = SortableElement(
         {expanded && (
           <div
             style={{
-              marginLeft: "24px",
-              marginRight: "24px",
-              marginTop: "8px",
-              marginBottom: "24px"
+              margin: "24px",
+              marginTop: "8px"
             }}
           >
             <DescriptionEditor
