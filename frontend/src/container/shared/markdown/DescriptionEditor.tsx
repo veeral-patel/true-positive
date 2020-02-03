@@ -45,7 +45,7 @@ function DescriptionEditor({
       />
       <div style={{ marginTop: "1.5em" }} />
       {selectedTab === "write" && (
-        <div style={{ float: "right" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button
             type="link"
             onClick={() => {
