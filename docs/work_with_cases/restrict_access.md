@@ -21,6 +21,9 @@ Cases in True Positive follow a simple permission model:
 
 ![](https://storage.googleapis.com/tp_landing_page_videos/case_members.png)
 
+> If a user has conflicting permissions in a case, then the user is given the higher permission.<br /><br />
+> For example, say a case has two groups: one group with view access and the other group with edit access. Then a user who's in both groups will have edit access.
+
 When a case is created, its creator is automatically added as a member with a "Can Edit" role. The case's creator can then add additional members.
 
 ## Manage members
