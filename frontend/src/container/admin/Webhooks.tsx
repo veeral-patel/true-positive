@@ -20,9 +20,7 @@ function Webhooks() {
             description={
               <div>
                 <h4>No webhooks</h4>
-                <Paragraph>
-                  Create one above to begin creating cases from external events
-                </Paragraph>
+                <Paragraph>Create an inbound webhook above</Paragraph>
               </div>
             }
           />
@@ -39,10 +37,7 @@ function Webhooks() {
             description={
               <div>
                 <h4>No webhooks</h4>
-                <Paragraph>
-                  Create one above to begin notifying external tools of events
-                  in True Positive
-                </Paragraph>
+                <Paragraph>Create an outbound webhook above</Paragraph>
               </div>
             }
           />
