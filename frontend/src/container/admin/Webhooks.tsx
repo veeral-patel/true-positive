@@ -1,4 +1,4 @@
-import { Button, Tabs, Typography } from "antd";
+import { Button, Empty, Tabs, Typography } from "antd";
 import React from "react";
 
 const { Paragraph } = Typography;
@@ -16,6 +16,16 @@ function Webhooks() {
           <Button type="link" style={{ padding: "0px" }}>
             Create a webhook
           </Button>
+          <Empty
+            description={
+              <div>
+                <h4>No webhooks</h4>
+                <Paragraph>
+                  Create one above to begin creating cases from external events
+                </Paragraph>
+              </div>
+            }
+          />
         </Tabs.TabPane>
         <Tabs.TabPane key="outboundWebhooks" tab="Outbound">
           <Paragraph type="secondary">
@@ -25,6 +35,17 @@ function Webhooks() {
           <Button type="link" style={{ padding: "0px" }}>
             Create a webhook
           </Button>
+          <Empty
+            description={
+              <div>
+                <h4>No webhooks</h4>
+                <Paragraph>
+                  Create one above to begin notifying external tools of events
+                  in True Positive
+                </Paragraph>
+              </div>
+            }
+          />
         </Tabs.TabPane>
       </Tabs>
     </>
