@@ -3,7 +3,6 @@ import { MutationResult } from "@apollo/react-common";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { RouteComponentProps } from "@reach/router";
 import {
-  Alert,
   Button,
   Empty,
   Form,
@@ -77,12 +76,16 @@ function APITokensPage(props: Props) {
         </Button>
       </div>
       <div style={{ marginTop: "2em" }} />
-      <Alert
-        showIcon
-        type="warning"
-        message="Guard your tokens! They provide full access to your account."
-      />
-      <div style={{ marginTop: "2em" }} />
+      <Paragraph
+        type="secondary"
+        style={{ marginTop: "1.5em", marginBottom: "1.5em" }}
+      >
+        Everything that you can do in True Positive's web console, you can do
+        with our API.&nbsp;
+        <a href="https://docs.truepositive.app/docs/api/get_started">
+          Read the docs to get started.
+        </a>
+      </Paragraph>
       {loading && <Spin size="large" />}
       {error && (
         <Error title="Failed to fetch API tokens" subtitle={error.message} />
