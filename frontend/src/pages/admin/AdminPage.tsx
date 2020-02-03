@@ -1,10 +1,11 @@
 import { RouteComponentProps } from "@reach/router";
-import { Button, Tabs, Typography } from "antd";
+import { Tabs, Typography } from "antd";
 import CustomizePriorities from "container/admin/CustomizePriorities";
 import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
 import Integrations from "container/admin/Integrations";
 import UsersAndGroups from "container/admin/UsersAndGroups";
+import Webhooks from "container/admin/Webhooks";
 import React from "react";
 
 const { TabPane } = Tabs;
@@ -16,27 +17,7 @@ class AdminPage extends React.Component<RouteComponentProps> {
       <div style={{ maxWidth: "900px" }}>
         <Tabs tabPosition="left">
           <TabPane tab="Webhooks" key="webhooks">
-            <h3>Webhooks</h3>
-            <Tabs defaultActiveKey="inboundWebhooks">
-              <Tabs.TabPane key="inboundWebhooks" tab="Inbound">
-                <Paragraph type="secondary">
-                  Create an inbound webhook so True Positive can create cases
-                  when events happen in an external tool.
-                </Paragraph>
-                <Button type="link" style={{ padding: "0px" }}>
-                  Create a webhook
-                </Button>
-              </Tabs.TabPane>
-              <Tabs.TabPane key="outboundWebhooks" tab="Outbound">
-                <Paragraph type="secondary">
-                  Create an outbound webhook to notify an external tool when
-                  events happen in True Positive.
-                </Paragraph>
-                <Button type="link" style={{ padding: "0px" }}>
-                  Create a webhook
-                </Button>
-              </Tabs.TabPane>
-            </Tabs>
+            <Webhooks />
           </TabPane>
           <TabPane tab="Integrations" key="integrations">
             <Integrations />
