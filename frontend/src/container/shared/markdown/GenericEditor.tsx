@@ -16,7 +16,7 @@ function GenericEditor({ value, onChange, uiStore }: Props) {
   );
 
   return (
-    <div>
+    <div style={{ maxWidth: "750px", overflow: "scroll" }}>
       <ReactMde
         minEditorHeight={125}
         minPreviewHeight={125}

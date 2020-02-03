@@ -31,7 +31,7 @@ function DescriptionEditor({
   );
 
   return (
-    <div style={{ maxWidth: "750px" }}>
+    <div style={{ maxWidth: "750px", overflow: "scroll" }}>
       <ReactMde
         value={currentValue}
         onChange={setValue}
