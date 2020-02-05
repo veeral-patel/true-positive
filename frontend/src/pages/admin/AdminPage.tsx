@@ -5,7 +5,6 @@ import CustomizeStatuses from "container/admin/CustomizeStatuses";
 import CustomizeTemplates from "container/admin/CustomizeTemplates";
 import Integrations from "container/admin/Integrations";
 import UsersAndGroups from "container/admin/UsersAndGroups";
-import Webhooks from "container/admin/Webhooks";
 import React from "react";
 
 const { TabPane } = Tabs;
@@ -16,9 +15,9 @@ class AdminPage extends React.Component<RouteComponentProps> {
     return (
       <div style={{ maxWidth: "900px" }}>
         <Tabs tabPosition="left">
-          <TabPane tab="Webhooks" key="webhooks">
+          {/* <TabPane tab="Webhooks" key="webhooks">
             <Webhooks />
-          </TabPane>
+          </TabPane> */}
           <TabPane tab="Integrations" key="integrations">
             <Integrations />
           </TabPane>
