@@ -29,7 +29,9 @@ interface Props {
 }
 
 // initialize LogRocket
-LogRocket.init("tp-wp1jo/tp");
+if (process.env.NODE_ENV !== "development") {
+  LogRocket.init("tp-wp1jo/tp");
+}
 
 // tell LogRocket who the current user is
 const username = getUsernameOfCurrentUser();
