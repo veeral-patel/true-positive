@@ -16,8 +16,11 @@ module CaseService
                 user_id: current_user.username,
                 event: 'Case created',
                 properties: {
-                    name: new_case.name,
-                    from_template: true
+                    case_id: new_case.id,
+                    case_name: new_case.name,
+                    from_template: {
+                        id: template.id,
+                    }
                 }
             )
 
