@@ -18,7 +18,7 @@ class Mutations::CreateCaseFromTemplate < Mutations::BaseMutation
         end
 
         # actually create the case
-        new_case = CaseService::CreateCaseFromTemplate.run(template: template, created_by: context[:current_user])
+        new_case = CaseService::CreateCaseFromTemplate.run(template: template, current_user: context[:current_user])
 
         {
             "case": new_case
