@@ -59,6 +59,18 @@ class Mutations::CreateCase < Mutations::BaseMutation
 
         # and save the case
         if new_case.save
+
+            # tell Segment a case was created
+            Analytics.track(
+                user_id: @current_user.username,
+                event: 'Case created',
+                properties: {
+                    name: new_case.name,
+                    from_template: false
+                }
+            )
+
+            # render response as JSON
             {
                 "case": new_case
             }
