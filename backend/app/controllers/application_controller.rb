@@ -47,17 +47,6 @@ class ApplicationController < ActionController::API
         end
     end
 
-    def identify_user_in_segment
-        # Tells Segment which user and tenant corresponds to this API request
-        Analytics.identify(
-            user_id: @current_user.username,
-            traits: {
-                email: @current_user.email,
-                tenant: ActsAsTenant.current_tenant
-            }
-        )
-    end
-
     def authenticate_user_ui
         # Authenticate and identify the user if they're logging in through the UI
         # (aka with a JWT).
