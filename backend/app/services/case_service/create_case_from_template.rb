@@ -48,17 +48,7 @@ module CaseService
                     )
                 end
             end
-
-            # tell Segment a case was created
-            Analytics.track(
-                user_id: @current_user.username,
-                event: 'Case created',
-                properties: {
-                    name: new_case.name,
-                    from_template: true
-                }
-            )
-
+            
             # return the newly created case
             new_case
         end
