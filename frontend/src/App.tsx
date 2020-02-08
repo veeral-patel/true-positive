@@ -5,7 +5,6 @@ import MergeOneCaseModal from "container/one_case/MergeOneCaseModal";
 import "container/shared/markdown/MDE.css";
 import TopMenu from "container/shared/top_menu/TopMenu";
 import client from "createApolloClient";
-import LogRocket from "logrocket";
 import { inject, observer } from "mobx-react";
 import AdminPage from "pages/admin/AdminPage";
 import APITokensPage from "pages/api/APITokensPage";
@@ -20,7 +19,6 @@ import React from "react";
 import AuthStore from "stores/AuthStore";
 import UIStore from "stores/UIStore";
 import { paths } from "utils/constants";
-import getUsernameOfCurrentUser from "utils/currentUser";
 import "./light.css";
 
 interface Props {
