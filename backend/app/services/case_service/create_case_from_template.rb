@@ -18,9 +18,7 @@ module CaseService
                 properties: {
                     case_id: new_case.id,
                     case_name: new_case.name,
-                    from_template: {
-                        id: template.id,
-                    }
+                    case_template_id: template.id
                 }
             )
 
