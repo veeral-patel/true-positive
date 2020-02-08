@@ -6,7 +6,6 @@ class ApplicationController < ActionController::API
 
     before_action :authenticate_user
     before_action :handle_disabled
-    before_action :identify_user_in_segment
 
     def authenticate_user
         token_from_request = request.env['HTTP_AUTHORIZATION']&.split&.last
