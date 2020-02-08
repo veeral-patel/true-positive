@@ -28,15 +28,6 @@ interface Props {
   uiStore?: UIStore;
 }
 
-// initialize LogRocket
-if (process.env.NODE_ENV !== "development") {
-  LogRocket.init("tp-wp1jo/tp");
-}
-
-// tell LogRocket who the current user is
-const username = getUsernameOfCurrentUser();
-LogRocket.identify(username ? username : "Unknown user");
-
 class App extends React.Component<Props> {
   render() {
     const { authStore, uiStore } = this.props;
