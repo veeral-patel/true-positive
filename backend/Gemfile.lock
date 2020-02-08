@@ -67,6 +67,7 @@ GEM
       request_store (>= 1.0.5)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    analytics-ruby (2.0.13)
     ancestry (3.0.7)
       activerecord (>= 3.2.0)
     bcrypt (3.1.13)
@@ -302,6 +303,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 6.5.0)
   acts_as_list
   acts_as_tenant
+  analytics-ruby (~> 2.0.0)
   ancestry
   bootsnap (>= 1.1.0)
   byebug

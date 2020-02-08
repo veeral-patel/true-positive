@@ -4,6 +4,7 @@
 - clean up my policy classes
   - stop having one method per mutation
   - `comment_policy.rb`, `attachment_policy.rb` -- code is messy
+- don't hard-code Sentry DSN in `raven.rb` and Segment write key in `analytics_ruby.rb`. use environment variables, instead
 
 ## Frontend
 
