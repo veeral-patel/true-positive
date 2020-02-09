@@ -12,7 +12,7 @@ class CreateCaseMailbox < ApplicationMailbox
 
         # Then create a case from the template associated with the inbound address
         # Note that created_by is set to the creator of the template
-        new_case = CaseService::CreateCaseFromTemplate.run(template: inbound_address.case_template, created_by: inbound_address.default_creator)
+        new_case = CaseService::CreateCaseFromTemplate.run(template: inbound_address.case_template, current_user: inbound_address.default_creator)
 
         # Attach the raw email to the case
         new_case.attachments.create(file: inbound_email.raw_email.blob, created_by: inbound_address.default_creator)
