@@ -88,9 +88,6 @@ module Types
       field :update_create_case_email_address, mutation: Mutations::UpdateCreateCaseEmailAddress
       field :delete_create_case_email_address, mutation: Mutations::DeleteCreateCaseEmailAddress
 
-      # forms -----
-      # field :delete_form, mutation: Mutations::DeleteForm
-
       # for reordering (to be deprecated) -----
       field :change_task_position, mutation: Mutations::ChangeTaskPosition
       field :change_task_template_position, mutation: Mutations::ChangeTaskTemplatePosition
