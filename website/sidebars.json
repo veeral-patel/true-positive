@@ -1,0 +1,24 @@
+{
+  "docs": {
+    "Get Started": ["get_started/what_is_true_positive"],
+    "Work with Cases": [
+      "work_with_cases/overview",
+      "work_with_cases/create_a_case",
+      "work_with_cases/merge_cases",
+      "work_with_cases/manage_tasks",
+      "work_with_cases/manage_indicators",
+      "work_with_cases/restrict_access",
+      "work_with_cases/delete_a_case"
+    ],
+    "Administer": [
+      "administer/overview",
+      "administer/customize_statuses_and_priorities",
+      "administer/case_templates",
+      "administer/task_templates",
+      "administer/users",
+      "administer/groups"
+    ],
+    "Integrations": ["integrations/create_cases_from_email"],
+    "API": ["api/get_started", "api/examples"]
+  }
+}

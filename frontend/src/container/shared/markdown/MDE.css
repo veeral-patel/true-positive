@@ -1,0 +1,49 @@
+.dark.react-mde > .mde-header {
+  background-color: black !important;
+  border-bottom: none;
+}
+
+.dark.react-mde .mde-header-item path {
+  fill: #8c8c8c !important;
+}
+
+.dark.react-mde > .mde-header > .mde-tabs > .selected {
+  border: 1px solid #595959 !important;
+}
+
+.dark.react-mde > .grip {
+  background-color: inherit !important;
+  border-top: none;
+}
+
+.dark.react-mde {
+  border: none !important;
+}
+
+.dark.react-mde {
+  border: 2px solid #262626 !important;
+}
+
+.dark .mde-preview .mde-preview-content pre {
+  background-color: black !important;
+}
+
+.dark.react-mde .mde-text {
+  background-color: inherit !important;
+}
+
+.dark .mde-suggestions {
+  background-color: #262626 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.dark .mde-suggestions li {
+  border: none !important;
+}
+
+.mde-preview .mde-preview-content h1,
+.mde-preview .mde-preview-content h2,
+.mde-preview .mde-preview-content h3 {
+  border-bottom: none !important;
+}

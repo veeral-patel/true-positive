@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+- 2.5.1
+before_install:
+- gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
+script:
+- bundle install
+cache: bundler
+deploy:
+  provider: heroku
+  api_key:
+    secure: HyRBpwViYV7g22nOe1vzU7Gu9OCGnXqyRwiSeCPTs+d8sJTE3XoVW6QgSDTHsl3B0Xs1jDMuVq1hTkrVmbz5aqAQicRLbCLxQo2W9MVhxzkV7ZoP5b1yBrR+IH6eQxZo+hNu9fnl+OPQrH8NpbrdqvaOLSfP/cP/EuF0xr+jghytN433Gwdu64S5zCCl1vYAZ/1EhDGZui9F6AdsE1sGjA9Yx/SKCkUrHJmaRR4KNu6LF9U3Q7IUac+UJ8WVv6kW3bqsmIgrjEaOM48Zv3hW2GQT1Ad+wPXrFyQjH1GhUr+ljF2jNKlctTqOqa/8oQXO4egzu5kN3Z6gJm/CggpSvCFK4UeglEKJZa3ZN6ocsWWem05+gfIIu5AG8srLjpQEbDE631y22iULd4VEDndPKeARFPzV+Cpp3ca9A3lXUQ1iooZ5k7hTf77bLeT5rA+PUj52QaVITyEjWqaGgIETnbl2hvrvXgccBEw0ColVbibYyeK+C8b6cZbTKL7Tv4MZxG79STk+d8o3LHGvvW8h5PpPlr1ufxgfwnr/O/skyNB+jqVkmGYEZzAhRljBk2IMxyKbrt/OlqI7F42FtNsc2P9OZtjyH73Ufrtbwqdw6Wckb04QnW4DD1Vr7dWNaiVyI8bpFgceF1rYNR9PaHpQsghkjlxFbfHjxyjsV1Sv0pI=
