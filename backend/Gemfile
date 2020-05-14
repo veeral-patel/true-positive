@@ -20,7 +20,6 @@ gem 'set_as_primary'
 gem "sentry-raven"
 gem 'active_storage_validations'
 gem "google-cloud-storage", "~> 1.11", require: false
-gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

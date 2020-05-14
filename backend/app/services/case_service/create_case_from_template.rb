@@ -11,19 +11,6 @@ module CaseService
                 assigned_to: template.assigned_to
             )
 
-            # tell Segment a case was created
-            if Rails.env.production?
-                Analytics.track(
-                    user_id: current_user.username,
-                    event: 'Case created',
-                    properties: {
-                        case_id: new_case.id,
-                        case_name: new_case.name,
-                        case_template_id: template.id
-                    }
-                )
-            end
-
             # add each of the case template's members to the case
             template.default_members.each do |cmember|
                 # ignore users who are already in the case

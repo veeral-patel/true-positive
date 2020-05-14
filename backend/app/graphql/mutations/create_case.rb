@@ -59,19 +59,6 @@ class Mutations::CreateCase < Mutations::BaseMutation
 
         # and save the case
         if new_case.save
-
-            # tell Segment a case was created
-            if Rails.env.production?
-                Analytics.track(
-                    user_id: context[:current_user].username,
-                    event: 'Case created',
-                    properties: {
-                        case_id: new_case.id,
-                        case_name: new_case.name,
-                    }
-                )
-            end
-
             # render JSON response
             {
                 "case": new_case
