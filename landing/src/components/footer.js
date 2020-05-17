@@ -17,12 +17,6 @@ function Footer() {
         <li className="text-gray-600">
           <a href="https://docs.truepositive.app">Docs</a>
         </li>
-        <li className="text-gray-600">
-          <a href="https://docs.truepositive.app/blog/">Blog</a>
-        </li>
-        <li className="text-gray-600">
-          <a href="https://twitter.com/TruePositiveApp">Twitter</a>
-        </li>
       </ul>
     </footer>
   );

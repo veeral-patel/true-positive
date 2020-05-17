@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-
 import Footer from "../components/footer";
 import Nav from "../components/nav";
 
@@ -33,13 +32,6 @@ function IndexPage() {
               <a
                 className="bg-blue-700 text-white px-3 py-2 cursor-pointer flex
                 items-center mt-6 mr-4"
-                href="https://forms.gle/59ahJWfGzNu4rT7v6"
-              >
-                Sign up
-              </a>
-              <a
-                className="text-blue-700 border border-blue-700 px-3 py-2 cursor-pointer flex
-              items-center mt-6 mr-4"
                 href="https://docs.truepositive.app"
               >
                 View docs
@@ -69,7 +61,7 @@ function IndexPage() {
                   "px-4": true,
                   "py-6": true,
                   "rounded-lg": true,
-                  "bg-gray-300": howItWorksVideo === "CREATE_A_CASE"
+                  "bg-gray-300": howItWorksVideo === "CREATE_A_CASE",
                 })}
                 onClick={() => setHowItWorksVideo("CREATE_A_CASE")}
               >
@@ -87,7 +79,7 @@ function IndexPage() {
                   "px-4": true,
                   "py-6": true,
                   "rounded-lg": true,
-                  "bg-gray-300": howItWorksVideo === "ADD_TASKS"
+                  "bg-gray-300": howItWorksVideo === "ADD_TASKS",
                 })}
                 onClick={() => setHowItWorksVideo("ADD_TASKS")}
               >
@@ -106,7 +98,7 @@ function IndexPage() {
                   "px-4": true,
                   "py-6": true,
                   "rounded-lg": true,
-                  "bg-gray-300": howItWorksVideo === "ADD_INDICATORS"
+                  "bg-gray-300": howItWorksVideo === "ADD_INDICATORS",
                 })}
                 onClick={() => setHowItWorksVideo("ADD_INDICATORS")}
               >
@@ -125,7 +117,7 @@ function IndexPage() {
                 muted
                 className={classNames({
                   hidden: howItWorksVideo !== "CREATE_A_CASE",
-                  "rounded-lg": true
+                  "rounded-lg": true,
                 })}
               >
                 <source src="https://storage.googleapis.com/tp_landing_page_videos/create_a_case.mp4" />
@@ -137,7 +129,7 @@ function IndexPage() {
                 muted
                 className={classNames({
                   hidden: howItWorksVideo !== "ADD_TASKS",
-                  "rounded-lg": true
+                  "rounded-lg": true,
                 })}
               >
                 <source src="https://storage.googleapis.com/tp_landing_page_videos/add_tasks.mp4" />
@@ -149,7 +141,7 @@ function IndexPage() {
                 muted
                 className={classNames({
                   hidden: howItWorksVideo !== "ADD_INDICATORS",
-                  "rounded-lg": true
+                  "rounded-lg": true,
                 })}
               >
                 <source src="https://storage.googleapis.com/tp_landing_page_videos/add_indicators.mp4" />
@@ -176,7 +168,7 @@ function IndexPage() {
                 muted
                 className={classNames({
                   hidden: caseTemplatesVideo !== "CREATE_TASK_TEMPLATES",
-                  "rounded-lg": true
+                  "rounded-lg": true,
                 })}
               >
                 <source src="https://storage.googleapis.com/tp_landing_page_videos/create_a_tt_video_ULE.mp4" />
@@ -188,7 +180,7 @@ function IndexPage() {
                 muted
                 className={classNames({
                   hidden: caseTemplatesVideo !== "CREATE_A_CASE_TEMPLATE",
-                  "rounded-lg": true
+                  "rounded-lg": true,
                 })}
               >
                 <source src="https://storage.googleapis.com/tp_landing_page_videos/creating_a_ct.mp4" />
@@ -200,7 +192,7 @@ function IndexPage() {
                 muted
                 className={classNames({
                   hidden: caseTemplatesVideo !== "CREATE_A_CASE",
-                  "rounded-lg": true
+                  "rounded-lg": true,
                 })}
               >
                 <source src="https://storage.googleapis.com/tp_landing_page_videos/create_a_case_from_a_ct_video_ULE.mp4" />
@@ -216,7 +208,7 @@ function IndexPage() {
                   "px-4": true,
                   "py-6": true,
                   "rounded-lg": true,
-                  "bg-gray-300": caseTemplatesVideo === "CREATE_TASK_TEMPLATES"
+                  "bg-gray-300": caseTemplatesVideo === "CREATE_TASK_TEMPLATES",
                 })}
                 onClick={() => setCaseTemplatesVideo("CREATE_TASK_TEMPLATES")}
               >
@@ -239,7 +231,8 @@ function IndexPage() {
                   "px-4": true,
                   "py-6": true,
                   "rounded-lg": true,
-                  "bg-gray-300": caseTemplatesVideo === "CREATE_A_CASE_TEMPLATE"
+                  "bg-gray-300":
+                    caseTemplatesVideo === "CREATE_A_CASE_TEMPLATE",
                 })}
                 onClick={() => setCaseTemplatesVideo("CREATE_A_CASE_TEMPLATE")}
               >
@@ -258,7 +251,7 @@ function IndexPage() {
                   "px-4": true,
                   "py-6": true,
                   "rounded-lg": true,
-                  "bg-gray-300": caseTemplatesVideo === "CREATE_A_CASE"
+                  "bg-gray-300": caseTemplatesVideo === "CREATE_A_CASE",
                 })}
                 onClick={() => setCaseTemplatesVideo("CREATE_A_CASE")}
               >
