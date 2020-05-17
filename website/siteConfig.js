@@ -25,7 +25,7 @@ const siteConfig = {
   //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
-  headerLinks: [{ blog: true, label: "Blog" }],
+    headerLinks: [],
 
   // algolia: {},
 
