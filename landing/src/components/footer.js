@@ -15,9 +15,6 @@ function Footer() {
       </ul>
       <ul className="w-1/2 md:w-1/3 lg:w-1/4 leading-loose flex justify-between">
         <li className="text-gray-600">
-          <a href="/pricing">Pricing</a>
-        </li>
-        <li className="text-gray-600">
           <a href="https://docs.truepositive.app">Docs</a>
         </li>
         <li className="text-gray-600">

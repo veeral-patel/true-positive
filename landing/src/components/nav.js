@@ -30,9 +30,6 @@ function Nav() {
       <div className="flex justify-between w-full">
         <ul className="list-none flex">
           <li className="hover:text-gray-900 cursor-pointer mr-8">
-            <a href="/pricing">Pricing</a>
-          </li>
-          <li className="hover:text-gray-900 cursor-pointer mr-8">
             <a href="https://docs.truepositive.app">Docs</a>
           </li>
           <li className="hover:text-gray-900 cursor-pointer mr-8">
