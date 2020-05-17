@@ -10,6 +10,8 @@ True Positive has three components:
 
 ## API
 
+> You will need to install Ruby, Rails, and Bundler for this.
+
 To start the API locally, run:
 
 ```
@@ -25,6 +27,8 @@ rails s -p 4000
 Then visit http://localhost:4000
 
 ## Frontend
+
+> You will need to install `yarn` for this.
 
 To start the frontend locally, run:
 
