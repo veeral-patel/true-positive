@@ -1,6 +1,5 @@
 # Landing Page
 
-This is the landing page for True Positive. Visit me at [this link](https://truepositive.app).
+This is the landing page for True Positive, built with [Gatsby](https://www.gatsbyjs.org/) and [Tailwind CSS](https://tailwindcss.com/).
 
-The landing page is built with [Gatsby](https://www.gatsbyjs.org/) and
-[Tailwind CSS](https://tailwindcss.com/).
+Visit the page at [this link](https://truepositive.app).
