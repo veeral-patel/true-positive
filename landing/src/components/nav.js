@@ -32,17 +32,6 @@ function Nav() {
           <li className="hover:text-gray-900 cursor-pointer mr-8">
             <a href="https://docs.truepositive.app">Docs</a>
           </li>
-          <li className="hover:text-gray-900 cursor-pointer mr-8">
-            <a href="https://docs.truepositive.app/blog">Blog</a>
-          </li>
-        </ul>
-        <ul className="list-none hidden sm:flex">
-          <li className="hover:text-gray-900 cursor-pointer mr-8">
-            <a href="https://forms.gle/59ahJWfGzNu4rT7v6">Sign up</a>
-          </li>
-          <li className="hover:text-gray-900 cursor-pointer mr-8">
-            <a href="https://console.truepositive.app">Sign in</a>
-          </li>
         </ul>
       </div>
     </nav>
