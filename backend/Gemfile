@@ -17,7 +17,6 @@ gem 'acts_as_list'
 gem 'pg_search'
 gem 'acts_as_tenant'
 gem 'set_as_primary'
-gem "sentry-raven"
 gem 'active_storage_validations'
 gem "google-cloud-storage", "~> 1.11", require: false
 
