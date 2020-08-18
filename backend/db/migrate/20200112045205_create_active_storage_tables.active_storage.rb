@@ -11,9 +11,6 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.datetime :created_at, null: false
 
       t.index [ :key ], unique: true
-
-      # Added by Veeral
-      t.references :tenant, foreign_key: true
     end
 
     create_table :active_storage_attachments do |t|
@@ -25,9 +22,6 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
 
       t.index [ :record_type, :record_id, :name, :blob_id ], name: "index_active_storage_attachments_uniqueness", unique: true
       t.foreign_key :active_storage_blobs, column: :blob_id
-
-      # Added by Veeral
-      t.references :tenant, foreign_key: true
     end
   end
 end

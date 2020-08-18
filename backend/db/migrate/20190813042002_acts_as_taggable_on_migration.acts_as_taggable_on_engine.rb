@@ -8,16 +8,10 @@ ActsAsTaggableOnMigration.class_eval do
   def self.up
     create_table :tags do |t|
       t.string :name
-
-      # Added by Veeral
-      t.references :tenant, foreign_key: true
     end
 
     create_table :taggings do |t|
       t.references :tag
-
-      # Added by Veeral
-      t.references :tenant, foreign_key: true
 
       # You should make sure that the column created is
       # long enough to store the required class names.

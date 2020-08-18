@@ -6,7 +6,6 @@ class CreateCaseTemplates < ActiveRecord::Migration[5.2]
       t.references :status, foreign_key: true
       t.references :priority, foreign_key: true
       t.references :created_by, foreign_key: { to_table: :users }
-      t.references :tenant, foreign_key: true
 
       t.timestamps
     end

@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-    set_current_tenant_through_filter
-
     include RailsJwtAuth::AuthenticableHelper
     include Pundit
 
@@ -52,8 +50,6 @@ class ApplicationController < ActionController::API
 
         begin
             self.authenticate!
-
-            set_current_tenant(@current_user.tenant)
         rescue RailsJwtAuth::NotAuthorized
             render json: { "message": "You are not authenticated." }, status: 401
         end
@@ -67,9 +63,6 @@ class ApplicationController < ActionController::API
 
             # if it exists, set `current_user` to the user who created it
             @current_user = existing_token.user
-
-            # set the tenant as well
-            set_current_tenant(@current_user.tenant)
         rescue ActiveRecord::RecordNotFound
             # if the provided API token doesn't exist in the database,
             # then return a 401 HTTP response

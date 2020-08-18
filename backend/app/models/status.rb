@@ -1,10 +1,8 @@
 class Status < ApplicationRecord
     include SetAsPrimary
-    set_as_primary :default_status, owner_key: :tenant, force_primary: false
+    set_as_primary :default_status, force_primary: false
 
     validates :name, presence: true
-
-    validates_uniqueness_to_tenant :name
 
     def to_s
         self.name

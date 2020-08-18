@@ -9,9 +9,6 @@ class CreateActionMailboxTables < ActiveRecord::Migration[6.0]
       t.timestamps
 
       t.index [ :message_id, :message_checksum ], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
-
-      # Added by Veeral
-      t.references :tenant, foreign_key: true
     end
   end
 end

@@ -7,9 +7,6 @@ class CreateCaseMailbox < ApplicationMailbox
       inbound_address = CreateCaseEmailAddress.find_by(email: recipient)
 
       if not inbound_address.nil?
-        # Set the current tenant based upon the inbound address
-        ActsAsTenant.current_tenant = inbound_address.tenant
-
         # Then create a case from the template associated with the inbound address
         # Note that created_by is set to the creator of the template
         new_case = CaseService::CreateCaseFromTemplate.run(template: inbound_address.case_template, current_user: inbound_address.default_creator)
