@@ -45,7 +45,6 @@ Then visit http://localhost:4000. Note that all the GraphQL queries right now yo
 To start the frontend locally, run:
 
 ```
-
 cd frontend
 
 # install dependencies
@@ -55,7 +54,6 @@ yarn install
 # start local server
 
 yarn start
-
 ```
 
 Then visit http://localhost:3000
