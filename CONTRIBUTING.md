@@ -62,5 +62,5 @@ Then visit http://localhost:3000
 
 Assuming you ran the same create user command as above, your credentials to log in will be:
 
-Username: plato
+Username: plato  
 Password: thegreeks
