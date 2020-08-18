@@ -48,11 +48,9 @@ To start the frontend locally, run:
 cd frontend
 
 # install dependencies
-
 yarn install
 
 # start local server
-
 yarn start
 ```
 
