@@ -9,7 +9,7 @@ class Status < ApplicationRecord
     end
 
     def self.default_status
-        # Retrieves our tenant's default tenant (or returns nil if there's no default status)
+        # Retrieves our default status (or returns nil if there's no default status)
         Status.find_by(default_status: true)
     end
 end

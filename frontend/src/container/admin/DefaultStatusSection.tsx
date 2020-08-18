@@ -49,7 +49,7 @@ function DefaultStatusSection() {
       )}
       {error && (
         <Error
-          title="Could not retrieve your tenant's default status"
+          title="Could not retrieve a default status"
           subtitle={error.message}
         />
       )}

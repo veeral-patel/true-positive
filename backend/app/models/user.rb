@@ -30,9 +30,9 @@ class User < ApplicationRecord
     end
 
     def disable
-        # prevent user from disabling the last user in a tenant
+        # prevent user from disabling the last user
         if User.active_users.count <= 1
-            self.errors[:base] << "You cannot disable the last user in a tenant."
+            self.errors[:base] << "You cannot disable the last user."
             return false
         end
 

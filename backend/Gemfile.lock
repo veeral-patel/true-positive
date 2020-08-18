@@ -62,9 +62,6 @@ GEM
       activerecord (>= 5.0, < 6.1)
     acts_as_list (1.0.0)
       activerecord (>= 4.2)
-    acts_as_tenant (0.4.4)
-      rails (>= 4.0)
-      request_store (>= 1.0.5)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ancestry (3.0.7)
@@ -231,8 +228,6 @@ GEM
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
-    request_store (1.5.0)
-      rack (>= 1.4)
     retriable (3.1.2)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
@@ -299,7 +294,6 @@ DEPENDENCIES
   active_storage_validations
   acts-as-taggable-on (~> 6.5.0)
   acts_as_list
-  acts_as_tenant
   ancestry
   bootsnap (>= 1.1.0)
   byebug

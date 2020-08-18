@@ -1,5 +1,5 @@
 class Mutations::InviteUser < Mutations::BaseMutation
-    description "Invite a user to your True Positive tenant."
+    description "Invite a user"
 
     argument :email, String, required: true do
         description "Email address of the user to invite."

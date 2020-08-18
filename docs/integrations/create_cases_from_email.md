@@ -8,7 +8,7 @@ True Positive makes it easy to create cases from inbound emails.
 
 For example, you might want to create a case from your phishing case template for every email that's sent to phishing@company.com.
 
-The way it works is that you generate an random inbound email address, ending in `inbound-cases@truepositive.app`, in the web console. Whenever you send an email to this inbound address, we create a case in your True Positive tenant and attach the original email.
+The way it works is that you generate an random inbound email address, ending in `inbound-cases@truepositive.app`, in the web console. Whenever you send an email to this inbound address, we create a case in your True Positive instance and attach the original email.
 
 Then you can create a forwarding rule to forward emails from phishing@company.com to your generated inbound address.
 
