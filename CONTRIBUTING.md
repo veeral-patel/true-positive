@@ -5,7 +5,7 @@
 True Positive has three components:
 
 - A Postgres database, which stores our data
-- A GraphQL API, built with Ruby on Rails, which you can use to create/update/delete cases/tasks/indicators/other objects 
+- A GraphQL API, built with Ruby on Rails, which you can use to create/update/delete cases/tasks/indicators/other objects
 - A React frontend, which uses the GraphQL API
 
 ## API
@@ -20,6 +20,9 @@ cd backend
 # install dependencies
 bundle install
 
+# create, migrate our database
+rails db:create db:migrate
+
 # start local server
 rails s -p 4000
 ```
@@ -33,13 +36,21 @@ Then visit http://localhost:4000
 To start the frontend locally, run:
 
 ```
+
 cd frontend
 
 # install dependencies
+
 yarn install
 
-# start local server 
+# start local server
+
 yarn start
+
 ```
 
 Then visit http://localhost:3000
+
+```
+
+```
