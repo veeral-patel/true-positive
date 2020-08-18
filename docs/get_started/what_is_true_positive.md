@@ -4,7 +4,7 @@ title: What is True Positive?
 sidebar_label: What is True Positive?
 ---
 
-True Positive is a collaborative, web-based case management tool for organizing information about security investigations. It is closed source and delivered as SaaS.
+True Positive is a collaborative, web-based case management tool for organizing information about security investigations. It's open source; find it [on GitHub](https://github.com/veeral-patel/true-positive).
 
 You may like True Positive if:
 
