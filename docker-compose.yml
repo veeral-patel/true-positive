@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  db:
+    image: postgres
+    ports:
+    - 5432:5432
+  backend:
+    build:
+      context: ./backend
+    ports:
+    - 4000:4000
+    depends_on:
+    - db
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+    - 3000:3000
+    depends_on:
+    - backend
+    
