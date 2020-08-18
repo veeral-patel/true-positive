@@ -22,8 +22,11 @@ bundle install
 
 # create, migrate our database
 rails db:create db:migrate
+```
 
-# start local server
+Now, start our local server.
+
+```
 rails s -p 4000
 ```
 
