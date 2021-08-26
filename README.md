@@ -3,9 +3,13 @@
 True Positive is a collaborative, web-based case management tool for incident responders. For more information, check
 out [the website](https://truepositive.app).
 
+## Screenshots
+
 ![](https://storage.googleapis.com/tp_landing_page_videos/one_case.png)  
 
-![](https://storage.googleapis.com/tp_landing_page_videos/list_of_case_templates.png)
+![](https://storage.googleapis.com/tp_landing_page_videos/list_of_case_templates.png)  
+
+![](https://storage.googleapis.com/tp_landing_page_videos/query_me.png)
 
 ## Key features
 
