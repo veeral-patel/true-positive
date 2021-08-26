@@ -1,14 +1,20 @@
-# CONTRIBUTING
+# True Positive
 
 ## Architecture
 
 True Positive has three components:
 
 - A Postgres database, which stores our data
-- A GraphQL API, built with Ruby on Rails, which you can use to create/update/delete cases/tasks/indicators/other objects
-- A React frontend, which uses the GraphQL API
+- A GraphQL API, built with Ruby on Rails
+- A React frontend which uses the GraphQL API. Also built with TypeScript, Apollo, Reach Router, MobX
 
-## API
+Additionally, you will find:
+- a landing page (built with Gatsby.js) under `landing`
+- a documentation site (built with Docusaurus) under `docs`
+
+## Getting Started
+
+### API
 
 > You will need to install Ruby, Rails, and Bundler for this.
 
@@ -38,7 +44,7 @@ rails s -p 4000
 
 Then visit http://localhost:4000. Note that all the GraphQL queries right now you try to make will give you an "unauthorized" error; this is normal.
 
-## Frontend
+### Frontend
 
 > You will need to install `yarn` for this.
 
