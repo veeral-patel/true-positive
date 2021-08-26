@@ -29,6 +29,10 @@ out [the website](https://truepositive.app).
 - You've checked out TheHive, RTIR, or other existing case management tools and found that they don't meet all your needs.
 - You work at an internal detection/response team, a SOC, a MSSP, or an incident response firm.
 
+## Getting started
+
+Please see [this page](CONTRIBUTING.md) to get True Positive running locally!
+
 ## Tech stack
 
 True Positive has three components:
@@ -39,8 +43,3 @@ True Positive has three components:
 
 Additionally, our landing page is built with [Gatsby.js](https://www.gatsbyjs.com/) and our documentation site is built
 with [Docusaurus](https://docusaurus.io/).
-
-## Contributing
-
-If you are interested in contributing, or just modifying some of the code, please see [this page](CONTRIBUTING.md) to
-learn how to run True Positive locally in development mode.
