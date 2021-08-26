@@ -1,68 +1,28 @@
 # True Positive
 
-## Architecture
+True Positive is a collaborative, web-based case management tool for incident responders. For more information, check
+out [the website](https://truepositive.app).
+
+You may like True Positive if:
+
+- You're using Jira, SharePoint, Google Docs, or a service desk tool for managing your security-related cases, and are looking for a more specialized tool.
+- You've checked out TheHive, RTIR, or other existing case management tools and found that they don't meet all your needs.
+- You're a hobbyist who likes experimenting with new DFIR tools.
+- You work at an internal detection/response team, a SOC, a MSSP, or an incident response firm.
+
+## How It Works
 
 True Positive has three components:
 
-- A Postgres database, which stores our data
-- A GraphQL API, built with Ruby on Rails
+- A Postgres database
+- A GraphQL API, built with Ruby on Rails and `graphql-ruby`
 - A React frontend which uses the GraphQL API. Also built with TypeScript, Apollo, Reach Router, MobX
 
 Additionally, you will find:
 - a landing page (built with Gatsby.js) under `landing`
 - a documentation site (built with Docusaurus) under `docs`
 
-## Getting Started
+## Contributing
 
-### API
-
-> You will need to install Ruby, Rails, and Bundler for this.
-
-To start the API locally, run:
-
-```
-cd backend
-
-# install dependencies
-bundle install
-
-# create, migrate our database
-rails db:create db:migrate
-```
-
-Run `rails console` in `backend` and let's create our first user:
-
-```
-User.create(username: "plato", email: "plato@thegreeks.net", password: "thegreeks")
-```
-
-Now, start our local server.
-
-```
-rails s -p 4000
-```
-
-Then visit http://localhost:4000. Note that all the GraphQL queries right now you try to make will give you an "unauthorized" error; this is normal.
-
-### Frontend
-
-> You will need to install `yarn` for this.
-
-To start the frontend locally, run:
-
-```
-cd frontend
-
-# install dependencies
-yarn install
-
-# start local server
-yarn start
-```
-
-Then visit http://localhost:3000
-
-Assuming you ran the same create user command as above, your credentials to log in will be:
-
-Username: plato  
-Password: thegreeks
+If you are interested in contributing, or just modifying some of the code, please see [this page](CONTRIBUTING.md) to
+learn how to run True Positive locally in development mode.
