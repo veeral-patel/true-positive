@@ -7,6 +7,7 @@ class Case < ApplicationRecord
   validates :status, presence: true
   validates :priority, presence: true
   validates :created_by, presence: true
+  validates :code, presence: true
 
   belongs_to :created_by, :class_name => 'User'
   belongs_to :assigned_to, :class_name => 'User', optional: true
@@ -21,6 +22,7 @@ class Case < ApplicationRecord
   has_many :tasks, through: :task_groups
   has_many :attachments, as: :attachable, dependent: :destroy
 
+  before_validation :set_unique_code
   after_create :add_creator_to_members
 
   acts_as_taggable_on :tags
@@ -93,6 +95,12 @@ class Case < ApplicationRecord
   end
 
   private
+
+    def set_unique_code
+      highest_code = Case.maximum(:code).to_s.sub("CODE-", '').to_i
+      self.code = "CODE-#{highest_code + 1}"
+    end
+
     def add_creator_to_members
       # Add the user who created this case to its list of members, so he/she can access it.
       self.case_members.create(user: self.created_by, role: "CAN_EDIT")
