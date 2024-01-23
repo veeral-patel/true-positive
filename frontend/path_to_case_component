@@ -1,0 +1,27 @@
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { CASE_DETAILS_QUERY } from './queries';
+
+const CaseDetailsComponent = ({ caseId }) => {
+  const { data, loading, error } = useQuery(CASE_DETAILS_QUERY, {
+    variables: { id: caseId },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const { name, status, priority, code } = data.case;
+
+  return (
+    <div className="case-details">
+      <h1>{name}</h1>
+      <div className="case-metadata">
+        <span className="case-code">Code: {code}</span>
+        <span className="case-status">Status: {status.name}</span>
+        <span className="case-priority">Priority: {priority.name}</span>
+      </div>
+    </div>
+  );
+};
+
+export default CaseDetailsComponent;
